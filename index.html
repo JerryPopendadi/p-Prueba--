@@ -8,7 +8,7 @@
   <meta name="keywords" content="señalización, señalética, señalización corporativa, señalética hospitalaria, señalización edificios públicos, rótulos luminosos, letras corpóreas, rotulación de vehículos, licitaciones señalización, empresa de señalización Madrid">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="SeñalVal">
-  <meta name="theme-color" content="#0B1F3A">
+  <meta name="theme-color" content="#0A0A0B">
   <link rel="canonical" href="https://senalval.es/">
   <link rel="alternate" hreflang="es" href="https://senalval.es/">
 
@@ -107,8 +107,8 @@
   <header class="nav" id="top">
     <div class="wrap nav__inner">
       <a href="#top" class="brand" aria-label="SeñalVal, inicio">
-        <img src="assets/img/logo-senalval.svg" alt="SeñalVal" class="brand__img" width="160" height="40"
-             onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+        <img src="assets/img/logo-senalval.svg" alt="SeñalVal" class="brand__img" width="176" height="44" data-fallbacks="assets/img/logo-senalval.png,assets/img/logo-senalval.jpg"
+             onerror="var f=(this.dataset.fallbacks||'').split(',').filter(Boolean);if(f.length){this.dataset.fallbacks=f.slice(1).join(',');this.src=f[0];}else{this.hidden=true;this.nextElementSibling.hidden=false;}">
         <span class="brand__text" hidden>Señal<b>Val</b></span>
       </a>
       <nav class="nav__links" aria-label="Principal">
@@ -119,7 +119,7 @@
         <a href="#licitaciones">Licitaciones</a>
         <a href="#recursos">Recursos</a>
       </nav>
-      <a href="#contacto" class="btn btn--sm btn--light nav__cta">Hablemos de su proyecto</a>
+      <a href="#contacto" class="btn btn--sm btn--accent nav__cta">Hablemos de su proyecto</a>
       <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>

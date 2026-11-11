@@ -6,12 +6,19 @@ Web de una sola página (HTML + CSS + JS, sin dependencias) que posiciona a Señ
 ## Estructura
 ```
 index.html        Página completa (SEO, datos estructurados, secciones)
-css/styles.css    Diseño (blanco, azul marino #0B1F3A, Montserrat, acento amarillo señal)
+css/styles.css    Diseño (paleta corporativa blanco, negro y azul; Montserrat)
 js/main.js        Menú, animaciones, carrusel de logos, formulario → email
 assets/img/       Fotos y logo de SeñalVal
 assets/logos/     Logos de clientes (SVG o PNG)
 robots.txt, sitemap.xml
 ```
+
+## Colores y logo
+- La paleta es blanco, negro y azul. El azul corporativo está en una sola variable, `--blue`,
+  al principio de `css/styles.css`; cámbiala por el código exacto del logo de SeñalVal
+  (y `--blue-bright`, su versión clara para textos sobre negro).
+- La cabecera es blanca para que el logo se vea con sus colores originales. Basta con dejar
+  el archivo como `assets/img/logo-senalval.svg` (o `.png` / `.jpg`; se prueban en ese orden).
 
 ## Imágenes que hay que añadir
 Si falta una imagen, la web muestra un recuadro azul con su descripción (y el logo de un cliente
@@ -19,7 +26,7 @@ se sustituye por su nombre), así que nunca se ve rota. Pon los archivos con est
 
 | Archivo | Contenido |
 |---|---|
-| `assets/img/logo-senalval.svg` | Logo oficial (se muestra en blanco sobre el menú) |
+| `assets/img/logo-senalval.svg` (o `.png`) | Logo oficial, en sus colores originales |
 | `assets/img/plaza-castilla.jpg` | Sedes judiciales, Plaza de Castilla (portada y proyecto destacado), ~1920 px |
 | `assets/img/og-senalval.jpg` | Imagen para compartir en redes, 1200×630 |
 | `assets/img/senaletica-interior.jpg` | Señalética interior / directorios |
