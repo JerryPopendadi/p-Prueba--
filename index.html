@@ -142,6 +142,9 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__media">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/plaza-castilla.jpg" aria-hidden="true">
+          <source src="https://senalval.es/wp-content/uploads/2026/02/Senalval.mp4" type="video/mp4">
+        </video>
         <img src="assets/img/plaza-castilla.jpg" alt="Señalización de las sedes judiciales en Plaza de Castilla, Madrid, realizada por SeñalVal" fetchpriority="high" width="1920" height="1080">
       </div>
       <div class="hero__grid" aria-hidden="true"></div>
@@ -158,7 +161,7 @@
           <a href="#proyectos" class="btn btn--ghost btn--lg">Ver proyectos</a>
         </div>
         <p class="hero__proof">
-          <span>Proyectos para</span> Aena · Sedes judiciales de Madrid · Comunidad de Madrid · Junta de Castilla y León · Coca-Cola · Toyota
+          <span>Proyectos para</span> Aena · Sedes judiciales de Madrid · Comunidad de Madrid · Junta de Castilla y León · Real Valladolid · Coca-Cola · Toyota · Mahou · Dragados
         </p>
       </div>
 
@@ -172,6 +175,19 @@
         </div>
         <p class="hero__caption">Sedes judiciales · Plaza de Castilla, Madrid</p>
       </div>
+
+      <!-- Historias del blog: se rellenan con los últimos artículos con imagen -->
+      <aside class="hero__stories" id="hero-stories" aria-label="Lo último del blog" hidden>
+        <div class="stories__bars" aria-hidden="true"></div>
+        <div class="stories__slides"></div>
+        <div class="stories__foot">
+          <span class="stories__label">Del blog</span>
+          <div class="stories__nav">
+            <button type="button" class="stories__btn" data-dir="-1" aria-label="Artículo anterior">←</button>
+            <button type="button" class="stories__btn" data-dir="1" aria-label="Artículo siguiente">→</button>
+          </div>
+        </div>
+      </aside>
       <!-- ===================== CLIENTES ===================== -->
       <div class="clients" id="clientes" role="region" aria-label="Clientes que confían en SeñalVal">
         <div class="wrap">
@@ -179,14 +195,21 @@
         </div>
         <div class="marquee">
           <ul class="marquee__track">
-          <li class="logo" data-srcs="assets/logos/aena.svg|assets/logos/aena.png|https://commons.wikimedia.org/wiki/Special:FilePath/Aena_logo.svg?width=400"><img alt="Aena" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/comunidad-madrid.svg|assets/logos/comunidad-madrid.png|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Comunidad_de_Madrid.svg?width=400"><img alt="Comunidad de Madrid" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/junta-cyl.svg|assets/logos/junta-cyl.png|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Junta_de_Castilla_y_León.svg?width=400"><img alt="Junta de Castilla y León" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/coca-cola.svg|assets/logos/coca-cola.png"><img alt="Coca-Cola" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/toyota.svg|assets/logos/toyota.png"><img alt="Toyota" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/clece.svg|assets/logos/clece.png|https://commons.wikimedia.org/wiki/Special:FilePath/Clece_logo.svg?width=400"><img alt="Clece" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/fundacion-laboral.svg|assets/logos/fundacion-laboral.png"><img alt="Fundación Laboral de la Construcción" decoding="async"></li>
-          <li class="logo" data-srcs="assets/logos/vias.svg|assets/logos/vias.png"><img alt="Vías y Construcciones" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/aena.svg|assets/logos/aena.png|assets/logos/aena.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Aena_logo.svg?width=400"><img alt="Aena" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/comunidad-madrid.svg|assets/logos/comunidad-madrid.png|assets/logos/comunidad-madrid.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Comunidad_de_Madrid.svg?width=400"><img alt="Comunidad de Madrid" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/junta-cyl.svg|assets/logos/junta-cyl.png|assets/logos/junta-cyl.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Junta_de_Castilla_y_León.svg?width=400"><img alt="Junta de Castilla y León" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/real-valladolid.svg|assets/logos/real-valladolid.png|assets/logos/real-valladolid.jpg"><img alt="Real Valladolid Club de Fútbol" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/coca-cola.svg|assets/logos/coca-cola.png|assets/logos/coca-cola.jpg"><img alt="Coca-Cola" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/toyota.svg|assets/logos/toyota.png|assets/logos/toyota.jpg"><img alt="Toyota" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/mahou.svg|assets/logos/mahou.png|assets/logos/mahou.jpg"><img alt="Mahou" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/dragados.svg|assets/logos/dragados.png|assets/logos/dragados.jpg"><img alt="Dragados" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/hummel.svg|assets/logos/hummel.png|assets/logos/hummel.jpg"><img alt="Hummel" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/clece.svg|assets/logos/clece.png|assets/logos/clece.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Clece_logo.svg?width=400"><img alt="Clece" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/vias.svg|assets/logos/vias.png|assets/logos/vias.jpg"><img alt="Vías y Construcciones" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/fundacion-laboral.svg|assets/logos/fundacion-laboral.png|assets/logos/fundacion-laboral.jpg"><img alt="Fundación Laboral de la Construcción" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/emilio-moro.svg|assets/logos/emilio-moro.png|assets/logos/emilio-moro.jpg"><img alt="Bodegas Emilio Moro" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/gerovida.svg|assets/logos/gerovida.png|assets/logos/gerovida.jpg"><img alt="Gerovida" decoding="async"></li>
+          <li class="logo" data-srcs="assets/logos/rapimueble.svg|assets/logos/rapimueble.png|assets/logos/rapimueble.jpg"><img alt="Rapimueble" decoding="async"></li>
         </ul>
         </div>
       </div>
@@ -251,7 +274,7 @@
           <li class="sector reveal"><span class="sector__i">✎</span><h3>Educación y formación</h3><p>Universidades, colegios y centros de formación profesional.</p></li>
           <li class="sector reveal"><span class="sector__i">▦</span><h3>Corporativo y oficinas</h3><p>Identidad de marca aplicada a sedes, plantas y salas.</p></li>
           <li class="sector reveal"><span class="sector__i">⚙</span><h3>Industria y logística</h3><p>Seguridad, PRL, naves y señalización horizontal.</p></li>
-          <li class="sector reveal"><span class="sector__i">◈</span><h3>Retail y concesionarios</h3><p>Rótulos, fachadas e imagen homogénea en toda la red.</p></li>
+          <li class="sector reveal"><span class="sector__i">◈</span><h3>Deporte, retail y marcas</h3><p>Estadios, concesionarios y fachadas con imagen homogénea.</p></li>
           <li class="sector reveal"><span class="sector__i">⇄</span><h3>Transporte y flotas</h3><p>Rotulación de vehículos, autobuses y estaciones.</p></li>
         </ul>
       </div>
@@ -330,6 +353,23 @@
               <div><dt>Solución</dt><dd>Sistema de wayfinding unificado: directorios generales, señalización por plantas y salas, y placas normalizadas para todas las dependencias.</dd></div>
               <div><dt>Materiales</dt><dd>Aluminio, metacrilato y vinilo de alta durabilidad, con criterios de accesibilidad y legibilidad.</dd></div>
               <div><dt>Instalación</dt><dd>Planificada por fases y franjas horarias para mantener los edificios plenamente operativos.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="feature feature--reverse reveal">
+          <div class="feature__media media">
+            <img src="assets/img/real-valladolid.jpg" alt="Instalación integral de señalización para el Real Valladolid Club de Fútbol" loading="lazy" width="1400" height="900">
+            <span class="tag">Deporte</span>
+          </div>
+          <div class="feature__body">
+            <p class="eyebrow">Deporte · Valladolid</p>
+            <h3 class="h3">Real Valladolid Club de Fútbol</h3>
+            <dl class="case">
+              <div><dt>Reto</dt><dd>Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.</dd></div>
+              <div><dt>Solución</dt><dd>Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.</dd></div>
+              <div><dt>Materiales</dt><dd>Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.</dd></div>
+              <div><dt>Instalación</dt><dd>Ejecutada con equipo propio y coordinada con el calendario de actividad del club.</dd></div>
             </dl>
           </div>
         </article>

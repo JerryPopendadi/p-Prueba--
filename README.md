@@ -35,6 +35,7 @@ se sustituye por su nombre), así que nunca se ve rota. Pon los archivos con est
 | `assets/img/rotulacion-vehiculos.jpg` | Vehículos / flotas |
 | `assets/img/vinilos.jpg` | Vinilos |
 | `assets/img/senalizacion-accesible.jpg` | Braille / seguridad |
+| `assets/img/real-valladolid.jpg` | Proyecto Real Valladolid (destacado) |
 | `assets/img/salamanca.jpg`, `clece-burgos.jpg`, `fundacion-laboral.jpg`, `san-sebastian.jpg`, `autobus-clece.jpg` | Proyectos |
 | `assets/logos/clece.svg`, `vias.svg`, `comunidad-madrid.svg`, `junta-cyl.svg`, `fundacion-laboral.svg`, `coca-cola.svg`, `toyota.svg`, `aena.svg` | Logos de clientes |
 
@@ -49,14 +50,21 @@ Con 5 o más logos la banda se desplaza en bucle; con menos, se muestran fijos.
 
 | Cliente | Archivo | Estado |
 |---|---|---|
-| Aena | `aena.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Comunidad de Madrid | `comunidad-madrid.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Junta de Castilla y León | `junta-cyl.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Coca-Cola | `coca-cola.svg` | Incluido (simple-icons, CC0) |
-| Toyota | `toyota.svg` | Incluido (simple-icons, CC0) |
-| Clece | `clece.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Fundación Laboral de la Construcción | `fundacion-laboral.svg` / `.png` | Pendiente |
-| Vías y Construcciones | `vias.svg` / `.png` | Pendiente |
+| Aena | `aena.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Comunidad de Madrid | `comunidad-madrid.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Junta de Castilla y León | `junta-cyl.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Real Valladolid Club de Fútbol | `real-valladolid.svg` / `.png` / `.jpg` | Pendiente |
+| Coca-Cola | `coca-cola.svg` / `.png` / `.jpg` | Incluido (simple-icons, CC0) |
+| Toyota | `toyota.svg` / `.png` / `.jpg` | Incluido (simple-icons, CC0) |
+| Mahou | `mahou.svg` / `.png` / `.jpg` | Pendiente |
+| Dragados | `dragados.svg` / `.png` / `.jpg` | Pendiente |
+| Hummel | `hummel.svg` / `.png` / `.jpg` | Pendiente |
+| Clece | `clece.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Vías y Construcciones | `vias.svg` / `.png` / `.jpg` | Pendiente |
+| Fundación Laboral de la Construcción | `fundacion-laboral.svg` / `.png` / `.jpg` | Pendiente |
+| Bodegas Emilio Moro | `emilio-moro.svg` / `.png` / `.jpg` | Pendiente |
+| Gerovida | `gerovida.svg` / `.png` / `.jpg` | Pendiente |
+| Rapimueble | `rapimueble.svg` / `.png` / `.jpg` | Pendiente |
 
 Descarga cada logo de la sala de prensa o del manual de marca del cliente. Mejor en SVG o PNG con fondo
 transparente: sobre la portada se muestran en blanco y en su color original al pasar el ratón.
@@ -66,6 +74,7 @@ Las marcas son propiedad de sus titulares: muéstralas solo con permiso del clie
 - Permiso para mostrar públicamente cada logo de cliente (sobre todo Coca-Cola y Toyota).
 - Dirección y teléfono: añadirlos en contacto, pie y en el JSON-LD (`address`, `telephone`) mejora el SEO local.
 - Documentación real disponible para licitaciones y certificaciones (ISO, etc.).
+- Proyecto Real Valladolid: confirmar alcance exacto (estadio, ciudad deportiva…) y si el club autoriza citarlo.
 - Textos de los proyectos: los retos/soluciones son una redacción base; ajustar con datos reales (nº de señales, plazos, m²).
 - Enlaces de Aviso legal, Privacidad y Cookies (obligatorios por LSSI/RGPD).
 

@@ -161,6 +161,9 @@ p { margin: 0; }
 }
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); animation: kenburns 22s ease-out forwards; }
+.hero__video { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+.hero__video.is-playing { opacity: 1; }
+.hero__media::after { z-index: 2; }
 .hero__media::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(100deg, rgba(0,0,0,.94) 0%, rgba(10,10,11,.82) 42%, rgba(10,10,11,.4) 75%, rgba(0,40,90,.55) 100%);
@@ -208,6 +211,35 @@ p { margin: 0; }
 .hero__scroll { position: absolute; left: 50%; bottom: 26px; width: 26px; height: 42px; border: 2px solid rgba(255,255,255,.5); border-radius: 20px; translate: -50% 0; }
 .hero__scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; background: var(--white); border-radius: 2px; translate: -50% 0; animation: scrolldot 1.8s infinite; }
 @keyframes scrolldot { 70% { opacity: 0; transform: translateY(14px); } 100% { opacity: 0; } }
+
+/* Historias del blog en la portada */
+.hero__stories { position: absolute; right: max(16px, calc((100vw - var(--wrap)) / 2)); bottom: 150px; width: 360px; z-index: 3;
+  border-radius: 18px; overflow: hidden; background: rgba(12,13,16,.55); border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(14px); box-shadow: var(--shadow-lg); animation: rise 1.2s .3s var(--ease) both; }
+.stories__bars { position: absolute; top: 12px; left: 14px; right: 14px; z-index: 2; display: flex; gap: 6px; }
+.stories__bars span { flex: 1; height: 2px; background: rgba(255,255,255,.3); border-radius: 2px; overflow: hidden; }
+.stories__bars i { display: block; height: 100%; width: 100%; background: #fff; transform: scaleX(0); transform-origin: left; }
+.stories__bars .is-done i { transform: scaleX(1); }
+.stories__bars .is-active i { animation: storybar 6s linear forwards; }
+.hero__stories.is-paused .stories__bars .is-active i { animation-play-state: paused; }
+@keyframes storybar { to { transform: scaleX(1); } }
+.stories__slides { position: relative; aspect-ratio: 4 / 3.6; }
+.story { position: absolute; inset: 0; color: #fff; text-decoration: none; opacity: 0; visibility: hidden; transition: opacity .9s var(--ease), visibility 0s .9s; }
+.story.is-active { opacity: 1; visibility: visible; transition: opacity .9s var(--ease); }
+.story__img { position: absolute; inset: 0; overflow: hidden; }
+.story__img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+.story.is-active .story__img img { animation: storyzoom 7s ease-out forwards; }
+@keyframes storyzoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+.story__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 30%, rgba(0,0,0,.85) 100%); }
+.story__body { position: absolute; left: 20px; right: 20px; bottom: 18px; display: grid; gap: 8px; }
+.story__meta { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--blue-bright); }
+.story__title { font-size: 1.05rem; font-weight: 400; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.story:hover .story__title { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.stories__foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 12px 20px; border-top: 1px solid rgba(255,255,255,.1); }
+.stories__label { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.stories__nav { display: flex; gap: 8px; }
+.stories__btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: transparent; color: #fff; font: inherit; cursor: pointer; transition: background .25s, border-color .25s; }
+.stories__btn:hover { background: var(--blue); border-color: var(--blue); }
 
 /* ---------- Clientes (banda inferior de la portada) ---------- */
 .clients { position: relative; padding: 22px 0 22px; border-top: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.35); backdrop-filter: blur(6px); }
@@ -291,6 +323,8 @@ p { margin: 0; }
 /* Proyectos */
 .feature { display: grid; grid-template-columns: 1.25fr 1fr; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 28px; }
 .feature__media { aspect-ratio: auto; min-height: 460px; }
+.feature--reverse { grid-template-columns: 1fr 1.25fr; }
+.feature--reverse .feature__media { order: 2; }
 .feature:hover .media img { transform: scale(1.04); }
 .feature__body { padding: clamp(28px, 4vw, 52px); }
 .feature .h3 { margin-bottom: 26px; }
@@ -417,6 +451,8 @@ p { margin: 0; }
   .hero__proof { margin-top: 20px; }
   .hero__content { padding-bottom: 28px; }
   .hero__sign { bottom: 140px; width: 310px; }
+  .hero__stories { bottom: 130px; width: 320px; }
+  .stories__slides { aspect-ratio: 4 / 3.2; }
   .sign__row { padding: 11px 16px; }
 }
 
@@ -425,14 +461,15 @@ p { margin: 0; }
   .nav__links { display: none; }
   .nav__burger { display: block; }
   .nav__cta { display: none; }
-  .hero__sign { display: none; }
+  .hero__sign, .hero__stories { display: none; }
   .pillars, .sectors, .resources { grid-template-columns: repeat(2, 1fr); }
   .services, .cases, .posts { grid-template-columns: repeat(2, 1fr); }
   .cycle { grid-template-columns: repeat(3, 1fr); row-gap: 36px; }
   .cycle::before { display: none; }
 }
 @media (max-width: 820px) {
-  .split-head, .tender__grid, .contact__grid, .feature { grid-template-columns: 1fr; }
+  .split-head, .tender__grid, .contact__grid, .feature, .feature--reverse { grid-template-columns: 1fr; }
+  .feature--reverse .feature__media { order: 0; }
   .split-head { gap: 18px; margin-bottom: 44px; }
   .feature__media { min-height: 280px; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
@@ -564,6 +601,9 @@ p { margin: 0; }
     <!-- ===================== HERO ===================== -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__media">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="../assets/img/plaza-castilla.jpg" aria-hidden="true">
+          <source src="https://senalval.es/wp-content/uploads/2026/02/Senalval.mp4" type="video/mp4">
+        </video>
         <img src="../assets/img/plaza-castilla.jpg" alt="Señalización de las sedes judiciales en Plaza de Castilla, Madrid, realizada por SeñalVal" fetchpriority="high" width="1920" height="1080">
       </div>
       <div class="hero__grid" aria-hidden="true"></div>
@@ -580,7 +620,7 @@ p { margin: 0; }
           <a href="#proyectos" class="btn btn--ghost btn--lg">Ver proyectos</a>
         </div>
         <p class="hero__proof">
-          <span>Proyectos para</span> Aena · Sedes judiciales de Madrid · Comunidad de Madrid · Junta de Castilla y León · Coca-Cola · Toyota
+          <span>Proyectos para</span> Aena · Sedes judiciales de Madrid · Comunidad de Madrid · Junta de Castilla y León · Real Valladolid · Coca-Cola · Toyota · Mahou · Dragados
         </p>
       </div>
 
@@ -594,6 +634,19 @@ p { margin: 0; }
         </div>
         <p class="hero__caption">Sedes judiciales · Plaza de Castilla, Madrid</p>
       </div>
+
+      <!-- Historias del blog: se rellenan con los últimos artículos con imagen -->
+      <aside class="hero__stories" id="hero-stories" aria-label="Lo último del blog" hidden>
+        <div class="stories__bars" aria-hidden="true"></div>
+        <div class="stories__slides"></div>
+        <div class="stories__foot">
+          <span class="stories__label">Del blog</span>
+          <div class="stories__nav">
+            <button type="button" class="stories__btn" data-dir="-1" aria-label="Artículo anterior">←</button>
+            <button type="button" class="stories__btn" data-dir="1" aria-label="Artículo siguiente">→</button>
+          </div>
+        </div>
+      </aside>
       <!-- ===================== CLIENTES ===================== -->
       <div class="clients" id="clientes" role="region" aria-label="Clientes que confían en SeñalVal">
         <div class="wrap">
@@ -601,14 +654,21 @@ p { margin: 0; }
         </div>
         <div class="marquee">
           <ul class="marquee__track">
-          <li class="logo" data-srcs="../assets/logos/aena.svg|../assets/logos/aena.png|https://commons.wikimedia.org/wiki/Special:FilePath/Aena_logo.svg?width=400"><img alt="Aena" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/comunidad-madrid.svg|../assets/logos/comunidad-madrid.png|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Comunidad_de_Madrid.svg?width=400"><img alt="Comunidad de Madrid" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/junta-cyl.svg|../assets/logos/junta-cyl.png|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Junta_de_Castilla_y_León.svg?width=400"><img alt="Junta de Castilla y León" decoding="async"></li>
-          <li class="logo" data-srcs="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSIxMjcuNSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCA4LjIzNiAyNCA3LjUyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q29jYS1Db2xhPC90aXRsZT48cGF0aCBmaWxsPSIjRDAwMDEzIiBkPSJNMTYuODEzIDguODE0cy0uNDUuMTgtLjk3My43NTZjLS41MjQuNTc3LS44MjggMS4yMjUtLjYwMyAxLjM5Ny4wODcuMDY2LjI4Ny4wNzkuNjUtLjI1YTIuODY0IDIuODY0IDAgMDAuNzY2LTEuMDYzYy4yMzQtLjU3LjE2LS44MzMuMTYtLjg0bTIuODYzIDEuMDM4Yy0uNTgxLS4yOTktMS4wMDYtLjY2NC0xLjQ0OC0uODktLjQyMi0uMjE2LS42OTUtLjMwNy0xLjAzNi0uMjYxYTEuMDU3IDEuMDU3IDAgMDAtLjE0LjAzNXMuMTc2LjYtLjUyMyAxLjYwN2MtLjcwOCAxLjAyMi0xLjM1IDEuMDE1LTEuNTMzLjczNC0uMTkxLS4yOTYuMDU2LS45LjQ2OC0xLjQzNy40MzItLjU2MiAxLjE5LTEuMDI4IDEuMTktMS4wMjhzLS4yNDEtLjE0OC0uODM1LjE5Yy0uNTguMzI2LTEuNTc3IDEuMTA3LTIuNTAyIDIuNDIzLS45MjYgMS4zMTYtMS4xMSAyLjA0LTEuMjQyIDIuNjEtLjEzMi41Ny0uMDEyIDEuMTguNjIgMS4xOHMxLjM2OC0uOTY0IDEuNTc2LTEuMjk5Yy4zODYtLjYyNC42MzctMS41ODEuMTEyLTEuNDUtLjI1OS4wNjUtLjQ2OC4zNTEtLjYuNjI3YTIuNjgzIDIuNjgzIDAgMDAtLjE5LjU1NCAyLjE4NSAyLjE4NSAwIDAwLS41MTMuMjk4IDMuNzg4IDMuNzg4IDAgMDAtLjQ4Ni40M3MuMDAyLS40NTYuMzY1LTEuMTk0Yy4zNjQtLjczNyAxLjAzLTEuMDc0IDEuNDA4LTEuMTA2LjM0LS4wMjcuNzgzLjI2Mi40MDggMS4zMjctLjM3NSAxLjA2NS0xLjQ4MyAyLjM2LTIuNjQ2IDIuMzc2LTEuMDczLjAxNS0xLjc3Ni0xLjM1NS0uMjgyLTMuNzQ1QzEzLjUwMSA5LjE5IDE1LjQ0MSA4LjM4IDE2LjA3IDguMjljLjYzLS4wOS44MzUuMTg3LjgzNS4xODdhMi43MDkgMi43MDkgMCAwMTEuMTk3LS4xOTdjLjc3LjA1MiAxLjM2NC41OTYgMi4xNS45NzktLjIwNS4xOTUtLjQuNC0uNTc1LjU5Mm0zLjQ1NC0uODljLS41MzMuMzQyLTEuMjcuNjUyLTEuOTc5LjU4Ni0uMTc5LjE4NS0uMzcxLjQtLjU2My42MzQgMS4yMjguMjQzIDIuMzA1LS41MTkgMi44NzctMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xLjYzNiAzLjQ2MmEuMjY4LjI2OCAwIDAwLjAyMy0uMDUxLjEyNC4xMjQgMCAwMC0uMTEzLS4xMDhjLS4xMTctLjAwNS0uMjc3LjAxNy0uNjk1LjQ4YTYuMzAzIDYuMzAzIDAgMDAtLjg5IDEuMjYzYy0uMjQuNDM4LS4zMzcuNzY0LS4yLjg0OGEuMTk5LjE5OSAwIDAwLjE0Ni4wMTVjLjA5My0uMDIyLjE5OS0uMTEuMzYtLjI5NS4wNzUtLjA4OC4xNTgtLjIxMi4yNTgtLjM0OS4yNzctLjM3Ni45NzMtMS41NjMgMS4xMTEtMS44MDNtLTQuMzQ5LjUwNGMuMDctLjE4Mi4xNTktLjU0MS0uMDI2LS42ODItLjE5OS0uMTUtLjcwNS4yMDEtLjcwOC41NjEtLjAwMy4zNjkuMzU3LjUzNS40NDMuNTU5LjA1LjAxMy4wNjYuMDEuMDktLjAyOWEzLjI4NCAzLjI4NCAwIDAwLjIwMS0uNDA5bS0uMzgzLjY3YTEuNTMxIDEuNTMxIDAgMDEtLjM0OC0uMjIyIDEuMTE2IDEuMTE2IDAgMDEtLjI2LS4zMTdjLS4wMDgtLjAxMi0uMDE1LS4wMDMtLjAyMy4wMDgtLjAwNy4wMS0uMDM5LjAzOS0uMzA5LjQzNC0uMjcuMzk2LS42ODQgMS4yMTYtLjMxIDEuMzU1LjI0MS4wOS42NDEtLjMzMS44Ni0uNjFhNS4yMSA1LjIxIDAgMDAuNDAyLS42MTRjLjAxMi0uMDIzIDAtLjAyOS0uMDEyLS4wMzRtNC4yNTguOTQ3Yy0uMTAyLjE2My0uMjE4LjQ3Ni4xMTcuMjgxLjQxLS4yMzYuOTk0LTEuMTIzLjk5NC0xLjEyM2guMjY1YTguODggOC44OCAwIDAxLS44MDMgMS4wNTRjLS40MTUuNDYtLjkyMi44NzktMS4yOC44MzctLjQxNi0uMDQ4LS4yODYtLjU5Ni0uMjg2LS41OTZzLS41OTYuNjM1LTEuMDEuNTljLS41NTctLjA2Mi0uMzg3LS43NTEtLjM4Ny0uNzUxcy0uNjMuNzc0LTEuMDYuNzVjLS42NzMtLjA0LS41MDQtLjg1OS0uMzE2LTEuNDM2LjEtLjMwOC4xOTMtLjU1LjE5My0uNTVzLS4wNjcuMDE3LS4yMS4wMzhjLS4wNzYuMDExLS4yMTIuMDE5LS4yMTIuMDE5cy0uMjguNDk1LS41MDUuNzkyYy0uMjI0LjI5Ny0xLjE3OCAxLjMyMi0xLjc0IDEuMTE3LS41MTgtLjE5LS4zNDYtLjk4NC0uMDQ0LTEuNjE1LjQ0LS45MiAxLjY4LTIuMjQzIDIuMzk2LTIuMDY4Ljc0MS4xOC4wMTcgMS41MzIuMDE3IDEuNTMyczAgLjAwNS4wMDcuMDA5Yy4wMTUuMDA1LjA1NC4wMS4xNDMtLjAwOGExLjYwNSAxLjYwNSAwIDAwLjI3MS0uMDhzLjc0Ni0xLjU2MSAxLjU2OS0yLjU4M2MuODIzLTEuMDIgMi40NjUtMi43OCAzLjExLTIuMzU0LjE1Ni4xMDUuMDg2LjQ2NS0uMTI2LjkwMmEyLjg5MSAyLjg5MSAwIDAxLS4yOTEuMDc4Yy4xNDItLjI1OC4yMzYtLjQ3NS4yNjQtLjYyNy4wOTctLjUyOC0xLjEzNS41ODUtMi4wMTUgMS43OGExNi41OTQgMTYuNTk0IDAgMDAtMS40MDkgMi4yOCAzLjg2IDMuODYgMCAwMC40NTQtLjMyNCAxMy4wMDIgMTMuMDAyIDAgMDAxLjExOC0xLjA0MyAxMi4xNjkgMTIuMTY5IDAgMDAuOTUxLTEuMDk4IDIuNTggMi41OCAwIDAwLjI4LS4wMjkgMTIuMDU0IDEyLjA1NCAwIDAxLTEuMDUgMS4yNGMtLjM1LjM1NS0uNzMuNzM3LTEuMDYxIDEuMDE1YTguODQgOC44NCAwIDAxLS45MzEuNjkxcy0uNzcgMS41NTMtLjM1MSAxLjY1MmMuMjQ2LjA2LjczMi0uNjkuNzMyLS42OXMuNjM1LS45NjcgMS4wMTctMS40MDRjLjUyMi0uNTkzLjk3LS45MzYgMS40Mi0uOTQyLjI2MS0uMDA1LjQxNS4yNzMuNDE1LjI3M2wuMTIzLS4xOWguNzU3cy0xLjQxNCAyLjM5OC0xLjUyNyAyLjU3OW0yLjExMS01LjU4Yy0uNTMzLjM0MS0xLjI3LjY1MS0xLjk3OS41ODUtLjE4LjE4NS0uMzcxLjQtLjU2NC42MzQgMS4yMjkuMjQzIDIuMzA1LS41MTggMi44NzgtMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xMC42MyAxLjE3N2gtLjcybC0uNDA3LjY1OGguNzJ6bS0zLjQxIDIuMjc3Yy4zMDctLjQyIDEuMTUyLTEuODkxIDEuMTUyLTEuODkxYS4xMjQuMTI0IDAgMDAtLjExMi0uMTA4Yy0uMTE3LS4wMDYtLjMxMi4wMzQtLjcuNTE5LS4zODcuNDg1LS42ODguODctLjkwNyAxLjI3Mi0uMjQuNDM4LS4zNDYuNzQ3LS4yMDcuODMxYS4yMDUuMjA1IDAgMDAuMTQ0LjAxNWMuMDktLjAyMi4yMDgtLjExMy4zNjktLjI5OGE1LjU3IDUuNTcgMCAwMC4yNjItLjM0bS0zLjg2My0xLjk5Yy0uMTk5LS4xNS0uNzA1LjIwMS0uNzA4LjU2LS4wMDMuMzY5LjQ1Ni40ODIuNTE1LjQ4NGEuMDkuMDkgMCAwMC4wNS0uMDEuMDYuMDYgMCAwMC4wMjQtLjAyNyAzLjQ4MyAzLjQ4MyAwIDAwLjE0Ni0uMzI1Yy4wNy0uMTgzLjE1OC0uNTQxLS4wMjctLjY4Mm0tLjMgMS4yN2ExLjY3OCAxLjY3OCAwIDAxLS4zOS0uMTguODEyLjgxMiAwIDAxLS4yNzktLjMwOWMtLjAwNy0uMDEyLS4wMTUtLjAwMy0uMDIyLjAwOC0uMDA3LjAxLS4wNDcuMDYxLS4zMTguNDU4LS4yNy4zOTgtLjY3MiAxLjIxLS4yOTYgMS4zNS4yNC4wOS42NDQtLjMzNC44NjQtLjYxMmE3LjI0IDcuMjQgMCAwMC40NTUtLjY4MWMuMDA5LS4wMjQgMC0uMDMtLjAxNC0uMDM0bTUuODguMjQ0aC4yNjNzLTEuMzIxIDEuOTEyLTIuMDY4IDEuODIzYy0uNDE2LS4wNDktLjI5My0uNTYzLS4yOTMtLjU2M3MtLjU4NS42ODUtMS4xMjMuNTQ2Yy0uNDg3LS4xMjUtLjE3Mi0uOTM2LS4xNzItLjkzNi0uMDU2LjAyMi0xLjExMSAxLjIxMS0xLjg1My45MjYtLjc3Ni0uMy0uMzczLTEuMjk2LS4yMjUtMS41OTUuMTI1LS4yNTMuMjYzLS40OTkuMjYzLS40OTlzLS4xMTkuMDM0LS4xOTUuMDUxbC0uMTg2LjA0cy0uMzY3LjU5Ni0uNTkxLjg5NGMtLjIyNS4yOTctMS4xNzggMS4zMi0xLjc0IDEuMTE3LS41NjItLjIwNC0uNDIzLS45OS0uMTA3LTEuNjE1LjUxMi0xLjAxMiAxLjcyNi0yLjI1NiAyLjQ1OC0yLjA2OC43MzkuMTg5LjEyNyAxLjM4OC4xMjcgMS4zODhzLjE0Ny4wMTkuNS0uMjIyYy41MDctLjM0NiAxLjE3Ni0xLjI3NyAxLjkwMS0xLjE2Ny4zNDIuMDUxLjY2LjQuMjI1IDEuMDY0LS4xMzkuMjEzLS4zNzIuNDAzLS41NS4yMTUtLjExMS0uMTE4LS4wMTQtLjMzLjEwMy0uNDc3YS40NTcuNDU3IDAgMDEuMzktLjE3OXMuMTItLjI3My0uMTg1LS4yNjljLS4yNDcuMDA1LS44NzEuNTgtMS4yMjMgMS4xNi0uMzIzLjUzMy0uODEzIDEuNDQxLS4zMjIgMS42MzkuNDUxLjE4MiAxLjMwOS0uODM2IDEuNzA2LTEuMzcuMzk3LS41MzMgMS4zMDItMS43NDIgMi4wNjItMS43OS4yNjEtLjAxNy40MTcuMjIxLjQxNy4yMjFsLjA4OC0uMTM5aC43NTlzLTEuNDMgMi4zODctMS41NDIgMi41NjdjLS4wODguMTQxLS4yMDQuNDYuMTE3LjI4MS4zMjItLjE3OC45OTYtMS4wNDMuOTk2LTEuMDQzbS0uNDE0IDMuODI0YTMuMTQ0IDMuMTQ0IDAgMDAtMS45MDgtLjU1NyAxLjE3IDEuMTcgMCAwMC0uOTMuNTA0Yy0uMjktLjUwNS0uODYyLS44MTUtMS43NDctLjgwOC0xLjQzLjAxNi0yLjg0OS42NzYtMy45NzIuNjc1LTEuMDc3IDAtMS44NjMtLjY3Ny0xLjgzNy0xLjg4LjA0Ny0yLjEwOSAxLjgzLTQuMDA5IDMuMTYtNC44NjQuNzY3LS40OSAxLjQwOS0uNjM3IDEuODI4LS41OS4zMDYuMDM0LjY3NC4zODguNDQyLjkwOS0uMzQxLjc2MS0uODEyLjY5OS0uNzk1LjMzNS4wMS0uMjM3LjE2OC0uMzg2LjI4Ni0uNDY5YS41ODIuNTgyIDAgMDEuMjc4LS4wNjhjLjA2OC0uMDU3LjExNy0uNDc0LS40MjktLjMzNy0uNTQ2LjEzNy0xLjIxLjY3Ni0xLjg0IDEuMzcxLS42My42OTYtMS42MSAyLjAxMS0xLjg1MiAzLjM5Mi0uMTEzLjY0LS4wMzkgMS44MDggMS40OCAxLjc5NSAxLjI4Ny0uMDEgMy4xODUtLjg1OSA0LjkyOS0uODQxYTMuMzQgMy4zNCAwIDAxMS43MjUuNDcyYy40NTEuMjc4Ljk5Mi42ODQgMS4xODQuOTYxIi8+PC9zdmc+|../assets/logos/coca-cola.png"><img alt="Coca-Cola" decoding="async"></li>
-          <li class="logo" data-srcs="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSI1OC45IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDMuODQ4IDI0IDE2LjMwNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VG95b3RhPC90aXRsZT48cGF0aCBmaWxsPSIjRUIwQTFFIiBkPSJNMTIgMy44NDhDNS4yMjMgMy44NDggMCA3LjI5OCAwIDEyYzAgNC43MDIgNS4yMjQgOC4xNTIgMTIgOC4xNTJTMjQgMTYuNzAyIDI0IDEyYzAtNC43MDItNS4yMjMtOC4xNTItMTItOC4xNTJ6bTcuMzM0IDMuODM5YzAgMS4wOC0xLjcyNSAxLjkxMy00LjQ4OCAyLjI0Ni0uMjYtMi41OC0xLjAwNS00LjI3OS0xLjk2My00LjkxMyAyLjk0OC4xODQgNi40NSAxLjIyNyA2LjQ1IDIuNjY3ek0xMiAxNi40MDFjLS45NiAwLTEuNzQ2LTEuNS0xLjgwOC00LjM4OS41NzcuMDQ3IDEuMTguMDcyIDEuODA4LjA3Mi42MjggMCAxLjIzLS4wMjUgMS44MDctLjA3Mi0uMDYxIDIuODktLjg0NyA0LjM4OS0xLjgwNyA0LjM4OXptMC02LjMwOGMtLjU5IDAtMS4xNTUtLjAxOS0xLjY5LS4wNTQuMjYxLTEuNzI4LjkyLTMuMTUgMS42OS0zLjE1Ljc3IDAgMS40MjggMS40MjIgMS42ODkgMy4xNS0uNTM1LjAzNC0xLjA5OS4wNTQtMS42ODkuMDU0em0tLjg4Mi01LjA3NWMtLjk1Ni42MzMtMS43MDYgMi4zMzMtMS45NjQgNC45MTVDNi4zOTEgOS42IDQuNjY1IDguNzY3IDQuNjY1IDcuNjg3YzAtMS40NCAzLjUwNC0yLjQ5IDYuNDUzLTIuNjY5ek0yLjAzNyAxMS42OGE1LjI2NSA1LjI2NSAwIDAxMS4wNDgtMy4xNjRjLjI3IDEuNTQ3IDIuNTIyIDIuODgxIDUuOTcyIDMuMzdWMTJjMCAzLjc3Mi44NzkgNi4yMDMgMi4wODcgNi45Ny01LjEwNy0uMzIxLTkuMTA3LTMuNDgtOS4xMDctNy4yOXptMTAuODIzIDcuMjljMS4yMDctLjc2NyAyLjA4Ny0zLjE5OCAyLjA4Ny02Ljk3di0uMTE1YzMuNDQ3LS40ODggNS43MDQtMS44MjYgNS45NzItMy4zN2E1LjI2IDUuMjYgMCAwMTEuMDQ5IDMuMTY1Yy0uMDA0IDMuODEtNC4wMDggNi45NjktOS4xMDkgNy4yOXoiLz48L3N2Zz4=|../assets/logos/toyota.png"><img alt="Toyota" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/clece.svg|../assets/logos/clece.png|https://commons.wikimedia.org/wiki/Special:FilePath/Clece_logo.svg?width=400"><img alt="Clece" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/fundacion-laboral.svg|../assets/logos/fundacion-laboral.png"><img alt="Fundación Laboral de la Construcción" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/vias.svg|../assets/logos/vias.png"><img alt="Vías y Construcciones" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/aena.svg|../assets/logos/aena.png|../assets/logos/aena.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Aena_logo.svg?width=400"><img alt="Aena" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/comunidad-madrid.svg|../assets/logos/comunidad-madrid.png|../assets/logos/comunidad-madrid.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Comunidad_de_Madrid.svg?width=400"><img alt="Comunidad de Madrid" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/junta-cyl.svg|../assets/logos/junta-cyl.png|../assets/logos/junta-cyl.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Junta_de_Castilla_y_León.svg?width=400"><img alt="Junta de Castilla y León" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/real-valladolid.svg|../assets/logos/real-valladolid.png|../assets/logos/real-valladolid.jpg"><img alt="Real Valladolid Club de Fútbol" decoding="async"></li>
+          <li class="logo" data-srcs="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSIxMjcuNSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCA4LjIzNiAyNCA3LjUyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q29jYS1Db2xhPC90aXRsZT48cGF0aCBmaWxsPSIjRDAwMDEzIiBkPSJNMTYuODEzIDguODE0cy0uNDUuMTgtLjk3My43NTZjLS41MjQuNTc3LS44MjggMS4yMjUtLjYwMyAxLjM5Ny4wODcuMDY2LjI4Ny4wNzkuNjUtLjI1YTIuODY0IDIuODY0IDAgMDAuNzY2LTEuMDYzYy4yMzQtLjU3LjE2LS44MzMuMTYtLjg0bTIuODYzIDEuMDM4Yy0uNTgxLS4yOTktMS4wMDYtLjY2NC0xLjQ0OC0uODktLjQyMi0uMjE2LS42OTUtLjMwNy0xLjAzNi0uMjYxYTEuMDU3IDEuMDU3IDAgMDAtLjE0LjAzNXMuMTc2LjYtLjUyMyAxLjYwN2MtLjcwOCAxLjAyMi0xLjM1IDEuMDE1LTEuNTMzLjczNC0uMTkxLS4yOTYuMDU2LS45LjQ2OC0xLjQzNy40MzItLjU2MiAxLjE5LTEuMDI4IDEuMTktMS4wMjhzLS4yNDEtLjE0OC0uODM1LjE5Yy0uNTguMzI2LTEuNTc3IDEuMTA3LTIuNTAyIDIuNDIzLS45MjYgMS4zMTYtMS4xMSAyLjA0LTEuMjQyIDIuNjEtLjEzMi41Ny0uMDEyIDEuMTguNjIgMS4xOHMxLjM2OC0uOTY0IDEuNTc2LTEuMjk5Yy4zODYtLjYyNC42MzctMS41ODEuMTEyLTEuNDUtLjI1OS4wNjUtLjQ2OC4zNTEtLjYuNjI3YTIuNjgzIDIuNjgzIDAgMDAtLjE5LjU1NCAyLjE4NSAyLjE4NSAwIDAwLS41MTMuMjk4IDMuNzg4IDMuNzg4IDAgMDAtLjQ4Ni40M3MuMDAyLS40NTYuMzY1LTEuMTk0Yy4zNjQtLjczNyAxLjAzLTEuMDc0IDEuNDA4LTEuMTA2LjM0LS4wMjcuNzgzLjI2Mi40MDggMS4zMjctLjM3NSAxLjA2NS0xLjQ4MyAyLjM2LTIuNjQ2IDIuMzc2LTEuMDczLjAxNS0xLjc3Ni0xLjM1NS0uMjgyLTMuNzQ1QzEzLjUwMSA5LjE5IDE1LjQ0MSA4LjM4IDE2LjA3IDguMjljLjYzLS4wOS44MzUuMTg3LjgzNS4xODdhMi43MDkgMi43MDkgMCAwMTEuMTk3LS4xOTdjLjc3LjA1MiAxLjM2NC41OTYgMi4xNS45NzktLjIwNS4xOTUtLjQuNC0uNTc1LjU5Mm0zLjQ1NC0uODljLS41MzMuMzQyLTEuMjcuNjUyLTEuOTc5LjU4Ni0uMTc5LjE4NS0uMzcxLjQtLjU2My42MzQgMS4yMjguMjQzIDIuMzA1LS41MTkgMi44NzctMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xLjYzNiAzLjQ2MmEuMjY4LjI2OCAwIDAwLjAyMy0uMDUxLjEyNC4xMjQgMCAwMC0uMTEzLS4xMDhjLS4xMTctLjAwNS0uMjc3LjAxNy0uNjk1LjQ4YTYuMzAzIDYuMzAzIDAgMDAtLjg5IDEuMjYzYy0uMjQuNDM4LS4zMzcuNzY0LS4yLjg0OGEuMTk5LjE5OSAwIDAwLjE0Ni4wMTVjLjA5My0uMDIyLjE5OS0uMTEuMzYtLjI5NS4wNzUtLjA4OC4xNTgtLjIxMi4yNTgtLjM0OS4yNzctLjM3Ni45NzMtMS41NjMgMS4xMTEtMS44MDNtLTQuMzQ5LjUwNGMuMDctLjE4Mi4xNTktLjU0MS0uMDI2LS42ODItLjE5OS0uMTUtLjcwNS4yMDEtLjcwOC41NjEtLjAwMy4zNjkuMzU3LjUzNS40NDMuNTU5LjA1LjAxMy4wNjYuMDEuMDktLjAyOWEzLjI4NCAzLjI4NCAwIDAwLjIwMS0uNDA5bS0uMzgzLjY3YTEuNTMxIDEuNTMxIDAgMDEtLjM0OC0uMjIyIDEuMTE2IDEuMTE2IDAgMDEtLjI2LS4zMTdjLS4wMDgtLjAxMi0uMDE1LS4wMDMtLjAyMy4wMDgtLjAwNy4wMS0uMDM5LjAzOS0uMzA5LjQzNC0uMjcuMzk2LS42ODQgMS4yMTYtLjMxIDEuMzU1LjI0MS4wOS42NDEtLjMzMS44Ni0uNjFhNS4yMSA1LjIxIDAgMDAuNDAyLS42MTRjLjAxMi0uMDIzIDAtLjAyOS0uMDEyLS4wMzRtNC4yNTguOTQ3Yy0uMTAyLjE2My0uMjE4LjQ3Ni4xMTcuMjgxLjQxLS4yMzYuOTk0LTEuMTIzLjk5NC0xLjEyM2guMjY1YTguODggOC44OCAwIDAxLS44MDMgMS4wNTRjLS40MTUuNDYtLjkyMi44NzktMS4yOC44MzctLjQxNi0uMDQ4LS4yODYtLjU5Ni0uMjg2LS41OTZzLS41OTYuNjM1LTEuMDEuNTljLS41NTctLjA2Mi0uMzg3LS43NTEtLjM4Ny0uNzUxcy0uNjMuNzc0LTEuMDYuNzVjLS42NzMtLjA0LS41MDQtLjg1OS0uMzE2LTEuNDM2LjEtLjMwOC4xOTMtLjU1LjE5My0uNTVzLS4wNjcuMDE3LS4yMS4wMzhjLS4wNzYuMDExLS4yMTIuMDE5LS4yMTIuMDE5cy0uMjguNDk1LS41MDUuNzkyYy0uMjI0LjI5Ny0xLjE3OCAxLjMyMi0xLjc0IDEuMTE3LS41MTgtLjE5LS4zNDYtLjk4NC0uMDQ0LTEuNjE1LjQ0LS45MiAxLjY4LTIuMjQzIDIuMzk2LTIuMDY4Ljc0MS4xOC4wMTcgMS41MzIuMDE3IDEuNTMyczAgLjAwNS4wMDcuMDA5Yy4wMTUuMDA1LjA1NC4wMS4xNDMtLjAwOGExLjYwNSAxLjYwNSAwIDAwLjI3MS0uMDhzLjc0Ni0xLjU2MSAxLjU2OS0yLjU4M2MuODIzLTEuMDIgMi40NjUtMi43OCAzLjExLTIuMzU0LjE1Ni4xMDUuMDg2LjQ2NS0uMTI2LjkwMmEyLjg5MSAyLjg5MSAwIDAxLS4yOTEuMDc4Yy4xNDItLjI1OC4yMzYtLjQ3NS4yNjQtLjYyNy4wOTctLjUyOC0xLjEzNS41ODUtMi4wMTUgMS43OGExNi41OTQgMTYuNTk0IDAgMDAtMS40MDkgMi4yOCAzLjg2IDMuODYgMCAwMC40NTQtLjMyNCAxMy4wMDIgMTMuMDAyIDAgMDAxLjExOC0xLjA0MyAxMi4xNjkgMTIuMTY5IDAgMDAuOTUxLTEuMDk4IDIuNTggMi41OCAwIDAwLjI4LS4wMjkgMTIuMDU0IDEyLjA1NCAwIDAxLTEuMDUgMS4yNGMtLjM1LjM1NS0uNzMuNzM3LTEuMDYxIDEuMDE1YTguODQgOC44NCAwIDAxLS45MzEuNjkxcy0uNzcgMS41NTMtLjM1MSAxLjY1MmMuMjQ2LjA2LjczMi0uNjkuNzMyLS42OXMuNjM1LS45NjcgMS4wMTctMS40MDRjLjUyMi0uNTkzLjk3LS45MzYgMS40Mi0uOTQyLjI2MS0uMDA1LjQxNS4yNzMuNDE1LjI3M2wuMTIzLS4xOWguNzU3cy0xLjQxNCAyLjM5OC0xLjUyNyAyLjU3OW0yLjExMS01LjU4Yy0uNTMzLjM0MS0xLjI3LjY1MS0xLjk3OS41ODUtLjE4LjE4NS0uMzcxLjQtLjU2NC42MzQgMS4yMjkuMjQzIDIuMzA1LS41MTggMi44NzgtMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xMC42MyAxLjE3N2gtLjcybC0uNDA3LjY1OGguNzJ6bS0zLjQxIDIuMjc3Yy4zMDctLjQyIDEuMTUyLTEuODkxIDEuMTUyLTEuODkxYS4xMjQuMTI0IDAgMDAtLjExMi0uMTA4Yy0uMTE3LS4wMDYtLjMxMi4wMzQtLjcuNTE5LS4zODcuNDg1LS42ODguODctLjkwNyAxLjI3Mi0uMjQuNDM4LS4zNDYuNzQ3LS4yMDcuODMxYS4yMDUuMjA1IDAgMDAuMTQ0LjAxNWMuMDktLjAyMi4yMDgtLjExMy4zNjktLjI5OGE1LjU3IDUuNTcgMCAwMC4yNjItLjM0bS0zLjg2My0xLjk5Yy0uMTk5LS4xNS0uNzA1LjIwMS0uNzA4LjU2LS4wMDMuMzY5LjQ1Ni40ODIuNTE1LjQ4NGEuMDkuMDkgMCAwMC4wNS0uMDEuMDYuMDYgMCAwMC4wMjQtLjAyNyAzLjQ4MyAzLjQ4MyAwIDAwLjE0Ni0uMzI1Yy4wNy0uMTgzLjE1OC0uNTQxLS4wMjctLjY4Mm0tLjMgMS4yN2ExLjY3OCAxLjY3OCAwIDAxLS4zOS0uMTguODEyLjgxMiAwIDAxLS4yNzktLjMwOWMtLjAwNy0uMDEyLS4wMTUtLjAwMy0uMDIyLjAwOC0uMDA3LjAxLS4wNDcuMDYxLS4zMTguNDU4LS4yNy4zOTgtLjY3MiAxLjIxLS4yOTYgMS4zNS4yNC4wOS42NDQtLjMzNC44NjQtLjYxMmE3LjI0IDcuMjQgMCAwMC40NTUtLjY4MWMuMDA5LS4wMjQgMC0uMDMtLjAxNC0uMDM0bTUuODguMjQ0aC4yNjNzLTEuMzIxIDEuOTEyLTIuMDY4IDEuODIzYy0uNDE2LS4wNDktLjI5My0uNTYzLS4yOTMtLjU2M3MtLjU4NS42ODUtMS4xMjMuNTQ2Yy0uNDg3LS4xMjUtLjE3Mi0uOTM2LS4xNzItLjkzNi0uMDU2LjAyMi0xLjExMSAxLjIxMS0xLjg1My45MjYtLjc3Ni0uMy0uMzczLTEuMjk2LS4yMjUtMS41OTUuMTI1LS4yNTMuMjYzLS40OTkuMjYzLS40OTlzLS4xMTkuMDM0LS4xOTUuMDUxbC0uMTg2LjA0cy0uMzY3LjU5Ni0uNTkxLjg5NGMtLjIyNS4yOTctMS4xNzggMS4zMi0xLjc0IDEuMTE3LS41NjItLjIwNC0uNDIzLS45OS0uMTA3LTEuNjE1LjUxMi0xLjAxMiAxLjcyNi0yLjI1NiAyLjQ1OC0yLjA2OC43MzkuMTg5LjEyNyAxLjM4OC4xMjcgMS4zODhzLjE0Ny4wMTkuNS0uMjIyYy41MDctLjM0NiAxLjE3Ni0xLjI3NyAxLjkwMS0xLjE2Ny4zNDIuMDUxLjY2LjQuMjI1IDEuMDY0LS4xMzkuMjEzLS4zNzIuNDAzLS41NS4yMTUtLjExMS0uMTE4LS4wMTQtLjMzLjEwMy0uNDc3YS40NTcuNDU3IDAgMDEuMzktLjE3OXMuMTItLjI3My0uMTg1LS4yNjljLS4yNDcuMDA1LS44NzEuNTgtMS4yMjMgMS4xNi0uMzIzLjUzMy0uODEzIDEuNDQxLS4zMjIgMS42MzkuNDUxLjE4MiAxLjMwOS0uODM2IDEuNzA2LTEuMzcuMzk3LS41MzMgMS4zMDItMS43NDIgMi4wNjItMS43OS4yNjEtLjAxNy40MTcuMjIxLjQxNy4yMjFsLjA4OC0uMTM5aC43NTlzLTEuNDMgMi4zODctMS41NDIgMi41NjdjLS4wODguMTQxLS4yMDQuNDYuMTE3LjI4MS4zMjItLjE3OC45OTYtMS4wNDMuOTk2LTEuMDQzbS0uNDE0IDMuODI0YTMuMTQ0IDMuMTQ0IDAgMDAtMS45MDgtLjU1NyAxLjE3IDEuMTcgMCAwMC0uOTMuNTA0Yy0uMjktLjUwNS0uODYyLS44MTUtMS43NDctLjgwOC0xLjQzLjAxNi0yLjg0OS42NzYtMy45NzIuNjc1LTEuMDc3IDAtMS44NjMtLjY3Ny0xLjgzNy0xLjg4LjA0Ny0yLjEwOSAxLjgzLTQuMDA5IDMuMTYtNC44NjQuNzY3LS40OSAxLjQwOS0uNjM3IDEuODI4LS41OS4zMDYuMDM0LjY3NC4zODguNDQyLjkwOS0uMzQxLjc2MS0uODEyLjY5OS0uNzk1LjMzNS4wMS0uMjM3LjE2OC0uMzg2LjI4Ni0uNDY5YS41ODIuNTgyIDAgMDEuMjc4LS4wNjhjLjA2OC0uMDU3LjExNy0uNDc0LS40MjktLjMzNy0uNTQ2LjEzNy0xLjIxLjY3Ni0xLjg0IDEuMzcxLS42My42OTYtMS42MSAyLjAxMS0xLjg1MiAzLjM5Mi0uMTEzLjY0LS4wMzkgMS44MDggMS40OCAxLjc5NSAxLjI4Ny0uMDEgMy4xODUtLjg1OSA0LjkyOS0uODQxYTMuMzQgMy4zNCAwIDAxMS43MjUuNDcyYy40NTEuMjc4Ljk5Mi42ODQgMS4xODQuOTYxIi8+PC9zdmc+|../assets/logos/coca-cola.png|../assets/logos/coca-cola.jpg"><img alt="Coca-Cola" decoding="async"></li>
+          <li class="logo" data-srcs="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSI1OC45IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDMuODQ4IDI0IDE2LjMwNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VG95b3RhPC90aXRsZT48cGF0aCBmaWxsPSIjRUIwQTFFIiBkPSJNMTIgMy44NDhDNS4yMjMgMy44NDggMCA3LjI5OCAwIDEyYzAgNC43MDIgNS4yMjQgOC4xNTIgMTIgOC4xNTJTMjQgMTYuNzAyIDI0IDEyYzAtNC43MDItNS4yMjMtOC4xNTItMTItOC4xNTJ6bTcuMzM0IDMuODM5YzAgMS4wOC0xLjcyNSAxLjkxMy00LjQ4OCAyLjI0Ni0uMjYtMi41OC0xLjAwNS00LjI3OS0xLjk2My00LjkxMyAyLjk0OC4xODQgNi40NSAxLjIyNyA2LjQ1IDIuNjY3ek0xMiAxNi40MDFjLS45NiAwLTEuNzQ2LTEuNS0xLjgwOC00LjM4OS41NzcuMDQ3IDEuMTguMDcyIDEuODA4LjA3Mi42MjggMCAxLjIzLS4wMjUgMS44MDctLjA3Mi0uMDYxIDIuODktLjg0NyA0LjM4OS0xLjgwNyA0LjM4OXptMC02LjMwOGMtLjU5IDAtMS4xNTUtLjAxOS0xLjY5LS4wNTQuMjYxLTEuNzI4LjkyLTMuMTUgMS42OS0zLjE1Ljc3IDAgMS40MjggMS40MjIgMS42ODkgMy4xNS0uNTM1LjAzNC0xLjA5OS4wNTQtMS42ODkuMDU0em0tLjg4Mi01LjA3NWMtLjk1Ni42MzMtMS43MDYgMi4zMzMtMS45NjQgNC45MTVDNi4zOTEgOS42IDQuNjY1IDguNzY3IDQuNjY1IDcuNjg3YzAtMS40NCAzLjUwNC0yLjQ5IDYuNDUzLTIuNjY5ek0yLjAzNyAxMS42OGE1LjI2NSA1LjI2NSAwIDAxMS4wNDgtMy4xNjRjLjI3IDEuNTQ3IDIuNTIyIDIuODgxIDUuOTcyIDMuMzdWMTJjMCAzLjc3Mi44NzkgNi4yMDMgMi4wODcgNi45Ny01LjEwNy0uMzIxLTkuMTA3LTMuNDgtOS4xMDctNy4yOXptMTAuODIzIDcuMjljMS4yMDctLjc2NyAyLjA4Ny0zLjE5OCAyLjA4Ny02Ljk3di0uMTE1YzMuNDQ3LS40ODggNS43MDQtMS44MjYgNS45NzItMy4zN2E1LjI2IDUuMjYgMCAwMTEuMDQ5IDMuMTY1Yy0uMDA0IDMuODEtNC4wMDggNi45NjktOS4xMDkgNy4yOXoiLz48L3N2Zz4=|../assets/logos/toyota.png|../assets/logos/toyota.jpg"><img alt="Toyota" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/mahou.svg|../assets/logos/mahou.png|../assets/logos/mahou.jpg"><img alt="Mahou" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/dragados.svg|../assets/logos/dragados.png|../assets/logos/dragados.jpg"><img alt="Dragados" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/hummel.svg|../assets/logos/hummel.png|../assets/logos/hummel.jpg"><img alt="Hummel" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/clece.svg|../assets/logos/clece.png|../assets/logos/clece.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Clece_logo.svg?width=400"><img alt="Clece" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/vias.svg|../assets/logos/vias.png|../assets/logos/vias.jpg"><img alt="Vías y Construcciones" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/fundacion-laboral.svg|../assets/logos/fundacion-laboral.png|../assets/logos/fundacion-laboral.jpg"><img alt="Fundación Laboral de la Construcción" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/emilio-moro.svg|../assets/logos/emilio-moro.png|../assets/logos/emilio-moro.jpg"><img alt="Bodegas Emilio Moro" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/gerovida.svg|../assets/logos/gerovida.png|../assets/logos/gerovida.jpg"><img alt="Gerovida" decoding="async"></li>
+          <li class="logo" data-srcs="../assets/logos/rapimueble.svg|../assets/logos/rapimueble.png|../assets/logos/rapimueble.jpg"><img alt="Rapimueble" decoding="async"></li>
         </ul>
         </div>
       </div>
@@ -673,7 +733,7 @@ p { margin: 0; }
           <li class="sector reveal"><span class="sector__i">✎</span><h3>Educación y formación</h3><p>Universidades, colegios y centros de formación profesional.</p></li>
           <li class="sector reveal"><span class="sector__i">▦</span><h3>Corporativo y oficinas</h3><p>Identidad de marca aplicada a sedes, plantas y salas.</p></li>
           <li class="sector reveal"><span class="sector__i">⚙</span><h3>Industria y logística</h3><p>Seguridad, PRL, naves y señalización horizontal.</p></li>
-          <li class="sector reveal"><span class="sector__i">◈</span><h3>Retail y concesionarios</h3><p>Rótulos, fachadas e imagen homogénea en toda la red.</p></li>
+          <li class="sector reveal"><span class="sector__i">◈</span><h3>Deporte, retail y marcas</h3><p>Estadios, concesionarios y fachadas con imagen homogénea.</p></li>
           <li class="sector reveal"><span class="sector__i">⇄</span><h3>Transporte y flotas</h3><p>Rotulación de vehículos, autobuses y estaciones.</p></li>
         </ul>
       </div>
@@ -752,6 +812,23 @@ p { margin: 0; }
               <div><dt>Solución</dt><dd>Sistema de wayfinding unificado: directorios generales, señalización por plantas y salas, y placas normalizadas para todas las dependencias.</dd></div>
               <div><dt>Materiales</dt><dd>Aluminio, metacrilato y vinilo de alta durabilidad, con criterios de accesibilidad y legibilidad.</dd></div>
               <div><dt>Instalación</dt><dd>Planificada por fases y franjas horarias para mantener los edificios plenamente operativos.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="feature feature--reverse reveal">
+          <div class="feature__media media">
+            <img src="../assets/img/real-valladolid.jpg" alt="Instalación integral de señalización para el Real Valladolid Club de Fútbol" loading="lazy" width="1400" height="900">
+            <span class="tag">Deporte</span>
+          </div>
+          <div class="feature__body">
+            <p class="eyebrow">Deporte · Valladolid</p>
+            <h3 class="h3">Real Valladolid Club de Fútbol</h3>
+            <dl class="case">
+              <div><dt>Reto</dt><dd>Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.</dd></div>
+              <div><dt>Solución</dt><dd>Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.</dd></div>
+              <div><dt>Materiales</dt><dd>Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.</dd></div>
+              <div><dt>Instalación</dt><dd>Ejecutada con equipo propio y coordinada con el calendario de actividad del club.</dd></div>
             </dl>
           </div>
         </article>
@@ -1046,6 +1123,24 @@ p { margin: 0; }
     heroImg.addEventListener('error', hide);
   }
 
+  /* ---- Vídeo de portada ---- */
+  const video = $('.hero__video');
+  if (video) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const drop = () => video.parentNode && video.parentNode.removeChild(video);
+    if (reduce) { video.pause(); drop(); }
+    else {
+      const on = () => video.classList.add('is-playing');
+      if (video.readyState >= 3) on();
+      video.addEventListener('playing', on);
+      video.addEventListener('canplay', () => { on(); video.play().catch(() => {}); });
+      $('source', video).addEventListener('error', drop);
+      video.addEventListener('error', drop);
+      // Ahorro de batería: pausa el vídeo cuando la portada no está a la vista
+      new IntersectionObserver(([e]) => { e.isIntersecting ? video.play().catch(() => {}) : video.pause(); }).observe(video);
+    }
+  }
+
   /* ---- Logos de clientes ----
      Cada logo prueba sus fuentes en orden (archivo local .svg, .png y, si hay, una URL externa).
      Si ninguna carga, el logo se retira: nunca se muestra texto en su lugar. */
@@ -1156,47 +1251,105 @@ p { margin: 0; }
     note.textContent = 'Gracias. Se ha abierto su correo con la consulta preparada; solo tiene que enviarlo.';
   });
 
-  /* ---- Blog: últimos artículos desde WordPress ---- */
+  /* ---- Blog: últimos artículos desde WordPress (REST API) ---- */
+  const strip = html => { const d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); };
+  const fmt = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
   const posts = $('#posts');
-  if (posts) {
-    const fallback = () => { posts.hidden = true; $('#posts-fallback').hidden = false; };
-    const strip = html => { const d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); };
-    const fmt = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-    const url = `${posts.dataset.api}?per_page=${posts.dataset.count || 6}&_embed=wp:featuredmedia,wp:term&_fields=link,title,excerpt,date,_links,_embedded`;
+  const blogApi = (posts && posts.dataset.api) || 'https://senalval.es/wp-json/wp/v2/posts';
+  const blogCount = (posts && posts.dataset.count) || 6;
+  const blog = (() => {
     const ctrl = new AbortController();
     setTimeout(() => ctrl.abort(), 9000);
-    fetch(url, { signal: ctrl.signal })
+    const url = `${blogApi}?per_page=${blogCount}&_embed=wp:featuredmedia,wp:term&_fields=link,title,excerpt,date,_links,_embedded`;
+    return fetch(url, { signal: ctrl.signal })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(list => {
-        if (!Array.isArray(list) || !list.length) return fallback();
-        posts.innerHTML = '';
-        list.forEach(p => {
-          const emb = p._embedded || {};
-          const media = (emb['wp:featuredmedia'] || [])[0];
-          const img = media && (media.media_details?.sizes?.medium_large?.source_url || media.source_url);
-          const cat = ((emb['wp:term'] || [])[0] || [])[0];
-          const a = document.createElement('a');
-          a.className = 'post';
-          a.href = p.link;
-          a.innerHTML = `
-            <div class="media">${img ? `<img loading="lazy" alt="">` : ''}</div>
-            <div class="post__body">
-              <span class="post__meta"></span>
-              <h3></h3>
-              <p></p>
-              <span class="post__more">Leer artículo →</span>
-            </div>`;
-          const title = strip(p.title?.rendered || '');
-          if (img) { const im = $('img', a); im.src = img; im.alt = (media.alt_text || title); }
-          else a.querySelector('.media').classList.add('is-missing');
-          a.querySelector('.media').dataset.label = title;
-          $('.post__meta', a).textContent = [cat && strip(cat.name), fmt(p.date)].filter(Boolean).join(' · ');
-          $('h3', a).textContent = title;
-          $('p', a).textContent = strip(p.excerpt?.rendered || '').replace(/\s*\[(…|&hellip;|\.\.\.)\]\s*$/, '…');
-          posts.appendChild(a);
-        });
-      })
-      .catch(fallback);
+      .then(list => (Array.isArray(list) ? list : []).map(p => {
+        const emb = p._embedded || {};
+        const media = (emb['wp:featuredmedia'] || [])[0];
+        const sizes = (media && media.media_details && media.media_details.sizes) || {};
+        const cat = ((emb['wp:term'] || [])[0] || [])[0];
+        const title = strip((p.title && p.title.rendered) || '');
+        return {
+          link: p.link,
+          title,
+          date: fmt(p.date),
+          cat: cat ? strip(cat.name) : '',
+          img: media ? ((sizes.medium_large || sizes.large || {}).source_url || media.source_url) : '',
+          imgLarge: media ? ((sizes.large || sizes.full || {}).source_url || media.source_url) : '',
+          alt: (media && media.alt_text) || title,
+          excerpt: strip((p.excerpt && p.excerpt.rendered) || '').replace(/\s*\[(…|&hellip;|\.\.\.)\]\s*$/, '…')
+        };
+      }));
+  })();
+
+  if (posts) {
+    const fallback = () => { posts.hidden = true; $('#posts-fallback').hidden = false; };
+    blog.then(list => {
+      if (!list.length) return fallback();
+      posts.innerHTML = '';
+      list.forEach(p => {
+        const a = document.createElement('a');
+        a.className = 'post';
+        a.href = p.link;
+        a.innerHTML = `
+          <div class="media">${p.img ? '<img loading="lazy" alt="">' : ''}</div>
+          <div class="post__body">
+            <span class="post__meta"></span>
+            <h3></h3>
+            <p></p>
+            <span class="post__more">Leer artículo →</span>
+          </div>`;
+        const box = $('.media', a);
+        box.dataset.label = p.title;
+        if (p.img) { const im = $('img', a); im.src = p.img; im.alt = p.alt; im.addEventListener('error', () => box.classList.add('is-missing')); }
+        else box.classList.add('is-missing');
+        $('.post__meta', a).textContent = [p.cat, p.date].filter(Boolean).join(' · ');
+        $('h3', a).textContent = p.title;
+        $('p', a).textContent = p.excerpt;
+        posts.appendChild(a);
+      });
+    }).catch(fallback);
+  }
+
+  /* ---- Portada: historias con imágenes del blog ---- */
+  const stories = $('#hero-stories');
+  if (stories) {
+    blog.then(list => {
+      const items = list.filter(p => p.imgLarge).slice(0, 5);
+      if (items.length < 2) return;
+      const slides = $('.stories__slides', stories);
+      const bars = $('.stories__bars', stories);
+      items.forEach((p, i) => {
+        const a = document.createElement('a');
+        a.className = 'story';
+        a.href = p.link;
+        a.innerHTML = '<div class="story__img"><img alt=""></div><div class="story__body"><span class="story__meta"></span><h3 class="story__title"></h3></div>';
+        const im = $('img', a); im.src = p.imgLarge; im.alt = p.alt; if (i) im.loading = 'lazy';
+        $('.story__meta', a).textContent = [p.cat, p.date].filter(Boolean).join(' · ');
+        $('.story__title', a).textContent = p.title;
+        slides.appendChild(a);
+        const b = document.createElement('span'); b.innerHTML = '<i></i>'; bars.appendChild(b);
+      });
+      const sign = $('.hero__sign'); if (sign) sign.hidden = true;
+      stories.hidden = false;
+
+      const DURATION = 6000;
+      const all = $$('.story', stories), allBars = $$('span', bars);
+      let cur = 0, timer = null, paused = false;
+      const show = i => {
+        cur = (i + all.length) % all.length;
+        all.forEach((s, k) => s.classList.toggle('is-active', k === cur));
+        allBars.forEach((b, k) => { b.classList.toggle('is-done', k < cur); b.classList.toggle('is-active', k === cur); });
+        // reinicia la animación de la barra
+        const bar = $('i', allBars[cur]); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
+        clearTimeout(timer);
+        if (!paused) timer = setTimeout(() => show(cur + 1), DURATION);
+      };
+      $$('.stories__btn', stories).forEach(btn => btn.addEventListener('click', () => show(cur + Number(btn.dataset.dir))));
+      stories.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); stories.classList.add('is-paused'); });
+      stories.addEventListener('mouseleave', () => { paused = false; stories.classList.remove('is-paused'); show(cur); });
+      show(0);
+    }).catch(() => {});
   }
 
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
