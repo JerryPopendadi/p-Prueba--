@@ -27,11 +27,12 @@
   <meta name="twitter:description" content="Proyectos integrales de señalización: solvencia, ejecución, trazabilidad y continuidad.">
   <meta name="twitter:image" content="https://senalval.es/assets/img/og-senalval.jpg">
 
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/plaza-castilla.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-01.jpg" fetchpriority="high">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Datos estructurados (SEO) -->
@@ -44,9 +45,18 @@
         "@id": "https://senalval.es/#empresa",
         "name": "SeñalVal",
         "url": "https://senalval.es/",
-        "logo": "https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png",
-        "image": "https://senalval.es/assets/img/plaza-castilla.jpg",
+        "logo": "https://senalval.es/assets/img/logo-senalval.png",
+        "image": "https://senalval.es/assets/img/hero-01.jpg",
         "email": "luismi.olea@senalval.es",
+        "telephone": "+34 665 863 597",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Oro, 34, Planta 1, Puerta F, Polígono San Cristóbal",
+          "postalCode": "47012",
+          "addressLocality": "Valladolid",
+          "addressRegion": "Castilla y León",
+          "addressCountry": "ES"
+        },
         "description": "Empresa de gestión integral de proyectos de señalización y señalética de alta exigencia: consultoría, diseño, fabricación, instalación y mantenimiento.",
         "areaServed": { "@type": "Country", "name": "España" },
         "knowsAbout": ["Señalización", "Señalética", "Wayfinding", "Rótulos luminosos", "Letras corpóreas", "Rotulación de vehículos", "Señalización accesible", "Licitaciones públicas"],
@@ -107,7 +117,7 @@
   <header class="nav" id="top">
     <div class="wrap nav__inner">
       <a href="#top" class="brand" aria-label="SeñalVal, inicio">
-        <img src="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png" alt="SeñalVal" class="brand__img" height="44" data-fallbacks="assets/img/logo-senalval.png,assets/img/logo-senalval.svg"
+        <img src="assets/img/logo-senalval.png" alt="SeñalVal" class="brand__img" width="300" height="45" data-fallbacks="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png"
              onerror="var f=(this.dataset.fallbacks||'').split(',').filter(Boolean);if(f.length){this.dataset.fallbacks=f.slice(1).join(',');this.src=f[0];}else{this.hidden=true;this.nextElementSibling.hidden=false;}">
         <span class="brand__text" hidden>Señal<b>Val</b></span>
       </a>
@@ -141,11 +151,14 @@
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__media">
-        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/plaza-castilla.jpg" aria-hidden="true">
-          <source src="https://senalval.es/wp-content/uploads/2026/02/Senalval.mp4" type="video/mp4">
-        </video>
-        <img src="assets/img/plaza-castilla.jpg" alt="Señalización de las sedes judiciales en Plaza de Castilla, Madrid, realizada por SeñalVal" fetchpriority="high" width="1920" height="1080">
+      <div class="hero__media" aria-hidden="false">
+        <div class="hero__slides">
+          <img class="hero__slide is-active" src="assets/img/hero-01.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · Plaza de Castilla, Madrid" data-caption="Tribunal de Instancia · Plaza de Castilla, Madrid" fetchpriority="high" width="1920" height="1440">
+          <img class="hero__slide" src="assets/img/hero-02.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · San Lorenzo de El Escorial" data-caption="Tribunal de Instancia · San Lorenzo de El Escorial" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide" src="assets/img/hero-03.jpg" alt="Señalización SeñalVal: Comunidad de Madrid · Tribunal de Instancia" data-caption="Comunidad de Madrid · Tribunal de Instancia" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide" src="assets/img/hero-04.jpg" alt="Señalización SeñalVal: Palacio de Justicia · Valdemoro" data-caption="Palacio de Justicia · Valdemoro" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide" src="assets/img/hero-05.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · Navalcarnero" data-caption="Tribunal de Instancia · Navalcarnero" loading="lazy" width="1920" height="1440">
+        </div>
       </div>
       <div class="hero__grid" aria-hidden="true"></div>
       <div class="wrap hero__content">
@@ -173,7 +186,11 @@
           <div class="sign__row"><span class="sign__arrow">←</span><span>Atención ciudadana</span><span class="sign__code">B</span></div>
           <div class="sign__row sign__row--accent"><span class="sign__arrow">↗</span><span>Su próximo proyecto</span><span class="sign__code">★</span></div>
         </div>
-        <p class="hero__caption">Sedes judiciales · Plaza de Castilla, Madrid</p>
+      </div>
+
+      <div class="hero__slidecap" aria-live="polite">
+        <span class="hero__slidecap-dots" aria-hidden="true"></span>
+        <span class="hero__slidecap-text">Tribunal de Instancia · Plaza de Castilla, Madrid</span>
       </div>
 
       <!-- Historias del blog: se rellenan con los últimos artículos con imagen -->
@@ -545,7 +562,7 @@
           </div>
           <div class="blog__head-side">
             <p class="lead">Normativa, materiales, casos y tendencias. Artículos de nuestro equipo.</p>
-            <a class="link-arrow" href="https://senalval.es/blog/" id="blog-all">Ver todos los artículos <span aria-hidden="true">→</span></a>
+            <a class="link-arrow" href="https://senalval.es/noticias-senalval" id="blog-all">Ver todos los artículos <span aria-hidden="true">→</span></a>
           </div>
         </div>
         <!-- Se rellena con los últimos artículos de WordPress (REST API). -->
@@ -555,7 +572,7 @@
           <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
         </div>
         <p class="posts__fallback" id="posts-fallback" hidden>
-          Los artículos se cargan desde el blog de SeñalVal. <a href="https://senalval.es/blog/">Leer el blog en senalval.es →</a>
+          Los artículos se cargan desde el blog de SeñalVal. <a href="https://senalval.es/noticias-senalval">Leer el blog en senalval.es →</a>
         </p>
       </div>
     </section>
@@ -568,7 +585,9 @@
           <h2 id="contact-title" class="h2">Cuéntenos su proyecto.<br>Le respondemos con un plan.</h2>
           <p class="lead lead--light">Indíquenos el tipo de edificio, el plazo y, si existe, el pliego. Le contestamos con una primera propuesta de alcance.</p>
           <ul class="contact__list">
+            <li><span>Teléfono</span><a href="tel:+34665863597">+34 665 863 597</a></li>
             <li><span>Email</span><a href="mailto:luismi.olea@senalval.es">luismi.olea@senalval.es</a></li>
+            <li><span>Oficina y taller</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Oro+34+Pol%C3%ADgono+San+Crist%C3%B3bal+47012+Valladolid" target="_blank" rel="noopener">Calle Oro, 34 · Pol. San Cristóbal<br>47012 Valladolid</a></li>
             <li><span>Web</span><a href="https://senalval.es">senalval.es</a></li>
           </ul>
         </div>
@@ -614,7 +633,7 @@
   <footer class="footer">
     <div class="wrap footer__grid">
       <div>
-        <p class="brand__text brand__text--foot">Señal<b>Val</b></p>
+        <a href="#top" class="footer__brand" aria-label="SeñalVal, volver arriba"><img src="assets/img/logo-senalval-blanco.png" alt="SeñalVal" width="220" height="33" loading="lazy"></a>
         <p>Gestión integral de proyectos de señalización y señalética de alta exigencia.</p>
       </div>
       <nav aria-label="Pie">
@@ -632,12 +651,14 @@
       </nav>
       <div>
         <h3>Contacto</h3>
+        <a href="tel:+34665863597">+34 665 863 597</a>
         <a href="mailto:luismi.olea@senalval.es">luismi.olea@senalval.es</a>
+        <span>Calle Oro, 34 · Pol. San Cristóbal<br>47012 Valladolid</span>
       </div>
     </div>
     <div class="wrap footer__bottom">
       <p>© <span id="year">2026</span> SeñalVal. Todos los derechos reservados.</p>
-      <p><a href="#">Aviso legal</a> · <a href="#">Privacidad</a> · <a href="#">Cookies</a></p>
+      <p><a href="https://senalval.es/aviso-legal">Aviso legal</a> · <a href="https://senalval.es/politica-de-privacidad">Privacidad</a> · <a href="https://senalval.es/politica-de-cookies-2">Cookies</a></p>
     </div>
   </footer>
 

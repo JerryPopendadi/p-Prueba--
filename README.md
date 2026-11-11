@@ -72,7 +72,6 @@ Las marcas son propiedad de sus titulares: muéstralas solo con permiso del clie
 
 ## Pendiente de confirmar con SeñalVal
 - Permiso para mostrar públicamente cada logo de cliente (sobre todo Coca-Cola y Toyota).
-- Dirección y teléfono: añadirlos en contacto, pie y en el JSON-LD (`address`, `telephone`) mejora el SEO local.
 - Documentación real disponible para licitaciones y certificaciones (ISO, etc.).
 - Proyecto Real Valladolid: confirmar alcance exacto (estadio, ciudad deportiva…) y si el club autoriza citarlo.
 - Textos de los proyectos: los retos/soluciones son una redacción base; ajustar con datos reales (nº de señales, plazos, m²).

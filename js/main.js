@@ -11,28 +11,38 @@
     if (img.complete && img.naturalWidth === 0) fail();
     img.addEventListener('error', fail);
   });
-  const heroImg = $('.hero__media img');
-  if (heroImg) {
-    const hide = () => { heroImg.style.display = 'none'; };
-    if (heroImg.complete && heroImg.naturalWidth === 0) hide();
-    heroImg.addEventListener('error', hide);
-  }
-
-  /* ---- Vídeo de portada ---- */
-  const video = $('.hero__video');
-  if (video) {
+  /* ---- Portada: fotos de proyectos que se van alternando ---- */
+  const slides = $$('.hero__slide');
+  if (slides.length) {
+    const cap = $('.hero__slidecap-text');
+    const dots = $('.hero__slidecap-dots');
+    slides.forEach((img, k) => {
+      const d = document.createElement('i'); dots.appendChild(d);
+      const fail = () => { img.classList.add('is-broken'); };
+      if (img.complete && img.naturalWidth === 0) fail();
+      img.addEventListener('error', fail);
+      if (k) img.loading = 'eager'; // se precargan tras la primera
+    });
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const drop = () => video.parentNode && video.parentNode.removeChild(video);
-    if (reduce) { video.pause(); drop(); }
-    else {
-      const on = () => video.classList.add('is-playing');
-      if (video.readyState >= 3) on();
-      video.addEventListener('playing', on);
-      video.addEventListener('canplay', () => { on(); video.play().catch(() => {}); });
-      $('source', video).addEventListener('error', drop);
-      video.addEventListener('error', drop);
-      // Ahorro de batería: pausa el vídeo cuando la portada no está a la vista
-      new IntersectionObserver(([e]) => { e.isIntersecting ? video.play().catch(() => {}) : video.pause(); }).observe(video);
+    let cur = 0;
+    const show = i => {
+      const ok = slides.filter(s => !s.classList.contains('is-broken'));
+      if (!ok.length) return;
+      cur = (i + slides.length) % slides.length;
+      if (slides[cur].classList.contains('is-broken')) return show(cur + 1);
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === cur));
+      $$('i', dots).forEach((d, k) => d.classList.toggle('is-on', k === cur));
+      cap.classList.remove('is-in'); void cap.offsetWidth;
+      cap.textContent = slides[cur].dataset.caption || '';
+      cap.classList.add('is-in');
+    };
+    show(0);
+    if (!reduce) {
+      let timer = setInterval(() => show(cur + 1), 6500);
+      document.addEventListener('visibilitychange', () => {
+        clearInterval(timer);
+        if (!document.hidden) timer = setInterval(() => show(cur + 1), 6500);
+      });
     }
   }
 
