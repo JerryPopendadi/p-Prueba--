@@ -133,10 +133,15 @@
     $('#contacto').scrollIntoView({ behavior: 'smooth' });
   });
 
-  /* ---- Formulario → email preparado ---- */
+  /* ---- Formulario → email o WhatsApp ya rellenados ----
+     No hay servidor: se abre la app de correo o WhatsApp del visitante con la consulta escrita. */
+  const WHATSAPP = '34665863597';
   const form = $('#contact-form');
+  let via = 'email';
+  $$('.form__send button', form).forEach(b => b.addEventListener('click', () => { via = b.value; }));
   form.addEventListener('submit', e => {
     e.preventDefault();
+    if (e.submitter && e.submitter.value) via = e.submitter.value;
     let ok = true;
     $$('[required]', form).forEach(f => {
       const bad = f.type === 'checkbox' ? !f.checked : !f.value.trim() || (f.type === 'email' && !/^\S+@\S+\.\S+$/.test(f.value));
@@ -146,14 +151,20 @@
     const note = $('#form-note');
     if (!ok) { note.textContent = 'Revise los campos marcados, por favor.'; return; }
     const d = Object.fromEntries(new FormData(form));
-    const subject = `[Web] ${d.tipo} — ${d.empresa || d.nombre}`;
-    const body = [
+    const lines = [
       `Nombre: ${d.nombre}`, `Empresa / organismo: ${d.empresa || '-'}`,
       `Email: ${d.email}`, `Teléfono: ${d.telefono || '-'}`,
       `Tipo de consulta: ${d.tipo}`, `Plazo: ${d.plazo}`, '', d.mensaje
-    ].join('\n');
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    note.textContent = 'Gracias. Se ha abierto su correo con la consulta preparada; solo tiene que enviarlo.';
+    ];
+    if (via === 'whatsapp') {
+      const text = ['Hola SeñalVal, os escribo desde la web.', '', ...lines].join('\n');
+      window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+      note.textContent = 'Gracias. Se ha abierto WhatsApp con su consulta escrita; solo tiene que pulsar enviar.';
+    } else {
+      const subject = `[Web] ${d.tipo} — ${d.empresa || d.nombre}`;
+      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+      note.textContent = 'Gracias. Se ha abierto su correo con la consulta escrita; solo tiene que pulsar enviar.';
+    }
   });
 
   /* ---- Blog: últimos artículos desde WordPress (REST API) ---- */

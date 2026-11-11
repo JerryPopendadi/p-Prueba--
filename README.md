@@ -50,21 +50,21 @@ Con 5 o más logos la banda se desplaza en bucle; con menos, se muestran fijos.
 
 | Cliente | Archivo | Estado |
 |---|---|---|
-| Aena | `aena.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Aena | `aena.svg` / `.png` / `.jpg` | Se carga desde Wikimedia Commons (`Aena_Logo_New.svg`); conviene guardar copia local |
 | Comunidad de Madrid | `comunidad-madrid.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
 | Junta de Castilla y León | `junta-cyl.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Real Valladolid Club de Fútbol | `real-valladolid.svg` / `.png` / `.jpg` | Pendiente |
+| Real Valladolid Club de Fútbol | `real-valladolid.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
 | Coca-Cola | `coca-cola.svg` / `.png` / `.jpg` | Incluido (simple-icons, CC0) |
 | Toyota | `toyota.svg` / `.png` / `.jpg` | Incluido (simple-icons, CC0) |
-| Mahou | `mahou.svg` / `.png` / `.jpg` | Pendiente |
-| Dragados | `dragados.svg` / `.png` / `.jpg` | Pendiente |
-| Hummel | `hummel.svg` / `.png` / `.jpg` | Pendiente |
-| Clece | `clece.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Vías y Construcciones | `vias.svg` / `.png` / `.jpg` | Pendiente |
-| Fundación Laboral de la Construcción | `fundacion-laboral.svg` / `.png` / `.jpg` | Pendiente |
-| Bodegas Emilio Moro | `emilio-moro.svg` / `.png` / `.jpg` | Pendiente |
-| Gerovida | `gerovida.svg` / `.png` / `.jpg` | Pendiente |
-| Rapimueble | `rapimueble.svg` / `.png` / `.jpg` | Pendiente |
+| Mahou | `mahou.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Dragados | `dragados.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Hummel | `hummel.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Clece | `clece.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Vías y Construcciones | `vias.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Fundación Laboral de la Construcción | `fundacion-laboral.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Bodegas Emilio Moro | `emilio-moro.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Gerovida | `gerovida.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
+| Rapimueble | `rapimueble.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
 
 Descarga cada logo de la sala de prensa o del manual de marca del cliente. Mejor en SVG o PNG con fondo
 transparente: sobre la portada se muestran en blanco y en su color original al pasar el ratón.
@@ -85,4 +85,4 @@ sección FAQ visible, `robots.txt` y `sitemap.xml`, imagen principal precargada 
 ## Paso a WordPress
 Cada sección es un bloque independiente: puede montarse con un tema ligero (p. ej. GeneratePress/Kadence)
 pegando el CSS en el personalizador y las secciones como bloques HTML, o convertirse a un tema hijo.
-El formulario debería pasar a Contact Form 7 / WPForms para que los mensajes lleguen sin depender del cliente de correo.
+El formulario no necesita servidor: abre el correo (a luismi.olea@senalval.es) o WhatsApp (665 863 597) del visitante con la consulta ya escrita.
