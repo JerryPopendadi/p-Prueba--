@@ -30,6 +30,7 @@ Los datos estructurados (empresa, dirección, teléfono, servicios y preguntas f
 
 ## Estructura del proyecto
 ```
+docs/estudio-de-color.md Estudio de color para el perfil de cliente
 index.html               Portada (fuente)
 css/styles.css           Estilos
 js/main.js               Interacción: portada con fotos, blog, galerías, logos, formulario
@@ -40,6 +41,9 @@ robots.txt, sitemap.xml
 Si cambias `index.html`, `css/` o `js/`, vuelve a ejecutar `python3 tools/build_wordpress.py`.
 
 ## Qué incluye
+- **Menús:** menú superior con desplegables al pasar el ratón (Empresa, Servicios con fotos, Sectores, Proyectos con fotos que abren la galería);
+  en el móvil, menú por grupos y barra inferior fija (Inicio, Servicios, Proyectos, Contacto, WhatsApp). Pie con menú completo.
+- **Color:** paleta basada en el logo (azul SeñalVal, azul cielo, azul noche) y validada para accesibilidad. Ver `docs/estudio-de-color.md`.
 - **Portada:** 5 fotos reales de sedes judiciales que se alternan, panel con lo último del blog y banda de logos de clientes.
 - **Clientes (logos reales, nunca texto):** Aena, ADIF, Guardia Civil, Comunidad de Madrid, Junta de Castilla y León
   (Wikimedia Commons); Real Valladolid, Coca-Cola, Toyota, Mahou, Dragados, Hummel, Clece, Vías, Fundación Laboral,

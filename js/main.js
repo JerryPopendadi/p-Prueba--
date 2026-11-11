@@ -11,6 +11,13 @@
     if (img.complete && img.naturalWidth === 0) fail();
     img.addEventListener('error', fail);
   });
+  /* Prueba una lista de URLs hasta que una cargue; si ninguna, llama a fail() */
+  const chain = (img, list, fail) => {
+    const q = [...list];
+    const next = () => { if (!q.length) { fail && fail(); return; } img.src = q.shift(); };
+    img.addEventListener('error', next); next();
+  };
+
   /* ---- Portada: fotos de proyectos que se van alternando ---- */
   const slides = $$('.hero__slide');
   if (slides.length) {
@@ -176,7 +183,7 @@
   const blog = (() => {
     const ctrl = new AbortController();
     setTimeout(() => ctrl.abort(), 9000);
-    const url = `${blogApi}?per_page=${blogCount}&_embed=wp:featuredmedia,wp:term&_fields=link,title,excerpt,date,_links,_embedded`;
+    const url = `${blogApi}?per_page=${blogCount}&_embed=wp:featuredmedia,wp:term&_fields=link,title,excerpt,content,date,_links,_embedded`;
     return fetch(url, { signal: ctrl.signal })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(list => (Array.isArray(list) ? list : []).map(p => {
@@ -185,13 +192,20 @@
         const sizes = (media && media.media_details && media.media_details.sizes) || {};
         const cat = ((emb['wp:term'] || [])[0] || [])[0];
         const title = strip((p.title && p.title.rendered) || '');
+        const usable = u => u && !/\.heic$/i.test(u);
+        const inContent = (((p.content && p.content.rendered) || '').match(/<img[^>]+src="([^"]+)"/gi) || [])
+          .map(tag => tag.match(/src="([^"]+)"/i)[1].replace(/^https:\/\/i\d\.wp\.com\//, 'https://').split('?')[0])
+          .filter(usable);
+        const feat = media ? [(sizes.large || {}).source_url, (sizes.medium_large || {}).source_url, media.source_url].filter(usable) : [];
+        const pool = [...feat, ...inContent.flatMap(u => [u, u.replace(/-\d+x\d+(\.\w+)$/, '$1')])];
         return {
+          imgs: [...new Set(pool)],
           link: p.link,
           title,
           date: fmt(p.date),
           cat: cat ? strip(cat.name) : '',
-          img: media ? ((sizes.medium_large || sizes.large || {}).source_url || media.source_url) : '',
-          imgLarge: media ? ((sizes.large || sizes.full || {}).source_url || media.source_url) : '',
+          img: [...new Set(pool)][0] || '',
+          imgLarge: [...new Set(pool)][0] || '',
           alt: (media && media.alt_text) || title,
           excerpt: strip((p.excerpt && p.excerpt.rendered) || '').replace(/\s*\[(…|&hellip;|\.\.\.)\]\s*$/, '…')
         };
@@ -217,8 +231,8 @@
           </div>`;
         const box = $('.media', a);
         box.dataset.label = p.title;
-        if (p.img) { const im = $('img', a); im.src = p.img; im.alt = p.alt; im.addEventListener('error', () => box.classList.add('is-missing')); }
-        else box.classList.add('is-missing');
+        if (p.imgs.length) { const im = $('img', a); im.alt = p.alt; chain(im, p.imgs, () => { im.remove(); box.classList.add('media--brand'); }); }
+        else box.classList.add('media--brand');
         $('.post__meta', a).textContent = [p.cat, p.date].filter(Boolean).join(' · ');
         $('h3', a).textContent = p.title;
         $('p', a).textContent = p.excerpt;
@@ -231,7 +245,7 @@
   const stories = $('#hero-stories');
   if (stories) {
     blog.then(list => {
-      const items = list.filter(p => p.imgLarge).slice(0, 5);
+      const items = list.filter(p => p.imgs.length).slice(0, 5);
       if (items.length < 2) return;
       const slides = $('.stories__slides', stories);
       const bars = $('.stories__bars', stories);
@@ -240,7 +254,7 @@
         a.className = 'story';
         a.href = p.link;
         a.innerHTML = '<div class="story__img"><img alt=""></div><div class="story__body"><span class="story__meta"></span><h3 class="story__title"></h3></div>';
-        const im = $('img', a); im.src = p.imgLarge; im.alt = p.alt; if (i) im.loading = 'lazy';
+        const im = $('img', a); im.alt = p.alt; chain(im, p.imgs, () => { a.remove(); });
         $('.story__meta', a).textContent = [p.cat, p.date].filter(Boolean).join(' · ');
         $('.story__title', a).textContent = p.title;
         slides.appendChild(a);
@@ -324,7 +338,7 @@
       const m = $('#form-msg'); if (m && !m.value) m.value = `Hemos visto el proyecto «${cfg.title}» y queremos algo similar. `;
     });
     $$('[data-project]').forEach(el => {
-      el.addEventListener('click', () => open(el.dataset.project));
+      el.addEventListener('click', e => { if (el.tagName === 'A') { e.preventDefault(); const m = $('#mobile-menu'); if (m && !m.hidden) $('.nav__burger').click(); el.blur(); } open(el.dataset.project); });
       el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && el.tagName !== 'BUTTON') { e.preventDefault(); open(el.dataset.project); } });
     });
   }
