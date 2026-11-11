@@ -42,12 +42,25 @@ Exporta las fotos en JPG/WebP comprimido (≤ 250 KB, portada ≤ 400 KB) para q
 valore bien la velocidad.
 
 ## Logos de clientes
-- Incluidos: `toyota.svg` y `coca-cola.svg`, logos oficiales del paquete `simple-icons`
-  (CC0; fuentes: guía de marca de Toyota y Wikimedia Commons), con sus colores de marca.
-- Pendientes, que se muestran como nombre en texto hasta tener el archivo: Aena (`aena.svg`), Clece, Vías y Construcciones,
-  Comunidad de Madrid, Junta de Castilla y León y Fundación Laboral de la Construcción.
-  Descarga cada logo de la sala de prensa o del manual de marca de su web y guárdalo con el nombre de la tabla.
-- Las marcas son propiedad de sus titulares: muéstralas solo con permiso del cliente.
+La banda "Han confiado en SeñalVal" va al pie de la portada. **Solo se muestran logos reales, nunca texto.**
+Cada logo prueba, en este orden: `assets/logos/<nombre>.svg`, `assets/logos/<nombre>.png` y, si se indica,
+una URL externa (atributo `data-srcs` en `index.html`). Si ninguna carga, el logo se retira.
+Con 5 o más logos la banda se desplaza en bucle; con menos, se muestran fijos.
+
+| Cliente | Archivo | Estado |
+|---|---|---|
+| Aena | `aena.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Comunidad de Madrid | `comunidad-madrid.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Junta de Castilla y León | `junta-cyl.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Coca-Cola | `coca-cola.svg` | Incluido (simple-icons, CC0) |
+| Toyota | `toyota.svg` | Incluido (simple-icons, CC0) |
+| Clece | `clece.svg` / `.png` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
+| Fundación Laboral de la Construcción | `fundacion-laboral.svg` / `.png` | Pendiente |
+| Vías y Construcciones | `vias.svg` / `.png` | Pendiente |
+
+Descarga cada logo de la sala de prensa o del manual de marca del cliente. Mejor en SVG o PNG con fondo
+transparente: sobre la portada se muestran en blanco y en su color original al pasar el ratón.
+Las marcas son propiedad de sus titulares: muéstralas solo con permiso del cliente.
 
 ## Pendiente de confirmar con SeñalVal
 - Permiso para mostrar públicamente cada logo de cliente (sobre todo Coca-Cola y Toyota).

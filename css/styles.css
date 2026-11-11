@@ -150,6 +150,8 @@ p { margin: 0; }
 @keyframes underline { from { transform: scaleX(0); } }
 .hero__lead { margin-top: 28px; font-weight: 300; font-size: clamp(1rem, 1.35vw, 1.15rem); color: rgba(255,255,255,.82); max-width: 54ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+.hero__proof { margin-top: 30px; max-width: 62ch; font-size: .82rem; font-weight: 400; letter-spacing: .04em; line-height: 1.8; color: rgba(255,255,255,.82); }
+.hero__proof span { display: inline-block; margin-right: 8px; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--blue-bright); }
 .hero__facts { list-style: none; padding: 0; margin: 44px 0 0; display: flex; flex-wrap: wrap; gap: 14px 44px; }
 .hero__facts li { display: flex; flex-direction: column; border-left: 1px solid var(--blue-bright); padding-left: 16px; }
 .hero__facts strong { font-size: 2.1rem; font-weight: 300; line-height: 1; letter-spacing: -.02em; }
@@ -175,19 +177,19 @@ p { margin: 0; }
 /* ---------- Clientes (banda inferior de la portada) ---------- */
 .clients { position: relative; padding: 22px 0 22px; border-top: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.35); backdrop-filter: blur(6px); }
 .clients .wrap { display: flex; }
-.clients__title { font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 18px; }
+.clients__title { display: flex; align-items: center; gap: 14px; width: 100%; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 16px; }
+.clients__title::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,.14); }
 .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 72px; width: max-content; animation: marquee 40s linear infinite; }
+.marquee__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 72px; width: max-content; }
+.clients--moving .marquee__track { animation: marquee 48s linear infinite; }
+.clients--static .marquee { mask-image: none; width: min(var(--wrap), 100% - 32px); margin-inline: auto; }
+.clients--static .marquee__track { width: auto; flex-wrap: wrap; justify-content: flex-start; gap: 28px 64px; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .logo { height: 48px; display: flex; align-items: center; flex-shrink: 0; }
 /* En blanco sobre la foto; en su color original al pasar el ratón */
-.logo img { height: 38px; width: auto; max-width: 170px; filter: brightness(0) invert(1); opacity: .7; transition: filter .35s, opacity .35s, transform .35s; }
+.logo img { height: 42px; width: auto; max-width: 170px; filter: brightness(0) invert(1); opacity: .85; transition: filter .35s, opacity .35s, transform .35s; }
 .logo:hover img { filter: none; opacity: 1; transform: scale(1.06); }
-.logo__txt { display: none; font-weight: 500; font-size: .95rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7); white-space: nowrap; transition: color .3s; }
-.logo.is-missing img { display: none; }
-.logo.is-missing .logo__txt { display: block; }
-.logo.is-missing:hover .logo__txt { color: #fff; }
 
 /* ---------- Secciones ---------- */
 .section { padding: clamp(80px, 11vw, 140px) 0; }
@@ -370,6 +372,18 @@ p { margin: 0; }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .reveal.is-in { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
+
+/* Pantallas de portátil poco altas: la banda de clientes siempre visible */
+@media (min-width: 821px) and (max-height: 860px) {
+  .hero { padding-top: 92px; }
+  .hero__title { font-size: clamp(2.2rem, 4.2vw, 3.6rem); }
+  .hero__lead { margin-top: 18px; }
+  .hero__actions { margin-top: 26px; }
+  .hero__proof { margin-top: 20px; }
+  .hero__content { padding-bottom: 28px; }
+  .hero__sign { bottom: 140px; width: 310px; }
+  .sign__row { padding: 11px 16px; }
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {

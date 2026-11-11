@@ -18,19 +18,30 @@
     heroImg.addEventListener('error', hide);
   }
 
-  /* ---- Logos: si no carga, nombre de la empresa en texto ---- */
+  /* ---- Logos de clientes ----
+     Cada logo prueba sus fuentes en orden (archivo local .svg, .png y, si hay, una URL externa).
+     Si ninguna carga, el logo se retira: nunca se muestra texto en su lugar. */
   const track = $('.marquee__track');
   if (track) {
-    // Duplicamos para un bucle continuo
-    $$('.logo', track).forEach(li => {
-      const c = li.cloneNode(true);
-      c.setAttribute('aria-hidden', 'true');
-      track.appendChild(c);
+    const load = li => new Promise(done => {
+      const img = $('img', li);
+      const srcs = (li.dataset.srcs || '').split('|').filter(Boolean);
+      const next = () => {
+        if (!srcs.length) { li.remove(); return done(false); }
+        img.src = srcs.shift();
+      };
+      img.addEventListener('load', () => done(true));
+      img.addEventListener('error', next);
+      next();
     });
-    $$('.logo img', track).forEach(img => {
-      const fail = () => img.closest('.logo').classList.add('is-missing');
-      if (img.complete && img.naturalWidth === 0) fail();
-      img.addEventListener('error', fail);
+    Promise.all($$('.logo', track).map(load)).then(() => {
+      const items = $$('.logo', track);
+      const clients = $('#clientes');
+      if (!items.length) { clients.hidden = true; return; }
+      if (items.length < 5) { clients.classList.add('clients--static'); return; }
+      // Bucle continuo: duplicamos la tira
+      items.forEach(li => { const c = li.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });
+      clients.classList.add('clients--moving');
     });
   }
 
