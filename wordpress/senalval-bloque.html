@@ -1,39 +1,9 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SeñalVal | Proyectos de señalización y señalética de alta exigencia</title>
-  <meta name="description" content="SeñalVal gestiona proyectos integrales de señalización y señalética: diseño, fabricación, instalación y mantenimiento para sedes públicas, sanidad, residencias, educación, industria y retail. Preparados para licitaciones.">
-  <meta name="keywords" content="señalización, señalética, señalización corporativa, señalética hospitalaria, señalización edificios públicos, rótulos luminosos, letras corpóreas, rotulación de vehículos, licitaciones señalización, empresa de señalización Madrid">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="author" content="SeñalVal">
-  <meta name="theme-color" content="#0A0A0B">
-  <link rel="canonical" href="https://senalval.es/">
-  <link rel="alternate" hreflang="es" href="https://senalval.es/">
-
-  <!-- Open Graph / redes sociales -->
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_ES">
-  <meta property="og:site_name" content="SeñalVal">
-  <meta property="og:title" content="SeñalVal | Gestionamos proyectos de señalización de alta exigencia">
-  <meta property="og:description" content="Del diseño a la instalación y el mantenimiento: un único socio responsable para la señalización de edificios públicos, sanitarios, educativos y corporativos.">
-  <meta property="og:url" content="https://senalval.es/">
-  <meta property="og:image" content="https://senalval.es/assets/img/og-senalval.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SeñalVal | Señalización de alta exigencia">
-  <meta name="twitter:description" content="Proyectos integrales de señalización: solvencia, ejecución, trazabilidad y continuidad.">
-  <meta name="twitter:image" content="https://senalval.es/assets/img/og-senalval.jpg">
-
-  <link rel="icon" href="../assets/img/favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="../assets/img/hero-01.jpg" fetchpriority="high">
-  <style>
+<!-- SeñalVal · Portada. Pegar en un widget HTML de Elementor (plantilla "Elementor Canvas")
+     o en un bloque "HTML personalizado" de una página con plantilla en blanco. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
 /* =========================================================
    SeñalVal — Rediseño web
    Blanco limpio · Azul marino · Montserrat
@@ -135,7 +105,7 @@ p { margin: 0; }
 .nav__inner { display: flex; align-items: center; gap: 28px; }
 .brand { display: flex; align-items: center; text-decoration: none; margin-right: auto; }
 .brand__img { height: 40px; width: auto; }
-.footer__brand img { height: 34px; width: auto; margin-bottom: 18px; }
+.footer__brand img { height: 34px; width: auto; margin-bottom: 18px; filter: brightness(0) invert(1); }
 .brand__text { font-size: 1.55rem; font-weight: 600; color: var(--black); letter-spacing: -.03em; }
 .brand__text b { color: var(--blue); }
 .brand__text--foot { color: var(--white); }
@@ -295,12 +265,16 @@ p { margin: 0; }
 
 /* Sectores */
 .sectors { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); overflow: hidden; position: relative; }
-.sector { background: var(--navy); padding: 34px 28px; transition: background .35s; }
-.sector:hover { background: var(--navy-2); }
+.sector { position: relative; overflow: hidden; isolation: isolate; background: var(--navy); padding: 34px 28px; min-height: 250px; display: flex; flex-direction: column; justify-content: flex-end; transition: background .35s; }
+.sector__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; opacity: .55; transform: scale(1.04); transition: transform 1.2s var(--ease), opacity .6s; }
+.sector::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,11,.15) 0%, rgba(10,10,11,.6) 45%, rgba(10,10,11,.94) 100%); transition: background .5s; }
+.sector:hover .sector__bg { transform: scale(1.12); opacity: .75; }
+.sector:hover::after { background: linear-gradient(180deg, rgba(0,40,90,.2) 0%, rgba(0,30,70,.6) 45%, rgba(5,10,20,.95) 100%); }
+
 .sector__i { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: rgba(59,142,234,.14); color: var(--blue-bright); font-size: 1.35rem; margin-bottom: 22px; transition: transform .35s var(--ease), background .35s; }
 .sector:hover .sector__i { transform: rotate(-8deg) scale(1.08); background: var(--blue); color: #fff; }
 .sector h3 { font-size: 1.08rem; font-weight: 500; margin-bottom: 8px; }
-.sector p { font-size: .9rem; color: rgba(255,255,255,.68); }
+.sector p { font-size: .9rem; color: rgba(255,255,255,.8); }
 
 /* Ciclo */
 .cycle { list-style: none; padding: 0; margin: 0 0 72px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; counter-reset: c; position: relative; }
@@ -356,6 +330,48 @@ p { margin: 0; }
 .card__body { padding: 24px 26px 28px; }
 .card .eyebrow { margin-bottom: 10px; font-size: .7rem; }
 .card h3 { font-size: 1.2rem; font-weight: 500; color: var(--navy); margin-bottom: 16px; }
+
+/* Proyectos: galería */
+.feature__sub, .card__sub { color: var(--muted); font-weight: 300; margin: -14px 0 22px; }
+.card__sub { margin: -8px 0 14px; font-size: .92rem; }
+.feature .btn { margin-top: 26px; }
+.feature__media[data-project], .card { cursor: pointer; }
+.photos { position: absolute; right: 14px; bottom: 14px; z-index: 1; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: rgba(10,10,11,.72); color: #fff; font-size: .78rem; backdrop-filter: blur(6px); }
+.photos svg { width: 16px; height: 16px; }
+.card__more { display: inline-block; margin-top: 16px; color: var(--blue); font-weight: 500; font-size: .9rem; }
+.card:hover .card__more { text-decoration: underline; text-underline-offset: 4px; }
+.media--brand { display: grid; place-items: center; background: radial-gradient(120% 120% at 100% 0%, var(--blue) 0%, var(--black) 70%); }
+.media--brand::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 28px 28px; }
+.media__mark { position: relative; color: #fff; font-size: 2.6rem; font-weight: 300; letter-spacing: .08em; }
+.feature__media.media--brand { min-height: 360px; }
+.is-locked { overflow: hidden; }
+.pmodal { width: min(1180px, 100vw - 32px); max-height: calc(100vh - 32px); padding: 0; border: 0; border-radius: 22px; background: var(--white); color: var(--ink); box-shadow: 0 40px 120px -30px rgba(0,0,0,.6); overflow: hidden; }
+.pmodal::backdrop { background: rgba(5,6,8,.78); backdrop-filter: blur(6px); }
+.pmodal[open] { animation: pin .45s var(--ease); }
+@keyframes pin { from { opacity: 0; transform: translateY(20px) scale(.98); } }
+.pmodal__inner { position: relative; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); height: min(780px, calc(100vh - 32px)); }
+.pmodal__close { position: absolute; top: 14px; right: 14px; z-index: 3; width: 42px; height: 42px; border-radius: 50%; border: 0; background: rgba(10,10,11,.75); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.pmodal__close:hover { background: var(--blue); }
+.pmodal__gallery { background: #0b0c0e; display: grid; grid-template-rows: minmax(0, 1fr) auto; min-width: 0; min-height: 0; }
+.pmodal__stage { position: relative; min-height: 0; overflow: hidden; }
+.pmodal__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.pmodal__img.is-in { animation: fadein .45s ease; }
+@keyframes fadein { from { opacity: 0; } }
+.pmodal__nav { position: absolute; top: 50%; translate: 0 -50%; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); background: rgba(10,10,11,.55); color: #fff; font: inherit; font-size: 1.1rem; cursor: pointer; transition: background .25s; }
+.pmodal__nav:hover { background: var(--blue); border-color: var(--blue); }
+.pmodal__nav--prev { left: 14px; } .pmodal__nav--next { right: 14px; }
+.pmodal__count { position: absolute; left: 16px; bottom: 14px; color: rgba(255,255,255,.8); font-size: .78rem; letter-spacing: .1em; }
+.pmodal__thumbs { display: flex; gap: 8px; padding: 10px; overflow-x: auto; scrollbar-width: thin; }
+.pmodal__thumbs button { flex: 0 0 74px; height: 56px; padding: 0; border: 2px solid transparent; border-radius: 8px; overflow: hidden; background: #222; cursor: pointer; opacity: .6; transition: opacity .25s, border-color .25s; }
+.pmodal__thumbs button.is-on, .pmodal__thumbs button:hover { opacity: 1; border-color: var(--blue-bright); }
+.pmodal__thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.pmodal__info { padding: 44px 36px 32px; overflow-y: auto; }
+.pmodal__info .h3 { margin-bottom: 8px; padding-right: 40px; }
+.pmodal__sub { color: var(--muted); font-weight: 300; margin-bottom: 24px; }
+.pmodal__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; margin-top: 28px; }
+.pmodal--nogallery .pmodal__inner { grid-template-columns: minmax(0, 1fr); height: auto; max-width: 640px; }
+.pmodal--nogallery .pmodal__gallery { display: none; }
+.pmodal--nogallery { width: min(640px, 100vw - 32px); }
 
 /* Licitaciones */
 .tender__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; }
@@ -479,6 +495,14 @@ p { margin: 0; }
   .logo img { height: 38px; }
 }
 
+@media (max-width: 820px) {
+  .pmodal { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .pmodal__inner { display: block; height: 100dvh; overflow-y: auto; }
+  .pmodal__gallery { display: block; }
+  .pmodal__stage { height: 56vh; }
+  .pmodal__info { padding: 28px 20px 36px; overflow: visible; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .nav__links { display: none; }
@@ -515,9 +539,7 @@ p { margin: 0; }
 }
 
 </style>
-
-  <!-- Datos estructurados (SEO) -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -526,8 +548,8 @@ p { margin: 0; }
         "@id": "https://senalval.es/#empresa",
         "name": "SeñalVal",
         "url": "https://senalval.es/",
-        "logo": "https://senalval.es/assets/img/logo-senalval.png",
-        "image": "https://senalval.es/assets/img/hero-01.jpg",
+        "logo": "https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png",
+        "image": "https://senalval.es/https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA.jpg",
         "email": "luismi.olea@senalval.es",
         "telephone": "+34 665 863 597",
         "address": {
@@ -590,16 +612,13 @@ p { margin: 0; }
     ]
   }
   </script>
-</head>
-<body>
-  <a class="skip" href="#main">Saltar al contenido</a>
+<a class="skip" href="#main">Saltar al contenido</a>
 
   <!-- ===================== CABECERA ===================== -->
   <header class="nav" id="top">
     <div class="wrap nav__inner">
       <a href="#top" class="brand" aria-label="SeñalVal, inicio">
-        <img src="../assets/img/logo-senalval.png" alt="SeñalVal" class="brand__img" width="300" height="45" data-fallbacks="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png"
-             onerror="var f=(this.dataset.fallbacks||'').split(',').filter(Boolean);if(f.length){this.dataset.fallbacks=f.slice(1).join(',');this.src=f[0];}else{this.hidden=true;this.nextElementSibling.hidden=false;}">
+        <img src="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png" alt="SeñalVal" class="brand__img" width="300" height="45" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
         <span class="brand__text" hidden>Señal<b>Val</b></span>
       </a>
       <nav class="nav__links" aria-label="Principal">
@@ -634,11 +653,11 @@ p { margin: 0; }
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__media" aria-hidden="false">
         <div class="hero__slides">
-          <img class="hero__slide is-active" src="../assets/img/hero-01.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · Plaza de Castilla, Madrid" data-caption="Tribunal de Instancia · Plaza de Castilla, Madrid" fetchpriority="high" width="1920" height="1440">
-          <img class="hero__slide" src="../assets/img/hero-02.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · San Lorenzo de El Escorial" data-caption="Tribunal de Instancia · San Lorenzo de El Escorial" loading="lazy" width="1920" height="1440">
-          <img class="hero__slide" src="../assets/img/hero-03.jpg" alt="Señalización SeñalVal: Comunidad de Madrid · Tribunal de Instancia" data-caption="Comunidad de Madrid · Tribunal de Instancia" loading="lazy" width="1920" height="1440">
-          <img class="hero__slide" src="../assets/img/hero-04.jpg" alt="Señalización SeñalVal: Palacio de Justicia · Valdemoro" data-caption="Palacio de Justicia · Valdemoro" loading="lazy" width="1920" height="1440">
-          <img class="hero__slide" src="../assets/img/hero-05.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · Navalcarnero" data-caption="Tribunal de Instancia · Navalcarnero" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide is-active" src="https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · Plaza de Castilla, Madrid" data-caption="Tribunal de Instancia · Plaza de Castilla, Madrid" fetchpriority="high" width="1920" height="1440">
+          <img class="hero__slide" src="https://senalval.es/wp-content/uploads/2026/04/SAN-LORENZO-DE-EL-ESCORIAL-1536x1152.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · San Lorenzo de El Escorial" data-caption="Tribunal de Instancia · San Lorenzo de El Escorial" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide" src="https://senalval.es/wp-content/uploads/2026/04/AVENIDA-DE-EUROPA-1536x1152.jpg" alt="Señalización SeñalVal: Comunidad de Madrid · Tribunal de Instancia" data-caption="Comunidad de Madrid · Tribunal de Instancia" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide" src="https://senalval.es/wp-content/uploads/2026/04/VALDEMORO.jpg" alt="Señalización SeñalVal: Palacio de Justicia · Valdemoro" data-caption="Palacio de Justicia · Valdemoro" loading="lazy" width="1920" height="1440">
+          <img class="hero__slide" src="https://senalval.es/wp-content/uploads/2026/04/NAVALCARNERO-1536x1152.jpg" alt="Señalización SeñalVal: Tribunal de Instancia · Navalcarnero" data-caption="Tribunal de Instancia · Navalcarnero" loading="lazy" width="1920" height="1440">
         </div>
       </div>
       <div class="hero__grid" aria-hidden="true"></div>
@@ -655,7 +674,7 @@ p { margin: 0; }
           <a href="#proyectos" class="btn btn--ghost btn--lg">Ver proyectos</a>
         </div>
         <p class="hero__proof">
-          <span>Proyectos para</span> Aena · Sedes judiciales de Madrid · Comunidad de Madrid · Junta de Castilla y León · Real Valladolid · Coca-Cola · Toyota · Mahou · Dragados
+          <span>Proyectos para</span> Aena · ADIF · Guardia Civil · Sedes judiciales de Madrid · Comunidad de Madrid · Junta de Castilla y León · Real Valladolid · Coca-Cola · Toyota · Mahou · Dragados
         </p>
       </div>
 
@@ -693,21 +712,24 @@ p { margin: 0; }
         </div>
         <div class="marquee">
           <ul class="marquee__track">
-          <li class="logo" data-srcs="../assets/logos/aena.svg|../assets/logos/aena.png|../assets/logos/aena.jpg|https://upload.wikimedia.org/wikipedia/commons/8/88/Aena_Logo_New.svg"><img alt="Aena" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/comunidad-madrid.svg|../assets/logos/comunidad-madrid.png|../assets/logos/comunidad-madrid.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Comunidad_de_Madrid.svg?width=400"><img alt="Comunidad de Madrid" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/junta-cyl.svg|../assets/logos/junta-cyl.png|../assets/logos/junta-cyl.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_la_Junta_de_Castilla_y_León.svg?width=400"><img alt="Junta de Castilla y León" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/real-valladolid.svg|../assets/logos/real-valladolid.png|../assets/logos/real-valladolid.jpg"><img alt="Real Valladolid Club de Fútbol" decoding="async"></li>
-          <li class="logo" data-srcs="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSIxMjcuNSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCA4LjIzNiAyNCA3LjUyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q29jYS1Db2xhPC90aXRsZT48cGF0aCBmaWxsPSIjRDAwMDEzIiBkPSJNMTYuODEzIDguODE0cy0uNDUuMTgtLjk3My43NTZjLS41MjQuNTc3LS44MjggMS4yMjUtLjYwMyAxLjM5Ny4wODcuMDY2LjI4Ny4wNzkuNjUtLjI1YTIuODY0IDIuODY0IDAgMDAuNzY2LTEuMDYzYy4yMzQtLjU3LjE2LS44MzMuMTYtLjg0bTIuODYzIDEuMDM4Yy0uNTgxLS4yOTktMS4wMDYtLjY2NC0xLjQ0OC0uODktLjQyMi0uMjE2LS42OTUtLjMwNy0xLjAzNi0uMjYxYTEuMDU3IDEuMDU3IDAgMDAtLjE0LjAzNXMuMTc2LjYtLjUyMyAxLjYwN2MtLjcwOCAxLjAyMi0xLjM1IDEuMDE1LTEuNTMzLjczNC0uMTkxLS4yOTYuMDU2LS45LjQ2OC0xLjQzNy40MzItLjU2MiAxLjE5LTEuMDI4IDEuMTktMS4wMjhzLS4yNDEtLjE0OC0uODM1LjE5Yy0uNTguMzI2LTEuNTc3IDEuMTA3LTIuNTAyIDIuNDIzLS45MjYgMS4zMTYtMS4xMSAyLjA0LTEuMjQyIDIuNjEtLjEzMi41Ny0uMDEyIDEuMTguNjIgMS4xOHMxLjM2OC0uOTY0IDEuNTc2LTEuMjk5Yy4zODYtLjYyNC42MzctMS41ODEuMTEyLTEuNDUtLjI1OS4wNjUtLjQ2OC4zNTEtLjYuNjI3YTIuNjgzIDIuNjgzIDAgMDAtLjE5LjU1NCAyLjE4NSAyLjE4NSAwIDAwLS41MTMuMjk4IDMuNzg4IDMuNzg4IDAgMDAtLjQ4Ni40M3MuMDAyLS40NTYuMzY1LTEuMTk0Yy4zNjQtLjczNyAxLjAzLTEuMDc0IDEuNDA4LTEuMTA2LjM0LS4wMjcuNzgzLjI2Mi40MDggMS4zMjctLjM3NSAxLjA2NS0xLjQ4MyAyLjM2LTIuNjQ2IDIuMzc2LTEuMDczLjAxNS0xLjc3Ni0xLjM1NS0uMjgyLTMuNzQ1QzEzLjUwMSA5LjE5IDE1LjQ0MSA4LjM4IDE2LjA3IDguMjljLjYzLS4wOS44MzUuMTg3LjgzNS4xODdhMi43MDkgMi43MDkgMCAwMTEuMTk3LS4xOTdjLjc3LjA1MiAxLjM2NC41OTYgMi4xNS45NzktLjIwNS4xOTUtLjQuNC0uNTc1LjU5Mm0zLjQ1NC0uODljLS41MzMuMzQyLTEuMjcuNjUyLTEuOTc5LjU4Ni0uMTc5LjE4NS0uMzcxLjQtLjU2My42MzQgMS4yMjguMjQzIDIuMzA1LS41MTkgMi44NzctMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xLjYzNiAzLjQ2MmEuMjY4LjI2OCAwIDAwLjAyMy0uMDUxLjEyNC4xMjQgMCAwMC0uMTEzLS4xMDhjLS4xMTctLjAwNS0uMjc3LjAxNy0uNjk1LjQ4YTYuMzAzIDYuMzAzIDAgMDAtLjg5IDEuMjYzYy0uMjQuNDM4LS4zMzcuNzY0LS4yLjg0OGEuMTk5LjE5OSAwIDAwLjE0Ni4wMTVjLjA5My0uMDIyLjE5OS0uMTEuMzYtLjI5NS4wNzUtLjA4OC4xNTgtLjIxMi4yNTgtLjM0OS4yNzctLjM3Ni45NzMtMS41NjMgMS4xMTEtMS44MDNtLTQuMzQ5LjUwNGMuMDctLjE4Mi4xNTktLjU0MS0uMDI2LS42ODItLjE5OS0uMTUtLjcwNS4yMDEtLjcwOC41NjEtLjAwMy4zNjkuMzU3LjUzNS40NDMuNTU5LjA1LjAxMy4wNjYuMDEuMDktLjAyOWEzLjI4NCAzLjI4NCAwIDAwLjIwMS0uNDA5bS0uMzgzLjY3YTEuNTMxIDEuNTMxIDAgMDEtLjM0OC0uMjIyIDEuMTE2IDEuMTE2IDAgMDEtLjI2LS4zMTdjLS4wMDgtLjAxMi0uMDE1LS4wMDMtLjAyMy4wMDgtLjAwNy4wMS0uMDM5LjAzOS0uMzA5LjQzNC0uMjcuMzk2LS42ODQgMS4yMTYtLjMxIDEuMzU1LjI0MS4wOS42NDEtLjMzMS44Ni0uNjFhNS4yMSA1LjIxIDAgMDAuNDAyLS42MTRjLjAxMi0uMDIzIDAtLjAyOS0uMDEyLS4wMzRtNC4yNTguOTQ3Yy0uMTAyLjE2My0uMjE4LjQ3Ni4xMTcuMjgxLjQxLS4yMzYuOTk0LTEuMTIzLjk5NC0xLjEyM2guMjY1YTguODggOC44OCAwIDAxLS44MDMgMS4wNTRjLS40MTUuNDYtLjkyMi44NzktMS4yOC44MzctLjQxNi0uMDQ4LS4yODYtLjU5Ni0uMjg2LS41OTZzLS41OTYuNjM1LTEuMDEuNTljLS41NTctLjA2Mi0uMzg3LS43NTEtLjM4Ny0uNzUxcy0uNjMuNzc0LTEuMDYuNzVjLS42NzMtLjA0LS41MDQtLjg1OS0uMzE2LTEuNDM2LjEtLjMwOC4xOTMtLjU1LjE5My0uNTVzLS4wNjcuMDE3LS4yMS4wMzhjLS4wNzYuMDExLS4yMTIuMDE5LS4yMTIuMDE5cy0uMjguNDk1LS41MDUuNzkyYy0uMjI0LjI5Ny0xLjE3OCAxLjMyMi0xLjc0IDEuMTE3LS41MTgtLjE5LS4zNDYtLjk4NC0uMDQ0LTEuNjE1LjQ0LS45MiAxLjY4LTIuMjQzIDIuMzk2LTIuMDY4Ljc0MS4xOC4wMTcgMS41MzIuMDE3IDEuNTMyczAgLjAwNS4wMDcuMDA5Yy4wMTUuMDA1LjA1NC4wMS4xNDMtLjAwOGExLjYwNSAxLjYwNSAwIDAwLjI3MS0uMDhzLjc0Ni0xLjU2MSAxLjU2OS0yLjU4M2MuODIzLTEuMDIgMi40NjUtMi43OCAzLjExLTIuMzU0LjE1Ni4xMDUuMDg2LjQ2NS0uMTI2LjkwMmEyLjg5MSAyLjg5MSAwIDAxLS4yOTEuMDc4Yy4xNDItLjI1OC4yMzYtLjQ3NS4yNjQtLjYyNy4wOTctLjUyOC0xLjEzNS41ODUtMi4wMTUgMS43OGExNi41OTQgMTYuNTk0IDAgMDAtMS40MDkgMi4yOCAzLjg2IDMuODYgMCAwMC40NTQtLjMyNCAxMy4wMDIgMTMuMDAyIDAgMDAxLjExOC0xLjA0MyAxMi4xNjkgMTIuMTY5IDAgMDAuOTUxLTEuMDk4IDIuNTggMi41OCAwIDAwLjI4LS4wMjkgMTIuMDU0IDEyLjA1NCAwIDAxLTEuMDUgMS4yNGMtLjM1LjM1NS0uNzMuNzM3LTEuMDYxIDEuMDE1YTguODQgOC44NCAwIDAxLS45MzEuNjkxcy0uNzcgMS41NTMtLjM1MSAxLjY1MmMuMjQ2LjA2LjczMi0uNjkuNzMyLS42OXMuNjM1LS45NjcgMS4wMTctMS40MDRjLjUyMi0uNTkzLjk3LS45MzYgMS40Mi0uOTQyLjI2MS0uMDA1LjQxNS4yNzMuNDE1LjI3M2wuMTIzLS4xOWguNzU3cy0xLjQxNCAyLjM5OC0xLjUyNyAyLjU3OW0yLjExMS01LjU4Yy0uNTMzLjM0MS0xLjI3LjY1MS0xLjk3OS41ODUtLjE4LjE4NS0uMzcxLjQtLjU2NC42MzQgMS4yMjkuMjQzIDIuMzA1LS41MTggMi44NzgtMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xMC42MyAxLjE3N2gtLjcybC0uNDA3LjY1OGguNzJ6bS0zLjQxIDIuMjc3Yy4zMDctLjQyIDEuMTUyLTEuODkxIDEuMTUyLTEuODkxYS4xMjQuMTI0IDAgMDAtLjExMi0uMTA4Yy0uMTE3LS4wMDYtLjMxMi4wMzQtLjcuNTE5LS4zODcuNDg1LS42ODguODctLjkwNyAxLjI3Mi0uMjQuNDM4LS4zNDYuNzQ3LS4yMDcuODMxYS4yMDUuMjA1IDAgMDAuMTQ0LjAxNWMuMDktLjAyMi4yMDgtLjExMy4zNjktLjI5OGE1LjU3IDUuNTcgMCAwMC4yNjItLjM0bS0zLjg2My0xLjk5Yy0uMTk5LS4xNS0uNzA1LjIwMS0uNzA4LjU2LS4wMDMuMzY5LjQ1Ni40ODIuNTE1LjQ4NGEuMDkuMDkgMCAwMC4wNS0uMDEuMDYuMDYgMCAwMC4wMjQtLjAyNyAzLjQ4MyAzLjQ4MyAwIDAwLjE0Ni0uMzI1Yy4wNy0uMTgzLjE1OC0uNTQxLS4wMjctLjY4Mm0tLjMgMS4yN2ExLjY3OCAxLjY3OCAwIDAxLS4zOS0uMTguODEyLjgxMiAwIDAxLS4yNzktLjMwOWMtLjAwNy0uMDEyLS4wMTUtLjAwMy0uMDIyLjAwOC0uMDA3LjAxLS4wNDcuMDYxLS4zMTguNDU4LS4yNy4zOTgtLjY3MiAxLjIxLS4yOTYgMS4zNS4yNC4wOS42NDQtLjMzNC44NjQtLjYxMmE3LjI0IDcuMjQgMCAwMC40NTUtLjY4MWMuMDA5LS4wMjQgMC0uMDMtLjAxNC0uMDM0bTUuODguMjQ0aC4yNjNzLTEuMzIxIDEuOTEyLTIuMDY4IDEuODIzYy0uNDE2LS4wNDktLjI5My0uNTYzLS4yOTMtLjU2M3MtLjU4NS42ODUtMS4xMjMuNTQ2Yy0uNDg3LS4xMjUtLjE3Mi0uOTM2LS4xNzItLjkzNi0uMDU2LjAyMi0xLjExMSAxLjIxMS0xLjg1My45MjYtLjc3Ni0uMy0uMzczLTEuMjk2LS4yMjUtMS41OTUuMTI1LS4yNTMuMjYzLS40OTkuMjYzLS40OTlzLS4xMTkuMDM0LS4xOTUuMDUxbC0uMTg2LjA0cy0uMzY3LjU5Ni0uNTkxLjg5NGMtLjIyNS4yOTctMS4xNzggMS4zMi0xLjc0IDEuMTE3LS41NjItLjIwNC0uNDIzLS45OS0uMTA3LTEuNjE1LjUxMi0xLjAxMiAxLjcyNi0yLjI1NiAyLjQ1OC0yLjA2OC43MzkuMTg5LjEyNyAxLjM4OC4xMjcgMS4zODhzLjE0Ny4wMTkuNS0uMjIyYy41MDctLjM0NiAxLjE3Ni0xLjI3NyAxLjkwMS0xLjE2Ny4zNDIuMDUxLjY2LjQuMjI1IDEuMDY0LS4xMzkuMjEzLS4zNzIuNDAzLS41NS4yMTUtLjExMS0uMTE4LS4wMTQtLjMzLjEwMy0uNDc3YS40NTcuNDU3IDAgMDEuMzktLjE3OXMuMTItLjI3My0uMTg1LS4yNjljLS4yNDcuMDA1LS44NzEuNTgtMS4yMjMgMS4xNi0uMzIzLjUzMy0uODEzIDEuNDQxLS4zMjIgMS42MzkuNDUxLjE4MiAxLjMwOS0uODM2IDEuNzA2LTEuMzcuMzk3LS41MzMgMS4zMDItMS43NDIgMi4wNjItMS43OS4yNjEtLjAxNy40MTcuMjIxLjQxNy4yMjFsLjA4OC0uMTM5aC43NTlzLTEuNDMgMi4zODctMS41NDIgMi41NjdjLS4wODguMTQxLS4yMDQuNDYuMTE3LjI4MS4zMjItLjE3OC45OTYtMS4wNDMuOTk2LTEuMDQzbS0uNDE0IDMuODI0YTMuMTQ0IDMuMTQ0IDAgMDAtMS45MDgtLjU1NyAxLjE3IDEuMTcgMCAwMC0uOTMuNTA0Yy0uMjktLjUwNS0uODYyLS44MTUtMS43NDctLjgwOC0xLjQzLjAxNi0yLjg0OS42NzYtMy45NzIuNjc1LTEuMDc3IDAtMS44NjMtLjY3Ny0xLjgzNy0xLjg4LjA0Ny0yLjEwOSAxLjgzLTQuMDA5IDMuMTYtNC44NjQuNzY3LS40OSAxLjQwOS0uNjM3IDEuODI4LS41OS4zMDYuMDM0LjY3NC4zODguNDQyLjkwOS0uMzQxLjc2MS0uODEyLjY5OS0uNzk1LjMzNS4wMS0uMjM3LjE2OC0uMzg2LjI4Ni0uNDY5YS41ODIuNTgyIDAgMDEuMjc4LS4wNjhjLjA2OC0uMDU3LjExNy0uNDc0LS40MjktLjMzNy0uNTQ2LjEzNy0xLjIxLjY3Ni0xLjg0IDEuMzcxLS42My42OTYtMS42MSAyLjAxMS0xLjg1MiAzLjM5Mi0uMTEzLjY0LS4wMzkgMS44MDggMS40OCAxLjc5NSAxLjI4Ny0uMDEgMy4xODUtLjg1OSA0LjkyOS0uODQxYTMuMzQgMy4zNCAwIDAxMS43MjUuNDcyYy40NTEuMjc4Ljk5Mi42ODQgMS4xODQuOTYxIi8+PC9zdmc+|../assets/logos/coca-cola.png|../assets/logos/coca-cola.jpg"><img alt="Coca-Cola" decoding="async"></li>
-          <li class="logo" data-srcs="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSI1OC45IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDMuODQ4IDI0IDE2LjMwNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VG95b3RhPC90aXRsZT48cGF0aCBmaWxsPSIjRUIwQTFFIiBkPSJNMTIgMy44NDhDNS4yMjMgMy44NDggMCA3LjI5OCAwIDEyYzAgNC43MDIgNS4yMjQgOC4xNTIgMTIgOC4xNTJTMjQgMTYuNzAyIDI0IDEyYzAtNC43MDItNS4yMjMtOC4xNTItMTItOC4xNTJ6bTcuMzM0IDMuODM5YzAgMS4wOC0xLjcyNSAxLjkxMy00LjQ4OCAyLjI0Ni0uMjYtMi41OC0xLjAwNS00LjI3OS0xLjk2My00LjkxMyAyLjk0OC4xODQgNi40NSAxLjIyNyA2LjQ1IDIuNjY3ek0xMiAxNi40MDFjLS45NiAwLTEuNzQ2LTEuNS0xLjgwOC00LjM4OS41NzcuMDQ3IDEuMTguMDcyIDEuODA4LjA3Mi42MjggMCAxLjIzLS4wMjUgMS44MDctLjA3Mi0uMDYxIDIuODktLjg0NyA0LjM4OS0xLjgwNyA0LjM4OXptMC02LjMwOGMtLjU5IDAtMS4xNTUtLjAxOS0xLjY5LS4wNTQuMjYxLTEuNzI4LjkyLTMuMTUgMS42OS0zLjE1Ljc3IDAgMS40MjggMS40MjIgMS42ODkgMy4xNS0uNTM1LjAzNC0xLjA5OS4wNTQtMS42ODkuMDU0em0tLjg4Mi01LjA3NWMtLjk1Ni42MzMtMS43MDYgMi4zMzMtMS45NjQgNC45MTVDNi4zOTEgOS42IDQuNjY1IDguNzY3IDQuNjY1IDcuNjg3YzAtMS40NCAzLjUwNC0yLjQ5IDYuNDUzLTIuNjY5ek0yLjAzNyAxMS42OGE1LjI2NSA1LjI2NSAwIDAxMS4wNDgtMy4xNjRjLjI3IDEuNTQ3IDIuNTIyIDIuODgxIDUuOTcyIDMuMzdWMTJjMCAzLjc3Mi44NzkgNi4yMDMgMi4wODcgNi45Ny01LjEwNy0uMzIxLTkuMTA3LTMuNDgtOS4xMDctNy4yOXptMTAuODIzIDcuMjljMS4yMDctLjc2NyAyLjA4Ny0zLjE5OCAyLjA4Ny02Ljk3di0uMTE1YzMuNDQ3LS40ODggNS43MDQtMS44MjYgNS45NzItMy4zN2E1LjI2IDUuMjYgMCAwMTEuMDQ5IDMuMTY1Yy0uMDA0IDMuODEtNC4wMDggNi45NjktOS4xMDkgNy4yOXoiLz48L3N2Zz4=|../assets/logos/toyota.png|../assets/logos/toyota.jpg"><img alt="Toyota" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/mahou.svg|../assets/logos/mahou.png|../assets/logos/mahou.jpg"><img alt="Mahou" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/dragados.svg|../assets/logos/dragados.png|../assets/logos/dragados.jpg"><img alt="Dragados" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/hummel.svg|../assets/logos/hummel.png|../assets/logos/hummel.jpg"><img alt="Hummel" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/clece.svg|../assets/logos/clece.png|../assets/logos/clece.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Clece_logo.svg?width=400"><img alt="Clece" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/vias.svg|../assets/logos/vias.png|../assets/logos/vias.jpg"><img alt="Vías y Construcciones" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/fundacion-laboral.svg|../assets/logos/fundacion-laboral.png|../assets/logos/fundacion-laboral.jpg"><img alt="Fundación Laboral de la Construcción" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/emilio-moro.svg|../assets/logos/emilio-moro.png|../assets/logos/emilio-moro.jpg"><img alt="Bodegas Emilio Moro" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/gerovida.svg|../assets/logos/gerovida.png|../assets/logos/gerovida.jpg"><img alt="Gerovida" decoding="async"></li>
-          <li class="logo" data-srcs="../assets/logos/rapimueble.svg|../assets/logos/rapimueble.png|../assets/logos/rapimueble.jpg"><img alt="Rapimueble" decoding="async"></li>
+          <li class="logo" data-srcs="https://upload.wikimedia.org/wikipedia/commons/8/88/Aena_Logo_New.svg"><img alt="Aena" decoding="async"></li>
+          <li class="logo" data-srcs="https://upload.wikimedia.org/wikipedia/commons/2/2f/Adif_wordmark.svg"><img alt="ADIF" decoding="async"></li>
+          <li class="logo" data-srcs="https://upload.wikimedia.org/wikipedia/commons/4/42/Emblem_of_the_Spanish_Civil_Guard.svg"><img alt="Guardia Civil" decoding="async"></li>
+          <li class="logo" data-srcs="https://upload.wikimedia.org/wikipedia/commons/e/e4/Logotipo_del_Gobierno_de_la_Comunidad_de_Madrid.svg"><img alt="Comunidad de Madrid" decoding="async"></li>
+          <li class="logo" data-srcs="https://upload.wikimedia.org/wikipedia/commons/b/b8/Logotipo_de_la_Junta_de_Castilla_y_Le%C3%B3n.svg"><img alt="Junta de Castilla y León" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.19-1.png"><img alt="Real Valladolid Club de Fútbol" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.14.png"><img alt="Coca-Cola" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.26.png"><img alt="Toyota" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.06.png"><img alt="Mahou" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.10.png"><img alt="Dragados" decoding="async"></li>
+          <li class="logo" data-srcs="https://upload.wikimedia.org/wikipedia/commons/7/74/Logo_Laboral_Kutxa.JPG"><img alt="Laboral Kutxa" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.08.png"><img alt="Hummel" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.16.png"><img alt="Clece" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.25.png"><img alt="Vías y Construcciones" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.28.png"><img alt="Fundación Laboral de la Construcción" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.23.png"><img alt="Bodegas Emilio Moro" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.20.png"><img alt="Gerovida" decoding="async"></li>
+          <li class="logo" data-srcs="https://senalval.es/wp-content/uploads/2022/06/Captura-de-Pantalla-2022-06-15-a-las-9.53.12.png"><img alt="Rapimueble" decoding="async"></li>
         </ul>
         </div>
       </div>
@@ -766,14 +788,14 @@ p { margin: 0; }
           <p class="lead lead--light">Cada sector tiene su normativa, sus usuarios y sus tiempos. Los conocemos.</p>
         </div>
         <ul class="sectors">
-          <li class="sector reveal"><span class="sector__i">⚖</span><h3>Justicia y administración</h3><p>Sedes judiciales, consejerías y edificios de atención al ciudadano.</p></li>
-          <li class="sector reveal"><span class="sector__i">✚</span><h3>Sanidad</h3><p>Hospitales y centros de salud: wayfinding claro bajo presión.</p></li>
-          <li class="sector reveal"><span class="sector__i">⌂</span><h3>Residencias y sociosanitario</h3><p>Señalética accesible, cálida y pensada para personas mayores.</p></li>
-          <li class="sector reveal"><span class="sector__i">✎</span><h3>Educación y formación</h3><p>Universidades, colegios y centros de formación profesional.</p></li>
-          <li class="sector reveal"><span class="sector__i">▦</span><h3>Corporativo y oficinas</h3><p>Identidad de marca aplicada a sedes, plantas y salas.</p></li>
-          <li class="sector reveal"><span class="sector__i">⚙</span><h3>Industria y logística</h3><p>Seguridad, PRL, naves y señalización horizontal.</p></li>
-          <li class="sector reveal"><span class="sector__i">◈</span><h3>Deporte, retail y marcas</h3><p>Estadios, concesionarios y fachadas con imagen homogénea.</p></li>
-          <li class="sector reveal"><span class="sector__i">⇄</span><h3>Transporte y flotas</h3><p>Rotulación de vehículos, autobuses y estaciones.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⚖</span><h3>Justicia y administración</h3><p>Sedes judiciales, consejerías y edificios de atención al ciudadano.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2023/03/Senaletica-Organismos-Publicos-1-768x512.png" alt="" loading="lazy" decoding="async"><span class="sector__i">✚</span><h3>Sanidad</h3><p>Hospitales y centros de salud: wayfinding claro bajo presión.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-Y-FLOR-DESPACHO-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⌂</span><h3>Residencias y sociosanitario</h3><p>Señalética accesible, cálida y pensada para personas mayores.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-2-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">✎</span><h3>Educación y formación</h3><p>Universidades, colegios y centros de formación profesional.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/04/METACRILATO-OFICINAS-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">▦</span><h3>Corporativo y oficinas</h3><p>Identidad de marca aplicada a sedes, plantas y salas.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/04/FOTO-1024x768.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⚙</span><h3>Industria y logística</h3><p>Seguridad, PRL, naves y señalización horizontal.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2023/11/FOTO-HORARIO-Y-INSTAGRAM-1024x768.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">◈</span><h3>Deporte, retail y marcas</h3><p>Estadios, concesionarios y fachadas con imagen homogénea.</p></li>
+          <li class="sector reveal"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/04/TRASERA-768x1024.jpeg" alt="" loading="lazy" decoding="async"><span class="sector__i">⇄</span><h3>Transporte y flotas</h3><p>Rotulación de vehículos, autobuses y estaciones.</p></li>
         </ul>
       </div>
     </section>
@@ -799,27 +821,27 @@ p { margin: 0; }
 
         <div class="services">
           <article class="service reveal">
-            <div class="media"><img src="../assets/img/senaletica-interior.jpg" alt="Señalética interior y directorios de planta" loading="lazy" width="800" height="600"></div>
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2023/10/SAN-PEDRO-POVEDA-1024x768.jpg" alt="Señalética interior y directorios de planta" loading="lazy" width="800" height="600"></div>
             <div class="service__body"><h3>Señalética interior y wayfinding</h3><p>Directorios, banderolas, placas de despacho y sistemas de orientación completos.</p></div>
           </article>
           <article class="service reveal">
-            <div class="media"><img src="../assets/img/senalizacion-exterior.jpg" alt="Señalización exterior y monolitos" loading="lazy" width="800" height="600"></div>
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2023/05/FOTO-VALLA-INSTALADA-1024x768.jpg" alt="Señalización exterior y monolitos" loading="lazy" width="800" height="600"></div>
             <div class="service__body"><h3>Señalización exterior y monolitos</h3><p>Tótems, monolitos, accesos y señalización de recintos y campus.</p></div>
           </article>
           <article class="service reveal">
-            <div class="media"><img src="../assets/img/rotulo-iluminado.jpg" alt="Rótulo iluminado con letras corpóreas" loading="lazy" width="800" height="600"></div>
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-1024x768.jpg" alt="Rótulo iluminado con letras corpóreas" loading="lazy" width="800" height="600"></div>
             <div class="service__body"><h3>Rótulos luminosos y letras corpóreas</h3><p>Fachadas con presencia de día y de noche: LED, metacrilato, acero y aluminio.</p></div>
           </article>
           <article class="service reveal">
-            <div class="media"><img src="../assets/img/rotulacion-vehiculos.jpg" alt="Rotulación de vehículos y flotas" loading="lazy" width="800" height="600"></div>
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2023/08/LATERAL-IZQUIERDO-1024x821.jpg" alt="Rotulación de vehículos y flotas" loading="lazy" width="800" height="600"></div>
             <div class="service__body"><h3>Rotulación de vehículos y flotas</h3><p>Autobuses, furgonetas y flotas completas con imagen corporativa homogénea.</p></div>
           </article>
           <article class="service reveal">
-            <div class="media"><img src="../assets/img/vinilos.jpg" alt="Vinilos decorativos y gráfica en cristaleras" loading="lazy" width="800" height="600"></div>
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2026/04/FOTO-2-1024x768.jpg" alt="Vinilos decorativos y gráfica en cristaleras" loading="lazy" width="800" height="600"></div>
             <div class="service__body"><h3>Vinilos y gráfica decorativa</h3><p>Cristaleras, muros, gráfica ambiental y protección solar.</p></div>
           </article>
           <article class="service reveal">
-            <div class="media"><img src="../assets/img/senalizacion-accesible.jpg" alt="Señalización accesible en braille y de seguridad" loading="lazy" width="800" height="600"></div>
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2022/10/PLACA-VESTUARIOS-1024x768.jpg" alt="Señalización accesible en braille y de seguridad" loading="lazy" width="800" height="600"></div>
             <div class="service__body"><h3>Señalización accesible y de seguridad</h3><p>Braille, altorrelieve, evacuación, PRL y fotoluminiscente.</p></div>
           </article>
         </div>
@@ -834,126 +856,128 @@ p { margin: 0; }
             <p class="eyebrow">Proyectos</p>
             <h2 id="proyectos-title" class="h2">Proyectos reales, problemas reales</h2>
           </div>
-          <p class="lead">Cada proyecto empieza con un reto concreto. Así lo resolvimos.</p>
+          <p class="lead">Cada proyecto empieza con un reto concreto. Ábralo para ver todas las fotos y cómo lo resolvimos.</p>
         </div>
 
-        <!-- Proyecto principal -->
         <article class="feature reveal">
-          <div class="feature__media media">
-            <img src="../assets/img/plaza-castilla.jpg" alt="Señalización de las sedes judiciales de Madrid en Plaza de Castilla" loading="lazy" width="1400" height="900">
+          <div class="feature__media media" data-project="sedes-judiciales" role="button" tabindex="0" aria-label="Abrir galería: Sedes judiciales de Madrid">
+            <img src="https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg" alt="Sedes judiciales de Madrid: Letras corpóreas «Tribunal de Instancia» en fachadas" loading="lazy" width="1400" height="1050"><span class="photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>17</span>
             <span class="tag">Proyecto destacado</span>
           </div>
           <div class="feature__body">
-            <p class="eyebrow">Justicia · Madrid</p>
+            <p class="eyebrow">Justicia · Comunidad de Madrid</p>
             <h3 class="h3">Sedes judiciales de Madrid</h3>
-            <dl class="case">
-              <div><dt>Reto</dt><dd>Orientar a miles de usuarios diarios —ciudadanos, profesionales y personal— en edificios judiciales de gran tamaño, sin interrumpir la actividad.</dd></div>
-              <div><dt>Solución</dt><dd>Sistema de wayfinding unificado: directorios generales, señalización por plantas y salas, y placas normalizadas para todas las dependencias.</dd></div>
-              <div><dt>Materiales</dt><dd>Aluminio, metacrilato y vinilo de alta durabilidad, con criterios de accesibilidad y legibilidad.</dd></div>
-              <div><dt>Instalación</dt><dd>Planificada por fases y franjas horarias para mantener los edificios plenamente operativos.</dd></div>
-            </dl>
+            <p class="feature__sub">Letras corpóreas «Tribunal de Instancia» en fachadas</p>
+            <dl class="case"><div><dt>Reto</dt><dd>Cambiar la identificación de las sedes judiciales a la nueva denominación «Tribunal de Instancia», en edificios públicos que siguen abiertos al ciudadano.</dd></div><div><dt>Solución</dt><dd>Servicio llave en mano: retirada de los rótulos anteriores, limpieza y reparación de fachada e instalación de letras corpóreas con proporción institucional.</dd></div><div><dt>Materiales</dt><dd>PVC negro con frente de aluminio composite o lacado, según la especificación del proyecto.</dd></div><div><dt>Instalación</dt><dd>Coordinación y documentación PRL/CAE con el organismo. Casos como Plaza de Castilla y Poeta Joan Maragall, entre otras sedes de la Comunidad de Madrid.</dd></div></dl>
+            <button type="button" class="btn btn--accent" data-project="sedes-judiciales">Ver proyecto · 17 fotos <span aria-hidden="true">→</span></button>
           </div>
         </article>
 
         <article class="feature feature--reverse reveal">
-          <div class="feature__media media">
-            <img src="../assets/img/real-valladolid.jpg" alt="Instalación integral de señalización para el Real Valladolid Club de Fútbol" loading="lazy" width="1400" height="900">
+          <div class="feature__media media media--brand">
+            
             <span class="tag">Deporte</span>
           </div>
           <div class="feature__body">
             <p class="eyebrow">Deporte · Valladolid</p>
             <h3 class="h3">Real Valladolid Club de Fútbol</h3>
-            <dl class="case">
-              <div><dt>Reto</dt><dd>Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.</dd></div>
-              <div><dt>Solución</dt><dd>Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.</dd></div>
-              <div><dt>Materiales</dt><dd>Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.</dd></div>
-              <div><dt>Instalación</dt><dd>Ejecutada con equipo propio y coordinada con el calendario de actividad del club.</dd></div>
-            </dl>
+            <p class="feature__sub">Instalación integral de señalización</p>
+            <dl class="case"><div><dt>Reto</dt><dd>Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.</dd></div><div><dt>Solución</dt><dd>Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.</dd></div><div><dt>Materiales</dt><dd>Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.</dd></div><div><dt>Instalación</dt><dd>Ejecutada con equipo propio y coordinada con el calendario de actividad del club.</dd></div></dl>
+            
           </div>
         </article>
 
         <div class="cases">
-          <article class="card reveal">
-            <div class="media"><img src="../assets/img/salamanca.jpg" alt="Proyecto de señalización en Salamanca" loading="lazy" width="800" height="560"></div>
+          <article class="card reveal" data-project="adif-gallur" tabindex="0" role="button" aria-label="Ver proyecto: ADIF · Paso a nivel en Gallur">
+            <div class="media media--brand"><span class="media__mark">ADIF</span></div>
             <div class="card__body">
-              <p class="eyebrow">Administración · Salamanca</p>
-              <h3>Proyecto Salamanca</h3>
-              <dl class="case case--compact">
-                <div><dt>Reto</dt><dd>Integrar la señalización en un entorno con fuerte carácter arquitectónico.</dd></div>
-                <div><dt>Solución</dt><dd>Diseño sobrio y coherente con el edificio, legible sin restar protagonismo.</dd></div>
-                <div><dt>Materiales</dt><dd>Aluminio lacado y vinilo de corte.</dd></div>
-                <div><dt>Instalación</dt><dd>Fijaciones mínimamente invasivas.</dd></div>
-              </dl>
+              <p class="eyebrow">Ferroviario · Zaragoza</p>
+              <h3>ADIF · Paso a nivel en Gallur</h3>
+              <p class="card__sub">Señalización vial y ferroviaria</p>
+              <dl class="case case--compact"><div><dt>Reto</dt><dd>Hacer seguro y visible un paso a nivel, donde la señalización tiene que funcionar para conductores y peatones en cualquier condición.</dd></div><div><dt>Solución</dt><dd>Proyecto de señalización desarrollado en colaboración con ADIF (Administrador de Infraestructuras Ferroviarias).</dd></div></dl>
+              <span class="card__more">Ver proyecto →</span>
             </div>
           </article>
-          <article class="card reveal">
-            <div class="media"><img src="../assets/img/clece-burgos.jpg" alt="Señalética en la residencia Clece de Burgos" loading="lazy" width="800" height="560"></div>
+          <article class="card reveal" data-project="salamanca" tabindex="0" role="button" aria-label="Ver proyecto: Directorios y placas en Salamanca">
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg" alt="Directorios y placas en Salamanca" loading="lazy" width="800" height="600"><span class="photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>6</span></div>
+            <div class="card__body">
+              <p class="eyebrow">Corporativo · Salamanca</p>
+              <h3>Directorios y placas en Salamanca</h3>
+              <p class="card__sub">Aluminio composite con impresión directa</p>
+              <dl class="case case--compact"><div><dt>Reto</dt><dd>Ordenar la orientación de un edificio de oficinas con varias plantas y áreas de atención.</dd></div><div><dt>Solución</dt><dd>Directorio general, directorios por planta y placas de áreas (centro de relación con clientes, ciberseguridad…).</dd></div></dl>
+              <span class="card__more">Ver proyecto · 6 fotos →</span>
+            </div>
+          </article>
+          <article class="card reveal" data-project="clece-burgos" tabindex="0" role="button" aria-label="Ver proyecto: Residencia de Clece en Burgos">
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg" alt="Residencia de Clece en Burgos" loading="lazy" width="800" height="600"><span class="photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>3</span></div>
             <div class="card__body">
               <p class="eyebrow">Residencias · Burgos</p>
-              <h3>Residencia Clece de Burgos</h3>
-              <dl class="case case--compact">
-                <div><dt>Reto</dt><dd>Orientación sencilla para residentes, familias y personal.</dd></div>
-                <div><dt>Solución</dt><dd>Señalética accesible, de alto contraste y códigos de color por zonas.</dd></div>
-                <div><dt>Materiales</dt><dd>Placas con relieve y braille, vinilos.</dd></div>
-                <div><dt>Instalación</dt><dd>Con el centro en funcionamiento y sin molestias.</dd></div>
-              </dl>
+              <h3>Residencia de Clece en Burgos</h3>
+              <p class="card__sub">Vinilos de orientación en puertas y despachos</p>
+              <dl class="case case--compact"><div><dt>Reto</dt><dd>Orientación sencilla y cálida para residentes, familias y personal.</dd></div><div><dt>Solución</dt><dd>Vinilos con iconografía clara en puertas de entrada, interiores y despachos.</dd></div></dl>
+              <span class="card__more">Ver proyecto · 3 fotos →</span>
             </div>
           </article>
-          <article class="card reveal">
-            <div class="media"><img src="../assets/img/fundacion-laboral.jpg" alt="Señalización para la Fundación Laboral de la Construcción" loading="lazy" width="800" height="560"></div>
+          <article class="card reveal" data-project="fundacion-laboral" tabindex="0" role="button" aria-label="Ver proyecto: Fundación Laboral de la Construcción">
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg" alt="Fundación Laboral de la Construcción" loading="lazy" width="800" height="600"><span class="photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>5</span></div>
             <div class="card__body">
-              <p class="eyebrow">Formación</p>
+              <p class="eyebrow">Formación · Castilla y León</p>
               <h3>Fundación Laboral de la Construcción</h3>
-              <dl class="case case--compact">
-                <div><dt>Reto</dt><dd>Aplicar una identidad común en centros de formación.</dd></div>
-                <div><dt>Solución</dt><dd>Sistema modular replicable en cada sede.</dd></div>
-                <div><dt>Materiales</dt><dd>Composite, vinilo y PVC rígido.</dd></div>
-                <div><dt>Instalación</dt><dd>Despliegue coordinado por centros.</dd></div>
-              </dl>
+              <p class="card__sub">Carteles de videovigilancia</p>
+              <dl class="case case--compact"><div><dt>Reto</dt><dd>Cumplir la obligación de informar de las zonas videovigiladas con una señal normalizada y visible.</dd></div><div><dt>Solución</dt><dd>Serie de carteles de «Zona videovigilada» con la información legal exigida.</dd></div></dl>
+              <span class="card__more">Ver proyecto · 5 fotos →</span>
             </div>
           </article>
-          <article class="card reveal">
-            <div class="media"><img src="../assets/img/san-sebastian.jpg" alt="Proyecto de señalización en San Sebastián" loading="lazy" width="800" height="560"></div>
+          <article class="card reveal" data-project="san-sebastian" tabindex="0" role="button" aria-label="Ver proyecto: Rotulación integral en San Sebastián">
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2025/09/ROTULO-AZOTEA-2-1024x768.jpg" alt="Rotulación integral en San Sebastián" loading="lazy" width="800" height="600"><span class="photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>8</span></div>
             <div class="card__body">
-              <p class="eyebrow">Proyecto · San Sebastián</p>
-              <h3>San Sebastián</h3>
-              <dl class="case case--compact">
-                <div><dt>Reto</dt><dd>Ejecutar a distancia con el mismo control que en casa.</dd></div>
-                <div><dt>Solución</dt><dd>Planificación cerrada y documentación completa previa.</dd></div>
-                <div><dt>Materiales</dt><dd>Según manual gráfico del cliente.</dd></div>
-                <div><dt>Instalación</dt><dd>Desplazamiento de equipo propio.</dd></div>
-              </dl>
+              <p class="eyebrow">Corporativo · San Sebastián y Madrid</p>
+              <h3>Rotulación integral en San Sebastián</h3>
+              <p class="card__sub">Rótulo de azotea, placas y tótems</p>
+              <dl class="case case--compact"><div><dt>Reto</dt><dd>Renovar la imagen de un edificio corporativo para que se reconozca desde lejos.</dd></div><div><dt>Solución</dt><dd>Rótulo de azotea con vinilo de alta resistencia, placa de dibond, tótem y rotulación de oficinas.</dd></div></dl>
+              <span class="card__more">Ver proyecto · 8 fotos →</span>
             </div>
           </article>
-          <article class="card reveal">
-            <div class="media"><img src="../assets/img/rotulo-iluminado.jpg" alt="Rótulo iluminado de fachada" loading="lazy" width="800" height="560"></div>
+          <article class="card reveal" data-project="rotulacion" tabindex="0" role="button" aria-label="Ver proyecto: Rotulación y vinilos">
+            <div class="media"><img src="https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg" alt="Rotulación y vinilos" loading="lazy" width="800" height="600"><span class="photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>6</span></div>
             <div class="card__body">
-              <p class="eyebrow">Fachada</p>
-              <h3>Rótulo iluminado</h3>
-              <dl class="case case--compact">
-                <div><dt>Reto</dt><dd>Máxima visibilidad de día y de noche.</dd></div>
-                <div><dt>Solución</dt><dd>Letras corpóreas retroiluminadas con LED.</dd></div>
-                <div><dt>Materiales</dt><dd>Aluminio, metacrilato y módulos LED.</dd></div>
-                <div><dt>Instalación</dt><dd>Trabajo en altura con medios propios.</dd></div>
-              </dl>
-            </div>
-          </article>
-          <article class="card reveal">
-            <div class="media"><img src="../assets/img/autobus-clece.jpg" alt="Rotulación del autobús de Clece" loading="lazy" width="800" height="560"></div>
-            <div class="card__body">
-              <p class="eyebrow">Flotas</p>
-              <h3>Autobús de Clece</h3>
-              <dl class="case case--compact">
-                <div><dt>Reto</dt><dd>Imagen de marca impecable en movimiento.</dd></div>
-                <div><dt>Solución</dt><dd>Rotulación integral adaptada a la carrocería.</dd></div>
-                <div><dt>Materiales</dt><dd>Vinilo cast y laminado protector.</dd></div>
-                <div><dt>Instalación</dt><dd>En taller, con mínima inmovilización.</dd></div>
-              </dl>
+              <p class="eyebrow">Fachadas, oficinas y flotas</p>
+              <h3>Rotulación y vinilos</h3>
+              <p class="card__sub">Fachadas, cristaleras y autobuses (Clece)</p>
+              <dl class="case case--compact"><div><dt>Reto</dt><dd>Cada soporte pide una solución distinta: una fachada industrial, la privacidad de una sala o un autobús en movimiento.</dd></div><div><dt>Solución</dt><dd>Rótulos de fachada, vinilos para cristaleras y entradas, y rotulación integral de autobuses como el de Clece en Valladolid.</dd></div></dl>
+              <span class="card__more">Ver proyecto · 6 fotos →</span>
             </div>
           </article>
         </div>
       </div>
     </section>
+
+    <!-- Ventana de proyecto (galería + información) -->
+    <dialog class="pmodal" id="pmodal" aria-labelledby="pmodal-title">
+      <div class="pmodal__inner">
+        <button type="button" class="pmodal__close" aria-label="Cerrar">×</button>
+        <div class="pmodal__gallery">
+          <div class="pmodal__stage">
+            <img class="pmodal__img" alt="">
+            <button type="button" class="pmodal__nav pmodal__nav--prev" aria-label="Foto anterior">←</button>
+            <button type="button" class="pmodal__nav pmodal__nav--next" aria-label="Foto siguiente">→</button>
+            <span class="pmodal__count"></span>
+          </div>
+          <div class="pmodal__thumbs"></div>
+        </div>
+        <div class="pmodal__info">
+          <p class="eyebrow pmodal__sector"></p>
+          <h3 class="h3" id="pmodal-title"></h3>
+          <p class="pmodal__sub"></p>
+          <dl class="case pmodal__case"></dl>
+          <div class="pmodal__actions">
+            <a class="btn btn--accent pmodal__cta" href="#contacto">Quiero un proyecto así <span aria-hidden="true">→</span></a>
+            <a class="link-arrow pmodal__link" href="#" target="_blank" rel="noopener">Leer el artículo completo <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <script type="application/json" id="projects-data">{"sedes-judiciales": {"sector": "Justicia · Comunidad de Madrid", "title": "Sedes judiciales de Madrid", "sub": "Letras corpóreas «Tribunal de Instancia» en fachadas", "cover": "https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg", "link": "https://senalval.es/senaletica-y-senalizacion/letras-corporeas-tribunal-de-instancia", "gallery": ["https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL-A-MEDIAS.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL.jpg", "https://senalval.es/wp-content/uploads/2026/04/ALCALA-DE-HENARES.jpg", "https://senalval.es/wp-content/uploads/2026/04/ALCORCON.jpg", "https://senalval.es/wp-content/uploads/2026/04/AVENIDA-DE-EUROPA-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/CAMINO-DEL-MOLINO.jpg", "https://senalval.es/wp-content/uploads/2026/04/ENTRADA-PRINCIAPAL.jpg", "https://senalval.es/wp-content/uploads/2026/04/ENTRADA-SECUNDARIA-768x1024.jpg", "https://senalval.es/wp-content/uploads/2026/04/ERNESTO-PECES.jpg", "https://senalval.es/wp-content/uploads/2026/04/JIMENEZ-ASUA.jpg", "https://senalval.es/wp-content/uploads/2026/04/LEGANES.jpg", "https://senalval.es/wp-content/uploads/2026/04/NAVALCARNERO-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/SAN-LORENZO-DE-EL-ESCORIAL-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/SEVILLA-15.jpg", "https://senalval.es/wp-content/uploads/2026/04/VALDEMORO-1024x768.jpg"], "reto": "Cambiar la identificación de las sedes judiciales a la nueva denominación «Tribunal de Instancia», en edificios públicos que siguen abiertos al ciudadano.", "solucion": "Servicio llave en mano: retirada de los rótulos anteriores, limpieza y reparación de fachada e instalación de letras corpóreas con proporción institucional.", "materiales": "PVC negro con frente de aluminio composite o lacado, según la especificación del proyecto.", "instalacion": "Coordinación y documentación PRL/CAE con el organismo. Casos como Plaza de Castilla y Poeta Joan Maragall, entre otras sedes de la Comunidad de Madrid."}, "real-valladolid": {"sector": "Deporte · Valladolid", "title": "Real Valladolid Club de Fútbol", "sub": "Instalación integral de señalización", "cover": "", "link": "", "gallery": [], "reto": "Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.", "solucion": "Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.", "materiales": "Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.", "instalacion": "Ejecutada con equipo propio y coordinada con el calendario de actividad del club."}, "adif-gallur": {"sector": "Ferroviario · Zaragoza", "title": "ADIF · Paso a nivel en Gallur", "sub": "Señalización vial y ferroviaria", "cover": "", "link": "https://senalval.es/senaletica-gallur-zaragoza", "gallery": [], "reto": "Hacer seguro y visible un paso a nivel, donde la señalización tiene que funcionar para conductores y peatones en cualquier condición.", "solucion": "Proyecto de señalización desarrollado en colaboración con ADIF (Administrador de Infraestructuras Ferroviarias).", "materiales": "Señalética vial y ferroviaria de alta visibilidad para exterior.", "instalacion": "Instalación en Gallur (Zaragoza), con los requisitos de seguridad propios del entorno ferroviario."}, "salamanca": {"sector": "Corporativo · Salamanca", "title": "Directorios y placas en Salamanca", "sub": "Aluminio composite con impresión directa", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg", "link": "https://senalval.es/senaletica-realizada-en-aluminio-composite-con-impresion-directa-para-un-cliente-de-salamanca", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CIBERSEGURIDAD-CARA-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CIBERSEGURIDAD-CARA-1-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CENTRO-DE-RELACION-CON-CLIENTES-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-0-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg"], "reto": "Ordenar la orientación de un edificio de oficinas con varias plantas y áreas de atención.", "solucion": "Directorio general, directorios por planta y placas de áreas (centro de relación con clientes, ciberseguridad…).", "materiales": "Aluminio composite con impresión directa en alta definición, resistente y ligero.", "instalacion": "Montaje en paramento, coherente con la imagen corporativa del cliente."}, "clece-burgos": {"sector": "Residencias · Burgos", "title": "Residencia de Clece en Burgos", "sub": "Vinilos de orientación en puertas y despachos", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg", "link": "https://senalval.es/unos-vinilos-instalados-en-una-residencia-de-clece-de-burgos", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-Y-FLOR-DESPACHO-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-EXTERIOR-ENTRADA-768x1024.jpg"], "reto": "Orientación sencilla y cálida para residentes, familias y personal.", "solucion": "Vinilos con iconografía clara en puertas de entrada, interiores y despachos.", "materiales": "Vinilo de corte e impreso de larga duración.", "instalacion": "Con el centro en funcionamiento, sin molestias para los residentes."}, "fundacion-laboral": {"sector": "Formación · Castilla y León", "title": "Fundación Laboral de la Construcción", "sub": "Carteles de videovigilancia", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg", "link": "https://senalval.es/unos-carteles-de-videovigilancia-realizados-en-aluminio-composite-para-la-fundacion-laboral-de-la-construccion", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-5-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-4-1-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-3-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg"], "reto": "Cumplir la obligación de informar de las zonas videovigiladas con una señal normalizada y visible.", "solucion": "Serie de carteles de «Zona videovigilada» con la información legal exigida.", "materiales": "Aluminio composite con impresión directa, apto para exterior.", "instalacion": "Colocación en los accesos y zonas vigiladas de los centros."}, "san-sebastian": {"sector": "Corporativo · San Sebastián y Madrid", "title": "Rotulación integral en San Sebastián", "sub": "Rótulo de azotea, placas y tótems", "cover": "https://senalval.es/wp-content/uploads/2025/09/ROTULO-AZOTEA-2-1024x768.jpg", "link": "https://senalval.es/senaletica-en-madrid-para-negocios-rotulos-vinilos-lonas-y-mas-senalval", "gallery": ["https://senalval.es/wp-content/uploads/2025/04/FOTO-PLACA-TIMBRE-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-LEJOS-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-PARQUE-NORTE-CALADO-576x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-TOTEM-LATERAL-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/METACRILATO-OFICINAS-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/ROTULO-EXTERIOR-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-1024x768.jpg"], "reto": "Renovar la imagen de un edificio corporativo para que se reconozca desde lejos.", "solucion": "Rótulo de azotea con vinilo de alta resistencia, placa de dibond, tótem y rotulación de oficinas.", "materiales": "Dibond, vinilo de alta resistencia y metacrilato.", "instalacion": "Trabajo en altura con medios propios."}, "rotulacion": {"sector": "Fachadas, oficinas y flotas", "title": "Rotulación y vinilos", "sub": "Fachadas, cristaleras y autobuses (Clece)", "cover": "https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg", "link": "https://senalval.es/trabajos-de-rotulacion-y-vinilos-en-fachadas-autobuses-y-oficinas-senalval", "gallery": ["https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg", "https://senalval.es/wp-content/uploads/2026/04/TRASERA-768x1024.jpeg", "https://senalval.es/wp-content/uploads/2026/04/LATERAL-DERECHO-768x1024.jpeg", "https://senalval.es/wp-content/uploads/2026/04/FOTO-2-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/FOTO-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-TRASERA-790x1024.jpg"], "reto": "Cada soporte pide una solución distinta: una fachada industrial, la privacidad de una sala o un autobús en movimiento.", "solucion": "Rótulos de fachada, vinilos para cristaleras y entradas, y rotulación integral de autobuses como el de Clece en Valladolid.", "materiales": "Vinilo impreso y de corte, vinilo cast para vehículos y laminado protector.", "instalacion": "En obra o en taller, con la mínima interrupción para el cliente."}}</script>
 
     <!-- ===================== LICITACIONES ===================== -->
     <section class="section section--navy tender" id="licitaciones" aria-labelledby="lic-title">
@@ -1118,7 +1142,7 @@ p { margin: 0; }
   <footer class="footer">
     <div class="wrap footer__grid">
       <div>
-        <a href="#top" class="footer__brand" aria-label="SeñalVal, volver arriba"><img src="../assets/img/logo-senalval-blanco.png" alt="SeñalVal" width="220" height="33" loading="lazy"></a>
+        <a href="#top" class="footer__brand" aria-label="SeñalVal, volver arriba"><img class="footer__logo" src="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png" alt="SeñalVal" width="220" height="33" loading="lazy"></a>
         <p>Gestión integral de proyectos de señalización y señalética de alta exigencia.</p>
       </div>
       <nav aria-label="Pie">
@@ -1150,8 +1174,7 @@ p { margin: 0; }
   </footer>
 
   <a href="https://wa.me/34665863597?text=Hola%20Se%C3%B1alVal%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20proyecto%20de%20se%C3%B1alizaci%C3%B3n." class="float-cta" target="_blank" rel="noopener" aria-label="Escribir a SeñalVal por WhatsApp"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span>WhatsApp</span></a>
-
-  <script>
+<script>
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -1422,9 +1445,68 @@ p { margin: 0; }
     }).catch(() => {});
   }
 
+  /* ---- Proyectos: ventana con galería e información ---- */
+  const dataEl = $('#projects-data');
+  const modal = $('#pmodal');
+  if (dataEl && modal) {
+    const P = JSON.parse(dataEl.textContent);
+    const img = $('.pmodal__img', modal), thumbs = $('.pmodal__thumbs', modal), count = $('.pmodal__count', modal);
+    let list = [], cur = 0, cfg = null;
+    const go = i => {
+      if (!list.length) return;
+      cur = (i + list.length) % list.length;
+      img.classList.remove('is-in'); void img.offsetWidth;
+      img.src = list[cur]; img.alt = `${cfg.title} · foto ${cur + 1} de ${list.length}`;
+      img.classList.add('is-in');
+      count.textContent = `${cur + 1} / ${list.length}`;
+      $$('button', thumbs).forEach((b, k) => b.classList.toggle('is-on', k === cur));
+      const on = $$('button', thumbs)[cur]; if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      const nxt = new Image(); nxt.src = list[(cur + 1) % list.length];
+    };
+    const open = id => {
+      cfg = P[id]; if (!cfg) return;
+      list = cfg.gallery.length ? cfg.gallery : (cfg.cover ? [cfg.cover] : []);
+      modal.classList.toggle('pmodal--nogallery', !list.length);
+      $('.pmodal__sector', modal).textContent = cfg.sector;
+      $('#pmodal-title').textContent = cfg.title;
+      $('.pmodal__sub', modal).textContent = cfg.sub;
+      $('.pmodal__case', modal).innerHTML = '';
+      [['Reto', cfg.reto], ['Solución', cfg.solucion], ['Materiales', cfg.materiales], ['Instalación', cfg.instalacion]].forEach(([k, v]) => {
+        const d = document.createElement('div'); d.innerHTML = '<dt></dt><dd></dd>';
+        $('dt', d).textContent = k; $('dd', d).textContent = v; $('.pmodal__case', modal).appendChild(d);
+      });
+      const link = $('.pmodal__link', modal); link.hidden = !cfg.link; if (cfg.link) link.href = cfg.link;
+      thumbs.innerHTML = '';
+      list.forEach((u, k) => {
+        const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Ver foto ${k + 1}`);
+        b.innerHTML = '<img loading="lazy" alt="">'; $('img', b).src = u;
+        b.addEventListener('click', () => go(k)); thumbs.appendChild(b);
+      });
+      $$('.pmodal__nav', modal).forEach(b => b.hidden = list.length < 2);
+      modal.showModal(); document.documentElement.classList.add('is-locked');
+      go(0);
+    };
+    const close = () => { modal.close(); };
+    modal.addEventListener('close', () => document.documentElement.classList.remove('is-locked'));
+    $('.pmodal__close', modal).addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    $('.pmodal__nav--prev', modal).addEventListener('click', () => go(cur - 1));
+    $('.pmodal__nav--next', modal).addEventListener('click', () => go(cur + 1));
+    modal.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); });
+    let sx = null;
+    $('.pmodal__stage', modal).addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    $('.pmodal__stage', modal).addEventListener('touchend', e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); sx = null; });
+    $('.pmodal__cta', modal).addEventListener('click', () => {
+      close();
+      const m = $('#form-msg'); if (m && !m.value) m.value = `Hemos visto el proyecto «${cfg.title}» y queremos algo similar. `;
+    });
+    $$('[data-project]').forEach(el => {
+      el.addEventListener('click', () => open(el.dataset.project));
+      el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && el.tagName !== 'BUTTON') { e.preventDefault(); open(el.dataset.project); } });
+    });
+  }
+
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();
 
 </script>
-</body>
-</html>

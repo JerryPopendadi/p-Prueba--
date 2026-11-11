@@ -268,5 +268,66 @@
     }).catch(() => {});
   }
 
+  /* ---- Proyectos: ventana con galería e información ---- */
+  const dataEl = $('#projects-data');
+  const modal = $('#pmodal');
+  if (dataEl && modal) {
+    const P = JSON.parse(dataEl.textContent);
+    const img = $('.pmodal__img', modal), thumbs = $('.pmodal__thumbs', modal), count = $('.pmodal__count', modal);
+    let list = [], cur = 0, cfg = null;
+    const go = i => {
+      if (!list.length) return;
+      cur = (i + list.length) % list.length;
+      img.classList.remove('is-in'); void img.offsetWidth;
+      img.src = list[cur]; img.alt = `${cfg.title} · foto ${cur + 1} de ${list.length}`;
+      img.classList.add('is-in');
+      count.textContent = `${cur + 1} / ${list.length}`;
+      $$('button', thumbs).forEach((b, k) => b.classList.toggle('is-on', k === cur));
+      const on = $$('button', thumbs)[cur]; if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      const nxt = new Image(); nxt.src = list[(cur + 1) % list.length];
+    };
+    const open = id => {
+      cfg = P[id]; if (!cfg) return;
+      list = cfg.gallery.length ? cfg.gallery : (cfg.cover ? [cfg.cover] : []);
+      modal.classList.toggle('pmodal--nogallery', !list.length);
+      $('.pmodal__sector', modal).textContent = cfg.sector;
+      $('#pmodal-title').textContent = cfg.title;
+      $('.pmodal__sub', modal).textContent = cfg.sub;
+      $('.pmodal__case', modal).innerHTML = '';
+      [['Reto', cfg.reto], ['Solución', cfg.solucion], ['Materiales', cfg.materiales], ['Instalación', cfg.instalacion]].forEach(([k, v]) => {
+        const d = document.createElement('div'); d.innerHTML = '<dt></dt><dd></dd>';
+        $('dt', d).textContent = k; $('dd', d).textContent = v; $('.pmodal__case', modal).appendChild(d);
+      });
+      const link = $('.pmodal__link', modal); link.hidden = !cfg.link; if (cfg.link) link.href = cfg.link;
+      thumbs.innerHTML = '';
+      list.forEach((u, k) => {
+        const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Ver foto ${k + 1}`);
+        b.innerHTML = '<img loading="lazy" alt="">'; $('img', b).src = u;
+        b.addEventListener('click', () => go(k)); thumbs.appendChild(b);
+      });
+      $$('.pmodal__nav', modal).forEach(b => b.hidden = list.length < 2);
+      modal.showModal(); document.documentElement.classList.add('is-locked');
+      go(0);
+    };
+    const close = () => { modal.close(); };
+    modal.addEventListener('close', () => document.documentElement.classList.remove('is-locked'));
+    $('.pmodal__close', modal).addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    $('.pmodal__nav--prev', modal).addEventListener('click', () => go(cur - 1));
+    $('.pmodal__nav--next', modal).addEventListener('click', () => go(cur + 1));
+    modal.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); });
+    let sx = null;
+    $('.pmodal__stage', modal).addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    $('.pmodal__stage', modal).addEventListener('touchend', e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); sx = null; });
+    $('.pmodal__cta', modal).addEventListener('click', () => {
+      close();
+      const m = $('#form-msg'); if (m && !m.value) m.value = `Hemos visto el proyecto «${cfg.title}» y queremos algo similar. `;
+    });
+    $$('[data-project]').forEach(el => {
+      el.addEventListener('click', () => open(el.dataset.project));
+      el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && el.tagName !== 'BUTTON') { e.preventDefault(); open(el.dataset.project); } });
+    });
+  }
+
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

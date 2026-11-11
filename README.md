@@ -1,88 +1,62 @@
-# SeñalVal — Rediseño web
+# SeñalVal — Nueva portada web
 
-Web de una sola página (HTML + CSS + JS, sin dependencias) que posiciona a SeñalVal como
-**gestor de proyectos de señalización de alta exigencia**. Abre `index.html` en el navegador.
+Portada de una sola página que posiciona a SeñalVal como **gestor de proyectos de señalización
+de alta exigencia**. Paleta blanco, negro y azul; tipografía Montserrat; logo original de SeñalVal.
 
-## Estructura
+Todas las fotos y logos se cargan **directamente desde senalval.es** (biblioteca de medios de
+WordPress). Algunos logos institucionales se cargan desde Wikimedia Commons. No hay que subir imágenes.
+
+## Para ponerla en WordPress
+
+Los archivos listos están en `wordpress/` (se generan con `python3 tools/build_wordpress.py`):
+
+| Archivo | Para qué |
+|---|---|
+| `wordpress/senalval-portada.html` | Página completa en un solo archivo. Se abre con doble clic para revisarla. |
+| `wordpress/senalval-bloque.html` | El mismo contenido listo para pegar dentro de WordPress. |
+
+Pasos con Elementor:
+1. Páginas → Añadir nueva → "Editar con Elementor".
+2. En ajustes de página, plantilla **Elementor Canvas** (sin cabecera ni pie del tema).
+3. Arrastra un widget **HTML** y pega todo el contenido de `senalval-bloque.html`.
+4. Publica y, si quieres, márcala como portada en Ajustes → Lectura.
+
+Sin Elementor: página con plantilla en blanco + bloque **HTML personalizado** con el mismo contenido.
+
+SEO: el título y la descripción de la página se ponen en Yoast / Rank Math:
+- Título: `SeñalVal | Proyectos de señalización y señalética de alta exigencia`
+- Descripción: `SeñalVal gestiona proyectos integrales de señalización y señalética: diseño, fabricación, instalación y mantenimiento para sedes públicas, sanidad, residencias, educación, industria y retail. Preparados para licitaciones.`
+Los datos estructurados (empresa, dirección, teléfono, servicios y preguntas frecuentes) ya van dentro del bloque.
+
+## Estructura del proyecto
 ```
-index.html        Página completa (SEO, datos estructurados, secciones)
-css/styles.css    Diseño (paleta corporativa blanco, negro y azul; Montserrat)
-js/main.js        Menú, animaciones, carrusel de logos, formulario → email
-assets/img/       Fotos y logo de SeñalVal
-assets/logos/     Logos de clientes (SVG o PNG)
+index.html               Portada (fuente)
+css/styles.css           Estilos
+js/main.js               Interacción: portada con fotos, blog, galerías, logos, formulario
+tools/build_wordpress.py Genera los archivos de wordpress/
+wordpress/               Archivos listos para WordPress
 robots.txt, sitemap.xml
 ```
+Si cambias `index.html`, `css/` o `js/`, vuelve a ejecutar `python3 tools/build_wordpress.py`.
 
-## Colores y logo
-- La paleta es blanco, negro y azul. El azul corporativo está en una sola variable, `--blue`,
-  al principio de `css/styles.css`; cámbiala por el código exacto del logo de SeñalVal
-  (y `--blue-bright`, su versión clara para textos sobre negro).
-- La cabecera es blanca para que el logo se vea con sus colores originales. Basta con dejar
-  el archivo como `assets/img/logo-senalval.svg` (o `.png` / `.jpg`; se prueban en ese orden).
+## Qué incluye
+- **Portada:** 5 fotos reales de sedes judiciales que se alternan, panel con lo último del blog y banda de logos de clientes.
+- **Clientes (logos reales, nunca texto):** Aena, ADIF, Guardia Civil, Comunidad de Madrid, Junta de Castilla y León
+  (Wikimedia Commons); Real Valladolid, Coca-Cola, Toyota, Mahou, Dragados, Hummel, Clece, Vías, Fundación Laboral,
+  Emilio Moro, Gerovida y Rapimueble (bloque "Nuestros Clientes" de senalval.es); Laboral Kutxa (Wikimedia Commons).
+  Si un logo no carga, se retira sin dejar hueco.
+- **Sectores** con foto de fondo de trabajos reales.
+- **Servicios** con fotos reales.
+- **Proyectos desplegables:** cada proyecto abre una ventana con todas sus fotos (flechas, miniaturas, deslizar en el móvil)
+  y su información (reto, solución, materiales, instalación) tomada de los artículos del blog, con enlace al artículo.
+- **Blog:** últimos 6 artículos de WordPress, cargados automáticamente.
+- **Contacto:** el formulario abre el correo del visitante (a luismi.olea@senalval.es) o WhatsApp (665 863 597)
+  con la consulta ya escrita. Botón flotante de WhatsApp en el móvil.
 
-## Imágenes que hay que añadir
-Si falta una imagen, la web muestra un recuadro azul con su descripción (y el logo de un cliente
-se sustituye por su nombre), así que nunca se ve rota. Pon los archivos con estos nombres:
-
-| Archivo | Contenido |
-|---|---|
-| `assets/img/logo-senalval.svg` (o `.png`) | Logo oficial, en sus colores originales |
-| `assets/img/plaza-castilla.jpg` | Sedes judiciales, Plaza de Castilla (portada y proyecto destacado), ~1920 px |
-| `assets/img/og-senalval.jpg` | Imagen para compartir en redes, 1200×630 |
-| `assets/img/senaletica-interior.jpg` | Señalética interior / directorios |
-| `assets/img/senalizacion-exterior.jpg` | Monolitos / exterior |
-| `assets/img/rotulo-iluminado.jpg` | Rótulo iluminado |
-| `assets/img/rotulacion-vehiculos.jpg` | Vehículos / flotas |
-| `assets/img/vinilos.jpg` | Vinilos |
-| `assets/img/senalizacion-accesible.jpg` | Braille / seguridad |
-| `assets/img/real-valladolid.jpg` | Proyecto Real Valladolid (destacado) |
-| `assets/img/salamanca.jpg`, `clece-burgos.jpg`, `fundacion-laboral.jpg`, `san-sebastian.jpg`, `autobus-clece.jpg` | Proyectos |
-| `assets/logos/clece.svg`, `vias.svg`, `comunidad-madrid.svg`, `junta-cyl.svg`, `fundacion-laboral.svg`, `coca-cola.svg`, `toyota.svg`, `aena.svg` | Logos de clientes |
-
-Exporta las fotos en JPG/WebP comprimido (≤ 250 KB, portada ≤ 400 KB) para que Google
-valore bien la velocidad.
-
-## Logos de clientes
-La banda "Han confiado en SeñalVal" va al pie de la portada. **Solo se muestran logos reales, nunca texto.**
-Cada logo prueba, en este orden: `assets/logos/<nombre>.svg`, `assets/logos/<nombre>.png` y, si se indica,
-una URL externa (atributo `data-srcs` en `index.html`). Si ninguna carga, el logo se retira.
-Con 5 o más logos la banda se desplaza en bucle; con menos, se muestran fijos.
-
-| Cliente | Archivo | Estado |
-|---|---|---|
-| Aena | `aena.svg` / `.png` / `.jpg` | Se carga desde Wikimedia Commons (`Aena_Logo_New.svg`); conviene guardar copia local |
-| Comunidad de Madrid | `comunidad-madrid.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Junta de Castilla y León | `junta-cyl.svg` / `.png` / `.jpg` | Pendiente (se prueba Wikimedia Commons, sin verificar) |
-| Real Valladolid Club de Fútbol | `real-valladolid.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Coca-Cola | `coca-cola.svg` / `.png` / `.jpg` | Incluido (simple-icons, CC0) |
-| Toyota | `toyota.svg` / `.png` / `.jpg` | Incluido (simple-icons, CC0) |
-| Mahou | `mahou.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Dragados | `dragados.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Hummel | `hummel.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Clece | `clece.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Vías y Construcciones | `vias.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Fundación Laboral de la Construcción | `fundacion-laboral.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Bodegas Emilio Moro | `emilio-moro.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Gerovida | `gerovida.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-| Rapimueble | `rapimueble.svg` / `.png` / `.jpg` | Incluido (de senalval.es) |
-
-Descarga cada logo de la sala de prensa o del manual de marca del cliente. Mejor en SVG o PNG con fondo
-transparente: sobre la portada se muestran en blanco y en su color original al pasar el ratón.
-Las marcas son propiedad de sus titulares: muéstralas solo con permiso del cliente.
-
-## Pendiente de confirmar con SeñalVal
-- Permiso para mostrar públicamente cada logo de cliente (sobre todo Coca-Cola y Toyota).
-- Documentación real disponible para licitaciones y certificaciones (ISO, etc.).
-- Proyecto Real Valladolid: confirmar alcance exacto (estadio, ciudad deportiva…) y si el club autoriza citarlo.
-- Textos de los proyectos: los retos/soluciones son una redacción base; ajustar con datos reales (nº de señales, plazos, m²).
-- Enlaces de Aviso legal, Privacidad y Cookies (obligatorios por LSSI/RGPD).
-
-## SEO incluido
-Título y descripción optimizados, canonical, Open Graph/Twitter, `lang="es"`, jerarquía H1–H3,
-textos alternativos, datos estructurados Organization/LocalBusiness + OfferCatalog + WebSite + FAQPage,
-sección FAQ visible, `robots.txt` y `sitemap.xml`, imagen principal precargada y el resto en carga diferida.
-
-## Paso a WordPress
-Cada sección es un bloque independiente: puede montarse con un tema ligero (p. ej. GeneratePress/Kadence)
-pegando el CSS en el personalizador y las secciones como bloques HTML, o convertirse a un tema hijo.
-El formulario no necesita servidor: abre el correo (a luismi.olea@senalval.es) o WhatsApp (665 863 597) del visitante con la consulta ya escrita.
+## Pendiente de confirmar
+- Permiso de cada cliente para mostrar su logo, en especial **Guardia Civil** (su emblema es de uso regulado),
+  Aena, ADIF, Coca-Cola y Toyota.
+- **Real Valladolid:** fotos del trabajo y alcance exacto (estadio, ciudad deportiva…).
+- **ADIF · Gallur:** las fotos del artículo están rotas en el servidor (los archivos no existen); volver a subirlas.
+- Documentación real disponible para licitaciones y certificaciones.
+- Bodegas Arzuaga no aparece como cliente (fue sede de un evento, no cliente confirmado).
