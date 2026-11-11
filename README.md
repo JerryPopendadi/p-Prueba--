@@ -57,6 +57,15 @@ Si cambias `index.html`, `css/` o `js/`, vuelve a ejecutar `python3 tools/build_
 - **Contacto:** el formulario abre el correo del visitante (a luismi.olea@senalval.es) o WhatsApp (665 863 597)
   con la consulta ya escrita. Botón flotante de WhatsApp en el móvil.
 
+## Guías técnicas (PDF)
+En `guias/` hay tres guías A4 con el logo, fotos de proyectos reales y la normativa citada por su nombre oficial:
+- `guia-planificar-senalizacion-edificio-publico.pdf`
+- `guia-senalizacion-accesible-criterios-normativa.pdf`
+- `guia-materiales-senalizacion.pdf`
+
+Se regeneran con `python3 tools/guias/build_guias.py` (textos en `tools/guias/contenido.py`).
+Para ofrecerlas en la web, súbelas a Medios de WordPress; los botones "Solicitar guía" piden los datos del visitante antes de enviarla.
+
 ## Pendiente de confirmar
 - Permiso de cada cliente para mostrar su logo, en especial **Guardia Civil** (su emblema es de uso regulado),
   Aena, ADIF, Coca-Cola y Toyota.
