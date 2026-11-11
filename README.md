@@ -66,6 +66,9 @@ En `guias/` hay tres guías A4 con el logo, fotos de proyectos reales y la norma
 Se regeneran con `python3 tools/guias/build_guias.py` (textos en `tools/guias/contenido.py`).
 Para ofrecerlas en la web, súbelas a Medios de WordPress; los botones "Solicitar guía" piden los datos del visitante antes de enviarla.
 
+## Vídeo de presentación
+`video/senalval-presentacion.mp4`: 78 s, 1920×1080, 30 fps, sin audio. Se regenera con `python3 tools/video/build_video.py`.
+
 ## Pendiente de confirmar
 - Permiso de cada cliente para mostrar su logo, en especial **Guardia Civil** (su emblema es de uso regulado),
   Aena, ADIF, Coca-Cola y Toyota.
