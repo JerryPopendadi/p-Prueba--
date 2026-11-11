@@ -36,7 +36,7 @@ se sustituye por su nombre), así que nunca se ve rota. Pon los archivos con est
 | `assets/img/vinilos.jpg` | Vinilos |
 | `assets/img/senalizacion-accesible.jpg` | Braille / seguridad |
 | `assets/img/salamanca.jpg`, `clece-burgos.jpg`, `fundacion-laboral.jpg`, `san-sebastian.jpg`, `autobus-clece.jpg` | Proyectos |
-| `assets/logos/clece.svg`, `vias.svg`, `comunidad-madrid.svg`, `junta-cyl.svg`, `fundacion-laboral.svg`, `coca-cola.svg`, `toyota.svg` | Logos de clientes |
+| `assets/logos/clece.svg`, `vias.svg`, `comunidad-madrid.svg`, `junta-cyl.svg`, `fundacion-laboral.svg`, `coca-cola.svg`, `toyota.svg`, `aena.svg` | Logos de clientes |
 
 Exporta las fotos en JPG/WebP comprimido (≤ 250 KB, portada ≤ 400 KB) para que Google
 valore bien la velocidad.
@@ -44,7 +44,7 @@ valore bien la velocidad.
 ## Logos de clientes
 - Incluidos: `toyota.svg` y `coca-cola.svg`, logos oficiales del paquete `simple-icons`
   (CC0; fuentes: guía de marca de Toyota y Wikimedia Commons), con sus colores de marca.
-- Pendientes, que se muestran como nombre en texto hasta tener el archivo: Clece, Vías y Construcciones,
+- Pendientes, que se muestran como nombre en texto hasta tener el archivo: Aena (`aena.svg`), Clece, Vías y Construcciones,
   Comunidad de Madrid, Junta de Castilla y León y Fundación Laboral de la Construcción.
   Descarga cada logo de la sala de prensa o del manual de marca de su web y guárdalo con el nombre de la tabla.
 - Las marcas son propiedad de sus titulares: muéstralas solo con permiso del cliente.

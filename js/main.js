@@ -117,5 +117,48 @@
     note.textContent = 'Gracias. Se ha abierto su correo con la consulta preparada; solo tiene que enviarlo.';
   });
 
+  /* ---- Blog: últimos artículos desde WordPress ---- */
+  const posts = $('#posts');
+  if (posts) {
+    const fallback = () => { posts.hidden = true; $('#posts-fallback').hidden = false; };
+    const strip = html => { const d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); };
+    const fmt = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+    const url = `${posts.dataset.api}?per_page=${posts.dataset.count || 6}&_embed=wp:featuredmedia,wp:term&_fields=link,title,excerpt,date,_links,_embedded`;
+    const ctrl = new AbortController();
+    setTimeout(() => ctrl.abort(), 9000);
+    fetch(url, { signal: ctrl.signal })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(list => {
+        if (!Array.isArray(list) || !list.length) return fallback();
+        posts.innerHTML = '';
+        list.forEach(p => {
+          const emb = p._embedded || {};
+          const media = (emb['wp:featuredmedia'] || [])[0];
+          const img = media && (media.media_details?.sizes?.medium_large?.source_url || media.source_url);
+          const cat = ((emb['wp:term'] || [])[0] || [])[0];
+          const a = document.createElement('a');
+          a.className = 'post';
+          a.href = p.link;
+          a.innerHTML = `
+            <div class="media">${img ? `<img loading="lazy" alt="">` : ''}</div>
+            <div class="post__body">
+              <span class="post__meta"></span>
+              <h3></h3>
+              <p></p>
+              <span class="post__more">Leer artículo →</span>
+            </div>`;
+          const title = strip(p.title?.rendered || '');
+          if (img) { const im = $('img', a); im.src = img; im.alt = (media.alt_text || title); }
+          else a.querySelector('.media').classList.add('is-missing');
+          a.querySelector('.media').dataset.label = title;
+          $('.post__meta', a).textContent = [cat && strip(cat.name), fmt(p.date)].filter(Boolean).join(' · ');
+          $('h3', a).textContent = title;
+          $('p', a).textContent = strip(p.excerpt?.rendered || '').replace(/\s*\[(…|&hellip;|\.\.\.)\]\s*$/, '…');
+          posts.appendChild(a);
+        });
+      })
+      .catch(fallback);
+  }
+
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

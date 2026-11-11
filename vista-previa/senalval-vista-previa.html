@@ -19,13 +19,13 @@
   <meta property="og:title" content="SeñalVal | Gestionamos proyectos de señalización de alta exigencia">
   <meta property="og:description" content="Del diseño a la instalación y el mantenimiento: un único socio responsable para la señalización de edificios públicos, sanitarios, educativos y corporativos.">
   <meta property="og:url" content="https://senalval.es/">
-  <meta property="og:image" content="https://senalval.es/../assets/img/og-senalval.jpg">
+  <meta property="og:image" content="https://senalval.es/assets/img/og-senalval.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SeñalVal | Señalización de alta exigencia">
   <meta name="twitter:description" content="Proyectos integrales de señalización: solvencia, ejecución, trazabilidad y continuidad.">
-  <meta name="twitter:image" content="https://senalval.es/../assets/img/og-senalval.jpg">
+  <meta name="twitter:image" content="https://senalval.es/assets/img/og-senalval.jpg">
 
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwQTBBMEIiLz48cGF0aCBkPSJNMTggNDAgMzIgMThsMTQgMjJIMzZ2OGgtOHYtOHoiIGZpbGw9IiMwMDU1QTUiLz48L3N2Zz4K" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -154,10 +154,10 @@ p { margin: 0; }
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative; min-height: 100svh; display: flex; align-items: center;
+  position: relative; min-height: 100svh; display: flex; flex-direction: column;
   color: var(--white); overflow: hidden; isolation: isolate;
   background: radial-gradient(110% 90% at 85% 0%, rgba(0,85,165,.55) 0%, var(--black) 55%, #000 100%);
-  padding: 130px 0 90px;
+  padding: 100px 0 0;
 }
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); animation: kenburns 22s ease-out forwards; }
@@ -172,9 +172,9 @@ p { margin: 0; }
   mask-image: linear-gradient(90deg, #000 0%, transparent 70%);
 }
 @keyframes kenburns { to { transform: scale(1); } }
-.hero__content { position: relative; max-width: var(--wrap); }
+.hero__content { position: relative; max-width: var(--wrap); flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 10px 0 40px; }
 .hero__title {
-  font-size: clamp(2.4rem, 5.8vw, 4.9rem); font-weight: 300; max-width: 15ch; letter-spacing: -.025em;
+  font-size: clamp(2.3rem, 5vw, 4.3rem); font-weight: 300; max-width: 17ch; letter-spacing: -.025em;
   line-height: 1.08;
 }
 .hero__title .hl { color: var(--blue-bright); font-weight: 500; position: relative; white-space: nowrap; }
@@ -185,14 +185,14 @@ p { margin: 0; }
 @keyframes underline { from { transform: scaleX(0); } }
 .hero__lead { margin-top: 28px; font-weight: 300; font-size: clamp(1rem, 1.35vw, 1.15rem); color: rgba(255,255,255,.82); max-width: 54ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
-.hero__facts { list-style: none; padding: 0; margin: 56px 0 0; display: flex; flex-wrap: wrap; gap: 14px 44px; }
+.hero__facts { list-style: none; padding: 0; margin: 44px 0 0; display: flex; flex-wrap: wrap; gap: 14px 44px; }
 .hero__facts li { display: flex; flex-direction: column; border-left: 1px solid var(--blue-bright); padding-left: 16px; }
 .hero__facts strong { font-size: 2.1rem; font-weight: 300; line-height: 1; letter-spacing: -.02em; }
 .hero__facts span { font-size: .85rem; color: rgba(255,255,255,.7); max-width: 20ch; margin-top: 6px; }
 .hero > .wrap, .hero__content { animation: rise 1s var(--ease) both; }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
 
-.hero__sign { position: absolute; right: max(16px, calc((100vw - var(--wrap)) / 2)); bottom: 90px; width: 340px; animation: rise 1.2s .3s var(--ease) both; }
+.hero__sign { position: absolute; right: max(16px, calc((100vw - var(--wrap)) / 2)); bottom: 150px; width: 340px; animation: rise 1.2s .3s var(--ease) both; }
 .sign { background: rgba(255,255,255,.96); color: var(--navy); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-lg); }
 .sign__row { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px; padding: 14px 18px; font-weight: 500; font-size: .95rem; border-bottom: 1px solid var(--line); }
 .sign__row:last-child { border: 0; }
@@ -207,20 +207,22 @@ p { margin: 0; }
 .hero__scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; background: var(--white); border-radius: 2px; translate: -50% 0; animation: scrolldot 1.8s infinite; }
 @keyframes scrolldot { 70% { opacity: 0; transform: translateY(14px); } 100% { opacity: 0; } }
 
-/* ---------- Clientes ---------- */
-.clients { padding: 46px 0 40px; border-bottom: 1px solid var(--line); background: var(--white); }
-.clients__title { text-align: center; font-size: .8rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
-.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.marquee__track { list-style: none; margin: 0; padding: 0; display: flex; gap: 64px; width: max-content; animation: marquee 38s linear infinite; }
+/* ---------- Clientes (banda inferior de la portada) ---------- */
+.clients { position: relative; padding: 22px 0 22px; border-top: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.35); backdrop-filter: blur(6px); }
+.clients .wrap { display: flex; }
+.clients__title { font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 18px; }
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 72px; width: max-content; animation: marquee 40s linear infinite; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
-.logo { height: 56px; display: flex; align-items: center; flex-shrink: 0; }
-.logo img { height: 40px; width: auto; max-width: 160px; filter: grayscale(1); opacity: .55; transition: filter .35s, opacity .35s, transform .35s; }
+.logo { height: 48px; display: flex; align-items: center; flex-shrink: 0; }
+/* En blanco sobre la foto; en su color original al pasar el ratón */
+.logo img { height: 38px; width: auto; max-width: 170px; filter: brightness(0) invert(1); opacity: .7; transition: filter .35s, opacity .35s, transform .35s; }
 .logo:hover img { filter: none; opacity: 1; transform: scale(1.06); }
-.logo__txt { display: none; font-weight: 500; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; color: #9A9FA8; white-space: nowrap; transition: color .3s; }
+.logo__txt { display: none; font-weight: 500; font-size: .95rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7); white-space: nowrap; transition: color .3s; }
 .logo.is-missing img { display: none; }
 .logo.is-missing .logo__txt { display: block; }
-.logo.is-missing:hover .logo__txt { color: var(--blue); }
+.logo.is-missing:hover .logo__txt { color: #fff; }
 
 /* ---------- Secciones ---------- */
 .section { padding: clamp(80px, 11vw, 140px) 0; }
@@ -343,6 +345,28 @@ p { margin: 0; }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq details p { padding: 0 0 22px; color: var(--muted); }
 
+/* Blog */
+.blog__head-side { display: grid; gap: 18px; justify-items: start; }
+.link-arrow { color: var(--blue); font-weight: 500; text-decoration: none; letter-spacing: .02em; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.link-arrow span { display: inline-block; transition: transform .25s var(--ease); }
+.link-arrow:hover span { transform: translateX(4px); }
+.posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.post { display: flex; flex-direction: column; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; color: inherit; transition: transform .4s var(--ease), box-shadow .4s; }
+.post:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.post:hover .media img { transform: scale(1.06); }
+.post .media { aspect-ratio: 16 / 10; }
+.post__body { padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.post__meta { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 500; }
+.post h3 { font-size: 1.12rem; font-weight: 500; line-height: 1.35; color: var(--black); }
+.post p { font-size: .92rem; font-weight: 300; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.post__more { margin-top: auto; font-size: .86rem; font-weight: 500; color: var(--blue); }
+.post--skeleton .media, .post--skeleton span { background: linear-gradient(90deg, #ECEEF1 0%, #F6F7F9 50%, #ECEEF1 100%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+.post--skeleton span { display: block; height: 12px; border-radius: 6px; }
+.post--skeleton span:nth-child(1) { width: 30%; } .post--skeleton span:nth-child(2) { width: 90%; height: 18px; } .post--skeleton span:nth-child(3) { width: 70%; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+.posts__fallback { margin-top: 8px; text-align: center; color: var(--muted); }
+.posts__fallback a { color: var(--blue); font-weight: 500; }
+
 /* Contacto */
 .contact { background: linear-gradient(135deg, #003C78 0%, var(--black) 70%); color: var(--white); position: relative; overflow: hidden; }
 .contact::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(90deg, #000, transparent 60%); }
@@ -389,7 +413,7 @@ p { margin: 0; }
   .nav__cta { display: none; }
   .hero__sign { display: none; }
   .pillars, .sectors, .resources { grid-template-columns: repeat(2, 1fr); }
-  .services, .cases { grid-template-columns: repeat(2, 1fr); }
+  .services, .cases, .posts { grid-template-columns: repeat(2, 1fr); }
   .cycle { grid-template-columns: repeat(3, 1fr); row-gap: 36px; }
   .cycle::before { display: none; }
 }
@@ -401,7 +425,7 @@ p { margin: 0; }
   .float-cta { display: inline-block; }
 }
 @media (max-width: 600px) {
-  .pillars, .sectors, .resources, .services, .cases, .form__row { grid-template-columns: 1fr; }
+  .pillars, .sectors, .resources, .services, .cases, .posts, .form__row { grid-template-columns: 1fr; }
   .cycle { grid-template-columns: 1fr 1fr; }
   .case div { grid-template-columns: 1fr; gap: 4px; }
   .hero__title .hl { white-space: normal; }
@@ -428,8 +452,8 @@ p { margin: 0; }
         "@id": "https://senalval.es/#empresa",
         "name": "SeñalVal",
         "url": "https://senalval.es/",
-        "logo": "https://senalval.es/../assets/img/logo-senalval.svg",
-        "image": "https://senalval.es/../assets/img/plaza-castilla.jpg",
+        "logo": "https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png",
+        "image": "https://senalval.es/assets/img/plaza-castilla.jpg",
         "email": "luismi.olea@senalval.es",
         "description": "Empresa de gestión integral de proyectos de señalización y señalética de alta exigencia: consultoría, diseño, fabricación, instalación y mantenimiento.",
         "areaServed": { "@type": "Country", "name": "España" },
@@ -491,7 +515,7 @@ p { margin: 0; }
   <header class="nav" id="top">
     <div class="wrap nav__inner">
       <a href="#top" class="brand" aria-label="SeñalVal, inicio">
-        <img src="../assets/img/logo-senalval.svg" alt="SeñalVal" class="brand__img" width="176" height="44" data-fallbacks="../assets/img/logo-senalval.png,../assets/img/logo-senalval.jpg"
+        <img src="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png" alt="SeñalVal" class="brand__img" height="44" data-fallbacks="../assets/img/logo-senalval.png,../assets/img/logo-senalval.svg"
              onerror="var f=(this.dataset.fallbacks||'').split(',').filter(Boolean);if(f.length){this.dataset.fallbacks=f.slice(1).join(',');this.src=f[0];}else{this.hidden=true;this.nextElementSibling.hidden=false;}">
         <span class="brand__text" hidden>Señal<b>Val</b></span>
       </a>
@@ -502,6 +526,7 @@ p { margin: 0; }
         <a href="#proyectos">Proyectos</a>
         <a href="#licitaciones">Licitaciones</a>
         <a href="#recursos">Recursos</a>
+        <a href="#blog">Blog</a>
       </nav>
       <a href="#contacto" class="btn btn--sm btn--accent nav__cta">Hablemos de su proyecto</a>
       <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
@@ -515,6 +540,7 @@ p { margin: 0; }
       <a href="#proyectos">Proyectos</a>
       <a href="#licitaciones">Licitaciones</a>
       <a href="#recursos">Recursos</a>
+        <a href="#blog">Blog</a>
       <a href="#contacto" class="btn btn--accent">Hablemos de su proyecto</a>
     </div>
   </header>
@@ -539,11 +565,6 @@ p { margin: 0; }
           <a href="#contacto" class="btn btn--accent btn--lg">Solicitar estudio del proyecto <span aria-hidden="true">→</span></a>
           <a href="#proyectos" class="btn btn--ghost btn--lg">Ver proyectos</a>
         </div>
-        <ul class="hero__facts" aria-label="Claves">
-          <li><strong>360°</strong><span>Ciclo completo, un solo interlocutor</span></li>
-          <li><strong>8</strong><span>Sectores especializados</span></li>
-          <li><strong>100%</strong><span>Proyectos documentados y trazables</span></li>
-        </ul>
       </div>
 
       <!-- Señal direccional animada -->
@@ -556,26 +577,23 @@ p { margin: 0; }
         </div>
         <p class="hero__caption">Sedes judiciales · Plaza de Castilla, Madrid</p>
       </div>
-      <a href="#clientes" class="hero__scroll" aria-label="Bajar">
-        <span></span>
-      </a>
-    </section>
-
-    <!-- ===================== CLIENTES ===================== -->
-    <section class="clients" id="clientes" aria-label="Clientes que confían en SeñalVal">
-      <div class="wrap">
-        <p class="clients__title">Confían en nosotros administraciones, constructoras y grandes marcas</p>
-      </div>
-      <div class="marquee">
-        <ul class="marquee__track">
-          <li class="logo"><img src="../assets/logos/clece.svg" alt="Clece" loading="lazy"><span class="logo__txt">CLECE</span></li>
-          <li class="logo"><img src="../assets/logos/vias.svg" alt="Vías y Construcciones" loading="lazy"><span class="logo__txt">Vías y Construcciones</span></li>
-          <li class="logo"><img src="../assets/logos/comunidad-madrid.svg" alt="Comunidad de Madrid" loading="lazy"><span class="logo__txt">Comunidad de Madrid</span></li>
-          <li class="logo"><img src="../assets/logos/junta-cyl.svg" alt="Junta de Castilla y León" loading="lazy"><span class="logo__txt">Junta de Castilla y León</span></li>
-          <li class="logo"><img src="../assets/logos/fundacion-laboral.svg" alt="Fundación Laboral de la Construcción" loading="lazy"><span class="logo__txt">Fundación Laboral de la Construcción</span></li>
-          <li class="logo"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSIxMjcuNSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCA4LjIzNiAyNCA3LjUyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q29jYS1Db2xhPC90aXRsZT48cGF0aCBmaWxsPSIjRDAwMDEzIiBkPSJNMTYuODEzIDguODE0cy0uNDUuMTgtLjk3My43NTZjLS41MjQuNTc3LS44MjggMS4yMjUtLjYwMyAxLjM5Ny4wODcuMDY2LjI4Ny4wNzkuNjUtLjI1YTIuODY0IDIuODY0IDAgMDAuNzY2LTEuMDYzYy4yMzQtLjU3LjE2LS44MzMuMTYtLjg0bTIuODYzIDEuMDM4Yy0uNTgxLS4yOTktMS4wMDYtLjY2NC0xLjQ0OC0uODktLjQyMi0uMjE2LS42OTUtLjMwNy0xLjAzNi0uMjYxYTEuMDU3IDEuMDU3IDAgMDAtLjE0LjAzNXMuMTc2LjYtLjUyMyAxLjYwN2MtLjcwOCAxLjAyMi0xLjM1IDEuMDE1LTEuNTMzLjczNC0uMTkxLS4yOTYuMDU2LS45LjQ2OC0xLjQzNy40MzItLjU2MiAxLjE5LTEuMDI4IDEuMTktMS4wMjhzLS4yNDEtLjE0OC0uODM1LjE5Yy0uNTguMzI2LTEuNTc3IDEuMTA3LTIuNTAyIDIuNDIzLS45MjYgMS4zMTYtMS4xMSAyLjA0LTEuMjQyIDIuNjEtLjEzMi41Ny0uMDEyIDEuMTguNjIgMS4xOHMxLjM2OC0uOTY0IDEuNTc2LTEuMjk5Yy4zODYtLjYyNC42MzctMS41ODEuMTEyLTEuNDUtLjI1OS4wNjUtLjQ2OC4zNTEtLjYuNjI3YTIuNjgzIDIuNjgzIDAgMDAtLjE5LjU1NCAyLjE4NSAyLjE4NSAwIDAwLS41MTMuMjk4IDMuNzg4IDMuNzg4IDAgMDAtLjQ4Ni40M3MuMDAyLS40NTYuMzY1LTEuMTk0Yy4zNjQtLjczNyAxLjAzLTEuMDc0IDEuNDA4LTEuMTA2LjM0LS4wMjcuNzgzLjI2Mi40MDggMS4zMjctLjM3NSAxLjA2NS0xLjQ4MyAyLjM2LTIuNjQ2IDIuMzc2LTEuMDczLjAxNS0xLjc3Ni0xLjM1NS0uMjgyLTMuNzQ1QzEzLjUwMSA5LjE5IDE1LjQ0MSA4LjM4IDE2LjA3IDguMjljLjYzLS4wOS44MzUuMTg3LjgzNS4xODdhMi43MDkgMi43MDkgMCAwMTEuMTk3LS4xOTdjLjc3LjA1MiAxLjM2NC41OTYgMi4xNS45NzktLjIwNS4xOTUtLjQuNC0uNTc1LjU5Mm0zLjQ1NC0uODljLS41MzMuMzQyLTEuMjcuNjUyLTEuOTc5LjU4Ni0uMTc5LjE4NS0uMzcxLjQtLjU2My42MzQgMS4yMjguMjQzIDIuMzA1LS41MTkgMi44NzctMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xLjYzNiAzLjQ2MmEuMjY4LjI2OCAwIDAwLjAyMy0uMDUxLjEyNC4xMjQgMCAwMC0uMTEzLS4xMDhjLS4xMTctLjAwNS0uMjc3LjAxNy0uNjk1LjQ4YTYuMzAzIDYuMzAzIDAgMDAtLjg5IDEuMjYzYy0uMjQuNDM4LS4zMzcuNzY0LS4yLjg0OGEuMTk5LjE5OSAwIDAwLjE0Ni4wMTVjLjA5My0uMDIyLjE5OS0uMTEuMzYtLjI5NS4wNzUtLjA4OC4xNTgtLjIxMi4yNTgtLjM0OS4yNzctLjM3Ni45NzMtMS41NjMgMS4xMTEtMS44MDNtLTQuMzQ5LjUwNGMuMDctLjE4Mi4xNTktLjU0MS0uMDI2LS42ODItLjE5OS0uMTUtLjcwNS4yMDEtLjcwOC41NjEtLjAwMy4zNjkuMzU3LjUzNS40NDMuNTU5LjA1LjAxMy4wNjYuMDEuMDktLjAyOWEzLjI4NCAzLjI4NCAwIDAwLjIwMS0uNDA5bS0uMzgzLjY3YTEuNTMxIDEuNTMxIDAgMDEtLjM0OC0uMjIyIDEuMTE2IDEuMTE2IDAgMDEtLjI2LS4zMTdjLS4wMDgtLjAxMi0uMDE1LS4wMDMtLjAyMy4wMDgtLjAwNy4wMS0uMDM5LjAzOS0uMzA5LjQzNC0uMjcuMzk2LS42ODQgMS4yMTYtLjMxIDEuMzU1LjI0MS4wOS42NDEtLjMzMS44Ni0uNjFhNS4yMSA1LjIxIDAgMDAuNDAyLS42MTRjLjAxMi0uMDIzIDAtLjAyOS0uMDEyLS4wMzRtNC4yNTguOTQ3Yy0uMTAyLjE2My0uMjE4LjQ3Ni4xMTcuMjgxLjQxLS4yMzYuOTk0LTEuMTIzLjk5NC0xLjEyM2guMjY1YTguODggOC44OCAwIDAxLS44MDMgMS4wNTRjLS40MTUuNDYtLjkyMi44NzktMS4yOC44MzctLjQxNi0uMDQ4LS4yODYtLjU5Ni0uMjg2LS41OTZzLS41OTYuNjM1LTEuMDEuNTljLS41NTctLjA2Mi0uMzg3LS43NTEtLjM4Ny0uNzUxcy0uNjMuNzc0LTEuMDYuNzVjLS42NzMtLjA0LS41MDQtLjg1OS0uMzE2LTEuNDM2LjEtLjMwOC4xOTMtLjU1LjE5My0uNTVzLS4wNjcuMDE3LS4yMS4wMzhjLS4wNzYuMDExLS4yMTIuMDE5LS4yMTIuMDE5cy0uMjguNDk1LS41MDUuNzkyYy0uMjI0LjI5Ny0xLjE3OCAxLjMyMi0xLjc0IDEuMTE3LS41MTgtLjE5LS4zNDYtLjk4NC0uMDQ0LTEuNjE1LjQ0LS45MiAxLjY4LTIuMjQzIDIuMzk2LTIuMDY4Ljc0MS4xOC4wMTcgMS41MzIuMDE3IDEuNTMyczAgLjAwNS4wMDcuMDA5Yy4wMTUuMDA1LjA1NC4wMS4xNDMtLjAwOGExLjYwNSAxLjYwNSAwIDAwLjI3MS0uMDhzLjc0Ni0xLjU2MSAxLjU2OS0yLjU4M2MuODIzLTEuMDIgMi40NjUtMi43OCAzLjExLTIuMzU0LjE1Ni4xMDUuMDg2LjQ2NS0uMTI2LjkwMmEyLjg5MSAyLjg5MSAwIDAxLS4yOTEuMDc4Yy4xNDItLjI1OC4yMzYtLjQ3NS4yNjQtLjYyNy4wOTctLjUyOC0xLjEzNS41ODUtMi4wMTUgMS43OGExNi41OTQgMTYuNTk0IDAgMDAtMS40MDkgMi4yOCAzLjg2IDMuODYgMCAwMC40NTQtLjMyNCAxMy4wMDIgMTMuMDAyIDAgMDAxLjExOC0xLjA0MyAxMi4xNjkgMTIuMTY5IDAgMDAuOTUxLTEuMDk4IDIuNTggMi41OCAwIDAwLjI4LS4wMjkgMTIuMDU0IDEyLjA1NCAwIDAxLTEuMDUgMS4yNGMtLjM1LjM1NS0uNzMuNzM3LTEuMDYxIDEuMDE1YTguODQgOC44NCAwIDAxLS45MzEuNjkxcy0uNzcgMS41NTMtLjM1MSAxLjY1MmMuMjQ2LjA2LjczMi0uNjkuNzMyLS42OXMuNjM1LS45NjcgMS4wMTctMS40MDRjLjUyMi0uNTkzLjk3LS45MzYgMS40Mi0uOTQyLjI2MS0uMDA1LjQxNS4yNzMuNDE1LjI3M2wuMTIzLS4xOWguNzU3cy0xLjQxNCAyLjM5OC0xLjUyNyAyLjU3OW0yLjExMS01LjU4Yy0uNTMzLjM0MS0xLjI3LjY1MS0xLjk3OS41ODUtLjE4LjE4NS0uMzcxLjQtLjU2NC42MzQgMS4yMjkuMjQzIDIuMzA1LS41MTggMi44NzgtMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xMC42MyAxLjE3N2gtLjcybC0uNDA3LjY1OGguNzJ6bS0zLjQxIDIuMjc3Yy4zMDctLjQyIDEuMTUyLTEuODkxIDEuMTUyLTEuODkxYS4xMjQuMTI0IDAgMDAtLjExMi0uMTA4Yy0uMTE3LS4wMDYtLjMxMi4wMzQtLjcuNTE5LS4zODcuNDg1LS42ODguODctLjkwNyAxLjI3Mi0uMjQuNDM4LS4zNDYuNzQ3LS4yMDcuODMxYS4yMDUuMjA1IDAgMDAuMTQ0LjAxNWMuMDktLjAyMi4yMDgtLjExMy4zNjktLjI5OGE1LjU3IDUuNTcgMCAwMC4yNjItLjM0bS0zLjg2My0xLjk5Yy0uMTk5LS4xNS0uNzA1LjIwMS0uNzA4LjU2LS4wMDMuMzY5LjQ1Ni40ODIuNTE1LjQ4NGEuMDkuMDkgMCAwMC4wNS0uMDEuMDYuMDYgMCAwMC4wMjQtLjAyNyAzLjQ4MyAzLjQ4MyAwIDAwLjE0Ni0uMzI1Yy4wNy0uMTgzLjE1OC0uNTQxLS4wMjctLjY4Mm0tLjMgMS4yN2ExLjY3OCAxLjY3OCAwIDAxLS4zOS0uMTguODEyLjgxMiAwIDAxLS4yNzktLjMwOWMtLjAwNy0uMDEyLS4wMTUtLjAwMy0uMDIyLjAwOC0uMDA3LjAxLS4wNDcuMDYxLS4zMTguNDU4LS4yNy4zOTgtLjY3MiAxLjIxLS4yOTYgMS4zNS4yNC4wOS42NDQtLjMzNC44NjQtLjYxMmE3LjI0IDcuMjQgMCAwMC40NTUtLjY4MWMuMDA5LS4wMjQgMC0uMDMtLjAxNC0uMDM0bTUuODguMjQ0aC4yNjNzLTEuMzIxIDEuOTEyLTIuMDY4IDEuODIzYy0uNDE2LS4wNDktLjI5My0uNTYzLS4yOTMtLjU2M3MtLjU4NS42ODUtMS4xMjMuNTQ2Yy0uNDg3LS4xMjUtLjE3Mi0uOTM2LS4xNzItLjkzNi0uMDU2LjAyMi0xLjExMSAxLjIxMS0xLjg1My45MjYtLjc3Ni0uMy0uMzczLTEuMjk2LS4yMjUtMS41OTUuMTI1LS4yNTMuMjYzLS40OTkuMjYzLS40OTlzLS4xMTkuMDM0LS4xOTUuMDUxbC0uMTg2LjA0cy0uMzY3LjU5Ni0uNTkxLjg5NGMtLjIyNS4yOTctMS4xNzggMS4zMi0xLjc0IDEuMTE3LS41NjItLjIwNC0uNDIzLS45OS0uMTA3LTEuNjE1LjUxMi0xLjAxMiAxLjcyNi0yLjI1NiAyLjQ1OC0yLjA2OC43MzkuMTg5LjEyNyAxLjM4OC4xMjcgMS4zODhzLjE0Ny4wMTkuNS0uMjIyYy41MDctLjM0NiAxLjE3Ni0xLjI3NyAxLjkwMS0xLjE2Ny4zNDIuMDUxLjY2LjQuMjI1IDEuMDY0LS4xMzkuMjEzLS4zNzIuNDAzLS41NS4yMTUtLjExMS0uMTE4LS4wMTQtLjMzLjEwMy0uNDc3YS40NTcuNDU3IDAgMDEuMzktLjE3OXMuMTItLjI3My0uMTg1LS4yNjljLS4yNDcuMDA1LS44NzEuNTgtMS4yMjMgMS4xNi0uMzIzLjUzMy0uODEzIDEuNDQxLS4zMjIgMS42MzkuNDUxLjE4MiAxLjMwOS0uODM2IDEuNzA2LTEuMzcuMzk3LS41MzMgMS4zMDItMS43NDIgMi4wNjItMS43OS4yNjEtLjAxNy40MTcuMjIxLjQxNy4yMjFsLjA4OC0uMTM5aC43NTlzLTEuNDMgMi4zODctMS41NDIgMi41NjdjLS4wODguMTQxLS4yMDQuNDYuMTE3LjI4MS4zMjItLjE3OC45OTYtMS4wNDMuOTk2LTEuMDQzbS0uNDE0IDMuODI0YTMuMTQ0IDMuMTQ0IDAgMDAtMS45MDgtLjU1NyAxLjE3IDEuMTcgMCAwMC0uOTMuNTA0Yy0uMjktLjUwNS0uODYyLS44MTUtMS43NDctLjgwOC0xLjQzLjAxNi0yLjg0OS42NzYtMy45NzIuNjc1LTEuMDc3IDAtMS44NjMtLjY3Ny0xLjgzNy0xLjg4LjA0Ny0yLjEwOSAxLjgzLTQuMDA5IDMuMTYtNC44NjQuNzY3LS40OSAxLjQwOS0uNjM3IDEuODI4LS41OS4zMDYuMDM0LjY3NC4zODguNDQyLjkwOS0uMzQxLjc2MS0uODEyLjY5OS0uNzk1LjMzNS4wMS0uMjM3LjE2OC0uMzg2LjI4Ni0uNDY5YS41ODIuNTgyIDAgMDEuMjc4LS4wNjhjLjA2OC0uMDU3LjExNy0uNDc0LS40MjktLjMzNy0uNTQ2LjEzNy0xLjIxLjY3Ni0xLjg0IDEuMzcxLS42My42OTYtMS42MSAyLjAxMS0xLjg1MiAzLjM5Mi0uMTEzLjY0LS4wMzkgMS44MDggMS40OCAxLjc5NSAxLjI4Ny0uMDEgMy4xODUtLjg1OSA0LjkyOS0uODQxYTMuMzQgMy4zNCAwIDAxMS43MjUuNDcyYy40NTEuMjc4Ljk5Mi42ODQgMS4xODQuOTYxIi8+PC9zdmc+" alt="Coca-Cola" loading="lazy"><span class="logo__txt">Coca-Cola</span></li>
-          <li class="logo"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSI1OC45IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDMuODQ4IDI0IDE2LjMwNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VG95b3RhPC90aXRsZT48cGF0aCBmaWxsPSIjRUIwQTFFIiBkPSJNMTIgMy44NDhDNS4yMjMgMy44NDggMCA3LjI5OCAwIDEyYzAgNC43MDIgNS4yMjQgOC4xNTIgMTIgOC4xNTJTMjQgMTYuNzAyIDI0IDEyYzAtNC43MDItNS4yMjMtOC4xNTItMTItOC4xNTJ6bTcuMzM0IDMuODM5YzAgMS4wOC0xLjcyNSAxLjkxMy00LjQ4OCAyLjI0Ni0uMjYtMi41OC0xLjAwNS00LjI3OS0xLjk2My00LjkxMyAyLjk0OC4xODQgNi40NSAxLjIyNyA2LjQ1IDIuNjY3ek0xMiAxNi40MDFjLS45NiAwLTEuNzQ2LTEuNS0xLjgwOC00LjM4OS41NzcuMDQ3IDEuMTguMDcyIDEuODA4LjA3Mi42MjggMCAxLjIzLS4wMjUgMS44MDctLjA3Mi0uMDYxIDIuODktLjg0NyA0LjM4OS0xLjgwNyA0LjM4OXptMC02LjMwOGMtLjU5IDAtMS4xNTUtLjAxOS0xLjY5LS4wNTQuMjYxLTEuNzI4LjkyLTMuMTUgMS42OS0zLjE1Ljc3IDAgMS40MjggMS40MjIgMS42ODkgMy4xNS0uNTM1LjAzNC0xLjA5OS4wNTQtMS42ODkuMDU0em0tLjg4Mi01LjA3NWMtLjk1Ni42MzMtMS43MDYgMi4zMzMtMS45NjQgNC45MTVDNi4zOTEgOS42IDQuNjY1IDguNzY3IDQuNjY1IDcuNjg3YzAtMS40NCAzLjUwNC0yLjQ5IDYuNDUzLTIuNjY5ek0yLjAzNyAxMS42OGE1LjI2NSA1LjI2NSAwIDAxMS4wNDgtMy4xNjRjLjI3IDEuNTQ3IDIuNTIyIDIuODgxIDUuOTcyIDMuMzdWMTJjMCAzLjc3Mi44NzkgNi4yMDMgMi4wODcgNi45Ny01LjEwNy0uMzIxLTkuMTA3LTMuNDgtOS4xMDctNy4yOXptMTAuODIzIDcuMjljMS4yMDctLjc2NyAyLjA4Ny0zLjE5OCAyLjA4Ny02Ljk3di0uMTE1YzMuNDQ3LS40ODggNS43MDQtMS44MjYgNS45NzItMy4zN2E1LjI2IDUuMjYgMCAwMTEuMDQ5IDMuMTY1Yy0uMDA0IDMuODEtNC4wMDggNi45NjktOS4xMDkgNy4yOXoiLz48L3N2Zz4=" alt="Toyota" loading="lazy"><span class="logo__txt">TOYOTA</span></li>
-        </ul>
+      <!-- ===================== CLIENTES ===================== -->
+      <div class="clients" id="clientes" role="region" aria-label="Clientes que confían en SeñalVal">
+        <div class="wrap">
+          <p class="clients__title">Confían en nosotros</p>
+        </div>
+        <div class="marquee">
+          <ul class="marquee__track">
+            <li class="logo"><img src="../assets/logos/aena.svg" alt="Aena" loading="lazy"><span class="logo__txt">aena</span></li>
+            <li class="logo"><img src="../assets/logos/clece.svg" alt="Clece" loading="lazy"><span class="logo__txt">CLECE</span></li>
+            <li class="logo"><img src="../assets/logos/vias.svg" alt="Vías y Construcciones" loading="lazy"><span class="logo__txt">Vías y Construcciones</span></li>
+            <li class="logo"><img src="../assets/logos/comunidad-madrid.svg" alt="Comunidad de Madrid" loading="lazy"><span class="logo__txt">Comunidad de Madrid</span></li>
+            <li class="logo"><img src="../assets/logos/junta-cyl.svg" alt="Junta de Castilla y León" loading="lazy"><span class="logo__txt">Junta de Castilla y León</span></li>
+            <li class="logo"><img src="../assets/logos/fundacion-laboral.svg" alt="Fundación Laboral de la Construcción" loading="lazy"><span class="logo__txt">Fundación Laboral de la Construcción</span></li>
+            <li class="logo"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSIxMjcuNSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCA4LjIzNiAyNCA3LjUyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q29jYS1Db2xhPC90aXRsZT48cGF0aCBmaWxsPSIjRDAwMDEzIiBkPSJNMTYuODEzIDguODE0cy0uNDUuMTgtLjk3My43NTZjLS41MjQuNTc3LS44MjggMS4yMjUtLjYwMyAxLjM5Ny4wODcuMDY2LjI4Ny4wNzkuNjUtLjI1YTIuODY0IDIuODY0IDAgMDAuNzY2LTEuMDYzYy4yMzQtLjU3LjE2LS44MzMuMTYtLjg0bTIuODYzIDEuMDM4Yy0uNTgxLS4yOTktMS4wMDYtLjY2NC0xLjQ0OC0uODktLjQyMi0uMjE2LS42OTUtLjMwNy0xLjAzNi0uMjYxYTEuMDU3IDEuMDU3IDAgMDAtLjE0LjAzNXMuMTc2LjYtLjUyMyAxLjYwN2MtLjcwOCAxLjAyMi0xLjM1IDEuMDE1LTEuNTMzLjczNC0uMTkxLS4yOTYuMDU2LS45LjQ2OC0xLjQzNy40MzItLjU2MiAxLjE5LTEuMDI4IDEuMTktMS4wMjhzLS4yNDEtLjE0OC0uODM1LjE5Yy0uNTguMzI2LTEuNTc3IDEuMTA3LTIuNTAyIDIuNDIzLS45MjYgMS4zMTYtMS4xMSAyLjA0LTEuMjQyIDIuNjEtLjEzMi41Ny0uMDEyIDEuMTguNjIgMS4xOHMxLjM2OC0uOTY0IDEuNTc2LTEuMjk5Yy4zODYtLjYyNC42MzctMS41ODEuMTEyLTEuNDUtLjI1OS4wNjUtLjQ2OC4zNTEtLjYuNjI3YTIuNjgzIDIuNjgzIDAgMDAtLjE5LjU1NCAyLjE4NSAyLjE4NSAwIDAwLS41MTMuMjk4IDMuNzg4IDMuNzg4IDAgMDAtLjQ4Ni40M3MuMDAyLS40NTYuMzY1LTEuMTk0Yy4zNjQtLjczNyAxLjAzLTEuMDc0IDEuNDA4LTEuMTA2LjM0LS4wMjcuNzgzLjI2Mi40MDggMS4zMjctLjM3NSAxLjA2NS0xLjQ4MyAyLjM2LTIuNjQ2IDIuMzc2LTEuMDczLjAxNS0xLjc3Ni0xLjM1NS0uMjgyLTMuNzQ1QzEzLjUwMSA5LjE5IDE1LjQ0MSA4LjM4IDE2LjA3IDguMjljLjYzLS4wOS44MzUuMTg3LjgzNS4xODdhMi43MDkgMi43MDkgMCAwMTEuMTk3LS4xOTdjLjc3LjA1MiAxLjM2NC41OTYgMi4xNS45NzktLjIwNS4xOTUtLjQuNC0uNTc1LjU5Mm0zLjQ1NC0uODljLS41MzMuMzQyLTEuMjcuNjUyLTEuOTc5LjU4Ni0uMTc5LjE4NS0uMzcxLjQtLjU2My42MzQgMS4yMjguMjQzIDIuMzA1LS41MTkgMi44NzctMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xLjYzNiAzLjQ2MmEuMjY4LjI2OCAwIDAwLjAyMy0uMDUxLjEyNC4xMjQgMCAwMC0uMTEzLS4xMDhjLS4xMTctLjAwNS0uMjc3LjAxNy0uNjk1LjQ4YTYuMzAzIDYuMzAzIDAgMDAtLjg5IDEuMjYzYy0uMjQuNDM4LS4zMzcuNzY0LS4yLjg0OGEuMTk5LjE5OSAwIDAwLjE0Ni4wMTVjLjA5My0uMDIyLjE5OS0uMTEuMzYtLjI5NS4wNzUtLjA4OC4xNTgtLjIxMi4yNTgtLjM0OS4yNzctLjM3Ni45NzMtMS41NjMgMS4xMTEtMS44MDNtLTQuMzQ5LjUwNGMuMDctLjE4Mi4xNTktLjU0MS0uMDI2LS42ODItLjE5OS0uMTUtLjcwNS4yMDEtLjcwOC41NjEtLjAwMy4zNjkuMzU3LjUzNS40NDMuNTU5LjA1LjAxMy4wNjYuMDEuMDktLjAyOWEzLjI4NCAzLjI4NCAwIDAwLjIwMS0uNDA5bS0uMzgzLjY3YTEuNTMxIDEuNTMxIDAgMDEtLjM0OC0uMjIyIDEuMTE2IDEuMTE2IDAgMDEtLjI2LS4zMTdjLS4wMDgtLjAxMi0uMDE1LS4wMDMtLjAyMy4wMDgtLjAwNy4wMS0uMDM5LjAzOS0uMzA5LjQzNC0uMjcuMzk2LS42ODQgMS4yMTYtLjMxIDEuMzU1LjI0MS4wOS42NDEtLjMzMS44Ni0uNjFhNS4yMSA1LjIxIDAgMDAuNDAyLS42MTRjLjAxMi0uMDIzIDAtLjAyOS0uMDEyLS4wMzRtNC4yNTguOTQ3Yy0uMTAyLjE2My0uMjE4LjQ3Ni4xMTcuMjgxLjQxLS4yMzYuOTk0LTEuMTIzLjk5NC0xLjEyM2guMjY1YTguODggOC44OCAwIDAxLS44MDMgMS4wNTRjLS40MTUuNDYtLjkyMi44NzktMS4yOC44MzctLjQxNi0uMDQ4LS4yODYtLjU5Ni0uMjg2LS41OTZzLS41OTYuNjM1LTEuMDEuNTljLS41NTctLjA2Mi0uMzg3LS43NTEtLjM4Ny0uNzUxcy0uNjMuNzc0LTEuMDYuNzVjLS42NzMtLjA0LS41MDQtLjg1OS0uMzE2LTEuNDM2LjEtLjMwOC4xOTMtLjU1LjE5My0uNTVzLS4wNjcuMDE3LS4yMS4wMzhjLS4wNzYuMDExLS4yMTIuMDE5LS4yMTIuMDE5cy0uMjguNDk1LS41MDUuNzkyYy0uMjI0LjI5Ny0xLjE3OCAxLjMyMi0xLjc0IDEuMTE3LS41MTgtLjE5LS4zNDYtLjk4NC0uMDQ0LTEuNjE1LjQ0LS45MiAxLjY4LTIuMjQzIDIuMzk2LTIuMDY4Ljc0MS4xOC4wMTcgMS41MzIuMDE3IDEuNTMyczAgLjAwNS4wMDcuMDA5Yy4wMTUuMDA1LjA1NC4wMS4xNDMtLjAwOGExLjYwNSAxLjYwNSAwIDAwLjI3MS0uMDhzLjc0Ni0xLjU2MSAxLjU2OS0yLjU4M2MuODIzLTEuMDIgMi40NjUtMi43OCAzLjExLTIuMzU0LjE1Ni4xMDUuMDg2LjQ2NS0uMTI2LjkwMmEyLjg5MSAyLjg5MSAwIDAxLS4yOTEuMDc4Yy4xNDItLjI1OC4yMzYtLjQ3NS4yNjQtLjYyNy4wOTctLjUyOC0xLjEzNS41ODUtMi4wMTUgMS43OGExNi41OTQgMTYuNTk0IDAgMDAtMS40MDkgMi4yOCAzLjg2IDMuODYgMCAwMC40NTQtLjMyNCAxMy4wMDIgMTMuMDAyIDAgMDAxLjExOC0xLjA0MyAxMi4xNjkgMTIuMTY5IDAgMDAuOTUxLTEuMDk4IDIuNTggMi41OCAwIDAwLjI4LS4wMjkgMTIuMDU0IDEyLjA1NCAwIDAxLTEuMDUgMS4yNGMtLjM1LjM1NS0uNzMuNzM3LTEuMDYxIDEuMDE1YTguODQgOC44NCAwIDAxLS45MzEuNjkxcy0uNzcgMS41NTMtLjM1MSAxLjY1MmMuMjQ2LjA2LjczMi0uNjkuNzMyLS42OXMuNjM1LS45NjcgMS4wMTctMS40MDRjLjUyMi0uNTkzLjk3LS45MzYgMS40Mi0uOTQyLjI2MS0uMDA1LjQxNS4yNzMuNDE1LjI3M2wuMTIzLS4xOWguNzU3cy0xLjQxNCAyLjM5OC0xLjUyNyAyLjU3OW0yLjExMS01LjU4Yy0uNTMzLjM0MS0xLjI3LjY1MS0xLjk3OS41ODUtLjE4LjE4NS0uMzcxLjQtLjU2NC42MzQgMS4yMjkuMjQzIDIuMzA1LS41MTggMi44NzgtMS4xNjdBMy44MiAzLjgyIDAgMDAyNCA4LjI0OGE0Ljc5MiA0Ljc5MiAwIDAxLS44NjkuNzE0bS0xMC42MyAxLjE3N2gtLjcybC0uNDA3LjY1OGguNzJ6bS0zLjQxIDIuMjc3Yy4zMDctLjQyIDEuMTUyLTEuODkxIDEuMTUyLTEuODkxYS4xMjQuMTI0IDAgMDAtLjExMi0uMTA4Yy0uMTE3LS4wMDYtLjMxMi4wMzQtLjcuNTE5LS4zODcuNDg1LS42ODguODctLjkwNyAxLjI3Mi0uMjQuNDM4LS4zNDYuNzQ3LS4yMDcuODMxYS4yMDUuMjA1IDAgMDAuMTQ0LjAxNWMuMDktLjAyMi4yMDgtLjExMy4zNjktLjI5OGE1LjU3IDUuNTcgMCAwMC4yNjItLjM0bS0zLjg2My0xLjk5Yy0uMTk5LS4xNS0uNzA1LjIwMS0uNzA4LjU2LS4wMDMuMzY5LjQ1Ni40ODIuNTE1LjQ4NGEuMDkuMDkgMCAwMC4wNS0uMDEuMDYuMDYgMCAwMC4wMjQtLjAyNyAzLjQ4MyAzLjQ4MyAwIDAwLjE0Ni0uMzI1Yy4wNy0uMTgzLjE1OC0uNTQxLS4wMjctLjY4Mm0tLjMgMS4yN2ExLjY3OCAxLjY3OCAwIDAxLS4zOS0uMTguODEyLjgxMiAwIDAxLS4yNzktLjMwOWMtLjAwNy0uMDEyLS4wMTUtLjAwMy0uMDIyLjAwOC0uMDA3LjAxLS4wNDcuMDYxLS4zMTguNDU4LS4yNy4zOTgtLjY3MiAxLjIxLS4yOTYgMS4zNS4yNC4wOS42NDQtLjMzNC44NjQtLjYxMmE3LjI0IDcuMjQgMCAwMC40NTUtLjY4MWMuMDA5LS4wMjQgMC0uMDMtLjAxNC0uMDM0bTUuODguMjQ0aC4yNjNzLTEuMzIxIDEuOTEyLTIuMDY4IDEuODIzYy0uNDE2LS4wNDktLjI5My0uNTYzLS4yOTMtLjU2M3MtLjU4NS42ODUtMS4xMjMuNTQ2Yy0uNDg3LS4xMjUtLjE3Mi0uOTM2LS4xNzItLjkzNi0uMDU2LjAyMi0xLjExMSAxLjIxMS0xLjg1My45MjYtLjc3Ni0uMy0uMzczLTEuMjk2LS4yMjUtMS41OTUuMTI1LS4yNTMuMjYzLS40OTkuMjYzLS40OTlzLS4xMTkuMDM0LS4xOTUuMDUxbC0uMTg2LjA0cy0uMzY3LjU5Ni0uNTkxLjg5NGMtLjIyNS4yOTctMS4xNzggMS4zMi0xLjc0IDEuMTE3LS41NjItLjIwNC0uNDIzLS45OS0uMTA3LTEuNjE1LjUxMi0xLjAxMiAxLjcyNi0yLjI1NiAyLjQ1OC0yLjA2OC43MzkuMTg5LjEyNyAxLjM4OC4xMjcgMS4zODhzLjE0Ny4wMTkuNS0uMjIyYy41MDctLjM0NiAxLjE3Ni0xLjI3NyAxLjkwMS0xLjE2Ny4zNDIuMDUxLjY2LjQuMjI1IDEuMDY0LS4xMzkuMjEzLS4zNzIuNDAzLS41NS4yMTUtLjExMS0uMTE4LS4wMTQtLjMzLjEwMy0uNDc3YS40NTcuNDU3IDAgMDEuMzktLjE3OXMuMTItLjI3My0uMTg1LS4yNjljLS4yNDcuMDA1LS44NzEuNTgtMS4yMjMgMS4xNi0uMzIzLjUzMy0uODEzIDEuNDQxLS4zMjIgMS42MzkuNDUxLjE4MiAxLjMwOS0uODM2IDEuNzA2LTEuMzcuMzk3LS41MzMgMS4zMDItMS43NDIgMi4wNjItMS43OS4yNjEtLjAxNy40MTcuMjIxLjQxNy4yMjFsLjA4OC0uMTM5aC43NTlzLTEuNDMgMi4zODctMS41NDIgMi41NjdjLS4wODguMTQxLS4yMDQuNDYuMTE3LjI4MS4zMjItLjE3OC45OTYtMS4wNDMuOTk2LTEuMDQzbS0uNDE0IDMuODI0YTMuMTQ0IDMuMTQ0IDAgMDAtMS45MDgtLjU1NyAxLjE3IDEuMTcgMCAwMC0uOTMuNTA0Yy0uMjktLjUwNS0uODYyLS44MTUtMS43NDctLjgwOC0xLjQzLjAxNi0yLjg0OS42NzYtMy45NzIuNjc1LTEuMDc3IDAtMS44NjMtLjY3Ny0xLjgzNy0xLjg4LjA0Ny0yLjEwOSAxLjgzLTQuMDA5IDMuMTYtNC44NjQuNzY3LS40OSAxLjQwOS0uNjM3IDEuODI4LS41OS4zMDYuMDM0LjY3NC4zODguNDQyLjkwOS0uMzQxLjc2MS0uODEyLjY5OS0uNzk1LjMzNS4wMS0uMjM3LjE2OC0uMzg2LjI4Ni0uNDY5YS41ODIuNTgyIDAgMDEuMjc4LS4wNjhjLjA2OC0uMDU3LjExNy0uNDc0LS40MjktLjMzNy0uNTQ2LjEzNy0xLjIxLjY3Ni0xLjg0IDEuMzcxLS42My42OTYtMS42MSAyLjAxMS0xLjg1MiAzLjM5Mi0uMTEzLjY0LS4wMzkgMS44MDggMS40OCAxLjc5NSAxLjI4Ny0uMDEgMy4xODUtLjg1OSA0LjkyOS0uODQxYTMuMzQgMy4zNCAwIDAxMS43MjUuNDcyYy40NTEuMjc4Ljk5Mi42ODQgMS4xODQuOTYxIi8+PC9zdmc+" alt="Coca-Cola" loading="lazy"><span class="logo__txt">Coca-Cola</span></li>
+            <li class="logo"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHdpZHRoPSI1OC45IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDMuODQ4IDI0IDE2LjMwNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VG95b3RhPC90aXRsZT48cGF0aCBmaWxsPSIjRUIwQTFFIiBkPSJNMTIgMy44NDhDNS4yMjMgMy44NDggMCA3LjI5OCAwIDEyYzAgNC43MDIgNS4yMjQgOC4xNTIgMTIgOC4xNTJTMjQgMTYuNzAyIDI0IDEyYzAtNC43MDItNS4yMjMtOC4xNTItMTItOC4xNTJ6bTcuMzM0IDMuODM5YzAgMS4wOC0xLjcyNSAxLjkxMy00LjQ4OCAyLjI0Ni0uMjYtMi41OC0xLjAwNS00LjI3OS0xLjk2My00LjkxMyAyLjk0OC4xODQgNi40NSAxLjIyNyA2LjQ1IDIuNjY3ek0xMiAxNi40MDFjLS45NiAwLTEuNzQ2LTEuNS0xLjgwOC00LjM4OS41NzcuMDQ3IDEuMTguMDcyIDEuODA4LjA3Mi42MjggMCAxLjIzLS4wMjUgMS44MDctLjA3Mi0uMDYxIDIuODktLjg0NyA0LjM4OS0xLjgwNyA0LjM4OXptMC02LjMwOGMtLjU5IDAtMS4xNTUtLjAxOS0xLjY5LS4wNTQuMjYxLTEuNzI4LjkyLTMuMTUgMS42OS0zLjE1Ljc3IDAgMS40MjggMS40MjIgMS42ODkgMy4xNS0uNTM1LjAzNC0xLjA5OS4wNTQtMS42ODkuMDU0em0tLjg4Mi01LjA3NWMtLjk1Ni42MzMtMS43MDYgMi4zMzMtMS45NjQgNC45MTVDNi4zOTEgOS42IDQuNjY1IDguNzY3IDQuNjY1IDcuNjg3YzAtMS40NCAzLjUwNC0yLjQ5IDYuNDUzLTIuNjY5ek0yLjAzNyAxMS42OGE1LjI2NSA1LjI2NSAwIDAxMS4wNDgtMy4xNjRjLjI3IDEuNTQ3IDIuNTIyIDIuODgxIDUuOTcyIDMuMzdWMTJjMCAzLjc3Mi44NzkgNi4yMDMgMi4wODcgNi45Ny01LjEwNy0uMzIxLTkuMTA3LTMuNDgtOS4xMDctNy4yOXptMTAuODIzIDcuMjljMS4yMDctLjc2NyAyLjA4Ny0zLjE5OCAyLjA4Ny02Ljk3di0uMTE1YzMuNDQ3LS40ODggNS43MDQtMS44MjYgNS45NzItMy4zN2E1LjI2IDUuMjYgMCAwMTEuMDQ5IDMuMTY1Yy0uMDA0IDMuODEtNC4wMDggNi45NjktOS4xMDkgNy4yOXoiLz48L3N2Zz4=" alt="Toyota" loading="lazy"><span class="logo__txt">TOYOTA</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -882,6 +900,31 @@ p { margin: 0; }
       </div>
     </section>
 
+    <!-- ===================== BLOG (WordPress) ===================== -->
+    <section class="section section--soft" id="blog" aria-labelledby="blog-title">
+      <div class="wrap">
+        <div class="split-head reveal">
+          <div>
+            <p class="eyebrow">Blog</p>
+            <h2 id="blog-title" class="h2">Actualidad y conocimiento en señalización</h2>
+          </div>
+          <div class="blog__head-side">
+            <p class="lead">Normativa, materiales, casos y tendencias. Artículos de nuestro equipo.</p>
+            <a class="link-arrow" href="https://senalval.es/blog/" id="blog-all">Ver todos los artículos <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <!-- Se rellena con los últimos artículos de WordPress (REST API). -->
+        <div class="posts" id="posts" data-api="https://senalval.es/wp-json/wp/v2/posts" data-count="6" aria-live="polite">
+          <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
+          <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
+          <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
+        </div>
+        <p class="posts__fallback" id="posts-fallback" hidden>
+          Los artículos se cargan desde el blog de SeñalVal. <a href="https://senalval.es/blog/">Leer el blog en senalval.es →</a>
+        </p>
+      </div>
+    </section>
+
     <!-- ===================== CONTACTO ===================== -->
     <section class="section contact" id="contacto" aria-labelledby="contact-title">
       <div class="wrap contact__grid">
@@ -941,6 +984,7 @@ p { margin: 0; }
       </div>
       <nav aria-label="Pie">
         <h3>Empresa</h3>
+        <a href="#blog">Blog</a>
         <a href="#socio">Por qué SeñalVal</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#licitaciones">Licitaciones</a>
@@ -1083,6 +1127,49 @@ p { margin: 0; }
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     note.textContent = 'Gracias. Se ha abierto su correo con la consulta preparada; solo tiene que enviarlo.';
   });
+
+  /* ---- Blog: últimos artículos desde WordPress ---- */
+  const posts = $('#posts');
+  if (posts) {
+    const fallback = () => { posts.hidden = true; $('#posts-fallback').hidden = false; };
+    const strip = html => { const d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); };
+    const fmt = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+    const url = `${posts.dataset.api}?per_page=${posts.dataset.count || 6}&_embed=wp:featuredmedia,wp:term&_fields=link,title,excerpt,date,_links,_embedded`;
+    const ctrl = new AbortController();
+    setTimeout(() => ctrl.abort(), 9000);
+    fetch(url, { signal: ctrl.signal })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(list => {
+        if (!Array.isArray(list) || !list.length) return fallback();
+        posts.innerHTML = '';
+        list.forEach(p => {
+          const emb = p._embedded || {};
+          const media = (emb['wp:featuredmedia'] || [])[0];
+          const img = media && (media.media_details?.sizes?.medium_large?.source_url || media.source_url);
+          const cat = ((emb['wp:term'] || [])[0] || [])[0];
+          const a = document.createElement('a');
+          a.className = 'post';
+          a.href = p.link;
+          a.innerHTML = `
+            <div class="media">${img ? `<img loading="lazy" alt="">` : ''}</div>
+            <div class="post__body">
+              <span class="post__meta"></span>
+              <h3></h3>
+              <p></p>
+              <span class="post__more">Leer artículo →</span>
+            </div>`;
+          const title = strip(p.title?.rendered || '');
+          if (img) { const im = $('img', a); im.src = img; im.alt = (media.alt_text || title); }
+          else a.querySelector('.media').classList.add('is-missing');
+          a.querySelector('.media').dataset.label = title;
+          $('.post__meta', a).textContent = [cat && strip(cat.name), fmt(p.date)].filter(Boolean).join(' · ');
+          $('h3', a).textContent = title;
+          $('p', a).textContent = strip(p.excerpt?.rendered || '').replace(/\s*\[(…|&hellip;|\.\.\.)\]\s*$/, '…');
+          posts.appendChild(a);
+        });
+      })
+      .catch(fallback);
+  }
 
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

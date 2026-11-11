@@ -44,7 +44,7 @@
         "@id": "https://senalval.es/#empresa",
         "name": "SeñalVal",
         "url": "https://senalval.es/",
-        "logo": "https://senalval.es/assets/img/logo-senalval.svg",
+        "logo": "https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png",
         "image": "https://senalval.es/assets/img/plaza-castilla.jpg",
         "email": "luismi.olea@senalval.es",
         "description": "Empresa de gestión integral de proyectos de señalización y señalética de alta exigencia: consultoría, diseño, fabricación, instalación y mantenimiento.",
@@ -107,7 +107,7 @@
   <header class="nav" id="top">
     <div class="wrap nav__inner">
       <a href="#top" class="brand" aria-label="SeñalVal, inicio">
-        <img src="assets/img/logo-senalval.svg" alt="SeñalVal" class="brand__img" width="176" height="44" data-fallbacks="assets/img/logo-senalval.png,assets/img/logo-senalval.jpg"
+        <img src="https://senalval.es/wp-content/uploads/2025/09/SenalVal-05-e1770365341698.png" alt="SeñalVal" class="brand__img" height="44" data-fallbacks="assets/img/logo-senalval.png,assets/img/logo-senalval.svg"
              onerror="var f=(this.dataset.fallbacks||'').split(',').filter(Boolean);if(f.length){this.dataset.fallbacks=f.slice(1).join(',');this.src=f[0];}else{this.hidden=true;this.nextElementSibling.hidden=false;}">
         <span class="brand__text" hidden>Señal<b>Val</b></span>
       </a>
@@ -118,6 +118,7 @@
         <a href="#proyectos">Proyectos</a>
         <a href="#licitaciones">Licitaciones</a>
         <a href="#recursos">Recursos</a>
+        <a href="#blog">Blog</a>
       </nav>
       <a href="#contacto" class="btn btn--sm btn--accent nav__cta">Hablemos de su proyecto</a>
       <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
@@ -131,6 +132,7 @@
       <a href="#proyectos">Proyectos</a>
       <a href="#licitaciones">Licitaciones</a>
       <a href="#recursos">Recursos</a>
+        <a href="#blog">Blog</a>
       <a href="#contacto" class="btn btn--accent">Hablemos de su proyecto</a>
     </div>
   </header>
@@ -155,11 +157,6 @@
           <a href="#contacto" class="btn btn--accent btn--lg">Solicitar estudio del proyecto <span aria-hidden="true">→</span></a>
           <a href="#proyectos" class="btn btn--ghost btn--lg">Ver proyectos</a>
         </div>
-        <ul class="hero__facts" aria-label="Claves">
-          <li><strong>360°</strong><span>Ciclo completo, un solo interlocutor</span></li>
-          <li><strong>8</strong><span>Sectores especializados</span></li>
-          <li><strong>100%</strong><span>Proyectos documentados y trazables</span></li>
-        </ul>
       </div>
 
       <!-- Señal direccional animada -->
@@ -172,26 +169,23 @@
         </div>
         <p class="hero__caption">Sedes judiciales · Plaza de Castilla, Madrid</p>
       </div>
-      <a href="#clientes" class="hero__scroll" aria-label="Bajar">
-        <span></span>
-      </a>
-    </section>
-
-    <!-- ===================== CLIENTES ===================== -->
-    <section class="clients" id="clientes" aria-label="Clientes que confían en SeñalVal">
-      <div class="wrap">
-        <p class="clients__title">Confían en nosotros administraciones, constructoras y grandes marcas</p>
-      </div>
-      <div class="marquee">
-        <ul class="marquee__track">
-          <li class="logo"><img src="assets/logos/clece.svg" alt="Clece" loading="lazy"><span class="logo__txt">CLECE</span></li>
-          <li class="logo"><img src="assets/logos/vias.svg" alt="Vías y Construcciones" loading="lazy"><span class="logo__txt">Vías y Construcciones</span></li>
-          <li class="logo"><img src="assets/logos/comunidad-madrid.svg" alt="Comunidad de Madrid" loading="lazy"><span class="logo__txt">Comunidad de Madrid</span></li>
-          <li class="logo"><img src="assets/logos/junta-cyl.svg" alt="Junta de Castilla y León" loading="lazy"><span class="logo__txt">Junta de Castilla y León</span></li>
-          <li class="logo"><img src="assets/logos/fundacion-laboral.svg" alt="Fundación Laboral de la Construcción" loading="lazy"><span class="logo__txt">Fundación Laboral de la Construcción</span></li>
-          <li class="logo"><img src="assets/logos/coca-cola.svg" alt="Coca-Cola" loading="lazy"><span class="logo__txt">Coca-Cola</span></li>
-          <li class="logo"><img src="assets/logos/toyota.svg" alt="Toyota" loading="lazy"><span class="logo__txt">TOYOTA</span></li>
-        </ul>
+      <!-- ===================== CLIENTES ===================== -->
+      <div class="clients" id="clientes" role="region" aria-label="Clientes que confían en SeñalVal">
+        <div class="wrap">
+          <p class="clients__title">Confían en nosotros</p>
+        </div>
+        <div class="marquee">
+          <ul class="marquee__track">
+            <li class="logo"><img src="assets/logos/aena.svg" alt="Aena" loading="lazy"><span class="logo__txt">aena</span></li>
+            <li class="logo"><img src="assets/logos/clece.svg" alt="Clece" loading="lazy"><span class="logo__txt">CLECE</span></li>
+            <li class="logo"><img src="assets/logos/vias.svg" alt="Vías y Construcciones" loading="lazy"><span class="logo__txt">Vías y Construcciones</span></li>
+            <li class="logo"><img src="assets/logos/comunidad-madrid.svg" alt="Comunidad de Madrid" loading="lazy"><span class="logo__txt">Comunidad de Madrid</span></li>
+            <li class="logo"><img src="assets/logos/junta-cyl.svg" alt="Junta de Castilla y León" loading="lazy"><span class="logo__txt">Junta de Castilla y León</span></li>
+            <li class="logo"><img src="assets/logos/fundacion-laboral.svg" alt="Fundación Laboral de la Construcción" loading="lazy"><span class="logo__txt">Fundación Laboral de la Construcción</span></li>
+            <li class="logo"><img src="assets/logos/coca-cola.svg" alt="Coca-Cola" loading="lazy"><span class="logo__txt">Coca-Cola</span></li>
+            <li class="logo"><img src="assets/logos/toyota.svg" alt="Toyota" loading="lazy"><span class="logo__txt">TOYOTA</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -498,6 +492,31 @@
       </div>
     </section>
 
+    <!-- ===================== BLOG (WordPress) ===================== -->
+    <section class="section section--soft" id="blog" aria-labelledby="blog-title">
+      <div class="wrap">
+        <div class="split-head reveal">
+          <div>
+            <p class="eyebrow">Blog</p>
+            <h2 id="blog-title" class="h2">Actualidad y conocimiento en señalización</h2>
+          </div>
+          <div class="blog__head-side">
+            <p class="lead">Normativa, materiales, casos y tendencias. Artículos de nuestro equipo.</p>
+            <a class="link-arrow" href="https://senalval.es/blog/" id="blog-all">Ver todos los artículos <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <!-- Se rellena con los últimos artículos de WordPress (REST API). -->
+        <div class="posts" id="posts" data-api="https://senalval.es/wp-json/wp/v2/posts" data-count="6" aria-live="polite">
+          <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
+          <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
+          <article class="post post--skeleton" aria-hidden="true"><div class="media"></div><div class="post__body"><span></span><span></span><span></span></div></article>
+        </div>
+        <p class="posts__fallback" id="posts-fallback" hidden>
+          Los artículos se cargan desde el blog de SeñalVal. <a href="https://senalval.es/blog/">Leer el blog en senalval.es →</a>
+        </p>
+      </div>
+    </section>
+
     <!-- ===================== CONTACTO ===================== -->
     <section class="section contact" id="contacto" aria-labelledby="contact-title">
       <div class="wrap contact__grid">
@@ -557,6 +576,7 @@
       </div>
       <nav aria-label="Pie">
         <h3>Empresa</h3>
+        <a href="#blog">Blog</a>
         <a href="#socio">Por qué SeñalVal</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#licitaciones">Licitaciones</a>
