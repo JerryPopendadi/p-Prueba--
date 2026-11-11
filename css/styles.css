@@ -180,9 +180,9 @@ p { margin: 0; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .logo { height: 56px; display: flex; align-items: center; flex-shrink: 0; }
-.logo img { max-height: 48px; width: auto; max-width: 160px; filter: grayscale(1); opacity: .55; transition: filter .35s, opacity .35s, transform .35s; }
+.logo img { height: 40px; width: auto; max-width: 160px; filter: grayscale(1); opacity: .55; transition: filter .35s, opacity .35s, transform .35s; }
 .logo:hover img { filter: none; opacity: 1; transform: scale(1.06); }
-.logo__txt { display: none; font-weight: 500; font-size: 1.05rem; color: #9AA6B6; white-space: nowrap; transition: color .3s; }
+.logo__txt { display: none; font-weight: 500; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; color: #9A9FA8; white-space: nowrap; transition: color .3s; }
 .logo.is-missing img { display: none; }
 .logo.is-missing .logo__txt { display: block; }
 .logo.is-missing:hover .logo__txt { color: var(--blue); }

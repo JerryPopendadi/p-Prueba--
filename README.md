@@ -41,6 +41,14 @@ se sustituye por su nombre), así que nunca se ve rota. Pon los archivos con est
 Exporta las fotos en JPG/WebP comprimido (≤ 250 KB, portada ≤ 400 KB) para que Google
 valore bien la velocidad.
 
+## Logos de clientes
+- Incluidos: `toyota.svg` y `coca-cola.svg`, logos oficiales del paquete `simple-icons`
+  (CC0; fuentes: guía de marca de Toyota y Wikimedia Commons), con sus colores de marca.
+- Pendientes, que se muestran como nombre en texto hasta tener el archivo: Clece, Vías y Construcciones,
+  Comunidad de Madrid, Junta de Castilla y León y Fundación Laboral de la Construcción.
+  Descarga cada logo de la sala de prensa o del manual de marca de su web y guárdalo con el nombre de la tabla.
+- Las marcas son propiedad de sus titulares: muéstralas solo con permiso del cliente.
+
 ## Pendiente de confirmar con SeñalVal
 - Permiso para mostrar públicamente cada logo de cliente (sobre todo Coca-Cola y Toyota).
 - Dirección y teléfono: añadirlos en contacto, pie y en el JSON-LD (`address`, `telephone`) mejora el SEO local.
