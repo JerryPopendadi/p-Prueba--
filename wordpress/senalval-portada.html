@@ -1478,7 +1478,7 @@ p { margin: 0; }
   const floatCta = $('.float-cta');
   const onScroll = () => {
     const y = window.scrollY;
-    nav.classList.toggle('is-scrolled', y > 40);
+    if (nav) nav.classList.toggle('is-scrolled', y > 40);
     if (floatCta) floatCta.classList.toggle('is-visible', y > window.innerHeight * .8);
   };
   onScroll();
@@ -1489,10 +1489,12 @@ p { margin: 0; }
   const setMenu = open => {
     burger.setAttribute('aria-expanded', String(open));
     menu.hidden = !open;
-    if (open) nav.classList.add('is-scrolled'); else onScroll();
+    if (open && nav) nav.classList.add('is-scrolled'); else onScroll();
   };
-  burger.addEventListener('click', () => setMenu(menu.hidden));
-  $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  if (burger && menu) {
+    burger.addEventListener('click', () => setMenu(menu.hidden));
+    $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  }
 
   // Enlace activo según la sección visible
   const links = $$('.nav__links a');
@@ -1731,7 +1733,7 @@ p { margin: 0; }
       const m = $('#form-msg'); if (m && !m.value) m.value = `Hemos visto el proyecto «${cfg.title}» y queremos algo similar. `;
     });
     $$('[data-project]').forEach(el => {
-      el.addEventListener('click', e => { if (el.tagName === 'A') { e.preventDefault(); const m = $('#mobile-menu'); if (m && !m.hidden) $('.nav__burger').click(); el.blur(); } open(el.dataset.project); });
+      el.addEventListener('click', e => { if (el.tagName === 'A') { e.preventDefault(); const m = $('#mobile-menu'); if (m && !m.hidden && $('.nav__burger')) $('.nav__burger').click(); el.blur(); } open(el.dataset.project); });
       el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && el.tagName !== 'BUTTON') { e.preventDefault(); open(el.dataset.project); } });
     });
   }

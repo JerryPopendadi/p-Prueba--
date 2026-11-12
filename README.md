@@ -57,6 +57,17 @@ Si cambias `index.html`, `css/` o `js/`, vuelve a ejecutar `python3 tools/build_
 - **Contacto:** el formulario abre el correo del visitante (a luismi.olea@senalval.es) o WhatsApp (665 863 597)
   con la consulta ya escrita. Botón flotante de WhatsApp en el móvil.
 
+## Menú global (cabecera y pie en toda la web) con WPCode
+Archivos en `wordpress/menu/` (se generan con `python3 tools/build_menu.py`):
+1. Plugins → Añadir nuevo → instala y activa **WPCode** (Insert Headers and Footers).
+2. Code Snippets → Añadir snippet → «Añade tu código personalizado» → tipo **HTML Snippet**.
+   - Título «SeñalVal · Cabecera», pega `wpcode-cabecera.html`, ubicación **Site Wide Body** (Insertion → Auto Insert). Activa y guarda.
+3. Otro HTML Snippet «SeñalVal · Pie» con `wpcode-pie.html`, ubicación **Site Wide Footer**. Activa y guarda.
+4. En la portada (página con plantilla Elementor Canvas), sustituye el widget HTML por `wordpress/senalval-bloque-portada.html`
+   (la portada sin su menú propio, para que no salga duplicado).
+La cabecera oculta automáticamente la cabecera y el pie del tema Konte (`#masthead`, `#colophon`).
+Para volver atrás basta con desactivar los dos snippets.
+
 ## Guías técnicas (PDF)
 En `guias/` hay tres guías A4 con el logo, fotos de proyectos reales y la normativa citada por su nombre oficial:
 - `guia-planificar-senalizacion-edificio-publico.pdf`
