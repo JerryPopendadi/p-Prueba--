@@ -122,7 +122,7 @@ p { margin: 0; }
 .mega--grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; width: 560px; }
 .mega--wide { width: 640px; }
 .mega--cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 10px; width: 460px; }
-.mega__title { grid-column: 1 / -1; padding: 4px 8px 8px; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.mega__title { grid-column: 1 / -1; margin: 0; padding: 4px 8px 8px; font-weight: 400; line-height: 1.5; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 .mega__item { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; text-decoration: none; color: var(--ink); transition: background .2s; }
 .mega__item img, .mega__ph { flex: 0 0 64px; width: 64px; height: 48px; border-radius: 8px; object-fit: cover; background: linear-gradient(135deg, var(--blue), var(--black)); }
 .mega__item b { display: block; font-weight: 500; font-size: .86rem; line-height: 1.3; }
@@ -253,7 +253,7 @@ p { margin: 0; }
 /* ---------- Clientes (banda inferior de la portada) ---------- */
 .clients { position: relative; z-index: 3; padding: 22px 0 24px; background: var(--white); border-top: 1px solid var(--line); }
 .clients .wrap { display: flex; }
-.clients__title { display: flex; align-items: center; gap: 14px; width: 100%; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.clients__title { margin: 0; line-height: 1.5; display: flex; align-items: center; gap: 14px; width: 100%; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
 .clients__title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 64px; width: max-content; }
@@ -694,17 +694,17 @@ p { margin: 0; }
           {
             "@type": "Question",
             "name": "¿Podéis presentaros a licitaciones públicas de señalización?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Preparamos memoria técnica, fichas de producto, planificación, documentación de PRL y CAE y la documentación administrativa que pida el pliego." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. De hecho, preparamos memoria técnica, fichas de producto, planificación, documentación de PRL y CAE y la documentación administrativa que pida el pliego." }
           },
           {
             "@type": "Question",
             "name": "¿Instaláis en todo el territorio nacional?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos con equipos propios de instalación y planificamos cada despliegue por fases para minimizar el impacto en edificios en uso." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Trabajamos con equipos propios de instalación y, además, planificamos cada despliegue por fases para que el impacto en edificios en uso sea mínimo." }
           },
           {
             "@type": "Question",
             "name": "¿Qué pasa cuando hay que cambiar o reponer señales después de la instalación?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Cada proyecto queda documentado con su inventario de elementos, materiales y ubicaciones, lo que permite reponer o ampliar la señalización manteniendo exactamente el mismo estándar." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Cada proyecto queda documentado con su inventario de elementos, materiales y ubicaciones. Por eso podemos reponer o ampliar la señalización manteniendo exactamente el mismo estándar." }
           }
         ]
       }
@@ -734,7 +734,7 @@ p { margin: 0; }
         <div class="nav__item">
           <a href="#servicios" class="nav__top">Servicios <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
           <div class="mega mega--grid">
-            <p class="mega__title">Ciclo completo: estudio, diseño, fabricación, instalación y mantenimiento</p>
+            <h2 class="mega__title">Ciclo completo: estudio, diseño, fabricación, instalación y mantenimiento</h2>
             <a class="mega__item" href="#srv-interior"><img src="https://senalval.es/wp-content/uploads/2023/10/SAN-PEDRO-POVEDA-1024x768.jpg" alt="" loading="lazy"><span><b>Señalética interior y wayfinding</b></span></a><a class="mega__item" href="#srv-exterior"><img src="https://senalval.es/wp-content/uploads/2023/05/FOTO-VALLA-INSTALADA-1024x768.jpg" alt="" loading="lazy"><span><b>Señalización exterior y monolitos</b></span></a><a class="mega__item" href="#srv-rotulos"><img src="https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-1024x768.jpg" alt="" loading="lazy"><span><b>Rótulos luminosos y letras corpóreas</b></span></a><a class="mega__item" href="#srv-vehiculos"><img src="https://senalval.es/wp-content/uploads/2023/08/LATERAL-IZQUIERDO-1024x821.jpg" alt="" loading="lazy"><span><b>Rotulación de vehículos y flotas</b></span></a><a class="mega__item" href="#srv-vinilos"><img src="https://senalval.es/wp-content/uploads/2026/04/FOTO-2-1024x768.jpg" alt="" loading="lazy"><span><b>Vinilos y gráfica decorativa</b></span></a><a class="mega__item" href="#srv-accesible"><img src="https://senalval.es/wp-content/uploads/2022/10/PLACA-VESTUARIOS-1024x768.jpg" alt="" loading="lazy"><span><b>Señalización accesible y de seguridad</b></span></a>
           </div>
         </div>
@@ -745,7 +745,7 @@ p { margin: 0; }
         <div class="nav__item">
           <a href="#proyectos" class="nav__top">Proyectos <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
           <div class="mega mega--grid mega--wide">
-            <p class="mega__title">Ábralos para ver todas las fotos</p>
+            <h2 class="mega__title">Proyectos destacados: ábralos para ver todas las fotos</h2>
             <a class="mega__item" href="https://senalval.es/senaletica-y-senalizacion/letras-corporeas-tribunal-de-instancia" data-project="sedes-judiciales"><img src="https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg" alt="" loading="lazy"><span><b>Sedes judiciales de Madrid</b><small>Justicia · Comunidad de Madrid</small></span></a><a class="mega__item" href="#proyectos" data-project="real-valladolid"><span class="mega__ph"></span><span><b>Real Valladolid Club de Fútbol</b><small>Deporte · Valladolid</small></span></a><a class="mega__item" href="https://senalval.es/senaletica-gallur-zaragoza" data-project="adif-gallur"><span class="mega__ph"></span><span><b>ADIF · Paso a nivel en Gallur</b><small>Ferroviario · Zaragoza</small></span></a><a class="mega__item" href="https://senalval.es/senaletica-realizada-en-aluminio-composite-con-impresion-directa-para-un-cliente-de-salamanca" data-project="salamanca"><img src="https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg" alt="" loading="lazy"><span><b>Directorios y placas en Salamanca</b><small>Corporativo · Salamanca</small></span></a><a class="mega__item" href="https://senalval.es/unos-vinilos-instalados-en-una-residencia-de-clece-de-burgos" data-project="clece-burgos"><img src="https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg" alt="" loading="lazy"><span><b>Residencia de Clece en Burgos</b><small>Residencias · Burgos</small></span></a><a class="mega__item" href="https://senalval.es/unos-carteles-de-videovigilancia-realizados-en-aluminio-composite-para-la-fundacion-laboral-de-la-construccion" data-project="fundacion-laboral"><img src="https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg" alt="" loading="lazy"><span><b>Fundación Laboral de la Construcción</b><small>Formación · Castilla y León</small></span></a><a class="mega__item" href="https://senalval.es/senaletica-en-madrid-para-negocios-rotulos-vinilos-lonas-y-mas-senalval" data-project="san-sebastian"><img src="https://senalval.es/wp-content/uploads/2025/09/ROTULO-AZOTEA-2-1024x768.jpg" alt="" loading="lazy"><span><b>Rotulación integral en San Sebastián</b><small>Corporativo · San Sebastián y Madrid</small></span></a><a class="mega__item" href="https://senalval.es/trabajos-de-rotulacion-y-vinilos-en-fachadas-autobuses-y-oficinas-senalval" data-project="rotulacion"><img src="https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg" alt="" loading="lazy"><span><b>Rotulación y vinilos</b><small>Fachadas, oficinas y flotas</small></span></a>
           </div>
         </div>
@@ -787,7 +787,7 @@ p { margin: 0; }
           Gestionamos proyectos de señalización de <span class="hl">alta exigencia</span>.
         </h1>
         <p class="hero__lead">
-          De la primera visita técnica al último tornillo y al mantenimiento posterior. Un único socio responsable para edificios públicos, sanitarios, educativos y corporativos que no admiten errores.
+          De la primera visita técnica al último tornillo y, después, al mantenimiento. Además, somos un único socio responsable para edificios públicos, sanitarios, educativos y corporativos que no admiten errores.
         </p>
         <div class="hero__actions">
           <a href="#contacto" class="btn btn--accent btn--lg">Solicitar estudio del proyecto <span aria-hidden="true">→</span></a>
@@ -828,7 +828,7 @@ p { margin: 0; }
       <!-- ===================== CLIENTES ===================== -->
       <div class="clients" id="clientes" role="region" aria-label="Clientes que confían en SeñalVal">
         <div class="wrap">
-          <p class="clients__title">Han confiado en SeñalVal</p>
+          <h2 class="clients__title">Han confiado en SeñalVal</h2>
         </div>
         <div class="marquee">
           <ul class="marquee__track">
@@ -864,7 +864,7 @@ p { margin: 0; }
             <h2 id="socio-title" class="h2">No vendemos señales.<br>Respondemos de un proyecto.</h2>
           </div>
           <p class="lead">
-            Un catálogo resuelve una compra. Un proyecto de señalización en un hospital, un juzgado o una residencia exige algo más: alguien que asuma el resultado de principio a fin. Ese es nuestro papel.
+            Un catálogo resuelve una compra. Sin embargo, un proyecto de señalización en un hospital, un juzgado o una residencia exige algo más: alguien que asuma el resultado de principio a fin. Por eso, ese es nuestro papel.
           </p>
         </div>
 
@@ -873,25 +873,25 @@ p { margin: 0; }
             <span class="pillar__num">01</span>
             <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 6 11v12c0 11 8 19 18 21 10-2 18-10 18-21V11L24 4Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="m16 24 6 6 11-12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <h3>Solvencia</h3>
-            <p>Estructura técnica, documental y financiera para asumir proyectos públicos y privados de gran volumen con garantías.</p>
+            <p>Estructura técnica, documental y financiera; así asumimos con garantías proyectos públicos y privados de gran volumen.</p>
           </article>
           <article class="pillar reveal">
             <span class="pillar__num">02</span>
             <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40h32M12 40V20l12-10 12 10v20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 40V28h8v12" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
             <h3>Ejecución</h3>
-            <p>Equipos propios de instalación, planificación por fases y obra limpia en edificios que siguen funcionando.</p>
+            <p>Equipos propios de instalación y planificación por fases; además, obra limpia en edificios que siguen funcionando.</p>
           </article>
           <article class="pillar reveal">
             <span class="pillar__num">03</span>
             <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M17 16h14M17 24h14M17 32h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
             <h3>Trazabilidad</h3>
-            <p>Cada elemento queda inventariado: material, medidas, ubicación y fecha. Sabe en todo momento qué se instaló y dónde.</p>
+            <p>Cada elemento queda inventariado: material, medidas, ubicación y fecha. Por eso sabe en todo momento qué se instaló y dónde.</p>
           </article>
           <article class="pillar reveal">
             <span class="pillar__num">04</span>
             <svg class="pillar__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M40 24a16 16 0 1 1-4.7-11.3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M36 6v7h-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <h3>Continuidad</h3>
-            <p>Reposiciones, ampliaciones y mantenimiento con el mismo estándar años después. El proyecto no termina en la entrega.</p>
+            <p>Reposiciones, ampliaciones y mantenimiento con el mismo estándar, incluso años después. Es decir, el proyecto no termina en la entrega.</p>
           </article>
         </div>
       </div>
@@ -903,7 +903,7 @@ p { margin: 0; }
         <div class="reveal">
           <p class="eyebrow eyebrow--light">SeñalVal en 1 minuto</p>
           <h2 id="video-title" class="h2">Así trabajamos, de la primera visita al mantenimiento</h2>
-          <p class="lead lead--light">Sedes judiciales, residencias, oficinas y flotas: un recorrido por nuestros proyectos y por la forma en que los gestionamos.</p>
+          <p class="lead lead--light">Sedes judiciales, residencias, oficinas y flotas: un recorrido por nuestros proyectos y, además, por la forma en que los gestionamos.</p>
           <a href="#contacto" class="btn btn--accent btn--lg">Hablemos de su proyecto <span aria-hidden="true">→</span></a>
         </div>
         <div class="video__frame reveal">
@@ -925,17 +925,17 @@ p { margin: 0; }
             <p class="eyebrow eyebrow--light">Sectores</p>
             <h2 id="sectores-title" class="h2">Especialistas en entornos donde orientarse es crítico</h2>
           </div>
-          <p class="lead lead--light">Cada sector tiene su normativa, sus usuarios y sus tiempos. Los conocemos.</p>
+          <p class="lead lead--light">Cada sector tiene su normativa, sus usuarios y sus tiempos. Por eso los conocemos a fondo.</p>
         </div>
         <ul class="sectors">
-          <li class="sector reveal" id="sector-1"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⚖</span><h3>Justicia y administración</h3><p>Sedes judiciales, consejerías y edificios de atención al ciudadano.</p></li>
-          <li class="sector reveal" id="sector-2"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2023/03/Senaletica-Organismos-Publicos-1-768x512.png" alt="" loading="lazy" decoding="async"><span class="sector__i">✚</span><h3>Sanidad</h3><p>Hospitales y centros de salud: wayfinding claro bajo presión.</p></li>
-          <li class="sector reveal" id="sector-3"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-Y-FLOR-DESPACHO-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⌂</span><h3>Residencias y sociosanitario</h3><p>Señalética accesible, cálida y pensada para personas mayores.</p></li>
-          <li class="sector reveal" id="sector-4"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-2-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">✎</span><h3>Educación y formación</h3><p>Universidades, colegios y centros de formación profesional.</p></li>
-          <li class="sector reveal" id="sector-5"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/04/METACRILATO-OFICINAS-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">▦</span><h3>Corporativo y oficinas</h3><p>Identidad de marca aplicada a sedes, plantas y salas.</p></li>
-          <li class="sector reveal" id="sector-6"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/04/FOTO-1024x768.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⚙</span><h3>Industria y logística</h3><p>Seguridad, PRL, naves y señalización horizontal.</p></li>
-          <li class="sector reveal" id="sector-7"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2023/11/FOTO-HORARIO-Y-INSTAGRAM-1024x768.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">◈</span><h3>Deporte, retail y marcas</h3><p>Estadios, concesionarios y fachadas con imagen homogénea.</p></li>
-          <li class="sector reveal" id="sector-8"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/04/TRASERA-768x1024.jpeg" alt="" loading="lazy" decoding="async"><span class="sector__i">⇄</span><h3>Transporte y flotas</h3><p>Rotulación de vehículos, autobuses y estaciones.</p></li>
+          <li class="sector reveal" id="sector-1"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⚖</span><h3>Justicia y administración</h3><p>Sedes judiciales, consejerías y también edificios de atención al ciudadano.</p></li>
+          <li class="sector reveal" id="sector-2"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2023/03/Senaletica-Organismos-Publicos-1-768x512.png" alt="" loading="lazy" decoding="async"><span class="sector__i">✚</span><h3>Sanidad</h3><p>Hospitales y centros de salud, donde la orientación debe ser clara incluso bajo presión.</p></li>
+          <li class="sector reveal" id="sector-3"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-Y-FLOR-DESPACHO-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⌂</span><h3>Residencias y sociosanitario</h3><p>Señalética accesible y cálida, pensada sobre todo para personas mayores.</p></li>
+          <li class="sector reveal" id="sector-4"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-2-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">✎</span><h3>Educación y formación</h3><p>Universidades y colegios, así como centros de formación profesional.</p></li>
+          <li class="sector reveal" id="sector-5"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2025/04/METACRILATO-OFICINAS-768x1024.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">▦</span><h3>Corporativo y oficinas</h3><p>Identidad de marca aplicada a sedes, plantas y salas, de modo que todo hable el mismo idioma.</p></li>
+          <li class="sector reveal" id="sector-6"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/04/FOTO-1024x768.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">⚙</span><h3>Industria y logística</h3><p>Seguridad y PRL en naves, además de señalización horizontal.</p></li>
+          <li class="sector reveal" id="sector-7"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2023/11/FOTO-HORARIO-Y-INSTAGRAM-1024x768.jpg" alt="" loading="lazy" decoding="async"><span class="sector__i">◈</span><h3>Deporte, retail y marcas</h3><p>Estadios y concesionarios, así como fachadas con imagen homogénea.</p></li>
+          <li class="sector reveal" id="sector-8"><img class="sector__bg" src="https://senalval.es/wp-content/uploads/2026/04/TRASERA-768x1024.jpeg" alt="" loading="lazy" decoding="async"><span class="sector__i">⇄</span><h3>Transporte y flotas</h3><p>Rotulación de vehículos y autobuses, e incluso de estaciones.</p></li>
         </ul>
       </div>
     </section>
@@ -948,41 +948,41 @@ p { margin: 0; }
             <p class="eyebrow">Servicios</p>
             <h2 id="servicios-title" class="h2">El ciclo completo, bajo una sola responsabilidad</h2>
           </div>
-          <p class="lead">Sin intermediarios ni piezas sueltas. Coordinamos cada fase para que el resultado final sea exactamente el que se aprobó.</p>
+          <p class="lead">Sin intermediarios ni piezas sueltas. Por eso coordinamos cada fase, para que el resultado final sea exactamente el que se aprobó.</p>
         </div>
 
         <ol class="cycle reveal">
-          <li><span>1</span><h3>Estudio y consultoría</h3><p>Visita técnica, análisis de flujos y necesidades normativas.</p></li>
-          <li><span>2</span><h3>Diseño y proyecto</h3><p>Plan de señalización, manual gráfico, planos y prototipos.</p></li>
-          <li><span>3</span><h3>Fabricación</h3><p>Producción con control de calidad y materiales certificados.</p></li>
+          <li><span>1</span><h3>Estudio y consultoría</h3><p>Visita técnica y análisis de flujos; también, necesidades normativas.</p></li>
+          <li><span>2</span><h3>Diseño y proyecto</h3><p>Plan de señalización y manual gráfico; después, planos y prototipos.</p></li>
+          <li><span>3</span><h3>Fabricación</h3><p>Producción con control de calidad y, además, materiales certificados.</p></li>
           <li><span>4</span><h3>Instalación</h3><p>Equipos propios, por fases, con PRL y CAE en regla.</p></li>
-          <li><span>5</span><h3>Mantenimiento</h3><p>Inventario vivo, reposiciones y ampliaciones.</p></li>
+          <li><span>5</span><h3>Mantenimiento</h3><p>Inventario vivo que, después, permite reposiciones y ampliaciones.</p></li>
         </ol>
 
         <div class="services">
           <article class="service reveal" id="srv-interior">
             <div class="media"><img src="https://senalval.es/wp-content/uploads/2023/10/SAN-PEDRO-POVEDA-1024x768.jpg" alt="Señalética interior y directorios de planta" loading="lazy" width="800" height="600"></div>
-            <div class="service__body"><h3>Señalética interior y wayfinding</h3><p>Directorios, banderolas, placas de despacho y sistemas de orientación completos.</p></div>
+            <div class="service__body"><h3>Señalética interior y wayfinding</h3><p>Directorios, banderolas y placas de despacho; en definitiva, sistemas de orientación completos.</p></div>
           </article>
           <article class="service reveal" id="srv-exterior">
             <div class="media"><img src="https://senalval.es/wp-content/uploads/2023/05/FOTO-VALLA-INSTALADA-1024x768.jpg" alt="Señalización exterior y monolitos" loading="lazy" width="800" height="600"></div>
-            <div class="service__body"><h3>Señalización exterior y monolitos</h3><p>Tótems, monolitos, accesos y señalización de recintos y campus.</p></div>
+            <div class="service__body"><h3>Señalización exterior y monolitos</h3><p>Tótems y monolitos, así como accesos y señalización de recintos y campus.</p></div>
           </article>
           <article class="service reveal" id="srv-rotulos">
             <div class="media"><img src="https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-1024x768.jpg" alt="Rótulo iluminado con letras corpóreas" loading="lazy" width="800" height="600"></div>
-            <div class="service__body"><h3>Rótulos luminosos y letras corpóreas</h3><p>Fachadas con presencia de día y de noche: LED, metacrilato, acero y aluminio.</p></div>
+            <div class="service__body"><h3>Rótulos luminosos y letras corpóreas</h3><p>Fachadas con presencia de día y también de noche: LED, metacrilato, acero y aluminio.</p></div>
           </article>
           <article class="service reveal" id="srv-vehiculos">
             <div class="media"><img src="https://senalval.es/wp-content/uploads/2023/08/LATERAL-IZQUIERDO-1024x821.jpg" alt="Rotulación de vehículos y flotas" loading="lazy" width="800" height="600"></div>
-            <div class="service__body"><h3>Rotulación de vehículos y flotas</h3><p>Autobuses, furgonetas y flotas completas con imagen corporativa homogénea.</p></div>
+            <div class="service__body"><h3>Rotulación de vehículos y flotas</h3><p>Autobuses y furgonetas, e incluso flotas completas, con imagen corporativa homogénea.</p></div>
           </article>
           <article class="service reveal" id="srv-vinilos">
             <div class="media"><img src="https://senalval.es/wp-content/uploads/2026/04/FOTO-2-1024x768.jpg" alt="Vinilos decorativos y gráfica en cristaleras" loading="lazy" width="800" height="600"></div>
-            <div class="service__body"><h3>Vinilos y gráfica decorativa</h3><p>Cristaleras, muros, gráfica ambiental y protección solar.</p></div>
+            <div class="service__body"><h3>Vinilos y gráfica decorativa</h3><p>Cristaleras y muros, así como gráfica ambiental y protección solar.</p></div>
           </article>
           <article class="service reveal" id="srv-accesible">
             <div class="media"><img src="https://senalval.es/wp-content/uploads/2022/10/PLACA-VESTUARIOS-1024x768.jpg" alt="Señalización accesible en braille y de seguridad" loading="lazy" width="800" height="600"></div>
-            <div class="service__body"><h3>Señalización accesible y de seguridad</h3><p>Braille, altorrelieve, evacuación, PRL y fotoluminiscente.</p></div>
+            <div class="service__body"><h3>Señalización accesible y de seguridad</h3><p>Braille y altorrelieve, además de evacuación, PRL y fotoluminiscente.</p></div>
           </article>
         </div>
       </div>
@@ -996,7 +996,7 @@ p { margin: 0; }
             <p class="eyebrow">Proyectos</p>
             <h2 id="proyectos-title" class="h2">Proyectos reales, problemas reales</h2>
           </div>
-          <p class="lead">Cada proyecto empieza con un reto concreto. Ábralo para ver todas las fotos y cómo lo resolvimos.</p>
+          <p class="lead">Cada proyecto empieza con un reto concreto. Por eso, ábralo para ver todas las fotos y cómo lo resolvimos.</p>
         </div>
 
         <article class="feature reveal">
@@ -1008,7 +1008,7 @@ p { margin: 0; }
             <p class="eyebrow">Justicia · Comunidad de Madrid</p>
             <h3 class="h3">Sedes judiciales de Madrid</h3>
             <p class="feature__sub">Letras corpóreas «Tribunal de Instancia» en fachadas</p>
-            <dl class="case"><div><dt>Reto</dt><dd>Cambiar la identificación de las sedes judiciales a la nueva denominación «Tribunal de Instancia», en edificios públicos que siguen abiertos al ciudadano.</dd></div><div><dt>Solución</dt><dd>Servicio llave en mano: retirada de los rótulos anteriores, limpieza y reparación de fachada e instalación de letras corpóreas con proporción institucional.</dd></div><div><dt>Materiales</dt><dd>PVC negro con frente de aluminio composite o lacado, según la especificación del proyecto.</dd></div><div><dt>Instalación</dt><dd>Coordinación y documentación PRL/CAE con el organismo. Casos como Plaza de Castilla y Poeta Joan Maragall, entre otras sedes de la Comunidad de Madrid.</dd></div></dl>
+            <dl class="case"><div><dt>Reto</dt><dd>Cambiar la identificación de las sedes judiciales a la nueva denominación «Tribunal de Instancia», en edificios públicos que siguen abiertos al ciudadano.</dd></div><div><dt>Solución</dt><dd>Servicio llave en mano: retirada de los rótulos anteriores, limpieza y reparación de fachada e instalación de letras corpóreas con proporción institucional.</dd></div><div><dt>Materiales</dt><dd>PVC negro con frente de aluminio composite o lacado, según la especificación del proyecto.</dd></div><div><dt>Instalación</dt><dd>Coordinación y documentación PRL/CAE con el organismo. Por ejemplo, en Plaza de Castilla y Poeta Joan Maragall, entre otras sedes de la Comunidad de Madrid.</dd></div></dl>
             <button type="button" class="btn btn--accent" data-project="sedes-judiciales">Ver proyecto · 17 fotos <span aria-hidden="true">→</span></button>
           </div>
         </article>
@@ -1117,7 +1117,7 @@ p { margin: 0; }
         </div>
       </div>
     </dialog>
-    <script type="application/json" id="projects-data">{"sedes-judiciales": {"sector": "Justicia · Comunidad de Madrid", "title": "Sedes judiciales de Madrid", "sub": "Letras corpóreas «Tribunal de Instancia» en fachadas", "cover": "https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg", "link": "https://senalval.es/senaletica-y-senalizacion/letras-corporeas-tribunal-de-instancia", "gallery": ["https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL-A-MEDIAS.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL.jpg", "https://senalval.es/wp-content/uploads/2026/04/ALCALA-DE-HENARES.jpg", "https://senalval.es/wp-content/uploads/2026/04/ALCORCON.jpg", "https://senalval.es/wp-content/uploads/2026/04/AVENIDA-DE-EUROPA-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/CAMINO-DEL-MOLINO.jpg", "https://senalval.es/wp-content/uploads/2026/04/ENTRADA-PRINCIAPAL.jpg", "https://senalval.es/wp-content/uploads/2026/04/ENTRADA-SECUNDARIA-768x1024.jpg", "https://senalval.es/wp-content/uploads/2026/04/ERNESTO-PECES.jpg", "https://senalval.es/wp-content/uploads/2026/04/JIMENEZ-ASUA.jpg", "https://senalval.es/wp-content/uploads/2026/04/LEGANES.jpg", "https://senalval.es/wp-content/uploads/2026/04/NAVALCARNERO-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/SAN-LORENZO-DE-EL-ESCORIAL-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/SEVILLA-15.jpg", "https://senalval.es/wp-content/uploads/2026/04/VALDEMORO-1024x768.jpg"], "reto": "Cambiar la identificación de las sedes judiciales a la nueva denominación «Tribunal de Instancia», en edificios públicos que siguen abiertos al ciudadano.", "solucion": "Servicio llave en mano: retirada de los rótulos anteriores, limpieza y reparación de fachada e instalación de letras corpóreas con proporción institucional.", "materiales": "PVC negro con frente de aluminio composite o lacado, según la especificación del proyecto.", "instalacion": "Coordinación y documentación PRL/CAE con el organismo. Casos como Plaza de Castilla y Poeta Joan Maragall, entre otras sedes de la Comunidad de Madrid."}, "real-valladolid": {"sector": "Deporte · Valladolid", "title": "Real Valladolid Club de Fútbol", "sub": "Instalación integral de señalización", "cover": "", "link": "", "gallery": [], "reto": "Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.", "solucion": "Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.", "materiales": "Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.", "instalacion": "Ejecutada con equipo propio y coordinada con el calendario de actividad del club."}, "adif-gallur": {"sector": "Ferroviario · Zaragoza", "title": "ADIF · Paso a nivel en Gallur", "sub": "Señalización vial y ferroviaria", "cover": "", "link": "https://senalval.es/senaletica-gallur-zaragoza", "gallery": [], "reto": "Hacer seguro y visible un paso a nivel, donde la señalización tiene que funcionar para conductores y peatones en cualquier condición.", "solucion": "Proyecto de señalización desarrollado en colaboración con ADIF (Administrador de Infraestructuras Ferroviarias).", "materiales": "Señalética vial y ferroviaria de alta visibilidad para exterior.", "instalacion": "Instalación en Gallur (Zaragoza), con los requisitos de seguridad propios del entorno ferroviario."}, "salamanca": {"sector": "Corporativo · Salamanca", "title": "Directorios y placas en Salamanca", "sub": "Aluminio composite con impresión directa", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg", "link": "https://senalval.es/senaletica-realizada-en-aluminio-composite-con-impresion-directa-para-un-cliente-de-salamanca", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CIBERSEGURIDAD-CARA-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CIBERSEGURIDAD-CARA-1-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CENTRO-DE-RELACION-CON-CLIENTES-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-0-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg"], "reto": "Ordenar la orientación de un edificio de oficinas con varias plantas y áreas de atención.", "solucion": "Directorio general, directorios por planta y placas de áreas (centro de relación con clientes, ciberseguridad…).", "materiales": "Aluminio composite con impresión directa en alta definición, resistente y ligero.", "instalacion": "Montaje en paramento, coherente con la imagen corporativa del cliente."}, "clece-burgos": {"sector": "Residencias · Burgos", "title": "Residencia de Clece en Burgos", "sub": "Vinilos de orientación en puertas y despachos", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg", "link": "https://senalval.es/unos-vinilos-instalados-en-una-residencia-de-clece-de-burgos", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-Y-FLOR-DESPACHO-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-EXTERIOR-ENTRADA-768x1024.jpg"], "reto": "Orientación sencilla y cálida para residentes, familias y personal.", "solucion": "Vinilos con iconografía clara en puertas de entrada, interiores y despachos.", "materiales": "Vinilo de corte e impreso de larga duración.", "instalacion": "Con el centro en funcionamiento, sin molestias para los residentes."}, "fundacion-laboral": {"sector": "Formación · Castilla y León", "title": "Fundación Laboral de la Construcción", "sub": "Carteles de videovigilancia", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg", "link": "https://senalval.es/unos-carteles-de-videovigilancia-realizados-en-aluminio-composite-para-la-fundacion-laboral-de-la-construccion", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-5-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-4-1-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-3-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg"], "reto": "Cumplir la obligación de informar de las zonas videovigiladas con una señal normalizada y visible.", "solucion": "Serie de carteles de «Zona videovigilada» con la información legal exigida.", "materiales": "Aluminio composite con impresión directa, apto para exterior.", "instalacion": "Colocación en los accesos y zonas vigiladas de los centros."}, "san-sebastian": {"sector": "Corporativo · San Sebastián y Madrid", "title": "Rotulación integral en San Sebastián", "sub": "Rótulo de azotea, placas y tótems", "cover": "https://senalval.es/wp-content/uploads/2025/09/ROTULO-AZOTEA-2-1024x768.jpg", "link": "https://senalval.es/senaletica-en-madrid-para-negocios-rotulos-vinilos-lonas-y-mas-senalval", "gallery": ["https://senalval.es/wp-content/uploads/2025/04/FOTO-PLACA-TIMBRE-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-LEJOS-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-PARQUE-NORTE-CALADO-576x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-TOTEM-LATERAL-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/METACRILATO-OFICINAS-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/ROTULO-EXTERIOR-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-1024x768.jpg"], "reto": "Renovar la imagen de un edificio corporativo para que se reconozca desde lejos.", "solucion": "Rótulo de azotea con vinilo de alta resistencia, placa de dibond, tótem y rotulación de oficinas.", "materiales": "Dibond, vinilo de alta resistencia y metacrilato.", "instalacion": "Trabajo en altura con medios propios."}, "rotulacion": {"sector": "Fachadas, oficinas y flotas", "title": "Rotulación y vinilos", "sub": "Fachadas, cristaleras y autobuses (Clece)", "cover": "https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg", "link": "https://senalval.es/trabajos-de-rotulacion-y-vinilos-en-fachadas-autobuses-y-oficinas-senalval", "gallery": ["https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg", "https://senalval.es/wp-content/uploads/2026/04/TRASERA-768x1024.jpeg", "https://senalval.es/wp-content/uploads/2026/04/LATERAL-DERECHO-768x1024.jpeg", "https://senalval.es/wp-content/uploads/2026/04/FOTO-2-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/FOTO-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-TRASERA-790x1024.jpg"], "reto": "Cada soporte pide una solución distinta: una fachada industrial, la privacidad de una sala o un autobús en movimiento.", "solucion": "Rótulos de fachada, vinilos para cristaleras y entradas, y rotulación integral de autobuses como el de Clece en Valladolid.", "materiales": "Vinilo impreso y de corte, vinilo cast para vehículos y laminado protector.", "instalacion": "En obra o en taller, con la mínima interrupción para el cliente."}}</script>
+    <script type="application/json" id="projects-data">{"sedes-judiciales": {"sector": "Justicia · Comunidad de Madrid", "title": "Sedes judiciales de Madrid", "sub": "Letras corpóreas «Tribunal de Instancia» en fachadas", "cover": "https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg", "link": "https://senalval.es/senaletica-y-senalizacion/letras-corporeas-tribunal-de-instancia", "gallery": ["https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA-LEJOS.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-PLAZA-DE-CASTILLA.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL-A-MEDIAS.jpg", "https://senalval.es/wp-content/uploads/2026/02/ROTULO-POETA-JOAN-MARAGALL.jpg", "https://senalval.es/wp-content/uploads/2026/04/ALCALA-DE-HENARES.jpg", "https://senalval.es/wp-content/uploads/2026/04/ALCORCON.jpg", "https://senalval.es/wp-content/uploads/2026/04/AVENIDA-DE-EUROPA-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/CAMINO-DEL-MOLINO.jpg", "https://senalval.es/wp-content/uploads/2026/04/ENTRADA-PRINCIAPAL.jpg", "https://senalval.es/wp-content/uploads/2026/04/ENTRADA-SECUNDARIA-768x1024.jpg", "https://senalval.es/wp-content/uploads/2026/04/ERNESTO-PECES.jpg", "https://senalval.es/wp-content/uploads/2026/04/JIMENEZ-ASUA.jpg", "https://senalval.es/wp-content/uploads/2026/04/LEGANES.jpg", "https://senalval.es/wp-content/uploads/2026/04/NAVALCARNERO-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/SAN-LORENZO-DE-EL-ESCORIAL-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/SEVILLA-15.jpg", "https://senalval.es/wp-content/uploads/2026/04/VALDEMORO-1024x768.jpg"], "reto": "Cambiar la identificación de las sedes judiciales a la nueva denominación «Tribunal de Instancia», en edificios públicos que siguen abiertos al ciudadano.", "solucion": "Servicio llave en mano: retirada de los rótulos anteriores, limpieza y reparación de fachada e instalación de letras corpóreas con proporción institucional.", "materiales": "PVC negro con frente de aluminio composite o lacado, según la especificación del proyecto.", "instalacion": "Coordinación y documentación PRL/CAE con el organismo. Por ejemplo, en Plaza de Castilla y Poeta Joan Maragall, entre otras sedes de la Comunidad de Madrid."}, "real-valladolid": {"sector": "Deporte · Valladolid", "title": "Real Valladolid Club de Fútbol", "sub": "Instalación integral de señalización", "cover": "", "link": "", "gallery": [], "reto": "Señalizar por completo un recinto deportivo que recibe a miles de aficionados en día de partido, con la identidad del club presente en cada punto.", "solucion": "Instalación integral: accesos y sectores, orientación interior, zonas de servicio y gráfica corporativa del club.", "materiales": "Aluminio, vinilo de alta resistencia para exterior y elementos de gran formato.", "instalacion": "Ejecutada con equipo propio y coordinada con el calendario de actividad del club."}, "adif-gallur": {"sector": "Ferroviario · Zaragoza", "title": "ADIF · Paso a nivel en Gallur", "sub": "Señalización vial y ferroviaria", "cover": "", "link": "https://senalval.es/senaletica-gallur-zaragoza", "gallery": [], "reto": "Hacer seguro y visible un paso a nivel, donde la señalización tiene que funcionar para conductores y peatones en cualquier condición.", "solucion": "Proyecto de señalización desarrollado en colaboración con ADIF (Administrador de Infraestructuras Ferroviarias).", "materiales": "Señalética vial y ferroviaria de alta visibilidad para exterior.", "instalacion": "Instalación en Gallur (Zaragoza), con los requisitos de seguridad propios del entorno ferroviario."}, "salamanca": {"sector": "Corporativo · Salamanca", "title": "Directorios y placas en Salamanca", "sub": "Aluminio composite con impresión directa", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg", "link": "https://senalval.es/senaletica-realizada-en-aluminio-composite-con-impresion-directa-para-un-cliente-de-salamanca", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CIBERSEGURIDAD-CARA-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CIBERSEGURIDAD-CARA-1-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-PLACA-CENTRO-DE-RELACION-CON-CLIENTES-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-PLANTA-0-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-DIRECTORIO-GENERAL-768x1024.jpg"], "reto": "Ordenar la orientación de un edificio de oficinas con varias plantas y áreas de atención.", "solucion": "Directorio general, directorios por planta y placas de áreas (centro de relación con clientes, ciberseguridad…).", "materiales": "Aluminio composite con impresión directa en alta definición, resistente y ligero.", "instalacion": "Montaje en paramento, coherente con la imagen corporativa del cliente."}, "clece-burgos": {"sector": "Residencias · Burgos", "title": "Residencia de Clece en Burgos", "sub": "Vinilos de orientación en puertas y despachos", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg", "link": "https://senalval.es/unos-vinilos-instalados-en-una-residencia-de-clece-de-burgos", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-Y-FLOR-DESPACHO-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-INTERIOR-ENTRADA-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-ICONO-PUERTA-EXTERIOR-ENTRADA-768x1024.jpg"], "reto": "Orientación sencilla y cálida para residentes, familias y personal.", "solucion": "Vinilos con iconografía clara en puertas de entrada, interiores y despachos.", "materiales": "Vinilo de corte e impreso de larga duración.", "instalacion": "Con el centro en funcionamiento, sin molestias para los residentes."}, "fundacion-laboral": {"sector": "Formación · Castilla y León", "title": "Fundación Laboral de la Construcción", "sub": "Carteles de videovigilancia", "cover": "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg", "link": "https://senalval.es/unos-carteles-de-videovigilancia-realizados-en-aluminio-composite-para-la-fundacion-laboral-de-la-construccion", "gallery": ["https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-5-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-4-1-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-3-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-2-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-CARTEL-1-768x1024.jpg"], "reto": "Cumplir la obligación de informar de las zonas videovigiladas con una señal normalizada y visible.", "solucion": "Serie de carteles de «Zona videovigilada» con la información legal exigida.", "materiales": "Aluminio composite con impresión directa, apto para exterior.", "instalacion": "Colocación en los accesos y zonas vigiladas de los centros."}, "san-sebastian": {"sector": "Corporativo · San Sebastián y Madrid", "title": "Rotulación integral en San Sebastián", "sub": "Rótulo de azotea, placas y tótems", "cover": "https://senalval.es/wp-content/uploads/2025/09/ROTULO-AZOTEA-2-1024x768.jpg", "link": "https://senalval.es/senaletica-en-madrid-para-negocios-rotulos-vinilos-lonas-y-mas-senalval", "gallery": ["https://senalval.es/wp-content/uploads/2025/04/FOTO-PLACA-TIMBRE-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-LEJOS-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-AZOTEA-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-ROTULO-PARQUE-NORTE-CALADO-576x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-TOTEM-LATERAL-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/METACRILATO-OFICINAS-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/ROTULO-EXTERIOR-768x1024.jpg", "https://senalval.es/wp-content/uploads/2025/04/FOTO-1024x768.jpg"], "reto": "Renovar la imagen de un edificio corporativo para que se reconozca desde lejos.", "solucion": "Rótulo de azotea con vinilo de alta resistencia, placa de dibond, tótem y rotulación de oficinas.", "materiales": "Dibond, vinilo de alta resistencia y metacrilato.", "instalacion": "Trabajo en altura con medios propios."}, "rotulacion": {"sector": "Fachadas, oficinas y flotas", "title": "Rotulación y vinilos", "sub": "Fachadas, cristaleras y autobuses (Clece)", "cover": "https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg", "link": "https://senalval.es/trabajos-de-rotulacion-y-vinilos-en-fachadas-autobuses-y-oficinas-senalval", "gallery": ["https://senalval.es/wp-content/uploads/2026/04/VINILOS-IMAGENES-ENTRADA-PRINCIPAL.jpg", "https://senalval.es/wp-content/uploads/2026/04/TRASERA-768x1024.jpeg", "https://senalval.es/wp-content/uploads/2026/04/LATERAL-DERECHO-768x1024.jpeg", "https://senalval.es/wp-content/uploads/2026/04/FOTO-2-1024x768.jpg", "https://senalval.es/wp-content/uploads/2026/04/FOTO-1024x768.jpg", "https://senalval.es/wp-content/uploads/2025/02/FOTO-TRASERA-790x1024.jpg"], "reto": "Cada soporte pide una solución distinta: una fachada industrial, la privacidad de una sala o un autobús en movimiento.", "solucion": "Rótulos de fachada, vinilos para cristaleras y entradas, y rotulación integral de autobuses como el de Clece en Valladolid.", "materiales": "Vinilo impreso y de corte, vinilo cast para vehículos y laminado protector.", "instalacion": "En obra o en taller, con la mínima interrupción para el cliente."}}</script>
 
     <!-- ===================== LICITACIONES ===================== -->
     <section class="section section--navy tender" id="licitaciones" aria-labelledby="lic-title">
@@ -1130,10 +1130,10 @@ p { margin: 0; }
         </div>
         <ul class="checklist reveal">
           <li><b>Memoria técnica</b> con metodología, planificación y equipo.</li>
-          <li><b>Fichas técnicas</b> de materiales y elementos ofertados.</li>
-          <li><b>Planos y propuesta gráfica</b> adaptados al edificio.</li>
-          <li><b>Documentación PRL y CAE</b> para la coordinación de actividades.</li>
-          <li><b>Garantías</b> y plan de mantenimiento posventa.</li>
+          <li><b>Fichas técnicas</b> de materiales y, además, de los elementos ofertados.</li>
+          <li><b>Planos y propuesta gráfica</b> adaptados, en concreto, a su edificio.</li>
+          <li><b>Documentación PRL y CAE</b> para que la coordinación de actividades sea ágil.</li>
+          <li><b>Garantías</b> y, después de la entrega, plan de mantenimiento.</li>
           <li><b>Inventario final</b> de todos los elementos instalados.</li>
         </ul>
       </div>
@@ -1147,26 +1147,26 @@ p { margin: 0; }
             <p class="eyebrow">Recursos</p>
             <h2 id="rec-title" class="h2">Guías técnicas y dossier por sector</h2>
           </div>
-          <p class="lead">Información útil antes de redactar un pliego o encargar un proyecto. Descárguelas gratis en PDF.</p>
+          <p class="lead">Información útil antes de redactar un pliego o encargar un proyecto. Además, puede descargarlas gratis en PDF.</p>
         </div>
         <div class="resources">
           <article class="res reveal">
             <span class="res__type">Guía técnica</span>
             <h3>Cómo planificar la señalización de un edificio público</h3>
-            <p>Fases, plazos, agentes implicados y errores frecuentes.</p>
+            <p>Fases y plazos, así como agentes implicados y errores frecuentes.</p>
             <a class="res__dl" href="https://senalval.es/wp-content/uploads/2026/11/guia-planificar-senalizacion-edificio-publico.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Descargar PDF <small>· 1,6 MB</small></a>
           </article>
           <article class="res reveal">
             <span class="res__type">Guía técnica</span>
             <h3>Señalización accesible: criterios y normativa</h3>
-            <p>Contraste, tipografía, altura, braille y altorrelieve.</p>
-            <a class="res__dl" href="https://senalval.es/wp-content/uploads/2026/11/guia-senalizacion-accesible-criterios-normativa.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Descargar PDF <small>· 0,9 MB</small></a>
+            <p>Contraste, tipografía y altura, además de braille y altorrelieve.</p>
+            <a class="res__dl" href="https://senalval.es/wp-content/uploads/2026/11/guia-senalizacion-accesible-criterios-normativa.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Descargar la guía <small>· 0,9 MB</small></a>
           </article>
           <article class="res reveal">
             <span class="res__type">Guía técnica</span>
             <h3>Materiales: qué elegir según uso y entorno</h3>
-            <p>Aluminio, metacrilato, composite, vinilo y acero.</p>
-            <a class="res__dl" href="https://senalval.es/wp-content/uploads/2026/11/guia-materiales-senalizacion.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Descargar PDF <small>· 1,1 MB</small></a>
+            <p>Aluminio, metacrilato y composite, así como vinilo y acero.</p>
+            <a class="res__dl" href="https://senalval.es/wp-content/uploads/2026/11/guia-materiales-senalizacion.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Abrir el PDF <small>· 1,1 MB</small></a>
           </article>
           <article class="res res--dossier reveal">
             <span class="res__type">Dossier por sector</span>
@@ -1190,9 +1190,9 @@ p { margin: 0; }
         <div class="faq reveal">
           <h2 class="h3">Preguntas frecuentes</h2>
           <details><summary>¿Qué tipo de proyectos de señalización gestiona SeñalVal?</summary><p>Proyectos de señalización de alta exigencia para administraciones públicas, sedes judiciales, sanidad, residencias, educación, industria, retail y transporte: desde el estudio inicial hasta la instalación y el mantenimiento.</p></details>
-          <details><summary>¿Podéis presentaros a licitaciones públicas de señalización?</summary><p>Sí. Preparamos memoria técnica, fichas de producto, planificación, documentación de PRL y CAE y la documentación administrativa que pida el pliego.</p></details>
-          <details><summary>¿Instaláis en todo el territorio nacional?</summary><p>Trabajamos con equipos propios de instalación y planificamos cada despliegue por fases para minimizar el impacto en edificios en uso.</p></details>
-          <details><summary>¿Qué pasa cuando hay que cambiar o reponer señales después?</summary><p>Cada proyecto queda documentado con su inventario de elementos, materiales y ubicaciones, lo que permite reponer o ampliar la señalización manteniendo exactamente el mismo estándar.</p></details>
+          <details><summary>¿Podéis presentaros a licitaciones públicas de señalización?</summary><p>Sí. De hecho, preparamos memoria técnica, fichas de producto, planificación, documentación de PRL y CAE y la documentación administrativa que pida el pliego.</p></details>
+          <details><summary>¿Instaláis en todo el territorio nacional?</summary><p>Sí. Trabajamos con equipos propios de instalación y, además, planificamos cada despliegue por fases para que el impacto en edificios en uso sea mínimo.</p></details>
+          <details><summary>¿Qué pasa cuando hay que cambiar o reponer señales después?</summary><p>Cada proyecto queda documentado con su inventario de elementos, materiales y ubicaciones. Por eso podemos reponer o ampliar la señalización manteniendo exactamente el mismo estándar.</p></details>
         </div>
       </div>
     </section>
@@ -1206,7 +1206,7 @@ p { margin: 0; }
             <h2 id="blog-title" class="h2">Actualidad y conocimiento en señalización</h2>
           </div>
           <div class="blog__head-side">
-            <p class="lead">Normativa, materiales, casos y tendencias. Artículos de nuestro equipo.</p>
+            <p class="lead">Normativa, materiales, casos y tendencias. Además, todos los artículos los escribe nuestro equipo.</p>
             <a class="link-arrow" href="https://senalval.es/noticias-senalval" id="blog-all">Ver todos los artículos <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -1228,7 +1228,7 @@ p { margin: 0; }
         <div class="contact__intro reveal">
           <p class="eyebrow eyebrow--light">Contacto</p>
           <h2 id="contact-title" class="h2">Cuéntenos su proyecto.<br>Le respondemos con un plan.</h2>
-          <p class="lead lead--light">Indíquenos el tipo de edificio, el plazo y, si existe, el pliego. Le contestamos con una primera propuesta de alcance.</p>
+          <p class="lead lead--light">Indíquenos el tipo de edificio, el plazo y, si existe, el pliego. Después le contestamos con una primera propuesta de alcance.</p>
           <ul class="contact__list">
             <li><span>Dirección</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Oro+34+Valladolid" target="_blank" rel="noopener">Calle Oro 34, 1º F (Valladolid)</a></li>
             <li><span>Teléfono</span><a href="tel:+34665863597">665 863 597</a></li>
@@ -1272,7 +1272,7 @@ p { margin: 0; }
             <button class="btn btn--accent btn--lg" type="submit" value="email">Enviar por email <span aria-hidden="true">→</span></button>
             <button class="btn btn--wa btn--lg" type="submit" value="whatsapp"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg> Enviar por WhatsApp</button>
           </div>
-          <p class="form__note" id="form-note" role="status">Se abrirá su correo o su WhatsApp con la consulta ya escrita para SeñalVal. Solo tiene que pulsar enviar.</p>
+          <p class="form__note" id="form-note" role="status">Se abrirá su correo o su WhatsApp con la consulta ya escrita para SeñalVal. Así, solo tiene que pulsar enviar.</p>
         </form>
       </div>
     </section>
