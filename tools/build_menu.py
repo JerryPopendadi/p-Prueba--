@@ -373,6 +373,42 @@ add_action( 'wp_footer', function () {
 }, 5 );
 ''', encoding='utf-8')
 
+# ---- Versión SIN JavaScript (para cortafuegos como Wordfence que bloquean <script> y onclick) ----
+# Desplegables: CSS :hover y :focus-within. Menú del móvil: casilla oculta + <label> (CSS puro).
+NOJS_CSS = """
+.svh-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.svh-toggle:checked + .svh-drawer { visibility: visible; }
+.svh-toggle:checked + .svh-drawer::before { opacity: 1; }
+.svh-toggle:checked + .svh-drawer .svh-drawer__in { transform: none; }
+.svh-drawer__bg { position: absolute; inset: 0; cursor: pointer; }
+label.svh-burger, label.svh-close { display: grid; place-items: center; }
+label.svh-burger { display: none; } label.svh-burger span { width: 24px; }
+@media (max-width: 1080px) { label.svh-burger { display: block; } }
+.svh-top:focus { outline: none; }
+"""
+def nojs_header(h):
+    h = re.sub(r'\n<script>.*?</script>\n', '\n', h, flags=re.S)
+    h = h.replace('<button type="button" class="svh-burger" aria-label="Abrir menú" aria-controls="svh-drawer" aria-expanded="false"><span></span><span></span><span></span></button>',
+                  '<label for="svh-toggle" class="svh-burger" aria-label="Abrir menú"><span></span><span></span><span></span></label>')
+    h = h.replace('<div class="svh svh-drawer" id="svh-drawer" aria-hidden="true">',
+                  '<input type="checkbox" id="svh-toggle" class="svh-toggle" aria-label="Abrir o cerrar el menú">\n<div class="svh svh-drawer" id="svh-drawer">\n  <label for="svh-toggle" class="svh-drawer__bg" aria-hidden="true"></label>')
+    h = h.replace('<button type="button" class="svh-close" aria-label="Cerrar menú">×</button>', '<label for="svh-toggle" class="svh-close" aria-label="Cerrar menú">×</label>')
+    h = h.replace('</style>', NOJS_CSS + '</style>', 1)
+    h = h.replace('(WPCode · Site Wide Body)', '(versión sin JavaScript · WPCode · HTML Snippet · Site Wide Header o Site Wide Body)')
+    assert '<script' not in h and 'onclick' not in h and 'onerror' not in h
+    return h
+def nojs_footer(f):
+    f = re.sub(r'\n<script>.*?</script>\n?', '\n', f, flags=re.S)
+    f = f.replace('<button type="button" onclick="window.svhOpenMenu && window.svhOpenMenu()">', '<label for="svh-toggle" class="svt-menu">').replace('<span>Menú</span></button>', '<span>Menú</span></label>')
+    f = f.replace('.svt a, .svt button', '.svt a, .svt label')
+    f = f.replace('(WPCode · Site Wide Footer)', '(versión sin JavaScript · WPCode · HTML Snippet · Site Wide Footer)')
+    assert '<script' not in f and 'onclick' not in f
+    return f
+CSS_NOJS_FIX = ".svt a, .svt label { display: grid; justify-items: center; gap: 3px; padding: 4px 0; border: 0; background: none; font: inherit; font-size: 11px; color: var(--ink); cursor: pointer; }"
+hn = nojs_header(header).replace('</style>', '@media (max-width: 1080px) { ' + CSS_NOJS_FIX + ' }\n</style>', 1)
+(OUT / 'sin-js-cabecera.html').write_text(hn, encoding='utf-8')
+(OUT / 'sin-js-pie.html').write_text(nojs_footer(footer), encoding='utf-8')
+
 # ---- Portada sin su menú propio (la cabecera y el pie globales los sustituyen) ----
 blk = (ROOT / 'wordpress' / 'senalval-bloque.html').read_text(encoding='utf-8')
 for a, b in [(r'\s*<a class="skip".*?</a>', ''), (r'\s*<!-- =+ CABECERA =+ -->\s*<header class="nav".*?</header>', ''),
