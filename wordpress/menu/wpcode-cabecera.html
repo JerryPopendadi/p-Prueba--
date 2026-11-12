@@ -197,7 +197,7 @@ html.svh-lock { overflow: hidden; }
   var h = document.getElementById('svh'), d = document.getElementById('svh-drawer');
   if (!h || !d) return;
   // Sube la cabecera al principio del <body> por si el tema la coloca dentro de otro contenedor
-  if (h.parentNode !== document.body) { document.body.insertBefore(d, document.body.firstChild); document.body.insertBefore(h, document.body.firstChild); }
+  if (document.body.firstElementChild !== h) { document.body.insertBefore(d, document.body.firstChild); document.body.insertBefore(h, document.body.firstChild); }
   var onS = function () { h.classList.toggle('is-scrolled', window.scrollY > 40); };
   onS(); window.addEventListener('scroll', onS, { passive: true });
   // Desplegables: ratón (CSS) + clic/teclado

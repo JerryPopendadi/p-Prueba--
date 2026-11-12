@@ -296,7 +296,7 @@ header = f'''<!-- SeñalVal · Cabecera global (WPCode · Site Wide Body) -->
   var h = document.getElementById('svh'), d = document.getElementById('svh-drawer');
   if (!h || !d) return;
   // Sube la cabecera al principio del <body> por si el tema la coloca dentro de otro contenedor
-  if (h.parentNode !== document.body) {{ document.body.insertBefore(d, document.body.firstChild); document.body.insertBefore(h, document.body.firstChild); }}
+  if (document.body.firstElementChild !== h) {{ document.body.insertBefore(d, document.body.firstChild); document.body.insertBefore(h, document.body.firstChild); }}
   var onS = function () {{ h.classList.toggle('is-scrolled', window.scrollY > 40); }};
   onS(); window.addEventListener('scroll', onS, {{ passive: true }});
   // Desplegables: ratón (CSS) + clic/teclado
@@ -358,6 +358,20 @@ footer = f'''<!-- SeñalVal · Pie global (WPCode · Site Wide Footer) -->
 '''
 (OUT / 'wpcode-cabecera.html').write_text(header, encoding='utf-8')
 (OUT / 'wpcode-pie.html').write_text(footer, encoding='utf-8')
+combo = '<!-- SeñalVal · Menú completo (cabecera + pie). WPCode: HTML Snippet · Auto Insert · Site Wide Footer.\n     La cabecera se coloca sola arriba de la página. -->\n' + header + '\n' + footer
+(OUT / 'wpcode-menu-completo.html').write_text(combo, encoding='utf-8')
+assert '<?' not in combo
+(OUT / 'wpcode-menu-php.txt').write_text('''/*
+ * SeñalVal · Menú global (cabecera + pie)
+ * WPCode: tipo «PHP Snippet» · Insertion: Auto Insert · Location: Run Everywhere.
+ * Pega TODO este texto tal cual. No añadas «<?php» al principio: WPCode lo pone solo.
+ */
+add_action( 'wp_footer', function () {
+?>
+''' + combo + '''
+<?php
+}, 5 );
+''', encoding='utf-8')
 
 # ---- Portada sin su menú propio (la cabecera y el pie globales los sustituyen) ----
 blk = (ROOT / 'wordpress' / 'senalval-bloque.html').read_text(encoding='utf-8')

@@ -68,6 +68,10 @@ Archivos en `wordpress/menu/` (se generan con `python3 tools/build_menu.py`):
 La cabecera oculta automáticamente la cabecera y el pie del tema Konte (`#masthead`, `#colophon`).
 Para volver atrás basta con desactivar los dos snippets.
 
+Si WPCode da error con «Site Wide Body», usa **un solo snippet**:
+- `wpcode-menu-completo.html` como **HTML Snippet** en **Site Wide Footer** (la cabecera se sube sola arriba), o
+- `wpcode-menu-php.txt` como **PHP Snippet** en **Run Everywhere** (sin añadir `<?php`).
+
 ## Guías técnicas (PDF)
 En `guias/` hay tres guías A4 con el logo, fotos de proyectos reales y la normativa citada por su nombre oficial:
 - `guia-planificar-senalizacion-edificio-publico.pdf`
