@@ -109,7 +109,7 @@
       links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id));
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  links.forEach(a => { const s = $(a.getAttribute('href')); if (s) spy.observe(s); });
+  links.forEach(a => { const h = a.getAttribute('href') || ''; if (!/^#[\w-]+$/.test(h)) return; const s = $(h); if (s) spy.observe(s); });
 
   /* ---- Aparición escalonada ---- */
   const io = new IntersectionObserver(entries => {
@@ -341,6 +341,15 @@
       el.addEventListener('click', e => { if (el.tagName === 'A') { e.preventDefault(); const m = $('#mobile-menu'); if (m && !m.hidden) $('.nav__burger').click(); el.blur(); } open(el.dataset.project); });
       el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && el.tagName !== 'BUTTON') { e.preventDefault(); open(el.dataset.project); } });
     });
+  }
+
+  /* ---- Vídeo corporativo ---- */
+  const vsec = $('#video');
+  if (vsec) {
+    const v = $('.video__player', vsec), play = $('.video__play', vsec);
+    play.addEventListener('click', () => { v.play(); });
+    v.addEventListener('play', () => vsec.classList.add('is-playing'));
+    v.addEventListener('ended', () => vsec.classList.remove('is-playing'));
   }
 
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
