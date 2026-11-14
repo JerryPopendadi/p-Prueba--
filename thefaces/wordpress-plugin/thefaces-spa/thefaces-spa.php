@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 7 idiomas: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.0.0' );
+define( 'TF_SPA_VERSION', '1.1.0' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -179,7 +179,7 @@ function tf_spa_assets() {
 	}
 	wp_enqueue_style( 'thefaces-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@200;300;400;500&family=Noto+Sans+Thai:wght@200;300;400;500&display=swap', array(), null );
 	wp_enqueue_style( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.css', array(), TF_SPA_VERSION );
-	wp_add_inline_style( 'thefaces-spa', 'body.tf-canvas{margin:0;background:#fff}' );
+	wp_add_inline_style( 'thefaces-spa', 'body.tf-canvas{margin:0;background:#fff}body.admin-bar .tf .top{top:32px}@media (max-width:782px){body.admin-bar .tf .top{top:46px}}' );
 	wp_enqueue_script( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.js', array(), TF_SPA_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'tf_spa_assets' );
@@ -285,6 +285,131 @@ function tf_spa_template_include( $template ) {
 }
 add_filter( 'template_include', 'tf_spa_template_include' );
 
+/* ---------- One-click setup: creates every page in every language ---------- */
+
+/**
+ * Creates the 9 pages x 7 languages with their shortcode and the full-width template,
+ * makes the English home the front page and turns on pretty permalinks. Existing pages are reused.
+ *
+ * @return array Number of pages created and reused.
+ */
+function tf_spa_setup_pages() {
+	$pages   = array_keys( tf_spa_data( 'pages' ) );
+	$seo     = tf_spa_data( 'seo' );
+	$names   = tf_spa_data( 'langs' );
+	$created = 0;
+	$reused  = 0;
+	$map     = array();
+
+	if ( '' === get_option( 'permalink_structure' ) ) {
+		update_option( 'permalink_structure', '/%postname%/' );
+	}
+
+	foreach ( tf_spa_langs() as $lang ) {
+		$parent = 0;
+		foreach ( array_merge( array( 'home' ), array_diff( $pages, array( 'home' ) ) ) as $key ) {
+			$title = isset( $seo[ $lang ][ $key ]['title'] ) ? preg_split( '/\s*[·｜|]\s*/u', $seo[ $lang ][ $key ]['title'] )[0] : $key;
+			if ( 'home' === $key ) {
+				$slug  = ( 'en' === $lang ) ? 'home' : $lang;
+				$title = 'THE FACES · ' . $names[ $lang ];
+				$path  = $slug;
+				$p_id  = 0;
+			} else {
+				$slug = $key;
+				$path = ( 'en' === $lang ) ? $key : $lang . '/' . $key;
+				$p_id = ( 'en' === $lang ) ? 0 : $parent;
+			}
+			$content  = '[thefaces page="' . $key . '" lang="' . $lang . '"]';
+			$existing = get_page_by_path( $path, OBJECT, 'page' );
+			if ( $existing ) {
+				$id = $existing->ID;
+				if ( false === strpos( $existing->post_content, '[thefaces' ) ) {
+					wp_update_post( array( 'ID' => $id, 'post_content' => $content ) );
+				}
+				if ( 'publish' !== $existing->post_status ) {
+					wp_update_post( array( 'ID' => $id, 'post_status' => 'publish' ) );
+				}
+				$reused++;
+			} else {
+				$id = wp_insert_post(
+					array(
+						'post_type'    => 'page',
+						'post_status'  => 'publish',
+						'post_title'   => $title,
+						'post_name'    => $slug,
+						'post_parent'  => $p_id,
+						'post_content' => $content,
+					)
+				);
+				if ( is_wp_error( $id ) || ! $id ) {
+					continue;
+				}
+				$created++;
+			}
+			update_post_meta( $id, '_wp_page_template', 'thefaces-canvas' );
+			if ( 'home' === $key ) {
+				$parent = $id;
+			}
+			$map[ $lang ][ $key ] = $id;
+		}
+	}
+
+	if ( isset( $map['en']['home'] ) ) {
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $map['en']['home'] );
+	}
+	update_option( 'thefaces_spa_pages', $map, false );
+	flush_rewrite_rules();
+	return array( 'created' => $created, 'reused' => $reused );
+}
+
+/** Button handler: Ajustes > THE FACES > "Crear la web". */
+function tf_spa_handle_setup() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'No tienes permisos.' );
+	}
+	check_admin_referer( 'tf_spa_setup' );
+	$r = tf_spa_setup_pages();
+	wp_safe_redirect( admin_url( 'options-general.php?page=thefaces-spa&tf_created=' . (int) $r['created'] . '&tf_reused=' . (int) $r['reused'] ) );
+	exit;
+}
+add_action( 'admin_post_tf_spa_setup', 'tf_spa_handle_setup' );
+
+function tf_spa_setup_button( $label ) {
+	?>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline">
+		<input type="hidden" name="action" value="tf_spa_setup">
+		<?php wp_nonce_field( 'tf_spa_setup' ); ?>
+		<?php submit_button( $label, 'primary', 'submit', false ); ?>
+	</form>
+	<?php
+}
+
+/** Reminder on every admin screen until the pages exist. */
+function tf_spa_admin_notice() {
+	if ( ! current_user_can( 'manage_options' ) || get_option( 'thefaces_spa_pages' ) ) {
+		return;
+	}
+	?>
+	<div class="notice notice-warning">
+		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 9 páginas en los 7 idiomas (63 páginas) y poner la portada como página de inicio.</p>
+		<p><?php tf_spa_setup_button( 'Crear la web de THE FACES' ); ?></p>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'tf_spa_admin_notice' );
+
+/** Result message after setup. */
+function tf_spa_setup_result_notice() {
+	if ( ! isset( $_GET['tf_created'] ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$c = (int) $_GET['tf_created'];
+	$u = isset( $_GET['tf_reused'] ) ? (int) $_GET['tf_reused'] : 0;
+	echo '<div class="notice notice-success"><p><strong>THE FACES Spa:</strong> ' . esc_html( sprintf( 'Páginas creadas: %d. Ya existentes: %d.', $c, $u ) ) . ' <a href="' . esc_url( home_url( '/' ) ) . '" target="_blank">Ver la web ↗</a></p></div>';
+}
+add_action( 'admin_notices', 'tf_spa_setup_result_notice' );
+
 /* ---------- Settings: Ajustes > THE FACES ---------- */
 
 function tf_spa_admin_menu() {
@@ -347,6 +472,9 @@ function tf_spa_settings_page() {
 			</table>
 			<?php submit_button(); ?>
 		</form>
+		<h2>Crear la web</h2>
+		<p>Crea (o completa) las 63 páginas: portada, menú, cinco elementos, Ubud, Sanur, fundadores, certificados, partners y journal en los 7 idiomas, con la plantilla de pantalla completa, y pone la portada en inglés como página de inicio. Las páginas que ya existen no se duplican.</p>
+		<p><?php tf_spa_setup_button( get_option( 'thefaces_spa_pages' ) ? 'Volver a comprobar y completar las páginas' : 'Crear la web de THE FACES' ); ?></p>
 		<h2>Cómo usarlo</h2>
 		<ol>
 			<li>Crea una página, plantilla <strong>THE FACES · pantalla completa</strong>, y escribe <code>[thefaces page="home"]</code>.</li>

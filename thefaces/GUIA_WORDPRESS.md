@@ -15,7 +15,16 @@ Probado en WordPress 6.6 con el tema Twenty Twenty-Four: portada, menú y salone
    - **Direcciones por idioma** (activado): `/ru/`, `/es/`, `/de/`, `/th/`, `/id/`, `/ja/`; inglés sin prefijo.
    - **SEO** (activado): título, descripción, Open Graph y hreflang de cada página. Si usáis Yoast, Rank Math, AIOSEO o SEOPress, el plugin no toca título ni descripción; con Polylang o WPML, ellos ponen el hreflang.
 
-## 2. Crear las páginas
+## 2. Crear la web (un botón)
+Al activar el plugin aparece arriba en el Escritorio el aviso **«THE FACES Spa: la web todavía no tiene páginas»** con el botón **«Crear la web de THE FACES»** (también en Ajustes → THE FACES). Al pulsarlo:
+- crea las 63 páginas (9 páginas × 7 idiomas) con su shortcode y la plantilla de pantalla completa;
+- pone la portada en inglés como página de inicio (Ajustes → Lectura);
+- activa las direcciones bonitas (`/ru/menu/`) si estaban desactivadas.
+Si ya existe alguna página con esa dirección, la reutiliza: se puede pulsar más de una vez sin duplicar nada.
+
+**Actualizar el plugin:** Plugins → Añadir nuevo → Subir plugin → el nuevo `thefaces-spa.zip` → «Reemplazar el actual con el subido».
+
+## 2b. Crear las páginas a mano (opcional)
 Cada página de WordPress lleva **un shortcode** y la plantilla **«THE FACES · pantalla completa»** (Atributos de página → Plantilla). Esa plantilla quita la cabecera y el pie del tema: la web trae los suyos.
 
 | Página en WordPress | Dirección | Contenido |
