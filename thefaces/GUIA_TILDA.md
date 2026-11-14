@@ -29,7 +29,7 @@ tilda/
 | 06 | signatures | Carrusel de 6 tratamientos estrella |
 | 07 | menu-builder | Menú completo (57 servicios, precios en el HTML para Google) + constructor «Tu ritual» → Altegio o WhatsApp |
 | 08 | gallery | Galería en dos filas que se deslizan |
-| 09 | salons | Ubud y Sanur: dirección, reservar, WhatsApp, teléfono, cómo llegar |
+| 09 | salons | Ubud y Sanur: dirección, reservar, WhatsApp, teléfono, cómo llegar (la reserva online va a n831884.alteg.io) |
 | 10 | founders | **Anna y Evgenii Dubinin**: foto grande, historia, cita, línea de tiempo, cifras |
 | 11 | gifts | 4 certificados con bonus |
 | 12 | partners | 4 proyectos, invertir/franquicia, spa en hotel, empleo → thefacespeace.com |
@@ -139,9 +139,11 @@ Probado en la previsualización: las 63 páginas sin errores, con un solo H1, da
 ---
 
 ## 7. Reserva y analítica
-Igual que antes: el cliente elige tratamientos → salón → Altegio (maestro y hora) o WhatsApp con la lista y el total. Eventos GA4 en el dataLayer: `view_item_list`, `add_to_cart`, `remove_from_cart`, `view_cart`, `select_salon`, `begin_checkout`, `generate_lead` (con valor en IDR, salón y método). El aviso de cookies activa Google Consent Mode v2: nada de analítica ni publicidad hasta que el visitante acepta.
+El cliente elige tratamientos y salón en la web y después:
+- **Reserva online:** se abre **tal cual** la página de Altegio https://n831884.alteg.io (la misma para los dos salones). Allí elige ciudad (Ubud, o **Denpasar = Sanur**), salón, maestro y hora. Esta página no se modifica ni se incrusta.
+- **WhatsApp:** mensaje ya escrito con los tratamientos, la duración, el total y el salón. Eventos GA4 en el dataLayer: `view_item_list`, `add_to_cart`, `remove_from_cart`, `view_cart`, `select_salon`, `begin_checkout`, `generate_lead` (con valor en IDR, salón y método). El aviso de cookies activa Google Consent Mode v2: nada de analítica ni publicidad hasta que el visitante acepta.
 
-Pendiente con Altegio: abrir el calendario dentro de la web (widget) con los servicios ya elegidos, y enviar la reserva confirmada como conversión.
+Para medir la reserva confirmada sin tocar la página de Altegio: activar en Altegio su integración con Google Analytics / Meta Pixel (si la cuenta la tiene) o importar las reservas a Google Ads como conversiones offline.
 
 ---
 

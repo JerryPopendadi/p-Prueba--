@@ -444,8 +444,7 @@ def b_footer(ctx):
     <li><a href="tel:{SALONS["ubud"]["tel"].replace(" ", "")}">{SALONS["ubud"]["tel"]}</a></li>
     <li><a href="{E(ctx.url("sanur"))}">The Faces Sanur</a></li>
     <li><a href="tel:{SALONS["sanur"]["tel"].replace(" ", "")}">{SALONS["sanur"]["tel"]}</a></li>
-    <li><a href="{SALONS["ubud"]["online"]}" target="_blank" rel="noopener">{E(ctx.t("ft_online", salon="Ubud"))}</a></li>
-    <li><a href="{SALONS["sanur"]["online"]}" target="_blank" rel="noopener">{E(ctx.t("ft_online", salon="Sanur"))}</a></li>
+    <li><a href="{SALONS["ubud"]["online"]}" target="_blank" rel="noopener">{E(ctx.t("ft_online"))}</a></li>
     <li><a href="mailto:{LINKS["email"]}">{LINKS["email"]}</a></li></ul></div>
    <div><h2>{E(ctx.t("ft_world"))}</h2><ul>
     <li><a href="{LINKS["network"]}" target="_blank" rel="noopener">{E(ctx.t("ft_network"))}</a></li>

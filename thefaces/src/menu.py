@@ -73,7 +73,7 @@ SALONS = {
           "street": "Jl. Raya Lungsiakan, Kedewatan", "locality": "Ubud", "postal": "80571",
           "maps": "https://www.google.com/maps/search/?api=1&query=The+Faces+Spa+Ubud+Jl.+Raya+Lungsiakan",
           "img": "g06-interior.webp", "alt": "sa_ubud_alt"},
- "sanur": {"name": "Sanur", "wa": "6281337709190", "tel": "+62 813 3770 9190", "online": "https://n811764.alteg.io/",
+ "sanur": {"name": "Sanur", "wa": "6281337709190", "tel": "+62 813 3770 9190", "online": "https://n831884.alteg.io/",
            "addr": "Jl. Danau Buyan No. 34a, Sanur, Denpasar Selatan, Bali 80227",
            "street": "Jl. Danau Buyan No. 34a", "locality": "Sanur, Denpasar", "postal": "80227",
            "maps": "https://www.google.com/maps/search/?api=1&query=The+Faces+Spa+Sanur+Jl.+Danau+Buyan+34a",
