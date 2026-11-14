@@ -23,6 +23,8 @@ from content_ui import UI, LANGS, DUR, LANG_NAMES, HTML_LANG, OG_LOCALE, WA, WA_
 from content_rich import SENSES, ELEMENTS, CATS, DESC, FAQ  # noqa: E402
 from content_seo import PAGES  # noqa: E402
 from menu import MENU, SIGNATURES, GIFTS, SALONS, LINKS, GALLERY  # noqa: E402
+from content_waterfall import WF_UI, WF_RITUALS  # noqa: E402
+UI.update(WF_UI)
 
 E = lambda s: html.escape(str(s), quote=True)  # noqa: E731
 LI = {l: i for i, l in enumerate(LANGS)}
@@ -146,7 +148,7 @@ def b_hero(ctx):
   </div>
   <div class="chips"><span>{E(ctx.t("chip_from", p=ctx.price(300000)))}</span><span>Ubud · Sanur</span><span>{E(ctx.t("chip_vegan"))}</span><span>{E(ctx.t("chip_two"))}</span></div>
  </div>
- <div class="side">{ctx.t("hero_side")}</div>
+ <div class="side">Five Elements.<br>Guided by Love.</div>
  <div class="cue" aria-hidden="true"></div>
 </section>'''
 
@@ -369,6 +371,42 @@ def b_partners(ctx):
 </section>'''
 
 
+def b_waterfall(ctx):
+    rows = []
+    for k, r in enumerate(WF_RITUALS):
+        dur = f'<span class="wf-min">{ctx.dur(r["min"])}</span>' if r["min"] else ""
+        if r["steps"]:
+            steps = "".join(f"<li>{E(s)}</li>" for s in ctx.pick(r["steps"]).split(" · "))
+            body = f'<p>{E(ctx.pick(r["line"]))}</p><ul class="wf-steps">{steps}</ul><p class="wf-for"><b>{E(ctx.t("wf_for"))}</b> {E(ctx.pick(r["for"]))}</p>'
+        else:
+            body = f'<p>{E(ctx.pick(r["line"]))}</p><p class="wf-for"><b>{E(ctx.t("wf_soon"))}</b></p>'
+        rows.append(f'<details{" open" if k == 0 else ""}><summary><span class="wf-k">{k + 1:02d} · {r["key"]}</span><span class="wf-n">{E(r["name"])}</span>{dur}</summary><div class="wf-b">{body}</div></details>')
+    notify = "https://wa.me/" + SALONS["ubud"]["wa"] + "?text=Hello!%20Please%20let%20me%20know%20when%20THE%20FACES%20Waterfall%20Spa%20opens."
+    return f'''<section class="wf sec" id="waterfall">
+ <div class="wrap wf-grid">
+  <div class="wf-left">
+   <p class="eyebrow rv"><span class="n">✦</span>{E(ctx.t("wf_label"))}</p>
+   <h2 class="h2 rv d1">{E(ctx.t("wf_h2"))}</h2>
+   <p class="wf-motto rv d2">{E(ctx.t("wf_motto"))}</p>
+   <p class="muted rv d2">{E(ctx.t("wf_intro"))}</p>
+   <div class="wf-imgs">
+    <div class="mask rv a"><img src="{ctx.asset("waterfall-3.webp")}" alt="{E(ctx.t("wf_alt1"))}" loading="lazy" width="768" height="1024"></div>
+    <div class="mask rv d2 b" data-parallax="-0.08"><img src="{ctx.asset("waterfall.webp")}" alt="{E(ctx.t("wf_alt2"))}" loading="lazy"></div>
+   </div>
+  </div>
+  <div class="wf-right">
+   <p class="eyebrow rv">{E(ctx.t("wf_coll"))}</p>
+   <div class="wf-list rv d1">{"".join(rows)}</div>
+   <div class="pctas rv" style="margin-top:40px">
+    <a class="btn darksolid" href="{notify}" target="_blank" rel="noopener">{E(ctx.t("wf_notify"))}</a>
+    <a class="btn dark" href="{LINKS["projects"][2]}" target="_blank" rel="noopener">{E(ctx.t("wf_project"))}</a>
+   </div>
+   <p class="note">{E(ctx.t("wf_note"))}</p>
+  </div>
+ </div>
+</section>'''
+
+
 def b_journal(ctx):
     imgs = ["g03-face-s.webp", "g10-proc-s.webp", "g09-proc-s.webp"]
     posts = "".join(f'<a class="post rv d{k}" href="{E(ctx.url("journal"))}"><div class="ph"><img src="{ctx.asset(imgs[k])}" alt="" loading="lazy"></div><p class="d">{E(ctx.t(f"jo_c{k + 1}"))}</p><h3>{E(ctx.t(f"jo_t{k + 1}"))}</h3></a>' for k in range(3))
@@ -452,7 +490,7 @@ def b_footer(ctx):
     <li><a href="{LINKS["catalogue"]}" target="_blank" rel="noopener">{E(ctx.t("pa_cta2"))}</a></li>
     <li><a href="{E(ctx.url("partners"))}">{E(ctx.t("ft_careers"))}</a></li></ul></div>
   </div>
-  <div class="f-bot"><span>© 2026 THE FACES · {E(ctx.t("ft_copy"))}</span><nav aria-label="Legal">{legal_h}</nav></div>
+  <div class="f-bot"><span>© 2026 THE FACES · Five Elements. Guided by Love.</span><nav aria-label="Legal">{legal_h}</nav></div>
  </div>
  <script type="application/ld+json">{jsonld_business(ctx)}</script>
 </footer>
@@ -485,7 +523,7 @@ def b_pageintro(ctx, page):
 BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosophy, "04-senses": b_senses,
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
-          "13-journal": b_journal, "14-faq": b_faq, "15-footer": b_footer}
+          "13-journal": b_journal, "16-waterfall": b_waterfall, "14-faq": b_faq, "15-footer": b_footer}
 
 
 def wrap(ctx, name, inner):

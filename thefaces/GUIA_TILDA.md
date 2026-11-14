@@ -35,19 +35,20 @@ tilda/
 | 12 | partners | 4 proyectos, invertir/franquicia, spa en hotel, empleo → thefacespeace.com |
 | 13 | journal | 3 artículos del blog |
 | 14 | faq | 7 preguntas + datos estructurados FAQPage |
+| 16 | waterfall | **Próximamente: THE FACES Waterfall Spa** — lema, texto de bienvenida, 2 fotos de la obra y los 6 rituales (Tierra, Agua, Fuego, Aire, Silencio, Amor) desplegables, sin precios; botón «Avísame cuando abra» (WhatsApp). Va después del 12 en la portada y en Partners |
 | 15 | footer | Redes, enlaces a todas las páginas e idiomas, legales, barra inferior móvil, aviso de cookies, datos estructurados del negocio (DaySpa × 2) |
 
 ### Las 9 páginas (en cada idioma)
 | Página | URL | Bloques |
 |---|---|---|
-| Portada | `/` | 01 → 15 completos |
+| Portada | `/` | 01 → 12, 16, 13 → 15 |
 | Menú y precios | `/menu` | header · intro · 07 · 06 · 14 · footer |
 | Cinco elementos y sentidos | `/five-elements` | header · intro · 04 · 05 · 07 · 14 · footer |
 | Ubud | `/ubud` | header · intro · 09 · 07 · 08 · 14 · footer |
 | Sanur | `/sanur` | header · intro · 09 · 07 · 08 · 14 · footer |
 | Fundadores | `/founders` | header · intro · 10 · 03 · 04 · 12 · footer |
 | Certificados | `/gift-certificates` | header · intro · 11 · 06 · 14 · footer |
-| Partners | `/partners` | header · intro · 12 · 10 · footer |
+| Partners | `/partners` | header · intro · 12 · 16 · 10 · footer |
 | Journal (blog) | `/journal` | header · intro · 13 · footer + Tilda Feeds |
 
 URLs por idioma: inglés sin prefijo (`/menu`), el resto con prefijo: `/ru/menu`, `/es/menu`, `/de/menu`, `/th/menu`, `/id/menu`, `/ja/menu`.

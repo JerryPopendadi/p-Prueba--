@@ -2,7 +2,7 @@
 # slug: URL path after the language prefix ("" = home). English slugs in every language.
 # blocks: which blocks compose the page in Tilda.
 PAGES = [
- {"slug": "", "blocks": ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "07-menu-builder", "08-gallery", "09-salons", "10-founders", "11-gifts", "12-partners", "13-journal", "14-faq", "15-footer"],
+ {"slug": "", "blocks": ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "07-menu-builder", "08-gallery", "09-salons", "10-founders", "11-gifts", "12-partners", "16-waterfall", "13-journal", "14-faq", "15-footer"],
   "title": ["The Faces Spa Bali · Face massage & head spa in Ubud, Sanur",
             "The Faces Spa Бали · массаж лица и хэд-спа в Убуде и Сануре",
             "The Faces Spa Bali · Masaje facial y head spa en Ubud y Sanur",
@@ -71,7 +71,7 @@ PAGES = [
            "มอบพิธีกรรมและรับมากกว่า: บัตรของขวัญเริ่มต้น 1,200,000 IDR พร้อมโบนัสสูงสุด 25% ใช้ได้ทั้งอูบุดและซานูร์",
            "Hadiahkan ritual dan dapatkan lebih: voucher mulai IDR 1.200.000 dengan bonus hingga 25%. Berlaku di Ubud dan Sanur.",
            "儀式を贈って、もっと受け取る。1,200,000 IDRから、最大25%のボーナス付き。ウブド・サヌール両店で利用可能。"]},
- {"slug": "partners", "blocks": ["01-header", "12-partners", "10-founders", "15-footer"],
+ {"slug": "partners", "blocks": ["01-header", "12-partners", "16-waterfall", "10-founders", "15-footer"],
   "title": ["Partner with The Faces · Spa franchise & projects in Bali", "Партнёрство с The Faces · франшиза и спа-проекты на Бали", "Partners de The Faces · Franquicia y proyectos de spa en Bali", "Partner von The Faces · Spa-Franchise & Projekte auf Bali", "ร่วมเป็นพันธมิตร The Faces · แฟรนไชส์และโครงการสปาในบาหลี", "Mitra The Faces · Waralaba & proyek spa di Bali", "The Facesとの提携｜バリのスパ・フランチャイズとプロジェクト"],
   "desc": ["Four spa projects in Bali open to partners, franchise and spa-in-hotel formats, and careers at The Faces.",
            "Четыре спа-проекта на Бали для партнёров, франшиза и спа в отелях, а также вакансии в The Faces.",
