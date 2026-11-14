@@ -83,6 +83,7 @@
           c.hidden = !ok; if (ok) shown++;
         });
         cnt.textContent = tpl.replace("{n}", shown); none.hidden = shown > 0;
+        jo.classList.toggle("jo-filtering", !!(q || jcat));
       };
       jin.addEventListener("input", applyJ);
       $$(".jo-chips button", jo).forEach(function (b) {
@@ -93,7 +94,12 @@
           window.dataLayer.push({ event: "journal_filter", journal_category: jcat || "all" });
         });
       });
-      try { var qs = new URLSearchParams(location.search); if (qs.get("q")) jin.value = qs.get("q"); } catch (e) {}
+      try {
+        var qs = new URLSearchParams(location.search);
+        if (qs.get("q")) jin.value = qs.get("q");
+        var qc = qs.get("cat") || (location.hash || "").replace("#cat-", "");
+        if (qc) $$(".jo-chips button", jo).forEach(function (x) { if (x.getAttribute("data-jcat") === qc) { jcat = qc; $$(".jo-chips button", jo).forEach(function (y) { y.classList.toggle("on", y === x); }); } });
+      } catch (e) {}
       applyJ();
     }
 

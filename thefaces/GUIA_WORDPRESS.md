@@ -77,6 +77,12 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Journal**: todas las entradas del idioma, con categorías (Rostro, Head spa, Rituales; las entradas nuevas usan su primera categoría de WordPress) y buscador instantáneo.
 - **Yoast SEO**: el plugin rellena título SEO, meta descripción, frase clave e imagen/títulos para redes en las 153 páginas y 27 artículos, en su idioma. Lo hace al pulsar «Crear la web» y al actualizar el plugin. Si editas un campo a mano en Yoast, se respeta.
 
+## 2h. Idioma del dispositivo y blog (versión 1.5.0)
+- **Idioma**: la web sigue el idioma del dispositivo (ajustes del móvil o del navegador). En la primera página de cada visita lleva a la versión de ese idioma; si el idioma del dispositivo no está entre los 9, se queda en inglés. Si la persona elige otro idioma en el selector, se recuerda y manda siempre. Los buscadores no se redirigen.
+- **Blog**: 12 artículos en cada idioma (108 en total) en 6 categorías: Rostro, Head spa, Rituales, Cinco elementos, Nuestra historia y Novedades. La página del blog muestra un artículo destacado, todas las entradas, las categorías con su número de artículos y el buscador. Cada artículo termina con «Sigue leyendo» (3 artículos relacionados).
+- Las categorías son **categorías reales de WordPress** (una por idioma, p. ej. «Cinco elementos (ES)»); su dirección de WordPress abre el blog de ese idioma ya filtrado.
+- **Escribir un artículo nuevo**: Entradas → Añadir. A la derecha, caja «THE FACES · Idioma del artículo»: elige el idioma (el diseño THE FACES viene marcado). Pon una de las categorías de ese idioma y una imagen destacada.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

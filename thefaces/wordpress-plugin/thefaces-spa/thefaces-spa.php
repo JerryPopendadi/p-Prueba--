@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.4.0
+ * Version:           1.5.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.4.0' );
+define( 'TF_SPA_VERSION', '1.5.0' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -174,10 +174,8 @@ function tf_spa_dynamic_posts( $html, $lang, $limit ) {
 		return $html;
 	}
 	$cards = '';
-	foreach ( $posts as $i => $p ) {
-		$cat    = get_post_meta( $p->ID, '_tf_cat', true );
-		$cards .= '<a class="post rv in d' . ( $i % 3 ) . '" href="' . esc_url( get_permalink( $p ) ) . '"><div class="ph"><img src="' . esc_url( tf_spa_post_image( $p->ID ) ) . '" alt="" loading="lazy"></div>'
-			. '<p class="d">' . esc_html( $cat ? $cat : get_the_date( '', $p ) ) . '</p><h3>' . esc_html( get_the_title( $p ) ) . '</h3><p class="ex">' . esc_html( get_the_excerpt( $p ) ) . '</p></a>';
+	foreach ( $posts as $p ) {
+		$cards .= tf_spa_card( $p, $lang );
 	}
 	return preg_replace( '#<!--tf-posts-->.*?<!--/tf-posts-->#s', '<!--tf-posts-->' . $cards . '<!--/tf-posts-->', $html );
 }
@@ -190,8 +188,14 @@ function tf_spa_post_cat( $post_id, $lang ) {
 		return array( $key, isset( $names[ $lang ][ $key ] ) ? $names[ $lang ][ $key ] : $key );
 	}
 	$cats = get_the_category( $post_id );
-	if ( $cats ) {
-		return array( 'wp-' . $cats[0]->slug, $cats[0]->name );
+	foreach ( (array) $cats as $c ) {
+		if ( 'uncategorized' === $c->slug ) {
+			continue;
+		}
+		if ( preg_match( '/^(face|head|rituals|elements|story|news)(-[a-z]{2})?$/', $c->slug, $m ) ) {
+			return array( $m[1], $c->name );
+		}
+		return array( 'wp-' . $c->slug, $c->name );
 	}
 	return array( '', '' );
 }
@@ -204,28 +208,81 @@ function tf_spa_journal_all( $html, $lang ) {
 	}
 	$cards = '';
 	$chips = array();
-	foreach ( $posts as $p ) {
+	$count = array();
+	foreach ( $posts as $i => $p ) {
 		list( $ck, $cn ) = tf_spa_post_cat( $p->ID, $lang );
 		if ( $ck ) {
 			$chips[ $ck ] = $cn;
+			$count[ $ck ] = isset( $count[ $ck ] ) ? $count[ $ck ] + 1 : 1;
 		}
-		$title  = get_the_title( $p );
-		$ex     = get_the_excerpt( $p );
-		$cards .= '<a class="post" data-cat="' . esc_attr( $ck ) . '" data-text="' . esc_attr( mb_strtolower( $title . ' ' . $ex . ' ' . $cn ) ) . '" href="' . esc_url( get_permalink( $p ) ) . '">'
-			. '<div class="ph"><img src="' . esc_url( tf_spa_post_image( $p->ID ) ) . '" alt="" loading="lazy"></div>'
-			. '<p class="d">' . ( $cn ? '<span class="cat-tag">' . esc_html( $cn ) . '</span> ' : '' ) . esc_html( get_the_date( 'd.m.Y', $p ) ) . '</p>'
-			. '<h3>' . esc_html( $title ) . '</h3><p class="ex">' . esc_html( $ex ) . '</p></a>';
+		$cards .= tf_spa_card( $p, $lang, 0 === $i );
 	}
 	$html = preg_replace( '#<!--tf-posts-all-->.*?<!--/tf-posts-all-->#s', '<!--tf-posts-all-->' . $cards . '<!--/tf-posts-all-->', $html );
-	if ( preg_match( '#<!--tf-chips-->(<button[^>]*>.*?</button>)#s', $html, $m ) ) {
-		$all = $m[1];
-		$btn = '';
-		foreach ( $chips as $k => $n ) {
-			$btn .= '<button type="button" data-jcat="' . esc_attr( $k ) . '">' . esc_html( $n ) . '</button>';
-		}
-		$html = preg_replace( '#<!--tf-chips-->.*?<!--/tf-chips-->#s', '<!--tf-chips-->' . $all . $btn . '<!--/tf-chips-->', $html );
+	$label = '';
+	if ( preg_match( '#<!--tf-chips--><button[^>]*>(.*?)<span>#s', $html, $m ) ) {
+		$label = trim( $m[1] );
 	}
-	return $html;
+	$btn   = '<button type="button" class="on" data-jcat="">' . esc_html( $label ) . ' <span>' . count( $posts ) . '</span></button>';
+	$order = array( 'face', 'head', 'rituals', 'elements', 'story', 'news' );
+	uksort(
+		$chips,
+		function ( $a, $b ) use ( $order ) {
+			$x = array_search( $a, $order, true );
+			$y = array_search( $b, $order, true );
+			return ( false === $x ? 99 : $x ) - ( false === $y ? 99 : $y );
+		}
+	);
+	foreach ( $chips as $k => $n ) {
+		$btn .= '<button type="button" data-jcat="' . esc_attr( $k ) . '">' . esc_html( $n ) . ' <span>' . (int) $count[ $k ] . '</span></button>';
+	}
+	return preg_replace( '#<!--tf-chips-->.*?<!--/tf-chips-->#s', '<!--tf-chips-->' . $btn . '<!--/tf-chips-->', $html );
+}
+
+/** Reading time of a post in minutes. */
+function tf_spa_read_min( $p, $lang ) {
+	$text = wp_strip_all_tags( $p->post_content );
+	$n    = in_array( $lang, array( 'ja', 'th' ), true ) ? mb_strlen( $text ) / 450 : str_word_count( $text ) / 200;
+	if ( ! in_array( $lang, array( 'ja', 'th' ), true ) && $n < 1 ) {
+		$n = count( preg_split( '/\s+/u', trim( $text ) ) ) / 200;
+	}
+	return max( 2, (int) round( $n ) );
+}
+
+/** One article card (same markup as the generated blocks). */
+function tf_spa_card( $p, $lang, $featured = false ) {
+	list( $ck, $cn ) = tf_spa_post_cat( $p->ID, $lang );
+	$title = get_the_title( $p );
+	$ex    = get_the_excerpt( $p );
+	$tpl   = tf_spa_data( 'readmin' );
+	$read  = isset( $tpl[ $lang ] ) ? str_replace( '{n}', tf_spa_read_min( $p, $lang ), $tpl[ $lang ] ) : get_the_date( 'd.m.Y', $p );
+	return '<a class="post' . ( $featured ? ' featured' : '' ) . '" data-cat="' . esc_attr( $ck ) . '" data-text="' . esc_attr( mb_strtolower( $title . ' ' . $ex . ' ' . $cn ) ) . '" href="' . esc_url( get_permalink( $p ) ) . '">'
+		. '<div class="ph"><img src="' . esc_url( tf_spa_post_image( $p->ID ) ) . '" alt="" loading="lazy"></div><div class="tx">'
+		. '<p class="d">' . ( $cn ? '<span class="cat-tag">' . esc_html( $cn ) . '</span> ' : '' ) . esc_html( $read ) . '</p>'
+		. '<h3>' . esc_html( $title ) . '</h3><p class="ex">' . esc_html( $ex ) . '</p></div></a>';
+}
+
+/** Up to 3 related posts: same category first, then the latest of the language. */
+function tf_spa_related( $post, $lang ) {
+	list( $ck ) = tf_spa_post_cat( $post->ID, $lang );
+	$all  = tf_spa_lang_posts( $lang, 60 );
+	$same = array();
+	$rest = array();
+	foreach ( $all as $p ) {
+		if ( $p->ID === $post->ID ) {
+			continue;
+		}
+		list( $k ) = tf_spa_post_cat( $p->ID, $lang );
+		if ( $k && $k === $ck ) {
+			$same[] = $p;
+		} else {
+			$rest[] = $p;
+		}
+	}
+	$out = '';
+	foreach ( array_slice( array_merge( $same, $rest ), 0, 3 ) as $p ) {
+		$out .= tf_spa_card( $p, $lang );
+	}
+	return $out;
 }
 
 /** Permalinks of the same article in every language (posts share the _tf_group meta). */
@@ -270,6 +327,7 @@ function tf_spa_render_post( $post ) {
 			'{{POST_CONTENT}}' => apply_filters( 'the_content', $post->post_content ),
 		)
 	);
+	$body  = preg_replace( '#<!--tf-related-->.*?<!--/tf-related-->#s', '<!--tf-related-->' . tf_spa_related( $post, $lang ) . '<!--/tf-related-->', $body );
 	return tf_spa_patch_lang_links( tf_spa_file( "$lang/pages/journal-01-header" ), $post->ID ) . $body
 		. tf_spa_patch_lang_links( tf_spa_file( "$lang/pages/journal-15-footer" ), $post->ID );
 }
@@ -455,6 +513,63 @@ function tf_spa_language_attributes( $output ) {
 }
 add_filter( 'language_attributes', 'tf_spa_language_attributes' );
 
+/* ---------- Category archives open the journal page of the language, filtered ---------- */
+function tf_spa_category_redirect() {
+	if ( ! is_category() ) {
+		return;
+	}
+	$term = get_queried_object();
+	if ( ! $term || ! preg_match( '/^(face|head|rituals|elements|story|news)(?:-([a-z]{2}))?$/', $term->slug, $m ) ) {
+		return;
+	}
+	$lang = isset( $m[2] ) && $m[2] ? $m[2] : 'en';
+	wp_safe_redirect( add_query_arg( 'cat', $m[1], tf_spa_page_url( 'journal', $lang ) ), 301 );
+	exit;
+}
+add_action( 'template_redirect', 'tf_spa_category_redirect' );
+
+/* ---------- Language of a post: box on the post edit screen ---------- */
+function tf_spa_add_lang_box() {
+	add_meta_box( 'tf_spa_lang', 'THE FACES · Idioma del artículo', 'tf_spa_lang_box', 'post', 'side', 'high' );
+}
+add_action( 'add_meta_boxes', 'tf_spa_add_lang_box' );
+
+function tf_spa_lang_box( $post ) {
+	wp_nonce_field( 'tf_spa_lang_box', 'tf_spa_lang_nonce' );
+	$cur   = get_post_meta( $post->ID, '_tf_lang', true );
+	$names = tf_spa_data( 'langs' );
+	echo '<p><select name="tf_spa_lang" style="width:100%"><option value="">' . esc_html( $names[ tf_spa_opt( 'default_lang' ) ] ) . ' (por defecto)</option>';
+	foreach ( $names as $code => $name ) {
+		echo '<option value="' . esc_attr( $code ) . '"' . selected( $cur, $code, false ) . '>' . esc_html( $name ) . '</option>';
+	}
+	echo '</select></p><p><label><input type="checkbox" name="tf_spa_tpl" value="1"' . checked( 'thefaces-canvas', get_page_template_slug( $post->ID ), false ) . '> Diseño THE FACES</label></p>';
+	echo '<p class="description">El artículo aparece en el Journal de ese idioma. Para la categoría usa las categorías de WordPress.</p>';
+}
+
+function tf_spa_save_lang_box( $post_id ) {
+	if ( ! isset( $_POST['tf_spa_lang_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['tf_spa_lang_nonce'] ) ), 'tf_spa_lang_box' ) || ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+	$lang = isset( $_POST['tf_spa_lang'] ) ? sanitize_key( wp_unslash( $_POST['tf_spa_lang'] ) ) : '';
+	if ( $lang && in_array( $lang, tf_spa_langs(), true ) ) {
+		update_post_meta( $post_id, '_tf_lang', $lang );
+	} else {
+		delete_post_meta( $post_id, '_tf_lang' );
+	}
+	if ( ! empty( $_POST['tf_spa_tpl'] ) ) {
+		update_post_meta( $post_id, '_wp_page_template', 'thefaces-canvas' );
+	}
+}
+add_action( 'save_post_post', 'tf_spa_save_lang_box' );
+
+/** New posts use the THE FACES design by default. */
+function tf_spa_default_post_template( $post_id, $post, $update ) {
+	if ( ! $update && 'post' === $post->post_type && ! get_post_meta( $post_id, '_wp_page_template', true ) ) {
+		update_post_meta( $post_id, '_wp_page_template', 'thefaces-canvas' );
+	}
+}
+add_action( 'wp_insert_post', 'tf_spa_default_post_template', 10, 3 );
+
 /* ---------- Full-width page template (no theme header/footer) ---------- */
 
 function tf_spa_templates( $templates ) {
@@ -541,8 +656,10 @@ function tf_spa_setup_pages() {
 		}
 	}
 
-	// Journal articles in every language.
-	foreach ( tf_spa_data( 'posts' ) as $p ) {
+	// Journal articles in every language (the first article of the list is the newest, so it is featured).
+	$base = time();
+	foreach ( tf_spa_data( 'posts' ) as $idx => $p ) {
+		$date = gmdate( 'Y-m-d H:i:s', $base - $idx * 3600 );
 		foreach ( tf_spa_langs() as $lang ) {
 			if ( ! isset( $p['slug'][ $lang ] ) ) {
 				continue;
@@ -567,11 +684,21 @@ function tf_spa_setup_pages() {
 				}
 				$created++;
 			}
+			wp_update_post( array( 'ID' => $id, 'post_date_gmt' => $date, 'post_date' => get_date_from_gmt( $date ) ) );
 			update_post_meta( $id, '_tf_lang', $lang );
 			update_post_meta( $id, '_tf_group', $p['id'] );
 			update_post_meta( $id, '_tf_img', $p['img'] );
 			update_post_meta( $id, '_tf_cat', $p['cat'][ $lang ] );
 			update_post_meta( $id, '_tf_catkey', $p['catkey'] );
+			$term_slug = 'en' === $lang ? $p['catkey'] : $p['catkey'] . '-' . $lang;
+			$term      = get_term_by( 'slug', $term_slug, 'category' );
+			if ( ! $term ) {
+				$t    = wp_insert_term( $p['catname'][ $lang ] . ( 'en' === $lang ? '' : ' (' . strtoupper( $lang ) . ')' ), 'category', array( 'slug' => $term_slug ) );
+				$term = is_wp_error( $t ) ? null : get_term( $t['term_id'], 'category' );
+			}
+			if ( $term ) {
+				wp_set_post_categories( $id, array( $term->term_id ), false );
+			}
 			update_post_meta( $id, '_wp_page_template', 'thefaces-canvas' );
 		}
 	}
@@ -622,7 +749,7 @@ function tf_spa_admin_notice() {
 	}
 	?>
 	<div class="notice notice-warning">
-		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 17 páginas en los 9 idiomas (153 páginas) y los artículos del Journal (27 entradas) y poner la portada como página de inicio.</p>
+		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 17 páginas en los 9 idiomas (153 páginas) y los artículos del Journal (108 entradas) y poner la portada como página de inicio.</p>
 		<p><?php tf_spa_setup_button( 'Crear la web de THE FACES' ); ?></p>
 	</div>
 	<?php
@@ -765,7 +892,7 @@ function tf_spa_settings_page() {
 			<?php submit_button(); ?>
 		</form>
 		<h2>Crear la web</h2>
-		<p>Crea (o completa) las 153 páginas (portada, menú, masaje facial, head spa, cuidado de la piel, masaje corporal, spa para parejas, cinco elementos, Ubud, Sanur, fundadores, certificados, partners, journal, certificados, privacidad y condiciones en 9 idiomas) y los 27 artículos del Journal (3 artículos × 9 idiomas), con la plantilla de pantalla completa; pone la portada en inglés como página de inicio y pasa a borrador el contenido de ejemplo de WordPress. Lo que ya existe no se duplica.</p>
+		<p>Crea (o completa) las 153 páginas (portada, menú, masaje facial, head spa, cuidado de la piel, masaje corporal, spa para parejas, cinco elementos, Ubud, Sanur, fundadores, certificados, partners, journal, certificados, privacidad y condiciones en 9 idiomas) y los 108 artículos del Journal (12 artículos × 9 idiomas), con la plantilla de pantalla completa; pone la portada en inglés como página de inicio y pasa a borrador el contenido de ejemplo de WordPress. Lo que ya existe no se duplica.</p>
 		<p><?php tf_spa_setup_button( get_option( 'thefaces_spa_pages' ) ? 'Volver a comprobar y completar las páginas' : 'Crear la web de THE FACES' ); ?></p>
 		<h2>Yoast SEO</h2>
 		<p>El plugin rellena en Yoast el título SEO, la meta descripción, la frase clave, y los títulos e imagen para Facebook y X de las páginas y artículos de la web, en su idioma. Se hace al pulsar «Crear la web» y al actualizar el plugin. Si cambias un campo a mano en Yoast, el plugin ya no lo toca.</p>

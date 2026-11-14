@@ -183,3 +183,14 @@ PAGE_TERMS = {"slug": "terms",
           "THE FACES Spa ウブド・サヌールのキャンセル、日時変更、利用規約、ギフト券規約。",
           "Annulation, report, conditions d'utilisation et conditions des cartes cadeaux de THE FACES Spa à Ubud et Sanur.",
           "Скасування, перенесення, умови використання та правила подарункових сертифікатів THE FACES Spa в Убуді та Сануре."]}
+
+BLOG_UI = {
+"jo_cat_elements": ["Five elements", "Пять стихий", "Cinco elementos", "Fünf Elemente", "ธาตุทั้งห้า", "Lima elemen", "五元素", "Cinq éléments", "П'ять стихій"],
+"jo_cat_story": ["Our story", "Наша история", "Nuestra historia", "Unsere Geschichte", "เรื่องราวของเรา", "Kisah kami", "私たちの物語", "Notre histoire", "Наша історія"],
+"jo_cat_news": ["News", "Новости", "Novedades", "Neuigkeiten", "ข่าวสาร", "Kabar", "お知らせ", "Actualités", "Новини"],
+"jo_story_t": ["How The Faces began: the story of Anna and Evgenii Dubinin", "Как появился The Faces: история Анны и Евгения Дубининых", "Cómo nació The Faces: la historia de Anna y Evgenii Dubinin", "Wie The Faces entstand: die Geschichte von Anna und Evgenii Dubinin", "จุดเริ่มต้นของ The Faces: เรื่องราวของแอนนาและเยฟเกนี ดูบินิน", "Awal mula The Faces: kisah Anna dan Evgenii Dubinin", "The Facesのはじまり：アンナとエフゲニー・ドゥビニンの物語", "Comment est né The Faces : l'histoire d'Anna et Evgenii Dubinin", "Як з'явився The Faces: історія Анни та Євгенія Дубініних"],
+"jo_featured": ["Featured", "Главное", "Destacado", "Empfohlen", "แนะนำ", "Pilihan", "注目", "À la une", "Головне"],
+"jo_related": ["Keep reading", "Читайте также", "Sigue leyendo", "Weiterlesen", "อ่านต่อ", "Baca juga", "あわせて読みたい", "À lire aussi", "Читайте також"],
+"jo_read_min": ["{n} min read", "{n} мин чтения", "{n} min de lectura", "{n} Min. Lesezeit", "อ่าน {n} นาที", "{n} menit baca", "{n}分で読めます", "{n} min de lecture", "{n} хв читання"],
+"jo_by_cat": ["Browse by category", "Рубрики", "Explora por categoría", "Nach Kategorie", "เลือกตามหมวดหมู่", "Jelajahi kategori", "カテゴリーから探す", "Parcourir par catégorie", "Рубрики"],
+}

@@ -73,6 +73,8 @@ from content_extra import (EXTRA_UI, JO_CATS, POST_CATKEY, CONTROLLER, PRIVACY, 
                            TERMS, TERMS_HEAD, PAGE_TERMS)
 UI.update(LANDING_UI)
 UI.update(EXTRA_UI)
+from content_extra import BLOG_UI  # noqa: E402
+UI.update(BLOG_UI)
 LANDING = {L["slug"]: L for L in LANDINGS}
 for _P in PAGES:  # certificates after the founders; full journal list on the journal page
     if "10-founders" in _P["blocks"] and "18-certificates" not in _P["blocks"]:
@@ -141,7 +143,7 @@ class Ctx:
 
     def post_slug(self, pid, lang=None):
         lang = lang or self.lang
-        base = next(p[2] for p in POSTS if p[0] == pid)
+        base = ARTICLE[pid]["slug"]
         return base if lang == "en" else f"{base}-{lang}"
 
     def post_url(self, pid, lang=None):
@@ -541,18 +543,125 @@ def b_terms(ctx):
   <div class="menu-cta" style="margin-top:40px"><a class="btn darksolid" {book("terms")}>{E(ctx.t("book_online"))} ↗</a><p>{E(ctx.t("book_note"))}</p></div></div></section>'''
 
 
-def journal_card(ctx, post):
-    pid, img = post[0], post[1]
-    ck = POST_CATKEY[pid]
-    title, ex = ctx.t(post[3]), ctx.pick(EXCERPTS[pid])
-    return (f'<a class="post" data-cat="{ck}" data-text="{E((title + " " + ex).lower())}" href="{E(ctx.post_url(pid))}"><div class="ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></div>'
-            f'<p class="d"><span class="cat-tag">{E(ctx.pick(JO_CATS[ck]))}</span> {E(ctx.t(post[4]).split(" · ")[-1])}</p><h3>{E(title)}</h3><p class="ex">{E(ex)}</p></a>')
+# ------------------------------------------------------------------ journal articles
+
+CAT_LABEL = {"elements": "jo_cat_elements", "story": "jo_cat_story", "news": "jo_cat_news"}
+CAT_ORDER = ["face", "head", "rituals", "elements", "story", "news"]
+
+
+def cat_name(ctx, key):
+    return ctx.pick(JO_CATS[key]) if key in JO_CATS else ctx.t(CAT_LABEL[key])
+
+
+def _art_written(pid, html_list, tkey):
+    return {"title": lambda c: c.t(tkey), "excerpt": lambda c: c.pick(EXCERPTS[pid]), "body": lambda c: c.pick(html_list)}
+
+
+def _art_elements_guide():
+    def body(c):
+        parts = [f"<p>{E(c.pick(P3_INTRO))}</p>"]
+        for e in ELEMENTS:
+            parts.append(f"<h2>{E(c.pick(e['name']))} · {E(c.pick(e['t']))}</h2><p>{E(c.pick(e['when']))}</p>"
+                         f"<p><em>{E(c.t('el_inc'))}:</em> {E(c.pick(e['inc']))}</p>")
+        return "\n".join(parts)
+    return {"title": lambda c: c.t("jo_t3"), "excerpt": lambda c: c.pick(EXCERPTS["p3"]), "body": body}
+
+
+def _art_element(e):
+    item = next(m for m in MENU if m[1] == e["id"])
+
+    def body(c):
+        return (f"<p>{E(c.t('el_intro', p=c.price(item[4])))}</p>"
+                f"<h2>{E(c.t('el_when'))}</h2><p>{E(c.pick(e['when']))}</p>"
+                f"<h2>{E(c.t('el_inc'))}</h2><ul>" + "".join(f"<li>{E(x)}</li>" for x in c.pick(e["inc"]).split(" · ")) + "</ul>"
+                f"<p><em>{E(c.t('about3h'))} · {c.price(item[4])}</em> · Ubud · Sanur</p>"
+                f"<p>{E(c.t('se_intro'))}</p>")
+    return {"title": lambda c: f"{c.pick(e['name'])}: {c.pick(e['t'])}", "excerpt": lambda c: c.pick(e["when"]), "body": body}
+
+
+def _art_senses():
+    def body(c):
+        out = [f"<p>{E(c.t('se_intro'))}</p>"]
+        for x in SENSES:
+            out.append(f"<h2>{E(c.pick(x['name']))} · {E(c.pick(x['line']))}</h2><p>{E(c.pick(x['text']))}</p>")
+        out.append(f"<p>{E(c.t('ph_p1'))}</p>")
+        return "\n".join(out)
+    return {"title": lambda c: c.t("se_h2").rstrip("."), "excerpt": lambda c: c.t("se_intro"), "body": body}
+
+
+def _art_story():
+    def body(c):
+        return (f"<p>{E(c.t('fo_lead'))}</p><p>{E(c.t('fo_p1'))}</p><blockquote>{E(c.t('fo_quote'))}</blockquote>"
+                f"<h2>{E(c.t('ph_h2'))}</h2><p>{E(c.t('ph_lead'))}</p><p>{E(c.t('ph_p1'))}</p>"
+                f"<h2>2013 → Bali</h2><ul><li><strong>2013</strong> · {E(c.t('fo_t1'))}</li><li><strong>+5</strong> · {E(c.t('fo_t2'))}</li><li><strong>Bali</strong> · {E(c.t('fo_t3'))}</li></ul>"
+                f"<h2>{E(c.t('cert_h2'))}</h2><p>{E(c.t('cert_intro'))}</p>")
+    return {"title": lambda c: c.t("jo_story_t"), "excerpt": lambda c: c.t("fo_lead").split(". ")[0] + ".", "body": body}
+
+
+def _art_waterfall():
+    def body(c):
+        out = [f"<p>{E(c.t('wf_intro'))}</p><p><em>{E(c.t('wf_motto'))}</em></p>"]
+        for r in WF_RITUALS:
+            out.append(f"<h2>{r['key'].title()} · {E(r['name'])}</h2><p>{E(c.pick(r['line']))}</p>")
+            if r["steps"]:
+                out.append("<ul>" + "".join(f"<li>{E(x)}</li>" for x in c.pick(r["steps"]).split(" · ")) + "</ul>")
+        out.append(f"<p>{E(c.t('wf_note'))}</p>")
+        return "\n".join(out)
+    return {"title": lambda c: f"{c.t('wf_h2').rstrip('.')}: {c.t('wf_motto')}", "excerpt": lambda c: c.t("wf_intro").split(". ")[0] + ".", "body": body}
+
+
+def _art_gifts():
+    def body(c):
+        rows = "".join(f"<li>{E(c.t('gi_pay', p=c.price(pay)))} → <strong>{c.price(get)}</strong> · {E(c.t('gi_bonus', n=round((get / pay - 1) * 100)))}</li>" for pay, get in GIFTS)
+        return (f"<p>{E(c.t('gi_intro'))}</p><ul>{rows}</ul><h2>{E(c.t('lg_gift'))}</h2>"
+                f"<p>{E(c.pick(TERMS['gift']))}</p><p>{E(c.t('mn_note'))}</p>")
+    return {"title": lambda c: c.t("gi_h2"), "excerpt": lambda c: c.t("gi_intro"), "body": body}
+
+
+def _build_articles():
+    arts = []
+    def add(pid, slug, cat, img, impl):
+        impl.update({"id": pid, "slug": slug, "cat": cat, "img": img})
+        arts.append(impl)
+    add("p1", "myofascial-or-sculptural-face-massage", "face", "g01-face.webp", _art_written("p1", POSTS[0][5], "jo_t1"))
+    add("p2", "shirodhara-hair-spa-ubud", "head", "g10-proc-s.webp", _art_written("p2", POSTS[1][5], "jo_t2"))
+    add("p3", "five-elements-how-to-choose-your-ritual", "rituals", "g09-proc-s.webp", _art_elements_guide())
+    imgs = {"el-air": "g10-proc-s.webp", "el-fire": "sense-sight.webp", "el-water": "g12-proc-s.webp", "el-earth": "g06-interior.webp", "el-love": "g02-face-s.webp"}
+    for e in ELEMENTS:
+        key = e["id"].split("-")[1]
+        add(f"el-{key}", f"element-of-{key}-ritual", "elements", imgs[e["id"]], _art_element(e))
+    add("senses", "five-senses-spa-ritual", "rituals", "sense-hearing.webp", _art_senses())
+    add("story", "the-faces-story-anna-evgenii-dubinin", "story", "founders.webp", _art_story())
+    add("waterfall", "the-faces-waterfall-spa-coming-soon", "news", "waterfall-3.webp", _art_waterfall())
+    add("gifts", "spa-gift-certificates-bali", "news", "g08-interior.webp", _art_gifts())
+    return arts
+
+
+ARTICLES = []
+ARTICLE = {}
+
+
+def read_min(ctx, html_body):
+    text = re.sub(r"<[^>]+>", " ", html_body)
+    n = len(text) / 450 if ctx.lang in ("ja", "th") else len(text.split()) / 200
+    return max(2, round(n))
+
+
+def article_card(ctx, art, k=0, featured=False):
+    title, ex = art["title"](ctx), art["excerpt"](ctx)
+    mins = read_min(ctx, art["body"](ctx))
+    cls = "post" + (" featured" if featured else "")
+    return (f'<a class="{cls}" data-cat="{art["cat"]}" data-text="{E((title + " " + ex + " " + cat_name(ctx, art["cat"])).lower())}" href="{E(ctx.post_url(art["id"]))}">'
+            f'<div class="ph"><img src="{ctx.asset(art["img"])}" alt="" loading="lazy"></div><div class="tx">'
+            f'<p class="d"><span class="cat-tag">{E(cat_name(ctx, art["cat"]))}</span> {E(ctx.t("jo_read_min", n=mins))}</p>'
+            f'<h3>{E(title)}</h3><p class="ex">{E(ex)}</p></div></a>')
 
 
 def b_journal_all(ctx):
-    chips = f'<button type="button" class="on" data-jcat="">{E(ctx.t("jo_all_cat"))}</button>' + "".join(
-        f'<button type="button" data-jcat="{k}">{E(ctx.pick(v))}</button>' for k, v in JO_CATS.items())
-    cards = "".join(journal_card(ctx, p) for p in POSTS)
+    counts = {k: sum(1 for a in ARTICLES if a["cat"] == k) for k in CAT_ORDER}
+    chips = (f'<button type="button" class="on" data-jcat="">{E(ctx.t("jo_all_cat"))} <span>{len(ARTICLES)}</span></button>'
+             + "".join(f'<button type="button" data-jcat="{k}">{E(cat_name(ctx, k))} <span>{counts[k]}</span></button>' for k in CAT_ORDER if counts[k]))
+    cards = "".join(article_card(ctx, a, k, featured=(k == 0)) for k, a in enumerate(ARTICLES))
     h1 = h1_of(ctx.pick(next(P for P in PAGES if P["slug"] == "journal")["title"]))
     return f'''<section class="jo-all" data-count-tpl="{E(ctx.t("jo_count"))}">
  <div class="jo-hero"><div class="wrap">
@@ -561,8 +670,9 @@ def b_journal_all(ctx):
   <div class="jo-tools">
    <label class="jo-search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
     <input type="search" placeholder="{E(ctx.t("jo_search"))}" aria-label="{E(ctx.t("jo_search"))}"></label>
-   <div class="jo-chips"><!--tf-chips-->{chips}<!--/tf-chips--></div>
   </div>
+  <p class="eyebrow jo-bycat">{E(ctx.t("jo_by_cat"))}</p>
+  <div class="jo-chips"><!--tf-chips-->{chips}<!--/tf-chips--></div>
  </div></div>
  <div class="wrap"><p class="jo-count" aria-live="polite"></p>
   <div class="posts jo-grid"><!--tf-posts-all-->{cards}<!--/tf-posts-all--></div>
@@ -684,36 +794,25 @@ def b_waterfall(ctx):
 </section>'''
 
 
-def post_card(ctx, k, post):
-    pid, img, base, tkey, ckey, _ = post
-    return (f'<a class="post rv d{k}" href="{E(ctx.post_url(pid))}"><div class="ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></div>'
-            f'<p class="d">{E(ctx.t(ckey))}</p><h3>{E(ctx.t(tkey))}</h3><p class="ex">{E(ctx.pick(EXCERPTS[pid]))}</p></a>')
-
-
 def b_journal(ctx):
-    posts = "".join(post_card(ctx, k, p) for k, p in enumerate(POSTS))
+    posts = "".join(article_card(ctx, a, k) for k, a in enumerate(ARTICLES[:3]))
     return f'''<section class="sec" id="journal">
  <div class="wrap sec-head">
   <div>{label(ctx, 10, "jo_label")}<h2 class="h2 rv d1">{E(ctx.t("jo_h2"))}</h2></div>
-  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><p class="muted rv d2" style="max-width:420px">{E(ctx.t("jo_intro"))}</p><a class="link rv d2" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_all"))}</a></div>
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><p class="muted rv d2" style="max-width:420px">{E(ctx.t("jo_intro"))}</p><a class="link rv d2" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_all"))} ({len(ARTICLES)})</a></div>
  </div>
  <div class="wrap posts"><!--tf-posts-->{posts}<!--/tf-posts--></div>
 </section>'''
 
 
-def post_body(ctx, post):
-    """Article HTML (h2 + p) for one language."""
-    pid, img, base, tkey, ckey, html_list = post
-    if html_list:
-        return ctx.pick(html_list)
-    parts = [f"<p>{E(ctx.pick(P3_INTRO))}</p>"]
-    for e in ELEMENTS:
-        parts.append(f"<h2>{E(ctx.pick(e['name']))} · {E(ctx.pick(e['t']))}</h2><p>{E(ctx.pick(e['when']))}</p>"
-                     f"<p><em>{E(ctx.t('el_inc'))}:</em> {E(ctx.pick(e['inc']))}</p>")
-    return "\n".join(parts)
+def related_html(ctx, art):
+    same = [a for a in ARTICLES if a["id"] != art["id"] and a["cat"] == art["cat"]]
+    rest = [a for a in ARTICLES if a["id"] != art["id"] and a not in same]
+    pick = (same + rest)[:3]
+    return "".join(article_card(ctx, a, k) for k, a in enumerate(pick))
 
 
-def b_post(ctx, title, cat, excerpt, img_url, body, date=""):
+def b_post(ctx, title, cat, excerpt, img_url, body, date="", related=""):
     """Article page layout (used by the preview and, with placeholders, by WordPress)."""
     return f'''<article class="post-page">
  <header class="post-hero">
@@ -728,6 +827,8 @@ def b_post(ctx, title, cat, excerpt, img_url, body, date=""):
  <div class="wrap post-body">{body}</div>
  <aside class="wrap post-cta"><div><p class="h3">{E(ctx.t("jo_cta_h"))}</p><p class="muted">{E(ctx.t("jo_cta_p"))}</p></div>
   <div class="row"><a class="btn darksolid" {book("article")}>{E(ctx.t("book_cta"))}</a><a class="btn dark" href="{E(ctx.url("menu"))}">{E(ctx.t("nav_menu"))}</a></div></aside>
+ <section class="wrap post-related"><p class="eyebrow">{E(ctx.t("jo_related"))}</p><div class="posts"><!--tf-related-->{related}<!--/tf-related--></div>
+  <p><a class="link" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_all"))}</a></p></section>
 </article>'''
 
 
@@ -850,6 +951,9 @@ def b_pageintro(ctx, page):
 </section>'''
 
 
+ARTICLES[:] = _build_articles()
+ARTICLE.update({a["id"]: a for a in ARTICLES})
+
 BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosophy, "04-senses": b_senses,
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
@@ -959,28 +1063,28 @@ def build_wordpress(css, js, autolang):
             elif page["slug"]:
                 (ld / "pages" / f"{key}-intro.html").write_text(wrap(ctx, "intro", b_pageintro(ctx, page)), encoding="utf-8")
     posts = []
-    for post in POSTS:
-        pid, img = post[0], post[1]
-        rec = {"id": pid, "img": img, "catkey": POST_CATKEY[pid], "catname": {}, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
+    for art in ARTICLES:
+        rec = {"id": art["id"], "img": art["img"], "catkey": art["cat"], "catname": {}, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
         for lang in LANGS:
             c = Ctx(lang, "wp", "journal", site, "", {})
-            rec["slug"][lang] = c.post_slug(pid)
-            rec["title"][lang] = c.t(post[3])
-            rec["cat"][lang] = c.t(post[4])
-            rec["catname"][lang] = c.pick(JO_CATS[POST_CATKEY[pid]])
-            rec["excerpt"][lang] = c.pick(EXCERPTS[pid])
-            rec["html"][lang] = post_body(c, post)
+            rec["slug"][lang] = c.post_slug(art["id"])
+            rec["title"][lang] = art["title"](c)
+            rec["catname"][lang] = cat_name(c, art["cat"])
+            rec["cat"][lang] = cat_name(c, art["cat"]) + " · " + c.t("jo_read_min", n=read_min(c, art["body"](c)))
+            rec["excerpt"][lang] = art["excerpt"](c)
+            rec["html"][lang] = art["body"](c)
         posts.append(rec)
     (plug / "data" / "posts.json").write_text(json.dumps(posts, ensure_ascii=False, indent=1), encoding="utf-8")
     for lang in LANGS:
         c = Ctx(lang, "wp", "journal", site, "", {})
-        shell = b_post(c, "{{POST_TITLE}}", "{{POST_CAT}}", "{{POST_EXCERPT}}", "{{POST_IMG}}", "{{POST_CONTENT}}", "{{POST_DATE}}")
+        shell = b_post(c, "{{POST_TITLE}}", "{{POST_CAT}}", "{{POST_EXCERPT}}", "{{POST_IMG}}", "{{POST_CONTENT}}", "{{POST_DATE}}", "")
         (plug / "blocks" / lang / "post-shell.html").write_text(wrap(c, "post", shell), encoding="utf-8")
     pages = {(p["slug"] or "home"): p["blocks"] for p in PAGES}
     seo = {l: {(p["slug"] or "home"): {"title": p["title"][LI[l]], "desc": p["desc"][LI[l]]} for p in PAGES} for l in LANGS}
     aliases = {n.split("-", 1)[1]: n for n in BLOCKS}
     aliases.update({n: n for n in BLOCKS})
-    (plug / "data" / "jocats.json").write_text(json.dumps({l: {k: v[LI[l]] for k, v in JO_CATS.items()} for l in LANGS}, ensure_ascii=False), encoding="utf-8")
+    (plug / "data" / "readmin.json").write_text(json.dumps({l: UI["jo_read_min"][LI[l]] for l in LANGS}, ensure_ascii=False), encoding="utf-8")
+    (plug / "data" / "jocats.json").write_text(json.dumps({l: {k: cat_name(Ctx(l, "wp", "", site, "", {}), k) for k in CAT_ORDER} for l in LANGS}, ensure_ascii=False), encoding="utf-8")
     for name, obj in (("pages", pages), ("seo", seo), ("blocks", aliases), ("langs", {l: LANG_NAMES[l] for l in LANGS})):
         (plug / "data" / f"{name}.json").write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"WordPress plugin: {plug} ({sum(1 for _ in plug.rglob('*') if _.is_file())} files)")
@@ -1059,20 +1163,21 @@ def main():
 
     # preview: journal article pages
     for lang in LANGS:
-        for post in POSTS:
-            pid = post[0]
+        for art in ARTICLES:
+            pid = art["id"]
             ctx = Ctx(lang, "preview", "journal/" + Ctx(lang, "preview", "", a.site, "", {}).post_slug(pid), a.site, assets_base, assets_map)
             ctx.lang_urls = {l: ctx.post_url(pid, l) for l in LANGS}
-            title = ctx.t(post[3])
+            title, ex, bd = art["title"](ctx), art["excerpt"](ctx), art["body"](ctx)
+            cat = cat_name(ctx, art["cat"]) + " · " + ctx.t("jo_read_min", n=read_min(ctx, bd))
             body = [wrap(ctx, "01-header", b_header(ctx)),
-                    wrap(ctx, "post", b_post(ctx, E(title), E(ctx.t(post[4])), E(ctx.pick(EXCERPTS[pid])), ctx.asset(post[1]), post_body(ctx, post))),
+                    wrap(ctx, "post", b_post(ctx, E(title), E(cat), E(ex), ctx.asset(art["img"]), bd, "", related_html(ctx, art))),
                     wrap(ctx, "15-footer", b_footer(ctx))]
             out = pdir / lang / ctx.slug / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{ctx.post_url(pid, l)}">' for l in LANGS)
             out.write_text(f'''<!doctype html>
 <html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{E(title)} | The Faces</title><meta name="description" content="{E(ctx.pick(EXCERPTS[pid]))}">
+<title>{E(title)} | The Faces</title><meta name="description" content="{E(ex)}">
 {alts}
 <script>{autolang}</script>
 {FONTS}
