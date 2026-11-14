@@ -17,7 +17,7 @@ Probado en WordPress 6.6 con el tema Twenty Twenty-Four: portada, menú y salone
 
 ## 2. Crear la web (un botón)
 Al activar el plugin aparece arriba en el Escritorio el aviso **«THE FACES Spa: la web todavía no tiene páginas»** con el botón **«Crear la web de THE FACES»** (también en Ajustes → THE FACES). Al pulsarlo:
-- crea las 81 páginas (9 páginas × 9 idiomas) con su shortcode y la plantilla de pantalla completa;
+- crea las 126 páginas (14 páginas × 9 idiomas) con su shortcode y la plantilla de pantalla completa;
 - crea los 27 artículos del Journal (3 artículos × 9 idiomas), enlazados entre sí por idioma;
 - pasa a borrador el contenido de ejemplo de WordPress («Hello world!», «Sample page»);
 - pone la portada en inglés como página de inicio (Ajustes → Lectura);
@@ -33,6 +33,11 @@ Cada página de WordPress lleva **un shortcode** y la plantilla **«THE FACES ·
 |---|---|---|
 | Inicio (Ajustes → Lectura → página de inicio) | `/` | `[thefaces page="home"]` |
 | Menu | `/menu/` | `[thefaces page="menu"]` |
+| Face massage | `/face-massage/` | `[thefaces page="face-massage"]` |
+| Head spa | `/head-spa/` | `[thefaces page="head-spa"]` |
+| Skin care | `/skin-care/` | `[thefaces page="skin-care"]` |
+| Body massage | `/body-massage/` | `[thefaces page="body-massage"]` |
+| Couples spa | `/couples-spa/` | `[thefaces page="couples-spa"]` |
 | Five elements | `/five-elements/` | `[thefaces page="five-elements"]` |
 | Ubud | `/ubud/` | `[thefaces page="ubud"]` |
 | Sanur | `/sanur/` | `[thefaces page="sanur"]` |
@@ -54,6 +59,14 @@ En la primera visita, si la persona entra a la versión en inglés y su navegado
 - El botón crea 3 artículos en los 9 idiomas: «Masaje facial miofascial o escultural», «Shirodhara en Ubud» y «Cinco elementos: cómo elegir tu ritual». Cada uno se ve con el diseño de la web (cabecera, foto, texto, caja de reserva, pie) y su selector de idioma lleva a la traducción del mismo artículo.
 - La sección Journal de la portada y la página `/journal/` muestran **las entradas reales** del idioma de la página, las más recientes primero.
 - Para publicar un artículo nuevo: Entradas → Añadir. En «Plantilla» elige «THE FACES · pantalla completa». Para indicar el idioma añade el campo personalizado `_tf_lang` con el código (`es`, `fr`…); sin él cuenta como idioma por defecto (inglés). Para enlazar traducciones entre sí, dales el mismo campo `_tf_group`.
+
+## 2e. Páginas de tratamientos (SEO)
+Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje facial**, **head spa**, **cuidado de la piel**, **masaje corporal** y **spa para parejas**. Cada una tiene titular H1, texto propio, CTA claro arriba («Reservar tratamiento» + «desde IDR…»), los tratamientos de esa familia con precios de Altegio, una caja de reserva al final y enlaces al resto. Aparecen en el desplegable «Tratamientos» del menú, en el menú móvil y en el pie.
+
+## 2f. Pestaña dorada, redes y horarios
+- En ordenador hay una pestaña dorada fija en el lado derecho («Reservar») que lleva a Altegio.
+- Redes: Instagram @thefacesubud y @thefacesspaubud, TikTok @thefaces.bali y LinkedIn (company/the-faces), en el pie, en el menú y en la sección «Sigue nuestros rituales», que muestra los dos perfiles de Instagram como vista previa. Las fotos de esa vista previa son de la web; para mostrar las publicaciones reales hace falta conectar la API de Instagram (Meta) o un plugin de feed.
+- Horarios (de Altegio): Ubud todos los días 10:00–22:00, Sanur 10:00–20:00; también en los datos para Google.
 
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):

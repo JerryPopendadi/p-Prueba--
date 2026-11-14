@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.2.0
+ * Version:           1.3.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.2.0' );
+define( 'TF_SPA_VERSION', '1.3.0' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -121,9 +121,11 @@ function tf_spa_render_page( $key, $lang ) {
 	}
 	$out = '';
 	foreach ( $pages[ $key ] as $block ) {
-		if ( '01-header' === $block ) {
+		if ( 'landing' === $block ) {
+			$out .= tf_spa_file( "$lang/pages/$key-landing" );
+		} elseif ( '01-header' === $block ) {
 			$out .= tf_spa_file( "$lang/pages/$key-01-header" );
-			if ( 'home' !== $key ) {
+			if ( 'home' !== $key && ! in_array( 'landing', $pages[ $key ], true ) ) {
 				$out .= tf_spa_file( "$lang/pages/$key-intro" );
 			}
 		} elseif ( '15-footer' === $block ) {
@@ -567,7 +569,7 @@ function tf_spa_admin_notice() {
 	}
 	?>
 	<div class="notice notice-warning">
-		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 9 páginas en los 9 idiomas (81 páginas) y los artículos del Journal (27 entradas) y poner la portada como página de inicio.</p>
+		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 14 páginas en los 9 idiomas (126 páginas) y los artículos del Journal (27 entradas) y poner la portada como página de inicio.</p>
 		<p><?php tf_spa_setup_button( 'Crear la web de THE FACES' ); ?></p>
 	</div>
 	<?php
@@ -648,7 +650,7 @@ function tf_spa_settings_page() {
 			<?php submit_button(); ?>
 		</form>
 		<h2>Crear la web</h2>
-		<p>Crea (o completa) las 81 páginas (portada, menú, cinco elementos, Ubud, Sanur, fundadores, certificados, partners y journal en 9 idiomas) y los 27 artículos del Journal (3 artículos × 9 idiomas), con la plantilla de pantalla completa; pone la portada en inglés como página de inicio y pasa a borrador el contenido de ejemplo de WordPress. Lo que ya existe no se duplica.</p>
+		<p>Crea (o completa) las 126 páginas (portada, menú, masaje facial, head spa, cuidado de la piel, masaje corporal, spa para parejas, cinco elementos, Ubud, Sanur, fundadores, certificados, partners y journal en 9 idiomas) y los 27 artículos del Journal (3 artículos × 9 idiomas), con la plantilla de pantalla completa; pone la portada en inglés como página de inicio y pasa a borrador el contenido de ejemplo de WordPress. Lo que ya existe no se duplica.</p>
 		<p><?php tf_spa_setup_button( get_option( 'thefaces_spa_pages' ) ? 'Volver a comprobar y completar las páginas' : 'Crear la web de THE FACES' ); ?></p>
 		<h2>Cómo usarlo</h2>
 		<ol>

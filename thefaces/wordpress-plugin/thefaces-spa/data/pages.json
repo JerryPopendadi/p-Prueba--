@@ -8,6 +8,7 @@
   "06-signatures",
   "07-menu-builder",
   "08-gallery",
+  "17-instagram",
   "09-salons",
   "10-founders",
   "11-gifts",
@@ -24,6 +25,46 @@
   "14-faq",
   "15-footer"
  ],
+ "couples-spa": [
+  "01-header",
+  "landing",
+  "06-signatures",
+  "09-salons",
+  "14-faq",
+  "15-footer"
+ ],
+ "body-massage": [
+  "01-header",
+  "landing",
+  "06-signatures",
+  "09-salons",
+  "14-faq",
+  "15-footer"
+ ],
+ "skin-care": [
+  "01-header",
+  "landing",
+  "06-signatures",
+  "09-salons",
+  "14-faq",
+  "15-footer"
+ ],
+ "head-spa": [
+  "01-header",
+  "landing",
+  "06-signatures",
+  "09-salons",
+  "14-faq",
+  "15-footer"
+ ],
+ "face-massage": [
+  "01-header",
+  "landing",
+  "06-signatures",
+  "09-salons",
+  "14-faq",
+  "15-footer"
+ ],
  "five-elements": [
   "01-header",
   "04-senses",
@@ -37,6 +78,7 @@
   "09-salons",
   "07-menu-builder",
   "08-gallery",
+  "17-instagram",
   "14-faq",
   "15-footer"
  ],
@@ -45,6 +87,7 @@
   "09-salons",
   "07-menu-builder",
   "08-gallery",
+  "17-instagram",
   "14-faq",
   "15-footer"
  ],

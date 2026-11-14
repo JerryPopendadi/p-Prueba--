@@ -8,6 +8,26 @@
    "title": "Spa menu & prices · The Faces Ubud and Sanur, Bali",
    "desc": "56 treatments with duration and price in IDR: face massage, head spa, cleansing, body, packages and rituals for couples. Book online."
   },
+  "couples-spa": {
+   "title": "Couples spa in Bali · Rituals for two & honeymoon in Ubud, Sanur",
+   "desc": "Spa rituals for couples in Bali: Element of Love for a couple, Sacred Eternal Love and Sacred Honeymoon in Sanur. Three-hour rituals for two."
+  },
+  "body-massage": {
+   "title": "Body massage in Ubud and Sanur · Reflexology & fire massage | The Faces",
+   "desc": "Full body massage, fire massage, reflexology and lymphatic leg massage in Bali from IDR 300,000. Book online in Ubud or Sanur."
+  },
+  "skin-care": {
+   "title": "Facial cleansing & skin care in Bali · The Faces Ubud, Sanur",
+   "desc": "Professional facial cleansing in Bali: atraumatic, ultrasonic, vacuum and combination cleansing, oxygen pen and cryomassage from IDR 900,000."
+  },
+  "head-spa": {
+   "title": "Head spa in Bali · Shirodhara & vegan hair spa in Ubud, Sanur",
+   "desc": "Vegan head spa, Shirodhara and Ayurvedic head massage in Ubud and Sanur from IDR 750,000. Deep relaxation, better sleep and healthy, shiny hair."
+  },
+  "face-massage": {
+   "title": "Face massage in Bali · Myofascial, sculptural & gua sha | The Faces",
+   "desc": "Hands-on face massage in Ubud and Sanur: myofascial, sculptural, buccal, gua sha and signature techniques from IDR 750,000. Natural lifting without surgery."
+  },
   "five-elements": {
    "title": "Five-element spa rituals in Bali: air, fire, water, earth, love",
    "desc": "Three-hour signature programs for stress, fatigue, detox, grounding and love. Choose by how you feel. IDR 1,800,000 in Ubud and Sanur."
@@ -45,6 +65,26 @@
   "menu": {
    "title": "Меню и цены спа · The Faces Убуд и Санур, Бали",
    "desc": "56 процедур с длительностью и ценой в IDR: массаж лица, хэд-спа, чистки, тело, пакеты и ритуалы для пар. Онлайн-запись."
+  },
+  "couples-spa": {
+   "title": "Спа для пар на Бали · ритуалы для двоих и медовый месяц в Убуде, Сануре",
+   "desc": "Спа-ритуалы для пар на Бали: Element of Love for a couple, Sacred Eternal Love и Sacred Honeymoon в Сануре. Трёхчасовые ритуалы для двоих."
+  },
+  "body-massage": {
+   "title": "Массаж тела в Убуде и Сануре · рефлексотерапия и огненный массаж | The Faces",
+   "desc": "Массаж всего тела, огненный массаж, рефлексотерапия и лимфодренаж ног на Бали от 300 000 IDR. Онлайн-запись в Убуде и Сануре."
+  },
+  "skin-care": {
+   "title": "Чистка лица и уход за кожей на Бали · The Faces Убуд, Санур",
+   "desc": "Профессиональная чистка лица на Бали: атравматическая, ультразвуковая, вакуумная и комбинированная, кислородная ручка и криомассаж от 900 000 IDR."
+  },
+  "head-spa": {
+   "title": "Хэд-спа на Бали · Широдхара и веган хэд-спа в Убуде, Сануре",
+   "desc": "Веганский хэд-спа, Широдхара и аюрведический массаж головы в Убуде и Сануре от 750 000 IDR. Глубокое расслабление, лучший сон и здоровые блестящие волосы."
+  },
+  "face-massage": {
+   "title": "Массаж лица на Бали · миофасциальный, скульптурный, гуаша | The Faces",
+   "desc": "Ручной массаж лица в Убуде и Сануре: миофасциальный, скульптурный, буккальный, гуаша и авторские техники от 750 000 IDR. Естественный лифтинг без хирургии."
   },
   "five-elements": {
    "title": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
@@ -84,6 +124,26 @@
    "title": "Menú y precios del spa · The Faces Ubud y Sanur, Bali",
    "desc": "56 tratamientos con duración y precio en IDR: masaje facial, head spa, limpiezas, cuerpo, paquetes y rituales en pareja. Reserva online."
   },
+  "couples-spa": {
+   "title": "Spa en pareja en Bali · Rituales para dos y luna de miel en Ubud, Sanur",
+   "desc": "Rituales de spa para parejas en Bali: Element of Love for a couple, Sacred Eternal Love y Sacred Honeymoon en Sanur. Rituales de tres horas para dos."
+  },
+  "body-massage": {
+   "title": "Masaje corporal en Ubud y Sanur · Reflexología y masaje de fuego | The Faces",
+   "desc": "Masaje de cuerpo completo, masaje de fuego, reflexología y drenaje linfático de piernas en Bali desde 300.000 IDR. Reserva online en Ubud o Sanur."
+  },
+  "skin-care": {
+   "title": "Limpieza facial y cuidado de la piel en Bali · The Faces Ubud, Sanur",
+   "desc": "Limpieza facial profesional en Bali: atraumática, ultrasónica, por vacío y combinada, oxygen pen y criomasaje desde 900.000 IDR."
+  },
+  "head-spa": {
+   "title": "Head spa en Bali · Shirodhara y head spa vegano en Ubud, Sanur",
+   "desc": "Head spa vegano, Shirodhara y masaje ayurvédico de cabeza en Ubud y Sanur desde 750.000 IDR. Relajación profunda, mejor descanso y cabello sano y brillante."
+  },
+  "face-massage": {
+   "title": "Masaje facial en Bali · Miofascial, escultural y gua sha | The Faces",
+   "desc": "Masaje facial manual en Ubud y Sanur: miofascial, escultural, bucal, gua sha y técnicas de autor desde 750.000 IDR. Lifting natural sin cirugía."
+  },
   "five-elements": {
    "title": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
    "desc": "Programas de autor de tres horas para el estrés, el cansancio, la depuración, el arraigo y el amor. Elige según cómo te sientes. 1.800.000 IDR."
@@ -121,6 +181,26 @@
   "menu": {
    "title": "Spa-Menü & Preise · The Faces Ubud und Sanur, Bali",
    "desc": "56 Behandlungen mit Dauer und Preis in IDR: Gesichtsmassage, Head Spa, Reinigung, Körper, Pakete und Paarrituale. Online buchen."
+  },
+  "couples-spa": {
+   "title": "Spa für Paare auf Bali · Rituale zu zweit & Flitterwochen in Ubud, Sanur",
+   "desc": "Spa-Rituale für Paare auf Bali: Element of Love for a couple, Sacred Eternal Love und Sacred Honeymoon in Sanur. Dreistündige Rituale zu zweit."
+  },
+  "body-massage": {
+   "title": "Körpermassage in Ubud und Sanur · Reflexzonen & Feuermassage | The Faces",
+   "desc": "Ganzkörpermassage, Feuermassage, Reflexzonenmassage und lymphatische Beinmassage auf Bali ab 300.000 IDR. Online buchen in Ubud oder Sanur."
+  },
+  "skin-care": {
+   "title": "Gesichtsreinigung & Hautpflege auf Bali · The Faces Ubud, Sanur",
+   "desc": "Professionelle Gesichtsreinigung auf Bali: atraumatisch, Ultraschall, Vakuum und kombiniert, Oxygen Pen und Kryomassage ab 900.000 IDR."
+  },
+  "head-spa": {
+   "title": "Head Spa auf Bali · Shirodhara & veganes Hair Spa in Ubud, Sanur",
+   "desc": "Veganes Head Spa, Shirodhara und ayurvedische Kopfmassage in Ubud und Sanur ab 750.000 IDR. Tiefe Entspannung, besserer Schlaf, gesundes, glänzendes Haar."
+  },
+  "face-massage": {
+   "title": "Gesichtsmassage auf Bali · Myofaszial, skulpturierend & Gua Sha | The Faces",
+   "desc": "Manuelle Gesichtsmassage in Ubud und Sanur: myofaszial, skulpturierend, bukkal, Gua Sha und Signature-Techniken ab 750.000 IDR. Natürliches Lifting ohne OP."
   },
   "five-elements": {
    "title": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
@@ -160,6 +240,26 @@
    "title": "เมนูและราคาสปา · The Faces อูบุดและซานูร์ บาหลี",
    "desc": "56 ทรีตเมนต์พร้อมเวลาและราคาเป็น IDR: นวดหน้า เฮดสปา ทำความสะอาดผิว ร่างกาย แพ็กเกจ และพิธีกรรมคู่รัก จองออนไลน์ได้เลย"
   },
+  "couples-spa": {
+   "title": "สปาคู่รักในบาหลี · พิธีกรรมสำหรับสองคนและฮันนีมูน อูบุด ซานูร์",
+   "desc": "พิธีกรรมสปาสำหรับคู่รักในบาหลี: Element of Love for a couple, Sacred Eternal Love และ Sacred Honeymoon ที่ซานูร์ พิธีกรรมสามชั่วโมงสำหรับสองคน"
+  },
+  "body-massage": {
+   "title": "นวดตัวที่อูบุดและซานูร์ · กดจุดสะท้อนเท้าและนวดไฟ | The Faces",
+   "desc": "นวดทั้งตัว นวดไฟ กดจุดสะท้อนเท้า และนวดระบายน้ำเหลืองที่ขาในบาหลี เริ่มต้น 300,000 IDR จองออนไลน์ที่อูบุดหรือซานูร์"
+  },
+  "skin-care": {
+   "title": "ทำความสะอาดผิวหน้าและดูแลผิวในบาหลี · The Faces อูบุด ซานูร์",
+   "desc": "ทำความสะอาดผิวหน้าแบบมืออาชีพในบาหลี: แบบอ่อนโยน อัลตราโซนิก สุญญากาศ และแบบผสม ออกซิเจนเพน และไครโอมาสสาจ เริ่มต้น 900,000 IDR"
+  },
+  "head-spa": {
+   "title": "เฮดสปาในบาหลี · ชิโรธาราและแฮร์สปาวีแกน อูบุด ซานูร์",
+   "desc": "เฮดสปาวีแกน ชิโรธารา และนวดศีรษะอายุรเวท ที่อูบุดและซานูร์ เริ่มต้น 750,000 IDR ผ่อนคลายลึก นอนหลับดี ผมสุขภาพดีเงางาม"
+  },
+  "face-massage": {
+   "title": "นวดหน้าในบาหลี · ไมโอฟาสเชียล ปั้นหน้า และกัวซา | The Faces",
+   "desc": "นวดหน้าด้วยมือที่อูบุดและซานูร์: ไมโอฟาสเชียล ปั้นหน้า บัคคัล กัวซา และเทคนิคซิกเนเจอร์ เริ่มต้น 750,000 IDR ยกกระชับตามธรรมชาติโดยไม่ผ่าตัด"
+  },
   "five-elements": {
    "title": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
    "desc": "โปรแกรมซิกเนเจอร์สามชั่วโมง สำหรับความเครียด ความเหนื่อยล้า ดีท็อกซ์ การหยั่งราก และความรัก เลือกตามความรู้สึก 1,800,000 IDR"
@@ -197,6 +297,26 @@
   "menu": {
    "title": "Menu & harga spa · The Faces Ubud dan Sanur, Bali",
    "desc": "56 perawatan dengan durasi dan harga IDR: pijat wajah, head spa, pembersihan, tubuh, paket, dan ritual pasangan. Pesan online."
+  },
+  "couples-spa": {
+   "title": "Spa pasangan di Bali · Ritual berdua & bulan madu di Ubud, Sanur",
+   "desc": "Ritual spa untuk pasangan di Bali: Element of Love for a couple, Sacred Eternal Love, dan Sacred Honeymoon di Sanur. Ritual tiga jam untuk berdua."
+  },
+  "body-massage": {
+   "title": "Pijat tubuh di Ubud dan Sanur · Refleksi & pijat api | The Faces",
+   "desc": "Pijat seluruh tubuh, pijat api, refleksi, dan pijat limfatik kaki di Bali mulai IDR 300.000. Pesan online di Ubud atau Sanur."
+  },
+  "skin-care": {
+   "title": "Pembersihan wajah & perawatan kulit di Bali · The Faces Ubud, Sanur",
+   "desc": "Pembersihan wajah profesional di Bali: atraumatik, ultrasonik, vakum, dan kombinasi, oxygen pen, serta cryomassage mulai IDR 900.000."
+  },
+  "head-spa": {
+   "title": "Head spa di Bali · Shirodhara & hair spa vegan di Ubud, Sanur",
+   "desc": "Head spa vegan, Shirodhara, dan pijat kepala Ayurveda di Ubud dan Sanur mulai IDR 750.000. Relaksasi mendalam, tidur lebih nyenyak, rambut sehat berkilau."
+  },
+  "face-massage": {
+   "title": "Pijat wajah di Bali · Miofasial, sculptural & gua sha | The Faces",
+   "desc": "Pijat wajah manual di Ubud dan Sanur: miofasial, sculptural, bukal, gua sha, dan teknik signature mulai IDR 750.000. Lifting alami tanpa operasi."
   },
   "five-elements": {
    "title": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
@@ -236,6 +356,26 @@
    "title": "スパメニューと料金｜The Faces ウブド・サヌール",
    "desc": "全56メニューの所要時間と料金（IDR）：フェイシャル、ヘッドスパ、クレンジング、ボディ、パッケージ、カップル向けリチュアル。オンライン予約。"
   },
+  "couples-spa": {
+   "title": "バリのカップルスパ｜ふたりのリチュアルとハネムーン（ウブド・サヌール）",
+   "desc": "バリのカップル向けスパリチュアル。Element of Love for a couple、Sacred Eternal Love、サヌール店のSacred Honeymoon。ふたりで過ごす3時間。"
+  },
+  "body-massage": {
+   "title": "ウブド・サヌールのボディマッサージ｜リフレクソロジーとファイアーマッサージ",
+   "desc": "全身マッサージ、ファイアーマッサージ、リフレクソロジー、脚のリンパドレナージュを300,000 IDRから。ウブド・サヌールでオンライン予約。"
+  },
+  "skin-care": {
+   "title": "バリのフェイシャルクレンジングとスキンケア｜The Faces",
+   "desc": "バリのプロのフェイシャルクレンジング。アトラウマティック、超音波、吸引、コンビネーション、オキシジェンペン、クライオマッサージを900,000 IDRから。"
+  },
+  "head-spa": {
+   "title": "バリのヘッドスパ｜シロダーラとヴィーガンヘアスパ（ウブド・サヌール）",
+   "desc": "ウブドとサヌールのヴィーガンヘッドスパ、シロダーラ、アーユルヴェーダヘッドマッサージを750,000 IDRから。深いリラックス、良い眠り、健やかな髪。"
+  },
+  "face-massage": {
+   "title": "バリのフェイシャルマッサージ｜筋膜・彫刻・かっさ | The Faces",
+   "desc": "ウブドとサヌールの手技フェイシャル。筋膜、彫刻、バッカル、かっさ、シグネチャー技術を750,000 IDRから。手術なしの自然なリフトアップ。"
+  },
   "five-elements": {
    "title": "バリの五元素リチュアル｜風・火・水・地・愛",
    "desc": "ストレス、疲労、デトックス、グラウンディング、愛のための3時間のシグネチャープログラム。気分で選べます。1,800,000 IDR。"
@@ -274,6 +414,26 @@
    "title": "Carte & tarifs du spa · The Faces Ubud et Sanur, Bali",
    "desc": "56 soins avec durée et prix en IDR : massage du visage, head spa, nettoyages, corps, forfaits et rituels pour couples. Réservation en ligne."
   },
+  "couples-spa": {
+   "title": "Spa en duo à Bali · Rituels à deux & lune de miel à Ubud, Sanur",
+   "desc": "Rituels spa pour couples à Bali : Element of Love for a couple, Sacred Eternal Love et Sacred Honeymoon à Sanur. Des rituels de trois heures à deux."
+  },
+  "body-massage": {
+   "title": "Massage du corps à Ubud et Sanur · Réflexologie & massage du feu | The Faces",
+   "desc": "Massage complet du corps, massage du feu, réflexologie et drainage lymphatique des jambes à Bali dès 300 000 IDR. Réservation en ligne à Ubud ou Sanur."
+  },
+  "skin-care": {
+   "title": "Nettoyage du visage & soins de la peau à Bali · The Faces Ubud, Sanur",
+   "desc": "Nettoyage du visage professionnel à Bali : atraumatique, ultrasons, aspiration et combiné, oxygen pen et cryomassage dès 900 000 IDR."
+  },
+  "head-spa": {
+   "title": "Head spa à Bali · Shirodhara & hair spa vegan à Ubud, Sanur",
+   "desc": "Head spa vegan, Shirodhara et massage ayurvédique de la tête à Ubud et Sanur dès 750 000 IDR. Détente profonde, meilleur sommeil, cheveux sains et brillants."
+  },
+  "face-massage": {
+   "title": "Massage du visage à Bali · Myofascial, sculptural & gua sha | The Faces",
+   "desc": "Massage du visage manuel à Ubud et Sanur : myofascial, sculptural, buccal, gua sha et techniques signature dès 750 000 IDR. Lifting naturel sans chirurgie."
+  },
   "five-elements": {
    "title": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
    "desc": "Programmes signature de trois heures contre le stress et la fatigue, pour la détox, l'ancrage et l'amour. Choisissez selon votre humeur. 1 800 000 IDR."
@@ -311,6 +471,26 @@
   "menu": {
    "title": "Меню та ціни спа · The Faces Убуд і Санур, Балі",
    "desc": "56 процедур з тривалістю та ціною в IDR: масаж обличчя, хед-спа, чищення, тіло, пакети та ритуали для пар. Онлайн-запис."
+  },
+  "couples-spa": {
+   "title": "Спа для пар на Балі · ритуали для двох і медовий місяць в Убуді, Сануре",
+   "desc": "Спа-ритуали для пар на Балі: Element of Love for a couple, Sacred Eternal Love і Sacred Honeymoon у Сануре. Тригодинні ритуали для двох."
+  },
+  "body-massage": {
+   "title": "Масаж тіла в Убуді та Сануре · рефлексотерапія та вогняний масаж | The Faces",
+   "desc": "Масаж усього тіла, вогняний масаж, рефлексотерапія та лімфодренаж ніг на Балі від 300 000 IDR. Онлайн-запис в Убуді та Сануре."
+  },
+  "skin-care": {
+   "title": "Чистка обличчя та догляд за шкірою на Балі · The Faces Убуд, Санур",
+   "desc": "Професійна чистка обличчя на Балі: атравматична, ультразвукова, вакуумна та комбінована, киснева ручка та кріомасаж від 900 000 IDR."
+  },
+  "head-spa": {
+   "title": "Хед-спа на Балі · Широдхара та веган хед-спа в Убуді, Сануре",
+   "desc": "Веганський хед-спа, Широдхара та аюрведичний масаж голови в Убуді та Сануре від 750 000 IDR. Глибоке розслаблення, кращий сон і здорове блискуче волосся."
+  },
+  "face-massage": {
+   "title": "Масаж обличчя на Балі · міофасціальний, скульптурний, гуаша | The Faces",
+   "desc": "Ручний масаж обличчя в Убуді та Сануре: міофасціальний, скульптурний, букальний, гуаша та авторські техніки від 750 000 IDR. Природний ліфтинг без хірургії."
   },
   "five-elements": {
    "title": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов",

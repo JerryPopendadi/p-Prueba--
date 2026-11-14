@@ -68,6 +68,15 @@ def _merge_fr_uk():
 
 
 _merge_fr_uk()
+from content_landing import LANDINGS, LANDING_UI  # noqa: E402
+UI.update(LANDING_UI)
+LANDING = {L["slug"]: L for L in LANDINGS}
+for _P in PAGES:  # Instagram preview right after the gallery
+    if "08-gallery" in _P["blocks"] and "17-instagram" not in _P["blocks"]:
+        _P["blocks"].insert(_P["blocks"].index("08-gallery") + 1, "17-instagram")
+for _L in LANDINGS:  # one SEO page per treatment family, placed after the menu page
+    PAGES.insert(2, {"slug": _L["slug"], "blocks": ["01-header", "landing", "06-signatures", "09-salons", "14-faq", "15-footer"],
+                     "title": _L["title"], "desc": _L["desc"]})
 # Order of the language switcher (codes in LANGS keep the order of the content lists).
 SWITCH = ["en", "es", "fr", "de", "ru", "uk", "ja", "th", "id"]
 
@@ -162,6 +171,7 @@ ON = ' class="on"'
 
 SOCIAL_SVG = {
  "instagram": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.8a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zm5.2-9.6a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>',
+ "linkedin": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9.5 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21h-4z"/></svg>',
  "tiktok": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0115.5 3h-3.1v12.4a2.6 2.6 0 11-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.8 5.8 0 105 5.7V9.1a7.4 7.4 0 004.3 1.4V7.4a4.3 4.3 0 01-3.3-1.6z"/></svg>',
  "whatsapp": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.4z"/></svg>',
  "email": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5zm9 7L4.5 6.5v1.7L12 14l7.5-5.8V6.5L12 12z"/></svg>',
@@ -171,10 +181,13 @@ SOCIAL_SVG = {
 
 def b_header(ctx):
     T = {"lang": ctx.lang, "ft_thanks": ctx.t("ft_thanks")}
-    nav = [("nav_elements", ctx.url("five-elements")),
-           ("nav_menu", ctx.url("menu")), ("nav_salons", ctx.url("", "salons")), ("nav_founders", ctx.url("founders")),
+    nav = [("nav_menu", ctx.url("menu")), ("nav_salons", ctx.url("", "salons")), ("nav_founders", ctx.url("founders")),
            ("nav_gifts", ctx.url("gift-certificates")), ("nav_partners", ctx.url("partners")), ("nav_journal", ctx.url("journal"))]
     navh = "".join(f'<a href="{E(u)}">{E(ctx.t(k))}</a>' for k, u in nav)
+    drop = "".join(f'<li><a href="{E(ctx.url(L["slug"]))}"><img src="{ctx.asset(L["img"])}" alt="" loading="lazy"><span>{E(ctx.pick(L["nav"]))}</span></a></li>' for L in LANDINGS)
+    drop += f'<li><a href="{E(ctx.url("five-elements"))}"><img src="{ctx.asset("g12-proc-s.webp")}" alt="" loading="lazy"><span>{E(ctx.t("nav_elements"))}</span></a></li>'
+    navh = (f'<div class="dd"><button type="button" aria-haspopup="true">{E(ctx.t("nav_treat"))} <span aria-hidden="true">▾</span></button>'
+            f'<ul class="dd-panel">{drop}</ul></div>') + navh
     page_slug = ctx.slug
     langs = "".join(f'<li><a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a></li>' for l in SWITCH)
     mlangs = "".join(f'<a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in SWITCH)
@@ -194,7 +207,8 @@ def b_header(ctx):
   <div class="mn-side"><div class="mn-img">{mimgs}</div>
    <p class="eyebrow">Five Elements. Guided by Love.</p>
    <a class="btn" {book("mobile-menu")}>{E(ctx.t("book_cta"))}</a>
-   <p class="mn-contact"><a href="https://wa.me/{SALONS["ubud"]["wa"]}">WhatsApp Ubud</a> · <a href="https://wa.me/{SALONS["sanur"]["wa"]}">WhatsApp Sanur</a> · <a href="{LINKS["instagram"]}">Instagram</a></p>
+   <p class="mn-treat">{"".join(f'<a href="{E(ctx.url(L["slug"]))}">{E(ctx.pick(L["nav"]))}</a>' for L in LANDINGS)}</p>
+   <p class="mn-contact"><a href="https://wa.me/{SALONS["ubud"]["wa"]}">WhatsApp Ubud</a> · <a href="https://wa.me/{SALONS["sanur"]["wa"]}">WhatsApp Sanur</a> · <a href="{LINKS["instagram"]}">Instagram</a> · <a href="{LINKS["tiktok"]}">TikTok</a> · <a href="{LINKS["linkedin"]}">LinkedIn</a></p>
   </div>
  </div>'''
     return f'''<script type="application/json" id="tf-i18n">{json.dumps(T, ensure_ascii=False)}</script>
@@ -332,6 +346,78 @@ CAT_IMG = {"face": "g01-face.webp", "air": "g12-proc-s.webp", "head": "g10-proc-
            "body": "sense-touch.webp"}
 
 
+def menu_rows(ctx, items):
+    rows = []
+    for m in items:
+        cat, iid, nm, d, p, only, diff = m
+        badge = f'<span class="badge">{E(ctx.t("only_in", salon=", ".join(SALONS[x]["name"] for x in only)))}</span>' if only else ""
+        ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if iid in DESC else '<p class="ds"></p>'
+        if diff and "sanur" in diff:
+            sd, sp = diff["sanur"]
+            du = (f'Ubud {ctx.dur(d)} · Sanur {ctx.dur(sd)}' if sd != d else ctx.dur(d))
+            pc = (f'<span>Ubud {ctx.price(p)}</span><span>Sanur {ctx.price(sp)}</span>' if sp != p else ctx.price(p))
+        else:
+            du, pc = (ctx.dur(d) if d else ""), ctx.price(p)
+        rows.append(f'<li class="item"><div class="l1"><p class="nm">{E(nm)}{badge}</p><span class="dots" aria-hidden="true"></span>'
+                    f'<span class="pc">{pc}</span></div><div class="l2">{ds}<span class="du">{du}</span></div></li>')
+    return "".join(rows)
+
+
+def b_landing(ctx, page):
+    """SEO landing page: H1, intro, clear booking CTA, the treatments of that family with prices, related pages."""
+    L = LANDING[page["slug"]]
+    h1 = h1_of(ctx.pick(L["title"]))
+    cats = []
+    offers = []
+    for cid, names in CATS:
+        if cid not in L["cats"]:
+            continue
+        items = [m for m in MENU if m[0] == cid]
+        cats.append(f'<h3 class="ld-cat">{E(ctx.pick(names))}</h3><ul class="items">{menu_rows(ctx, items)}</ul>')
+        offers += [{"@type": "Offer", "price": m[4], "priceCurrency": "IDR", "itemOffered": {"@type": "Service", "name": m[2]}} for m in items]
+    explore = [(ctx.pick(o["nav"]), ctx.url(o["slug"])) for o in LANDINGS if o["slug"] != L["slug"]]
+    explore += [(ctx.t("nav_elements"), ctx.url("five-elements")), (ctx.t("nav_menu"), ctx.url("menu")), (ctx.t("nav_gifts"), ctx.url("gift-certificates"))]
+    chips = "".join(f'<a href="{E(u)}">{E(t)}</a>' for t, u in explore)
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "THE FACES", "item": ctx.abs_url("")},
+            {"@type": "ListItem", "position": 2, "name": h1, "item": ctx.abs_url(L["slug"])}]},
+        {"@type": "OfferCatalog", "name": h1, "url": ctx.abs_url(L["slug"]), "itemListElement": offers}]}
+    sid = L["slug"]
+    return f'''<section class="ld-hero">
+ <div class="wrap ld-grid">
+  <div>
+   <nav aria-label="Breadcrumb" class="eyebrow crumbs"><a href="{E(ctx.url())}">THE FACES</a> <span aria-hidden="true">/</span> <span>{E(ctx.pick(L["nav"]))}</span></nav>
+   <h1 class="h2">{E(h1)}</h1>
+   <p class="lead">{E(ctx.pick(L["p1"]))}</p>
+   <div class="ld-cta">
+    <a class="btn" {book("landing-" + sid, ctx.pick(L["nav"]))}>{E(ctx.t("book_cta"))}</a>
+    <span class="ld-from">{E(ctx.t("chip_from", p=ctx.price(L["from"])))}</span>
+   </div>
+   <p class="ld-salons">Ubud · Sanur · Bali</p>
+  </div>
+  <figure class="ld-img mask rv"><img src="{ctx.asset(L["img"])}" alt="{E(h1)}" loading="eager"></figure>
+ </div>
+</section>
+<section class="sec ld-body">
+ <div class="wrap ld-cols">
+  <div class="ld-text">
+   <p class="eyebrow">{E(ctx.t("ld_prices"))}</p>
+   <p class="lead">{E(ctx.pick(L["p2"]))}</p>
+  </div>
+  <div class="ld-menu">{"".join(cats)}</div>
+ </div>
+ <div class="wrap">
+  <div class="menu-cta ld-final">
+   <a class="btn darksolid" {book("landing-bottom-" + sid, ctx.pick(L["nav"]))}>{E(ctx.t("book_online"))} ↗</a>
+   <p>{E(ctx.t("book_note"))}</p>
+  </div>
+  <div class="ld-explore"><p class="eyebrow">{E(ctx.t("ld_explore"))}</p><div class="chips2">{chips}</div></div>
+ </div>
+ <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+</section>'''
+
+
 def b_menu(ctx):
     tabs, cats = [], []
     total = len(CATS)
@@ -340,19 +426,7 @@ def b_menu(ctx):
         name = ctx.pick(names)
         tabs.append(f'<button type="button" role="tab" data-tab="{cid}" aria-selected="{"true" if k == 0 else "false"}" aria-controls="cat-{cid}">'
                     f'<span class="i">{k + 1:02d}</span><span class="t">{E(name)}</span><span class="c">{len(items)}</span></button>')
-        rows = []
-        for m in items:
-            cat, iid, nm, d, p, only, diff = m
-            badge = f'<span class="badge">{E(ctx.t("only_in", salon=", ".join(SALONS[x]["name"] for x in only)))}</span>' if only else ""
-            ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if iid in DESC else '<p class="ds"></p>'
-            if diff and "sanur" in diff:
-                sd, sp = diff["sanur"]
-                du = (f'Ubud {ctx.dur(d)} · Sanur {ctx.dur(sd)}' if sd != d else ctx.dur(d))
-                pc = (f'<span>Ubud {ctx.price(p)}</span><span>Sanur {ctx.price(sp)}</span>' if sp != p else ctx.price(p))
-            else:
-                du, pc = (ctx.dur(d) if d else ""), ctx.price(p)
-            rows.append(f'<li class="item"><div class="l1"><p class="nm">{E(nm)}{badge}</p><span class="dots" aria-hidden="true"></span>'
-                        f'<span class="pc">{pc}</span></div><div class="l2">{ds}<span class="du">{du}</span></div></li>')
+        rows = [menu_rows(ctx, items)]
         cats.append(f'''<div class="cat" id="cat-{cid}" role="tabpanel"{"" if k == 0 else " hidden"}>
     <figure class="cat-head"><img src="{ctx.asset(CAT_IMG[cid])}" alt="" loading="lazy"><figcaption><span class="eyebrow">{k + 1:02d} / {total:02d}</span><h3>{E(name)}</h3></figcaption></figure>
     <ul class="items">{"".join(rows)}</ul>
@@ -382,9 +456,40 @@ def b_gallery(ctx):
     g1, g2 = GALLERY[:7], GALLERY[6:] + GALLERY[:1]
     return f'''<section class="gal sec" aria-labelledby="tf-gal-h">
  <div class="wrap head"><div><p class="eyebrow rv">{E(ctx.t("ga_label"))}</p><h2 class="h2 rv d1" id="tf-gal-h" style="margin-top:18px">{E(ctx.t("ga_h2"))}</h2></div>
-  <a class="link rv d2" href="{LINKS["instagram"]}" target="_blank" rel="noopener">Instagram @thefacesbali ↗</a></div>
+  <a class="link rv d2" href="{LINKS["instagram"]}" target="_blank" rel="noopener">Instagram @thefacesubud ↗</a></div>
  <div class="strip">{row(g1)}</div>
  <div class="strip rev">{row(g2)}</div>
+</section>'''
+
+
+IG_ACCOUNTS = [
+    ("thefacesubud", "The Faces Ubud", "instagram", ["g01-face", "g04-interior", "g09-proc-s", "g02-face-s", "g06-interior", "g12-proc-s", "g10-proc-s", "g08-interior", "dsc"]),
+    ("thefacesspaubud", "The Faces Spa Ubud", "instagram_spa", ["g03-face-s", "waterfall-3", "g11-proc-s", "sense-smell", "g05-interior-s", "founders", "sense-hearing", "g07-interior-s", "waterfall"]),
+]
+
+
+def b_instagram(ctx):
+    cards = []
+    for handle, name, key, imgs in IG_ACCOUNTS:
+        url = LINKS[key]
+        grid = "".join(f'<a href="{url}" target="_blank" rel="noopener" aria-label="@{handle}"><img src="{ctx.asset(i + ".webp")}" alt="" loading="lazy"></a>' for i in imgs)
+        cards.append(f'''<article class="ig-card rv">
+   <header><span class="ig-av"><img src="{ctx.asset("logo-white.png")}" alt=""></span>
+    <div class="ig-id"><b>@{handle}</b><span>{name} · Bali</span></div>
+    <a class="ig-follow" href="{url}" target="_blank" rel="noopener">{E(ctx.t("ig_follow"))}</a></header>
+   <div class="ig-grid">{grid}</div>
+   <a class="ig-more" href="{url}" target="_blank" rel="noopener">instagram.com/{handle} ↗</a>
+  </article>''')
+    return f'''<section class="ig sec" id="instagram">
+ <div class="wrap sec-head">
+  <div><p class="eyebrow rv">Instagram · TikTok · LinkedIn</p><h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("ig_h2"))}</h2></div>
+  <div><p class="muted rv d2">{E(ctx.t("ig_intro"))}</p>
+   <div class="ig-social rv d2">
+    <a href="{LINKS["tiktok"]}" target="_blank" rel="noopener">{SOCIAL_SVG["tiktok"]}<span>TikTok @thefaces.bali</span></a>
+    <a href="{LINKS["linkedin"]}" target="_blank" rel="noopener">{SOCIAL_SVG["linkedin"]}<span>LinkedIn · THE FACES</span></a>
+   </div></div>
+ </div>
+ <div class="wrap ig-cards">{"".join(cards)}</div>
 </section>'''
 
 
@@ -396,6 +501,7 @@ def b_salons(ctx):
    <div class="ph"><img src="{ctx.asset(s["img"])}" alt="{E(ctx.t(s["alt"]))}" loading="lazy"></div>
    <h3><a href="{E(ctx.url(sid))}">{s["name"]}</a></h3>
    <address>{E(s["addr"])}</address>
+   <p class="hours">{E(ctx.t("sa_hours", h=s["opens"] + "–" + s["closes"]))}</p>
    <div class="acts">
     <a class="btn darksolid" {book("salon-" + sid)}>{E(ctx.t("sa_book", salon=s["name"]))}</a>
     <a class="btn dark" href="{wa}" target="_blank" rel="noopener">WhatsApp</a>
@@ -564,7 +670,7 @@ def b_faq(ctx):
 def jsonld_business(ctx):
     org = {"@type": "Organization", "@id": ctx.site + "/#org", "name": "THE FACES", "url": ctx.site + "/",
            "logo": ctx.asset("logo-black.png"), "email": LINKS["email"],
-           "sameAs": [LINKS["instagram"], LINKS["tiktok"], LINKS["network"]],
+           "sameAs": [LINKS["instagram"], LINKS["instagram_spa"], LINKS["tiktok"], LINKS["linkedin"], LINKS["network"]],
            "founder": [{"@type": "Person", "name": "Anna Dubinin"}, {"@type": "Person", "name": "Evgenii Dubinin"}],
            "foundingDate": "2013"}
     spas = []
@@ -575,6 +681,9 @@ def jsonld_business(ctx):
                      "address": {"@type": "PostalAddress", "streetAddress": s["street"], "addressLocality": s["locality"],
                                  "addressRegion": "Bali", "postalCode": s["postal"], "addressCountry": "ID"},
                      "parentOrganization": {"@id": ctx.site + "/#org"}, "hasMap": s["maps"],
+                     "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
+                                                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                                                    "opens": s["opens"], "closes": s["closes"]}],
                      "potentialAction": {"@type": "ReserveAction", "target": s["online"]}})
     return json.dumps({"@context": "https://schema.org", "@graph": [org] + spas}, ensure_ascii=False)
 
@@ -585,7 +694,9 @@ def b_footer(ctx):
     legal_h = "".join(f'<a href="{LINKS["legal"]}{p}">{E(ctx.t(k))}</a>' for k, p in legal)
     flangs = "".join(f'<a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in SWITCH)
     soc = (f'<a href="{LINKS["instagram"]}" target="_blank" rel="noopener" aria-label="Instagram">{SOCIAL_SVG["instagram"]}</a>'
+           f'<a href="{LINKS["instagram_spa"]}" target="_blank" rel="noopener" aria-label="Instagram @thefacesspaubud">{SOCIAL_SVG["instagram"]}</a>'
            f'<a href="{LINKS["tiktok"]}" target="_blank" rel="noopener" aria-label="TikTok">{SOCIAL_SVG["tiktok"]}</a>'
+           f'<a href="{LINKS["linkedin"]}" target="_blank" rel="noopener" aria-label="LinkedIn">{SOCIAL_SVG["linkedin"]}</a>'
            f'<a href="https://wa.me/{SALONS["ubud"]["wa"]}" target="_blank" rel="noopener" aria-label="WhatsApp">{SOCIAL_SVG["whatsapp"]}</a>'
            f'<a href="mailto:{LINKS["email"]}" aria-label="Email">{SOCIAL_SVG["email"]}</a>')
     return f'''<footer class="foot">
@@ -599,6 +710,7 @@ def b_footer(ctx):
     <div class="f-langs">{flangs}</div>
    </div>
    <div><h2>{E(ctx.t("ft_spa"))}</h2><ul>
+    {"".join(f'<li><a href="{E(ctx.url(L["slug"]))}">{E(ctx.pick(L["nav"]))}</a></li>' for L in LANDINGS)}
     <li><a href="{E(ctx.url("five-elements"))}">{E(ctx.t("nav_elements"))}</a></li>
     <li><a href="{E(ctx.url("five-elements", "senses"))}">{E(ctx.t("nav_senses"))}</a></li>
     <li><a href="{E(ctx.url("menu"))}">{E(ctx.t("nav_menu"))}</a></li>
@@ -621,6 +733,7 @@ def b_footer(ctx):
  </div>
  <script type="application/ld+json">{jsonld_business(ctx)}</script>
 </footer>
+<a class="side-book" {book("side-tab")}><span>{E(ctx.t("ld_book_side"))}</span></a>
 <div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar")}>{E(ctx.t("book"))}</a></div>
 <div class="toast" role="status"><span class="msg"></span></div>
 <div class="cookie" role="dialog" aria-label="Cookies"><p>{E(ctx.t("ck_text"))} <a href="{LINKS["legal"]}cookie_policy">{E(ctx.t("ck_more"))}</a></p>
@@ -650,7 +763,7 @@ def b_pageintro(ctx, page):
 BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosophy, "04-senses": b_senses,
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
-          "13-journal": b_journal, "16-waterfall": b_waterfall, "14-faq": b_faq, "15-footer": b_footer}
+          "13-journal": b_journal, "17-instagram": b_instagram, "16-waterfall": b_waterfall, "14-faq": b_faq, "15-footer": b_footer}
 
 
 def wrap(ctx, name, inner):
@@ -750,7 +863,9 @@ def build_wordpress(css, js, autolang):
             key = page["slug"] or "home"
             (ld / "pages" / f"{key}-01-header.html").write_text(wrap(ctx, "01-header", b_header(ctx)), encoding="utf-8")
             (ld / "pages" / f"{key}-15-footer.html").write_text(wrap(ctx, "15-footer", b_footer(ctx)), encoding="utf-8")
-            if page["slug"]:
+            if "landing" in page["blocks"]:
+                (ld / "pages" / f"{key}-landing.html").write_text(wrap(ctx, "landing", b_landing(ctx, page)), encoding="utf-8")
+            elif page["slug"]:
                 (ld / "pages" / f"{key}-intro.html").write_text(wrap(ctx, "intro", b_pageintro(ctx, page)), encoding="utf-8")
     posts = []
     for post in POSTS:
@@ -811,7 +926,10 @@ def main():
             ctx = Ctx(lang, "tilda", page["slug"], a.site, assets_base, assets_map)
             key = page["slug"] or "home"
             (ld / "head" / f"{key}.html").write_text(page_head(ctx, page) + "\n", encoding="utf-8")
-            if page["slug"]:
+            if "landing" in page["blocks"]:
+                (ld / "pages" / f"{key}-landing.html").write_text(
+                    f"<!-- THE FACES · {key} landing page · H1, CTA, treatments and prices · {LANG_NAMES[lang]} · paste right after 01-header -->\n" + wrap(ctx, "landing", b_landing(ctx, page)) + "\n", encoding="utf-8")
+            if page["slug"] and "landing" not in page["blocks"]:
                 (ld / "pages" / f"{key}-intro.html").write_text(
                     f"<!-- THE FACES · {key} page · H1 + breadcrumbs · {LANG_NAMES[lang]} · paste right after 01-header -->\n" + wrap(ctx, "intro", b_pageintro(ctx, page)) + "\n", encoding="utf-8")
                 # header and footer language links point to the same page in other languages
@@ -823,8 +941,11 @@ def main():
             pctx = Ctx(lang, "preview", page["slug"], a.site, assets_base, assets_map)
             body = []
             for name in page["blocks"]:
+                if name == "landing":
+                    body.append(wrap(pctx, "landing", b_landing(pctx, page)))
+                    continue
                 body.append(wrap(pctx, name, BLOCKS[name](pctx)))
-                if name == "01-header" and page["slug"]:
+                if name == "01-header" and page["slug"] and "landing" not in page["blocks"]:
                     body.append(wrap(pctx, "intro", b_pageintro(pctx, page)))
             out = pdir / lang / page["slug"] / "index.html" if page["slug"] else pdir / lang / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -878,8 +999,8 @@ def main():
              f"Dominio: {a.site} · Idiomas: " + ", ".join(f"{LANG_NAMES[l]} (`{'/' if l == 'en' else '/' + l + '/'}`)" for l in LANGS), "",
              "## Páginas y bloques", "", "| Página | URL (EN) | Bloques en Tilda, en orden |", "|---|---|---|"]
     for p in PAGES:
-        blocks = list(p["blocks"])
-        if p["slug"]:
+        blocks = [f"pages/{p['slug']}-landing" if b == "landing" else b for b in p["blocks"]]
+        if p["slug"] and "landing" not in p["blocks"]:
             blocks.insert(1, f"pages/{p['slug']}-intro")
         lines.append(f"| {p['slug'] or 'home'} | `/{p['slug']}` | " + " → ".join(f"`{b}`" for b in blocks) + " |")
     lines += ["", "En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<página>-15-footer.html` (sus enlaces de idioma apuntan a la misma página en otro idioma).", "",

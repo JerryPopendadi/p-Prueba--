@@ -71,12 +71,12 @@ SIGNATURES = [("myo", "tag_face", "g01-face.webp"), ("shiro", "tag_head", "g10-p
 GIFTS = [(1200000, 1500000), (4000000, 5000000), (12750000, 15000000), (25500000, 30000000)]
 
 SALONS = {
- "ubud": {"name": "Ubud", "wa": "6282266999965", "tel": "+62 822 6699 9965", "online": "https://n831884.alteg.io/",
+ "ubud": {"name": "Ubud", "wa": "6282266999965", "tel": "+62 822 6699 9965", "opens": "10:00", "closes": "22:00", "online": "https://n831884.alteg.io/",
           "addr": "Jl. Sanggingan, Jl. Raya Lungsiakan, Kedewatan, Ubud, Bali 80571",
           "street": "Jl. Raya Lungsiakan, Kedewatan", "locality": "Ubud", "postal": "80571",
           "maps": "https://www.google.com/maps/search/?api=1&query=The+Faces+Spa+Ubud+Jl.+Raya+Lungsiakan",
           "img": "g06-interior.webp", "alt": "sa_ubud_alt"},
- "sanur": {"name": "Sanur", "wa": "6281337709190", "tel": "+62 813 3770 9190", "online": "https://n831884.alteg.io/",
+ "sanur": {"name": "Sanur", "wa": "6281337709190", "tel": "+62 813 3770 9190", "opens": "10:00", "closes": "20:00", "online": "https://n831884.alteg.io/",
            "addr": "Jl. Danau Buyan No. 34a, Sanur, Denpasar Selatan, Bali 80227",
            "street": "Jl. Danau Buyan No. 34a", "locality": "Sanur, Denpasar", "postal": "80227",
            "maps": "https://www.google.com/maps/search/?api=1&query=The+Faces+Spa+Sanur+Jl.+Danau+Buyan+34a",
@@ -84,8 +84,10 @@ SALONS = {
 }
 
 LINKS = {
- "instagram": "https://www.instagram.com/thefacesbali",
- "tiktok": "https://www.tiktok.com/@the.faces.ubud",
+ "instagram": "https://www.instagram.com/thefacesubud/",
+ "instagram_spa": "https://www.instagram.com/thefacesspaubud/",
+ "tiktok": "https://www.tiktok.com/@thefaces.bali",
+ "linkedin": "https://www.linkedin.com/company/the-faces",
  "email": "thefacesworld@gmail.com",
  "network": "https://thefacespeace.com",
  "partner_call": "https://thefacespeace.com/#contacto",
