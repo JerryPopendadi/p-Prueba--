@@ -18,7 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 wp_body_open();
 while ( have_posts() ) {
 	the_post();
-	the_content();
+	if ( is_singular( 'post' ) && function_exists( 'tf_spa_render_post' ) ) {
+		echo tf_spa_render_post( get_post() ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts.
+	} else {
+		the_content();
+	}
 }
 wp_footer();
 ?>

@@ -50,6 +50,10 @@
       burger.addEventListener("click", function () { mnav.classList.add("open"); });
       $(".mnav .close").addEventListener("click", function () { mnav.classList.remove("open"); });
       $$(".mnav a").forEach(function (a) { a.addEventListener("click", function () { mnav.classList.remove("open"); }); });
+      var mimgs = $$(".mn-img img");
+      $$(".mn-links a").forEach(function (a, i) {
+        a.addEventListener("mouseenter", function () { mimgs.forEach(function (im, k) { im.classList.toggle("on", k === i); }); });
+      });
     }
     var snd = $(".sound"), vid = $(".hero video");
     if (snd && vid) snd.addEventListener("click", function () { vid.muted = !vid.muted; snd.textContent = vid.muted ? snd.getAttribute("data-off") : snd.getAttribute("data-on"); });

@@ -1,15 +1,15 @@
 === THE FACES Spa ===
 Requires at least: 5.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.2.0
 License: GPL-2.0-or-later
 
-Web de THE FACES Spa (Ubud y Sanur, Bali) en 7 idiomas como plugin de WordPress.
+Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas como plugin de WordPress, con idioma automático según el navegador y blog (Journal) creado automáticamente.
 
 == Descripción ==
 Portada con vídeo, cinco sentidos, cinco elementos, tratamientos estrella, menú completo con los precios de Altegio,
 galería en movimiento, salones, fundadores, certificados regalo, partners, Próximamente Waterfall Spa, blog y preguntas.
-Idiomas: English, Русский, Español, Deutsch, ไทย, Bahasa Indonesia, 日本語.
+Idiomas: English, Español, Français, Deutsch, Русский, Українська, 日本語, ไทย, Bahasa Indonesia.
 Todos los botones «Reservar» abren https://n831884.alteg.io.
 
 == Instalación ==

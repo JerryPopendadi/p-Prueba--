@@ -24,11 +24,56 @@ from content_rich import SENSES, ELEMENTS, CATS, DESC, FAQ  # noqa: E402
 from content_seo import PAGES  # noqa: E402
 from menu import MENU, SIGNATURES, GIFTS, SALONS, LINKS, GALLERY, ALTEGIO  # noqa: E402
 from content_waterfall import WF_UI, WF_RITUALS  # noqa: E402
+from content_posts import POSTS, P3_INTRO, EXCERPTS  # noqa: E402
 UI.update(WF_UI)
+from content_fr_uk import (UI_X, UI_ALL, SENSES_X, ELEMENTS_X, CATS_X, DESC_X, FAQ_X, PAGES_X, WF_X,  # noqa: E402
+                           DUR_X, LANG_NAMES_X, OG_X)
+
+
+def _merge_fr_uk():
+    """Append French and Ukrainian to every list (lists keep the order of LANGS)."""
+    LANGS.extend(["fr", "uk"])
+    missing = [k for k in UI if k not in UI_X and k not in UI_ALL]
+    assert not missing, f"missing fr/uk for: {missing}"
+    for k, v in UI.items():
+        if k in UI_X:
+            v.extend(UI_X[k])
+    UI.update(UI_ALL)
+    for s in SENSES:
+        for f in ("name", "line", "text"):
+            s[f] = s[f] + SENSES_X[s["id"]][f]
+    for e in ELEMENTS:
+        for f in ("name", "t", "when", "inc"):
+            e[f] = e[f] + ELEMENTS_X[e["id"]][f]
+    CATS[:] = [(cid, names + CATS_X[cid]) for cid, names in CATS]
+    for k in DESC:
+        DESC[k] = DESC[k] + DESC_X[k]
+    FAQ[:] = [(q + FAQ_X[i][0], a + FAQ_X[i][1]) for i, (q, a) in enumerate(FAQ)]
+    for p in PAGES:
+        p["title"] = p["title"] + PAGES_X[p["slug"]]["title"]
+        p["desc"] = p["desc"] + PAGES_X[p["slug"]]["desc"]
+    for r in WF_RITUALS:
+        x = WF_X[r["key"]]
+        r["line"] = r["line"] + x["line"]
+        if r["steps"]:
+            r["steps"] = r["steps"] + x["steps"]
+            r["for"] = r["for"] + x["for"]
+    DUR.update(DUR_X)
+    LANG_NAMES.update(LANG_NAMES_X)
+    HTML_LANG.update({"fr": "fr", "uk": "uk"})
+    OG_LOCALE.update(OG_X)
+    n = len(LANGS)
+    bad = [k for k, v in UI.items() if len(v) != n]
+    assert not bad, f"wrong length: {bad}"
+
+
+_merge_fr_uk()
+# Order of the language switcher (codes in LANGS keep the order of the content lists).
+SWITCH = ["en", "es", "fr", "de", "ru", "uk", "ja", "th", "id"]
 
 E = lambda s: html.escape(str(s), quote=True)  # noqa: E731
 LI = {l: i for i, l in enumerate(LANGS)}
-GROUP = {"en": ",", "th": ",", "ja": ",", "ru": " ", "es": ".", "de": ".", "id": "."}
+GROUP = {"en": ",", "th": ",", "ja": ",", "ru": " ", "uk": " ", "fr": " ", "es": ".", "de": ".", "id": "."}
 
 
 class Ctx:
@@ -36,6 +81,10 @@ class Ctx:
         self.lang, self.mode, self.slug, self.site = lang, mode, slug, site
         self.assets_base, self.assets_map = assets_base, assets_map
         self.i = LI[lang]
+        self.lang_urls = {}
+
+    def lang_url(self, lang):
+        return self.lang_urls.get(lang) or self.url(self.slug, lang=lang)
 
     def t(self, key, **kw):
         s = UI[key][self.i]
@@ -66,8 +115,21 @@ class Ctx:
             return "{{TF_ASSETS}}" + name
         return self.assets_map.get(name) or self.assets_base.rstrip("/") + "/" + name
 
-    def depth(self):  # preview/<lang>/<slug>/index.html -> 3 (or 2 for home)
-        return 3 if self.slug else 2
+    def depth(self):  # preview/<lang>/<slug>/index.html -> 3 (or 2 for home); nested slugs add levels
+        return 2 + (len(self.slug.split("/")) if self.slug else 0)
+
+    def post_slug(self, pid, lang=None):
+        lang = lang or self.lang
+        base = next(p[2] for p in POSTS if p[0] == pid)
+        return base if lang == "en" else f"{base}-{lang}"
+
+    def post_url(self, pid, lang=None):
+        lang = lang or self.lang
+        if self.mode == "wp":
+            return "{{TF_HOME}}/" + self.post_slug(pid, lang) + "/"
+        if self.mode == "preview":
+            return self.url("journal/" + self.post_slug(pid, lang), lang=lang)
+        return self.url("journal", lang=lang)
 
     def url(self, slug="", anchor="", lang=None):
         lang = lang or self.lang
@@ -114,10 +176,27 @@ def b_header(ctx):
            ("nav_gifts", ctx.url("gift-certificates")), ("nav_partners", ctx.url("partners")), ("nav_journal", ctx.url("journal"))]
     navh = "".join(f'<a href="{E(u)}">{E(ctx.t(k))}</a>' for k, u in nav)
     page_slug = ctx.slug
-    langs = "".join(f'<li><a href="{E(ctx.url(page_slug, lang=l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a></li>' for l in LANGS)
-    mlangs = "".join(f'<a href="{E(ctx.url(page_slug, lang=l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in LANGS)
-    mnav = (f'<a href="{E(ctx.url("", "philosophy"))}">{E(ctx.t("nav_philosophy"))}</a>'
-            f'<a href="{E(ctx.url("five-elements", "senses"))}">{E(ctx.t("nav_senses"))}</a>' + navh)
+    langs = "".join(f'<li><a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a></li>' for l in SWITCH)
+    mlangs = "".join(f'<a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in SWITCH)
+    items = [("nav_philosophy", ctx.url("", "philosophy"), "g04-interior.webp"),
+             ("nav_senses", ctx.url("five-elements", "senses"), "sense-hearing.webp"),
+             ("nav_elements", ctx.url("five-elements"), "g12-proc-s.webp"),
+             ("nav_menu", ctx.url("menu"), "g01-face.webp"),
+             ("nav_salons", ctx.url("", "salons"), "g06-interior.webp"),
+             ("nav_founders", ctx.url("founders"), "founders.webp"),
+             ("nav_gifts", ctx.url("gift-certificates"), "g08-interior.webp"),
+             ("nav_partners", ctx.url("partners"), "waterfall-3.webp"),
+             ("nav_journal", ctx.url("journal"), "g10-proc-s.webp")]
+    mlinks = "".join(f'<li><a href="{E(u)}" data-img="{k}"><span class="i">{n + 1:02d}</span>{E(ctx.t(key))}</a></li>' for n, (key, u, k) in enumerate(items))
+    mimgs = "".join(f'<img src="{ctx.asset(img)}" alt="" loading="lazy" data-for="{n}"{ON if n == 0 else ""}>' for n, (key, u, img) in enumerate(items))
+    mnav = f'''<div class="mn-grid">
+  <ol class="mn-links">{mlinks}</ol>
+  <div class="mn-side"><div class="mn-img">{mimgs}</div>
+   <p class="eyebrow">Five Elements. Guided by Love.</p>
+   <a class="btn" {book("mobile-menu")}>{E(ctx.t("book_cta"))}</a>
+   <p class="mn-contact"><a href="https://wa.me/{SALONS["ubud"]["wa"]}">WhatsApp Ubud</a> · <a href="https://wa.me/{SALONS["sanur"]["wa"]}">WhatsApp Sanur</a> · <a href="{LINKS["instagram"]}">Instagram</a></p>
+  </div>
+ </div>'''
     return f'''<script type="application/json" id="tf-i18n">{json.dumps(T, ensure_ascii=False)}</script>
 <header class="top">
  <div class="bar">
@@ -129,7 +208,7 @@ def b_header(ctx):
  </div>
 </header>
 <div class="mnav" role="dialog" aria-label="{E(ctx.t("open_menu"))}">
- <button type="button" class="close" aria-label="{E(ctx.t("close"))}">×</button>
+ <div class="mn-top"><img src="{ctx.asset("logo-white.png")}" alt="THE FACES" width="600" height="338"><button type="button" class="close" aria-label="{E(ctx.t("close"))}">×</button></div>
  {mnav}
  <div class="langs">{mlangs}</div>
 </div>'''
@@ -248,37 +327,51 @@ def price_line(ctx, it):
     return base
 
 
+CAT_IMG = {"face": "g01-face.webp", "air": "g12-proc-s.webp", "head": "g10-proc-s.webp", "skin": "g11-proc-s.webp",
+           "prog": "sense-hearing.webp", "men": "g09-proc-s.webp", "pack": "g04-interior.webp", "two": "g02-face-s.webp",
+           "body": "sense-touch.webp"}
+
+
 def b_menu(ctx):
     tabs, cats = [], []
+    total = len(CATS)
     for k, (cid, names) in enumerate(CATS):
         items = [m for m in MENU if m[0] == cid]
-        tabs.append(f'<button type="button" role="tab" data-tab="{cid}" aria-selected="{"true" if k == 0 else "false"}" aria-controls="cat-{cid}">{E(ctx.pick(names))}<span>{len(items)}</span></button>')
+        name = ctx.pick(names)
+        tabs.append(f'<button type="button" role="tab" data-tab="{cid}" aria-selected="{"true" if k == 0 else "false"}" aria-controls="cat-{cid}">'
+                    f'<span class="i">{k + 1:02d}</span><span class="t">{E(name)}</span><span class="c">{len(items)}</span></button>')
         rows = []
         for m in items:
-            cat, iid, name, d, p, only, diff = m
+            cat, iid, nm, d, p, only, diff = m
             badge = f'<span class="badge">{E(ctx.t("only_in", salon=", ".join(SALONS[x]["name"] for x in only)))}</span>' if only else ""
-            ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if iid in DESC else ""
+            ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if iid in DESC else '<p class="ds"></p>'
             if diff and "sanur" in diff:
                 sd, sp = diff["sanur"]
-                du = (f'Ubud {ctx.dur(d)}<br>Sanur {ctx.dur(sd)}' if sd != d else ctx.dur(d))
-                pc = (f'Ubud {ctx.price(p)}<br>Sanur {ctx.price(sp)}' if sp != p else ctx.price(p))
+                du = (f'Ubud {ctx.dur(d)} · Sanur {ctx.dur(sd)}' if sd != d else ctx.dur(d))
+                pc = (f'<span>Ubud {ctx.price(p)}</span><span>Sanur {ctx.price(sp)}</span>' if sp != p else ctx.price(p))
             else:
-                du, pc = (ctx.dur(d) if d else "—"), ctx.price(p)
-            rows.append(f'<li class="item"><div><p class="nm">{E(name)}{badge}</p>{ds}</div><span class="du">{du}</span><span class="pc">{pc}</span></li>')
-        cats.append(f'<div class="cat" id="cat-{cid}" role="tabpanel"{"" if k == 0 else " hidden"}><h3>{E(ctx.pick(names))}</h3><ul class="items">{"".join(rows)}</ul></div>')
+                du, pc = (ctx.dur(d) if d else ""), ctx.price(p)
+            rows.append(f'<li class="item"><div class="l1"><p class="nm">{E(nm)}{badge}</p><span class="dots" aria-hidden="true"></span>'
+                        f'<span class="pc">{pc}</span></div><div class="l2">{ds}<span class="du">{du}</span></div></li>')
+        cats.append(f'''<div class="cat" id="cat-{cid}" role="tabpanel"{"" if k == 0 else " hidden"}>
+    <figure class="cat-head"><img src="{ctx.asset(CAT_IMG[cid])}" alt="" loading="lazy"><figcaption><span class="eyebrow">{k + 1:02d} / {total:02d}</span><h3>{E(name)}</h3></figcaption></figure>
+    <ul class="items">{"".join(rows)}</ul>
+   </div>''')
     return f'''<section class="menu-sec sec" id="menu">
  <div class="wrap sec-head">
   <div>{label(ctx, 5, "mn_label")}<h2 class="h2 rv d1">{E(ctx.t("mn_h2"))}</h2></div>
   <p class="muted rv d2">{E(ctx.t("mn_intro"))}</p>
  </div>
- <div class="wrap">
-  <div class="tabs" role="tablist">{"".join(tabs)}</div>
-  {"".join(cats)}
-  <div class="menu-cta">
-   <a class="btn darksolid" {book("menu")}>{E(ctx.t("book_online"))} ↗</a>
-   <p>{E(ctx.t("book_note"))}</p>
+ <div class="wrap mn-layout">
+  <div class="mn-cats tabs" role="tablist">{"".join(tabs)}</div>
+  <div class="mn-panels">
+   {"".join(cats)}
+   <div class="menu-cta">
+    <a class="btn darksolid" {book("menu")}>{E(ctx.t("book_online"))} ↗</a>
+    <p>{E(ctx.t("book_note"))}</p>
+   </div>
+   <p class="note">{E(ctx.t("mn_note"))}</p>
   </div>
-  <p class="note">{E(ctx.t("mn_note"))}</p>
  </div>
 </section>'''
 
@@ -407,16 +500,51 @@ def b_waterfall(ctx):
 </section>'''
 
 
+def post_card(ctx, k, post):
+    pid, img, base, tkey, ckey, _ = post
+    return (f'<a class="post rv d{k}" href="{E(ctx.post_url(pid))}"><div class="ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></div>'
+            f'<p class="d">{E(ctx.t(ckey))}</p><h3>{E(ctx.t(tkey))}</h3><p class="ex">{E(ctx.pick(EXCERPTS[pid]))}</p></a>')
+
+
 def b_journal(ctx):
-    imgs = ["g03-face-s.webp", "g10-proc-s.webp", "g09-proc-s.webp"]
-    posts = "".join(f'<a class="post rv d{k}" href="{E(ctx.url("journal"))}"><div class="ph"><img src="{ctx.asset(imgs[k])}" alt="" loading="lazy"></div><p class="d">{E(ctx.t(f"jo_c{k + 1}"))}</p><h3>{E(ctx.t(f"jo_t{k + 1}"))}</h3></a>' for k in range(3))
+    posts = "".join(post_card(ctx, k, p) for k, p in enumerate(POSTS))
     return f'''<section class="sec" id="journal">
  <div class="wrap sec-head">
   <div>{label(ctx, 10, "jo_label")}<h2 class="h2 rv d1">{E(ctx.t("jo_h2"))}</h2></div>
   <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><p class="muted rv d2" style="max-width:420px">{E(ctx.t("jo_intro"))}</p><a class="link rv d2" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_all"))}</a></div>
  </div>
- <div class="wrap posts">{posts}</div>
+ <div class="wrap posts"><!--tf-posts-->{posts}<!--/tf-posts--></div>
 </section>'''
+
+
+def post_body(ctx, post):
+    """Article HTML (h2 + p) for one language."""
+    pid, img, base, tkey, ckey, html_list = post
+    if html_list:
+        return ctx.pick(html_list)
+    parts = [f"<p>{E(ctx.pick(P3_INTRO))}</p>"]
+    for e in ELEMENTS:
+        parts.append(f"<h2>{E(ctx.pick(e['name']))} · {E(ctx.pick(e['t']))}</h2><p>{E(ctx.pick(e['when']))}</p>"
+                     f"<p><em>{E(ctx.t('el_inc'))}:</em> {E(ctx.pick(e['inc']))}</p>")
+    return "\n".join(parts)
+
+
+def b_post(ctx, title, cat, excerpt, img_url, body, date=""):
+    """Article page layout (used by the preview and, with placeholders, by WordPress)."""
+    return f'''<article class="post-page">
+ <header class="post-hero">
+  <div class="wrap">
+   <a class="eyebrow back" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_back"))}</a>
+   <p class="eyebrow cat">{cat}{(" · " + date) if date else ""}</p>
+   <h1 class="h2">{title}</h1>
+   <p class="lead">{excerpt}</p>
+  </div>
+  <figure class="post-img mask in"><img src="{img_url}" alt=""></figure>
+ </header>
+ <div class="wrap post-body">{body}</div>
+ <aside class="wrap post-cta"><div><p class="h3">{E(ctx.t("jo_cta_h"))}</p><p class="muted">{E(ctx.t("jo_cta_p"))}</p></div>
+  <div class="row"><a class="btn darksolid" {book("article")}>{E(ctx.t("book_cta"))}</a><a class="btn dark" href="{E(ctx.url("menu"))}">{E(ctx.t("nav_menu"))}</a></div></aside>
+</article>'''
 
 
 def b_faq(ctx):
@@ -455,7 +583,7 @@ def b_footer(ctx):
     legal = [("lg_cancel", "cancellation_policy"), ("lg_resched", "rescheduling_policy"), ("lg_privacy", "privacy_policy"),
              ("lg_cookies", "cookie_policy"), ("lg_terms", "terms_of_use"), ("lg_gift", "the_faces_gift_certificate_terms")]
     legal_h = "".join(f'<a href="{LINKS["legal"]}{p}">{E(ctx.t(k))}</a>' for k, p in legal)
-    flangs = "".join(f'<a href="{E(ctx.url(ctx.slug, lang=l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in LANGS)
+    flangs = "".join(f'<a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in SWITCH)
     soc = (f'<a href="{LINKS["instagram"]}" target="_blank" rel="noopener" aria-label="Instagram">{SOCIAL_SVG["instagram"]}</a>'
            f'<a href="{LINKS["tiktok"]}" target="_blank" rel="noopener" aria-label="TikTok">{SOCIAL_SVG["tiktok"]}</a>'
            f'<a href="https://wa.me/{SALONS["ubud"]["wa"]}" target="_blank" rel="noopener" aria-label="WhatsApp">{SOCIAL_SVG["whatsapp"]}</a>'
@@ -596,7 +724,7 @@ def page_head(ctx, page):
 
 # ------------------------------------------------------------------ build
 
-def build_wordpress(css, js):
+def build_wordpress(css, js, autolang):
     """WordPress plugin: thefaces/wordpress-plugin/thefaces-spa (blocks + data + assets + PHP)."""
     import shutil
     plug = ROOT / "wordpress-plugin" / "thefaces-spa"
@@ -606,6 +734,7 @@ def build_wordpress(css, js):
     (plug / "data").mkdir(parents=True, exist_ok=True)
     (plug / "assets" / "thefaces.css").write_text("/* THE FACES Spa · generated by thefaces/src/build.py */\n" + css, encoding="utf-8")
     (plug / "assets" / "thefaces.js").write_text(js, encoding="utf-8")
+    (plug / "assets" / "thefaces-autolang.js").write_text(autolang, encoding="utf-8")
     for f in (ROOT / "assets").iterdir():
         if f.is_file():
             shutil.copy2(f, plug / "assets" / "media" / f.name)
@@ -623,6 +752,23 @@ def build_wordpress(css, js):
             (ld / "pages" / f"{key}-15-footer.html").write_text(wrap(ctx, "15-footer", b_footer(ctx)), encoding="utf-8")
             if page["slug"]:
                 (ld / "pages" / f"{key}-intro.html").write_text(wrap(ctx, "intro", b_pageintro(ctx, page)), encoding="utf-8")
+    posts = []
+    for post in POSTS:
+        pid, img = post[0], post[1]
+        rec = {"id": pid, "img": img, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
+        for lang in LANGS:
+            c = Ctx(lang, "wp", "journal", site, "", {})
+            rec["slug"][lang] = c.post_slug(pid)
+            rec["title"][lang] = c.t(post[3])
+            rec["cat"][lang] = c.t(post[4])
+            rec["excerpt"][lang] = c.pick(EXCERPTS[pid])
+            rec["html"][lang] = post_body(c, post)
+        posts.append(rec)
+    (plug / "data" / "posts.json").write_text(json.dumps(posts, ensure_ascii=False, indent=1), encoding="utf-8")
+    for lang in LANGS:
+        c = Ctx(lang, "wp", "journal", site, "", {})
+        shell = b_post(c, "{{POST_TITLE}}", "{{POST_CAT}}", "{{POST_EXCERPT}}", "{{POST_IMG}}", "{{POST_CONTENT}}", "{{POST_DATE}}")
+        (plug / "blocks" / lang / "post-shell.html").write_text(wrap(c, "post", shell), encoding="utf-8")
     pages = {(p["slug"] or "home"): p["blocks"] for p in PAGES}
     seo = {l: {(p["slug"] or "home"): {"title": p["title"][LI[l]], "desc": p["desc"][LI[l]]} for p in PAGES} for l in LANGS}
     aliases = {n.split("-", 1)[1]: n for n in BLOCKS}
@@ -644,13 +790,14 @@ def main():
 
     css = scope_css((SRC / "site.css").read_text(encoding="utf-8"))
     js = (SRC / "site.js").read_text(encoding="utf-8")
+    autolang = (SRC / "autolang.js").read_text(encoding="utf-8")
     tdir, pdir = ROOT / "tilda", ROOT / "preview"
-    build_wordpress(css, js)
+    build_wordpress(css, js, autolang)
 
     (tdir).mkdir(exist_ok=True)
     (tdir / "00-site-head.html").write_text(
         "<!-- THE FACES · Tilda: Site settings > More > HTML code for the HEAD section. Paste once for the whole site. -->\n"
-        + CONSENT_GTM + "\n" + FONTS + "\n<style>" + css + "</style>\n<script>" + js + "</script>\n", encoding="utf-8")
+        + CONSENT_GTM + "\n<script>" + autolang + "</script>\n" + FONTS + "\n<style>" + css + "</style>\n<script>" + js + "</script>\n", encoding="utf-8")
 
     seo_rows = []
     for lang in LANGS:
@@ -681,12 +828,39 @@ def main():
                     body.append(wrap(pctx, "intro", b_pageintro(pctx, page)))
             out = pdir / lang / page["slug"] / "index.html" if page["slug"] else pdir / lang / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
-            alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{pctx.abs_url(page["slug"], l)}">' for l in LANGS)
+            alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{pctx.url(page["slug"], lang=l)}">' for l in LANGS)
             out.write_text(f'''<!doctype html>
 <html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:locale" content="{OG_LOCALE[lang]}">
 {alts}
+<script>{autolang}</script>
+{FONTS}
+<style>body{{margin:0;background:#fff}}{css}</style>
+<script>window.tfConsent=function(ok){{try{{localStorage.setItem('tf_consent',ok?'granted':'denied')}}catch(e){{}}}};</script>
+</head><body>
+{chr(10).join(body)}
+<script>{js}</script>
+</body></html>''', encoding="utf-8")
+
+    # preview: journal article pages
+    for lang in LANGS:
+        for post in POSTS:
+            pid = post[0]
+            ctx = Ctx(lang, "preview", "journal/" + Ctx(lang, "preview", "", a.site, "", {}).post_slug(pid), a.site, assets_base, assets_map)
+            ctx.lang_urls = {l: ctx.post_url(pid, l) for l in LANGS}
+            title = ctx.t(post[3])
+            body = [wrap(ctx, "01-header", b_header(ctx)),
+                    wrap(ctx, "post", b_post(ctx, E(title), E(ctx.t(post[4])), E(ctx.pick(EXCERPTS[pid])), ctx.asset(post[1]), post_body(ctx, post))),
+                    wrap(ctx, "15-footer", b_footer(ctx))]
+            out = pdir / lang / ctx.slug / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{ctx.post_url(pid, l)}">' for l in LANGS)
+            out.write_text(f'''<!doctype html>
+<html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{E(title)} | The Faces</title><meta name="description" content="{E(ctx.pick(EXCERPTS[pid]))}">
+{alts}
+<script>{autolang}</script>
 {FONTS}
 <style>body{{margin:0;background:#fff}}{css}</style>
 <script>window.tfConsent=function(ok){{try{{localStorage.setItem('tf_consent',ok?'granted':'denied')}}catch(e){{}}}};</script>
