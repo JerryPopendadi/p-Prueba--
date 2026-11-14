@@ -3,6 +3,10 @@
   font-family:Montserrat,"Noto Sans Thai","Noto Sans JP",Arial,sans-serif;font-weight:300;color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 *{box-sizing:border-box;margin:0;padding:0}
 img,video{display:block;max-width:100%}
+/* shield against theme styles (WordPress themes style headings, links, lists and buttons globally) */
+h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,figure,figcaption,blockquote,address,summary,details,section,header,footer,nav,article,aside{font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;margin:0;padding:0;border:0;background:none;max-width:none}
+a,button,input{font-family:inherit;letter-spacing:inherit;box-shadow:none;text-shadow:none}
+a:hover,a:focus,a:visited{color:inherit}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ul{list-style:none}
@@ -335,6 +339,16 @@ details p{padding:0 0 24px;color:var(--muted);max-width:720px}
 .cookie .btn{padding:11px 16px;flex:1}
 .cookie a{text-decoration:underline}
 
+
+/* booking buttons: same look as the Altegio booking page (n831884.alteg.io), so the step to booking feels continuous */
+a.btn[data-book][href]{font-family:Inter,Montserrat,Arial,sans-serif;font-size:16px;font-weight:400;letter-spacing:normal;text-transform:none;line-height:1.2;min-height:50px;padding:0 28px;border-radius:16px;background:#060f07;border:1px solid #060f07;color:#fff;transition:background .25s,opacity .25s}
+a.btn[data-book][href]:hover{background:#1b261c;border-color:#1b261c;color:#fff}
+.hero a.btn[data-book][href],.top a.btn[data-book][href],.sig a.btn[data-book][href],.el a.btn[data-book][href]{background:#fff;border-color:#fff;color:#060f07}
+.hero a.btn[data-book][href]:hover,.top a.btn[data-book][href]:hover,.sig a.btn[data-book][href]:hover,.el a.btn[data-book][href]:hover{background:#e9e9e6;border-color:#e9e9e6;color:#060f07}
+.top a.btn[data-book][href]{min-height:44px;padding:0 22px;font-size:15px}
+.el .meta a.btn[data-book][href]{min-height:44px;padding:0 20px;font-size:15px}
+.mbar a.bk{font-family:Inter,Montserrat,Arial,sans-serif;font-size:16px;letter-spacing:normal;text-transform:none;background:#060f07;color:#fff;border-radius:16px;margin:8px;padding:13px 16px}
+
 /* language tweaks */
 .tf:lang(th) .display,.tf:lang(th) .h2,.tf:lang(ja) .display,.tf:lang(ja) .h2{letter-spacing:0;line-height:1.25}
 .tf:lang(th){line-height:1.75}
@@ -363,7 +377,7 @@ details p{padding:0 0 24px;color:var(--muted);max-width:720px}
   .sn-item .mimg img{width:100%;height:100%;object-fit:cover}
   .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:9996;background:var(--ink);color:#fff;border-top:1px solid var(--line-d)}
   .mbar a{padding:16px;text-align:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
-  .mbar .bk{background:#fff;color:var(--ink)}
+  .mbar .bk{background:#060f07;color:#fff}
   .toast{bottom:70px}
   .cookie{left:8px;right:8px;bottom:58px;max-width:none;padding:14px;font-size:12.5px}
   .cookie .row{margin-top:10px}.cookie .btn{padding:9px 12px}

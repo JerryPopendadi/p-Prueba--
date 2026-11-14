@@ -1,0 +1,78 @@
+{
+ "home": [
+  "01-header",
+  "02-hero",
+  "03-philosophy",
+  "04-senses",
+  "05-elements",
+  "06-signatures",
+  "07-menu-builder",
+  "08-gallery",
+  "09-salons",
+  "10-founders",
+  "11-gifts",
+  "12-partners",
+  "16-waterfall",
+  "13-journal",
+  "14-faq",
+  "15-footer"
+ ],
+ "menu": [
+  "01-header",
+  "07-menu-builder",
+  "06-signatures",
+  "14-faq",
+  "15-footer"
+ ],
+ "five-elements": [
+  "01-header",
+  "04-senses",
+  "05-elements",
+  "07-menu-builder",
+  "14-faq",
+  "15-footer"
+ ],
+ "ubud": [
+  "01-header",
+  "09-salons",
+  "07-menu-builder",
+  "08-gallery",
+  "14-faq",
+  "15-footer"
+ ],
+ "sanur": [
+  "01-header",
+  "09-salons",
+  "07-menu-builder",
+  "08-gallery",
+  "14-faq",
+  "15-footer"
+ ],
+ "founders": [
+  "01-header",
+  "10-founders",
+  "03-philosophy",
+  "04-senses",
+  "12-partners",
+  "15-footer"
+ ],
+ "gift-certificates": [
+  "01-header",
+  "11-gifts",
+  "06-signatures",
+  "14-faq",
+  "15-footer"
+ ],
+ "partners": [
+  "01-header",
+  "12-partners",
+  "16-waterfall",
+  "10-founders",
+  "15-footer"
+ ],
+ "journal": [
+  "01-header",
+  "13-journal",
+  "15-footer"
+ ]
+}

@@ -1,0 +1,268 @@
+{
+ "en": {
+  "home": {
+   "title": "The Faces Spa Bali · Face massage & head spa in Ubud, Sanur",
+   "desc": "Face massage, vegan head spa and five-element rituals in Ubud and Sanur. Full menu with prices from IDR 300,000. Book online or by WhatsApp."
+  },
+  "menu": {
+   "title": "Spa menu & prices · The Faces Ubud and Sanur, Bali",
+   "desc": "56 treatments with duration and price in IDR: face massage, head spa, cleansing, body, packages and rituals for couples. Book online."
+  },
+  "five-elements": {
+   "title": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "desc": "Three-hour signature programs for stress, fatigue, detox, grounding and love. Choose by how you feel. IDR 1,800,000 in Ubud and Sanur."
+  },
+  "ubud": {
+   "title": "The Faces Spa Ubud · Face massage & head spa in Kedewatan",
+   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Face massage, Shirodhara head spa and five-element rituals. WhatsApp +62 822 6699 9965 or book online."
+  },
+  "sanur": {
+   "title": "The Faces Spa Sanur · Face massage & head spa near the beach",
+   "desc": "Jl. Danau Buyan 34a, Sanur. Face massage, head spa, Sacred Honeymoon ritual for couples. WhatsApp +62 813 3770 9190 or book online."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Founders of The Faces Spa",
+   "desc": "20+ years in beauty and spa, salons in Europe and Bali, and the five-elements concept. The story of The Faces and the people behind it."
+  },
+  "gift-certificates": {
+   "title": "Spa gift certificates in Bali with bonus · The Faces",
+   "desc": "Give a ritual and receive more: certificates from IDR 1,200,000 with up to 25% bonus. Valid in Ubud and Sanur."
+  },
+  "partners": {
+   "title": "Partner with The Faces · Spa franchise & projects in Bali",
+   "desc": "Four spa projects in Bali open to partners, franchise and spa-in-hotel formats, and careers at The Faces."
+  },
+  "journal": {
+   "title": "Journal · Face massage, head spa and rituals in Bali | The Faces",
+   "desc": "Guides to our treatments, skin care and slow beauty in Bali, from the team of The Faces Spa."
+  }
+ },
+ "ru": {
+  "home": {
+   "title": "The Faces Spa Бали · массаж лица и хэд-спа в Убуде и Сануре",
+   "desc": "Массаж лица, веганский хэд-спа и ритуалы пяти стихий в Убуде и Сануре. Полное меню с ценами от 300 000 IDR. Запись онлайн или в WhatsApp."
+  },
+  "menu": {
+   "title": "Меню и цены спа · The Faces Убуд и Санур, Бали",
+   "desc": "56 процедур с длительностью и ценой в IDR: массаж лица, хэд-спа, чистки, тело, пакеты и ритуалы для пар. Онлайн-запись."
+  },
+  "five-elements": {
+   "title": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "desc": "Трёхчасовые авторские программы от стресса, усталости, для детокса, заземления и любви. Выбирайте по состоянию. 1 800 000 IDR в Убуде и Сануре."
+  },
+  "ubud": {
+   "title": "The Faces Spa Убуд · массаж лица и хэд-спа",
+   "desc": "Jl. Raya Lungsiakan, Кедеватан, Убуд. Массаж лица, Широдхара и ритуалы пяти стихий. WhatsApp +62 822 6699 9965 или онлайн-запись."
+  },
+  "sanur": {
+   "title": "The Faces Spa Санур · массаж лица и хэд-спа у моря",
+   "desc": "Jl. Danau Buyan 34a, Санур. Массаж лица, хэд-спа, ритуал Sacred Honeymoon для пар. WhatsApp +62 813 3770 9190 или онлайн-запись."
+  },
+  "founders": {
+   "title": "Анна и Евгений Дубинины · основатели The Faces",
+   "desc": "20+ лет в бьюти и спа, салоны в Европе и на Бали и концепция пяти стихий. История The Faces и людей, которые её создали."
+  },
+  "gift-certificates": {
+   "title": "Подарочные сертификаты в спа на Бали с бонусом · The Faces",
+   "desc": "Дарите ритуал и получайте больше: сертификаты от 1 200 000 IDR с бонусом до 25 %. Действуют в Убуде и Сануре."
+  },
+  "partners": {
+   "title": "Партнёрство с The Faces · франшиза и спа-проекты на Бали",
+   "desc": "Четыре спа-проекта на Бали для партнёров, франшиза и спа в отелях, а также вакансии в The Faces."
+  },
+  "journal": {
+   "title": "Журнал · массаж лица, хэд-спа и ритуалы на Бали | The Faces",
+   "desc": "Гиды по процедурам, уходу за кожей и медленной красоте на Бали от команды The Faces."
+  }
+ },
+ "es": {
+  "home": {
+   "title": "The Faces Spa Bali · Masaje facial y head spa en Ubud y Sanur",
+   "desc": "Masaje facial, head spa vegano y rituales de los cinco elementos en Ubud y Sanur. Menú completo con precios desde 300.000 IDR. Reserva online o por WhatsApp."
+  },
+  "menu": {
+   "title": "Menú y precios del spa · The Faces Ubud y Sanur, Bali",
+   "desc": "56 tratamientos con duración y precio en IDR: masaje facial, head spa, limpiezas, cuerpo, paquetes y rituales en pareja. Reserva online."
+  },
+  "five-elements": {
+   "title": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "desc": "Programas de autor de tres horas para el estrés, el cansancio, la depuración, el arraigo y el amor. Elige según cómo te sientes. 1.800.000 IDR."
+  },
+  "ubud": {
+   "title": "The Faces Spa Ubud · Masaje facial y head spa en Kedewatan",
+   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Masaje facial, Shirodhara y rituales de los cinco elementos. WhatsApp +62 822 6699 9965 o reserva online."
+  },
+  "sanur": {
+   "title": "The Faces Spa Sanur · Masaje facial y head spa junto al mar",
+   "desc": "Jl. Danau Buyan 34a, Sanur. Masaje facial, head spa y ritual Sacred Honeymoon para parejas. WhatsApp +62 813 3770 9190 o reserva online."
+  },
+  "founders": {
+   "title": "Anna y Evgenii Dubinin · Fundadores de The Faces Spa",
+   "desc": "Más de 20 años en belleza y spa, salones en Europa y Bali y el concepto de los cinco elementos. La historia de The Faces y sus fundadores."
+  },
+  "gift-certificates": {
+   "title": "Certificados regalo de spa en Bali con bonus · The Faces",
+   "desc": "Regala un ritual y recibe más: certificados desde 1.200.000 IDR con hasta un 25 % de bonus. Válidos en Ubud y Sanur."
+  },
+  "partners": {
+   "title": "Partners de The Faces · Franquicia y proyectos de spa en Bali",
+   "desc": "Cuatro proyectos de spa en Bali abiertos a socios, franquicia y spa en hotel, y empleo en The Faces."
+  },
+  "journal": {
+   "title": "Blog · Masaje facial, head spa y rituales en Bali | The Faces",
+   "desc": "Guías sobre tratamientos, cuidado de la piel y belleza sin prisa en Bali, del equipo de The Faces."
+  }
+ },
+ "de": {
+  "home": {
+   "title": "The Faces Spa Bali · Gesichtsmassage & Head Spa Ubud, Sanur",
+   "desc": "Gesichtsmassage, veganes Head Spa und Rituale der fünf Elemente in Ubud und Sanur. Komplettes Menü mit Preisen ab 300.000 IDR. Online oder per WhatsApp buchen."
+  },
+  "menu": {
+   "title": "Spa-Menü & Preise · The Faces Ubud und Sanur, Bali",
+   "desc": "56 Behandlungen mit Dauer und Preis in IDR: Gesichtsmassage, Head Spa, Reinigung, Körper, Pakete und Paarrituale. Online buchen."
+  },
+  "five-elements": {
+   "title": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "desc": "Dreistündige Signature-Programme gegen Stress und Müdigkeit, für Detox, Erdung und Liebe. Wählen Sie nach Befinden. 1.800.000 IDR."
+  },
+  "ubud": {
+   "title": "The Faces Spa Ubud · Gesichtsmassage & Head Spa in Kedewatan",
+   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Gesichtsmassage, Shirodhara und Fünf-Elemente-Rituale. WhatsApp +62 822 6699 9965 oder online buchen."
+  },
+  "sanur": {
+   "title": "The Faces Spa Sanur · Gesichtsmassage & Head Spa am Meer",
+   "desc": "Jl. Danau Buyan 34a, Sanur. Gesichtsmassage, Head Spa, Sacred-Honeymoon-Ritual für Paare. WhatsApp +62 813 3770 9190 oder online buchen."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Gründer von The Faces Spa",
+   "desc": "Über 20 Jahre Beauty und Spa, Salons in Europa und auf Bali und das Fünf-Elemente-Konzept. Die Geschichte von The Faces und seinen Gründern."
+  },
+  "gift-certificates": {
+   "title": "Spa-Gutscheine auf Bali mit Bonus · The Faces",
+   "desc": "Ein Ritual schenken und mehr erhalten: Gutscheine ab 1.200.000 IDR mit bis zu 25 % Bonus. Gültig in Ubud und Sanur."
+  },
+  "partners": {
+   "title": "Partner von The Faces · Spa-Franchise & Projekte auf Bali",
+   "desc": "Vier Spa-Projekte auf Bali für Partner, Franchise- und Hotel-Spa-Formate sowie Jobs bei The Faces."
+  },
+  "journal": {
+   "title": "Journal · Gesichtsmassage, Head Spa und Rituale | The Faces",
+   "desc": "Ratgeber zu Behandlungen, Hautpflege und entschleunigter Schönheit auf Bali vom Team von The Faces."
+  }
+ },
+ "th": {
+  "home": {
+   "title": "The Faces Spa บาหลี · นวดหน้าและเฮดสปา อูบุด ซานูร์",
+   "desc": "นวดหน้า เฮดสปาวีแกน และพิธีกรรมธาตุทั้งห้า ที่อูบุดและซานูร์ เมนูครบพร้อมราคา เริ่มต้น 300,000 IDR จองออนไลน์หรือทาง WhatsApp"
+  },
+  "menu": {
+   "title": "เมนูและราคาสปา · The Faces อูบุดและซานูร์ บาหลี",
+   "desc": "56 ทรีตเมนต์พร้อมเวลาและราคาเป็น IDR: นวดหน้า เฮดสปา ทำความสะอาดผิว ร่างกาย แพ็กเกจ และพิธีกรรมคู่รัก จองออนไลน์ได้เลย"
+  },
+  "five-elements": {
+   "title": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "desc": "โปรแกรมซิกเนเจอร์สามชั่วโมง สำหรับความเครียด ความเหนื่อยล้า ดีท็อกซ์ การหยั่งราก และความรัก เลือกตามความรู้สึก 1,800,000 IDR"
+  },
+  "ubud": {
+   "title": "The Faces Spa อูบุด · นวดหน้าและเฮดสปา เคเดวาตัน",
+   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud นวดหน้า ชิโรธารา และพิธีกรรมธาตุทั้งห้า WhatsApp +62 822 6699 9965 หรือจองออนไลน์"
+  },
+  "sanur": {
+   "title": "The Faces Spa ซานูร์ · นวดหน้าและเฮดสปาใกล้ทะเล",
+   "desc": "Jl. Danau Buyan 34a, Sanur นวดหน้า เฮดสปา พิธีกรรม Sacred Honeymoon สำหรับคู่รัก WhatsApp +62 813 3770 9190 หรือจองออนไลน์"
+  },
+  "founders": {
+   "title": "แอนนาและเยฟเกนี ดูบินิน · ผู้ก่อตั้ง The Faces",
+   "desc": "กว่า 20 ปีในวงการความงามและสปา สาขาในยุโรปและบาหลี และแนวคิดธาตุทั้งห้า เรื่องราวของ The Faces และผู้ก่อตั้ง"
+  },
+  "gift-certificates": {
+   "title": "บัตรของขวัญสปาในบาหลีพร้อมโบนัส · The Faces",
+   "desc": "มอบพิธีกรรมและรับมากกว่า: บัตรของขวัญเริ่มต้น 1,200,000 IDR พร้อมโบนัสสูงสุด 25% ใช้ได้ทั้งอูบุดและซานูร์"
+  },
+  "partners": {
+   "title": "ร่วมเป็นพันธมิตร The Faces · แฟรนไชส์และโครงการสปาในบาหลี",
+   "desc": "สี่โครงการสปาในบาหลีที่เปิดรับพันธมิตร แฟรนไชส์ สปาในโรงแรม และตำแหน่งงานที่ The Faces"
+  },
+  "journal": {
+   "title": "บทความ · นวดหน้า เฮดสปา และพิธีกรรมในบาหลี | The Faces",
+   "desc": "คู่มือทรีตเมนต์ การดูแลผิว และความงามแบบช้า ๆ ในบาหลี จากทีม The Faces"
+  }
+ },
+ "id": {
+  "home": {
+   "title": "The Faces Spa Bali · Pijat wajah & head spa Ubud, Sanur",
+   "desc": "Pijat wajah, head spa vegan, dan ritual lima elemen di Ubud dan Sanur. Menu lengkap dengan harga mulai IDR 300.000. Pesan online atau via WhatsApp."
+  },
+  "menu": {
+   "title": "Menu & harga spa · The Faces Ubud dan Sanur, Bali",
+   "desc": "56 perawatan dengan durasi dan harga IDR: pijat wajah, head spa, pembersihan, tubuh, paket, dan ritual pasangan. Pesan online."
+  },
+  "five-elements": {
+   "title": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "desc": "Program signature tiga jam untuk stres, lelah, detoks, membumi, dan cinta. Pilih sesuai perasaan Anda. IDR 1.800.000 di Ubud dan Sanur."
+  },
+  "ubud": {
+   "title": "The Faces Spa Ubud · Pijat wajah & head spa di Kedewatan",
+   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Pijat wajah, Shirodhara, dan ritual lima elemen. WhatsApp +62 822 6699 9965 atau pesan online."
+  },
+  "sanur": {
+   "title": "The Faces Spa Sanur · Pijat wajah & head spa dekat pantai",
+   "desc": "Jl. Danau Buyan 34a, Sanur. Pijat wajah, head spa, ritual Sacred Honeymoon untuk pasangan. WhatsApp +62 813 3770 9190 atau pesan online."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Pendiri The Faces Spa",
+   "desc": "Lebih dari 20 tahun di kecantikan dan spa, salon di Eropa dan Bali, serta konsep lima elemen. Kisah The Faces dan para pendirinya."
+  },
+  "gift-certificates": {
+   "title": "Voucher hadiah spa di Bali dengan bonus · The Faces",
+   "desc": "Hadiahkan ritual dan dapatkan lebih: voucher mulai IDR 1.200.000 dengan bonus hingga 25%. Berlaku di Ubud dan Sanur."
+  },
+  "partners": {
+   "title": "Mitra The Faces · Waralaba & proyek spa di Bali",
+   "desc": "Empat proyek spa di Bali terbuka untuk mitra, waralaba, spa di hotel, serta karier di The Faces."
+  },
+  "journal": {
+   "title": "Jurnal · Pijat wajah, head spa & ritual di Bali | The Faces",
+   "desc": "Panduan perawatan, perawatan kulit, dan kecantikan yang tenang di Bali dari tim The Faces."
+  }
+ },
+ "ja": {
+  "home": {
+   "title": "The Faces Spa バリ｜ウブド・サヌールのフェイシャル＆ヘッドスパ",
+   "desc": "ウブドとサヌールで、フェイシャルマッサージ、ヴィーガンヘッドスパ、五元素リチュアル。全メニューと料金を掲載（300,000 IDR〜）。オンライン・WhatsAppで予約。"
+  },
+  "menu": {
+   "title": "スパメニューと料金｜The Faces ウブド・サヌール",
+   "desc": "全56メニューの所要時間と料金（IDR）：フェイシャル、ヘッドスパ、クレンジング、ボディ、パッケージ、カップル向けリチュアル。オンライン予約。"
+  },
+  "five-elements": {
+   "title": "バリの五元素リチュアル｜風・火・水・地・愛",
+   "desc": "ストレス、疲労、デトックス、グラウンディング、愛のための3時間のシグネチャープログラム。気分で選べます。1,800,000 IDR。"
+  },
+  "ubud": {
+   "title": "The Faces Spa ウブド店｜フェイシャル＆ヘッドスパ",
+   "desc": "ウブド・クデワタン、Jl. Raya Lungsiakan。フェイシャル、シロダーラ、五元素リチュアル。WhatsApp +62 822 6699 9965またはオンライン予約。"
+  },
+  "sanur": {
+   "title": "The Faces Spa サヌール店｜海辺のフェイシャル＆ヘッドスパ",
+   "desc": "サヌール、Jl. Danau Buyan 34a。フェイシャル、ヘッドスパ、カップル向けSacred Honeymoon。WhatsApp +62 813 3770 9190またはオンライン予約。"
+  },
+  "founders": {
+   "title": "アンナ＆エフゲニー・ドゥビニン｜The Faces創業者",
+   "desc": "美容とスパで20年以上、ヨーロッパとバリでのサロン経営、そして五元素のコンセプト。The Facesと創業者の物語。"
+  },
+  "gift-certificates": {
+   "title": "バリのスパギフト券（ボーナス付き）｜The Faces",
+   "desc": "儀式を贈って、もっと受け取る。1,200,000 IDRから、最大25%のボーナス付き。ウブド・サヌール両店で利用可能。"
+  },
+  "partners": {
+   "title": "The Facesとの提携｜バリのスパ・フランチャイズとプロジェクト",
+   "desc": "パートナーを募集するバリの4つのスパプロジェクト、フランチャイズ、ホテル内スパ、そして採用情報。"
+  },
+  "journal": {
+   "title": "ジャーナル｜バリのフェイシャル・ヘッドスパ・リチュアル",
+   "desc": "The Facesチームによる、施術ガイド、スキンケア、バリでのスロービューティー。"
+  }
+ }
+}
