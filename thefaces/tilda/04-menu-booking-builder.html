@@ -1,0 +1,365 @@
+<!-- THE FACES · Menu & prices + Your ritual (booking builder)
+     Paste into a Tilda T123 block. Generated from thefaces/index.html by tools/build_tilda_block.py -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a0a; --ink-2:#161616; --paper:#ffffff; --sand:#f4f3ef; --stone:#ecece8;
+  --text:#2b2724; --muted:#6f6a64; --line:rgba(10,10,10,.12); --line-d:rgba(255,255,255,.16);
+  --gold:#c9a35a; --wa:#25d366;
+  --pad:clamp(20px,5vw,72px); --max:1320px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+#tf-booking .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+#tf-booking .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+#tf-booking .eyebrow .n{opacity:.55;margin-right:.6em}
+#tf-booking .h2{font-weight:200;line-height:1.08;letter-spacing:-.015em;font-size:clamp(34px,4.6vw,68px)}
+#tf-booking .muted{color:var(--muted)}
+#tf-booking .btn{display:inline-flex;align-items:center;gap:.8em;padding:16px 28px;border:1px solid currentColor;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:background .4s var(--ease),color .4s var(--ease)}
+#tf-booking .btn:hover{background:var(--paper);color:var(--ink)}
+#tf-booking .btn.solid{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+#tf-booking .btn.solid:hover{background:transparent;color:var(--paper)}
+#tf-booking .btn.dark{color:var(--ink)}
+#tf-booking .btn.dark:hover{background:var(--ink);color:var(--paper)}
+#tf-booking .btn.darksolid{background:var(--ink);color:#fff;border-color:var(--ink)}
+#tf-booking .btn.darksolid:hover{background:transparent;color:var(--ink)}
+#tf-booking .link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:6px;display:inline-flex;gap:.8em}
+#tf-booking .rv.in{opacity:1;transform:none}
+#tf-booking .rv.d1{transition-delay:.12s}
+#tf-booking .rv.d2{transition-delay:.24s}
+#tf-booking .rv.d3{transition-delay:.36s}
+#tf-booking .rv.d4{transition-delay:.48s}
+#tf-booking .sec{padding:clamp(90px,12vw,170px) 0}
+#tf-booking .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:clamp(50px,6vw,90px)}
+#tf-booking .sec-head .h2{margin-top:22px}
+#tf-booking .menu-layout{display:grid;grid-template-columns:1fr 380px;gap:clamp(30px,4vw,64px);align-items:start}
+#tf-booking .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+#tf-booking .tabs button{padding:11px 16px;border:1px solid var(--line);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:.3s}
+#tf-booking .tabs button.on,#tf-booking .tabs button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+#tf-booking .salon-switch{display:flex;border:1px solid var(--ink);margin-bottom:22px;width:max-content}
+#tf-booking .salon-switch button{padding:10px 20px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+#tf-booking .salon-switch button.on{background:var(--ink);color:#fff}
+#tf-booking .items{border-top:1px solid var(--line)}
+#tf-booking .item{display:grid;grid-template-columns:1fr auto auto 48px;gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+#tf-booking .item .nm{font-size:17px;font-weight:400;color:var(--ink)}
+#tf-booking .item .ds{font-size:13.5px;color:var(--muted);margin-top:4px;max-width:640px}
+#tf-booking .item .du{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+#tf-booking .item .pc{font-size:15px;font-weight:400;white-space:nowrap;color:var(--ink)}
+#tf-booking .item .badge{display:inline-block;margin-left:8px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--gold);color:#8a6a2a;padding:2px 6px;vertical-align:middle}
+#tf-booking .plus{width:44px;height:44px;border:1px solid var(--ink);border-radius:50%;font-size:20px;line-height:1;display:grid;place-items:center;transition:.3s}
+#tf-booking .plus:hover{background:var(--ink);color:#fff}
+#tf-booking .plus.on{background:var(--ink);color:#fff}
+#tf-booking .plus[disabled]{opacity:.25;cursor:not-allowed}
+#tf-booking .note{font-size:13px;color:var(--muted);margin-top:22px}
+#tf-booking .builder{position:sticky;top:96px;background:var(--ink);color:#fff;padding:30px}
+#tf-booking .builder h3{font-weight:200;font-size:30px;margin:12px 0 6px}
+#tf-booking .builder .empty{font-size:14px;opacity:.65;margin:16px 0}
+#tf-booking .bl{list-style:none;margin:18px 0;max-height:280px;overflow:auto}
+#tf-booking .bl li{display:grid;grid-template-columns:1fr auto 24px;gap:10px;padding:12px 0;border-bottom:1px solid var(--line-d);font-size:14px}
+#tf-booking .bl li small{display:block;opacity:.6;font-size:12px}
+#tf-booking .bl li button{opacity:.6}
+#tf-booking .bl li button:hover{opacity:1}
+#tf-booking .tot{display:flex;justify-content:space-between;padding:14px 0;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+#tf-booking .tot strong{font-weight:500;font-size:16px;letter-spacing:0}
+#tf-booking .step{margin-top:20px}
+#tf-booking .step label{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
+#tf-booking .choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#tf-booking .choice button{border:1px solid var(--line-d);padding:13px 10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:.3s}
+#tf-booking .choice button.on,#tf-booking .choice button:hover{background:#fff;color:var(--ink)}
+#tf-booking .builder input,#tf-booking .builder select{width:100%;background:transparent;border:1px solid var(--line-d);color:#fff;padding:12px;font:inherit;font-size:14px}
+#tf-booking .builder select option{color:#000}
+#tf-booking .go{display:grid;gap:8px;margin-top:22px}
+#tf-booking .go .btn{justify-content:center}
+#tf-booking .go .wa{background:var(--wa);border-color:var(--wa);color:#08290f}
+#tf-booking .go .wa:hover{background:transparent;color:var(--wa)}
+#tf-booking .builder .fine{font-size:11.5px;opacity:.55;margin-top:14px;line-height:1.5}
+#tf-booking .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,140%);background:#fff;color:var(--ink);padding:14px 22px;font-size:13px;z-index:80;box-shadow:0 20px 50px rgba(0,0,0,.25);transition:transform .5s var(--ease);display:flex;gap:14px;align-items:center}
+#tf-booking .toast{visibility:hidden}
+#tf-booking .toast.show{transform:translate(-50%,0);visibility:visible}
+#tf-booking .toast a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid}
+#tf-booking{font-family:Montserrat,Arial,sans-serif;font-weight:300;color:var(--text);line-height:1.6}#tf-booking *{box-sizing:border-box}#tf-booking button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}#tf-booking .rv{opacity:1;transform:none}#tf-booking a{color:inherit;text-decoration:none}#tf-booking .btn{text-decoration:none}#tf-booking .toast a{border-bottom:1px solid}@media (max-width:1100px){#tf-booking .menu-layout{grid-template-columns:1fr}#tf-booking .builder{position:relative;top:0}}@media (max-width:820px){#tf-booking .sec-head{grid-template-columns:1fr}#tf-booking .item{grid-template-columns:1fr auto 44px;gap:10px 14px}#tf-booking .item .du{grid-column:1;grid-row:2}#tf-booking .item .pc{grid-column:2;grid-row:1}#tf-booking .item .plus{grid-column:3;grid-row:1/3}}
+</style>
+<div id="tf-booking">
+<section class="menu-sec sec" id="menu">
+  <div class="wrap sec-head">
+    <div>
+      <p class="eyebrow rv"><span class="n">04 —</span>Menu &amp; prices</p>
+      <h2 class="h2 rv d1">Build your ritual.</h2>
+    </div>
+    <p class="muted rv d2">Open prices, before you book. Add treatments with “+”, choose the salon, and send your ritual to the team online or by WhatsApp. Prices in Indonesian rupiah (IDR).</p>
+  </div>
+  <div class="wrap menu-layout">
+    <div>
+      <div class="salon-switch" role="group" aria-label="Salon">
+        <button data-salon="ubud" class="on">Ubud</button><button data-salon="sanur">Sanur</button>
+      </div>
+      <div class="tabs" id="tabs" role="tablist"></div>
+      <div class="items" id="items"></div>
+      <p class="note">Hair spa for kids, rituals for couples and gift certificates are available. Exact price and availability are confirmed when you book.</p>
+    </div>
+    <aside class="builder" id="builder" aria-label="Your ritual">
+      <p class="eyebrow">Your ritual</p>
+      <h3>Selected treatments</h3>
+      <p class="empty" id="bEmpty">Nothing yet. Tap “+” next to a treatment or choose an element.</p>
+      <ul class="bl" id="bList"></ul>
+      <div class="tot"><span>Time</span><strong id="bTime">0 min</strong></div>
+      <div class="tot" style="border-top:1px solid var(--line-d)"><span>Total</span><strong id="bTotal">IDR 0</strong></div>
+      <div class="step">
+        <label>1 · Salon</label>
+        <div class="choice" id="bSalon"><button data-salon="ubud" class="on">Ubud</button><button data-salon="sanur">Sanur</button></div>
+      </div>
+      <div class="step">
+        <label for="bDate">2 · Preferred day &amp; time (optional)</label>
+        <input id="bDate" type="text" placeholder="e.g. Friday, after 3 pm">
+      </div>
+      <div class="go">
+        <a class="btn solid" id="bOnline" href="#" target="_blank" rel="noopener">3 · Pick master &amp; time online</a>
+        <a class="btn wa" id="bWa" href="#" target="_blank" rel="noopener">Send ritual by WhatsApp</a>
+      </div>
+      <p class="fine">Online booking opens the salon calendar (Altegio): choose the master, day and time. WhatsApp sends the list with names, salon and total so the team confirms in minutes.</p>
+    </aside>
+  </div>
+</section>
+<div class="toast" id="toast" role="status"><span id="toastMsg"></span><a href="#builder" data-open-builder>View ritual</a></div>
+</div>
+<script>
+(function(){
+
+/* ============ DATA ============ */
+const SALONS={
+  ubud:{name:'Ubud',wa:'6282266999965',online:'https://n831884.alteg.io/'},
+  sanur:{name:'Sanur',wa:'6281337709190',online:'https://n811764.alteg.io/'}
+};
+const CATS=[
+ {id:'face',name:'Face massage'},
+ {id:'air',name:'Air kiss & foam'},
+ {id:'head',name:'Head spa & hair'},
+ {id:'skin',name:'Cleansing & care'},
+ {id:'prog',name:'Five elements'},
+ {id:'pack',name:'Packages'},
+ {id:'two',name:'For couples'},
+ {id:'body',name:'Body, feet & legs'}
+];
+// d = minutes, p = IDR
+const MENU=[
+ ['face','myo','Myofascial facial massage',90,900000,'Deep work with facial muscles and fascia, neck and upper back. Natural lifting without surgery.'],
+ ['face','sculpt','Sculptural face massage',90,850000,'French osteopathic methods for holistic, long-term anti-ageing results.'],
+ ['face','buccal','Buccal face massage',60,750000,'Intra-oral technique for deep rejuvenation and a defined contour.'],
+ ['face','guasha','Gua sha massage',60,750000,'Tradition and modernity: tone, glow and facial harmony.'],
+ ['face','love-sig','Signature «Element of Love»',90,900000,'Five of our most effective rejuvenating techniques in one massage.'],
+ ['face','faces-sig','Signature «The FACES»',90,900000,''],
+ ['face','author','Signature «Author»',90,850000,''],
+ ['face','hydrolift','Hydrolift',60,850000,'Works on deep skin layers and facial muscles: less puffiness, better tone and contour.'],
+ ['face','hydro-face','Hydrolift + face massage',90,1100000,''],
+ ['face','candle','Candle treatment',10,200000,'Add-on to any treatment.'],
+ ['air','airkiss','Airkiss Detox Ritual',60,1200000,'Hand-whipped amino-acid mousse that cleanses like a cloud. Visible glow after one session.'],
+ ['air','airkiss-sculpt','Air Kiss Sculpt & Detox',120,1800000,'Airkiss foam ritual plus manual sculpting massage: lymphatic, myofascial and buccal.'],
+ ['air','foamy-back','Foamy back & leg massage',60,1400000,'Warm aromatic protein foam, then massage with heated stones.'],
+ ['air','foamy-dream','Foamy Dream Ritual',120,2300000,''],
+ ['head','water-spa','Water spa therapy with detox hair spa',90,1100000,''],
+ ['head','ayur','Ayurvedic head massage',60,750000,'A journey to inner harmony.'],
+ ['head','shiro','Shirodhara Hair Spa',120,1650000,'Hair spa therapy, Ayurvedic head massage and a warm stream of oil. Deep calm, better sleep.'],
+ ['head','shine','Let Your Hair Shine',120,1500000,''],
+ ['head','hair-face','Hair spa & water detox + face massage',120,1500000,''],
+ ['head','detox-myo','Detox hair spa + myofascial face massage',150,1850000,''],
+ ['head','detox-sculpt','Detox hair spa + sculptural face massage',180,1850000,''],
+ ['head','kids','Hair spa for kids',60,750000,'A gentle head spa for children.'],
+ ['skin','atraumatic','Atraumatic facial cleansing',110,1200000,''],
+ ['skin','vacuum','Vacuum facial cleansing',120,1200000,'Thermal mask, peels, vacuum cleansing, care by skin type, cryo or LED.'],
+ ['skin','ultra','Ultrasonic facial cleansing',120,1200000,'Thermal mask, peels, ultrasonic cleansing, care by skin type, cryo or LED.'],
+ ['skin','combo','Combination facial cleansing',150,1350000,'Hardware and manual cleansing in five stages.'],
+ ['skin','hydra','Deep skin hydration',80,1000000,''],
+ ['skin','oxy','Oxygen pen',75,900000,'Serum delivered into the skin with gas pressure: nutrition and hydration.'],
+ ['skin','cryo','Cryomassage',75,970000,'Low temperature against swelling, redness and visible capillaries.'],
+ ['skin','lymph-glow','Lymphatic Glow',90,1000000,''],
+ ['prog','el-air','Element of Air',180,1800000,'Release from stress and anxiety.'],
+ ['prog','el-fire','Element of Fire',180,1800000,'Energy and harmony restoration.'],
+ ['prog','el-water','Element of Water',180,1800000,'Purification and renewal.'],
+ ['prog','el-earth','Element of Earth',180,1800000,'Energy restoration and inner balance.'],
+ ['prog','el-love','Element of Love',180,1800000,'Unforgettable delight.'],
+ ['pack','before-flight','Before Flight Ritual',150,1900000,''],
+ ['pack','jetlag','Jet Lag Therapy',150,1600000,'Head spa, body and face for the first or last day of your trip.'],
+ ['pack','exhale','Exhale package',120,1250000,''],
+ ['pack','water-airkiss','Water Spa + Airkiss',120,1900000,'Promo of the month.'],
+ ['pack','3in1','3 in 1',180,1900000,''],
+ ['pack','beauty-detox','Beauty and Detox Rituals Package',180,2500000,'Myofascial face massage, Airkiss Detox Ritual and Water spa with detox hair spa.'],
+ ['pack','power','Power Reset',130,1400000,''],
+ ['pack','stressfree','Stress Free',120,2100000,''],
+ ['two','love-two','Element of Love for two',180,3200000,''],
+ ['two','eternal','Sacred Eternal Love ritual',175,3300000,''],
+ ['two','honeymoon','Sacred Honeymoon ritual',200,3800000,'',['sanur']],
+ ['body','body60','Full body massage · 60 min',60,650000,''],
+ ['body','body90','Full body massage · 90 min',90,900000,''],
+ ['body','body120','Full body massage · 120 min',120,950000,''],
+ ['body','fire','Fire Massage',90,1100000,'The warmth of the fire element releases muscle tension.'],
+ ['body','aqua','Aqua Glow Ritual',100,800000,''],
+ ['body','refl30','Reflexology · 30 min',30,300000,'Biologically active points of the feet.'],
+ ['body','refl60','Reflexology · 60 min',60,500000,''],
+ ['body','refl90','Reflexology · 90 min',90,600000,''],
+ ['body','leg30','Lymphatic leg massage · 30 min',30,300000,''],
+ ['body','leg60','Lymphatic leg massage · 60 min',60,500000,''],
+ ['body','leg90','Lymphatic leg massage · 90 min',90,600000,'']
+].map(([cat,id,name,d,p,ds,only])=>({cat,id,name,d,p,ds,only}));
+const BYID=Object.fromEntries(MENU.map(m=>[m.id,m]));
+
+const ELEMENTS=[
+ {id:'el-air',n:'01 / 05',name:'Air',t:'Lightness, freedom and clarity',img:'assets/g10-proc-s.webp',
+  when:'When thoughts spin in an endless whirlwind, stress and anxiety. Frees the breath and clears mental fog.',
+  inc:'Myofascial face massage with oxygen pen · Head spa with singing bowls · Foot scrub and herbal-pouch massage'},
+ {id:'el-fire',n:'02 / 05',name:'Fire',t:'Strength, energy and transformation',img:'assets/g09-proc-s.webp',
+  when:'For chronic fatigue, burnout and a body that feels asleep. Warms, activates and brings back power.',
+  inc:'Ayurvedic head massage with ear candles · Fire massage · Sculptural face massage with “fire” mask and hand massage'},
+ {id:'el-water',n:'03 / 05',name:'Water',t:'Flow, cleansing and renewal',img:'assets/g12-proc-s.webp',
+  when:'For heaviness, long days on your feet and emotions that are stuck. Softens and lets go.',
+  inc:'Buccal face massage with hydrating mask · Head spa, neck and décolleté · Foot massage with algae wrap'},
+ {id:'el-earth',n:'04 / 05',name:'Earth',t:'Grounding, stability and deep rest',img:'assets/g06-interior.webp',
+  when:'For anxiety, racing thoughts and loss of inner balance. Brings you back into the body.',
+  inc:'Gua sha face massage · Collagen facial and hand care · Hot herbal pouches and Balinese boreh wrap'},
+ {id:'el-love',n:'05 / 05',name:'Love',t:'Care, connection and acceptance',img:'assets/g02-face-s.webp',
+  when:'For inner emptiness, a romantic date or a weekend of complete serenity. Also for two.',
+  inc:'Sound therapy with singing bowls · Signature face massage · Collagen facial · Head spa with Aqua Diadem'}
+];
+const SIGS=[
+ {id:'myo',tag:'Face',img:'assets/g01-face.webp',ds:'Lifts, releases jaw tension and gives a fresh, sculpted look.'},
+ {id:'shiro',tag:'Head spa',img:'assets/g10-proc-s.webp',ds:'A warm stream of oil, vegan hair care and a long head massage. The calmest two hours on the island.'},
+ {id:'airkiss',tag:'Skin',img:'assets/g12-proc-s.webp',ds:'A cloud of hand-whipped amino-acid foam that cleanses and refreshes in one hour.'},
+ {id:'jetlag',tag:'Ritual',img:'assets/g09-proc-s.webp',ds:'Head spa, body and face work for the first or last day of your trip.'},
+ {id:'sculpt',tag:'Face',img:'assets/g03-face-s.webp',ds:'Osteopathic methods for natural, long-term rejuvenation.'},
+ {id:'beauty-detox',tag:'Package',img:'assets/g11-proc-s.webp',ds:'Three hours: myofascial massage, Airkiss Detox and water spa with detox hair spa.'}
+];
+const GIFTS=[[1200000,1500000],[4000000,5000000],[12750000,15000000],[25500000,30000000]];
+const FAQ=[
+ ['How do I book?','Add treatments to “Your ritual”, choose Ubud or Sanur and pick the master and time online, or send the ritual by WhatsApp. The team confirms within minutes during working hours.'],
+ ['Should I book in advance?','Ideally a day or two ahead, especially for three-hour rituals and evenings. Same-day slots are sometimes available on WhatsApp.'],
+ ['What should I choose for a first visit?','For the face, start with Myofascial or Sculptural face massage. For deep rest, choose Shirodhara Hair Spa or one of the five-element programs.'],
+ ['Do you have treatments for couples and kids?','Yes. Element of Love for two and Sacred Eternal Love ritual are made for couples (Sacred Honeymoon in Sanur), and there is a gentle Hair spa for kids.'],
+ ['What currency are the prices in?','All prices are in Indonesian rupiah (IDR). Exact prices and payment options are confirmed when you book.'],
+ ['Can I cancel or reschedule?','Yes, according to the salon rules. See the cancellation and rescheduling policies at the bottom of the page.'],
+ ['Do you sell gift certificates?','Yes, with a bonus of up to 25% on top of the amount. Ask on WhatsApp; the terms are in the gift certificate policy.']
+];
+
+/* ============ HELPERS ============ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const idr=n=>'IDR '+n.toLocaleString('en-US');
+const dur=m=>{const h=Math.floor(m/60),r=m%60;return (h?h+' h':'')+(h&&r?' ':'')+(r?r+' min':'')};
+window.dataLayer=window.dataLayer||[];
+const ga=(event,items,extra={})=>{dataLayer.push({ecommerce:null});dataLayer.push(Object.assign({event,ecommerce:{currency:'IDR',value:items.reduce((s,i)=>s+i.p,0),items:items.map((i,ix)=>({item_id:i.id,item_name:i.name,item_category:(CATS.find(c=>c.id===i.cat)||{}).name,price:i.p,quantity:1,index:ix}))}},extra));};
+const store={get(){try{return JSON.parse(localStorage.getItem('tf_ritual')||'{}')}catch(e){return{}}},set(v){try{localStorage.setItem('tf_ritual',JSON.stringify(v))}catch(e){}}};
+
+/* ============ STATE ============ */
+const saved=store.get();
+let cart=(saved.cart||[]).filter(id=>BYID[id]);
+let salon=saved.salon||'ubud';
+let tab='face';
+let openEl='el-air';
+
+function save(){store.set({cart,salon})}
+function toast(msg){$('#toastMsg').textContent=msg;const t=$('#toast');t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600)}
+window.toast=toast;
+function toggle(id){
+  const it=BYID[id]; if(!it) return;
+  if(it.only&&!it.only.includes(salon)){setSalon(it.only[0]);toast(it.name+' is available in '+SALONS[it.only[0]].name+'. Salon switched.');}
+  if(cart.includes(id)){cart=cart.filter(x=>x!==id);ga('remove_from_cart',[it]);}
+  else{cart.push(id);ga('add_to_cart',[it],{salon});toast('Added: '+it.name);}
+  save();render();
+}
+function setSalon(s){salon=s;ga('select_salon',cart.map(i=>BYID[i]),{salon:s});save();render();}
+
+/* ============ RENDER ============ */
+function renderTabs(){
+  $('#tabs').innerHTML=CATS.map(c=>`<button role="tab" aria-selected="${c.id===tab}" class="${c.id===tab?'on':''}" data-tab="${c.id}">${c.name} <span style="opacity:.5">${MENU.filter(m=>m.cat===c.id).length}</span></button>`).join('');
+}
+function renderItems(){
+  const list=MENU.filter(m=>m.cat===tab);
+  $('#items').innerHTML=list.map(m=>{
+    const on=cart.includes(m.id), off=m.only&&!m.only.includes(salon);
+    return `<div class="item"><div><div class="nm">${m.name}${m.only?`<span class="badge">${m.only.map(s=>SALONS[s].name).join(', ')} only</span>`:''}</div>${m.ds?`<div class="ds">${m.ds}</div>`:''}</div>
+    <div class="du">${dur(m.d)}</div><div class="pc">${idr(m.p)}</div>
+    <button class="plus ${on?'on':''}" data-add="${m.id}" aria-pressed="${on}" aria-label="${on?'Remove':'Add'} ${m.name}" title="${off?'Available in '+m.only.map(s=>SALONS[s].name).join(', '):''}">${on?'✓':'+'}</button></div>`}).join('');
+}
+function renderBuilder(){
+  const items=cart.map(i=>BYID[i]);
+  $('#bEmpty').style.display=items.length?'none':'block';
+  $('#bList').innerHTML=items.map(i=>`<li><span>${i.name}<small>${dur(i.d)}</small></span><span>${idr(i.p)}</span><button data-add="${i.id}" aria-label="Remove ${i.name}">×</button></li>`).join('');
+  const t=items.reduce((s,i)=>s+i.d,0), p=items.reduce((s,i)=>s+i.p,0);
+  $('#bTime').textContent=t?dur(t):'0 min'; $('#bTotal').textContent=idr(p);
+  $$('#bSalon button,.salon-switch button').forEach(b=>b.classList.toggle('on',b.dataset.salon===salon));
+  const S=SALONS[salon];
+  const when=$('#bDate').value.trim();
+  const msg=`Hello! I would like to book at THE FACES ${S.name}:\n`+(items.length?items.map(i=>`• ${i.name} (${dur(i.d)}, ${idr(i.p)})`).join('\n')+`\nTotal: ${idr(p)} · ${dur(t)}`:'(I need advice on what to choose)')+(when?`\nPreferred time: ${when}`:'');
+  $('#bWa').href=`https://wa.me/${S.wa}?text=${encodeURIComponent(msg)}`;
+  $('#bOnline').href=S.online;
+  $('#bOnline').textContent='3 · Pick master & time · '+S.name;
+  const n=String(cart.length); if($('#cartCount')){$('#cartCount').textContent=n; $('#cartCount').dataset.n=n;} if($('#mCount'))$('#mCount').textContent=n;
+}
+function renderElements(){
+  if(!$('#elGrid'))return;
+  $('#elGrid').innerHTML=ELEMENTS.map((e,i)=>`<article class="el ${e.id===openEl?'open':''}" data-el="${e.id}" tabindex="0" aria-label="${e.name}">
+    <img src="${e.img}" alt="" loading="lazy"><span class="num">${e.n}</span>
+    <div class="c"><h3>${e.name}</h3><p class="t">${e.t}</p>
+      <div class="more"><p>${e.when}</p><p style="opacity:.7">${e.inc}</p>
+      <div class="meta"><span>~3 h · IDR 1,800,000</span><button class="btn add" data-add="${e.id}">${cart.includes(e.id)?'✓ In your ritual':'+ Add to ritual'}</button></div></div>
+    </div></article>`).join('');
+}
+function renderSigs(){
+  if(!$('#rail'))return;
+  $('#rail').innerHTML=SIGS.map(s=>{const m=BYID[s.id];return `<article class="card"><div class="ph"><img src="${s.img}" alt="${m.name}" loading="lazy"><span class="tag">${s.tag}</span></div>
+  <h3>${m.name}</h3><p class="pr">${dur(m.d)} · ${idr(m.p)}</p><p>${s.ds}</p>
+  <div class="row"><button class="btn" data-add="${m.id}">${cart.includes(m.id)?'✓ Added':'+ Add to ritual'}</button></div></article>`}).join('');
+}
+function render(){renderTabs();renderItems();renderBuilder();renderElements();renderSigs();}
+
+if($('#gifts-grid'))$('#gifts-grid').innerHTML=GIFTS.map(([pay,get])=>`<div class="gift rv"><span class="p">You pay ${idr(pay)}</span><span class="v">${idr(get)}</span><span class="bonus">Bonus +${Math.round((get/pay-1)*100)}%</span>
+ <a class="btn dark" target="_blank" rel="noopener" href="https://wa.me/6282266999965?text=${encodeURIComponent('Hello! I would like a gift certificate: pay '+idr(pay)+', value '+idr(get)+'.')}">Order</a></div>`).join('');
+if($('#faqList'))$('#faqList').innerHTML=FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('');
+const G=['g01-face','g04-interior','g09-proc-s','g02-face-s','g08-interior','g12-proc-s','g06-interior','dsc','g10-proc-s','g03-face-s','g05-interior-s','g11-proc-s','g07-interior-s'];
+const strip=a=>(a.concat(a)).map(g=>`<img src="assets/${g}.webp" alt="" loading="lazy">`).join('');
+if($('#strip1')){$('#strip1').innerHTML=strip(G.slice(0,7)); $('#strip2').innerHTML=strip(G.slice(6).concat(G.slice(0,1)));}
+
+/* ============ EVENTS ============ */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-add]'); if(a){e.stopPropagation();toggle(a.dataset.add);return;}
+  const t=e.target.closest('[data-tab]'); if(t){tab=t.dataset.tab;renderTabs();renderItems();ga('view_item_list',MENU.filter(m=>m.cat===tab),{item_list_name:tab});return;}
+  const s=e.target.closest('[data-salon]'); if(s){setSalon(s.dataset.salon);return;}
+  const bs=e.target.closest('[data-book-salon]'); if(bs){setSalon(bs.dataset.bookSalon);$('#menu').scrollIntoView({behavior:'smooth'});return;}
+  const ob=e.target.closest('[data-open-builder]'); if(ob){e.preventDefault();$('#builder').scrollIntoView({behavior:'smooth',block:'start'});ga('view_cart',cart.map(i=>BYID[i]));return;}
+  const el=e.target.closest('.el'); if(el){openEl=el.dataset.el;$$('.el').forEach(x=>x.classList.toggle('open',x===el));}
+});
+$('#elGrid')&&$('#elGrid').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('el')){openEl=e.target.dataset.el;$$('.el').forEach(x=>x.classList.toggle('open',x===e.target))}});
+$('#bDate').addEventListener('input',renderBuilder);
+['#bOnline','#bWa'].forEach(sel=>$(sel).addEventListener('click',()=>{
+  const items=cart.map(i=>BYID[i]);
+  ga('begin_checkout',items,{salon,booking_method:sel==='#bWa'?'whatsapp':'altegio'});
+  ga('generate_lead',items,{salon,booking_method:sel==='#bWa'?'whatsapp':'altegio'});
+}));
+if($('#rail')){$('#prev').onclick=()=>$('#rail').scrollBy({left:-400,behavior:'smooth'});
+$('#next').onclick=()=>$('#rail').scrollBy({left:400,behavior:'smooth'});
+// drag-to-scroll rail
+(()=>{const r=$('#rail');let d=false,x0,s0;r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;d=true;x0=e.clientX;s0=r.scrollLeft;r.style.scrollSnapType='none'});
+window.addEventListener('pointerup',()=>{d=false;r.style.scrollSnapType=''});r.addEventListener('pointermove',e=>{if(d)r.scrollLeft=s0-(e.clientX-x0)})})();}
+// sound
+if($('#sound'))$('#sound').onclick=()=>{const v=$('#heroVideo');v.muted=!v.muted;$('#sound').textContent=v.muted?'Sound off':'Sound on'};
+// mobile nav
+if($('#burger')){$('#burger').onclick=()=>$('#mnav').classList.add('open');
+$('#mclose').onclick=()=>$('#mnav').classList.remove('open');}
+$$('#mnav a').forEach(a=>a.addEventListener('click',()=>$('#mnav').classList.remove('open')));
+
+/* ============ MOTION ============ */
+const head=$('#top');
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.15});
+const observe=()=>$$('.rv,.mask').forEach(el=>io.observe(el));
+const px=$$('[data-parallax]');
+let ticking=false;
+function onScroll(){
+  if(head)head.classList.toggle('solid',scrollY>60);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    px.forEach(el=>{const r=el.getBoundingClientRect();const k=parseFloat(el.dataset.parallax);const c=r.top+r.height/2-innerHeight/2;const v=Math.max(-90,Math.min(90,-c*k));el.style.transform=`translate3d(0,${v.toFixed(1)}px,0)`});
+  }
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true}},{passive:true});
+
+render(); observe(); onScroll();
+ga('view_item_list',MENU.filter(m=>m.cat===tab),{item_list_name:tab});
+
+})();
+</script>
