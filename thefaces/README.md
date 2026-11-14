@@ -1,8 +1,9 @@
-# THE FACES · nueva web del spa (previsualización para Tilda)
+# THE FACES · nueva web del spa (bloques para Tilda, 7 idiomas)
 
-- `index.html` — previsualización completa (abrir en el navegador). EN, vídeo de portada, 5 elementos, menú con 57 precios, constructor «Your ritual» con reserva por salón (Altegio / WhatsApp) y eventos dataLayer.
-- `GUIA_TILDA.md` — guía paso a paso de montaje en Tilda, estudio de mercado, referencia Aman y datos a confirmar.
-- `tilda/` — bloques para pegar en Tilda: `00-head-code.html` (Consent Mode + GTM + fuente), `04-menu-booking-builder.html` (menú + constructor), `05-gallery-marquee.html` (galería en movimiento).
-- `tools/build_tilda_block.py` — regenera el bloque 04 desde `index.html` tras cambiar precios.
-- `assets/` — fotos, logo blanco/negro y vídeo de portada (25 s, 2,7 MB).
-- `preview/` — capturas.
+- `GUIA_TILDA.md` — guía paso a paso: qué pegar, dónde y en qué orden.
+- `SEO_ESTRUCTURA.md` — mapa del sitio: 9 páginas × 7 idiomas, bloques de cada página, títulos y descripciones.
+- `tilda/` — `00-site-head.html` (una vez) + carpeta por idioma (`en ru es de th id ja`) con 15 bloques T123, intros de página, cabeceras/pies por página y código HEAD con hreflang.
+- `preview/index.html` — previsualización navegable de todas las páginas e idiomas.
+- `src/` — textos, precios y diseño; `python3 thefaces/src/build.py` lo regenera todo.
+- `assets/` — fotos, logos, vídeo de portada, imágenes de los 5 sentidos, foto de los fundadores, imagen para redes.
+- `capturas/` — capturas de la primera versión.
