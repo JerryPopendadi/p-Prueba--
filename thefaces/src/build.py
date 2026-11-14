@@ -945,7 +945,11 @@ def b_footer(ctx):
  </div>
  <script type="application/ld+json">{jsonld_business(ctx)}</script>
 </footer>
-<a class="side-book" {book("side-tab")}><span>{E(ctx.t("ld_book_side"))}</span></a>
+<a class="side-book" {book("side-tab")} aria-label="{E(ctx.t("book_online"))}">
+ <span class="sb-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v13a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm-2 7h14v10H5V9zm2 2v2h2v-2H7zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm-8 4v2h2v-2H7zm4 0v2h2v-2h-2z"/></svg></span>
+ <span class="sb-txt">{E(ctx.t("ld_book_side"))}</span>
+ <span class="sb-tip" aria-hidden="true">{E(ctx.t("book_online"))} <b>↗</b></span>
+</a>
 <div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar")}>{E(ctx.t("book"))}</a></div>
 <div class="toast" role="status"><span class="msg"></span></div>
 <div class="cookie" role="dialog" aria-label="Cookies"><p>{E(ctx.t("ck_text"))} <a href="{E(ctx.url("privacy", "cookies"))}">{E(ctx.t("ck_more"))}</a></p>
