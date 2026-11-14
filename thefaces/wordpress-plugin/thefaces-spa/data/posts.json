@@ -3,6 +3,19 @@
   "id": "p1",
   "img": "g01-face.webp",
   "catkey": "face",
+  "canonical": "",
+  "service": "face-massage",
+  "service_label": {
+   "en": "Face massage",
+   "ru": "Массаж лица",
+   "es": "Masaje facial",
+   "de": "Gesichtsmassage",
+   "th": "นวดหน้า",
+   "id": "Pijat wajah",
+   "ja": "フェイシャルマッサージ",
+   "fr": "Massage du visage",
+   "uk": "Масаж обличчя"
+  },
   "catname": {
    "en": "Face",
    "ru": "Лицо",
@@ -74,6 +87,19 @@
   "id": "p2",
   "img": "g10-proc-s.webp",
   "catkey": "head",
+  "canonical": "",
+  "service": "head-spa",
+  "service_label": {
+   "en": "Head spa",
+   "ru": "Хэд-спа",
+   "es": "Head spa",
+   "de": "Head Spa",
+   "th": "เฮดสปา",
+   "id": "Head spa",
+   "ja": "ヘッドスパ",
+   "fr": "Head spa",
+   "uk": "Хед-спа"
+  },
   "catname": {
    "en": "Head spa",
    "ru": "Хэд-спа",
@@ -145,6 +171,19 @@
   "id": "p3",
   "img": "g09-proc-s.webp",
   "catkey": "rituals",
+  "canonical": "five-elements",
+  "service": "five-elements",
+  "service_label": {
+   "en": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "ru": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "es": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "de": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "th": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "id": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "ja": "バリの五元素リチュアル",
+   "fr": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "uk": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов"
+  },
   "catname": {
    "en": "Rituals",
    "ru": "Ритуалы",
@@ -216,6 +255,19 @@
   "id": "el-air",
   "img": "g10-proc-s.webp",
   "catkey": "elements",
+  "canonical": "five-elements",
+  "service": "five-elements",
+  "service_label": {
+   "en": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "ru": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "es": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "de": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "th": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "id": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "ja": "バリの五元素リチュアル",
+   "fr": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "uk": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов"
+  },
   "catname": {
    "en": "Five elements",
    "ru": "Пять стихий",
@@ -287,6 +339,19 @@
   "id": "el-fire",
   "img": "sense-sight.webp",
   "catkey": "elements",
+  "canonical": "five-elements",
+  "service": "five-elements",
+  "service_label": {
+   "en": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "ru": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "es": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "de": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "th": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "id": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "ja": "バリの五元素リチュアル",
+   "fr": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "uk": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов"
+  },
   "catname": {
    "en": "Five elements",
    "ru": "Пять стихий",
@@ -358,6 +423,19 @@
   "id": "el-water",
   "img": "g12-proc-s.webp",
   "catkey": "elements",
+  "canonical": "five-elements",
+  "service": "five-elements",
+  "service_label": {
+   "en": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "ru": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "es": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "de": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "th": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "id": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "ja": "バリの五元素リチュアル",
+   "fr": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "uk": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов"
+  },
   "catname": {
    "en": "Five elements",
    "ru": "Пять стихий",
@@ -429,6 +507,19 @@
   "id": "el-earth",
   "img": "g06-interior.webp",
   "catkey": "elements",
+  "canonical": "five-elements",
+  "service": "five-elements",
+  "service_label": {
+   "en": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "ru": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "es": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "de": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "th": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "id": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "ja": "バリの五元素リチュアル",
+   "fr": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "uk": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов"
+  },
   "catname": {
    "en": "Five elements",
    "ru": "Пять стихий",
@@ -500,6 +591,19 @@
   "id": "el-love",
   "img": "g02-face-s.webp",
   "catkey": "elements",
+  "canonical": "five-elements",
+  "service": "couples-spa",
+  "service_label": {
+   "en": "Couples spa",
+   "ru": "Спа для пар",
+   "es": "Spa en pareja",
+   "de": "Spa für Paare",
+   "th": "สปาคู่รัก",
+   "id": "Spa pasangan",
+   "ja": "カップルスパ",
+   "fr": "Spa en duo",
+   "uk": "Спа для пар"
+  },
   "catname": {
    "en": "Five elements",
    "ru": "Пять стихий",
@@ -571,6 +675,19 @@
   "id": "senses",
   "img": "sense-hearing.webp",
   "catkey": "rituals",
+  "canonical": "five-elements",
+  "service": "five-elements",
+  "service_label": {
+   "en": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "ru": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "es": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "de": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "th": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "id": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "ja": "バリの五元素リチュアル",
+   "fr": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "uk": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов"
+  },
   "catname": {
    "en": "Rituals",
    "ru": "Ритуалы",
@@ -642,6 +759,19 @@
   "id": "story",
   "img": "founders.webp",
   "catkey": "story",
+  "canonical": "founders",
+  "service": "founders",
+  "service_label": {
+   "en": "Anna & Evgenii Dubinin",
+   "ru": "Анна и Евгений Дубинины",
+   "es": "Anna y Evgenii Dubinin",
+   "de": "Anna & Evgenii Dubinin",
+   "th": "แอนนาและเยฟเกนี ดูบินิน",
+   "id": "Anna & Evgenii Dubinin",
+   "ja": "アンナ＆エフゲニー・ドゥビニン",
+   "fr": "Anna & Evgenii Dubinin",
+   "uk": "Анна та Євгеній Дубініни"
+  },
   "catname": {
    "en": "Our story",
    "ru": "Наша история",
@@ -713,6 +843,19 @@
   "id": "waterfall",
   "img": "waterfall-3.webp",
   "catkey": "news",
+  "canonical": "partners",
+  "service": "partners",
+  "service_label": {
+   "en": "Partner with The Faces",
+   "ru": "Партнёрство с The Faces",
+   "es": "Partners de The Faces",
+   "de": "Partner von The Faces",
+   "th": "ร่วมเป็นพันธมิตร The Faces",
+   "id": "Mitra The Faces",
+   "ja": "The Facesとの提携",
+   "fr": "Partenariat The Faces",
+   "uk": "Партнерство з The Faces"
+  },
   "catname": {
    "en": "News",
    "ru": "Новости",
@@ -784,6 +927,19 @@
   "id": "gifts",
   "img": "g08-interior.webp",
   "catkey": "news",
+  "canonical": "gift-certificates",
+  "service": "gift-certificates",
+  "service_label": {
+   "en": "Spa gift certificates in Bali with bonus",
+   "ru": "Подарочные сертификаты в спа на Бали с бонусом",
+   "es": "Certificados regalo de spa en Bali con bonus",
+   "de": "Spa-Gutscheine auf Bali mit Bonus",
+   "th": "บัตรของขวัญสปาในบาหลีพร้อมโบนัส",
+   "id": "Voucher hadiah spa di Bali dengan bonus",
+   "ja": "バリのスパギフト券（ボーナス付き）",
+   "fr": "Cartes cadeaux spa à Bali avec bonus",
+   "uk": "Подарункові сертифікати в спа на Балі з бонусом"
+  },
   "catname": {
    "en": "News",
    "ru": "Новости",

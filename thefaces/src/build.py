@@ -77,6 +77,24 @@ from content_extra import BLOG_UI  # noqa: E402
 UI.update(BLOG_UI)
 from content_privacy2 import COMPANY, CO_UI, WHO, CONTROLLER_LINE, EXTRA_SECTIONS  # noqa: E402
 UI.update(CO_UI)
+from content_seo2 import TITLES, HERO_H1, SALON_TXT, SEO2_UI  # noqa: E402
+UI.update(SEO2_UI)
+from content_salon import SALON_PAGE, SALON_UI, SALON_IMG  # noqa: E402
+UI.update(SALON_UI)
+UI["hero_h1"] = HERO_H1
+for _P in PAGES:  # one main search intent per page (no cannibalisation)
+    if _P["slug"] in TITLES:
+        _P.update({k: v for k, v in TITLES[_P["slug"]].items()})
+    if _P["slug"] in ("ubud", "sanur"):
+        _P["blocks"] = ["01-header", "salon-" + _P["slug"], "17-instagram", "15-footer"]
+    elif _P["slug"] == "five-elements":
+        _P["blocks"] = ["01-header", "04-senses", "05-elements", "06-signatures", "14-faq", "15-footer"]
+    elif _P["slug"] == "founders":
+        _P["blocks"] = ["01-header", "10-founders", "18-certificates", "03-philosophy", "15-footer"]
+    elif _P["slug"] == "partners":
+        _P["blocks"] = ["01-header", "12-partners", "16-waterfall", "15-footer"]
+    elif _P["slug"] == "certificates":
+        _P["blocks"] = ["01-header", "18-certificates", "15-footer"]
 LANDING = {L["slug"]: L for L in LANDINGS}
 for _P in PAGES:  # certificates after the founders; full journal list on the journal page
     if "10-founders" in _P["blocks"] and "18-certificates" not in _P["blocks"]:
@@ -183,7 +201,7 @@ def book(where, item=""):
 
 ITEM = {m[1]: m for m in MENU}
 CUR = ' aria-current="true"'
-NO_INTRO = {"landing", "21-journal-all"}
+NO_INTRO = {"landing", "21-journal-all", "salon-ubud", "salon-sanur"}
 ON = ' class="on"'
 
 SOCIAL_SVG = {
@@ -252,7 +270,7 @@ def b_header(ctx):
 
 def b_hero(ctx):
     return f'''<section class="hero" aria-label="THE FACES">
- <video autoplay muted loop playsinline preload="metadata" poster="{ctx.asset("hero-poster.jpg")}"><source src="{ctx.asset("hero-720.mp4")}" type="video/mp4"></video>
+ <video autoplay muted loop playsinline preload="metadata" poster="{ctx.asset("hero-poster-2.jpg")}"><source src="{ctx.asset("hero-854.mp4")}" type="video/mp4" media="(max-width: 760px)"><source src="{ctx.asset("hero-1280.mp4")}" type="video/mp4"></video>
  <button type="button" class="sound" data-off="{E(ctx.t("sound_off"))}" data-on="{E(ctx.t("sound_on"))}">{E(ctx.t("sound_off"))}</button>
  <div class="wrap in">
   <h1 class="eyebrow">{E(ctx.t("hero_h1"))}</h1>
@@ -639,6 +657,21 @@ def _art_gifts():
     return {"title": lambda c: c.t("gi_h2"), "excerpt": lambda c: c.t("gi_intro"), "body": body}
 
 
+CANON = {"p3": "five-elements", "el-air": "five-elements", "el-fire": "five-elements", "el-water": "five-elements", "el-earth": "five-elements",
+         "el-love": "five-elements", "senses": "five-elements", "story": "founders", "gifts": "gift-certificates", "waterfall": "partners"}
+SERVICE = {"p1": "face-massage", "p2": "head-spa", "el-love": "couples-spa"}
+
+
+def article_service(art):
+    return SERVICE.get(art["id"]) or CANON.get(art["id"]) or "menu"
+
+
+def service_label(ctx, key):
+    if key in LANDING:
+        return ctx.pick(LANDING[key]["nav"])
+    return h1_of(ctx.pick(next(P for P in PAGES if P["slug"] == key)["title"]))
+
+
 def _build_articles():
     arts = []
     def add(pid, slug, cat, img, impl):
@@ -700,6 +733,120 @@ def b_journal_all(ctx):
   <p class="jo-none" hidden>{E(ctx.t("jo_none"))}</p>
  </div>
 </section>'''
+
+
+def b_salon(ctx, sid):
+    """Own page for each salon: unique local text, photos, colours, exclusive treatments, map and FAQ."""
+    sv = SALONS[sid]
+    d = ctx.pick(SALON_PAGE[sid])
+    imgs = SALON_IMG[sid]
+    other = "sanur" if sid == "ubud" else "ubud"
+    ov = SALONS[other]
+    excl = []
+    for m in MENU:
+        cat, iid, nm, du, pr, only, diff = m
+        if only == [sid]:
+            excl.append((nm, du, pr, iid))
+    rows = "".join(
+        f'<li><div><b>{E(n)}</b>{("<small>" + E(ctx.pick(DESC[iid])) + "</small>") if iid in DESC else ""}</div>'
+        f'<span>{(ctx.dur(du) + " · ") if du else ""}{ctx.price(pr)}</span></li>' for n, du, pr, iid in excl)
+    tel = sv["tel"].replace(" ", "")
+    wa = f'https://wa.me/{sv["wa"]}'
+    q = sv["maps"].split("query=")[-1]
+    hours = sv["opens"] + "–" + sv["closes"]
+    feats = "".join(f'<li class="rv"><span class="sl-n">0{i + 1}</span><h3>{E(t)}</h3><p>{E(x)}</p></li>' for i, (t, x) in enumerate(d["f"]))
+    faq = "".join(f'<details><summary>{E(qq)}</summary><p>{E(aa)}</p></details>' for qq, aa in d["faq"])
+    ld = {"@context": "https://schema.org", "@type": "DaySpa", "@id": ctx.abs_url(sid) + "#spa", "name": f"The Faces Spa {sv['name']}",
+          "url": ctx.abs_url(sid), "telephone": sv["tel"], "image": [ctx.asset(i) for i in imgs], "priceRange": "IDR 200,000 – 3,800,000",
+          "description": d["seo"][0], "parentOrganization": {"@type": "Organization", "name": "THE FACES"},
+          "address": {"@type": "PostalAddress", "streetAddress": sv["street"], "addressLocality": sv["locality"], "addressRegion": "Bali",
+                      "postalCode": sv["postal"], "addressCountry": "ID"},
+          "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                                         "opens": sv["opens"], "closes": sv["closes"]}],
+          "hasMap": sv["maps"], "potentialAction": {"@type": "ReserveAction", "target": ALTEGIO}}
+    fq = {"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": qq, "acceptedAnswer": {"@type": "Answer", "text": aa}} for qq, aa in d["faq"]]}
+    crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "THE FACES", "item": ctx.abs_url("")},
+        {"@type": "ListItem", "position": 2, "name": f"The Faces Spa {sv['name']}", "item": ctx.abs_url(sid)}]}
+    return f'''<div class="sl sl-{sid}">
+<section class="sl-hero">
+ <img class="sl-bg" src="{ctx.asset(imgs[0])}" alt="{E(ctx.t(sv["alt"]))}" loading="eager" fetchpriority="high">
+ <div class="wrap sl-hero-in">
+  <nav aria-label="Breadcrumb" class="eyebrow crumbs"><a href="{E(ctx.url())}">THE FACES</a> <span aria-hidden="true">/</span> <span>{E(ctx.t("nav_salons"))}</span> <span aria-hidden="true">/</span> <span>{sv["name"]}</span></nav>
+  <p class="eyebrow sl-eb">{E(d["eyebrow"])}</p>
+  <h1>{E(d["h1"])}</h1>
+  <p class="lead">{E(ctx.pick(SALON_TXT[sid]))}</p>
+  <div class="ld-cta">
+   <a class="btn" {book("salon-page-" + sid, sv["name"])}>{E(ctx.t("sa_book", salon=sv["name"]))}</a>
+   <a class="btn ghost-l" href="{wa}" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <p class="sl-note">{E(ctx.t("sl_book_note"))}</p>
+ </div>
+ <dl class="wrap sl-facts">
+  <div><dt>{E(ctx.t("sl_address"))}</dt><dd><a href="{sv["maps"]}" target="_blank" rel="noopener">{E(sv["addr"])}</a></dd></div>
+  <div><dt>{E(ctx.t("sl_hours"))}</dt><dd>{E(ctx.t("sa_hours", h=hours))}</dd></div>
+  <div><dt>{E(ctx.t("sl_phone"))}</dt><dd><a href="tel:{tel}">{sv["tel"]}</a></dd></div>
+ </dl>
+</section>
+<section class="sec sl-why">
+ <div class="wrap">
+  <h2 class="h2 rv">{E(d["why_h"])}</h2>
+  <ul class="sl-feats">{feats}</ul>
+ </div>
+</section>
+<section class="sec sl-story">
+ <div class="wrap sl-story-in">
+  <div class="sl-copy rv">
+   <h2 class="h2">{E(d["seo_h"])}</h2>
+   <p>{E(d["seo"][0])}</p>
+   <p>{E(d["seo"][1])}</p>
+  </div>
+  <div class="sl-pics">
+   <figure class="mask rv"><img src="{ctx.asset(imgs[1])}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure>
+   <figure class="mask rv"><img src="{ctx.asset(imgs[2])}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure>
+  </div>
+ </div>
+</section>
+<section class="sec sl-only">
+ <div class="wrap sl-only-in">
+  <div>
+   <p class="eyebrow">{E(ctx.t("sa_only_here"))}</p>
+   <h2 class="h2">The Faces Spa {sv["name"]}</h2>
+   <div class="ld-cta"><a class="btn" {book("salon-only-" + sid, sv["name"])}>{E(ctx.t("sa_book", salon=sv["name"]))}</a></div>
+   <p style="margin-top:22px"><a class="link" href="{E(ctx.url("menu"))}">{E(ctx.t("sa_full_menu"))}</a></p>
+  </div>
+  <ul class="sl-list">{rows}</ul>
+ </div>
+</section>
+<section class="sec sl-go">
+ <div class="wrap sl-go-in">
+  <div class="rv">
+   <h2 class="h2">{E(d["go_h"])}</h2>
+   <p>{E(d["go"])}</p>
+   <address>{E(sv["addr"])}<br><a href="tel:{tel}">{sv["tel"]}</a></address>
+   <div class="ld-cta"><a class="btn dark" href="{sv["maps"]}" target="_blank" rel="noopener">{E(ctx.t("sa_dir"))}</a></div>
+  </div>
+  <div class="sd-map"><iframe title="{E(sv["addr"])}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q={q}&amp;output=embed"></iframe></div>
+ </div>
+</section>
+<section class="sec sl-faq">
+ <div class="wrap sl-faq-in">
+  <h2 class="h2">{E(d["faq_h"])}</h2>
+  <div class="sl-qa">{faq}</div>
+ </div>
+</section>
+<section class="sl-other">
+ <a class="wrap sl-other-in" href="{E(ctx.url(other))}">
+  <img src="{ctx.asset(SALON_IMG[other][0])}" alt="The Faces Spa {ov["name"]}" loading="lazy">
+  <span class="eyebrow">{E(ctx.t("sl_visit_other"))}</span>
+  <span class="sl-other-name">The Faces Spa {ov["name"]} →</span>
+ </a>
+</section>
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(fq, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(crumbs, ensure_ascii=False)}</script>
+</div>'''
 
 
 def b_salons(ctx):
@@ -833,7 +980,7 @@ def related_html(ctx, art):
     return "".join(article_card(ctx, a, k) for k, a in enumerate(pick))
 
 
-def b_post(ctx, title, cat, excerpt, img_url, body, date="", related=""):
+def b_post(ctx, title, cat, excerpt, img_url, body, date="", related="", svc_url="", svc_label=""):
     """Article page layout (used by the preview and, with placeholders, by WordPress)."""
     return f'''<article class="post-page">
  <header class="post-hero">
@@ -847,7 +994,7 @@ def b_post(ctx, title, cat, excerpt, img_url, body, date="", related=""):
  </header>
  <div class="wrap post-body">{body}</div>
  <aside class="wrap post-cta"><div><p class="h3">{E(ctx.t("jo_cta_h"))}</p><p class="muted">{E(ctx.t("jo_cta_p"))}</p></div>
-  <div class="row"><a class="btn darksolid" {book("article")}>{E(ctx.t("book_cta"))}</a><a class="btn dark" href="{E(ctx.url("menu"))}">{E(ctx.t("nav_menu"))}</a></div></aside>
+  <div class="row"><a class="btn darksolid" {book("article")}>{E(ctx.t("book_cta"))}</a><a class="btn dark" href="{svc_url or E(ctx.url("menu"))}">{svc_label or E(ctx.t("nav_menu"))}</a></div></aside>
  <section class="wrap post-related"><p class="eyebrow">{E(ctx.t("jo_related"))}</p><div class="posts"><!--tf-related-->{related}<!--/tf-related--></div>
   <p><a class="link" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_all"))}</a></p></section>
 </article>'''
@@ -858,12 +1005,13 @@ def b_faq(ctx):
     det = "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in qa)
     ld = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": ctx.lang,
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in qa]}
+    ld_html = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ctx.slug == "" else ""
     return f'''<section class="faq sec" id="faq">
  <div class="wrap faq-grid">
   <div>{label(ctx, 11, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
   <div class="rv d2">{det}</div>
  </div>
- <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+ {ld_html}
 </section>'''
 
 
@@ -1083,13 +1231,16 @@ def build_wordpress(css, js, autolang):
             key = page["slug"] or "home"
             (ld / "pages" / f"{key}-01-header.html").write_text(wrap(ctx, "01-header", b_header(ctx)), encoding="utf-8")
             (ld / "pages" / f"{key}-15-footer.html").write_text(wrap(ctx, "15-footer", b_footer(ctx)), encoding="utf-8")
+            for bn in page["blocks"]:
+                if bn.startswith("salon-"):
+                    (ld / "pages" / f"{key}-salon.html").write_text(wrap(ctx, bn, b_salon(ctx, bn[6:])), encoding="utf-8")
             if "landing" in page["blocks"]:
                 (ld / "pages" / f"{key}-landing.html").write_text(wrap(ctx, "landing", b_landing(ctx, page)), encoding="utf-8")
             elif page["slug"]:
                 (ld / "pages" / f"{key}-intro.html").write_text(wrap(ctx, "intro", b_pageintro(ctx, page)), encoding="utf-8")
     posts = []
     for art in ARTICLES:
-        rec = {"id": art["id"], "img": art["img"], "catkey": art["cat"], "catname": {}, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
+        rec = {"id": art["id"], "img": art["img"], "catkey": art["cat"], "canonical": CANON.get(art["id"], ""), "service": article_service(art), "service_label": {}, "catname": {}, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
         for lang in LANGS:
             c = Ctx(lang, "wp", "journal", site, "", {})
             rec["slug"][lang] = c.post_slug(art["id"])
@@ -1097,12 +1248,13 @@ def build_wordpress(css, js, autolang):
             rec["catname"][lang] = cat_name(c, art["cat"])
             rec["cat"][lang] = cat_name(c, art["cat"]) + " · " + c.t("jo_read_min", n=read_min(c, art["body"](c)))
             rec["excerpt"][lang] = art["excerpt"](c)
+            rec["service_label"][lang] = service_label(c, article_service(art))
             rec["html"][lang] = art["body"](c)
         posts.append(rec)
     (plug / "data" / "posts.json").write_text(json.dumps(posts, ensure_ascii=False, indent=1), encoding="utf-8")
     for lang in LANGS:
         c = Ctx(lang, "wp", "journal", site, "", {})
-        shell = b_post(c, "{{POST_TITLE}}", "{{POST_CAT}}", "{{POST_EXCERPT}}", "{{POST_IMG}}", "{{POST_CONTENT}}", "{{POST_DATE}}", "")
+        shell = b_post(c, "{{POST_TITLE}}", "{{POST_CAT}}", "{{POST_EXCERPT}}", "{{POST_IMG}}", "{{POST_CONTENT}}", "{{POST_DATE}}", "", "{{POST_SVC_URL}}", "{{POST_SVC_LABEL}}")
         (plug / "blocks" / lang / "post-shell.html").write_text(wrap(c, "post", shell), encoding="utf-8")
     pages = {(p["slug"] or "home"): p["blocks"] for p in PAGES}
     seo = {l: {(p["slug"] or "home"): {"title": p["title"][LI[l]], "desc": p["desc"][LI[l]]} for p in PAGES} for l in LANGS}
@@ -1148,6 +1300,9 @@ def main():
             ctx = Ctx(lang, "tilda", page["slug"], a.site, assets_base, assets_map)
             key = page["slug"] or "home"
             (ld / "head" / f"{key}.html").write_text(page_head(ctx, page) + "\n", encoding="utf-8")
+            for bn in page["blocks"]:
+                if bn.startswith("salon-"):
+                    (ld / "pages" / f"{key}-salon.html").write_text(f"<!-- THE FACES · {key} salon page · {LANG_NAMES[lang]} · paste right after 01-header -->\n" + wrap(ctx, bn, b_salon(ctx, bn[6:])) + "\n", encoding="utf-8")
             if "landing" in page["blocks"]:
                 (ld / "pages" / f"{key}-landing.html").write_text(
                     f"<!-- THE FACES · {key} landing page · H1, CTA, treatments and prices · {LANG_NAMES[lang]} · paste right after 01-header -->\n" + wrap(ctx, "landing", b_landing(ctx, page)) + "\n", encoding="utf-8")
@@ -1166,6 +1321,9 @@ def main():
                 if name == "landing":
                     body.append(wrap(pctx, "landing", b_landing(pctx, page)))
                     continue
+                if name.startswith("salon-"):
+                    body.append(wrap(pctx, name, b_salon(pctx, name[6:])))
+                    continue
                 body.append(wrap(pctx, name, BLOCKS[name](pctx)))
                 if name == "01-header" and page["slug"] and not (set(page["blocks"]) & NO_INTRO):
                     body.append(wrap(pctx, "intro", b_pageintro(pctx, page)))
@@ -1175,6 +1333,7 @@ def main():
             out.write_text(f'''<!doctype html>
 <html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}">
+<link rel="canonical" href="{pctx.abs_url(page["slug"])}">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:locale" content="{OG_LOCALE[lang]}">
 {alts}
 <script>{autolang}</script>
@@ -1195,7 +1354,8 @@ def main():
             title, ex, bd = art["title"](ctx), art["excerpt"](ctx), art["body"](ctx)
             cat = cat_name(ctx, art["cat"]) + " · " + ctx.t("jo_read_min", n=read_min(ctx, bd))
             body = [wrap(ctx, "01-header", b_header(ctx)),
-                    wrap(ctx, "post", b_post(ctx, E(title), E(cat), E(ex), ctx.asset(art["img"]), bd, "", related_html(ctx, art))),
+                    wrap(ctx, "post", b_post(ctx, E(title), E(cat), E(ex), ctx.asset(art["img"]), bd, "", related_html(ctx, art),
+                                             E(ctx.url(article_service(art))), E(service_label(ctx, article_service(art))))),
                     wrap(ctx, "15-footer", b_footer(ctx))]
             out = pdir / lang / ctx.slug / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -1203,6 +1363,7 @@ def main():
             out.write_text(f'''<!doctype html>
 <html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(title)} | The Faces</title><meta name="description" content="{E(ex)}">
+<link rel="canonical" href="{(ctx.abs_url(CANON[pid]) if pid in CANON else ctx.site.rstrip('/') + '/' + ctx.post_slug(pid) + '/')}">
 {alts}
 <script>{autolang}</script>
 {FONTS}
@@ -1222,7 +1383,7 @@ def main():
              f"Dominio: {a.site} · Idiomas: " + ", ".join(f"{LANG_NAMES[l]} (`{'/' if l == 'en' else '/' + l + '/'}`)" for l in LANGS), "",
              "## Páginas y bloques", "", "| Página | URL (EN) | Bloques en Tilda, en orden |", "|---|---|---|"]
     for p in PAGES:
-        blocks = [f"pages/{p['slug']}-landing" if b == "landing" else b for b in p["blocks"]]
+        blocks = [f"pages/{p['slug']}-landing" if b == "landing" else (f"pages/{p['slug']}-salon" if b.startswith("salon-") else b) for b in p["blocks"]]
         if p["slug"] and not (set(p["blocks"]) & NO_INTRO):
             blocks.insert(1, f"pages/{p['slug']}-intro")
         lines.append(f"| {p['slug'] or 'home'} | `/{p['slug']}` | " + " → ".join(f"`{b}`" for b in blocks) + " |")

@@ -70,26 +70,20 @@
   "01-header",
   "04-senses",
   "05-elements",
-  "07-menu-builder",
+  "06-signatures",
   "14-faq",
   "15-footer"
  ],
  "ubud": [
   "01-header",
-  "09-salons",
-  "07-menu-builder",
-  "08-gallery",
+  "salon-ubud",
   "17-instagram",
-  "14-faq",
   "15-footer"
  ],
  "sanur": [
   "01-header",
-  "09-salons",
-  "07-menu-builder",
-  "08-gallery",
+  "salon-sanur",
   "17-instagram",
-  "14-faq",
   "15-footer"
  ],
  "founders": [
@@ -97,8 +91,6 @@
   "10-founders",
   "18-certificates",
   "03-philosophy",
-  "04-senses",
-  "12-partners",
   "15-footer"
  ],
  "gift-certificates": [
@@ -112,8 +104,6 @@
   "01-header",
   "12-partners",
   "16-waterfall",
-  "10-founders",
-  "18-certificates",
   "15-footer"
  ],
  "journal": [

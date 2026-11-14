@@ -1,8 +1,8 @@
 {
  "en": {
   "home": {
-   "title": "The Faces Spa Bali · Face massage & head spa in Ubud, Sanur",
-   "desc": "Face massage, vegan head spa and five-element rituals in Ubud and Sanur. Full menu with prices from IDR 300,000. Book online or by WhatsApp."
+   "title": "The Faces Spa Bali · Five-element day spa in Ubud & Sanur",
+   "desc": "A day spa in Ubud and Sanur built around five elements and love: signature rituals, face and head treatments, gift certificates. Open prices and online booking."
   },
   "menu": {
    "title": "Spa menu & prices · The Faces Ubud and Sanur, Bali",
@@ -33,12 +33,12 @@
    "desc": "Three-hour signature programs for stress, fatigue, detox, grounding and love. Choose by how you feel. IDR 1,800,000 in Ubud and Sanur."
   },
   "ubud": {
-   "title": "The Faces Spa Ubud · Face massage & head spa in Kedewatan",
-   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Face massage, Shirodhara head spa and five-element rituals. WhatsApp +62 822 6699 9965 or book online."
+   "title": "Spa in Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Our Ubud salon on Jl. Raya Lungsiakan, Kedewatan, open daily 10:00–22:00. Rituals, kids hair spa and men's programs. WhatsApp +62 822 6699 9965 or book online."
   },
   "sanur": {
-   "title": "The Faces Spa Sanur · Face massage & head spa near the beach",
-   "desc": "Jl. Danau Buyan 34a, Sanur. Face massage, head spa, Sacred Honeymoon ritual for couples. WhatsApp +62 813 3770 9190 or book online."
+   "title": "Spa in Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Our Sanur salon on Jl. Danau Buyan 34a, open daily 10:00–20:00. Hydrolift, Sacred Honeymoon and four-hands treatments. WhatsApp +62 813 3770 9190 or book online."
   },
   "founders": {
    "title": "Anna & Evgenii Dubinin · Founders of The Faces Spa",
@@ -53,7 +53,7 @@
    "desc": "Four spa projects in Bali open to partners, franchise and spa-in-hotel formats, and careers at The Faces."
   },
   "journal": {
-   "title": "Journal · Face massage, head spa and rituals in Bali | The Faces",
+   "title": "Journal · Spa guides, rituals and slow beauty in Bali | The Faces",
    "desc": "Guides to our treatments, skin care and slow beauty in Bali, from the team of The Faces Spa."
   },
   "certificates": {
@@ -71,8 +71,8 @@
  },
  "ru": {
   "home": {
-   "title": "The Faces Spa Бали · массаж лица и хэд-спа в Убуде и Сануре",
-   "desc": "Массаж лица, веганский хэд-спа и ритуалы пяти стихий в Убуде и Сануре. Полное меню с ценами от 300 000 IDR. Запись онлайн или в WhatsApp."
+   "title": "The Faces Spa Бали · спа пяти стихий в Убуде и Сануре",
+   "desc": "Спа в Убуде и Сануре, построенное на пяти стихиях и любви: авторские ритуалы, уход за лицом и головой, подарочные сертификаты. Открытые цены и онлайн-запись."
   },
   "menu": {
    "title": "Меню и цены спа · The Faces Убуд и Санур, Бали",
@@ -103,12 +103,12 @@
    "desc": "Трёхчасовые авторские программы от стресса, усталости, для детокса, заземления и любви. Выбирайте по состоянию. 1 800 000 IDR в Убуде и Сануре."
   },
   "ubud": {
-   "title": "The Faces Spa Убуд · массаж лица и хэд-спа",
-   "desc": "Jl. Raya Lungsiakan, Кедеватан, Убуд. Массаж лица, Широдхара и ритуалы пяти стихий. WhatsApp +62 822 6699 9965 или онлайн-запись."
+   "title": "Спа в Убуде, Бали · The Faces Spa Ubud (Кедеватан)",
+   "desc": "Наш салон в Убуде на Jl. Raya Lungsiakan, Кедеватан, ежедневно 10:00–22:00. Ритуалы, детский хэд-спа и мужские программы. WhatsApp +62 822 6699 9965 или онлайн-запись."
   },
   "sanur": {
-   "title": "The Faces Spa Санур · массаж лица и хэд-спа у моря",
-   "desc": "Jl. Danau Buyan 34a, Санур. Массаж лица, хэд-спа, ритуал Sacred Honeymoon для пар. WhatsApp +62 813 3770 9190 или онлайн-запись."
+   "title": "Спа в Сануре, Бали · The Faces Spa Sanur",
+   "desc": "Наш салон в Сануре на Jl. Danau Buyan 34a, ежедневно 10:00–20:00. Гидролифтинг, Sacred Honeymoon и массаж в четыре руки. WhatsApp +62 813 3770 9190 или онлайн-запись."
   },
   "founders": {
    "title": "Анна и Евгений Дубинины · основатели The Faces",
@@ -123,7 +123,7 @@
    "desc": "Четыре спа-проекта на Бали для партнёров, франшиза и спа в отелях, а также вакансии в The Faces."
   },
   "journal": {
-   "title": "Журнал · массаж лица, хэд-спа и ритуалы на Бали | The Faces",
+   "title": "Журнал · гиды по спа, ритуалам и медленной красоте на Бали | The Faces",
    "desc": "Гиды по процедурам, уходу за кожей и медленной красоте на Бали от команды The Faces."
   },
   "certificates": {
@@ -141,8 +141,8 @@
  },
  "es": {
   "home": {
-   "title": "The Faces Spa Bali · Masaje facial y head spa en Ubud y Sanur",
-   "desc": "Masaje facial, head spa vegano y rituales de los cinco elementos en Ubud y Sanur. Menú completo con precios desde 300.000 IDR. Reserva online o por WhatsApp."
+   "title": "The Faces Spa Bali · Day spa de los cinco elementos en Ubud y Sanur",
+   "desc": "Un day spa en Ubud y Sanur basado en los cinco elementos y el amor: rituales de autor, tratamientos de rostro y cabeza, certificados regalo. Precios a la vista y reserva online."
   },
   "menu": {
    "title": "Menú y precios del spa · The Faces Ubud y Sanur, Bali",
@@ -173,12 +173,12 @@
    "desc": "Programas de autor de tres horas para el estrés, el cansancio, la depuración, el arraigo y el amor. Elige según cómo te sientes. 1.800.000 IDR."
   },
   "ubud": {
-   "title": "The Faces Spa Ubud · Masaje facial y head spa en Kedewatan",
-   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Masaje facial, Shirodhara y rituales de los cinco elementos. WhatsApp +62 822 6699 9965 o reserva online."
+   "title": "Spa en Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Nuestro salón de Ubud en Jl. Raya Lungsiakan, Kedewatan, abierto todos los días de 10:00 a 22:00. Rituales, head spa infantil y programas para hombres. WhatsApp +62 822 6699 9965 o reserva online."
   },
   "sanur": {
-   "title": "The Faces Spa Sanur · Masaje facial y head spa junto al mar",
-   "desc": "Jl. Danau Buyan 34a, Sanur. Masaje facial, head spa y ritual Sacred Honeymoon para parejas. WhatsApp +62 813 3770 9190 o reserva online."
+   "title": "Spa en Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Nuestro salón de Sanur en Jl. Danau Buyan 34a, abierto todos los días de 10:00 a 20:00. Hydrolift, Sacred Honeymoon y tratamientos a cuatro manos. WhatsApp +62 813 3770 9190 o reserva online."
   },
   "founders": {
    "title": "Anna y Evgenii Dubinin · Fundadores de The Faces Spa",
@@ -193,7 +193,7 @@
    "desc": "Cuatro proyectos de spa en Bali abiertos a socios, franquicia y spa en hotel, y empleo en The Faces."
   },
   "journal": {
-   "title": "Blog · Masaje facial, head spa y rituales en Bali | The Faces",
+   "title": "Blog · Guías de spa, rituales y belleza sin prisa en Bali | The Faces",
    "desc": "Guías sobre tratamientos, cuidado de la piel y belleza sin prisa en Bali, del equipo de The Faces."
   },
   "certificates": {
@@ -211,8 +211,8 @@
  },
  "de": {
   "home": {
-   "title": "The Faces Spa Bali · Gesichtsmassage & Head Spa Ubud, Sanur",
-   "desc": "Gesichtsmassage, veganes Head Spa und Rituale der fünf Elemente in Ubud und Sanur. Komplettes Menü mit Preisen ab 300.000 IDR. Online oder per WhatsApp buchen."
+   "title": "The Faces Spa Bali · Day Spa der fünf Elemente in Ubud & Sanur",
+   "desc": "Ein Day Spa in Ubud und Sanur rund um fünf Elemente und Liebe: Signature-Rituale, Gesichts- und Kopfbehandlungen, Gutscheine. Offene Preise, Online-Buchung."
   },
   "menu": {
    "title": "Spa-Menü & Preise · The Faces Ubud und Sanur, Bali",
@@ -243,12 +243,12 @@
    "desc": "Dreistündige Signature-Programme gegen Stress und Müdigkeit, für Detox, Erdung und Liebe. Wählen Sie nach Befinden. 1.800.000 IDR."
   },
   "ubud": {
-   "title": "The Faces Spa Ubud · Gesichtsmassage & Head Spa in Kedewatan",
-   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Gesichtsmassage, Shirodhara und Fünf-Elemente-Rituale. WhatsApp +62 822 6699 9965 oder online buchen."
+   "title": "Spa in Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Unser Salon in Ubud, Jl. Raya Lungsiakan, Kedewatan, täglich 10:00–22:00. Rituale, Kinder-Head-Spa und Männerprogramme. WhatsApp +62 822 6699 9965 oder online buchen."
   },
   "sanur": {
-   "title": "The Faces Spa Sanur · Gesichtsmassage & Head Spa am Meer",
-   "desc": "Jl. Danau Buyan 34a, Sanur. Gesichtsmassage, Head Spa, Sacred-Honeymoon-Ritual für Paare. WhatsApp +62 813 3770 9190 oder online buchen."
+   "title": "Spa in Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Unser Salon in Sanur, Jl. Danau Buyan 34a, täglich 10:00–20:00. Hydrolift, Sacred Honeymoon und Vierhand-Behandlungen. WhatsApp +62 813 3770 9190 oder online buchen."
   },
   "founders": {
    "title": "Anna & Evgenii Dubinin · Gründer von The Faces Spa",
@@ -263,7 +263,7 @@
    "desc": "Vier Spa-Projekte auf Bali für Partner, Franchise- und Hotel-Spa-Formate sowie Jobs bei The Faces."
   },
   "journal": {
-   "title": "Journal · Gesichtsmassage, Head Spa und Rituale | The Faces",
+   "title": "Journal · Spa-Ratgeber, Rituale und Slow Beauty auf Bali | The Faces",
    "desc": "Ratgeber zu Behandlungen, Hautpflege und entschleunigter Schönheit auf Bali vom Team von The Faces."
   },
   "certificates": {
@@ -281,8 +281,8 @@
  },
  "th": {
   "home": {
-   "title": "The Faces Spa บาหลี · นวดหน้าและเฮดสปา อูบุด ซานูร์",
-   "desc": "นวดหน้า เฮดสปาวีแกน และพิธีกรรมธาตุทั้งห้า ที่อูบุดและซานูร์ เมนูครบพร้อมราคา เริ่มต้น 300,000 IDR จองออนไลน์หรือทาง WhatsApp"
+   "title": "The Faces Spa บาหลี · เดย์สปาธาตุทั้งห้า อูบุดและซานูร์",
+   "desc": "เดย์สปาที่อูบุดและซานูร์ บนแนวคิดธาตุทั้งห้าและความรัก: พิธีกรรมซิกเนเจอร์ ทรีตเมนต์ใบหน้าและศีรษะ บัตรของขวัญ ราคาโปร่งใสและจองออนไลน์"
   },
   "menu": {
    "title": "เมนูและราคาสปา · The Faces อูบุดและซานูร์ บาหลี",
@@ -313,12 +313,12 @@
    "desc": "โปรแกรมซิกเนเจอร์สามชั่วโมง สำหรับความเครียด ความเหนื่อยล้า ดีท็อกซ์ การหยั่งราก และความรัก เลือกตามความรู้สึก 1,800,000 IDR"
   },
   "ubud": {
-   "title": "The Faces Spa อูบุด · นวดหน้าและเฮดสปา เคเดวาตัน",
-   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud นวดหน้า ชิโรธารา และพิธีกรรมธาตุทั้งห้า WhatsApp +62 822 6699 9965 หรือจองออนไลน์"
+   "title": "สปาในอูบุด บาหลี · The Faces Spa Ubud (เคเดวาตัน)",
+   "desc": "สาขาอูบุดที่ Jl. Raya Lungsiakan เคเดวาตัน เปิดทุกวัน 10:00–22:00 พิธีกรรม เฮดสปาเด็ก และโปรแกรมผู้ชาย WhatsApp +62 822 6699 9965 หรือจองออนไลน์"
   },
   "sanur": {
-   "title": "The Faces Spa ซานูร์ · นวดหน้าและเฮดสปาใกล้ทะเล",
-   "desc": "Jl. Danau Buyan 34a, Sanur นวดหน้า เฮดสปา พิธีกรรม Sacred Honeymoon สำหรับคู่รัก WhatsApp +62 813 3770 9190 หรือจองออนไลน์"
+   "title": "สปาในซานูร์ บาหลี · The Faces Spa Sanur",
+   "desc": "สาขาซานูร์ที่ Jl. Danau Buyan 34a เปิดทุกวัน 10:00–20:00 ไฮโดรลิฟต์ Sacred Honeymoon และทรีตเมนต์สี่มือ WhatsApp +62 813 3770 9190 หรือจองออนไลน์"
   },
   "founders": {
    "title": "แอนนาและเยฟเกนี ดูบินิน · ผู้ก่อตั้ง The Faces",
@@ -333,7 +333,7 @@
    "desc": "สี่โครงการสปาในบาหลีที่เปิดรับพันธมิตร แฟรนไชส์ สปาในโรงแรม และตำแหน่งงานที่ The Faces"
   },
   "journal": {
-   "title": "บทความ · นวดหน้า เฮดสปา และพิธีกรรมในบาหลี | The Faces",
+   "title": "บทความ · คู่มือสปา พิธีกรรม และความงามแบบช้า ๆ ในบาหลี | The Faces",
    "desc": "คู่มือทรีตเมนต์ การดูแลผิว และความงามแบบช้า ๆ ในบาหลี จากทีม The Faces"
   },
   "certificates": {
@@ -351,8 +351,8 @@
  },
  "id": {
   "home": {
-   "title": "The Faces Spa Bali · Pijat wajah & head spa Ubud, Sanur",
-   "desc": "Pijat wajah, head spa vegan, dan ritual lima elemen di Ubud dan Sanur. Menu lengkap dengan harga mulai IDR 300.000. Pesan online atau via WhatsApp."
+   "title": "The Faces Spa Bali · Day spa lima elemen di Ubud & Sanur",
+   "desc": "Day spa di Ubud dan Sanur berdasarkan lima elemen dan cinta: ritual signature, perawatan wajah dan kepala, voucher hadiah. Harga terbuka dan pemesanan online."
   },
   "menu": {
    "title": "Menu & harga spa · The Faces Ubud dan Sanur, Bali",
@@ -383,12 +383,12 @@
    "desc": "Program signature tiga jam untuk stres, lelah, detoks, membumi, dan cinta. Pilih sesuai perasaan Anda. IDR 1.800.000 di Ubud dan Sanur."
   },
   "ubud": {
-   "title": "The Faces Spa Ubud · Pijat wajah & head spa di Kedewatan",
-   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Pijat wajah, Shirodhara, dan ritual lima elemen. WhatsApp +62 822 6699 9965 atau pesan online."
+   "title": "Spa di Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Salon Ubud kami di Jl. Raya Lungsiakan, Kedewatan, buka setiap hari 10:00–22:00. Ritual, hair spa anak, dan program pria. WhatsApp +62 822 6699 9965 atau pesan online."
   },
   "sanur": {
-   "title": "The Faces Spa Sanur · Pijat wajah & head spa dekat pantai",
-   "desc": "Jl. Danau Buyan 34a, Sanur. Pijat wajah, head spa, ritual Sacred Honeymoon untuk pasangan. WhatsApp +62 813 3770 9190 atau pesan online."
+   "title": "Spa di Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Salon Sanur kami di Jl. Danau Buyan 34a, buka setiap hari 10:00–20:00. Hydrolift, Sacred Honeymoon, dan perawatan empat tangan. WhatsApp +62 813 3770 9190 atau pesan online."
   },
   "founders": {
    "title": "Anna & Evgenii Dubinin · Pendiri The Faces Spa",
@@ -403,7 +403,7 @@
    "desc": "Empat proyek spa di Bali terbuka untuk mitra, waralaba, spa di hotel, serta karier di The Faces."
   },
   "journal": {
-   "title": "Jurnal · Pijat wajah, head spa & ritual di Bali | The Faces",
+   "title": "Jurnal · Panduan spa, ritual & slow beauty di Bali | The Faces",
    "desc": "Panduan perawatan, perawatan kulit, dan kecantikan yang tenang di Bali dari tim The Faces."
   },
   "certificates": {
@@ -421,8 +421,8 @@
  },
  "ja": {
   "home": {
-   "title": "The Faces Spa バリ｜ウブド・サヌールのフェイシャル＆ヘッドスパ",
-   "desc": "ウブドとサヌールで、フェイシャルマッサージ、ヴィーガンヘッドスパ、五元素リチュアル。全メニューと料金を掲載（300,000 IDR〜）。オンライン・WhatsAppで予約。"
+   "title": "The Faces Spa バリ｜五元素のデイスパ（ウブド・サヌール）",
+   "desc": "五元素と愛をテーマにしたウブド・サヌールのデイスパ。シグネチャーリチュアル、フェイス・ヘッドの施術、ギフト券。料金公開・オンライン予約。"
   },
   "menu": {
    "title": "スパメニューと料金｜The Faces ウブド・サヌール",
@@ -453,12 +453,12 @@
    "desc": "ストレス、疲労、デトックス、グラウンディング、愛のための3時間のシグネチャープログラム。気分で選べます。1,800,000 IDR。"
   },
   "ubud": {
-   "title": "The Faces Spa ウブド店｜フェイシャル＆ヘッドスパ",
-   "desc": "ウブド・クデワタン、Jl. Raya Lungsiakan。フェイシャル、シロダーラ、五元素リチュアル。WhatsApp +62 822 6699 9965またはオンライン予約。"
+   "title": "ウブドのスパ｜The Faces Spa ウブド店（クデワタン）",
+   "desc": "クデワタンのJl. Raya Lungsiakanにあるウブド店。毎日10:00–22:00。リチュアル、キッズヘッドスパ、メンズプログラム。WhatsApp +62 822 6699 9965またはオンライン予約。"
   },
   "sanur": {
-   "title": "The Faces Spa サヌール店｜海辺のフェイシャル＆ヘッドスパ",
-   "desc": "サヌール、Jl. Danau Buyan 34a。フェイシャル、ヘッドスパ、カップル向けSacred Honeymoon。WhatsApp +62 813 3770 9190またはオンライン予約。"
+   "title": "サヌールのスパ｜The Faces Spa サヌール店",
+   "desc": "Jl. Danau Buyan 34aのサヌール店。毎日10:00–20:00。ハイドロリフト、Sacred Honeymoon、4ハンズ施術。WhatsApp +62 813 3770 9190またはオンライン予約。"
   },
   "founders": {
    "title": "アンナ＆エフゲニー・ドゥビニン｜The Faces創業者",
@@ -473,7 +473,7 @@
    "desc": "パートナーを募集するバリの4つのスパプロジェクト、フランチャイズ、ホテル内スパ、そして採用情報。"
   },
   "journal": {
-   "title": "ジャーナル｜バリのフェイシャル・ヘッドスパ・リチュアル",
+   "title": "ジャーナル｜バリのスパガイド・リチュアル・スロービューティー",
    "desc": "The Facesチームによる、施術ガイド、スキンケア、バリでのスロービューティー。"
   },
   "certificates": {
@@ -491,8 +491,8 @@
  },
  "fr": {
   "home": {
-   "title": "The Faces Spa Bali · Massage visage & head spa à Ubud, Sanur",
-   "desc": "Massage du visage, head spa vegan et rituels des cinq éléments à Ubud et Sanur. Carte complète avec prix dès 300 000 IDR. Réservation en ligne ou WhatsApp."
+   "title": "The Faces Spa Bali · Day spa des cinq éléments à Ubud & Sanur",
+   "desc": "Un day spa à Ubud et Sanur fondé sur les cinq éléments et l'amour : rituels signature, soins du visage et de la tête, cartes cadeaux. Prix affichés, réservation en ligne."
   },
   "menu": {
    "title": "Carte & tarifs du spa · The Faces Ubud et Sanur, Bali",
@@ -523,12 +523,12 @@
    "desc": "Programmes signature de trois heures contre le stress et la fatigue, pour la détox, l'ancrage et l'amour. Choisissez selon votre humeur. 1 800 000 IDR."
   },
   "ubud": {
-   "title": "The Faces Spa Ubud · Massage visage & head spa à Kedewatan",
-   "desc": "Jl. Raya Lungsiakan, Kedewatan, Ubud. Massage du visage, Shirodhara et rituels des cinq éléments. WhatsApp +62 822 6699 9965 ou réservation en ligne."
+   "title": "Spa à Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Notre salon d'Ubud, Jl. Raya Lungsiakan, Kedewatan, ouvert tous les jours de 10 h à 22 h. Rituels, hair spa enfant et programmes pour hommes. WhatsApp +62 822 6699 9965 ou réservation en ligne."
   },
   "sanur": {
-   "title": "The Faces Spa Sanur · Massage visage & head spa près de la mer",
-   "desc": "Jl. Danau Buyan 34a, Sanur. Massage du visage, head spa, rituel Sacred Honeymoon pour couples. WhatsApp +62 813 3770 9190 ou réservation en ligne."
+   "title": "Spa à Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Notre salon de Sanur, Jl. Danau Buyan 34a, ouvert tous les jours de 10 h à 20 h. Hydrolift, Sacred Honeymoon et soins à quatre mains. WhatsApp +62 813 3770 9190 ou réservation en ligne."
   },
   "founders": {
    "title": "Anna & Evgenii Dubinin · Fondateurs de The Faces Spa",
@@ -543,7 +543,7 @@
    "desc": "Quatre projets de spa à Bali ouverts aux partenaires, franchise et spa d'hôtel, et recrutement chez The Faces."
   },
   "journal": {
-   "title": "Journal · Massage du visage, head spa et rituels à Bali | The Faces",
+   "title": "Journal · Guides spa, rituels et beauté lente à Bali | The Faces",
    "desc": "Guides de nos soins, de la peau et de la beauté sans hâte à Bali, par l'équipe de The Faces Spa."
   },
   "certificates": {
@@ -561,8 +561,8 @@
  },
  "uk": {
   "home": {
-   "title": "The Faces Spa Балі · масаж обличчя та хед-спа в Убуді, Сануре",
-   "desc": "Масаж обличчя, веганський хед-спа та ритуали п'яти стихій в Убуді та Сануре. Повне меню з цінами від 300 000 IDR. Запис онлайн або в WhatsApp."
+   "title": "The Faces Spa Балі · спа п'яти стихій в Убуді та Сануре",
+   "desc": "Спа в Убуді та Сануре, побудоване на п'яти стихіях і любові: авторські ритуали, догляд за обличчям і головою, подарункові сертифікати. Відкриті ціни та онлайн-запис."
   },
   "menu": {
    "title": "Меню та ціни спа · The Faces Убуд і Санур, Балі",
@@ -593,12 +593,12 @@
    "desc": "Тригодинні авторські програми від стресу, втоми, для детоксу, заземлення та любові. Обирайте за станом. 1 800 000 IDR в Убуді та Сануре."
   },
   "ubud": {
-   "title": "The Faces Spa Убуд · масаж обличчя та хед-спа",
-   "desc": "Jl. Raya Lungsiakan, Кедеватан, Убуд. Масаж обличчя, Широдхара та ритуали п'яти стихій. WhatsApp +62 822 6699 9965 або онлайн-запис."
+   "title": "Спа в Убуді, Балі · The Faces Spa Ubud (Кедеватан)",
+   "desc": "Наш салон в Убуді на Jl. Raya Lungsiakan, Кедеватан, щодня 10:00–22:00. Ритуали, дитячий хед-спа та чоловічі програми. WhatsApp +62 822 6699 9965 або онлайн-запис."
   },
   "sanur": {
-   "title": "The Faces Spa Санур · масаж обличчя та хед-спа біля моря",
-   "desc": "Jl. Danau Buyan 34a, Санур. Масаж обличчя, хед-спа, ритуал Sacred Honeymoon для пар. WhatsApp +62 813 3770 9190 або онлайн-запис."
+   "title": "Спа в Сануре, Балі · The Faces Spa Sanur",
+   "desc": "Наш салон у Сануре на Jl. Danau Buyan 34a, щодня 10:00–20:00. Гідроліфтинг, Sacred Honeymoon і масаж у чотири руки. WhatsApp +62 813 3770 9190 або онлайн-запис."
   },
   "founders": {
    "title": "Анна та Євгеній Дубініни · засновники The Faces",
@@ -613,7 +613,7 @@
    "desc": "Чотири спа-проєкти на Балі для партнерів, франшиза та спа в готелях, а також вакансії в The Faces."
   },
   "journal": {
-   "title": "Журнал · масаж обличчя, хед-спа та ритуали на Балі | The Faces",
+   "title": "Журнал · гіди спа, ритуали та повільна краса на Балі | The Faces",
    "desc": "Гіди процедурами, доглядом за шкірою та повільною красою на Балі від команди The Faces."
   },
   "certificates": {

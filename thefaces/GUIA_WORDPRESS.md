@@ -83,6 +83,25 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - Las categorías son **categorías reales de WordPress** (una por idioma, p. ej. «Cinco elementos (ES)»); su dirección de WordPress abre el blog de ese idioma ya filtrado.
 - **Escribir un artículo nuevo**: Entradas → Añadir. A la derecha, caja «THE FACES · Idioma del artículo»: elige el idioma (el diseño THE FACES viene marcado). Pon una de las categorías de ese idioma y una imagen destacada.
 
+## 2i. SEO sin canibalización, páginas de salón y vídeo de portada (versión 1.5.3)
+- **Una intención de búsqueda por página.** Portada: «day spa de los cinco elementos en Ubud y Sanur». Ubud: «spa en Ubud». Sanur: «spa en Sanur». Masaje facial, head spa, skin care, masaje corporal y parejas tienen cada una su propia página; los títulos ya no se pisan.
+- **Páginas de Ubud y Sanur nuevas**, con el mismo diseño que el resto de la web pero con contenido propio en los 9 idiomas:
+  - foto de portada distinta, dirección, horario y teléfono;
+  - tres motivos para elegir ese salón;
+  - texto SEO local;
+  - tratamientos que solo hay en ese salón, con precio;
+  - cómo llegar con mapa;
+  - preguntas frecuentes del salón;
+  - enlace al otro salón;
+  - datos estructurados DaySpa, FAQ y migas de pan.
+  - Ya no repiten la carta completa ni la galería de la portada.
+- **La carta completa** solo está en la portada y en `/menu/`. El FAQ general (datos FAQPage) solo cuenta en la portada.
+- **Bloques repetidos fuera:** fundadores ya no aparece en partners ni en certificados; sentidos y partners ya no aparecen en fundadores.
+- **Artículos del Journal que repiten una página principal** (elementos, sentidos, historia, regalos, Waterfall) llevan un *canonical* hacia esa página (cinco elementos, fundadores, certificados regalo, partners). Los artículos de masaje facial y head spa siguen indexándose solos.
+- Cada artículo termina con un botón hacia su tratamiento.
+- **Vídeo de portada:** THE-FACES-VIDEO convertido a MP4 (H.264) para que se vea en todos los navegadores, con versión ligera para móvil (`hero-854.mp4`, 2,8 MB), versión de escritorio (`hero-1280.mp4`, 8 MB) y foto de la cascada mientras carga.
+- Tras actualizar: **Ajustes > THE FACES > Volver a comprobar y completar las páginas**, para que Yoast reciba los títulos nuevos.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

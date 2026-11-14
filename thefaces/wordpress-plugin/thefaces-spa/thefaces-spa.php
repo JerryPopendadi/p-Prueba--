@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.5.2
+ * Version:           1.5.3
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.5.2' );
+define( 'TF_SPA_VERSION', '1.5.3' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -123,15 +123,21 @@ function tf_spa_render_page( $key, $lang ) {
 	foreach ( $pages[ $key ] as $block ) {
 		if ( 'landing' === $block ) {
 			$out .= tf_spa_file( "$lang/pages/$key-landing" );
+		} elseif ( 0 === strpos( $block, 'salon-' ) ) {
+			$out .= tf_spa_file( "$lang/pages/$key-salon" );
 		} elseif ( '01-header' === $block ) {
 			$out .= tf_spa_file( "$lang/pages/$key-01-header" );
-			if ( 'home' !== $key && ! array_intersect( array( 'landing', '21-journal-all' ), $pages[ $key ] ) ) {
+			if ( 'home' !== $key && ! array_intersect( array( 'landing', '21-journal-all', 'salon-ubud', 'salon-sanur' ), $pages[ $key ] ) ) {
 				$out .= tf_spa_file( "$lang/pages/$key-intro" );
 			}
 		} elseif ( '15-footer' === $block ) {
 			$out .= tf_spa_file( "$lang/pages/$key-15-footer" );
 		} else {
 			$html = tf_spa_file( "$lang/$block" );
+			if ( '14-faq' === $block && 'home' !== $key ) {
+				// FAQ rich-result data only on the home page, so inner pages do not compete with it.
+				$html = preg_replace( '#<script type="application/ld\+json">\{"@context": "https://schema.org", "@type": "FAQPage".*?</script>#s', '', $html );
+			}
 			if ( '13-journal' === $block ) {
 				$html = tf_spa_dynamic_posts( $html, $lang, 3 );
 			} elseif ( '21-journal-all' === $block ) {
@@ -310,12 +316,64 @@ function tf_spa_patch_lang_links( $html, $post_id ) {
 	return $html;
 }
 
+/** Record of a generated journal article (from data/posts.json) for a post, or null. */
+function tf_spa_article( $post_id ) {
+	$group = get_post_meta( $post_id, '_tf_group', true );
+	if ( ! $group ) {
+		return null;
+	}
+	foreach ( (array) tf_spa_data( 'posts' ) as $a ) {
+		if ( isset( $a['id'] ) && $a['id'] === $group ) {
+			return $a;
+		}
+	}
+	return null;
+}
+
+/** URL of one of the plugin's pages in a language (the real page when it exists). */
+function tf_spa_key_url( $key, $lang ) {
+	$map = get_option( 'thefaces_spa_pages', array() );
+	if ( isset( $map[ $lang ][ $key ] ) && get_post( $map[ $lang ][ $key ] ) ) {
+		return get_permalink( $map[ $lang ][ $key ] );
+	}
+	return tf_spa_page_url( $key, $lang );
+}
+
+/**
+ * Canonical URL of a journal article. Articles that retell a main page (five elements, founders,
+ * gift certificates, partners) point to that page, so the two never compete in Google.
+ */
+function tf_spa_post_canonical( $post_id ) {
+	$a = tf_spa_article( $post_id );
+	if ( ! $a || empty( $a['canonical'] ) ) {
+		return '';
+	}
+	$lang = get_post_meta( $post_id, '_tf_lang', true );
+	return tf_spa_key_url( $a['canonical'], $lang ? $lang : 'en' );
+}
+
+function tf_spa_filter_canonical( $url ) {
+	if ( is_singular( 'post' ) ) {
+		$c = tf_spa_post_canonical( get_queried_object_id() );
+		if ( $c ) {
+			return $c;
+		}
+	}
+	return $url;
+}
+add_filter( 'wpseo_canonical', 'tf_spa_filter_canonical', 20 );
+add_filter( 'get_canonical_url', 'tf_spa_filter_canonical', 20 );
+
 /** A journal article with the site header, article layout, booking box and footer. */
 function tf_spa_render_post( $post ) {
 	$lang  = get_post_meta( $post->ID, '_tf_lang', true );
 	$lang  = $lang ? $lang : tf_spa_lang();
 	$cat   = get_post_meta( $post->ID, '_tf_cat', true );
 	$shell = tf_spa_file( "$lang/post-shell" );
+	$art       = tf_spa_article( $post->ID );
+	$svc       = $art && ! empty( $art['service'] ) ? $art['service'] : 'menu';
+	$svc_url   = tf_spa_key_url( $svc, $lang );
+	$svc_label = $art && isset( $art['service_label'][ $lang ] ) ? $art['service_label'][ $lang ] : '';
 	$body  = strtr(
 		$shell,
 		array(
@@ -325,6 +383,8 @@ function tf_spa_render_post( $post ) {
 			'{{POST_IMG}}'     => esc_url( tf_spa_post_image( $post->ID ) ),
 			'{{POST_DATE}}'    => esc_html( get_the_date( 'd.m.Y', $post ) ),
 			'{{POST_CONTENT}}' => apply_filters( 'the_content', $post->post_content ),
+			'{{POST_SVC_URL}}'   => esc_url( $svc_url ),
+			'{{POST_SVC_LABEL}}' => esc_html( $svc_label ),
 		)
 	);
 	$body  = preg_replace( '#<!--tf-related-->.*?<!--/tf-related-->#s', '<!--tf-related-->' . tf_spa_related( $post, $lang ) . '<!--/tf-related-->', $body );
