@@ -75,6 +75,8 @@ UI.update(LANDING_UI)
 UI.update(EXTRA_UI)
 from content_extra import BLOG_UI  # noqa: E402
 UI.update(BLOG_UI)
+from content_privacy2 import COMPANY, CO_UI, WHO, CONTROLLER_LINE, EXTRA_SECTIONS  # noqa: E402
+UI.update(CO_UI)
 LANDING = {L["slug"]: L for L in LANDINGS}
 for _P in PAGES:  # certificates after the founders; full journal list on the journal page
     if "10-founders" in _P["blocks"] and "18-certificates" not in _P["blocks"]:
@@ -527,13 +529,32 @@ def b_certificates(ctx):
 
 
 def b_privacy(ctx):
-    secs = ctx.pick(PRIVACY)
+    secs = list(ctx.pick(PRIVACY))
+    secs[0] = (secs[0][0], ctx.pick(WHO))
+    secs = secs[:-1] + list(ctx.pick(EXTRA_SECTIONS)) + secs[-1:]
+    email = COMPANY["email"]
     body = ""
     for n, (h, t) in enumerate(secs):
-        anc = ' id="cookies"' if n == 2 else ""
-        body += f'<h2{anc}>{E(h)}</h2><p>{E(t.replace("{c}", CONTROLLER).replace("{e}", LINKS["email"]))}</p>'
-    return f'''<section class="legal-page"><div class="wrap post-body"><p class="eyebrow">{E(ctx.t("pv_updated"))}</p>{body}
-  <p><a class="link" href="{E(ctx.url("terms"))}">{E(ctx.t("lg_terms"))} →</a></p></div></section>'''
+        anc = ' id="cookies"' if n == 2 else (' id="rights"' if n == len(secs) - 1 else "")
+        txt = E(t.replace("{c}", CONTROLLER_LINE)).replace(E("{e}"), f'<a href="mailto:{email}">{email}</a>').replace("{e}", f'<a href="mailto:{email}">{email}</a>')
+        body += f'<h2{anc}>{n + 1:02d}. {E(h)}</h2><p>{txt}</p>'
+    salons = " · ".join(f'{v["name"]}: {v["addr"]}, {v["tel"]}' for v in SALONS.values())
+    rows = [("co_controller", COMPANY["controller"]), ("co_trading", COMPANY["trading"]), ("co_tax", ctx.t("co_tax_v")),
+            ("co_address", COMPANY["address"]), ("co_country", ctx.t("co_country_v")),
+            ("co_email", f'<a href="mailto:{email}">{email}</a>'), ("co_holder", COMPANY["holder"]),
+            ("co_salons", E(salons)), ("co_sites", COMPANY["sites"])]
+    card = "".join(f'<div><dt>{E(ctx.t(k))}</dt><dd>{v if k in ("co_email", "co_salons") else E(v)}</dd></div>' for k, v in rows)
+    org = {"@context": "https://schema.org", "@type": "Organization", "name": "THE FACES", "email": email,
+           "founder": {"@type": "Person", "name": COMPANY["controller"]},
+           "address": {"@type": "PostalAddress", "streetAddress": "Jl. Bedugul No. 35, Sidakarya", "addressLocality": "Denpasar Selatan, Denpasar",
+                       "addressRegion": "Bali", "addressCountry": "ID"}}
+    return f'''<section class="legal-page"><div class="wrap post-body">
+  <p class="eyebrow">{E(ctx.t("co_effective"))} · {E(ctx.t("pv_updated"))}</p>
+  <div class="co-card"><p class="eyebrow">{E(ctx.t("co_h"))}</p><dl>{card}</dl></div>
+  {body}
+  <p><a class="link" href="{E(ctx.url("terms"))}">{E(ctx.t("lg_terms"))} →</a></p></div>
+ <script type="application/ld+json">{json.dumps(org, ensure_ascii=False)}</script>
+</section>'''
 
 
 def b_terms(ctx):
