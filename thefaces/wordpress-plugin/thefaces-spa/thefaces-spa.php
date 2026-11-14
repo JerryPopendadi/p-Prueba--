@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.3.0
+ * Version:           1.4.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.3.0' );
+define( 'TF_SPA_VERSION', '1.4.0' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -125,7 +125,7 @@ function tf_spa_render_page( $key, $lang ) {
 			$out .= tf_spa_file( "$lang/pages/$key-landing" );
 		} elseif ( '01-header' === $block ) {
 			$out .= tf_spa_file( "$lang/pages/$key-01-header" );
-			if ( 'home' !== $key && ! in_array( 'landing', $pages[ $key ], true ) ) {
+			if ( 'home' !== $key && ! array_intersect( array( 'landing', '21-journal-all' ), $pages[ $key ] ) ) {
 				$out .= tf_spa_file( "$lang/pages/$key-intro" );
 			}
 		} elseif ( '15-footer' === $block ) {
@@ -133,7 +133,9 @@ function tf_spa_render_page( $key, $lang ) {
 		} else {
 			$html = tf_spa_file( "$lang/$block" );
 			if ( '13-journal' === $block ) {
-				$html = tf_spa_dynamic_posts( $html, $lang, 'journal' === $key ? 24 : 3 );
+				$html = tf_spa_dynamic_posts( $html, $lang, 3 );
+			} elseif ( '21-journal-all' === $block ) {
+				$html = tf_spa_journal_all( $html, $lang );
 			}
 			$out .= $html;
 		}
@@ -178,6 +180,52 @@ function tf_spa_dynamic_posts( $html, $lang, $limit ) {
 			. '<p class="d">' . esc_html( $cat ? $cat : get_the_date( '', $p ) ) . '</p><h3>' . esc_html( get_the_title( $p ) ) . '</h3><p class="ex">' . esc_html( get_the_excerpt( $p ) ) . '</p></a>';
 	}
 	return preg_replace( '#<!--tf-posts-->.*?<!--/tf-posts-->#s', '<!--tf-posts-->' . $cards . '<!--/tf-posts-->', $html );
+}
+
+/** Category key and name of a post (plugin meta, or its first WordPress category). */
+function tf_spa_post_cat( $post_id, $lang ) {
+	$key = get_post_meta( $post_id, '_tf_catkey', true );
+	if ( $key ) {
+		$names = tf_spa_data( 'jocats' );
+		return array( $key, isset( $names[ $lang ][ $key ] ) ? $names[ $lang ][ $key ] : $key );
+	}
+	$cats = get_the_category( $post_id );
+	if ( $cats ) {
+		return array( 'wp-' . $cats[0]->slug, $cats[0]->name );
+	}
+	return array( '', '' );
+}
+
+/** Journal page: every post of the language, with category chips and search data. */
+function tf_spa_journal_all( $html, $lang ) {
+	$posts = tf_spa_lang_posts( $lang, 200 );
+	if ( ! $posts ) {
+		return $html;
+	}
+	$cards = '';
+	$chips = array();
+	foreach ( $posts as $p ) {
+		list( $ck, $cn ) = tf_spa_post_cat( $p->ID, $lang );
+		if ( $ck ) {
+			$chips[ $ck ] = $cn;
+		}
+		$title  = get_the_title( $p );
+		$ex     = get_the_excerpt( $p );
+		$cards .= '<a class="post" data-cat="' . esc_attr( $ck ) . '" data-text="' . esc_attr( mb_strtolower( $title . ' ' . $ex . ' ' . $cn ) ) . '" href="' . esc_url( get_permalink( $p ) ) . '">'
+			. '<div class="ph"><img src="' . esc_url( tf_spa_post_image( $p->ID ) ) . '" alt="" loading="lazy"></div>'
+			. '<p class="d">' . ( $cn ? '<span class="cat-tag">' . esc_html( $cn ) . '</span> ' : '' ) . esc_html( get_the_date( 'd.m.Y', $p ) ) . '</p>'
+			. '<h3>' . esc_html( $title ) . '</h3><p class="ex">' . esc_html( $ex ) . '</p></a>';
+	}
+	$html = preg_replace( '#<!--tf-posts-all-->.*?<!--/tf-posts-all-->#s', '<!--tf-posts-all-->' . $cards . '<!--/tf-posts-all-->', $html );
+	if ( preg_match( '#<!--tf-chips-->(<button[^>]*>.*?</button>)#s', $html, $m ) ) {
+		$all = $m[1];
+		$btn = '';
+		foreach ( $chips as $k => $n ) {
+			$btn .= '<button type="button" data-jcat="' . esc_attr( $k ) . '">' . esc_html( $n ) . '</button>';
+		}
+		$html = preg_replace( '#<!--tf-chips-->.*?<!--/tf-chips-->#s', '<!--tf-chips-->' . $all . $btn . '<!--/tf-chips-->', $html );
+	}
+	return $html;
 }
 
 /** Permalinks of the same article in every language (posts share the _tf_group meta). */
@@ -242,7 +290,10 @@ function tf_spa_shortcode( $atts ) {
 			return '<!-- THE FACES: unknown block -->';
 		}
 		$html = tf_spa_file( "$lang/$name" );
-		return '13-journal' === $name ? tf_spa_dynamic_posts( $html, $lang, 3 ) : $html;
+		if ( '13-journal' === $name ) {
+			return tf_spa_dynamic_posts( $html, $lang, 3 );
+		}
+		return '21-journal-all' === $name ? tf_spa_journal_all( $html, $lang ) : $html;
 	}
 	$key = ( '' === $atts['page'] ) ? 'home' : sanitize_title( $atts['page'] );
 	return tf_spa_render_page( $key, $lang );
@@ -520,6 +571,7 @@ function tf_spa_setup_pages() {
 			update_post_meta( $id, '_tf_group', $p['id'] );
 			update_post_meta( $id, '_tf_img', $p['img'] );
 			update_post_meta( $id, '_tf_cat', $p['cat'][ $lang ] );
+			update_post_meta( $id, '_tf_catkey', $p['catkey'] );
 			update_post_meta( $id, '_wp_page_template', 'thefaces-canvas' );
 		}
 	}
@@ -536,6 +588,7 @@ function tf_spa_setup_pages() {
 		update_option( 'page_on_front', $map['en']['home'] );
 	}
 	update_option( 'thefaces_spa_pages', $map, false );
+	tf_spa_fill_yoast();
 	flush_rewrite_rules();
 	return array( 'created' => $created, 'reused' => $reused );
 }
@@ -569,7 +622,7 @@ function tf_spa_admin_notice() {
 	}
 	?>
 	<div class="notice notice-warning">
-		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 14 páginas en los 9 idiomas (126 páginas) y los artículos del Journal (27 entradas) y poner la portada como página de inicio.</p>
+		<p><strong>THE FACES Spa:</strong> la web todavía no tiene páginas. Pulsa el botón para crear la portada y las 17 páginas en los 9 idiomas (153 páginas) y los artículos del Journal (27 entradas) y poner la portada como página de inicio.</p>
 		<p><?php tf_spa_setup_button( 'Crear la web de THE FACES' ); ?></p>
 	</div>
 	<?php
@@ -586,6 +639,68 @@ function tf_spa_setup_result_notice() {
 	echo '<div class="notice notice-success"><p><strong>THE FACES Spa:</strong> ' . esc_html( sprintf( 'Páginas creadas: %d. Ya existentes: %d.', $c, $u ) ) . ' <a href="' . esc_url( home_url( '/' ) ) . '" target="_blank">Ver la web ↗</a></p></div>';
 }
 add_action( 'admin_notices', 'tf_spa_setup_result_notice' );
+
+/* ---------- Yoast SEO: fill title, description, focus keyphrase and social fields ---------- */
+
+/** Write one Yoast field unless someone has edited it by hand (we remember what we wrote). */
+function tf_spa_yoast_set( $id, $field, $value ) {
+	$meta = '_yoast_wpseo_' . $field;
+	$cur  = get_post_meta( $id, $meta, true );
+	$ours = get_post_meta( $id, '_tf_yoast_' . $field, true );
+	if ( '' === $cur || $cur === $ours ) {
+		update_post_meta( $id, $meta, $value );
+		update_post_meta( $id, '_tf_yoast_' . $field, $value );
+	}
+}
+
+/** Fill Yoast for every page and journal post created by the plugin. Returns the number of items filled. */
+function tf_spa_fill_yoast() {
+	$seo   = tf_spa_data( 'seo' );
+	$map   = get_option( 'thefaces_spa_pages', array() );
+	$img   = TF_SPA_URL . 'assets/media/og-1200x630.jpg';
+	$count = 0;
+	foreach ( (array) $map as $lang => $pages ) {
+		foreach ( (array) $pages as $key => $id ) {
+			if ( ! isset( $seo[ $lang ][ $key ] ) || ! get_post( $id ) ) {
+				continue;
+			}
+			$t  = $seo[ $lang ][ $key ]['title'];
+			$d  = $seo[ $lang ][ $key ]['desc'];
+			$kw = preg_split( '/\s*[·｜|:]\s*/u', $t )[0];
+			tf_spa_yoast_set( $id, 'title', $t );
+			tf_spa_yoast_set( $id, 'metadesc', $d );
+			tf_spa_yoast_set( $id, 'focuskw', $kw );
+			tf_spa_yoast_set( $id, 'opengraph-title', $t );
+			tf_spa_yoast_set( $id, 'opengraph-description', $d );
+			tf_spa_yoast_set( $id, 'opengraph-image', $img );
+			tf_spa_yoast_set( $id, 'twitter-title', $t );
+			tf_spa_yoast_set( $id, 'twitter-description', $d );
+			$count++;
+		}
+	}
+	$posts = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'meta_key' => '_tf_group' ) );
+	foreach ( $posts as $p ) {
+		$t = get_the_title( $p ) . ' | THE FACES Spa Bali';
+		$d = wp_strip_all_tags( get_the_excerpt( $p ) );
+		tf_spa_yoast_set( $p->ID, 'title', $t );
+		tf_spa_yoast_set( $p->ID, 'metadesc', $d );
+		tf_spa_yoast_set( $p->ID, 'focuskw', get_the_title( $p ) );
+		tf_spa_yoast_set( $p->ID, 'opengraph-title', $t );
+		tf_spa_yoast_set( $p->ID, 'opengraph-description', $d );
+		tf_spa_yoast_set( $p->ID, 'opengraph-image', tf_spa_post_image( $p->ID ) );
+		$count++;
+	}
+	update_option( 'thefaces_spa_yoast_version', TF_SPA_VERSION, false );
+	return $count;
+}
+
+/** After a plugin update, refresh the Yoast fields once (only fields nobody edited by hand). */
+function tf_spa_maybe_fill_yoast() {
+	if ( current_user_can( 'manage_options' ) && get_option( 'thefaces_spa_pages' ) && TF_SPA_VERSION !== get_option( 'thefaces_spa_yoast_version' ) ) {
+		tf_spa_fill_yoast();
+	}
+}
+add_action( 'admin_init', 'tf_spa_maybe_fill_yoast' );
 
 /* ---------- Settings: Ajustes > THE FACES ---------- */
 
@@ -650,8 +765,10 @@ function tf_spa_settings_page() {
 			<?php submit_button(); ?>
 		</form>
 		<h2>Crear la web</h2>
-		<p>Crea (o completa) las 126 páginas (portada, menú, masaje facial, head spa, cuidado de la piel, masaje corporal, spa para parejas, cinco elementos, Ubud, Sanur, fundadores, certificados, partners y journal en 9 idiomas) y los 27 artículos del Journal (3 artículos × 9 idiomas), con la plantilla de pantalla completa; pone la portada en inglés como página de inicio y pasa a borrador el contenido de ejemplo de WordPress. Lo que ya existe no se duplica.</p>
+		<p>Crea (o completa) las 153 páginas (portada, menú, masaje facial, head spa, cuidado de la piel, masaje corporal, spa para parejas, cinco elementos, Ubud, Sanur, fundadores, certificados, partners, journal, certificados, privacidad y condiciones en 9 idiomas) y los 27 artículos del Journal (3 artículos × 9 idiomas), con la plantilla de pantalla completa; pone la portada en inglés como página de inicio y pasa a borrador el contenido de ejemplo de WordPress. Lo que ya existe no se duplica.</p>
 		<p><?php tf_spa_setup_button( get_option( 'thefaces_spa_pages' ) ? 'Volver a comprobar y completar las páginas' : 'Crear la web de THE FACES' ); ?></p>
+		<h2>Yoast SEO</h2>
+		<p>El plugin rellena en Yoast el título SEO, la meta descripción, la frase clave, y los títulos e imagen para Facebook y X de las páginas y artículos de la web, en su idioma. Se hace al pulsar «Crear la web» y al actualizar el plugin. Si cambias un campo a mano en Yoast, el plugin ya no lo toca.</p>
 		<h2>Cómo usarlo</h2>
 		<ol>
 			<li>Crea una página, plantilla <strong>THE FACES · pantalla completa</strong>, y escribe <code>[thefaces page="home"]</code>.</li>

@@ -70,6 +70,33 @@
       rail.addEventListener("pointermove", function (e) { if (drag) { moved = true; rail.scrollLeft = s0 - (e.clientX - x0); } });
     }
 
+    /* ---------- journal: search + categories ---------- */
+    var jo = $(".jo-all");
+    if (jo) {
+      var jin = $(".jo-search input", jo), jcat = "", cardsJ = $$(".jo-grid .post", jo), cnt = $(".jo-count", jo), none = $(".jo-none", jo);
+      var tpl = jo.getAttribute("data-count-tpl") || "{n}";
+      var norm = function (t) { return (t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); };
+      var applyJ = function () {
+        var q = norm(jin.value.trim()), shown = 0;
+        cardsJ.forEach(function (c) {
+          var ok = (!jcat || c.getAttribute("data-cat") === jcat) && (!q || norm(c.getAttribute("data-text") || c.textContent).indexOf(q) > -1);
+          c.hidden = !ok; if (ok) shown++;
+        });
+        cnt.textContent = tpl.replace("{n}", shown); none.hidden = shown > 0;
+      };
+      jin.addEventListener("input", applyJ);
+      $$(".jo-chips button", jo).forEach(function (b) {
+        b.addEventListener("click", function () {
+          jcat = b.getAttribute("data-jcat");
+          $$(".jo-chips button", jo).forEach(function (x) { x.classList.toggle("on", x === b); });
+          applyJ();
+          window.dataLayer.push({ event: "journal_filter", journal_category: jcat || "all" });
+        });
+      });
+      try { var qs = new URLSearchParams(location.search); if (qs.get("q")) jin.value = qs.get("q"); } catch (e) {}
+      applyJ();
+    }
+
     /* ---------- five senses: active item swaps the sticky image ---------- */
     var snItems = $$(".sn-item"), snImgs = $$(".sn-frame img"), snDots = $$(".sn-dots i"), snNum = $(".sn-frame .num");
     if (snItems.length && "IntersectionObserver" in window) {

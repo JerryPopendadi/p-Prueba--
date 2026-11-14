@@ -11,6 +11,7 @@
   "17-instagram",
   "09-salons",
   "10-founders",
+  "18-certificates",
   "11-gifts",
   "12-partners",
   "16-waterfall",
@@ -94,6 +95,7 @@
  "founders": [
   "01-header",
   "10-founders",
+  "18-certificates",
   "03-philosophy",
   "04-senses",
   "12-partners",
@@ -111,11 +113,28 @@
   "12-partners",
   "16-waterfall",
   "10-founders",
+  "18-certificates",
   "15-footer"
  ],
  "journal": [
   "01-header",
-  "13-journal",
+  "21-journal-all",
+  "15-footer"
+ ],
+ "certificates": [
+  "01-header",
+  "18-certificates",
+  "10-founders",
+  "15-footer"
+ ],
+ "privacy": [
+  "01-header",
+  "19-privacy",
+  "15-footer"
+ ],
+ "terms": [
+  "01-header",
+  "20-terms",
   "15-footer"
  ]
 }

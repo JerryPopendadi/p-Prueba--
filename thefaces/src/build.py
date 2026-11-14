@@ -69,8 +69,20 @@ def _merge_fr_uk():
 
 _merge_fr_uk()
 from content_landing import LANDINGS, LANDING_UI  # noqa: E402
+from content_extra import (EXTRA_UI, JO_CATS, POST_CATKEY, CONTROLLER, PRIVACY, PAGE_PRIVACY, PAGE_CERTS,  # noqa: E402
+                           TERMS, TERMS_HEAD, PAGE_TERMS)
 UI.update(LANDING_UI)
+UI.update(EXTRA_UI)
 LANDING = {L["slug"]: L for L in LANDINGS}
+for _P in PAGES:  # certificates after the founders; full journal list on the journal page
+    if "10-founders" in _P["blocks"] and "18-certificates" not in _P["blocks"]:
+        _P["blocks"].insert(_P["blocks"].index("10-founders") + 1, "18-certificates")
+    if _P["slug"] == "journal":
+        _P["blocks"] = ["01-header", "21-journal-all", "15-footer"]
+PAGES.append({"slug": "certificates", "blocks": ["01-header", "18-certificates", "10-founders", "15-footer"],
+              "title": PAGE_CERTS["title"], "desc": PAGE_CERTS["desc"]})
+PAGES.append({"slug": "privacy", "blocks": ["01-header", "19-privacy", "15-footer"], "title": PAGE_PRIVACY["title"], "desc": PAGE_PRIVACY["desc"]})
+PAGES.append({"slug": "terms", "blocks": ["01-header", "20-terms", "15-footer"], "title": PAGE_TERMS["title"], "desc": PAGE_TERMS["desc"]})
 for _P in PAGES:  # Instagram preview right after the gallery
     if "08-gallery" in _P["blocks"] and "17-instagram" not in _P["blocks"]:
         _P["blocks"].insert(_P["blocks"].index("08-gallery") + 1, "17-instagram")
@@ -167,6 +179,7 @@ def book(where, item=""):
 
 ITEM = {m[1]: m for m in MENU}
 CUR = ' aria-current="true"'
+NO_INTRO = {"landing", "21-journal-all"}
 ON = ' class="on"'
 
 SOCIAL_SVG = {
@@ -181,22 +194,27 @@ SOCIAL_SVG = {
 
 def b_header(ctx):
     T = {"lang": ctx.lang, "ft_thanks": ctx.t("ft_thanks")}
-    nav = [("nav_menu", ctx.url("menu")), ("nav_salons", ctx.url("", "salons")), ("nav_founders", ctx.url("founders")),
-           ("nav_gifts", ctx.url("gift-certificates")), ("nav_partners", ctx.url("partners")), ("nav_journal", ctx.url("journal"))]
-    navh = "".join(f'<a href="{E(u)}">{E(ctx.t(k))}</a>' for k, u in nav)
-    drop = "".join(f'<li><a href="{E(ctx.url(L["slug"]))}"><img src="{ctx.asset(L["img"])}" alt="" loading="lazy"><span>{E(ctx.pick(L["nav"]))}</span></a></li>' for L in LANDINGS)
-    drop += f'<li><a href="{E(ctx.url("five-elements"))}"><img src="{ctx.asset("g12-proc-s.webp")}" alt="" loading="lazy"><span>{E(ctx.t("nav_elements"))}</span></a></li>'
-    navh = (f'<div class="dd"><button type="button" aria-haspopup="true">{E(ctx.t("nav_treat"))} <span aria-hidden="true">▾</span></button>'
-            f'<ul class="dd-panel">{drop}</ul></div>') + navh
+    def dd(label, entries, cls=""):
+        li = "".join(f'<li><a href="{E(u)}"><img src="{ctx.asset(img)}" alt="" loading="lazy"><span>{E(t)}</span></a></li>' for t, u, img in entries)
+        return (f'<div class="dd{cls}"><button type="button" aria-haspopup="true">{E(label)} <span aria-hidden="true">▾</span></button>'
+                f'<ul class="dd-panel">{li}</ul></div>')
+    treat = [(ctx.pick(L["nav"]), ctx.url(L["slug"]), L["img"]) for L in LANDINGS]
+    treat += [(ctx.t("nav_elements"), ctx.url("five-elements"), "g12-proc-s.webp"), (ctx.t("nav_menu"), ctx.url("menu"), "g04-interior.webp")]
+    salons = [("Ubud", ctx.url("ubud"), "g06-interior.webp"), ("Sanur", ctx.url("sanur"), "g07-interior-s.webp")]
+    about = [(ctx.t("nav_founders"), ctx.url("founders"), "founders.webp"), (ctx.t("nav_senses"), ctx.url("five-elements", "senses"), "sense-hearing.webp"),
+             (ctx.t("nav_certs"), ctx.url("certificates"), "cert-trademark.webp"), (ctx.t("nav_partners"), ctx.url("partners"), "waterfall-3.webp")]
+    navh = (dd(ctx.t("nav_treat"), treat) + f'<a href="{E(ctx.url("menu"))}">{E(ctx.t("nav_menu"))}</a>'
+            + dd(ctx.t("nav_salons"), salons, " dd-sm") + dd(ctx.t("nav_about"), about, " dd-r")
+            + f'<a href="{E(ctx.url("gift-certificates"))}">{E(ctx.t("nav_gifts"))}</a><a href="{E(ctx.url("journal"))}">{E(ctx.t("nav_journal"))}</a>')
     page_slug = ctx.slug
     langs = "".join(f'<li><a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a></li>' for l in SWITCH)
     mlangs = "".join(f'<a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in SWITCH)
-    items = [("nav_philosophy", ctx.url("", "philosophy"), "g04-interior.webp"),
-             ("nav_senses", ctx.url("five-elements", "senses"), "sense-hearing.webp"),
+    items = [("nav_menu", ctx.url("menu"), "g01-face.webp"),
              ("nav_elements", ctx.url("five-elements"), "g12-proc-s.webp"),
-             ("nav_menu", ctx.url("menu"), "g01-face.webp"),
-             ("nav_salons", ctx.url("", "salons"), "g06-interior.webp"),
+             ("nav_senses", ctx.url("five-elements", "senses"), "sense-hearing.webp"),
+             ("nav_salons", ctx.url("ubud"), "g06-interior.webp"),
              ("nav_founders", ctx.url("founders"), "founders.webp"),
+             ("nav_certs", ctx.url("certificates"), "cert-trademark.webp"),
              ("nav_gifts", ctx.url("gift-certificates"), "g08-interior.webp"),
              ("nav_partners", ctx.url("partners"), "waterfall-3.webp"),
              ("nav_journal", ctx.url("journal"), "g10-proc-s.webp")]
@@ -207,7 +225,7 @@ def b_header(ctx):
   <div class="mn-side"><div class="mn-img">{mimgs}</div>
    <p class="eyebrow">Five Elements. Guided by Love.</p>
    <a class="btn" {book("mobile-menu")}>{E(ctx.t("book_cta"))}</a>
-   <p class="mn-treat">{"".join(f'<a href="{E(ctx.url(L["slug"]))}">{E(ctx.pick(L["nav"]))}</a>' for L in LANDINGS)}</p>
+   <p class="mn-treat">{"".join(f'<a href="{E(ctx.url(L["slug"]))}">{E(ctx.pick(L["nav"]))}</a>' for L in LANDINGS)}<a href="{E(ctx.url("ubud"))}">Ubud</a><a href="{E(ctx.url("sanur"))}">Sanur</a></p>
    <p class="mn-contact"><a href="https://wa.me/{SALONS["ubud"]["wa"]}">WhatsApp Ubud</a> · <a href="https://wa.me/{SALONS["sanur"]["wa"]}">WhatsApp Sanur</a> · <a href="{LINKS["instagram"]}">Instagram</a> · <a href="{LINKS["tiktok"]}">TikTok</a> · <a href="{LINKS["linkedin"]}">LinkedIn</a></p>
   </div>
  </div>'''
@@ -493,6 +511,66 @@ def b_instagram(ctx):
 </section>'''
 
 
+def b_certificates(ctx):
+    certs = [("cert-trademark.webp", "cert1_t", "cert1_d", 970, 1562), ("cert-copyright.webp", "cert2_t", "cert2_d", 1098, 1564)]
+    cards = "".join(f'''<figure class="cert rv d{k}"><a href="{ctx.asset(img)}" target="_blank" rel="noopener" class="cert-img"><img src="{ctx.asset(img)}" alt="{E(ctx.t(t))} · {E(ctx.t(d))}" loading="lazy" width="{w}" height="{h}"></a>
+   <figcaption><h3>{E(ctx.t(t))}</h3><p>{E(ctx.t(d))}</p><a class="link" href="{ctx.asset(img)}" target="_blank" rel="noopener">{E(ctx.t("cert_open"))} ↗</a></figcaption></figure>''' for k, (img, t, d, w, h) in enumerate(certs))
+    return f'''<section class="certs sec" id="certificates">
+ <div class="wrap sec-head">
+  <div><p class="eyebrow rv">{E(ctx.t("cert_label"))}</p><h2 class="h2 rv d1">{E(ctx.t("cert_h2"))}</h2></div>
+  <p class="muted rv d2">{E(ctx.t("cert_intro"))}</p>
+ </div>
+ <div class="wrap cert-grid">{cards}</div>
+</section>'''
+
+
+def b_privacy(ctx):
+    secs = ctx.pick(PRIVACY)
+    body = ""
+    for n, (h, t) in enumerate(secs):
+        anc = ' id="cookies"' if n == 2 else ""
+        body += f'<h2{anc}>{E(h)}</h2><p>{E(t.replace("{c}", CONTROLLER).replace("{e}", LINKS["email"]))}</p>'
+    return f'''<section class="legal-page"><div class="wrap post-body"><p class="eyebrow">{E(ctx.t("pv_updated"))}</p>{body}
+  <p><a class="link" href="{E(ctx.url("terms"))}">{E(ctx.t("lg_terms"))} →</a></p></div></section>'''
+
+
+def b_terms(ctx):
+    body = "".join(f'<h2 id="{anc}">{E(ctx.t(TERMS_HEAD[anc]))}</h2><p>{E(ctx.pick(txt).replace("{e}", LINKS["email"]))}</p>' for anc, txt in TERMS.items())
+    return f'''<section class="legal-page"><div class="wrap post-body"><p class="eyebrow">{E(ctx.t("pv_updated"))}</p>{body}
+  <p><a class="link" href="{E(ctx.url("privacy"))}">{E(ctx.t("lg_privacy"))} →</a></p>
+  <div class="menu-cta" style="margin-top:40px"><a class="btn darksolid" {book("terms")}>{E(ctx.t("book_online"))} ↗</a><p>{E(ctx.t("book_note"))}</p></div></div></section>'''
+
+
+def journal_card(ctx, post):
+    pid, img = post[0], post[1]
+    ck = POST_CATKEY[pid]
+    title, ex = ctx.t(post[3]), ctx.pick(EXCERPTS[pid])
+    return (f'<a class="post" data-cat="{ck}" data-text="{E((title + " " + ex).lower())}" href="{E(ctx.post_url(pid))}"><div class="ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></div>'
+            f'<p class="d"><span class="cat-tag">{E(ctx.pick(JO_CATS[ck]))}</span> {E(ctx.t(post[4]).split(" · ")[-1])}</p><h3>{E(title)}</h3><p class="ex">{E(ex)}</p></a>')
+
+
+def b_journal_all(ctx):
+    chips = f'<button type="button" class="on" data-jcat="">{E(ctx.t("jo_all_cat"))}</button>' + "".join(
+        f'<button type="button" data-jcat="{k}">{E(ctx.pick(v))}</button>' for k, v in JO_CATS.items())
+    cards = "".join(journal_card(ctx, p) for p in POSTS)
+    h1 = h1_of(ctx.pick(next(P for P in PAGES if P["slug"] == "journal")["title"]))
+    return f'''<section class="jo-all" data-count-tpl="{E(ctx.t("jo_count"))}">
+ <div class="jo-hero"><div class="wrap">
+  <nav aria-label="Breadcrumb" class="eyebrow crumbs"><a href="{E(ctx.url())}">THE FACES</a> <span aria-hidden="true">/</span> <span>{E(ctx.t("nav_journal"))}</span></nav>
+  <h1 class="h2">{E(h1)}</h1><p class="lead">{E(ctx.t("jo_intro"))}</p>
+  <div class="jo-tools">
+   <label class="jo-search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+    <input type="search" placeholder="{E(ctx.t("jo_search"))}" aria-label="{E(ctx.t("jo_search"))}"></label>
+   <div class="jo-chips"><!--tf-chips-->{chips}<!--/tf-chips--></div>
+  </div>
+ </div></div>
+ <div class="wrap"><p class="jo-count" aria-live="polite"></p>
+  <div class="posts jo-grid"><!--tf-posts-all-->{cards}<!--/tf-posts-all--></div>
+  <p class="jo-none" hidden>{E(ctx.t("jo_none"))}</p>
+ </div>
+</section>'''
+
+
 def b_salons(ctx):
     cards = []
     for k, (sid, s) in enumerate(SALONS.items()):
@@ -689,9 +767,19 @@ def jsonld_business(ctx):
 
 
 def b_footer(ctx):
-    legal = [("lg_cancel", "cancellation_policy"), ("lg_resched", "rescheduling_policy"), ("lg_privacy", "privacy_policy"),
+    legal = [("lg_cancel", "terms", "cancellation"), ("lg_resched", "terms", "rescheduling"), ("lg_privacy", "privacy", ""),
+             ("lg_cookies", "privacy", "cookies"), ("lg_terms", "terms", "terms"), ("lg_gift", "terms", "gift")]
+    _old_legal = [
              ("lg_cookies", "cookie_policy"), ("lg_terms", "terms_of_use"), ("lg_gift", "the_faces_gift_certificate_terms")]
-    legal_h = "".join(f'<a href="{LINKS["legal"]}{p}">{E(ctx.t(k))}</a>' for k, p in legal)
+    legal_h = "".join(f'<a href="{E(ctx.url(pg, anc))}">{E(ctx.t(k))}</a>' for k, pg, anc in legal)
+    smap = []
+    for P in PAGES:
+        key = P["slug"]
+        name = h1_of(ctx.pick(P["title"])) if key else "THE FACES"
+        if key in LANDING:
+            name = ctx.pick(LANDING[key]["nav"])
+        smap.append(f'<li><a href="{E(ctx.url(key))}">{E(name)}</a></li>')
+    sitemap_h = "".join(smap)
     flangs = "".join(f'<a href="{E(ctx.lang_url(l))}" hreflang="{l}" lang="{l}"{CUR if l == ctx.lang else ""}>{E(LANG_NAMES[l])}</a>' for l in SWITCH)
     soc = (f'<a href="{LINKS["instagram"]}" target="_blank" rel="noopener" aria-label="Instagram">{SOCIAL_SVG["instagram"]}</a>'
            f'<a href="{LINKS["instagram_spa"]}" target="_blank" rel="noopener" aria-label="Instagram @thefacesspaubud">{SOCIAL_SVG["instagram"]}</a>'
@@ -707,6 +795,7 @@ def b_footer(ctx):
     <p style="margin-top:22px;opacity:.65;max-width:360px;font-size:14px">{E(ctx.t("ft_about"))}</p>
     <div class="social">{soc}</div>
     <form class="news"><input type="email" required placeholder="{E(ctx.t("ft_news_ph"))}" aria-label="Email"><button type="submit">{E(ctx.t("ft_join"))}</button></form>
+    <p class="news-note"><a href="{E(ctx.url("privacy"))}">{E(ctx.t("news_consent"))}</a></p>
     <div class="f-langs">{flangs}</div>
    </div>
    <div><h2>{E(ctx.t("ft_spa"))}</h2><ul>
@@ -729,6 +818,7 @@ def b_footer(ctx):
     <li><a href="{E(ctx.url("partners"))}">{E(ctx.t("nav_partners"))}</a></li>
     <li><a href="{E(ctx.url("partners"))}">{E(ctx.t("ft_careers"))}</a></li></ul></div>
   </div>
+  <details class="f-map"><summary>{E(ctx.t("nav_sitemap"))} · {len(PAGES)}</summary><ul>{sitemap_h}</ul>{('<p class="xml"><a href="{{TF_HOME}}/wp-sitemap.xml">sitemap.xml</a></p>' if ctx.mode == "wp" else "")}</details>
   <div class="f-bot"><span>© 2026 THE FACES · Five Elements. Guided by Love.</span><nav aria-label="Legal">{legal_h}</nav></div>
  </div>
  <script type="application/ld+json">{jsonld_business(ctx)}</script>
@@ -736,7 +826,7 @@ def b_footer(ctx):
 <a class="side-book" {book("side-tab")}><span>{E(ctx.t("ld_book_side"))}</span></a>
 <div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar")}>{E(ctx.t("book"))}</a></div>
 <div class="toast" role="status"><span class="msg"></span></div>
-<div class="cookie" role="dialog" aria-label="Cookies"><p>{E(ctx.t("ck_text"))} <a href="{LINKS["legal"]}cookie_policy">{E(ctx.t("ck_more"))}</a></p>
+<div class="cookie" role="dialog" aria-label="Cookies"><p>{E(ctx.t("ck_text"))} <a href="{E(ctx.url("privacy", "cookies"))}">{E(ctx.t("ck_more"))}</a></p>
  <div class="row"><button type="button" class="btn dark" data-consent="no">{E(ctx.t("ck_reject"))}</button><button type="button" class="btn darksolid" data-consent="yes">{E(ctx.t("ck_accept"))}</button></div></div>'''
 
 
@@ -763,7 +853,8 @@ def b_pageintro(ctx, page):
 BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosophy, "04-senses": b_senses,
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
-          "13-journal": b_journal, "17-instagram": b_instagram, "16-waterfall": b_waterfall, "14-faq": b_faq, "15-footer": b_footer}
+          "13-journal": b_journal, "17-instagram": b_instagram, "18-certificates": b_certificates,
+          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "14-faq": b_faq, "15-footer": b_footer}
 
 
 def wrap(ctx, name, inner):
@@ -870,12 +961,13 @@ def build_wordpress(css, js, autolang):
     posts = []
     for post in POSTS:
         pid, img = post[0], post[1]
-        rec = {"id": pid, "img": img, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
+        rec = {"id": pid, "img": img, "catkey": POST_CATKEY[pid], "catname": {}, "slug": {}, "title": {}, "cat": {}, "excerpt": {}, "html": {}}
         for lang in LANGS:
             c = Ctx(lang, "wp", "journal", site, "", {})
             rec["slug"][lang] = c.post_slug(pid)
             rec["title"][lang] = c.t(post[3])
             rec["cat"][lang] = c.t(post[4])
+            rec["catname"][lang] = c.pick(JO_CATS[POST_CATKEY[pid]])
             rec["excerpt"][lang] = c.pick(EXCERPTS[pid])
             rec["html"][lang] = post_body(c, post)
         posts.append(rec)
@@ -888,6 +980,7 @@ def build_wordpress(css, js, autolang):
     seo = {l: {(p["slug"] or "home"): {"title": p["title"][LI[l]], "desc": p["desc"][LI[l]]} for p in PAGES} for l in LANGS}
     aliases = {n.split("-", 1)[1]: n for n in BLOCKS}
     aliases.update({n: n for n in BLOCKS})
+    (plug / "data" / "jocats.json").write_text(json.dumps({l: {k: v[LI[l]] for k, v in JO_CATS.items()} for l in LANGS}, ensure_ascii=False), encoding="utf-8")
     for name, obj in (("pages", pages), ("seo", seo), ("blocks", aliases), ("langs", {l: LANG_NAMES[l] for l in LANGS})):
         (plug / "data" / f"{name}.json").write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"WordPress plugin: {plug} ({sum(1 for _ in plug.rglob('*') if _.is_file())} files)")
@@ -929,7 +1022,7 @@ def main():
             if "landing" in page["blocks"]:
                 (ld / "pages" / f"{key}-landing.html").write_text(
                     f"<!-- THE FACES · {key} landing page · H1, CTA, treatments and prices · {LANG_NAMES[lang]} · paste right after 01-header -->\n" + wrap(ctx, "landing", b_landing(ctx, page)) + "\n", encoding="utf-8")
-            if page["slug"] and "landing" not in page["blocks"]:
+            if page["slug"] and not (set(page["blocks"]) & NO_INTRO):
                 (ld / "pages" / f"{key}-intro.html").write_text(
                     f"<!-- THE FACES · {key} page · H1 + breadcrumbs · {LANG_NAMES[lang]} · paste right after 01-header -->\n" + wrap(ctx, "intro", b_pageintro(ctx, page)) + "\n", encoding="utf-8")
                 # header and footer language links point to the same page in other languages
@@ -945,7 +1038,7 @@ def main():
                     body.append(wrap(pctx, "landing", b_landing(pctx, page)))
                     continue
                 body.append(wrap(pctx, name, BLOCKS[name](pctx)))
-                if name == "01-header" and page["slug"] and "landing" not in page["blocks"]:
+                if name == "01-header" and page["slug"] and not (set(page["blocks"]) & NO_INTRO):
                     body.append(wrap(pctx, "intro", b_pageintro(pctx, page)))
             out = pdir / lang / page["slug"] / "index.html" if page["slug"] else pdir / lang / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -1000,7 +1093,7 @@ def main():
              "## Páginas y bloques", "", "| Página | URL (EN) | Bloques en Tilda, en orden |", "|---|---|---|"]
     for p in PAGES:
         blocks = [f"pages/{p['slug']}-landing" if b == "landing" else b for b in p["blocks"]]
-        if p["slug"] and "landing" not in p["blocks"]:
+        if p["slug"] and not (set(p["blocks"]) & NO_INTRO):
             blocks.insert(1, f"pages/{p['slug']}-intro")
         lines.append(f"| {p['slug'] or 'home'} | `/{p['slug']}` | " + " → ".join(f"`{b}`" for b in blocks) + " |")
     lines += ["", "En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<página>-15-footer.html` (sus enlaces de idioma apuntan a la misma página en otro idioma).", "",

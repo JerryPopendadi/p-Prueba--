@@ -17,7 +17,7 @@ Probado en WordPress 6.6 con el tema Twenty Twenty-Four: portada, menú y salone
 
 ## 2. Crear la web (un botón)
 Al activar el plugin aparece arriba en el Escritorio el aviso **«THE FACES Spa: la web todavía no tiene páginas»** con el botón **«Crear la web de THE FACES»** (también en Ajustes → THE FACES). Al pulsarlo:
-- crea las 126 páginas (14 páginas × 9 idiomas) con su shortcode y la plantilla de pantalla completa;
+- crea las 153 páginas (17 páginas × 9 idiomas) con su shortcode y la plantilla de pantalla completa;
 - crea los 27 artículos del Journal (3 artículos × 9 idiomas), enlazados entre sí por idioma;
 - pasa a borrador el contenido de ejemplo de WordPress («Hello world!», «Sample page»);
 - pone la portada en inglés como página de inicio (Ajustes → Lectura);
@@ -67,6 +67,15 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - En ordenador hay una pestaña dorada fija en el lado derecho («Reservar») que lleva a Altegio.
 - Redes: Instagram @thefacesubud y @thefacesspaubud, TikTok @thefaces.bali y LinkedIn (company/the-faces), en el pie, en el menú y en la sección «Sigue nuestros rituales», que muestra los dos perfiles de Instagram como vista previa. Las fotos de esa vista previa son de la web; para mostrar las publicaciones reales hace falta conectar la API de Instagram (Meta) o un plugin de feed.
 - Horarios (de Altegio): Ubud todos los días 10:00–22:00, Sanur 10:00–20:00; también en los datos para Google.
+
+## 2g. Certificados, privacidad, condiciones, mapa del sitio, Journal y Yoast (versión 1.4.0)
+- **Certificados**: certificado de marca THE FACES (IDM001282706, protegida hasta 19/06/2034) y de derechos de autor del Five Elements Concept (000638738). Página propia `/certificates/` y bloque debajo de los fundadores. En el certificado de autor la dirección particular de Evgenii está difuminada por privacidad.
+- **Política de privacidad** `/privacy/` (con apartado de cookies) y **Condiciones** `/terms/` (cancelación, cambios de cita, uso y certificados regalo), en 9 idiomas. Todos los enlaces legales del pie, del aviso de cookies y de la suscripción llevan aquí; ya no se usa thefacesspa.com.
+  - Responsable: PT. Indo Sintez Group (dato del certificado de marca). **Conviene que lo revise vuestro asesor legal**: los textos no fijan plazos ni penalizaciones de cancelación; remiten a las condiciones que muestra Altegio al reservar.
+- **Menú**: Tratamientos ▾ · Menú y precios · Salones ▾ (Ubud, Sanur) · Nosotros ▾ (Fundadores, Cinco sentidos, Certificados, Partners) · Regalos · Blog. Todo lleva a páginas.
+- **Mapa del sitio** en el pie de todas las páginas (desplegable, 17 páginas en el idioma) + enlace al `wp-sitemap.xml` de WordPress.
+- **Journal**: todas las entradas del idioma, con categorías (Rostro, Head spa, Rituales; las entradas nuevas usan su primera categoría de WordPress) y buscador instantáneo.
+- **Yoast SEO**: el plugin rellena título SEO, meta descripción, frase clave e imagen/títulos para redes en las 153 páginas y 27 artículos, en su idioma. Lo hace al pulsar «Crear la web» y al actualizar el plugin. Si editas un campo a mano en Yoast, se respeta.
 
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):

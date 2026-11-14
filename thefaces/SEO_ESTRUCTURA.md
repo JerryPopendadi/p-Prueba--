@@ -6,7 +6,7 @@ Dominio: https://thefacesworld.com · Idiomas: English (`/`), Русский (`/
 
 | Página | URL (EN) | Bloques en Tilda, en orden |
 |---|---|---|
-| home | `/` | `01-header` → `02-hero` → `03-philosophy` → `04-senses` → `05-elements` → `06-signatures` → `07-menu-builder` → `08-gallery` → `17-instagram` → `09-salons` → `10-founders` → `11-gifts` → `12-partners` → `16-waterfall` → `13-journal` → `14-faq` → `15-footer` |
+| home | `/` | `01-header` → `02-hero` → `03-philosophy` → `04-senses` → `05-elements` → `06-signatures` → `07-menu-builder` → `08-gallery` → `17-instagram` → `09-salons` → `10-founders` → `18-certificates` → `11-gifts` → `12-partners` → `16-waterfall` → `13-journal` → `14-faq` → `15-footer` |
 | menu | `/menu` | `01-header` → `pages/menu-intro` → `07-menu-builder` → `06-signatures` → `14-faq` → `15-footer` |
 | couples-spa | `/couples-spa` | `01-header` → `pages/couples-spa-landing` → `06-signatures` → `09-salons` → `14-faq` → `15-footer` |
 | body-massage | `/body-massage` | `01-header` → `pages/body-massage-landing` → `06-signatures` → `09-salons` → `14-faq` → `15-footer` |
@@ -16,10 +16,13 @@ Dominio: https://thefacesworld.com · Idiomas: English (`/`), Русский (`/
 | five-elements | `/five-elements` | `01-header` → `pages/five-elements-intro` → `04-senses` → `05-elements` → `07-menu-builder` → `14-faq` → `15-footer` |
 | ubud | `/ubud` | `01-header` → `pages/ubud-intro` → `09-salons` → `07-menu-builder` → `08-gallery` → `17-instagram` → `14-faq` → `15-footer` |
 | sanur | `/sanur` | `01-header` → `pages/sanur-intro` → `09-salons` → `07-menu-builder` → `08-gallery` → `17-instagram` → `14-faq` → `15-footer` |
-| founders | `/founders` | `01-header` → `pages/founders-intro` → `10-founders` → `03-philosophy` → `04-senses` → `12-partners` → `15-footer` |
+| founders | `/founders` | `01-header` → `pages/founders-intro` → `10-founders` → `18-certificates` → `03-philosophy` → `04-senses` → `12-partners` → `15-footer` |
 | gift-certificates | `/gift-certificates` | `01-header` → `pages/gift-certificates-intro` → `11-gifts` → `06-signatures` → `14-faq` → `15-footer` |
-| partners | `/partners` | `01-header` → `pages/partners-intro` → `12-partners` → `16-waterfall` → `10-founders` → `15-footer` |
-| journal | `/journal` | `01-header` → `pages/journal-intro` → `13-journal` → `15-footer` |
+| partners | `/partners` | `01-header` → `pages/partners-intro` → `12-partners` → `16-waterfall` → `10-founders` → `18-certificates` → `15-footer` |
+| journal | `/journal` | `01-header` → `21-journal-all` → `15-footer` |
+| certificates | `/certificates` | `01-header` → `pages/certificates-intro` → `18-certificates` → `10-founders` → `15-footer` |
+| privacy | `/privacy` | `01-header` → `pages/privacy-intro` → `19-privacy` → `15-footer` |
+| terms | `/terms` | `01-header` → `pages/terms-intro` → `20-terms` → `15-footer` |
 
 En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<página>-15-footer.html` (sus enlaces de idioma apuntan a la misma página en otro idioma).
 
@@ -43,6 +46,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/gift-certificates` | Spa gift certificates in Bali with bonus · The Faces (52) | Give a ritual and receive more: certificates from IDR 1,200,000 with up to 25% bonus. Valid in Ubud and Sanur. (110) |
 | `/partners` | Partner with The Faces · Spa franchise & projects in Bali (57) | Four spa projects in Bali open to partners, franchise and spa-in-hotel formats, and careers at The Faces. (105) |
 | `/journal` | Journal · Face massage, head spa and rituals in Bali | The Faces (64) | Guides to our treatments, skin care and slow beauty in Bali, from the team of The Faces Spa. (92) |
+| `/certificates` | Registered trademark & copyright · THE FACES Five Elements Concept (66) | THE FACES trademark (IDM001282706) and the Five Elements Concept copyright (000638738), registered in the Republic of Indonesia. (128) |
+| `/privacy` | Privacy policy · THE FACES Spa Bali (35) | How THE FACES Spa in Ubud and Sanur handles your personal data, cookies and bookings, and how to exercise your rights. (118) |
+| `/terms` | Booking terms, cancellation & gift certificates · THE FACES Spa (63) | Cancellation, rescheduling, terms of use and gift certificate terms of THE FACES Spa in Ubud and Sanur, Bali. (109) |
 
 ### Русский
 
@@ -62,6 +68,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/ru/gift-certificates` | Подарочные сертификаты в спа на Бали с бонусом · The Faces (58) | Дарите ритуал и получайте больше: сертификаты от 1 200 000 IDR с бонусом до 25 %. Действуют в Убуде и Сануре. (109) |
 | `/ru/partners` | Партнёрство с The Faces · франшиза и спа-проекты на Бали (56) | Четыре спа-проекта на Бали для партнёров, франшиза и спа в отелях, а также вакансии в The Faces. (96) |
 | `/ru/journal` | Журнал · массаж лица, хэд-спа и ритуалы на Бали | The Faces (59) | Гиды по процедурам, уходу за кожей и медленной красоте на Бали от команды The Faces. (84) |
+| `/ru/certificates` | Товарный знак и авторское право · концепция THE FACES «Пять стихий» (67) | Товарный знак THE FACES (IDM001282706) и авторское право на концепцию «Пять стихий» (000638738), зарегистрированные в Индонезии. (128) |
+| `/ru/privacy` | Политика конфиденциальности · THE FACES Spa Бали (48) | Как THE FACES Spa в Убуде и Сануре обрабатывает персональные данные, cookie и записи и как реализовать свои права. (114) |
+| `/ru/terms` | Условия записи, отмена и сертификаты · THE FACES Spa (52) | Отмена, перенос, условия использования и правила подарочных сертификатов THE FACES Spa в Убуде и Сануре. (104) |
 
 ### Español
 
@@ -81,6 +90,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/es/gift-certificates` | Certificados regalo de spa en Bali con bonus · The Faces (56) | Regala un ritual y recibe más: certificados desde 1.200.000 IDR con hasta un 25 % de bonus. Válidos en Ubud y Sanur. (116) |
 | `/es/partners` | Partners de The Faces · Franquicia y proyectos de spa en Bali (61) | Cuatro proyectos de spa en Bali abiertos a socios, franquicia y spa en hotel, y empleo en The Faces. (100) |
 | `/es/journal` | Blog · Masaje facial, head spa y rituales en Bali | The Faces (61) | Guías sobre tratamientos, cuidado de la piel y belleza sin prisa en Bali, del equipo de The Faces. (98) |
+| `/es/certificates` | Marca registrada y derechos de autor · Concepto Cinco Elementos THE FACES (73) | Marca THE FACES (IDM001282706) y derechos de autor del concepto Cinco Elementos (000638738), registrados en la República de Indonesia. (134) |
+| `/es/privacy` | Política de privacidad · THE FACES Spa Bali (43) | Cómo THE FACES Spa en Ubud y Sanur trata tus datos personales, las cookies y las reservas, y cómo ejercer tus derechos. (119) |
+| `/es/terms` | Condiciones de reserva, cancelación y certificados · THE FACES Spa (66) | Cancelación, cambios de cita, condiciones de uso y de los certificados regalo de THE FACES Spa en Ubud y Sanur. (111) |
 
 ### Deutsch
 
@@ -100,6 +112,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/de/gift-certificates` | Spa-Gutscheine auf Bali mit Bonus · The Faces (45) | Ein Ritual schenken und mehr erhalten: Gutscheine ab 1.200.000 IDR mit bis zu 25 % Bonus. Gültig in Ubud und Sanur. (115) |
 | `/de/partners` | Partner von The Faces · Spa-Franchise & Projekte auf Bali (57) | Vier Spa-Projekte auf Bali für Partner, Franchise- und Hotel-Spa-Formate sowie Jobs bei The Faces. (98) |
 | `/de/journal` | Journal · Gesichtsmassage, Head Spa und Rituale | The Faces (59) | Ratgeber zu Behandlungen, Hautpflege und entschleunigter Schönheit auf Bali vom Team von The Faces. (99) |
+| `/de/certificates` | Eingetragene Marke & Urheberrecht · THE FACES Fünf-Elemente-Konzept (67) | Marke THE FACES (IDM001282706) und Urheberrecht am Fünf-Elemente-Konzept (000638738), eingetragen in der Republik Indonesien. (125) |
+| `/de/privacy` | Datenschutzerklärung · THE FACES Spa Bali (41) | Wie THE FACES Spa in Ubud und Sanur personenbezogene Daten, Cookies und Buchungen behandelt und wie Sie Ihre Rechte ausüben. (124) |
+| `/de/terms` | Buchungsbedingungen, Stornierung & Gutscheine · THE FACES Spa (61) | Stornierung, Umbuchung, Nutzungsbedingungen und Gutscheinbedingungen von THE FACES Spa in Ubud und Sanur. (105) |
 
 ### ไทย
 
@@ -119,6 +134,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/th/gift-certificates` | บัตรของขวัญสปาในบาหลีพร้อมโบนัส · The Faces (43) | มอบพิธีกรรมและรับมากกว่า: บัตรของขวัญเริ่มต้น 1,200,000 IDR พร้อมโบนัสสูงสุด 25% ใช้ได้ทั้งอูบุดและซานูร์ (105) |
 | `/th/partners` | ร่วมเป็นพันธมิตร The Faces · แฟรนไชส์และโครงการสปาในบาหลี (57) | สี่โครงการสปาในบาหลีที่เปิดรับพันธมิตร แฟรนไชส์ สปาในโรงแรม และตำแหน่งงานที่ The Faces (86) |
 | `/th/journal` | บทความ · นวดหน้า เฮดสปา และพิธีกรรมในบาหลี | The Faces (54) | คู่มือทรีตเมนต์ การดูแลผิว และความงามแบบช้า ๆ ในบาหลี จากทีม The Faces (70) |
+| `/th/certificates` | เครื่องหมายการค้าและลิขสิทธิ์ · แนวคิดธาตุทั้งห้า THE FACES (59) | เครื่องหมายการค้า THE FACES (IDM001282706) และลิขสิทธิ์แนวคิดธาตุทั้งห้า (000638738) จดทะเบียนในสาธารณรัฐอินโดนีเซีย (116) |
+| `/th/privacy` | นโยบายความเป็นส่วนตัว · THE FACES Spa บาหลี (43) | THE FACES Spa ที่อูบุดและซานูร์จัดการข้อมูลส่วนบุคคล คุกกี้ และการจองอย่างไร และวิธีใช้สิทธิของคุณ (98) |
+| `/th/terms` | เงื่อนไขการจอง การยกเลิก และบัตรของขวัญ · THE FACES Spa (55) | การยกเลิก การเลื่อนนัด ข้อกำหนดการใช้งาน และเงื่อนไขบัตรของขวัญของ THE FACES Spa อูบุดและซานูร์ (95) |
 
 ### Bahasa Indonesia
 
@@ -138,6 +156,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/id/gift-certificates` | Voucher hadiah spa di Bali dengan bonus · The Faces (51) | Hadiahkan ritual dan dapatkan lebih: voucher mulai IDR 1.200.000 dengan bonus hingga 25%. Berlaku di Ubud dan Sanur. (116) |
 | `/id/partners` | Mitra The Faces · Waralaba & proyek spa di Bali (47) | Empat proyek spa di Bali terbuka untuk mitra, waralaba, spa di hotel, serta karier di The Faces. (96) |
 | `/id/journal` | Jurnal · Pijat wajah, head spa & ritual di Bali | The Faces (59) | Panduan perawatan, perawatan kulit, dan kecantikan yang tenang di Bali dari tim The Faces. (90) |
+| `/id/certificates` | Merek terdaftar & hak cipta · Konsep Lima Elemen THE FACES (58) | Merek THE FACES (IDM001282706) dan hak cipta Konsep Lima Elemen (000638738), terdaftar di Republik Indonesia. (109) |
+| `/id/privacy` | Kebijakan privasi · THE FACES Spa Bali (38) | Cara THE FACES Spa di Ubud dan Sanur menangani data pribadi, cookie, dan pemesanan, serta cara menggunakan hak Anda. (116) |
+| `/id/terms` | Ketentuan pemesanan, pembatalan & voucher · THE FACES Spa (57) | Pembatalan, penjadwalan ulang, ketentuan penggunaan, dan ketentuan voucher THE FACES Spa di Ubud dan Sanur. (107) |
 
 ### 日本語
 
@@ -157,6 +178,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/ja/gift-certificates` | バリのスパギフト券（ボーナス付き）｜The Faces (27) | 儀式を贈って、もっと受け取る。1,200,000 IDRから、最大25%のボーナス付き。ウブド・サヌール両店で利用可能。 (60) |
 | `/ja/partners` | The Facesとの提携｜バリのスパ・フランチャイズとプロジェクト (34) | パートナーを募集するバリの4つのスパプロジェクト、フランチャイズ、ホテル内スパ、そして採用情報。 (48) |
 | `/ja/journal` | ジャーナル｜バリのフェイシャル・ヘッドスパ・リチュアル (27) | The Facesチームによる、施術ガイド、スキンケア、バリでのスロービューティー。 (42) |
+| `/ja/certificates` | 商標登録と著作権｜THE FACES 五元素コンセプト (27) | インドネシア共和国で登録されたTHE FACES商標（IDM001282706）と五元素コンセプトの著作権（000638738）。 (65) |
+| `/ja/privacy` | プライバシーポリシー｜THE FACES Spa バリ (27) | ウブド・サヌールのTHE FACES Spaにおける個人情報、Cookie、予約の取り扱いと、お客様の権利について。 (58) |
+| `/ja/terms` | 予約条件・キャンセル・ギフト券｜THE FACES Spa (29) | THE FACES Spa ウブド・サヌールのキャンセル、日時変更、利用規約、ギフト券規約。 (46) |
 
 ### Français
 
@@ -176,6 +200,9 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/fr/gift-certificates` | Cartes cadeaux spa à Bali avec bonus · The Faces (48) | Offrez un rituel et recevez plus : cartes dès 1 200 000 IDR avec jusqu'à 25 % de bonus. Valables à Ubud et Sanur. (113) |
 | `/fr/partners` | Partenariat The Faces · Franchise & projets spa à Bali (54) | Quatre projets de spa à Bali ouverts aux partenaires, franchise et spa d'hôtel, et recrutement chez The Faces. (110) |
 | `/fr/journal` | Journal · Massage du visage, head spa et rituels à Bali | The Faces (67) | Guides de nos soins, de la peau et de la beauté sans hâte à Bali, par l'équipe de The Faces Spa. (96) |
+| `/fr/certificates` | Marque déposée & droit d'auteur · Concept des Cinq Éléments THE FACES (69) | Marque THE FACES (IDM001282706) et droit d'auteur du concept des Cinq Éléments (000638738), enregistrés en République d'Indonésie. (130) |
+| `/fr/privacy` | Politique de confidentialité · THE FACES Spa Bali (49) | Comment THE FACES Spa à Ubud et Sanur traite vos données personnelles, les cookies et les réservations, et comment exercer vos droits. (134) |
+| `/fr/terms` | Conditions de réservation, annulation & cartes cadeaux · THE FACES Spa (70) | Annulation, report, conditions d'utilisation et conditions des cartes cadeaux de THE FACES Spa à Ubud et Sanur. (111) |
 
 ### Українська
 
@@ -195,3 +222,6 @@ En las páginas interiores usa `pages/<página>-01-header.html` y `pages/<págin
 | `/uk/gift-certificates` | Подарункові сертифікати в спа на Балі з бонусом · The Faces (59) | Даруйте ритуал і отримуйте більше: сертифікати від 1 200 000 IDR з бонусом до 25 %. Діють в Убуді та Сануре. (108) |
 | `/uk/partners` | Партнерство з The Faces · франшиза та спа-проєкти на Балі (57) | Чотири спа-проєкти на Балі для партнерів, франшиза та спа в готелях, а також вакансії в The Faces. (98) |
 | `/uk/journal` | Журнал · масаж обличчя, хед-спа та ритуали на Балі | The Faces (62) | Гіди процедурами, доглядом за шкірою та повільною красою на Балі від команди The Faces. (87) |
+| `/uk/certificates` | Торговельна марка та авторське право · концепція THE FACES «П'ять стихій» (73) | Торговельна марка THE FACES (IDM001282706) і авторське право на концепцію «П'ять стихій» (000638738), зареєстровані в Індонезії. (128) |
+| `/uk/privacy` | Політика конфіденційності · THE FACES Spa Балі (46) | Як THE FACES Spa в Убуді та Сануре обробляє персональні дані, cookie та записи і як реалізувати свої права. (107) |
+| `/uk/terms` | Умови запису, скасування та сертифікати · THE FACES Spa (55) | Скасування, перенесення, умови використання та правила подарункових сертифікатів THE FACES Spa в Убуді та Сануре. (113) |

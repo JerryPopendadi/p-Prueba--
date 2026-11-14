@@ -2,6 +2,18 @@
  {
   "id": "p1",
   "img": "g01-face.webp",
+  "catkey": "face",
+  "catname": {
+   "en": "Face",
+   "ru": "Лицо",
+   "es": "Rostro",
+   "de": "Gesicht",
+   "th": "ใบหน้า",
+   "id": "Wajah",
+   "ja": "フェイス",
+   "fr": "Visage",
+   "uk": "Обличчя"
+  },
   "slug": {
    "en": "myofascial-or-sculptural-face-massage",
    "ru": "myofascial-or-sculptural-face-massage-ru",
@@ -61,6 +73,18 @@
  {
   "id": "p2",
   "img": "g10-proc-s.webp",
+  "catkey": "head",
+  "catname": {
+   "en": "Head spa",
+   "ru": "Хэд-спа",
+   "es": "Head spa",
+   "de": "Head Spa",
+   "th": "เฮดสปา",
+   "id": "Head spa",
+   "ja": "ヘッドスパ",
+   "fr": "Head spa",
+   "uk": "Хед-спа"
+  },
   "slug": {
    "en": "shirodhara-hair-spa-ubud",
    "ru": "shirodhara-hair-spa-ubud-ru",
@@ -120,6 +144,18 @@
  {
   "id": "p3",
   "img": "g09-proc-s.webp",
+  "catkey": "rituals",
+  "catname": {
+   "en": "Rituals",
+   "ru": "Ритуалы",
+   "es": "Rituales",
+   "de": "Rituale",
+   "th": "พิธีกรรม",
+   "id": "Ritual",
+   "ja": "リチュアル",
+   "fr": "Rituels",
+   "uk": "Ритуали"
+  },
   "slug": {
    "en": "five-elements-how-to-choose-your-ritual",
    "ru": "five-elements-how-to-choose-your-ritual-ru",
