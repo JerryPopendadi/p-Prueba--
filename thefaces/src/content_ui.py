@@ -113,14 +113,8 @@ UI = {
 
 # ---------- menu & builder ----------
 "mn_label": ["Menu & prices", "Меню и цены", "Menú y precios", "Menü & Preise", "เมนูและราคา", "Menu & harga", "メニュー・料金"],
-"mn_h2": ["Build your ritual.", "Соберите свой ритуал.", "Crea tu ritual.", "Stellen Sie Ihr Ritual zusammen.", "สร้างพิธีกรรมของคุณ", "Susun ritual Anda.", "あなたの儀式を組み立てる。"],
-"mn_intro": ["Open prices, before you book. Add treatments with “+”, choose the salon and send your ritual to the team online or by WhatsApp. Prices in Indonesian rupiah (IDR).",
-             "Открытые цены ещё до записи. Добавьте процедуры кнопкой «+», выберите салон и отправьте ритуал команде онлайн или в WhatsApp. Цены в индонезийских рупиях (IDR).",
-             "Precios a la vista antes de reservar. Añade tratamientos con «+», elige el salón y envía tu ritual al equipo online o por WhatsApp. Precios en rupias indonesias (IDR).",
-             "Offene Preise schon vor der Buchung. Fügen Sie Behandlungen mit „+“ hinzu, wählen Sie den Salon und senden Sie Ihr Ritual online oder per WhatsApp. Preise in indonesischen Rupiah (IDR).",
-             "ราคาโปร่งใสก่อนจอง กด “+” เพื่อเพิ่มทรีตเมนต์ เลือกสาขา แล้วส่งพิธีกรรมของคุณให้ทีมงานทางออนไลน์หรือ WhatsApp ราคาเป็นรูเปียห์อินโดนีเซีย (IDR)",
-             "Harga terbuka sebelum memesan. Tambahkan perawatan dengan “+”, pilih salon, lalu kirim ritual Anda ke tim secara online atau lewat WhatsApp. Harga dalam rupiah (IDR).",
-             "料金は予約前にすべて公開。「+」で施術を追加し、サロンを選んで、オンラインまたはWhatsAppでチームに送信してください。料金はインドネシアルピア（IDR）です。"],
+"mn_h2": ["Open prices, before you book.", "Открытые цены ещё до записи.", "Precios a la vista antes de reservar.", "Offene Preise vor der Buchung.", "ราคาโปร่งใสก่อนจอง", "Harga terbuka sebelum memesan.", "予約の前に、料金をすべて公開。"],
+"mn_intro": ["The full menu of our salons in Ubud and Sanur, with duration and price in Indonesian rupiah (IDR). Where a price or treatment differs by salon, it is marked.", "Полное меню наших салонов в Убуде и Сануре с длительностью и ценой в индонезийских рупиях (IDR). Если цена или процедура отличается в салонах, это указано.", "La carta completa de nuestros salones de Ubud y Sanur, con duración y precio en rupias indonesias (IDR). Si un precio o tratamiento cambia según el salón, está indicado.", "Das komplette Menü unserer Salons in Ubud und Sanur mit Dauer und Preis in indonesischen Rupiah (IDR). Unterschiede zwischen den Salons sind gekennzeichnet.", "เมนูทั้งหมดของสาขาอูบุดและซานูร์ พร้อมระยะเวลาและราคาเป็นรูเปียห์อินโดนีเซีย (IDR) หากราคาหรือทรีตเมนต์ต่างกันระหว่างสาขา จะระบุไว้", "Menu lengkap salon kami di Ubud dan Sanur dengan durasi dan harga dalam rupiah (IDR). Jika harga atau perawatan berbeda per salon, akan ditandai.", "ウブド店・サヌール店の全メニューを、所要時間とインドネシアルピア（IDR）の料金とともに掲載。サロンにより料金や内容が異なる場合は明記しています。"],
 "mn_note": ["Hair spa for kids, rituals for couples and gift certificates are available. Exact price and availability are confirmed when you book.",
             "Есть хэд-спа для детей, ритуалы для пар и подарочные сертификаты. Точная цена и наличие подтверждаются при записи.",
             "Hay head spa para niños, rituales para parejas y certificados de regalo. El precio exacto y la disponibilidad se confirman al reservar.",
@@ -216,24 +210,18 @@ UI = {
 # ---------- partners ----------
 "pa_label": ["Become part of the universe", "Станьте частью вселенной", "Forma parte del universo", "Werden Sie Teil des Universums", "มาเป็นส่วนหนึ่งของจักรวาล", "Jadilah bagian dari semesta", "ユニバースの一員に"],
 "pa_h2": ["Partner with THE FACES.", "Партнёрство с THE FACES.", "Sé partner de THE FACES.", "Partner von THE FACES werden.", "ร่วมเป็นพันธมิตรกับ THE FACES", "Bermitra dengan THE FACES.", "THE FACESのパートナーに。"],
-"pa_intro": ["25 years of expertise in beauty, spa and wellness. Four projects in Bali open to partners, franchise and spa-in-hotel formats, and a team that builds concepts from an empty space to an operating spa.",
-             "25 лет экспертизы в красоте, спа и велнесе. Четыре проекта на Бали открыты для партнёров, франшиза и спа в отелях — и команда, которая проводит концепцию от пустого помещения до работающего спа.",
-             "25 años de experiencia en belleza, spa y bienestar. Cuatro proyectos en Bali abiertos a socios, formatos de franquicia y spa en hotel, y un equipo que lleva el concepto desde un local vacío hasta un spa en marcha.",
-             "25 Jahre Expertise in Beauty, Spa und Wellness. Vier Projekte auf Bali offen für Partner, Franchise- und Hotel-Spa-Formate und ein Team, das vom leeren Raum bis zum laufenden Spa begleitet.",
-             "ประสบการณ์ 25 ปีด้านความงาม สปา และเวลเนส สี่โครงการในบาหลีที่เปิดรับพันธมิตร รูปแบบแฟรนไชส์และสปาในโรงแรม พร้อมทีมที่สร้างแนวคิดตั้งแต่พื้นที่ว่างจนถึงสปาที่เปิดให้บริการ",
-             "25 tahun keahlian di bidang kecantikan, spa, dan wellness. Empat proyek di Bali terbuka untuk mitra, format waralaba dan spa di hotel, serta tim yang membangun konsep dari ruang kosong hingga spa yang beroperasi.",
-             "美容・スパ・ウェルネスにおける25年の専門性。パートナーに開かれたバリの4つのプロジェクト、フランチャイズやホテル内スパの形態、そして何もない空間から営業中のスパまでを手がけるチームがあります。"],
+"pa_intro": ["25 years of expertise in beauty, spa and wellness. Four projects in Bali open to partners, franchise and spa-in-hotel formats, and a team that builds concepts from an empty space to an operating spa.", "25 лет экспертизы в красоте, спа и велнесе. Четыре проекта на Бали открыты для партнёров, франшиза и спа в отелях — и команда, которая проводит концепцию от пустого помещения до работающего спа.", "25 años de experiencia en belleza, spa y bienestar. Cuatro proyectos en Bali abiertos a partners, formatos de franquicia y spa en hotel, y un equipo que lleva el concepto desde un local vacío hasta un spa en marcha.", "25 Jahre Expertise in Beauty, Spa und Wellness. Vier Projekte auf Bali offen für Partner, Franchise- und Hotel-Spa-Formate und ein Team, das vom leeren Raum bis zum laufenden Spa begleitet.", "ประสบการณ์ 25 ปีด้านความงาม สปา และเวลเนส สี่โครงการในบาหลีที่เปิดรับพันธมิตร รูปแบบแฟรนไชส์และสปาในโรงแรม พร้อมทีมที่สร้างแนวคิดตั้งแต่พื้นที่ว่างจนถึงสปาที่เปิดให้บริการ", "25 tahun keahlian di bidang kecantikan, spa, dan wellness. Empat proyek di Bali terbuka untuk mitra, format waralaba dan spa di hotel, serta tim yang membangun konsep dari ruang kosong hingga spa yang beroperasi.", "美容・スパ・ウェルネスにおける25年の専門性。パートナーに開かれたバリの4つのプロジェクト、フランチャイズやホテル内スパの形態、そして何もない空間から営業中のスパまでを手がけるチームがあります。"],
 "pa_read": ["Read about the project ↗", "О проекте ↗", "Ver el proyecto ↗", "Zum Projekt ↗", "อ่านเกี่ยวกับโครงการ ↗", "Tentang proyek ↗", "プロジェクトを見る ↗"],
 "pa_s1": ["Renovation under way", "Идёт ремонт", "En reforma", "Renovierung läuft", "กำลังปรับปรุง", "Sedang renovasi", "改装中"],
-"pa_d1": ["A ritual spa built around breath, steam and light. 10-year lease signed.", "Ритуальное спа вокруг дыхания, пара и света. Аренда на 10 лет подписана.", "Un spa ritual en torno a la respiración, el vapor y la luz. Arrendamiento de 10 años firmado.", "Ein Ritual-Spa rund um Atem, Dampf und Licht. 10-Jahres-Mietvertrag unterzeichnet.", "สปาพิธีกรรมที่ออกแบบรอบลมหายใจ ไอน้ำ และแสง ทำสัญญาเช่า 10 ปีแล้ว", "Spa ritual seputar napas, uap, dan cahaya. Sewa 10 tahun sudah ditandatangani.", "呼吸・蒸気・光をテーマにしたリチュアルスパ。10年の賃貸契約締結済み。"],
+"pa_d1": ["A ritual spa built around breath, steam and light.", "Ритуальное спа вокруг дыхания, пара и света.", "Un spa ritual en torno a la respiración, el vapor y la luz.", "Ein Ritual-Spa rund um Atem, Dampf und Licht.", "สปาพิธีกรรมที่ออกแบบรอบลมหายใจ ไอน้ำ และแสง", "Spa ritual seputar napas, uap, dan cahaya.", "呼吸・蒸気・光をテーマにしたリチュアルスパ。"],
 "pa_s2": ["Operating", "Работает", "En funcionamiento", "In Betrieb", "เปิดดำเนินการ", "Beroperasi", "営業中"],
 "pa_d2": ["A working spa with real clients and an experienced team on site.", "Действующее спа с реальными клиентами и опытной командой.", "Un spa en funcionamiento con clientes reales y un equipo experto.", "Ein laufendes Spa mit echten Kunden und erfahrenem Team vor Ort.", "สปาที่เปิดให้บริการจริง มีลูกค้าและทีมงานมืออาชีพ", "Spa yang beroperasi dengan klien nyata dan tim berpengalaman.", "実際の顧客と経験豊富なチームがいる営業中のスパ。"],
 "pa_s3": ["Under construction", "Строится", "En construcción", "Im Bau", "กำลังก่อสร้าง", "Dalam pembangunan", "建設中"],
 "pa_d3": ["A new wellness destination designed around nature.", "Новое велнес-пространство, созданное вокруг природы.", "Un nuevo destino de bienestar diseñado en torno a la naturaleza.", "Ein neues Wellness-Ziel, rund um die Natur gestaltet.", "จุดหมายเวลเนสแห่งใหม่ที่ออกแบบรอบธรรมชาติ", "Destinasi wellness baru yang dirancang mengikuti alam.", "自然を中心に設計された新しいウェルネスの目的地。"],
 "pa_s4": ["Plans ready", "Проект готов", "Planos listos", "Pläne fertig", "แบบพร้อมแล้ว", "Rencana siap", "設計完了"],
-"pa_d4": ["Five Elements Ritual Spa opposite the Hyatt. 250 m² building.", "Ритуальное спа пяти стихий напротив Hyatt. Здание 250 м².", "Spa ritual de los cinco elementos frente al Hyatt. Edificio de 250 m².", "Fünf-Elemente-Ritual-Spa gegenüber dem Hyatt. 250 m² Gebäude.", "สปาพิธีกรรมธาตุทั้งห้า ตรงข้ามโรงแรมไฮแอท อาคาร 250 ตร.ม.", "Spa ritual lima elemen di seberang Hyatt. Bangunan 250 m².", "ハイアットの向かい、五元素リチュアルスパ。250㎡の建物。"],
+"pa_d4": ["Five Elements Ritual Spa opposite the Hyatt.", "Ритуальное спа пяти стихий напротив Hyatt.", "Spa ritual de los cinco elementos frente al Hyatt.", "Fünf-Elemente-Ritual-Spa gegenüber dem Hyatt.", "สปาพิธีกรรมธาตุทั้งห้า ตรงข้ามโรงแรมไฮแอท", "Spa ritual lima elemen di seberang Hyatt.", "ハイアットの向かい、五元素リチュアルスパ。"],
 "pa_w1k": ["Partners", "Партнёрам", "Socios", "Partner", "พันธมิตร", "Mitra", "パートナー"],
-"pa_w1h": ["Invest or franchise", "Инвестиции или франшиза", "Invertir o franquicia", "Investieren oder Franchise", "ลงทุนหรือแฟรนไชส์", "Investasi atau waralaba", "投資・フランチャイズ"],
+"pa_w1h": ["Franchise & partnership", "Франшиза и партнёрство", "Franquicia y colaboración", "Franchise & Partnerschaft", "แฟรนไชส์และความร่วมมือ", "Waralaba & kemitraan", "フランチャイズ・提携"],
 "pa_w1p": ["Own location, franchise or master franchise under THE FACES brand and standards.", "Собственная точка, франшиза или мастер-франшиза под брендом и стандартами THE FACES.", "Local propio, franquicia o máster franquicia con la marca y los estándares de THE FACES.", "Eigener Standort, Franchise oder Master-Franchise unter Marke und Standards von THE FACES.", "สาขาของคุณเอง แฟรนไชส์ หรือมาสเตอร์แฟรนไชส์ ภายใต้แบรนด์และมาตรฐาน THE FACES", "Lokasi sendiri, waralaba, atau master waralaba dengan merek dan standar THE FACES.", "THE FACESのブランドと基準による直営、フランチャイズ、マスターフランチャイズ。"],
 "pa_w2k": ["Hotels & resorts", "Отели и курорты", "Hoteles y resorts", "Hotels & Resorts", "โรงแรมและรีสอร์ต", "Hotel & resor", "ホテル・リゾート"],
 "pa_w2h": ["A THE FACES spa in your property", "Спа THE FACES в вашем отеле", "Un spa THE FACES en tu propiedad", "Ein THE FACES Spa in Ihrem Haus", "สปา THE FACES ในที่พักของคุณ", "Spa THE FACES di properti Anda", "あなたの施設にTHE FACESのスパを"],
@@ -243,13 +231,7 @@ UI = {
 "pa_w3p": ["Therapists, cosmetologists and reception. Training in our signature techniques.", "Мастера, косметологи и администраторы. Обучение авторским техникам.", "Terapeutas, cosmetólogas y recepción. Formación en nuestras técnicas de autor.", "Therapeutinnen, Kosmetikerinnen und Rezeption. Schulung in unseren Signature-Techniken.", "นักบำบัด นักความงาม และพนักงานต้อนรับ พร้อมการฝึกเทคนิคซิกเนเจอร์ของเรา", "Terapis, kosmetolog, dan resepsionis. Pelatihan teknik signature kami.", "セラピスト、エステティシャン、受付。独自技術の研修があります。"],
 "pa_cta1": ["Request a partnership call ↗", "Запросить звонок о партнёрстве ↗", "Solicitar una llamada ↗", "Partnergespräch anfragen ↗", "ขอนัดคุยเรื่องความร่วมมือ ↗", "Minta panggilan kemitraan ↗", "パートナー相談を申し込む ↗"],
 "pa_cta2": ["Partner catalogues ↗", "Каталоги для партнёров ↗", "Catálogos para socios ↗", "Partnerkataloge ↗", "แคตตาล็อกพันธมิตร ↗", "Katalog mitra ↗", "パートナー資料 ↗"],
-"pa_legal": ["Information about business projects only. Not an offer of securities and no promise of income. Partnerships are discussed individually and agreed in writing.",
-             "Информация о бизнес-проектах. Не является предложением ценных бумаг и не гарантирует доход. Условия партнёрства обсуждаются индивидуально и фиксируются письменно.",
-             "Información solo sobre proyectos empresariales. No es una oferta de valores ni promete ingresos. Las colaboraciones se acuerdan individualmente y por escrito.",
-             "Nur Informationen zu Geschäftsprojekten. Kein Wertpapierangebot und kein Ertragsversprechen. Partnerschaften werden individuell besprochen und schriftlich vereinbart.",
-             "ข้อมูลเกี่ยวกับโครงการธุรกิจเท่านั้น ไม่ใช่การเสนอขายหลักทรัพย์และไม่รับประกันรายได้ ความร่วมมือจะพิจารณาเป็นรายกรณีและตกลงเป็นลายลักษณ์อักษร",
-             "Hanya informasi tentang proyek bisnis. Bukan penawaran efek dan tidak menjanjikan pendapatan. Kemitraan dibahas secara individual dan disepakati secara tertulis.",
-             "事業プロジェクトに関する情報です。有価証券の募集や収益の約束ではありません。提携条件は個別に協議し、書面で合意します。"],
+"pa_legal": ["Partnerships are discussed individually and agreed in writing.", "Условия партнёрства обсуждаются индивидуально и фиксируются письменно.", "Las colaboraciones se acuerdan de forma individual y por escrito.", "Partnerschaften werden individuell besprochen und schriftlich vereinbart.", "ความร่วมมือจะพิจารณาเป็นรายกรณีและตกลงเป็นลายลักษณ์อักษร", "Kemitraan dibahas secara individual dan disepakati secara tertulis.", "提携条件は個別に協議し、書面で合意します。"],
 
 # ---------- journal ----------
 "jo_label": ["Journal", "Журнал", "Blog", "Journal", "บทความ", "Jurnal", "ジャーナル"],
@@ -295,6 +277,10 @@ UI = {
 "ck_reject": ["Reject", "Отклонить", "Rechazar", "Ablehnen", "ปฏิเสธ", "Tolak", "拒否する"],
 "ck_more": ["Learn more", "Подробнее", "Más información", "Mehr erfahren", "ดูเพิ่มเติม", "Selengkapnya", "詳細"],
 "mb_menu": ["Menu & prices", "Меню и цены", "Menú y precios", "Menü & Preise", "เมนูและราคา", "Menu & harga", "メニュー・料金"],
+"book_cta": ["Book a treatment", "Записаться на процедуру", "Reservar tratamiento", "Behandlung buchen", "จองทรีตเมนต์", "Pesan perawatan", "施術を予約"],
+"book_online": ["Book online", "Записаться онлайн", "Reservar online", "Online buchen", "จองออนไลน์", "Pesan online", "オンライン予約"],
+"book_ritual": ["Book this ritual", "Записаться на ритуал", "Reservar este ritual", "Dieses Ritual buchen", "จองพิธีกรรมนี้", "Pesan ritual ini", "この儀式を予約"],
+"book_note": ["In our booking system you choose the city (Sanur appears as Denpasar), the salon, the treatments, the master and the time.", "В системе записи вы выбираете город (Санур указан как Денпасар), салон, процедуры, мастера и время.", "En nuestro sistema de reservas eliges la ciudad (Sanur aparece como Denpasar), el salón, los tratamientos, la terapeuta y la hora.", "In unserem Buchungssystem wählen Sie Stadt (Sanur steht unter Denpasar), Salon, Behandlungen, Therapeutin und Uhrzeit.", "ในระบบจอง คุณจะเลือกเมือง (ซานูร์อยู่ในหัวข้อเดนปาซาร์) สาขา ทรีตเมนต์ นักบำบัด และเวลา", "Di sistem booking kami Anda memilih kota (Sanur tercantum sebagai Denpasar), salon, perawatan, terapis, dan jam.", "予約システムで、都市（サヌールは「Denpasar」）、サロン、施術、セラピスト、時間をお選びください。"],
 }
 
 # Duration units: (hours, minutes, joiner)
@@ -305,10 +291,3 @@ LANG_NAMES = {"en": "English", "ru": "Русский", "es": "Español", "de": "
 HTML_LANG = {"en": "en", "ru": "ru", "es": "es", "de": "de", "th": "th", "id": "id", "ja": "ja"}
 OG_LOCALE = {"en": "en_US", "ru": "ru_RU", "es": "es_ES", "de": "de_DE", "th": "th_TH", "id": "id_ID", "ja": "ja_JP"}
 
-# WhatsApp message language: the team reads English, Russian and Indonesian.
-WA = {
- "en": {"hello": "Hello! I would like to book at THE FACES {salon}:", "total": "Total", "time": "Preferred time", "advice": "(I would like advice on what to choose)", "min": "min"},
- "ru": {"hello": "Здравствуйте! Хочу записаться в THE FACES {salon}:", "total": "Итого", "time": "Удобное время", "advice": "(Помогите, пожалуйста, с выбором)", "min": "мин"},
- "id": {"hello": "Halo! Saya ingin memesan di THE FACES {salon}:", "total": "Total", "time": "Waktu pilihan", "advice": "(Saya ingin saran perawatan)", "min": "menit"},
-}
-WA_FOR = {"en": "en", "ru": "ru", "es": "en", "de": "en", "th": "en", "id": "id", "ja": "en"}

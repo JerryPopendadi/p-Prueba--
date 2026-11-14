@@ -21,18 +21,18 @@ tilda/
 ### Los 15 bloques
 | Nº | Bloque | Qué muestra |
 |---|---|---|
-| 01 | header | Logo, menú, selector de 7 idiomas, «Tu ritual» con contador, botón Reservar, menú móvil |
+| 01 | header | Logo, menú, selector de 7 idiomas, botón Reservar (→ Altegio), menú móvil |
 | 02 | hero | **Vídeo** a pantalla completa, H1 con palabras clave, «Cinco elementos. Un ritual.», 2 botones |
 | 03 | philosophy | Filosofía con fotos superpuestas y marquesina de palabras en movimiento |
 | 04 | senses | **Los 5 sentidos + intuición**: imagen grande fija que cambia al hacer scroll (vista, oído, olfato, tacto, gusto, intuición), número gigante, puntos de progreso. En móvil, cada sentido con su foto |
-| 05 | elements | Los 5 elementos en columnas que se expanden: cuándo elegirlo, qué incluye, precio, «Añadir al ritual» |
+| 05 | elements | Los 5 elementos en columnas que se expanden: cuándo elegirlo, qué incluye, precio, «Reservar este ritual» (→ Altegio) |
 | 06 | signatures | Carrusel de 6 tratamientos estrella |
-| 07 | menu-builder | Menú completo (57 servicios, precios en el HTML para Google) + constructor «Tu ritual» → Altegio o WhatsApp |
+| 07 | menu-builder | Menú completo copiado de Altegio (56 servicios; precios y duraciones por salón, «solo Ubud»/«solo Sanur»), en el HTML para Google + botón «Reservar online» (→ Altegio) |
 | 08 | gallery | Galería en dos filas que se deslizan |
 | 09 | salons | Ubud y Sanur: dirección, reservar, WhatsApp, teléfono, cómo llegar (la reserva online va a n831884.alteg.io) |
 | 10 | founders | **Anna y Evgenii Dubinin**: foto grande, historia, cita, línea de tiempo, cifras |
 | 11 | gifts | 4 certificados con bonus |
-| 12 | partners | 4 proyectos, invertir/franquicia, spa en hotel, empleo → thefacespeace.com |
+| 12 | partners | 4 proyectos, franquicia y colaboración, spa en hotel, empleo, «Solicitar una llamada» (sin menciones de inversión) |
 | 13 | journal | 3 artículos del blog |
 | 14 | faq | 7 preguntas + datos estructurados FAQPage |
 | 16 | waterfall | **Próximamente: THE FACES Waterfall Spa** — lema, texto de bienvenida, 2 fotos de la obra y los 6 rituales (Tierra, Agua, Fuego, Aire, Silencio, Amor) desplegables, sin precios; botón «Avísame cuando abra» (WhatsApp). Va después del 12 en la portada y en Partners |
@@ -140,9 +140,9 @@ Probado en la previsualización: las 63 páginas sin errores, con un solo H1, da
 ---
 
 ## 7. Reserva y analítica
-El cliente elige tratamientos y salón en la web y después:
-- **Reserva online:** se abre **tal cual** la página de Altegio https://n831884.alteg.io (la misma para los dos salones). Allí elige ciudad (Ubud, o **Denpasar = Sanur**), salón, maestro y hora. Esta página no se modifica ni se incrusta.
-- **WhatsApp:** mensaje ya escrito con los tratamientos, la duración, el total y el salón. Eventos GA4 en el dataLayer: `view_item_list`, `add_to_cart`, `remove_from_cart`, `view_cart`, `select_salon`, `begin_checkout`, `generate_lead` (con valor en IDR, salón y método). El aviso de cookies activa Google Consent Mode v2: nada de analítica ni publicidad hasta que el visitante acepta.
+**En la web no se elige ni se guarda nada antes de reservar.** La web enseña tratamientos y precios; todos los botones «Reservar» (cabecera, portada, elementos, tratamientos estrella, menú, salones, pie y barra del móvil) abren **tal cual** la página de Altegio https://n831884.alteg.io. Allí el cliente elige primero la ciudad (Ubud, o **Denpasar = Sanur**), después el salón, los tratamientos, el maestro y la hora. Así no tiene que elegir dos veces.
+- WhatsApp y teléfono de cada salón siguen disponibles en el bloque de salones y en el pie, como contacto.
+- Analítica: cada clic hacia Altegio envía al dataLayer el evento `booking_click` con `booking_location` (header, hero, element, signature, menu, salon-ubud, salon-sanur, footer, mobile-bar) y `booking_item` cuando el botón es de un tratamiento concreto; al cambiar de categoría del menú, `menu_category`. El aviso de cookies activa Google Consent Mode v2: nada de analítica ni publicidad hasta que el visitante acepta.
 
 Para medir la reserva confirmada sin tocar la página de Altegio: activar en Altegio su integración con Google Analytics / Meta Pixel (si la cuenta la tiene) o importar las reservas a Google Ads como conversiones offline.
 
@@ -151,11 +151,12 @@ Para medir la reserva confirmada sin tocar la página de Altegio: activar en Alt
 ## 8. Datos a confirmar antes de publicar
 | Tema | Situación |
 |---|---|
-| Airkiss Detox | 1.200.000 o 1.300.000 (dos webs distintas) — usado 1.200.000 |
-| Masaje corporal 90 min | 900.000 o 850.000 — usado 900.000 |
+| Menú | **Resuelto:** copiado de Altegio el 14/11/2026 (Ubud 49 servicios, Sanur 51). Airkiss: Ubud 1.200.000 / Sanur 1.300.000; masaje 90 min: Ubud 900.000 / Sanur 850.000; Before Flight: 2.200.000 |
+| Quitados de la web | «Jet Lag Therapy» y «Exhale package»: estaban en la web antigua pero no existen en Altegio |
+| Altegio: tercer salón | «The FACES Ubud SPA» (Jl. Made Lebah 36, Peliatan) ya aparece en Altegio al elegir Ubud, pero **sin servicios**: el cliente puede entrar y no encontrar nada. Ocultarlo hasta abrir o cargarle la carta |
+| Altegio: erratas y datos | «Candal treament», «PRIVELEGE», nombres con «2024»; «4 hands» sin duración; «3 in 1» dura 180 min en Ubud y 90 min en Sanur; Before Flight 150 / 180 min |
 | Certificados | Usado: pagas 1,2 / 4 / 12,75 / 25,5 M → recibes 1,5 / 5 / 15 / 30 M (la web antigua no cuadraba) |
 | Horarios | No aparecen en ninguna web: añadirlos a `menu.py` y a los datos estructurados |
-| The Faces Retreat (Sanur) | Sin precio |
 | Coordenadas de los salones | Para el mapa y Google: enviar enlace exacto de Google Maps de cada salón |
 | Email | thefacesworld@gmail.com; mejor uno del dominio |
 | Fotos de los sentidos | Sustituir por fotos propias (punto 3) |
