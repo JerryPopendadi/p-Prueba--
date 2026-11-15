@@ -109,6 +109,15 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Página de cada salón:** carta completa de ese salón, con su duración y su precio (Ubud 49 tratamientos, Sanur 51, igual que en Altegio el 15/11/2026). Los exclusivos llevan la marca «Solo aquí».
 - **Analítica:** el evento `booking_click` incluye `booking_salon` (`ubud`, `sanur` o `any`), para medir en GA4 / Google Ads las conversiones de cada salón.
 
+## 2k. Páginas de salón con movimiento (versión 1.5.7)
+- **Portada de cada salón:** fondo de vídeo propio. Ubud tiene cascada y terrazas de arroz (`salon-ubud.mp4`); Sanur tiene mar y costa (`salon-sanur.mp4`). Cada uno tiene versión ligera para móvil y foto mientras carga.
+- Encima del vídeo flota una foto del salón real con forma de arco.
+- **Tira de fotos del salón** que se desliza sola y se para al pasar el ratón.
+- **Fotos con movimiento:** las del texto se desplazan a distinta velocidad con el scroll, y la foto de fondo de «Solo en este salón» hace un zoom lento.
+- **Tarjetas:** se elevan al pasar el ratón.
+- **Botón fijo del móvil:** dice «Reservar en Ubud» o «Reservar en Sanur» y abre el Altegio de ese salón.
+- **Movimiento reducido:** si el visitante tiene activado «reducir movimiento» en su dispositivo, las animaciones se paran.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

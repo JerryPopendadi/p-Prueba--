@@ -88,7 +88,7 @@ from content_privacy2 import COMPANY, CO_UI, WHO, CONTROLLER_LINE, EXTRA_SECTION
 UI.update(CO_UI)
 from content_seo2 import TITLES, HERO_H1, SALON_TXT, SEO2_UI  # noqa: E402
 UI.update(SEO2_UI)
-from content_salon import SALON_PAGE, SALON_UI, SALON_IMG  # noqa: E402
+from content_salon import SALON_PAGE, SALON_UI, SALON_IMG, SALON_RIBBON  # noqa: E402
 UI.update(SALON_UI)
 UI["hero_h1"] = HERO_H1
 for _P in PAGES:  # one main search intent per page (no cannibalisation)
@@ -790,6 +790,7 @@ def b_salon(ctx, sid):
     wa = f'https://wa.me/{sv["wa"]}'
     q = sv["maps"].split("query=")[-1]
     hours = sv["opens"] + "–" + sv["closes"]
+    ribbon = "".join(f'<figure><img src="{ctx.asset(i)}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure>' for i in SALON_RIBBON[sid])
     feats = "".join(f'<li class="rv"><span class="sl-n">0{i + 1}</span><h3>{E(t)}</h3><p>{E(x)}</p></li>' for i, (t, x) in enumerate(d["f"]))
     faq = "".join(f'<details><summary>{E(qq)}</summary><p>{E(aa)}</p></details>' for qq, aa in d["faq"])
     ld = {"@context": "https://schema.org", "@type": "DaySpa", "@id": ctx.abs_url(sid) + "#spa", "name": f"The Faces Spa {sv['name']}",
@@ -807,7 +808,9 @@ def b_salon(ctx, sid):
         {"@type": "ListItem", "position": 2, "name": f"The Faces Spa {sv['name']}", "item": ctx.abs_url(sid)}]}
     return f'''<div class="sl sl-{sid}">
 <section class="sl-hero">
- <img class="sl-bg" src="{ctx.asset(imgs[0])}" alt="{E(ctx.t(sv["alt"]))}" loading="eager" fetchpriority="high">
+ <video class="sl-bg" autoplay muted loop playsinline preload="metadata" poster="{ctx.asset("salon-" + sid + ".jpg")}" aria-hidden="true">
+  <source src="{ctx.asset("salon-" + sid + "-m.mp4")}" type="video/mp4" media="(max-width: 760px)"><source src="{ctx.asset("salon-" + sid + ".mp4")}" type="video/mp4"></video>
+ <figure class="sl-float" aria-hidden="false"><img src="{ctx.asset(imgs[0])}" alt="{E(ctx.t(sv["alt"]))}" loading="eager" fetchpriority="high"><figcaption>The Faces Spa {sv["name"]}</figcaption></figure>
  <div class="wrap sl-hero-in">
   <nav aria-label="Breadcrumb" class="eyebrow crumbs"><a href="{E(ctx.url())}">THE FACES</a> <span aria-hidden="true">/</span> <span>{E(ctx.t("nav_salons"))}</span> <span aria-hidden="true">/</span> <span>{sv["name"]}</span></nav>
   <p class="eyebrow sl-eb">{E(d["eyebrow"])}</p>
@@ -825,6 +828,9 @@ def b_salon(ctx, sid):
   <div><dt>{E(ctx.t("sl_phone"))}</dt><dd><a href="tel:{tel}">{sv["tel"]}</a></dd></div>
  </dl>
 </section>
+<section class="sl-ribbon" aria-label="The Faces Spa {sv["name"]}">
+ <div class="sl-track">{ribbon}{ribbon}</div>
+</section>
 <section class="sec sl-why">
  <div class="wrap">
   <h2 class="h2 rv">{E(d["why_h"])}</h2>
@@ -839,12 +845,12 @@ def b_salon(ctx, sid):
    <p>{E(d["seo"][1])}</p>
   </div>
   <div class="sl-pics">
-   <figure class="mask rv"><img src="{ctx.asset(imgs[1])}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure>
-   <figure class="mask rv"><img src="{ctx.asset(imgs[2])}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure>
+   <div data-parallax="0.06"><figure class="mask rv"><img src="{ctx.asset(imgs[1])}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure></div>
+   <div data-parallax="-0.08"><figure class="mask rv"><img src="{ctx.asset(imgs[2])}" alt="The Faces Spa {sv["name"]}" loading="lazy"></figure></div>
   </div>
  </div>
 </section>
-<section class="sec sl-only">
+<section class="sec sl-only"><img class="sl-only-bg" src="{ctx.asset(imgs[3])}" alt="" aria-hidden="true" loading="lazy">
  <div class="wrap sl-only-in">
   <div>
    <p class="eyebrow">{E(ctx.t("sa_only_here"))}</p>
@@ -1144,7 +1150,7 @@ def b_footer(ctx):
  <span class="sb-txt">{E(ctx.t("ld_book_side"))}</span>
  <span class="sb-tip" aria-hidden="true">{E(ctx.t("book_online"))} <b>↗</b></span>
 </a>
-<div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar", salon=page_salon(ctx))}>{E(ctx.t("book"))}</a></div>
+<div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar", salon=page_salon(ctx))}>{E(ctx.t("sa_book", salon=SALONS[page_salon(ctx)]["name"]) if page_salon(ctx) else ctx.t("book"))}</a></div>
 <div class="toast" role="status"><span class="msg"></span></div>
 <div class="cookie" role="dialog" aria-label="Cookies"><p>{E(ctx.t("ck_text"))} <a href="{E(ctx.url("privacy", "cookies"))}">{E(ctx.t("ck_more"))}</a></p>
  <div class="row"><button type="button" class="btn dark" data-consent="no">{E(ctx.t("ck_reject"))}</button><button type="button" class="btn darksolid" data-consent="yes">{E(ctx.t("ck_accept"))}</button></div></div>'''

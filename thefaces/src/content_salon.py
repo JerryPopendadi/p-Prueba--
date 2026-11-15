@@ -304,3 +304,9 @@ SALON_IMG = {
  "ubud": ["g04-interior.webp", "g06-interior.webp", "g10-proc-s.webp", "g08-interior.webp"],
  "sanur": ["g07-interior-s.webp", "dsc.webp", "g12-proc-s.webp", "g05-interior-s.webp"],
 }
+
+# Photos sliding in the endless ribbon of each salon page
+SALON_RIBBON = {
+ "ubud": ["g04-interior.webp", "g01-face.webp", "g06-interior.webp", "g10-proc-s.webp", "g08-interior.webp", "g03-face-s.webp", "g11-proc-s.webp"],
+ "sanur": ["g07-interior-s.webp", "g02-face-s.webp", "dsc.webp", "g12-proc-s.webp", "g05-interior-s.webp", "g09-proc-s.webp", "g11-proc-s.webp"],
+}
