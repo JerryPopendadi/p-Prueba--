@@ -700,3 +700,45 @@ a.btn[data-book][href]:hover{background:#1b261c;border-color:#1b261c;color:#fff}
 @keyframes tf-fade{to{opacity:1}}
 @keyframes tf-cue{to{top:100%}}
 @keyframes tf-mq{to{transform:translateX(-50%)}}
+
+/* ===== Mobile UX (v1.5.9): shorter pages, swipeable rows, thumb-friendly controls ===== */
+@media (max-width:760px){
+  .sec{padding:72px 0}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  /* swipeable rows: one card and a peek of the next, instead of long vertical stacks */
+  .sn-list,.gifts,.pgrid,.wrap.posts,.ig-cards,.cert-grid,.sl-feats{display:flex!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pad));padding-left:var(--pad);padding-right:var(--pad);scroll-padding-left:var(--pad)}
+  .sn-list::-webkit-scrollbar,.gifts::-webkit-scrollbar,.pgrid::-webkit-scrollbar,.wrap.posts::-webkit-scrollbar,.ig-cards::-webkit-scrollbar,.cert-grid::-webkit-scrollbar,.sl-feats::-webkit-scrollbar{display:none}
+  .sn-list>*,.gifts>*,.pgrid>*,.wrap.posts>*,.ig-cards>*,.cert-grid>*,.sl-feats>*{flex:0 0 82%;scroll-snap-align:start;min-width:0}
+  .gifts,.pgrid{background:none;border:0}
+  .wrap.posts,.wrap.ig-cards,.wrap.cert-grid{margin-left:0;margin-right:0;max-width:none}
+  .gifts>*{border:1px solid var(--line)}
+  .pgrid>div{border:1px solid var(--line-d);min-height:230px}
+  .sn-list{padding-bottom:6px}
+  .sn-item{padding:0}
+  .sn-item h3{font-size:40px}
+  .cert-img img{max-height:340px}
+  .swipe-hint{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+  .swipe-hint::after{content:"";width:34px;height:1px;background:currentColor;animation:tf-hint 1.8s ease-in-out infinite}
+  /* bottom booking bar: appears after the first screen, frosted, two clear buttons */
+  .mbar{grid-template-columns:1fr 1.35fr!important;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(10,10,10,.86)!important;
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transform:translateY(110%);transition:transform .45s var(--ease);border-top:1px solid rgba(255,255,255,.08)}
+  .mbar.show{transform:none}
+  .mbar a{display:flex;align-items:center;justify-content:center;min-height:50px;padding:0 12px!important;border-radius:16px;margin:0!important}
+  .mbar a:not(.bk){border:1px solid rgba(255,255,255,.28);font-size:10.5px}
+  /* readable text and finger-sized targets */
+  .ds,.muted,.pgrid p,.sl-cat li small,.sl-list small,.post .ex{font-size:14px}
+  .eyebrow{font-size:11px}
+  .foot li a,.foot .f-map a,.foot .legal a{display:inline-block;padding:8px 0}
+  .social a{width:48px;height:48px}
+  .btn{min-height:48px}
+  .hero .chips{font-size:11px}
+  .burger{padding:14px 10px;margin:-14px -10px;box-sizing:content-box}
+  .f-langs a{display:inline-block;padding:10px 6px}
+  a.link,.ig-more,.ig-follow,.news-note a{display:inline-block;padding:10px 0}
+  .card .pr,.salon .hours,.l2 .du{font-size:13px}
+  /* home menu: shorter rows */
+  .menu-sec .ds{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+}
+@keyframes tf-hint{0%,100%{transform:translateX(0);opacity:.4}50%{transform:translateX(8px);opacity:1}}
+@media (min-width:761px){.swipe-hint{display:none}}

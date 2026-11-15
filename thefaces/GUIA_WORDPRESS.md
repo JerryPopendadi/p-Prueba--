@@ -118,6 +118,22 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Botón fijo del móvil:** dice «Reservar en Ubud» o «Reservar en Sanur» y abre el Altegio de ese salón.
 - **Movimiento reducido:** si el visitante tiene activado «reducir movimiento» en su dispositivo, las animaciones se paran.
 
+## 2l. Mejoras en móvil (versión 1.5.9)
+- **Páginas más cortas:** la portada en móvil pasa de unas 37 a 27 pantallas, y los cinco elementos de 11.000 a 7.400 px.
+- **Filas que se deslizan con el dedo,** con una tarjeta y un trozo de la siguiente, en lugar de bloques apilados:
+  - cinco sentidos, certificados regalo, partners y blog;
+  - perfiles de Instagram y certificados de marca;
+  - motivos de cada salón.
+  - Debajo aparece la pista «Desliza».
+- **Barra de reserva de abajo:**
+  - Se oculta en la primera pantalla, que ya tiene su botón, y aparece al bajar.
+  - Es translúcida, con dos botones redondeados («Menú y precios» y «Reservar»).
+  - Respeta la zona inferior del iPhone.
+- **Más fácil de tocar y de leer:**
+  - Enlaces y botones de al menos unos 40–48 px de alto: menú, idiomas, pie, Instagram y «ver todo».
+  - Textos pequeños a 13–14 px.
+  - En la carta de la portada, las descripciones se cortan a dos líneas.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

@@ -126,9 +126,11 @@
       var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { threshold: 0.15 });
       $$(".rv,.mask").forEach(function (x) { io.observe(x); });
     } else $$(".rv,.mask").forEach(function (x) { x.classList.add("in"); });
-    var head = $(".top"), px = $$("[data-parallax]"), ticking = false;
+    var head = $(".top"), px = $$("[data-parallax]"), ticking = false, mbar = $(".mbar"), firstScreen = $(".hero,.sl-hero,.ld-hero");
     function onScroll() {
       if (head) head.classList.toggle("solid", window.scrollY > 60);
+      // Mobile booking bar: hidden on the first screen (it has its own button), then always at hand.
+      if (mbar) mbar.classList.toggle("show", !firstScreen || window.scrollY > innerHeight * 0.55);
       if (!reduce) px.forEach(function (el) {
         var r = el.getBoundingClientRect(), k = parseFloat(el.getAttribute("data-parallax"));
         var v = Math.max(-80, Math.min(80, -(r.top + r.height / 2 - innerHeight / 2) * k));

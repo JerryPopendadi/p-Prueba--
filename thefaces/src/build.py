@@ -90,6 +90,7 @@ from content_seo2 import TITLES, HERO_H1, SALON_TXT, SEO2_UI  # noqa: E402
 UI.update(SEO2_UI)
 from content_salon import SALON_PAGE, SALON_UI, SALON_IMG, SALON_RIBBON  # noqa: E402
 UI.update(SALON_UI)
+UI["swipe"] = ["Swipe", "Листайте", "Desliza", "Wischen", "ปัดดู", "Geser", "スワイプ", "Faites glisser", "Гортайте"]
 UI["hero_h1"] = HERO_H1
 for _P in PAGES:  # one main search intent per page (no cannibalisation)
     if _P["slug"] in TITLES:
@@ -340,7 +341,7 @@ def b_senses(ctx):
  </div>
  <div class="sn">
   <div class="sn-stage" aria-hidden="true"><div class="sn-frame">{imgs}<span class="num">01</span><div class="sn-dots">{dots}</div></div></div>
-  <div class="sn-list">{items}</div>
+  <div class="sn-list">{items}</div><p class="swipe-hint wrap">{E(ctx.t("swipe"))}</p>
  </div>
 </section>'''
 
@@ -955,7 +956,7 @@ def b_gifts(ctx):
   <div>{label(ctx, 8, "gi_label")}<h2 class="h2 rv d1">{E(ctx.t("gi_h2"))}</h2></div>
   <p class="muted rv d2">{E(ctx.t("gi_intro"))}</p>
  </div>
- <div class="wrap"><div class="gifts">{"".join(cards)}</div></div>
+ <div class="wrap"><div class="gifts">{"".join(cards)}</div><p class="swipe-hint">{E(ctx.t("swipe"))}</p></div>
 </section>'''
 
 
@@ -1021,7 +1022,7 @@ def b_journal(ctx):
   <div>{label(ctx, 10, "jo_label")}<h2 class="h2 rv d1">{E(ctx.t("jo_h2"))}</h2></div>
   <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><p class="muted rv d2" style="max-width:420px">{E(ctx.t("jo_intro"))}</p><a class="link rv d2" href="{E(ctx.url("journal"))}">{E(ctx.t("jo_all"))} ({len(ARTICLES)})</a></div>
  </div>
- <div class="wrap posts"><!--tf-posts-->{posts}<!--/tf-posts--></div>
+ <div class="wrap posts"><!--tf-posts-->{posts}<!--/tf-posts--></div><p class="swipe-hint wrap">{E(ctx.t("swipe"))}</p>
 </section>'''
 
 
