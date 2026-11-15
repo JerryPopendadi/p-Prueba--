@@ -72,6 +72,11 @@ from content_elements import ELEMENTS_FIX  # noqa: E402
 for _e in ELEMENTS:  # programs exactly as the founders describe them
     if _e["id"] in ELEMENTS_FIX:
         _e.update(ELEMENTS_FIX[_e["id"]])
+from content_desc import DESC_FIX, LOVE_HEAD  # noqa: E402
+DESC.update(DESC_FIX)  # menu descriptions as in the salon catalog
+for _e in ELEMENTS:
+    if _e["id"] == "el-love":
+        _e["inc"] = [" · ".join(x.split(" · ")[:3] + [h]) for x, h in zip(_e["inc"], LOVE_HEAD)]
 from content_landing import LANDINGS, LANDING_UI  # noqa: E402
 from content_extra import (EXTRA_UI, JO_CATS, POST_CATKEY, CONTROLLER, PRIVACY, PAGE_PRIVACY, PAGE_CERTS,  # noqa: E402
                            TERMS, TERMS_HEAD, PAGE_TERMS)
