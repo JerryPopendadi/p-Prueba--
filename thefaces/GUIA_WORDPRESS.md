@@ -104,7 +104,7 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 
 ## 2j. Reserva por salón y carta por salón (versión 1.5.5)
 - **Cada página de salón reserva en su propio Altegio.** Todos los botones de la página de Ubud, incluidos cabecera, pestaña dorada, barra del móvil y pie, abren `n831884.alteg.io/company/780725/...`. Los de Sanur abren `n811764.alteg.io/company/762669/...`. Úsalas como página de destino de las campañas de cada salón.
-- **El resto de la web** sigue abriendo `n831884.alteg.io`, donde el cliente elige salón.
+- **El resto de la web** (botón fijo del móvil, carta, portada y páginas de tratamientos) abre `https://n831884.alteg.io/select-city?o=`, donde el cliente elige ciudad y salón (versión 1.5.8).
 - **Carta principal:** cada tratamiento lleva la marca *Ubud* / *Sanur*, o «Solo en Ubud» / «Solo en Sanur».
 - **Página de cada salón:** carta completa de ese salón, con su duración y su precio (Ubud 49 tratamientos, Sanur 51, igual que en Altegio el 15/11/2026). Los exclusivos llevan la marca «Solo aquí».
 - **Analítica:** el evento `booking_click` incluye `booking_salon` (`ubud`, `sanur` o `any`), para medir en GA4 / Google Ads las conversiones de cada salón.

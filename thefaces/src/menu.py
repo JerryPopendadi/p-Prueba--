@@ -62,7 +62,7 @@ MENU = [
  ("body", "leg60", "Lymphatic drainage / relaxing leg massage · 60 min", 60, 500000, None, None),
  ("body", "leg90", "Lymphatic drainage / relaxing leg massage · 90 min", 90, 600000, None, None),
 ]
-ALTEGIO = "https://n831884.alteg.io/"  # both salons: the guest chooses Ubud or Sanur ("Denpasar") there
+ALTEGIO = "https://n831884.alteg.io/select-city?o="  # both salons: the guest chooses Ubud or Sanur ("Denpasar") there
 # Each salon's own booking page (used on the salon pages, so campaign traffic lands in the right salon)
 BOOK = {"ubud": "https://n831884.alteg.io/company/780725/personal/select-services?o=m-1",
         "sanur": "https://n811764.alteg.io/company/762669/personal/select-services?o=m-1"}
