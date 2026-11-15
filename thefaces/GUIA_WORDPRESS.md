@@ -195,6 +195,29 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 
 Ninguna web es invulnerable. Con estas capas se cubren los ataques automáticos más comunes: robo de contraseñas, búsqueda de usuarios, XML-RPC, clickjacking, inyección por el editor y versiones antiguas. Lo que queda depende sobre todo de las copias de seguridad, las actualizaciones y la verificación en dos pasos.
 
+## 2q. Correcciones del análisis Seobility / PageSpeed (versión 1.6.4)
+
+### Corregido en el plugin
+- **Una sola etiqueta viewport:** la plantilla de pantalla completa quita la segunda que añaden los temas de bloques.
+- **Favicon e icono para la pantalla de inicio del iPhone** (`apple-touch-icon`) con el logo de THE FACES. Solo se usan si en WordPress no hay un «Icono del sitio» puesto.
+- **Menos encabezados:** de 54 a 42 en la portada. Los nombres de los tratamientos estrella, las categorías de la carta y los proyectos de partners ya no son encabezados; se ven igual.
+- **Sin bloques de texto duplicados:** en las páginas que muestran los tratamientos estrella, esos mismos tratamientos ya no repiten la descripción en la carta.
+- **Velocidad en móvil:** los vídeos de fondo (portada y salones) empiezan a cargarse cuando la página ya está cargada. Mientras tanto se ve la foto.
+- **HTTPS siempre:** cualquier dirección `http://` se redirige a `https://`. Detrás de Cloudflare no se aplica, para evitar bucles.
+- **Aviso en el escritorio si hay dos plugins de SEO activos.**
+
+### Lo que hay que hacer en WordPress (no lo puede hacer el plugin)
+1. **Desactivar BeyondSEO** (Plugins > BeyondSEO > Desactivar) y dejar solo **Yoast SEO**. Ahora mismo los dos escriben meta descripción, canonical y etiquetas de redes, y por eso Seobility ve «varias meta descripciones» y «varios canonical». BeyondSEO pone además su propio favicon.
+2. **Icono del sitio:** Apariencia > Personalizar > Identidad del sitio, o Ajustes > General > Icono del sitio. Sube el logo cuadrado. Si no lo subes, el plugin pone el suyo.
+3. **Velocidad del servidor** (0,53 s; lo recomendado es menos de 0,4 s): activa una caché de páginas. Puede ser LiteSpeed Cache si el hosting es LiteSpeed, o WP Super Cache / W3 Total Cache. Cloudflare delante de la web también ayuda.
+4. **Backlinks** (Seobility: 1 dominio enlazando). Esto no se arregla en la web. Hay que conseguir enlaces desde otras webs:
+   - Google Business Profile de Ubud y Sanur con el enlace a la web;
+   - TripAdvisor;
+   - perfiles de Instagram, TikTok y LinkedIn con el enlace;
+   - thefacespeace.com y thefacesworld.com enlazando a thefacesbali.com;
+   - directorios de spas de Bali, blogs de viajes y prensa local, y hoteles partners.
+5. **Enlaces externos (69):** son sobre todo los botones de reserva de Altegio, WhatsApp, mapas y redes. Son necesarios; es solo una recomendación de Seobility.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

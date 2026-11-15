@@ -234,6 +234,7 @@ def page_salon(ctx):
 
 
 ITEM = {m[1]: m for m in MENU}
+SIG_IDS = {x[0] for x in SIGNATURES}
 CUR = ' aria-current="true"'
 NO_INTRO = {"landing", "21-journal-all", "salon-ubud", "salon-sanur"}
 ON = ' class="on"'
@@ -304,7 +305,7 @@ def b_header(ctx):
 
 def b_hero(ctx):
     return f'''<section class="hero" aria-label="THE FACES">
- <video autoplay muted loop playsinline preload="metadata" poster="{ctx.asset("hero-poster-2.jpg")}"><source src="{ctx.asset("hero-854.mp4")}" type="video/mp4" media="(max-width: 760px)"><source src="{ctx.asset("hero-1280.mp4")}" type="video/mp4"></video>
+ <video class="lazyv" autoplay muted loop playsinline preload="none" poster="{ctx.asset("hero-poster-2.jpg")}"><source data-src="{ctx.asset("hero-854.mp4")}" type="video/mp4" media="(max-width: 760px)"><source data-src="{ctx.asset("hero-1280.mp4")}" type="video/mp4"></video>
  <button type="button" class="sound" data-off="{E(ctx.t("sound_off"))}" data-on="{E(ctx.t("sound_on"))}">{E(ctx.t("sound_off"))}</button>
  <div class="wrap in">
   <h1 class="eyebrow">{E(ctx.t("hero_h1"))}</h1>
@@ -393,7 +394,7 @@ def b_signatures(ctx):
         it = ITEM[iid]
         desc = ctx.pick(DESC[iid]) if iid in DESC else ""
         cards.append(f'''<article class="card"><div class="ph"><img src="{ctx.asset(img)}" alt="{E(it[2])}" loading="lazy"><span class="tag">{E(ctx.t(tag))}</span></div>
-   <h3>{E(it[2])}</h3><p class="pr">{price_line(ctx, it)}</p><p>{E(desc)}</p>
+   <p class="h3">{E(it[2])}</p><p class="pr">{price_line(ctx, it)}</p><p>{E(desc)}</p>
    <a class="btn" {book("signature", it[2])}>{E(ctx.t("book"))}</a></article>''')
     return f'''<section class="sig sec" id="signature">
  <div class="wrap sec-head">
@@ -428,7 +429,8 @@ def menu_rows(ctx, items):
             badge = f'<span class="badge">{E(ctx.t("only_in", salon=", ".join(SALONS[x]["name"] for x in only)))}</span>'
         else:
             badge = '<span class="sal" title="Ubud · Sanur"><i>Ubud</i><i>Sanur</i></span>'
-        ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if iid in DESC else '<p class="ds"></p>'
+        dup = iid in SIG_IDS and any(p["slug"] == ctx.slug and "06-signatures" in p["blocks"] for p in PAGES)
+        ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if (iid in DESC and not dup) else '<p class="ds"></p>'
         if diff and "sanur" in diff:
             sd, sp = diff["sanur"]
             du = (f'Ubud {ctx.dur(d)} · Sanur {ctx.dur(sd)}' if sd != d else ctx.dur(d))
@@ -505,7 +507,7 @@ def b_menu(ctx):
                     f'<span class="i">{k + 1:02d}</span><span class="t">{E(name)}</span><span class="c">{len(items)}</span></button>')
         rows = [menu_rows(ctx, items)]
         cats.append(f'''<div class="cat" id="cat-{cid}" role="tabpanel"{"" if k == 0 else " hidden"}>
-    <figure class="cat-head"><img src="{ctx.asset(CAT_IMG[cid])}" alt="" loading="lazy"><figcaption><span class="eyebrow">{k + 1:02d} / {total:02d}</span><h3>{E(name)}</h3></figcaption></figure>
+    <figure class="cat-head"><img src="{ctx.asset(CAT_IMG[cid])}" alt="" loading="lazy"><figcaption><span class="eyebrow">{k + 1:02d} / {total:02d}</span><p class="h3">{E(name)}</p></figcaption></figure>
     <ul class="items">{"".join(rows)}</ul>
    </div>''')
     return f'''<section class="menu-sec sec" id="menu">
@@ -828,8 +830,8 @@ def b_salon(ctx, sid):
         {"@type": "ListItem", "position": 2, "name": f"The Faces Spa {sv['name']}", "item": ctx.abs_url(sid)}]}
     return f'''<div class="sl sl-{sid}">
 <section class="sl-hero">
- <video class="sl-bg" autoplay muted loop playsinline preload="metadata" poster="{ctx.asset("salon-" + sid + ".jpg")}" aria-hidden="true">
-  <source src="{ctx.asset("salon-" + sid + "-m.mp4")}" type="video/mp4" media="(max-width: 760px)"><source src="{ctx.asset("salon-" + sid + ".mp4")}" type="video/mp4"></video>
+ <video class="sl-bg lazyv" autoplay muted loop playsinline preload="none" poster="{ctx.asset("salon-" + sid + ".jpg")}" aria-hidden="true">
+  <source data-src="{ctx.asset("salon-" + sid + "-m.mp4")}" type="video/mp4" media="(max-width: 760px)"><source data-src="{ctx.asset("salon-" + sid + ".mp4")}" type="video/mp4"></video>
  <figure class="sl-float" aria-hidden="false"><img src="{ctx.asset(imgs[0])}" alt="{E(ctx.t(sv["alt"]))}" loading="eager" fetchpriority="high"><figcaption>The Faces Spa {sv["name"]}</figcaption></figure>
  <div class="wrap sl-hero-in">
   <nav aria-label="Breadcrumb" class="eyebrow crumbs"><a href="{E(ctx.url())}">THE FACES</a> <span aria-hidden="true">/</span> <span>{E(ctx.t("nav_salons"))}</span> <span aria-hidden="true">/</span> <span>{sv["name"]}</span></nav>
@@ -1024,7 +1026,7 @@ def b_gifts(ctx):
 
 def b_partners(ctx):
     names = ["The White Temple · Sanur", "THE FACES Ubud", "WATERFALL · Bali", "THE FACES SANUR"]
-    proj = "".join(f'<div class="rv d{k}"><span class="st">{E(ctx.t(f"pa_s{k + 1}"))}</span><h3>{names[k]}</h3><p>{E(ctx.t(f"pa_d{k + 1}"))}</p></div>' for k in range(4))
+    proj = "".join(f'<div class="rv d{k}"><span class="st">{E(ctx.t(f"pa_s{k + 1}"))}</span><p class="h3">{names[k]}</p><p>{E(ctx.t(f"pa_d{k + 1}"))}</p></div>' for k in range(4))
     ways = "".join(f'<div class="rv d{k}"><span class="eyebrow k">{E(ctx.t(f"pa_w{k + 1}k"))}</span><h3>{E(ctx.t(f"pa_w{k + 1}h"))}</h3><p>{E(ctx.t(f"pa_w{k + 1}p"))}</p></div>' for k in range(3))
     return f'''<section class="partner sec" id="partners">
  <div class="bg" data-parallax="0.15" style="background-image:url('{ctx.asset("waterfall.webp")}')"></div>

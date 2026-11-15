@@ -144,6 +144,16 @@
     window.addEventListener("scroll", function () { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
     onScroll();
 
+    /* ---------- background videos: start loading after the page has loaded ---------- */
+    function startVideos() {
+      $$("video.lazyv").forEach(function (v) {
+        $$("source[data-src]", v).forEach(function (src) { src.src = src.getAttribute("data-src"); src.removeAttribute("data-src"); });
+        v.load(); var p = v.play && v.play(); if (p && p.catch) p.catch(function () {});
+      });
+    }
+    if (document.readyState === "complete") setTimeout(startVideos, 300);
+    else window.addEventListener("load", function () { setTimeout(startVideos, 300); });
+
     /* ---------- newsletter + cookie banner ---------- */
     $$(".news").forEach(function (f) { f.addEventListener("submit", function (e) { e.preventDefault(); toast(T.ft_thanks || "Thank you"); f.reset(); }); });
     var ck = $(".cookie");

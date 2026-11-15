@@ -11,7 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php wp_head(); ?>
+<?php
+// Block themes print a second viewport tag; this page already has one.
+remove_action( 'wp_head', '_block_template_viewport_meta_tag', 0 );
+wp_head();
+?>
 </head>
 <body <?php body_class( 'tf-canvas' ); ?>>
 <?php

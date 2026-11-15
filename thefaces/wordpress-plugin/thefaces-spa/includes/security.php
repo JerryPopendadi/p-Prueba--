@@ -39,6 +39,27 @@ function tf_spa_sec_headers() {
 add_action( 'send_headers', 'tf_spa_sec_headers' );
 add_action( 'login_init', 'tf_spa_sec_headers' );
 
+/* ---------- 1b. Always HTTPS: http:// requests go to https:// (when the site address is https) ---------- */
+
+function tf_spa_sec_force_https() {
+	if ( ! tf_spa_sec_on() || is_ssl() || ( defined( 'WP_CLI' ) && WP_CLI ) || 0 !== strpos( home_url(), 'https://' ) ) {
+		return;
+	}
+	// Behind Cloudflare or another proxy the request may already be https: never redirect then (no loops).
+	$proto = isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ? strtolower( sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) ) : '';
+	$cf    = isset( $_SERVER['HTTP_CF_VISITOR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_CF_VISITOR'] ) ) : '';
+	if ( false !== strpos( $proto, 'https' ) || false !== strpos( $cf, 'https' ) ) {
+		return;
+	}
+	$host = isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
+	$uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/';
+	if ( $host && wp_parse_url( home_url(), PHP_URL_HOST ) === preg_replace( '/:\d+$/', '', $host ) ) {
+		wp_safe_redirect( 'https://' . $host . $uri, 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'tf_spa_sec_force_https', 0 );
+
 /* ---------- 2. Do not reveal the WordPress version ---------- */
 
 function tf_spa_sec_hide_version() {

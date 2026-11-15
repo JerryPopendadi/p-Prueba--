@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.6.3
+ * Version:           1.6.4
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.6.3' );
+define( 'TF_SPA_VERSION', '1.6.4' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -984,6 +984,53 @@ function tf_spa_settings_page() {
 	</div>
 	<?php
 }
+
+/** Favicon and phone home-screen icon (only when no Site Icon is set in WordPress). */
+function tf_spa_icons() {
+	if ( has_site_icon() || ( ! tf_spa_current_page() && ! tf_spa_is_post() && ! tf_spa_opt( 'load_always' ) ) ) {
+		return;
+	}
+	$u = TF_SPA_URL . 'assets/media/';
+	echo '<link rel="icon" href="' . esc_url( $u . 'favicon-32.png' ) . '" sizes="32x32" type="image/png">' . "\n";
+	echo '<link rel="icon" href="' . esc_url( $u . 'icon-192.png' ) . '" sizes="192x192" type="image/png">' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( $u . 'apple-touch-icon.png' ) . '">' . "\n";
+}
+add_action( 'wp_head', 'tf_spa_icons', 2 );
+
+/** SEO plugins that write the same meta description / canonical / viewport. */
+function tf_spa_seo_plugins_active() {
+	$known = array(
+		'wordpress-seo/'        => 'Yoast SEO',
+		'beyondseo/'            => 'BeyondSEO',
+		'seo-by-rank-math/'     => 'Rank Math',
+		'all-in-one-seo-pack/'  => 'All in One SEO',
+		'wp-seopress/'          => 'SEOPress',
+		'autodescription/'      => 'The SEO Framework',
+		'squirrly-seo/'         => 'Squirrly SEO',
+	);
+	$found = array();
+	foreach ( (array) get_option( 'active_plugins', array() ) as $p ) {
+		foreach ( $known as $dir => $name ) {
+			if ( 0 === strpos( $p, $dir ) || false !== stripos( $p, trim( $dir, '/' ) ) ) {
+				$found[ $name ] = $name;
+			}
+		}
+	}
+	return array_values( $found );
+}
+
+/** Warn when two SEO plugins are active: Google then sees two descriptions and two canonical links. */
+function tf_spa_seo_conflict_notice() {
+	if ( ! current_user_can( 'activate_plugins' ) ) {
+		return;
+	}
+	$on = tf_spa_seo_plugins_active();
+	if ( count( $on ) < 2 ) {
+		return;
+	}
+	echo '<div class="notice notice-error"><p><strong>THE FACES Spa · SEO:</strong> hay ' . count( $on ) . ' plugins de SEO activos a la vez (' . esc_html( implode( ', ', $on ) ) . '). Cada uno escribe su propia meta descripción, canonical y etiquetas sociales, y Google ve duplicados. Deja solo <strong>Yoast SEO</strong> y desactiva los demás en <a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">Plugins</a>.</p></div>';
+}
+add_action( 'admin_notices', 'tf_spa_seo_conflict_notice' );
 
 /** Link to the settings from the plugins list. */
 function tf_spa_action_links( $links ) {
