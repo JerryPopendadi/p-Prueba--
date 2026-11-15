@@ -1,7 +1,7 @@
 === THE FACES Spa ===
 Requires at least: 5.8
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPL-2.0-or-later
 
 Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas como plugin de WordPress, con idioma automático según el navegador y blog (Journal) creado automáticamente.

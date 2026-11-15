@@ -29,6 +29,9 @@
           page_language: T.lang || "en" });
         return;
       }
+      if ((el = e.target.closest("[data-review]"))) {
+        window.dataLayer.push({ event: "review_click", review_action: el.getAttribute("data-review"), page_language: T.lang || "en" });
+      }
       if ((el = e.target.closest("[role=tab][data-tab]"))) {
         var id = el.getAttribute("data-tab");
         $$("[role=tab][data-tab]").forEach(function (x) { x.setAttribute("aria-selected", x === el); });

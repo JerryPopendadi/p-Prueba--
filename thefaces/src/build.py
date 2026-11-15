@@ -102,13 +102,15 @@ EXPLORE_UI = {
  "ex_journal": ["Guides to face massage, head spa and rituals", "Гиды по массажу лица, хэд-спа и ритуалам", "Guías de masaje facial, head spa y rituales", "Ratgeber zu Gesichtsmassage, Head Spa und Ritualen", "คู่มือนวดหน้า เฮดสปา และพิธีกรรม", "Panduan pijat wajah, head spa, dan ritual", "フェイスマッサージ、ヘッドスパ、リチュアルのガイド", "Guides du massage du visage, head spa et rituels", "Гіди з масажу обличчя, хед-спа та ритуалів"],
 }
 UI.update(EXPLORE_UI)
+from content_reviews import REVIEWS, REVIEWS_UI  # noqa: E402
+UI.update(REVIEWS_UI)
 UI["swipe"] = ["Swipe", "Листайте", "Desliza", "Wischen", "ปัดดู", "Geser", "スワイプ", "Faites glisser", "Гортайте"]
 UI["hero_h1"] = HERO_H1
 for _P in PAGES:  # one main search intent per page (no cannibalisation)
     if _P["slug"] in TITLES:
         _P.update({k: v for k, v in TITLES[_P["slug"]].items()})
     if _P["slug"] == "":  # short home: long sections live on their own pages, reached from the "Discover" tiles
-        _P["blocks"] = ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "09-salons", "22-explore", "14-faq", "15-footer"]
+        _P["blocks"] = ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "09-salons", "23-reviews", "22-explore", "14-faq", "15-footer"]
     elif _P["slug"] in ("ubud", "sanur"):
         _P["blocks"] = ["01-header", "salon-" + _P["slug"], "17-instagram", "15-footer"]
     elif _P["slug"] == "five-elements":
@@ -897,6 +899,7 @@ def b_salon(ctx, sid):
   <div class="sd-map"><iframe title="{E(sv["addr"])}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q={q}&amp;output=embed"></iframe></div>
  </div>
 </section>
+{('<section class="sec sl-reviews"><div class="wrap">' + reviews_html(ctx, sid, head=False) + '<p class="swipe-hint">' + E(ctx.t("swipe")) + '</p></div></section>') if sid in REVIEWS else ""}
 <section class="sec sl-faq">
  <div class="wrap sl-faq-in">
   <h2 class="h2">{E(d["faq_h"])}</h2>
@@ -916,6 +919,33 @@ def b_salon(ctx, sid):
 </div>'''
 
 
+def reviews_html(ctx, sid="sanur", n=None, head=True):
+    """Real Google reviews (see content_reviews.py) with links to all reviews and to write one."""
+    rv = REVIEWS[sid]
+    dec = "." if ctx.lang in ("en", "th", "ja") else ","
+    rating = f'{rv["rating"]:.1f}'.replace(".", dec)
+    count = f'{rv["count"]:,}'.replace(",", GROUP[ctx.lang])
+    star = lambda k: '<span class="rv-stars" aria-label="' + str(k) + '/5">' + "★" * k + '<i>' + "★" * (5 - k) + "</i></span>"
+    note = ctx.t("rv_trans") if ctx.lang != rv["orig"] else ""
+    cards = "".join(f'''<figure class="rv-card rv"><figcaption>{star(it["stars"])}<span class="rv-src">Google</span></figcaption>
+   <blockquote>«{E(ctx.pick(it["text"]))}»</blockquote><p class="rv-who"><b>{E(it["name"])}</b>{(" · <small>" + E(note) + "</small>") if note else ""}</p></figure>''' for it in rv["items"][:n])
+    top = f'''<div class="rv-head">
+   <div>{label(ctx, 6, "rv_label") if head else ""}<h2 class="h2 rv d1">{E(ctx.t("rv_h2"))}</h2></div>
+   <div class="rv-score"><b>{rating}</b><div>{star(5)}<p>{E(ctx.t("rv_count", n=count))} · {E(rv["place"])}</p></div></div>
+  </div>'''
+    return f'''{top}
+  <div class="rv-grid">{cards}</div>
+  <div class="rv-acts">
+   <a class="btn dark" href="{rv["url"]}" target="_blank" rel="noopener" data-review="read">{E(ctx.t("rv_all"))} ↗</a>
+   <a class="btn darksolid" href="{rv["url"]}" target="_blank" rel="noopener" data-review="write">★ {E(ctx.t("rv_write"))}</a>
+   <p>{E(ctx.t("rv_write_note"))}</p>
+  </div>'''
+
+
+def b_reviews(ctx):
+    return f'''<section class="reviews sec" id="reviews"><div class="wrap">{reviews_html(ctx)}<p class="swipe-hint">{E(ctx.t("swipe"))}</p></div></section>'''
+
+
 def b_explore(ctx):
     """Short home: one row of image tiles to the pages that used to be long sections on the home page."""
     tiles = [("menu", "nav_menu", "ex_menu", "g01-face.webp"), ("gift-certificates", "nav_gifts", "ex_gifts", "g09-proc-s.webp"),
@@ -924,7 +954,7 @@ def b_explore(ctx):
     cards = "".join(f'''<a class="ex-tile rv" href="{E(ctx.url(slug))}"><span class="ex-ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></span>
    <span class="ex-tx"><b>{E(ctx.t(t))}</b><small>{E(ctx.t(d))}</small></span><span class="ex-ar" aria-hidden="true">→</span></a>''' for slug, t, d, img in tiles)
     return f'''<section class="explore sec" id="explore">
- <div class="wrap sec-head"><div>{label(ctx, 6, "ex_label")}<h2 class="h2 rv d1">{E(ctx.t("ex_h2"))}</h2></div></div>
+ <div class="wrap sec-head"><div>{label(ctx, 7, "ex_label")}<h2 class="h2 rv d1">{E(ctx.t("ex_h2"))}</h2></div></div>
  <div class="wrap"><div class="ex-grid">{cards}</div><p class="swipe-hint">{E(ctx.t("swipe"))}</p></div>
 </section>'''
 
@@ -1088,7 +1118,7 @@ def b_faq(ctx):
     ld_html = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ctx.slug == "" else ""
     return f'''<section class="faq sec" id="faq">
  <div class="wrap faq-grid">
-  <div>{label(ctx, 7, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
+  <div>{label(ctx, 8, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
   <div class="rv d2">{det}</div>
  </div>
  {ld_html}
@@ -1211,7 +1241,7 @@ BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosoph
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
           "13-journal": b_journal, "17-instagram": b_instagram, "18-certificates": b_certificates,
-          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "22-explore": b_explore, "14-faq": b_faq, "15-footer": b_footer}
+          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "22-explore": b_explore, "23-reviews": b_reviews, "14-faq": b_faq, "15-footer": b_footer}
 
 
 def wrap(ctx, name, inner):

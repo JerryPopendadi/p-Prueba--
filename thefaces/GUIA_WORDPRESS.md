@@ -141,6 +141,16 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Altura:** en móvil, la portada pasa de unos 23.000 px a unos 11.000 px; en ordenador, a unos 14.000 px.
 - **SEO:** la portada ya no repite la carta, los fundadores ni los partners, así que compite menos con esas páginas.
 
+## 2n. Opiniones de Google (versión 1.6.1)
+- **Portada y página de Sanur:** bloque «Opiniones» con la nota real de Google de **The FACES Sanur (4,9 ★, 855 reseñas, 15/11/2026)** y 4 reseñas reales.
+  - Los textos son la parte visible en Google, con «…» donde Google los corta.
+  - En ruso se muestran tal cual; en los demás idiomas, traducidos y marcados «Traducido del ruso».
+  - Solo se muestra el nombre de pila con la inicial del apellido.
+- **Botones:** «Ver todas las reseñas» y «★ Dejar una reseña» abren el perfil de Google (https://share.google/BTJjVaqg9cQkmz7Gd). En GA4 se miden con el evento `review_click` (`read` / `write`).
+- **Para actualizar la nota o cambiar reseñas:** edita `thefaces/src/content_reviews.py` (rating, count, items) y vuelve a generar el plugin.
+- **Datos estructurados:** no se añaden estrellas en los datos para Google, porque Google no muestra estrellas de reseñas que una empresa publica sobre sí misma en su propia web. Las estrellas en Google salen de la ficha de Google Maps.
+- **Ubud:** cuando tengáis sus reseñas, se añaden igual en su página.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

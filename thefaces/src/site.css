@@ -763,3 +763,31 @@ a.btn[data-book][href]:hover{background:#1b261c;border-color:#1b261c;color:#fff}
   .ex-grid>*{flex:0 0 78%;scroll-snap-align:start}
   .ex-tx b{font-size:20px}
 }
+
+/* Google reviews */
+.reviews{background:#fff}
+.rv-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:44px}
+.rv-score{display:flex;align-items:center;gap:16px}
+.rv-score>b{font-family:Montserrat,Arial,sans-serif;font-weight:200;font-size:clamp(56px,6vw,84px);line-height:1;color:var(--ink)}
+.rv-score p{font-size:13px;color:var(--muted);margin-top:6px}
+.rv-stars{color:var(--gold);letter-spacing:2px;font-size:16px}
+.rv-stars i{font-style:normal;color:var(--line)}
+.rv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+.rv-card{margin:0;background:var(--sand);padding:26px 24px 24px;display:flex;flex-direction:column;gap:14px}
+.rv-card figcaption{display:flex;justify-content:space-between;align-items:center}
+.rv-src{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.rv-card blockquote{margin:0;font-size:15.5px;line-height:1.65;color:var(--ink);flex:1}
+.rv-who{font-size:14px;color:var(--text)}
+.rv-who b{font-weight:500}
+.rv-who small{color:var(--muted);font-size:12.5px}
+.rv-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:36px}
+.rv-acts p{color:var(--muted);font-size:14px}
+.sl-reviews{background:#fff}
+@media (max-width:1100px){.rv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .rv-grid{display:flex!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pad));padding-left:var(--pad);padding-right:var(--pad);scroll-padding-left:var(--pad)}
+  .rv-grid::-webkit-scrollbar{display:none}
+  .rv-grid>*{flex:0 0 82%;scroll-snap-align:start}
+  .rv-head{margin-bottom:28px}
+  .rv-acts .btn{width:100%}
+}

@@ -19,6 +19,7 @@
  "journal-all": "21-journal-all",
  "waterfall": "16-waterfall",
  "explore": "22-explore",
+ "reviews": "23-reviews",
  "faq": "14-faq",
  "footer": "15-footer",
  "01-header": "01-header",
@@ -41,6 +42,7 @@
  "21-journal-all": "21-journal-all",
  "16-waterfall": "16-waterfall",
  "22-explore": "22-explore",
+ "23-reviews": "23-reviews",
  "14-faq": "14-faq",
  "15-footer": "15-footer"
 }
