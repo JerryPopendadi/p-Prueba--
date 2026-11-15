@@ -280,10 +280,22 @@ SALON_PAGE = {
 
 # Short labels shared by both salon pages
 SALON_UI = {
+ "sl_menu_eb": ["Treatments & prices", "Процедуры и цены", "Tratamientos y precios", "Behandlungen & Preise", "ทรีตเมนต์และราคา", "Perawatan & harga", "メニューと料金", "Soins et prix", "Процедури та ціни"],
+ "sl_menu_h": ["The full menu of {salon}", "Полное меню салона {salon}", "La carta completa de {salon}", "Das ganze Menü in {salon}", "เมนูทั้งหมดของสาขา{salon}", "Menu lengkap {salon}", "{salon}店の全メニュー", "La carte complète de {salon}", "Повне меню салону {salon}"],
+ "sl_menu_p": ["Every treatment you can book in our {salon} salon, with its own durations and prices. Book online in a minute: you choose the therapist and the time on the next page.",
+               "Все процедуры, на которые можно записаться в салон {salon}, с его длительностью и ценами. Онлайн-запись за минуту: мастера и время вы выберете на следующей странице.",
+               "Todos los tratamientos que puedes reservar en nuestro salón de {salon}, con su duración y sus precios. Reserva online en un minuto: en la página siguiente eliges terapeuta y hora.",
+               "Alle Behandlungen, die Sie in unserem Salon in {salon} buchen können, mit dortiger Dauer und Preis. In einer Minute online buchen: Therapeutin und Uhrzeit wählen Sie auf der nächsten Seite.",
+               "ทรีตเมนต์ทั้งหมดที่จองได้ที่สาขา{salon} พร้อมระยะเวลาและราคาของสาขานี้ จองออนไลน์ได้ในหนึ่งนาที เลือกนักบำบัดและเวลาในหน้าถัดไป",
+               "Semua perawatan yang bisa dipesan di salon {salon}, dengan durasi dan harganya sendiri. Pesan online dalam semenit: pilih terapis dan jam di halaman berikutnya.",
+               "{salon}店で予約できるすべての施術と、同店の所要時間・料金です。オンライン予約は1分で完了。セラピストと時間は次のページで選べます。",
+               "Tous les soins réservables dans notre salon de {salon}, avec leurs durées et leurs prix. Réservez en ligne en une minute : vous choisissez la thérapeute et l'heure à la page suivante.",
+               "Усі процедури, на які можна записатися в салон {salon}, з його тривалістю та цінами. Онлайн-запис за хвилину: майстра й час оберете на наступній сторінці."],
+ "sl_here": ["Only here", "Только здесь", "Solo aquí", "Nur hier", "เฉพาะที่นี่", "Hanya di sini", "当店限定", "Uniquement ici", "Лише тут"],
  "sl_hours": ["Hours", "Часы работы", "Horario", "Öffnungszeiten", "เวลาเปิด", "Jam buka", "営業時間", "Horaires", "Години роботи"],
  "sl_phone": ["Phone & WhatsApp", "Телефон и WhatsApp", "Teléfono y WhatsApp", "Telefon & WhatsApp", "โทรศัพท์และ WhatsApp", "Telepon & WhatsApp", "電話・WhatsApp", "Téléphone et WhatsApp", "Телефон і WhatsApp"],
  "sl_address": ["Address", "Адрес", "Dirección", "Adresse", "ที่อยู่", "Alamat", "住所", "Adresse", "Адреса"],
- "sl_book_note": ["Choose this salon, the treatment and the time on the booking page.", "На странице записи выберите этот салон, процедуру и время.", "En la página de reservas elige este salón, el tratamiento y la hora.", "Wählen Sie auf der Buchungsseite diesen Salon, die Behandlung und die Uhrzeit.", "เลือกสาขานี้ ทรีตเมนต์ และเวลาในหน้าจอง", "Pilih salon ini, perawatan, dan jam di halaman pemesanan.", "予約ページでこの店舗、施術、時間をお選びください。", "Choisissez ce salon, le soin et l'heure sur la page de réservation.", "На сторінці запису оберіть цей салон, процедуру та час."],
+ "sl_book_note": ["The booking page opens directly in this salon: choose the treatment, therapist and time.", "Страница записи откроется сразу в этом салоне: выберите процедуру, мастера и время.", "La página de reservas se abre directamente en este salón: elige tratamiento, terapeuta y hora.", "Die Buchungsseite öffnet direkt in diesem Salon: Behandlung, Therapeutin und Uhrzeit wählen.", "หน้าจองจะเปิดที่สาขานี้โดยตรง เลือกทรีตเมนต์ นักบำบัด และเวลา", "Halaman pemesanan langsung terbuka di salon ini: pilih perawatan, terapis, dan jam.", "予約ページはこの店舗で直接開きます。施術・セラピスト・時間をお選びください。", "La page de réservation s'ouvre directement dans ce salon : choisissez le soin, la thérapeute et l'heure.", "Сторінка запису відкриється одразу в цьому салоні: оберіть процедуру, майстра й час."],
  "sl_visit_other": ["Also visit", "Загляните и в", "Visita también", "Besuchen Sie auch", "แวะไปที่", "Kunjungi juga", "もう一つの店舗", "Découvrez aussi", "Завітайте й до"],
 }
 

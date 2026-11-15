@@ -62,7 +62,10 @@ MENU = [
  ("body", "leg60", "Lymphatic drainage / relaxing leg massage · 60 min", 60, 500000, None, None),
  ("body", "leg90", "Lymphatic drainage / relaxing leg massage · 90 min", 90, 600000, None, None),
 ]
-ALTEGIO = "https://n831884.alteg.io/"
+ALTEGIO = "https://n831884.alteg.io/"  # both salons: the guest chooses Ubud or Sanur ("Denpasar") there
+# Each salon's own booking page (used on the salon pages, so campaign traffic lands in the right salon)
+BOOK = {"ubud": "https://n831884.alteg.io/company/780725/personal/select-services?o=m-1",
+        "sanur": "https://n811764.alteg.io/company/762669/personal/select-services?o=m-1"}
 
 SIGNATURES = [("myo", "tag_face", "g01-face.webp"), ("shiro", "tag_head", "g10-proc-s.webp"),
               ("airkiss", "tag_skin", "g12-proc-s.webp"), ("airkiss-sculpt", "tag_skin", "g11-proc-s.webp"),
@@ -71,12 +74,12 @@ SIGNATURES = [("myo", "tag_face", "g01-face.webp"), ("shiro", "tag_head", "g10-p
 GIFTS = [(1200000, 1500000), (4000000, 5000000), (12750000, 15000000), (25500000, 30000000)]
 
 SALONS = {
- "ubud": {"name": "Ubud", "wa": "6282266999965", "tel": "+62 822 6699 9965", "opens": "10:00", "closes": "22:00", "online": "https://n831884.alteg.io/",
+ "ubud": {"name": "Ubud", "wa": "6282266999965", "tel": "+62 822 6699 9965", "opens": "10:00", "closes": "22:00", "online": "https://n831884.alteg.io/company/780725/personal/select-services?o=m-1",
           "addr": "Jl. Sanggingan, Jl. Raya Lungsiakan, Kedewatan, Ubud, Bali 80571",
           "street": "Jl. Raya Lungsiakan, Kedewatan", "locality": "Ubud", "postal": "80571",
           "maps": "https://www.google.com/maps/search/?api=1&query=The+Faces+Spa+Ubud+Jl.+Raya+Lungsiakan",
           "img": "g06-interior.webp", "alt": "sa_ubud_alt"},
- "sanur": {"name": "Sanur", "wa": "6281337709190", "tel": "+62 813 3770 9190", "opens": "10:00", "closes": "20:00", "online": "https://n831884.alteg.io/",
+ "sanur": {"name": "Sanur", "wa": "6281337709190", "tel": "+62 813 3770 9190", "opens": "10:00", "closes": "20:00", "online": "https://n811764.alteg.io/company/762669/personal/select-services?o=m-1",
            "addr": "Jl. Danau Buyan No. 34a, Sanur, Denpasar Selatan, Bali 80227",
            "street": "Jl. Danau Buyan No. 34a", "locality": "Sanur, Denpasar", "postal": "80227",
            "maps": "https://www.google.com/maps/search/?api=1&query=The+Faces+Spa+Sanur+Jl.+Danau+Buyan+34a",

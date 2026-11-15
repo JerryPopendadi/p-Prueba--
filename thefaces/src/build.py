@@ -22,7 +22,7 @@ sys.path.insert(0, str(SRC))
 from content_ui import UI, LANGS, DUR, LANG_NAMES, HTML_LANG, OG_LOCALE  # noqa: E402
 from content_rich import SENSES, ELEMENTS, CATS, DESC, FAQ  # noqa: E402
 from content_seo import PAGES  # noqa: E402
-from menu import MENU, SIGNATURES, GIFTS, SALONS, LINKS, GALLERY, ALTEGIO  # noqa: E402
+from menu import BOOK, MENU, SIGNATURES, GIFTS, SALONS, LINKS, GALLERY, ALTEGIO  # noqa: E402
 from content_waterfall import WF_UI, WF_RITUALS  # noqa: E402
 from content_posts import POSTS, P3_INTRO, EXCERPTS  # noqa: E402
 UI.update(WF_UI)
@@ -197,10 +197,15 @@ def label(ctx, n, key):
     return f'<p class="eyebrow rv"><span class="n">{n:02d} —</span>{E(ctx.t(key))}</p>'
 
 
-def book(where, item=""):
-    """Attributes for every booking link: straight to Altegio, where the guest chooses city, salon and treatments."""
-    return (f'href="{ALTEGIO}" target="_blank" rel="noopener" data-book="{E(where)}"'
-            + (f' data-item="{E(item)}"' if item else ""))
+def book(where, item="", salon=None):
+    """Attributes for every booking link: straight to Altegio. With a salon, its own booking page; otherwise the
+    shared page where the guest chooses Ubud or Sanur."""
+    return (f'href="{E(BOOK[salon]) if salon else ALTEGIO}" target="_blank" rel="noopener" data-book="{E(where)}"'
+            + (f' data-item="{E(item)}"' if item else "") + (f' data-salon="{salon}"' if salon else ""))
+
+
+def page_salon(ctx):
+    return ctx.slug if ctx.slug in SALONS else None
 
 
 ITEM = {m[1]: m for m in MENU}
@@ -250,7 +255,7 @@ def b_header(ctx):
   <ol class="mn-links">{mlinks}</ol>
   <div class="mn-side"><div class="mn-img">{mimgs}</div>
    <p class="eyebrow">Five Elements. Guided by Love.</p>
-   <a class="btn" {book("mobile-menu")}>{E(ctx.t("book_cta"))}</a>
+   <a class="btn" {book("mobile-menu", salon=page_salon(ctx))}>{E(ctx.t("book_cta"))}</a>
    <p class="mn-treat">{"".join(f'<a href="{E(ctx.url(L["slug"]))}">{E(ctx.pick(L["nav"]))}</a>' for L in LANDINGS)}<a href="{E(ctx.url("ubud"))}">Ubud</a><a href="{E(ctx.url("sanur"))}">Sanur</a></p>
    <p class="mn-contact"><a href="https://wa.me/{SALONS["ubud"]["wa"]}">WhatsApp Ubud</a> · <a href="https://wa.me/{SALONS["sanur"]["wa"]}">WhatsApp Sanur</a> · <a href="{LINKS["instagram"]}">Instagram</a> · <a href="{LINKS["tiktok"]}">TikTok</a> · <a href="{LINKS["linkedin"]}">LinkedIn</a></p>
   </div>
@@ -261,7 +266,7 @@ def b_header(ctx):
   <a href="{E(ctx.url())}" class="logo" aria-label="THE FACES"><img src="{ctx.asset("logo-white.png")}" alt="THE FACES" width="600" height="338"></a>
   <nav aria-label="Main">{navh}</nav>
   <div class="langsel"><button type="button" aria-expanded="false" aria-label="{E(ctx.t("language"))}">{ctx.lang.upper()} <span aria-hidden="true">▾</span></button><ul>{langs}</ul></div>
-  <a class="btn book" {book("header")}>{E(ctx.t("book"))}</a>
+  <a class="btn book" {book("header", salon=page_salon(ctx))}>{E(ctx.t("book"))}</a>
   <button type="button" class="burger" aria-label="{E(ctx.t("open_menu"))}"><span></span><span></span><span></span></button>
  </div>
 </header>
@@ -394,7 +399,10 @@ def menu_rows(ctx, items):
     rows = []
     for m in items:
         cat, iid, nm, d, p, only, diff = m
-        badge = f'<span class="badge">{E(ctx.t("only_in", salon=", ".join(SALONS[x]["name"] for x in only)))}</span>' if only else ""
+        if only:
+            badge = f'<span class="badge">{E(ctx.t("only_in", salon=", ".join(SALONS[x]["name"] for x in only)))}</span>'
+        else:
+            badge = '<span class="sal" title="Ubud · Sanur"><i>Ubud</i><i>Sanur</i></span>'
         ds = f'<p class="ds">{E(ctx.pick(DESC[iid]))}</p>' if iid in DESC else '<p class="ds"></p>'
         if diff and "sanur" in diff:
             sd, sp = diff["sanur"]
@@ -739,6 +747,25 @@ def b_journal_all(ctx):
 </section>'''
 
 
+def salon_menu(ctx, sid):
+    """Every treatment of one salon, grouped like the main menu, with that salon's duration and price."""
+    out = []
+    for n, (cid, names) in enumerate(CATS):
+        rows = []
+        for m in MENU:
+            cat, iid, nm, du, pr, only, diff = m
+            if cat != cid or (only and sid not in only):
+                continue
+            if diff and sid in diff:
+                du, pr = diff[sid]
+            here = f'<span class="badge">{E(ctx.t("sl_here"))}</span>' if only else ""
+            ds = f'<small>{E(ctx.pick(DESC[iid]))}</small>' if iid in DESC else ""
+            rows.append(f'<li><div><b>{E(nm)}</b>{here}{ds}</div><span>{(ctx.dur(du) + " · ") if du else ""}{ctx.price(pr)}</span></li>')
+        if rows:
+            out.append(f'<details class="sl-cat"{" open" if n < 2 else ""}><summary><span>{E(ctx.pick(names))}</span><em>{len(rows)}</em></summary><ul>{"".join(rows)}</ul></details>')
+    return '<div class="sl-cats">' + "".join(out) + "</div>"
+
+
 def b_salon(ctx, sid):
     """Own page for each salon: unique local text, photos, colours, exclusive treatments, map and FAQ."""
     sv = SALONS[sid]
@@ -767,7 +794,7 @@ def b_salon(ctx, sid):
                       "postalCode": sv["postal"], "addressCountry": "ID"},
           "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                                          "opens": sv["opens"], "closes": sv["closes"]}],
-          "hasMap": sv["maps"], "potentialAction": {"@type": "ReserveAction", "target": ALTEGIO}}
+          "hasMap": sv["maps"], "potentialAction": {"@type": "ReserveAction", "target": BOOK[sid]}}
     fq = {"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": qq, "acceptedAnswer": {"@type": "Answer", "text": aa}} for qq, aa in d["faq"]]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -782,7 +809,7 @@ def b_salon(ctx, sid):
   <h1>{E(d["h1"])}</h1>
   <p class="lead">{E(ctx.pick(SALON_TXT[sid]))}</p>
   <div class="ld-cta">
-   <a class="btn" {book("salon-page-" + sid, sv["name"])}>{E(ctx.t("sa_book", salon=sv["name"]))}</a>
+   <a class="btn" {book("salon-page-" + sid, sv["name"], salon=sid)}>{E(ctx.t("sa_book", salon=sv["name"]))}</a>
    <a class="btn ghost-l" href="{wa}" target="_blank" rel="noopener">WhatsApp</a>
   </div>
   <p class="sl-note">{E(ctx.t("sl_book_note"))}</p>
@@ -817,10 +844,20 @@ def b_salon(ctx, sid):
   <div>
    <p class="eyebrow">{E(ctx.t("sa_only_here"))}</p>
    <h2 class="h2">The Faces Spa {sv["name"]}</h2>
-   <div class="ld-cta"><a class="btn" {book("salon-only-" + sid, sv["name"])}>{E(ctx.t("sa_book", salon=sv["name"]))}</a></div>
+   <div class="ld-cta"><a class="btn" {book("salon-only-" + sid, sv["name"], salon=sid)}>{E(ctx.t("sa_book", salon=sv["name"]))}</a></div>
    <p style="margin-top:22px"><a class="link" href="{E(ctx.url("menu"))}">{E(ctx.t("sa_full_menu"))}</a></p>
   </div>
   <ul class="sl-list">{rows}</ul>
+ </div>
+</section>
+<section class="sec sl-menu" id="menu-{sid}">
+ <div class="wrap">
+  <div class="sl-menu-head">
+   <div><p class="eyebrow">{E(ctx.t("sl_menu_eb"))}</p><h2 class="h2">{E(ctx.t("sl_menu_h", salon=sv["name"]))}</h2></div>
+   <p>{E(ctx.t("sl_menu_p", salon=sv["name"]))}</p>
+  </div>
+  {salon_menu(ctx, sid)}
+  <div class="sl-menu-cta"><a class="btn darksolid" {book("salon-menu-" + sid, sv["name"], salon=sid)}>{E(ctx.t("sa_book", salon=sv["name"]))} ↗</a><p>{E(ctx.t("sl_book_note"))}</p></div>
  </div>
 </section>
 <section class="sec sl-go">
@@ -863,7 +900,7 @@ def b_salons(ctx):
    <address>{E(s["addr"])}</address>
    <p class="hours">{E(ctx.t("sa_hours", h=s["opens"] + "–" + s["closes"]))}</p>
    <div class="acts">
-    <a class="btn darksolid" {book("salon-" + sid)}>{E(ctx.t("sa_book", salon=s["name"]))}</a>
+    <a class="btn darksolid" {book("salon-" + sid, salon=sid)}>{E(ctx.t("sa_book", salon=s["name"]))}</a>
     <a class="btn dark" href="{wa}" target="_blank" rel="noopener">WhatsApp</a>
     <a class="btn dark" href="tel:{s["tel"].replace(" ", "")}">{s["tel"]}</a>
     <a class="btn dark" href="{s["maps"]}" target="_blank" rel="noopener">{E(ctx.t("sa_dir"))}</a>
@@ -1085,7 +1122,7 @@ def b_footer(ctx):
     <li><a href="tel:{SALONS["ubud"]["tel"].replace(" ", "")}">{SALONS["ubud"]["tel"]}</a></li>
     <li><a href="{E(ctx.url("sanur"))}">The Faces Sanur</a></li>
     <li><a href="tel:{SALONS["sanur"]["tel"].replace(" ", "")}">{SALONS["sanur"]["tel"]}</a></li>
-    <li><a {book("footer")}>{E(ctx.t("ft_online"))}</a></li>
+    <li><a {book("footer", salon=page_salon(ctx))}>{E(ctx.t("ft_online"))}</a></li>
     <li><a href="mailto:{LINKS["email"]}">{LINKS["email"]}</a></li></ul></div>
    <div><h2>{E(ctx.t("ft_world"))}</h2><ul>
     <li><a href="{LINKS["network"]}" target="_blank" rel="noopener">{E(ctx.t("ft_network"))}</a></li>
@@ -1097,12 +1134,12 @@ def b_footer(ctx):
  </div>
  <script type="application/ld+json">{jsonld_business(ctx)}</script>
 </footer>
-<a class="side-book" {book("side-tab")} aria-label="{E(ctx.t("book_online"))}">
+<a class="side-book" {book("side-tab", salon=page_salon(ctx))} aria-label="{E(ctx.t("book_online"))}">
  <span class="sb-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 00-2 2v13a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2V2h-2v2H9V2H7zm-2 7h14v10H5V9zm2 2v2h2v-2H7zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm-8 4v2h2v-2H7zm4 0v2h2v-2h-2z"/></svg></span>
  <span class="sb-txt">{E(ctx.t("ld_book_side"))}</span>
  <span class="sb-tip" aria-hidden="true">{E(ctx.t("book_online"))} <b>↗</b></span>
 </a>
-<div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar")}>{E(ctx.t("book"))}</a></div>
+<div class="mbar"><a href="{E(ctx.url("menu"))}">{E(ctx.t("mb_menu"))}</a><a class="bk" {book("mobile-bar", salon=page_salon(ctx))}>{E(ctx.t("book"))}</a></div>
 <div class="toast" role="status"><span class="msg"></span></div>
 <div class="cookie" role="dialog" aria-label="Cookies"><p>{E(ctx.t("ck_text"))} <a href="{E(ctx.url("privacy", "cookies"))}">{E(ctx.t("ck_more"))}</a></p>
  <div class="row"><button type="button" class="btn dark" data-consent="no">{E(ctx.t("ck_reject"))}</button><button type="button" class="btn darksolid" data-consent="yes">{E(ctx.t("ck_accept"))}</button></div></div>'''

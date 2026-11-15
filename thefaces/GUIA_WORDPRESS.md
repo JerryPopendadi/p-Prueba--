@@ -102,6 +102,13 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Vídeo de portada:** THE-FACES-VIDEO convertido a MP4 (H.264) para que se vea en todos los navegadores, con versión ligera para móvil (`hero-854.mp4`, 2,8 MB), versión de escritorio (`hero-1280.mp4`, 8 MB) y foto de la cascada mientras carga.
 - Tras actualizar: **Ajustes > THE FACES > Volver a comprobar y completar las páginas**, para que Yoast reciba los títulos nuevos.
 
+## 2j. Reserva por salón y carta por salón (versión 1.5.5)
+- **Cada página de salón reserva en su propio Altegio.** Todos los botones de la página de Ubud, incluidos cabecera, pestaña dorada, barra del móvil y pie, abren `n831884.alteg.io/company/780725/...`. Los de Sanur abren `n811764.alteg.io/company/762669/...`. Úsalas como página de destino de las campañas de cada salón.
+- **El resto de la web** sigue abriendo `n831884.alteg.io`, donde el cliente elige salón.
+- **Carta principal:** cada tratamiento lleva la marca *Ubud* / *Sanur*, o «Solo en Ubud» / «Solo en Sanur».
+- **Página de cada salón:** carta completa de ese salón, con su duración y su precio (Ubud 49 tratamientos, Sanur 51, igual que en Altegio el 15/11/2026). Los exclusivos llevan la marca «Solo aquí».
+- **Analítica:** el evento `booking_click` incluye `booking_salon` (`ubud`, `sanur` o `any`), para medir en GA4 / Google Ads las conversiones de cada salón.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

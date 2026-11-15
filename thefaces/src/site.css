@@ -597,6 +597,26 @@ a.btn[data-book][href]:hover{background:#1b261c;border-color:#1b261c;color:#fff}
  .sl-facts>div{padding:16px 0;border-bottom:1px solid var(--line-d)}
   .sl-pics figure:nth-child(2){margin-top:40px}
 }
+/* salon chips on the main menu */
+.sal{display:inline-flex;gap:4px;margin-left:10px;vertical-align:middle}
+.sal i{font-style:normal;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:2px 7px;border-radius:999px}
+/* full menu of one salon */
+.sl-menu-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:40px}
+.sl-menu-head>p{color:var(--muted);line-height:1.7}
+.sl-cats{border-top:1px solid var(--line)}
+.sl-cat{border-bottom:1px solid var(--line)}
+.sl-cat summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-family:Montserrat,Arial,sans-serif;font-size:clamp(18px,2vw,24px);font-weight:300;color:var(--ink)}
+.sl-cat summary::-webkit-details-marker{display:none}
+.sl-cat summary span{flex:1}
+.sl-cat summary em{font-style:normal;font-size:12px;letter-spacing:.14em;color:var(--muted);margin-right:18px}
+.sl-cat ul{padding-bottom:18px}
+.sl-cat li{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px dashed var(--line)}
+.sl-cat li b{font-weight:400;font-size:16px;color:var(--ink)}
+.sl-cat li small{display:block;font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.sl-cat li>span{white-space:nowrap;font-size:13.5px;color:var(--text);padding-top:2px}
+.sl-menu-cta{margin-top:40px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.sl-menu-cta p{color:var(--muted);font-size:14px;max-width:46ch}
+@media (max-width:900px){.sl-menu-head{grid-template-columns:1fr}.sl-cat li{flex-direction:column;gap:6px}}
 /* language tweaks */
 .tf:lang(th) .display,.tf:lang(th) .h2,.tf:lang(ja) .display,.tf:lang(ja) .h2{letter-spacing:0;line-height:1.25}
 .tf:lang(th){line-height:1.75}

@@ -25,7 +25,8 @@
       if ((el = e.target.closest("[data-book]"))) {
         // One signal for ads/analytics: the visitor left for the booking system. The real booking happens in Altegio.
         window.dataLayer.push({ event: "booking_click", booking_location: el.getAttribute("data-book"),
-          booking_item: el.getAttribute("data-item") || "", page_language: T.lang || "en" });
+          booking_item: el.getAttribute("data-item") || "", booking_salon: el.getAttribute("data-salon") || "any",
+          page_language: T.lang || "en" });
         return;
       }
       if ((el = e.target.closest("[role=tab][data-tab]"))) {
