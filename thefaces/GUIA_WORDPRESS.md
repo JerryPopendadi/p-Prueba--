@@ -151,6 +151,15 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Datos estructurados:** no se añaden estrellas en los datos para Google, porque Google no muestra estrellas de reseñas que una empresa publica sobre sí misma en su propia web. Las estrellas en Google salen de la ficha de Google Maps.
 - **Ubud:** cuando tengáis sus reseñas, se añaden igual en su página.
 
+## 2o. Portada completa en ordenador, corta en móvil (versión 1.6.2)
+- **Ordenador y tablet (más de 760 px):** portada completa, con:
+  - portada con vídeo, filosofía, sentidos, elementos y tratamientos estrella;
+  - carta y precios, galería, Instagram, salones y opiniones;
+  - **fundadores** y **certificados**;
+  - regalos, partners, Waterfall, blog y preguntas.
+- **Móvil (hasta 760 px):** portada corta. Fundadores, certificados, carta, galería, Instagram, regalos, partners, Waterfall y blog se ocultan, y en su lugar aparece el bloque «Descubre» con tarjetas a cada página. El bloque «Descubre» no se ve en ordenador.
+- **Cómo funciona:** el bloque «Descubre» solo existe en la portada y lleva la regla que decide qué se ve en cada pantalla. Las demás páginas no cambian.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

@@ -6,7 +6,7 @@ Dominio: https://thefacesworld.com · Idiomas: English (`/`), Русский (`/
 
 | Página | URL (EN) | Bloques en Tilda, en orden |
 |---|---|---|
-| home | `/` | `01-header` → `02-hero` → `03-philosophy` → `04-senses` → `05-elements` → `06-signatures` → `09-salons` → `23-reviews` → `22-explore` → `14-faq` → `15-footer` |
+| home | `/` | `01-header` → `02-hero` → `03-philosophy` → `04-senses` → `05-elements` → `06-signatures` → `07-menu-builder` → `08-gallery` → `17-instagram` → `09-salons` → `23-reviews` → `22-explore` → `10-founders` → `18-certificates` → `11-gifts` → `12-partners` → `16-waterfall` → `13-journal` → `14-faq` → `15-footer` |
 | menu | `/menu` | `01-header` → `pages/menu-intro` → `07-menu-builder` → `06-signatures` → `14-faq` → `15-footer` |
 | couples-spa | `/couples-spa` | `01-header` → `pages/couples-spa-landing` → `06-signatures` → `09-salons` → `14-faq` → `15-footer` |
 | body-massage | `/body-massage` | `01-header` → `pages/body-massage-landing` → `06-signatures` → `09-salons` → `14-faq` → `15-footer` |

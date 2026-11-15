@@ -110,7 +110,9 @@ for _P in PAGES:  # one main search intent per page (no cannibalisation)
     if _P["slug"] in TITLES:
         _P.update({k: v for k, v in TITLES[_P["slug"]].items()})
     if _P["slug"] == "":  # short home: long sections live on their own pages, reached from the "Discover" tiles
-        _P["blocks"] = ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "09-salons", "23-reviews", "22-explore", "14-faq", "15-footer"]
+        _P["blocks"] = ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "07-menu-builder", "08-gallery",
+                        "17-instagram", "09-salons", "23-reviews", "22-explore", "10-founders", "18-certificates", "11-gifts", "12-partners",
+                        "16-waterfall", "13-journal", "14-faq", "15-footer"]
     elif _P["slug"] in ("ubud", "sanur"):
         _P["blocks"] = ["01-header", "salon-" + _P["slug"], "17-instagram", "15-footer"]
     elif _P["slug"] == "five-elements":
@@ -216,7 +218,8 @@ class Ctx:
 
 
 def label(ctx, n, key):
-    return f'<p class="eyebrow rv"><span class="n">{n:02d} —</span>{E(ctx.t(key))}</p>'
+    num = f'<span class="n">{n:02d} —</span>' if n else ""
+    return f'<p class="eyebrow rv">{num}{E(ctx.t(key))}</p>'
 
 
 def book(where, item="", salon=None):
@@ -930,7 +933,7 @@ def reviews_html(ctx, sid="sanur", n=None, head=True):
     cards = "".join(f'''<figure class="rv-card rv"><figcaption>{star(it["stars"])}<span class="rv-src">Google</span></figcaption>
    <blockquote>«{E(ctx.pick(it["text"]))}»</blockquote><p class="rv-who"><b>{E(it["name"])}</b>{(" · <small>" + E(note) + "</small>") if note else ""}</p></figure>''' for it in rv["items"][:n])
     top = f'''<div class="rv-head">
-   <div>{label(ctx, 6, "rv_label") if head else ""}<h2 class="h2 rv d1">{E(ctx.t("rv_h2"))}</h2></div>
+   <div>{label(ctx, 0, "rv_label") if head else ""}<h2 class="h2 rv d1">{E(ctx.t("rv_h2"))}</h2></div>
    <div class="rv-score"><b>{rating}</b><div>{star(5)}<p>{E(ctx.t("rv_count", n=count))} · {E(rv["place"])}</p></div></div>
   </div>'''
     return f'''{top}
@@ -953,8 +956,10 @@ def b_explore(ctx):
              ("certificates", "nav_certs", "ex_certs", "cert-trademark.webp"), ("journal", "nav_journal", "ex_journal", "g12-proc-s.webp")]
     cards = "".join(f'''<a class="ex-tile rv" href="{E(ctx.url(slug))}"><span class="ex-ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></span>
    <span class="ex-tx"><b>{E(ctx.t(t))}</b><small>{E(ctx.t(d))}</small></span><span class="ex-ar" aria-hidden="true">→</span></a>''' for slug, t, d, img in tiles)
-    return f'''<section class="explore sec" id="explore">
- <div class="wrap sec-head"><div>{label(ctx, 7, "ex_label")}<h2 class="h2 rv d1">{E(ctx.t("ex_h2"))}</h2></div></div>
+    style = ('<style>@media (max-width:760px){[data-block="07-menu-builder"], [data-block="08-gallery"], [data-block="17-instagram"], [data-block="10-founders"], [data-block="18-certificates"], [data-block="11-gifts"], [data-block="12-partners"], [data-block="16-waterfall"], [data-block="13-journal"]{display:none!important}.eyebrow .n{display:none}}'
+             '@media (min-width:761px){[data-block="22-explore"]{display:none!important}}</style>')
+    return style + f'''<section class="explore sec" id="explore">
+ <div class="wrap sec-head"><div>{label(ctx, 0, "ex_label")}<h2 class="h2 rv d1">{E(ctx.t("ex_h2"))}</h2></div></div>
  <div class="wrap"><div class="ex-grid">{cards}</div><p class="swipe-hint">{E(ctx.t("swipe"))}</p></div>
 </section>'''
 
@@ -977,7 +982,7 @@ def b_salons(ctx):
   </article>''')
     return f'''<section class="sec" id="salons">
  <div class="wrap sec-head">
-  <div>{label(ctx, 5, "sa_label")}<h2 class="h2 rv d1">{E(ctx.t("sa_h2"))}</h2></div>
+  <div>{label(ctx, 6, "sa_label")}<h2 class="h2 rv d1">{E(ctx.t("sa_h2"))}</h2></div>
   <p class="muted rv d2">{E(ctx.t("sa_intro"))}</p>
  </div>
  <div class="wrap"><div class="salons">{"".join(cards)}</div><p class="soon">{E(ctx.t("sa_soon"))}</p></div>
@@ -1118,7 +1123,7 @@ def b_faq(ctx):
     ld_html = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ctx.slug == "" else ""
     return f'''<section class="faq sec" id="faq">
  <div class="wrap faq-grid">
-  <div>{label(ctx, 8, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
+  <div>{label(ctx, 11, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
   <div class="rv d2">{det}</div>
  </div>
  {ld_html}
