@@ -134,6 +134,13 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
   - Textos pequeños a 13–14 px.
   - En la carta de la portada, las descripciones se cortan a dos líneas.
 
+## 2m. Portada más corta (versión 1.6.0)
+- **10 bloques en lugar de 18:** portada con vídeo, filosofía, cinco sentidos, cinco elementos, tratamientos estrella, salones, «Descubre», preguntas y pie.
+- **«Descubre»:** seis tarjetas con foto que llevan a cada página (carta y precios, regalos, fundadores, partners y Waterfall, certificados, blog). En móvil se deslizan con el dedo.
+- **Bloques que ya no están en la portada,** pero siguen en su página: carta completa (`/menu/`), galería, Instagram (páginas de Ubud y Sanur), fundadores, certificados, regalos, partners, Waterfall y blog.
+- **Altura:** en móvil, la portada pasa de unos 23.000 px a unos 11.000 px; en ordenador, a unos 14.000 px.
+- **SEO:** la portada ya no repite la carta, los fundadores ni los partners, así que compite menos con esas páginas.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 

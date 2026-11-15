@@ -90,12 +90,26 @@ from content_seo2 import TITLES, HERO_H1, SALON_TXT, SEO2_UI  # noqa: E402
 UI.update(SEO2_UI)
 from content_salon import SALON_PAGE, SALON_UI, SALON_IMG, SALON_RIBBON  # noqa: E402
 UI.update(SALON_UI)
+
+EXPLORE_UI = {
+ "ex_label": ["Discover", "Узнать больше", "Descubre", "Entdecken", "ค้นพบ", "Jelajahi", "もっと知る", "Découvrir", "Дізнатися більше"],
+ "ex_h2": ["Everything about THE FACES.", "Всё о THE FACES.", "Todo sobre THE FACES.", "Alles über THE FACES.", "ทุกอย่างเกี่ยวกับ THE FACES", "Semua tentang THE FACES.", "THE FACESのすべて。", "Tout sur THE FACES.", "Усе про THE FACES."],
+ "ex_menu": ["56 treatments with prices, from IDR 200,000", "56 процедур с ценами, от IDR 200 000", "56 tratamientos con precio, desde IDR 200.000", "56 Behandlungen mit Preisen, ab IDR 200.000", "56 ทรีตเมนต์พร้อมราคา เริ่ม IDR 200,000", "56 perawatan dengan harga, mulai IDR 200.000", "56の施術と料金、IDR 200,000から", "56 soins avec prix, dès IDR 200 000", "56 процедур з цінами, від IDR 200 000"],
+ "ex_gifts": ["Give a ritual and get up to 25% bonus", "Подарите ритуал и получите бонус до 25%", "Regala un ritual y recibe hasta un 25 % de bonus", "Ein Ritual schenken, bis zu 25 % Bonus", "มอบพิธีกรรมเป็นของขวัญ รับโบนัสสูงสุด 25%", "Hadiahkan ritual, bonus hingga 25%", "リチュアルを贈って最大25%のボーナス", "Offrez un rituel, jusqu'à 25 % de bonus", "Подаруйте ритуал і отримайте бонус до 25%"],
+ "ex_founders": ["Anna and Evgenii Dubinin, 20+ years in spa", "Анна и Евгений Дубинины, 20+ лет в спа", "Anna y Evgenii Dubinin, más de 20 años en spa", "Anna und Evgenii Dubinin, 20+ Jahre Spa", "แอนนาและเยฟเกนี ดูบินิน ประสบการณ์สปา 20+ ปี", "Anna dan Evgenii Dubinin, 20+ tahun di spa", "アンナ＆エフゲニー・ドゥビニン、スパ歴20年以上", "Anna et Evgenii Dubinin, plus de 20 ans de spa", "Анна та Євген Дубініни, 20+ років у спа"],
+ "ex_partners": ["Franchise, hotels and the coming Waterfall Spa", "Франшиза, отели и скоро Waterfall Spa", "Franquicia, hoteles y el próximo Waterfall Spa", "Franchise, Hotels und das kommende Waterfall Spa", "แฟรนไชส์ โรงแรม และ Waterfall Spa ที่กำลังจะเปิด", "Waralaba, hotel, dan Waterfall Spa yang segera hadir", "フランチャイズ、ホテル、そして近日オープンのWaterfall Spa", "Franchise, hôtels et le futur Waterfall Spa", "Франшиза, готелі та незабаром Waterfall Spa"],
+ "ex_certs": ["Registered trademark and author's concept", "Зарегистрированная марка и авторская концепция", "Marca registrada y concepto de autor", "Eingetragene Marke und Autorenkonzept", "เครื่องหมายการค้าจดทะเบียนและแนวคิดลิขสิทธิ์", "Merek terdaftar dan konsep hak cipta", "登録商標と著作権のあるコンセプト", "Marque déposée et concept d'auteur", "Зареєстрована марка та авторська концепція"],
+ "ex_journal": ["Guides to face massage, head spa and rituals", "Гиды по массажу лица, хэд-спа и ритуалам", "Guías de masaje facial, head spa y rituales", "Ratgeber zu Gesichtsmassage, Head Spa und Ritualen", "คู่มือนวดหน้า เฮดสปา และพิธีกรรม", "Panduan pijat wajah, head spa, dan ritual", "フェイスマッサージ、ヘッドスパ、リチュアルのガイド", "Guides du massage du visage, head spa et rituels", "Гіди з масажу обличчя, хед-спа та ритуалів"],
+}
+UI.update(EXPLORE_UI)
 UI["swipe"] = ["Swipe", "Листайте", "Desliza", "Wischen", "ปัดดู", "Geser", "スワイプ", "Faites glisser", "Гортайте"]
 UI["hero_h1"] = HERO_H1
 for _P in PAGES:  # one main search intent per page (no cannibalisation)
     if _P["slug"] in TITLES:
         _P.update({k: v for k, v in TITLES[_P["slug"]].items()})
-    if _P["slug"] in ("ubud", "sanur"):
+    if _P["slug"] == "":  # short home: long sections live on their own pages, reached from the "Discover" tiles
+        _P["blocks"] = ["01-header", "02-hero", "03-philosophy", "04-senses", "05-elements", "06-signatures", "09-salons", "22-explore", "14-faq", "15-footer"]
+    elif _P["slug"] in ("ubud", "sanur"):
         _P["blocks"] = ["01-header", "salon-" + _P["slug"], "17-instagram", "15-footer"]
     elif _P["slug"] == "five-elements":
         _P["blocks"] = ["01-header", "04-senses", "05-elements", "06-signatures", "14-faq", "15-footer"]
@@ -902,6 +916,19 @@ def b_salon(ctx, sid):
 </div>'''
 
 
+def b_explore(ctx):
+    """Short home: one row of image tiles to the pages that used to be long sections on the home page."""
+    tiles = [("menu", "nav_menu", "ex_menu", "g01-face.webp"), ("gift-certificates", "nav_gifts", "ex_gifts", "g09-proc-s.webp"),
+             ("founders", "nav_founders", "ex_founders", "founders.webp"), ("partners", "nav_partners", "ex_partners", "waterfall.webp"),
+             ("certificates", "nav_certs", "ex_certs", "cert-trademark.webp"), ("journal", "nav_journal", "ex_journal", "g12-proc-s.webp")]
+    cards = "".join(f'''<a class="ex-tile rv" href="{E(ctx.url(slug))}"><span class="ex-ph"><img src="{ctx.asset(img)}" alt="" loading="lazy"></span>
+   <span class="ex-tx"><b>{E(ctx.t(t))}</b><small>{E(ctx.t(d))}</small></span><span class="ex-ar" aria-hidden="true">→</span></a>''' for slug, t, d, img in tiles)
+    return f'''<section class="explore sec" id="explore">
+ <div class="wrap sec-head"><div>{label(ctx, 6, "ex_label")}<h2 class="h2 rv d1">{E(ctx.t("ex_h2"))}</h2></div></div>
+ <div class="wrap"><div class="ex-grid">{cards}</div><p class="swipe-hint">{E(ctx.t("swipe"))}</p></div>
+</section>'''
+
+
 def b_salons(ctx):
     cards = []
     for k, (sid, s) in enumerate(SALONS.items()):
@@ -920,7 +947,7 @@ def b_salons(ctx):
   </article>''')
     return f'''<section class="sec" id="salons">
  <div class="wrap sec-head">
-  <div>{label(ctx, 6, "sa_label")}<h2 class="h2 rv d1">{E(ctx.t("sa_h2"))}</h2></div>
+  <div>{label(ctx, 5, "sa_label")}<h2 class="h2 rv d1">{E(ctx.t("sa_h2"))}</h2></div>
   <p class="muted rv d2">{E(ctx.t("sa_intro"))}</p>
  </div>
  <div class="wrap"><div class="salons">{"".join(cards)}</div><p class="soon">{E(ctx.t("sa_soon"))}</p></div>
@@ -1061,7 +1088,7 @@ def b_faq(ctx):
     ld_html = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ctx.slug == "" else ""
     return f'''<section class="faq sec" id="faq">
  <div class="wrap faq-grid">
-  <div>{label(ctx, 11, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
+  <div>{label(ctx, 7, "fq_label")}<h2 class="h2 rv d1" style="margin-top:22px">{E(ctx.t("fq_h2"))}</h2></div>
   <div class="rv d2">{det}</div>
  </div>
  {ld_html}
@@ -1184,7 +1211,7 @@ BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosoph
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
           "13-journal": b_journal, "17-instagram": b_instagram, "18-certificates": b_certificates,
-          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "14-faq": b_faq, "15-footer": b_footer}
+          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "22-explore": b_explore, "14-faq": b_faq, "15-footer": b_footer}
 
 
 def wrap(ctx, name, inner):
