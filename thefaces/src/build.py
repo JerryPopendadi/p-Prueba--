@@ -1320,6 +1320,12 @@ def page_head(ctx, page):
 
 # ------------------------------------------------------------------ build
 
+def _plugin_index_files(plug):
+    for d in [plug] + [x for x in plug.rglob("*") if x.is_dir()]:
+        if not (d / "index.php").exists() and d != plug:
+            (d / "index.php").write_text("<?php\n// Silence is golden.\n", encoding="utf-8")
+
+
 def build_wordpress(css, js, autolang):
     """WordPress plugin: thefaces/wordpress-plugin/thefaces-spa (blocks + data + assets + PHP)."""
     import shutil
@@ -1397,6 +1403,7 @@ def main():
     autolang = (SRC / "autolang.js").read_text(encoding="utf-8")
     tdir, pdir = ROOT / "tilda", ROOT / "preview"
     build_wordpress(css, js, autolang)
+    _plugin_index_files(ROOT / "wordpress-plugin" / "thefaces-spa")
 
     (tdir).mkdir(exist_ok=True)
     (tdir / "00-site-head.html").write_text(

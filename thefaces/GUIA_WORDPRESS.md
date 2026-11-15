@@ -160,6 +160,41 @@ Cinco páginas pensadas para búsquedas de turistas, en los 9 idiomas: **masaje 
 - **Móvil (hasta 760 px):** portada corta. Fundadores, certificados, carta, galería, Instagram, regalos, partners, Waterfall y blog se ocultan, y en su lugar aparece el bloque «Descubre» con tarjetas a cada página. El bloque «Descubre» no se ve en ordenador.
 - **Cómo funciona:** el bloque «Descubre» solo existe en la portada y lleva la regla que decide qué se ve en cada pantalla. Las demás páginas no cambian.
 
+## 2p. Seguridad (versión 1.6.3)
+
+### Lo que hace el plugin (Ajustes > THE FACES > Seguridad, activado por defecto)
+- **Cabeceras de seguridad:**
+  - HTTPS estricto (HSTS, solo si la web ya va por https);
+  - anti-clickjacking: nadie puede meter la web dentro de otra;
+  - anti-sniffing;
+  - política de referer;
+  - bloqueo de cámara, micrófono y ubicación;
+  - CSP básica: `frame-ancestors`, `base-uri`, `object-src` y subida automática a https.
+- **No revela la versión de WordPress.**
+- **No deja descubrir los nombres de usuario:** `?author=1` redirige a la portada, la API de usuarios no se ve sin iniciar sesión y no hay mapa del sitio de usuarios.
+- **Freno a ataques de contraseña:** 5 intentos fallidos desde una IP la bloquean 15 minutos, incluso con la contraseña correcta. Si la web está detrás de Cloudflare, usa la IP real del visitante.
+- **Errores de acceso genéricos:** «usuario o contraseña incorrectos», sin decir cuál de los dos falla.
+- **Editor de código del escritorio desactivado:** si alguien entra con una cuenta robada, no puede inyectar código en temas o plugins.
+- **XML-RPC desactivado:** responde 403. Desmárcalo solo si usas la app móvil de WordPress o Jetpack.
+- **Sin listado de carpetas:** `index.php` vacío en cada carpeta del plugin.
+- **Código del plugin revisado:**
+  - todos los formularios comprueban permisos y un token de seguridad (nonce);
+  - los datos se limpian al guardarse y se escapan al mostrarse;
+  - ningún archivo se puede abrir directamente;
+  - el JavaScript no inserta texto del visitante en la página.
+- **Comprobación de seguridad** en la página de ajustes, con ✔/✖: HTTPS, usuario «admin», número de administradores, errores visibles, versión de PHP, editor desactivado y WordPress actualizado.
+
+### Lo que hay que hacer fuera del plugin (ningún plugin puede hacerlo solo)
+1. **Copias de seguridad diarias** fuera del servidor (UpdraftPlus a Google Drive, o las de tu hosting). Es la protección más importante.
+2. **Verificación en dos pasos** para todos los administradores (plugin «Two Factor» o Wordfence Login Security).
+3. **Contraseñas largas y únicas.** No uses un usuario llamado «admin»: crea otro administrador, pasa los contenidos a él y borra «admin».
+4. **Cortafuegos y anti-DDoS:** Cloudflare gratuito delante de la web (proxy naranja, «Bot Fight Mode», SSL «Full (strict)»), o el cortafuegos de tu hosting.
+5. **Actualizaciones:** WordPress, tema y plugins siempre al día. Borra los plugins y temas que no uses.
+6. **HTTPS** con certificado válido y PHP 8.1 o superior en el hosting.
+7. **Opcional:** Wordfence o Solid Security para escaneo de malware y avisos por email.
+
+Ninguna web es invulnerable. Con estas capas se cubren los ataques automáticos más comunes: robo de contraseñas, búsqueda de usuarios, XML-RPC, clickjacking, inyección por el editor y versiones antiguas. Lo que queda depende sobre todo de las copias de seguridad, las actualizaciones y la verificación en dos pasos.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 
