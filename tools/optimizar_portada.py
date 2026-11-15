@@ -115,8 +115,9 @@ if '"sameAs"' not in t:
     sub(r'("@id": "https://senalval.es/#empresa",)', r'\1\n        "sameAs": ["https://www.instagram.com/senalval/"],', need=False)
 
 # ---------------------------------------------------------------- 6. Velocidad
-# Fotos de Wikimedia a 640 px (antes 1280 px)
-sub(r'(upload\.wikimedia\.org/wikipedia/commons/thumb/[^"\s]+?/)1280px-', r'\g<1>640px-', need=False)
+# Fotos de Wikimedia a 960 px (antes 1280 px)
+# Wikimedia solo sirve tamaños estándar (250, 330, 500, 960, 1280…): 960 px
+sub(r'(upload\.wikimedia\.org/wikipedia/commons/thumb/[^"\s]+?/)1280px-', r'\g<1>960px-', need=False)
 # Fotos 2-5 de la portada: no se descargan hasta justo antes de mostrarlas
 def hero_lazy(m):
     tag = m.group(0)
