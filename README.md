@@ -89,6 +89,11 @@ Para ofrecerlas en la web, súbelas a Medios de WordPress; los botones "Solicita
 ## Vídeo de presentación
 `video/senalval-presentacion.mp4`: 78 s, 1920×1080, 30 fps, sin audio. Se regenera con `python3 tools/video/build_video.py`.
 
+## Plugin con 32 entradas de blog
+`wordpress/plugin/senalval-blog-entradas.zip` (se genera con `python3 tools/blog/build_plugin.py`; textos en
+`tools/blog/posts_*.py` y `tools/blog/faqs.py`). Vista previa de todas las entradas: `wordpress/plugin/vista-previa-entradas.html`.
+Instalar: Plugins → Añadir nuevo → Subir plugin → Activar. Usar: Herramientas → Entradas SeñalVal.
+
 ## Pendiente de confirmar
 - Permiso de cada cliente para mostrar su logo, en especial **Guardia Civil** (su emblema es de uso regulado),
   Aena, ADIF, Coca-Cola y Toyota.
