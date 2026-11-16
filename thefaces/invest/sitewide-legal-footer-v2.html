@@ -1,0 +1,222 @@
+<!-- THE FACES · Site-wide legal footer line · all pages · 9 languages · v2 (Forminator 703 enquiry + conversion)
+     One line at the very bottom of every page with every policy link, an expandable legal panel, "Cookie settings",
+     and "Partnership enquiry": opens Forminator form 703 inside the footer.
+     The form itself comes from a small WPCode PHP snippet (see GUIA: it prints the form hidden at the end of the page);
+     this HTML snippet only moves it into the footer panel.
+     Conversion: when Forminator confirms a submission, dataLayer gets "generate_lead" (lead_id, budget, country, placement, campaign)
+     and the enquiry is saved in the Google Sheet. On the "Book an Investor Meeting" page (#tf1) the page itself does this, so the footer stays out of the way.
+     Install ONCE: WordPress → WPCode → Add snippet → HTML snippet → Location "Site Wide Footer". Replace the previous legal footer snippet.
+     IMPORTANT: never write square-bracket shortcodes inside this HTML snippet. -->
+<style>
+#tflf{all:initial;display:block;box-sizing:border-box;width:100%;background:#0f1110;color:#b9bdb7;font:400 12px/1.6 Montserrat,Roboto,"Noto Sans JP","Noto Sans SC","Noto Sans Thai",Arial,sans-serif;-webkit-font-smoothing:antialiased;position:relative;z-index:5}
+#tflf *{box-sizing:border-box;font-family:inherit}
+#tflf .l{max-width:1280px;margin:0 auto;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 0;text-align:center}
+#tflf .c{color:#e7e4dc;margin-right:14px;white-space:nowrap}
+#tflf .l a,#tflf button.k{all:unset;cursor:pointer;color:#b9bdb7;white-space:nowrap;padding:4px 10px;border-radius:6px;font:inherit;text-decoration:none;position:relative;transition:color .2s,background .2s}
+#tflf .l a:hover,#tflf button.k:hover{color:#fff;background:rgba(255,255,255,.06)}
+#tflf button.k.enq{color:#fff;background:#1a73e8;margin:0 6px}
+#tflf button.k.enq:hover{background:#1765cc}
+#tflf a:focus-visible,#tflf button:focus-visible{outline:2px solid #c9a35a;outline-offset:2px}
+#tflf .sep{color:#4b504a;user-select:none}
+#tflf .p{display:none;border-top:1px solid #262a26;background:#131614}
+#tflf.open .p{display:block}
+#tflf .pi{max-width:980px;margin:0 auto;padding:22px 20px 28px;text-align:left}
+#tflf .pi h4{all:unset;display:block;color:#e7e4dc;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:18px 0 6px}
+#tflf .pi h4:first-child{margin-top:0}
+#tflf .pi p{all:unset;display:block;font-size:12px;line-height:1.75;color:#a9aea7;margin:0 0 8px}
+#tflf .pi p b{color:#d9d6ce;font-weight:600}
+#tflf .pi a{all:unset;cursor:pointer;text-decoration:underline;color:#d9c08f}
+#tflf .x{all:unset;cursor:pointer;float:right;color:#d9d6ce;font-size:12px;padding:4px 10px;border:1px solid #3a3f39;border-radius:999px}
+/* enquiry panel: Forminator 703 on a light card */
+#tflf .fp{display:none;border-top:1px solid #262a26;background:#131614;padding:26px 16px 30px}
+#tflf.fopen .fp{display:block}
+#tflf .fc{max-width:620px;margin:0 auto;background:#fff;color:#202124;border-radius:12px;padding:24px 22px;text-align:left;font:400 14px/1.6 Montserrat,Roboto,Arial,sans-serif}
+#tflf .fc .fh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+#tflf .fc .fh strong{font-size:20px;font-weight:500;color:#111711}
+#tflf .fc .fx{all:unset;cursor:pointer;font-size:12px;color:#5f6368;padding:4px 10px;border:1px solid #dadce0;border-radius:999px}
+#tflf .fc .fs{font-size:12.5px;color:#5f6368;margin:0 0 12px}
+#tflf .fc .fm{font-size:13px;color:#5f6368}
+#tflf .fc .fm a{color:#1a73e8;text-decoration:underline}
+#tflf .fc .forminator-ui.forminator-custom-form{margin:0!important}
+#tflf .fc .forminator-input,#tflf .fc .forminator-textarea,#tflf .fc select{width:100%!important;min-height:46px!important;border:1px solid #c6cdbf!important;border-radius:6px!important;font-size:16px!important;color:#111711!important;background:#fff!important}
+#tflf .fc .forminator-label{font-size:12px!important;font-weight:600!important;color:#2a312a!important}
+#tflf .fc .forminator-button-submit{width:100%!important;min-height:52px!important;background:#1a73e8!important;border:0!important;color:#fff!important;border-radius:8px!important;font-weight:600!important;letter-spacing:.08em!important;text-transform:uppercase!important;cursor:pointer}
+#tflf .fc .tflf-cal{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:8px;background:#111711;color:#fff;text-decoration:none;font-weight:600;font-size:13px}
+#tflf-ck{position:fixed;left:16px;bottom:16px;z-index:99980;max-width:420px;background:#fff;color:#202124;border-radius:16px;padding:18px;box-shadow:0 10px 40px rgba(0,0,0,.25);font:400 13px/1.55 Roboto,Montserrat,Arial,sans-serif}
+#tflf-ck[hidden]{display:none!important}
+#tflf-ck p{margin:0 0 12px}
+#tflf-ck a{color:#1a73e8;text-decoration:underline}
+#tflf-ck .r{display:flex;gap:8px;flex-wrap:wrap}
+#tflf-ck button{all:unset;cursor:pointer;flex:1;text-align:center;padding:10px 14px;border-radius:999px;font:500 13px/1 Roboto,Arial,sans-serif;border:1px solid #dadce0;color:#1a73e8}
+#tflf-ck button.y{background:#1a73e8;color:#fff;border-color:#1a73e8}
+#tflf-form-src{display:none!important}
+@media(max-width:600px){#tflf .l{font-size:11.5px;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}#tflf .c{width:100%;margin:0 0 4px}#tflf .sep{display:none}#tflf-ck{left:10px;right:10px;bottom:84px;max-width:none}#tflf .fc{padding:20px 16px}}
+body:has(#tfc) #tflf .l{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))} /* room for the contact button */
+@media print{#tflf .k,#tflf-ck,#tflf .fp{display:none!important}#tflf{background:none;color:#000}}
+</style>
+<script>
+(function(){
+'use strict';
+if(window.__tflfLoaded)return;window.__tflfLoaded=1;
+var CONFIG={
+  brand:'THE FACES',
+  legalName:'',          // registered company name, e.g. 'PT ...'  (empty = "provided on request")
+  regNo:'',              // NIB / registration number (empty = "provided on request")
+  addresses:['Jl. Sanggingan, Jl. Raya Lungsiakan, Kedewatan, Ubud, Bali 80571, Indonesia','Jl. Danau Buyan No. 34A, Sanur, Denpasar Selatan, Bali 80227, Indonesia'],
+  email:'info@thefacespeace.com',
+  phone:'+62 823 2322 3433',
+  privacyUrl:'https://thefacespeace.com/privacy-policy/',   // full privacy policy
+  cookieUrl:'',          // full cookie policy page (empty = opens the Cookies section of this footer)
+  termsUrl:'',           // full terms page (empty = opens the Terms section of this footer)
+  ownBanner:true,        // shows a simple cookie consent (Google Consent Mode v2) only if the site has no other cookie tool
+  /* ---- enquiry form + conversion ---- */
+  formId:703,            // Forminator form printed by the WPCode PHP snippet
+  investorPage:'https://thefacespeace.com/book-an-investor-meeting/', // fallback link if the form is not on this page
+  calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
+  sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',
+  leadValue:0,           // same value as the Google Ads conversion (e.g. 50), 0 = none
+  fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',budget:'radio-1'},
+  hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'}
+};
+var L={
+ en:['Privacy Policy','Cookie Policy','Terms of Use','Legal notice','Not an offer','Do Not Sell or Share My Personal Information','Cookie settings','All rights reserved.','Close','We use analytics and advertising cookies only with your consent.','Reject','Accept','Learn more','Partnership enquiry','Takes about 1 minute. Your details are never sold.','Book a private call'],
+ es:['Política de privacidad','Política de cookies','Condiciones de uso','Aviso legal','No es una oferta','No vender ni compartir mis datos personales','Configurar cookies','Todos los derechos reservados.','Cerrar','Usamos cookies de analítica y publicidad solo con su consentimiento.','Rechazar','Aceptar','Más información','Solicitud de colaboración','Se tarda 1 minuto. Nunca vendemos sus datos.','Reservar llamada privada'],
+ ru:['Политика конфиденциальности','Политика cookie','Условия использования','Правовая информация','Не является офертой','Не продавать и не передавать мои данные','Настройки cookie','Все права защищены.','Закрыть','Мы используем аналитические и рекламные cookie только с вашего согласия.','Отклонить','Принять','Подробнее','Запрос о сотрудничестве','Займёт около минуты. Мы не продаём ваши данные.','Записаться на звонок'],
+ uk:['Політика конфіденційності','Політика cookie','Умови використання','Правова інформація','Не є офертою','Не продавати й не передавати мої дані','Налаштування cookie','Усі права захищено.','Закрити','Ми використовуємо аналітичні та рекламні cookie лише з вашої згоди.','Відхилити','Прийняти','Докладніше','Запит про співпрацю','Займе близько хвилини. Ми не продаємо ваші дані.','Записатися на дзвінок'],
+ fr:['Politique de confidentialité','Politique de cookies','Conditions d’utilisation','Mentions légales','Pas une offre','Ne pas vendre ni partager mes données','Paramètres des cookies','Tous droits réservés.','Fermer','Nous utilisons des cookies d’analyse et de publicité uniquement avec votre consentement.','Refuser','Accepter','En savoir plus','Demande de partenariat','Environ 1 minute. Vos données ne sont jamais vendues.','Réserver un appel privé'],
+ ja:['プライバシーポリシー','クッキーポリシー','利用規約','法的情報','募集ではありません','個人情報を販売・共有しない','クッキー設定','All rights reserved.','閉じる','分析・広告クッキーは同意いただいた場合のみ使用します。','拒否','同意','詳細','パートナーシップのお問い合わせ','約1分で完了します。データを販売することはありません。','個別通話を予約'],
+ zh:['隐私政策','Cookie 政策','使用条款','法律声明','非要约','请勿出售或共享我的个人信息','Cookie 设置','保留所有权利。','关闭','我们仅在您同意后使用分析和广告 Cookie。','拒绝','接受','了解更多','合作咨询','大约需要 1 分钟。我们绝不出售您的数据。','预约私人通话'],
+ th:['นโยบายความเป็นส่วนตัว','นโยบายคุกกี้','ข้อกำหนดการใช้งาน','ข้อมูลทางกฎหมาย','ไม่ใช่ข้อเสนอ','ห้ามขายหรือแบ่งปันข้อมูลส่วนบุคคลของฉัน','ตั้งค่าคุกกี้','สงวนลิขสิทธิ์','ปิด','เราใช้คุกกี้เพื่อการวิเคราะห์และโฆษณาเฉพาะเมื่อคุณยินยอมเท่านั้น','ปฏิเสธ','ยอมรับ','ดูเพิ่มเติม','สอบถามความร่วมมือ','ใช้เวลาประมาณ 1 นาที ข้อมูลของคุณจะไม่ถูกขาย','นัดหมายโทรคุย'],
+ id:['Kebijakan Privasi','Kebijakan Cookie','Ketentuan Penggunaan','Informasi hukum','Bukan penawaran','Jangan jual atau bagikan data pribadi saya','Pengaturan cookie','Hak cipta dilindungi.','Tutup','Kami menggunakan cookie analitik dan iklan hanya dengan persetujuan Anda.','Tolak','Terima','Selengkapnya','Ajukan kemitraan','Sekitar 1 menit. Data Anda tidak pernah dijual.','Jadwalkan panggilan privat']
+};
+/* legal panel: English (binding version) + Spanish and Russian; other languages show English */
+var P={
+ en:{h:['Legal notice','Not an offer · notices by country','Privacy & your rights','Cookies','Terms of use'],
+  t:[
+   function(c){return '<p><b>'+c.brand+'</b> — wellness and spa business, Bali, Indonesia. Operator: '+(c.legalName||'legal entity details provided on request')+(c.regNo?' · Reg. no. '+c.regNo:'')+'.</p><p>Addresses: '+c.addresses.join(' · ')+'.<br>Contact: <a href="mailto:'+c.email+'">'+c.email+'</a> · '+c.phone+'.</p>'},
+   function(){return '<p>Information on this website is general and for information only. It is not an offer to sell, a solicitation to buy, or a recommendation of any security, financial product, franchise or investment, it is not investment, legal or tax advice, and it contains no promise of income or returns. Any cooperation is subject to individual discussion, due diligence and written agreements, and only where the law of the visitor’s country allows it.</p><p><b>EU/EEA incl. Spain:</b> no prospectus approved by any authority (incl. CNMV); not addressed to retail investors where a prospectus would be required. <b>United Kingdom:</b> not approved by an FCA-authorised person; directed only at persons to whom it may lawfully be communicated. <b>United States:</b> no securities registered under the Securities Act of 1933; not offered to US persons except under an exemption; no franchise is offered before the legally required disclosure. <b>Russia:</b> not a public offer (art. 437 Civil Code), not advertising of financial services or securities, not an individual investment recommendation. <b>Indonesia:</b> not registered with or approved by OJK. <b>Other countries:</b> not intended where its distribution would be unlawful.</p>'},
+   function(c){return '<p>We process personal data only to answer requests, arrange meetings and take pre-contractual steps, with consent where required, and never sell it. Data may be processed outside your country (incl. Indonesia) with appropriate safeguards. You can access, correct, delete, restrict, port or object to the use of your data and withdraw consent at any time by writing to <a href="mailto:'+c.email+'">'+c.email+'</a>, and complain to your data protection authority.</p><p>This covers the EU/EEA and UK GDPR, Russia (152-FZ, cross-border transfer with consent), Indonesia (PDP Law 27/2022), Brazil (LGPD), Japan (APPI), Singapore/Thailand (PDPA), China (PIPL) and California (CCPA/CPRA). <b>We do not sell or share personal information</b> for cross-context behavioural advertising; you can still send a “Do Not Sell or Share” request by email. Full details: <a href="'+c.privacyUrl+'" target="_blank" rel="noopener">Privacy Policy</a>.</p>'},
+   function(){return '<p>Strictly necessary storage keeps the site working. Analytics and advertising cookies (e.g. Google Analytics, Google Ads) are set only after you accept them, using Google Consent Mode v2. You can change your choice at any time with “Cookie settings” in this footer.</p>'},
+   function(c){return '<p>Content, brand names, logos, photos and treatment names belong to '+c.brand+' and may not be reused without permission. Content is provided “as is”, may change without notice, and figures, plans and project status are preliminary. Bookings and services are governed by the terms of the relevant spa. Use of this website is subject to the laws of the Republic of Indonesia, without prejudice to mandatory consumer rights in your country of residence.</p>'}
+  ]},
+ es:{h:['Aviso legal','No es una oferta · avisos por país','Privacidad y sus derechos','Cookies','Condiciones de uso'],
+  t:[
+   function(c){return '<p><b>'+c.brand+'</b> — negocio de bienestar y spa, Bali, Indonesia. Titular: '+(c.legalName||'datos de la entidad facilitados a petición')+(c.regNo?' · N.º registro '+c.regNo:'')+'.</p><p>Direcciones: '+c.addresses.join(' · ')+'.<br>Contacto: <a href="mailto:'+c.email+'">'+c.email+'</a> · '+c.phone+'.</p>'},
+   function(){return '<p>La información de este sitio es general y meramente informativa. No es una oferta de venta, una invitación a comprar ni una recomendación sobre valores, productos financieros, franquicias o inversiones, no constituye asesoramiento de inversión, legal ni fiscal y no contiene promesas de ingresos ni de rentabilidad. Cualquier colaboración está sujeta a conversación individual, revisión previa y contratos escritos, y solo donde lo permita la ley del país del visitante.</p><p><b>UE/EEE, incl. España:</b> ningún folleto aprobado por autoridad alguna (incl. la CNMV); no dirigido a inversores minoristas cuando se exigiría folleto. <b>Reino Unido:</b> no aprobado por persona autorizada por la FCA. <b>EE. UU.:</b> no hay valores registrados conforme a la Securities Act de 1933; no se ofrece franquicia antes de la información legalmente exigida. <b>Rusia:</b> no es oferta pública (art. 437 del Código Civil) ni publicidad de servicios financieros. <b>Indonesia:</b> no registrado ni aprobado por la OJK. <b>Otros países:</b> no destinado a lugares donde su difusión sea ilegal.</p>'},
+   function(c){return '<p>Tratamos datos personales solo para responder solicitudes, organizar reuniones y tomar medidas precontractuales, con consentimiento cuando se requiere, y nunca los vendemos. Pueden tratarse fuera de su país (incl. Indonesia) con garantías adecuadas. Puede ejercer sus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición, y retirar su consentimiento en <a href="mailto:'+c.email+'">'+c.email+'</a>, así como reclamar ante su autoridad de protección de datos (en España, la AEPD).</p><p>Cubre RGPD UE/EEE y Reino Unido, Rusia (152-FZ), Indonesia (Ley PDP 27/2022), Brasil (LGPD), Japón (APPI), Singapur/Tailandia (PDPA), China (PIPL) y California (CCPA/CPRA). <b>No vendemos ni compartimos datos personales.</b> Más información: <a href="'+c.privacyUrl+'" target="_blank" rel="noopener">Política de privacidad</a>.</p>'},
+   function(){return '<p>El almacenamiento estrictamente necesario mantiene el sitio en funcionamiento. Las cookies de analítica y publicidad (p. ej., Google Analytics, Google Ads) solo se activan si las acepta, mediante Google Consent Mode v2. Puede cambiar su elección en cualquier momento con «Configurar cookies» en este pie.</p>'},
+   function(c){return '<p>Los contenidos, marcas, logotipos, fotografías y nombres de tratamientos pertenecen a '+c.brand+' y no pueden reutilizarse sin permiso. El contenido se ofrece «tal cual», puede cambiar sin aviso y las cifras, planes y estados de proyecto son preliminares. Las reservas y servicios se rigen por las condiciones de cada spa. El uso de este sitio se rige por las leyes de la República de Indonesia, sin perjuicio de los derechos imperativos del consumidor en su país de residencia.</p>'}
+  ]},
+ ru:{h:['Правовая информация','Не является офертой · уведомления по странам','Конфиденциальность и ваши права','Cookie','Условия использования'],
+  t:[
+   function(c){return '<p><b>'+c.brand+'</b> — wellness и SPA-бизнес, Бали, Индонезия. Оператор: '+(c.legalName||'реквизиты юридического лица предоставляются по запросу')+(c.regNo?' · Рег. № '+c.regNo:'')+'.</p><p>Адреса: '+c.addresses.join(' · ')+'.<br>Контакты: <a href="mailto:'+c.email+'">'+c.email+'</a> · '+c.phone+'.</p>'},
+   function(){return '<p>Информация на сайте носит общий и исключительно информационный характер. Она не является предложением о продаже, приглашением к покупке или рекомендацией в отношении ценных бумаг, финансовых продуктов, франшиз или инвестиций, не является инвестиционной, юридической или налоговой консультацией и не содержит обещаний дохода или доходности. Любое сотрудничество возможно только после индивидуального обсуждения, проверки и заключения письменных договоров и только там, где это допускает законодательство страны посетителя.</p><p><b>Россия:</b> не является публичной офертой (ст. 437 ГК РФ), рекламой финансовых услуг или ценных бумаг и индивидуальной инвестиционной рекомендацией. <b>ЕС/ЕЭЗ, Великобритания, США, Индонезия и другие страны:</b> проспекты не утверждались, ценные бумаги не регистрировались; материал не предназначен для лиц там, где его распространение незаконно.</p>'},
+   function(c){return '<p>Мы обрабатываем персональные данные только для ответа на запросы, организации встреч и преддоговорных действий, с согласия там, где оно требуется, и никогда их не продаём. Данные могут обрабатываться за пределами вашей страны (в т. ч. в Индонезии) с надлежащими гарантиями; для резидентов РФ — с согласия на трансграничную передачу (152-ФЗ). Вы можете запросить доступ, исправление, удаление данных и отозвать согласие, написав на <a href="mailto:'+c.email+'">'+c.email+'</a>.</p><p>Также соблюдаются GDPR (ЕС/ЕЭЗ, Великобритания), PDP 27/2022 (Индонезия), LGPD, APPI, PDPA, PIPL и CCPA/CPRA. <b>Мы не продаём и не передаём персональные данные.</b> Подробнее: <a href="'+c.privacyUrl+'" target="_blank" rel="noopener">Политика конфиденциальности</a>.</p>'},
+   function(){return '<p>Строго необходимые данные обеспечивают работу сайта. Аналитические и рекламные cookie (например, Google Analytics, Google Ads) включаются только после вашего согласия (Google Consent Mode v2). Изменить выбор можно в любой момент через «Настройки cookie» внизу страницы.</p>'},
+   function(c){return '<p>Тексты, товарные знаки, логотипы, фотографии и названия процедур принадлежат '+c.brand+' и не могут использоваться без разрешения. Информация предоставляется «как есть», может меняться без уведомления; цифры, планы и статусы проектов предварительные. Бронирования и услуги регулируются условиями соответствующего SPA. Использование сайта регулируется законодательством Республики Индонезия без ущерба для обязательных прав потребителей в стране проживания.</p>'}
+  ]}
+};
+var ROOTS='#tfSite,#tfw,#wt,#faces-ubud,#tf1,[data-tf-lang-root]';
+function lang(){var r=document.querySelector(ROOTS),el=(r&&r.getAttribute('lang'))?r:document.documentElement;var l=(el.getAttribute('lang')||'en').toLowerCase().slice(0,2);if(l==='ua')l='uk';if(l==='in')l='id';return L[l]?l:'en'}
+function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+var f=document.createElement('footer');f.id='tflf';f.setAttribute('role','contentinfo');f.setAttribute('data-noi18n','');f.setAttribute('translate','no');
+var ckb=document.createElement('div');ckb.id='tflf-ck';ckb.hidden=true;ckb.setAttribute('role','dialog');ckb.setAttribute('data-noi18n','');
+var fp=document.createElement('div');fp.className='fp';fp.id='tflf-enquiry';
+var openSec=-1;
+function pageHasOwnForm(){return !!document.getElementById('tf1')}   /* Book an Investor Meeting page: its own form and tracking */
+function render(){var l=lang(),t=L[l],p=P[l]||P.en,y=new Date().getFullYear(),S='<span class="sep" aria-hidden="true">·</span>';
+ function link(label,url,sec){return url?'<a href="'+url+'" target="_blank" rel="noopener">'+esc(label)+'</a>':'<button type="button" class="k" data-sec="'+sec+'" aria-expanded="'+(openSec===sec)+'" aria-controls="tflf-p">'+esc(label)+'</button>'}
+ var enq=pageHasOwnForm()?'':'<button type="button" class="k enq" data-enq="1" aria-controls="tflf-enquiry">'+esc(t[13])+'</button>'+S;
+ var h='<div class="l"><span class="c">© '+y+' '+esc(CONFIG.brand)+'. '+esc(t[7])+'</span>'+enq+
+  link(t[0],CONFIG.privacyUrl,2)+S+link(t[1],CONFIG.cookieUrl,3)+S+link(t[2],CONFIG.termsUrl,4)+S+
+  '<button type="button" class="k" data-sec="0" aria-controls="tflf-p">'+esc(t[3])+'</button>'+S+
+  '<button type="button" class="k" data-sec="1" aria-controls="tflf-p">'+esc(t[4])+'</button>'+S+
+  '<button type="button" class="k" data-sec="2" aria-controls="tflf-p">'+esc(t[5])+'</button>'+S+
+  '<button type="button" class="k" data-ck="1">'+esc(t[6])+'</button>'+S+
+  '<a href="mailto:'+CONFIG.email+'">'+esc(CONFIG.email)+'</a></div>'+
+  '<div class="p" id="tflf-p"><div class="pi"><button type="button" class="x">'+esc(t[8])+' ×</button>';
+ p.h.forEach(function(hh,i){h+='<h4 id="tflf-s'+i+'">'+esc(hh)+'</h4>'+p.t[i](CONFIG)});
+ h+='</div></div>';
+ var keep=fp.querySelector('form');           /* keep the live Forminator form when the language changes */
+ f.innerHTML=h;f.appendChild(fp);
+ var head='<div class="fc"><div class="fh"><strong>'+esc(t[13])+'</strong><button type="button" class="fx">'+esc(t[8])+' ×</button></div><p class="fs">'+esc(t[14])+'</p><div class="fslot"></div></div>';
+ if(!fp.querySelector('.fc'))fp.innerHTML=head;else{fp.querySelector('.fh strong').textContent=t[13];fp.querySelector('.fx').textContent=t[8]+' ×';fp.querySelector('.fs').textContent=t[14]}
+ if(keep&&!fp.contains(keep))fp.querySelector('.fslot').appendChild(keep);
+ ckb.innerHTML='<p>'+esc(t[9])+' <a href="#tflf-s3" data-sec="3">'+esc(t[12])+'</a></p><div class="r"><button type="button" class="n">'+esc(t[10])+'</button><button type="button" class="y">'+esc(t[11])+'</button></div>';
+ if(openSec>-1)f.classList.add('open');}
+function show(sec){openSec=sec;f.classList.add('open');var h=document.getElementById('tflf-s'+sec);if(h)setTimeout(function(){h.scrollIntoView({behavior:'smooth',block:'start'})},30);try{(window.dataLayer=window.dataLayer||[]).push({event:'thefaces_legal_open',section:sec})}catch(e){}}
+f.addEventListener('click',function(e){var b=e.target.closest('[data-sec]');if(b){e.preventDefault();show(+b.getAttribute('data-sec'));return}
+ if(e.target.closest('.x')){openSec=-1;f.classList.remove('open');return}
+ if(e.target.closest('.fx')){f.classList.remove('fopen');return}
+ if(e.target.closest('[data-enq]')){openEnquiry('footer');return}
+ if(e.target.closest('[data-ck]'))cookieSettings()});
+
+/* ---------- enquiry form (Forminator) + conversion ---------- */
+window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments)}
+var attr={};try{var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid'].forEach(function(k){var v=q.get(k);if(v)attr[k]=String(v).slice(0,150)});
+ if(Object.keys(attr).length)sessionStorage.setItem('tf_attr',JSON.stringify(attr));else attr=JSON.parse(sessionStorage.getItem('tf_attr')||'{}')}catch(e){}
+var lastPlace='';
+function ffForm(){var src=document.getElementById('tflf-form-src');return (src&&src.querySelector('form.forminator-custom-form'))||fp.querySelector('form.forminator-custom-form')}
+function openEnquiry(place){
+ lastPlace=place||'footer';var form=ffForm();
+ if(!form){location.href=CONFIG.investorPage;return}      /* PHP snippet missing: go to the investor page */
+ var slot=fp.querySelector('.fslot');if(!slot.contains(form))slot.appendChild(form);
+ f.classList.add('fopen');wire(form);
+ setTimeout(function(){fp.scrollIntoView({behavior:'smooth',block:'start'})},30);
+ window.dataLayer.push({event:'thefaces_cta',placement:'footer_enquiry'});
+}
+function fEl(form,key){var n=(CONFIG.fields||{})[key]||(CONFIG.hidden||{})[key];if(!n)return null;return form.querySelector('[name="'+n+'"]')||form.querySelector('[name^="'+n+'-"]')}
+function fVal(form,key){var el=fEl(form,key);if(!el)return '';if(el.type==='radio'||el.type==='checkbox'){var c=form.querySelector('[name="'+el.name+'"]:checked');return c?c.value:''}
+ if(key==='name'&&el.name!==CONFIG.fields.name){return Array.prototype.map.call(form.querySelectorAll('[name^="'+CONFIG.fields.name+'-"]'),function(x){return x.value}).join(' ').trim()}
+ return String(el.value||'').trim()}
+var pending=null;
+function wire(form){
+ if(!form||form.dataset.tflfWired)return;form.dataset.tflfWired='1';
+ form.addEventListener('focusin',function(){if(!form.dataset.started){form.dataset.started='1';window.dataLayer.push({event:'thefaces_form_start',form_id:CONFIG.formId,placement:'footer'})}});
+ form.addEventListener('submit',function(){
+  var em=fVal(form,'email'),nm=fVal(form,'name');
+  if(!/^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(em)||nm.replace(/\s/g,'').length<2)return;   /* empty: Forminator shows its errors, nothing is tracked */
+  var id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
+  var hv={lead_id:id,language:lang(),placement:lastPlace||'footer',page:location.href.split('#')[0].slice(0,250)};for(var k in attr)hv[k]=attr[k];
+  Object.keys(CONFIG.hidden||{}).forEach(function(k){var el=fEl(form,k);if(el&&hv[k]!==undefined)el.value=hv[k]});
+  pending={lead_id:id,name:nm,email:em,phone:fVal(form,'phone'),country:fVal(form,'country'),budget:fVal(form,'budget'),hv:hv};
+ },true);
+ function done(){if(!pending)return;var d=pending;pending=null;
+  window.dataLayer.push({event:'generate_lead',lead_id:d.lead_id,form_id:'forminator_'+CONFIG.formId,lead_method:'forminator',budget:d.budget||'not_given',country:d.country||'',
+   form_language:lang(),placement:d.hv.placement,page_type:'footer',value:CONFIG.leadValue,currency:'USD',utm_source:attr.utm_source,utm_medium:attr.utm_medium,utm_campaign:attr.utm_campaign,gclid:attr.gclid});
+  if(/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(CONFIG.sheetUrl||'')){var F=CONFIG.fields,H=CONFIG.hidden,row={};
+   row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row[F.country]=d.country;if(d.budget)row[F.budget]=d.budget;
+   Object.keys(H).forEach(function(k){if(d.hv[k]!==undefined)row[H[k]]=d.hv[k]});
+   try{fetch(CONFIG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams(row)})}catch(x){}}
+  if(!fp.querySelector('.tflf-cal')){var a=document.createElement('a');a.className='tflf-cal';a.href=CONFIG.calendar;a.target='_blank';a.rel='noopener';a.textContent=L[lang()][15];fp.querySelector('.fc').appendChild(a)}
+ }
+ if(window.jQuery){window.jQuery(document).on('forminator:form:submit:success',function(e){if(e.target===form||window.jQuery(form).is(e.target)||window.jQuery(e.target).closest(form).length)done()});
+  window.jQuery(document).on('forminator:form:submit:failed',function(e){if(e.target===form||window.jQuery(form).is(e.target))pending=null})}
+ try{new MutationObserver(function(){if(pending&&form.querySelector('.forminator-response-message.forminator-success,.forminator-success'))done()}).observe(form,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
+}
+/* any link to #enquiry on the site opens the footer form */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#enquiry"],a[href$="#enquiry"],[data-open-enquiry]');if(a&&!pageHasOwnForm()&&ffForm()){e.preventDefault();openEnquiry(a.getAttribute('data-open-enquiry')||'link')}});
+
+/* ---------- cookies: use the site's tool if there is one, otherwise a minimal Consent Mode v2 banner ---------- */
+function store(v){try{if(v===undefined)return localStorage.getItem('tf_consent');localStorage.setItem('tf_consent',v)}catch(e){return null}}
+function pageBanner(){return document.querySelector('#tf5-cookie,#tf3-cookie,[id$="-cookie"][role=dialog]:not(#tflf-ck)')}
+function otherTool(){return !!(window.Cookiebot||window.CookieYes||window.revisitCkyConsent||window.cmplz_show_banner||window.complianz||window.OneTrust||window.Osano||window.__tcfapi||document.querySelector('#cmplz-cookiebanner-container,.cky-consent-container,#CybotCookiebotDialog,#onetrust-banner-sdk,.cmplz-cookiebanner,#moove_gdpr_cookie_info_bar,#cookie-law-info-bar'))}
+function decide(g){var v=g?'granted':'denied';gtag('consent','update',{ad_storage:v,analytics_storage:v,ad_user_data:v,ad_personalization:v});store(v);ckb.hidden=true;window.dataLayer.push({event:'thefaces_cookie_choice',choice:v})}
+ckb.addEventListener('click',function(e){if(e.target.closest('.y'))decide(true);else if(e.target.closest('.n'))decide(false);else{var a=e.target.closest('[data-sec]');if(a){e.preventDefault();show(3)}}});
+function cookieSettings(){
+ try{if(window.Cookiebot&&Cookiebot.renew){Cookiebot.renew();return}}catch(e){}
+ try{if(window.revisitCkyConsent){revisitCkyConsent();return}}catch(e){}
+ try{if(window.OneTrust&&OneTrust.ToggleInfoDisplay){OneTrust.ToggleInfoDisplay();return}}catch(e){}
+ try{if(window.cmplz_show_banner){cmplz_show_banner();return}}catch(e){}
+ var pb=pageBanner();if(pb){pb.hidden=false;return}
+ ckb.hidden=false;}
+function mount(){document.body.appendChild(f);document.body.appendChild(ckb);render();
+ if(!pageHasOwnForm()){var fm=ffForm();if(fm)wire(fm);if(/#enquiry$/.test(location.hash))setTimeout(function(){openEnquiry('url')},400)}
+ var last=lang();new MutationObserver(function(){if(lang()!==last){last=lang();render()}}).observe(document.documentElement,{attributes:true,attributeFilter:['lang'],subtree:true});
+ setTimeout(function(){var c=store();
+  if(c==='granted'||c==='denied'){if(c==='granted')gtag('consent','update',{ad_storage:'granted',analytics_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});return}
+  if(CONFIG.ownBanner&&!otherTool()&&!pageBanner()){gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});ckb.hidden=false}
+ },600);}
+if(document.body)mount();else document.addEventListener('DOMContentLoaded',mount);
+})();
+</script>
