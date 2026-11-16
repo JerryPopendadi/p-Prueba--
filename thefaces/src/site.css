@@ -793,7 +793,8 @@ a.btn[data-book][href]:hover{background:#1b261c;border-color:#1b261c;color:#fff}
 }
 
 /* founders' video */
-.fo-video{margin-top:clamp(50px,7vw,90px);max-width:1040px}
+.fo-video{max-width:1040px}
+.fo-v-sec{padding:0 0 clamp(70px,9vw,130px)}
 .fo-v-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
 .fo-v-head .eyebrow{color:var(--gold)}
 .fo-v-tabs{display:flex;gap:6px}

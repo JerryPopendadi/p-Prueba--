@@ -16,7 +16,7 @@ Dominio: https://thefacesworld.com · Idiomas: English (`/`), Русский (`/
 | five-elements | `/five-elements` | `01-header` → `pages/five-elements-intro` → `04-senses` → `05-elements` → `06-signatures` → `14-faq` → `15-footer` |
 | ubud | `/ubud` | `01-header` → `pages/ubud-salon` → `17-instagram` → `15-footer` |
 | sanur | `/sanur` | `01-header` → `pages/sanur-salon` → `17-instagram` → `15-footer` |
-| founders | `/founders` | `01-header` → `pages/founders-intro` → `10-founders` → `18-certificates` → `03-philosophy` → `15-footer` |
+| founders | `/founders` | `01-header` → `pages/founders-intro` → `10-founders` → `24-founders-video` → `18-certificates` → `03-philosophy` → `15-footer` |
 | gift-certificates | `/gift-certificates` | `01-header` → `pages/gift-certificates-intro` → `11-gifts` → `06-signatures` → `14-faq` → `15-footer` |
 | partners | `/partners` | `01-header` → `pages/partners-intro` → `12-partners` → `16-waterfall` → `15-footer` |
 | journal | `/journal` | `01-header` → `21-journal-all` → `15-footer` |

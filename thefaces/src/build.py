@@ -125,7 +125,7 @@ for _P in PAGES:  # one main search intent per page (no cannibalisation)
     elif _P["slug"] == "five-elements":
         _P["blocks"] = ["01-header", "04-senses", "05-elements", "06-signatures", "14-faq", "15-footer"]
     elif _P["slug"] == "founders":
-        _P["blocks"] = ["01-header", "10-founders", "18-certificates", "03-philosophy", "15-footer"]
+        _P["blocks"] = ["01-header", "10-founders", "24-founders-video", "18-certificates", "03-philosophy", "15-footer"]
     elif _P["slug"] == "partners":
         _P["blocks"] = ["01-header", "12-partners", "16-waterfall", "15-footer"]
     elif _P["slug"] == "certificates":
@@ -1013,6 +1013,11 @@ def fo_video(ctx):
  </div>'''
 
 
+def b_founders_video(ctx):
+    """Founders' video only on the Founders page (not on the home page)."""
+    return f'<section class="founders fo-v-sec">{fo_video(ctx)}</section>'
+
+
 def b_founders(ctx):
     return f'''<section class="founders sec" id="founders">
  <div class="wrap fo-grid">
@@ -1028,7 +1033,6 @@ def b_founders(ctx):
    <div class="stats rv d4"><div><b>20+</b><span>{E(ctx.t("st_years"))}</span></div><div><b>2</b><span>{E(ctx.t("st_salons"))}</span></div><div><b>50+</b><span>{E(ctx.t("st_treat"))}</span></div></div>
   </div>
  </div>
- {fo_video(ctx)}
 </section>'''
 
 
@@ -1271,7 +1275,7 @@ BLOCKS = {"01-header": b_header, "02-hero": b_hero, "03-philosophy": b_philosoph
           "05-elements": b_elements, "06-signatures": b_signatures, "07-menu-builder": b_menu, "08-gallery": b_gallery,
           "09-salons": b_salons, "10-founders": b_founders, "11-gifts": b_gifts, "12-partners": b_partners,
           "13-journal": b_journal, "17-instagram": b_instagram, "18-certificates": b_certificates,
-          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "22-explore": b_explore, "23-reviews": b_reviews, "14-faq": b_faq, "15-footer": b_footer}
+          "19-privacy": b_privacy, "20-terms": b_terms, "21-journal-all": b_journal_all, "16-waterfall": b_waterfall, "22-explore": b_explore, "23-reviews": b_reviews, "24-founders-video": b_founders_video, "14-faq": b_faq, "15-footer": b_footer}
 
 
 def wrap(ctx, name, inner):

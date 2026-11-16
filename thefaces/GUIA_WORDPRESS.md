@@ -218,8 +218,8 @@ Ninguna web es invulnerable. Con estas capas se cubren los ataques automáticos 
    - directorios de spas de Bali, blogs de viajes y prensa local, y hoteles partners.
 5. **Enlaces externos (69):** son sobre todo los botones de reserva de Altegio, WhatsApp, mapas y redes. Son necesarios; es solo una recomendación de Seobility.
 
-## 2r. Vídeo de los fundadores (versión 1.6.5)
-- **Dónde está:** en el bloque de fundadores (página Fundadores y portada en ordenador) hay ahora el vídeo de la historia de THE FACES en dos versiones:
+## 2r. Vídeo de los fundadores (versión 1.6.6)
+- **Dónde está:** solo en la página **Fundadores** (no en la portada), justo después de la historia. Es el vídeo de la historia de THE FACES en dos versiones:
   - English: `M43ffm_eK9o`;
   - Русский: `uaOdDmGgYvE`.
 - **Qué versión se ve primero:** en ruso y ucraniano sale primero la rusa; en los demás idiomas, la inglesa. Con los botones «English / Русский» se cambia.
