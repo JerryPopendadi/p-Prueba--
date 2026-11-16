@@ -27,7 +27,7 @@ function doPost(e) {
   debug_(e, data);                                                          // every call is logged in the "Debug" tab
   // email / name: by field id, or found by content if Forminator uses other keys
   var email = clean_(data['email-1'] || find_(data, function (k, v) { return /^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(v); })).toLowerCase();
-  var name = clean_(data['name-1'] || [data['name-1-first-name'], data['name-1-last-name']].join(' ') || find_(data, function (k, v) { return /name|nombre|имя/i.test(k) && !/@/.test(v); }));
+  var name = clean_(clean_(data['name-1']) || clean_([data['name-1-first-name'], data['name-1-last-name']].join(' ')) || find_(data, function (k, v) { return /name|nombre|имя/i.test(k) && !/@/.test(v); }));
   if (!/^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(email) || name.replace(/\s/g, '').length < 2) {
     return out_({ ok: false, error: 'empty or invalid' });              // never store empty enquiries
   }
