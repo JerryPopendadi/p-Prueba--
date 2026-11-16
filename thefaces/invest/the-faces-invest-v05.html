@@ -1,4 +1,4 @@
-<!-- THE FACES INVEST · v05 · Elementor HTML widget · AUTO LANGUAGE (EN/ES/RU/FR/JA/ID)
+<!-- THE FACES INVEST · v05.1 · Elementor HTML widget · AUTO LANGUAGE (EN/ES/RU/FR/JA/ID)
      Enquiry form: Forminator form 703, placed in the contact card (the only shortcode in this widget, inside div#tf1-form-slot).
      On success the page sends the conversion "generate_lead" (lead id, profile, interest, budget, country, language, button clicked, campaign) to GTM / GA4 / Google Ads,
      and fills Forminator hidden fields with the same data so every entry, email and Google Sheet row carries it.
@@ -618,9 +618,9 @@ var CONFIG={
  calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
  forminatorId:703,               // Forminator form shown in the contact card
  /* Forminator field names (Forminator → form 703 → each field → "Field ID"). Leave '' for fields the form does not have. */
- fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',profile:'select-1',interest:'select-2',budget:'select-3',contact_pref:'select-4',message:'textarea-1'},
+ fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',budget:'radio-1',profile:'',interest:'',contact_pref:'',message:''},  // form 703: Full Name, Email, Phone/WhatsApp, Country, Investment Budget (radio), Captcha
  /* Hidden fields filled by this page so each entry / email / Google Sheet row has the campaign data. */
- hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},
+ hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},  // optional: only filled if these Hidden fields exist in the form
  videos:{en:'M43ffm_eK9o',ru:'uaOdDmGgYvE'}, // founders' video on YouTube: English and Russian versions
  privacyUrl:'https://thefacespeace.com/privacy-policy/',
  consentBanner:false,            // CookieYes already runs on thefacespeace.com; set true only on sites without a cookie banner
