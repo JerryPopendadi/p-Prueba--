@@ -5,7 +5,7 @@
  *  1. Create a Google Sheet "THE FACES INVEST · Leads" with the Google account that should own the data.
  *  2. In the Sheet: Extensions → Apps Script. Delete the sample code, paste this file, Save.
  *  3. Deploy → New deployment → type "Web app" → Execute as: Me · Who has access: Anyone → Deploy → allow permissions.
- *  4. Copy the Web app URL (ends with /exec) into CONFIG.sheetUrl in the-faces-invest-v03.html (Elementor HTML widget).
+ *  4. Copy the Web app URL (ends with /exec) into CONFIG.sheetUrl in the-faces-invest-v04.html (Elementor HTML widget).
  *
  * Every valid enquiry adds one row to the "Leads" tab and sends an email to NOTIFY.
  * Empty or invalid submissions (bots) are rejected here too, not only in the browser.
@@ -64,8 +64,13 @@ function sheet_() {
   var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) { sh = ss.insertSheet(SHEET_NAME); sh.appendRow(FIELDS); sh.setFrozenRows(1); }
   else if (sh.getRange(1, 1, 1, FIELDS.length).getValues()[0].join('|') !== FIELDS.join('|')) {
-    if (sh.getLastRow() > 1) { sh = ss.insertSheet(SHEET_NAME + ' ' + Utilities.formatDate(new Date(), 'UTC', 'yyyy-MM-dd')); }  // keep old rows, start a fresh tab
-    sh.getRange(1, 1, 1, FIELDS.length).setValues([FIELDS]); sh.setFrozenRows(1);
+    if (sh.getLastRow() > 1) {                                                 // old columns with data: keep them in a renamed tab
+      sh.setName(SHEET_NAME + ' (old ' + Utilities.formatDate(new Date(), 'UTC', 'yyyy-MM-dd HH:mm') + ')');
+      sh = ss.insertSheet(SHEET_NAME, 0); sh.appendRow(FIELDS);
+    } else {
+      sh.getRange(1, 1, 1, FIELDS.length).setValues([FIELDS]);
+    }
+    sh.setFrozenRows(1);
   }
   return sh;
 }
