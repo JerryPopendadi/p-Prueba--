@@ -24,7 +24,10 @@ var SKIP = /captcha|nonce|referer|^_|^action$|^page_id$|^form_id$|^current_url$|
 
 function doPost(e) {
   var data = parse_(e);
-  var email = clean_(data['email-1']).toLowerCase(), name = clean_(data['name-1'] || [data['name-1-first-name'], data['name-1-last-name']].join(' '));
+  debug_(e, data);                                                          // every call is logged in the "Debug" tab
+  // email / name: by field id, or found by content if Forminator uses other keys
+  var email = clean_(data['email-1'] || find_(data, function (k, v) { return /^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(v); })).toLowerCase();
+  var name = clean_(data['name-1'] || [data['name-1-first-name'], data['name-1-last-name']].join(' ') || find_(data, function (k, v) { return /name|nombre|имя/i.test(k) && !/@/.test(v); }));
   if (!/^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(email) || name.replace(/\s/g, '').length < 2) {
     return out_({ ok: false, error: 'empty or invalid' });              // never store empty enquiries
   }
@@ -54,7 +57,7 @@ function doPost(e) {
   return out_({ ok: true });
 }
 
-function doGet() { return out_({ ok: true, service: 'THE FACES INVEST · Forminator webhook' }); }
+function doGet() { return out_({ ok: true, service: 'THE FACES INVEST · Forminator webhook v2' }); }
 
 /** Forminator sends JSON; also accepts normal form posts. Arrays/objects are flattened to text. */
 function parse_(e) {
@@ -69,6 +72,15 @@ function parse_(e) {
     }
   });
   return d;
+}
+function find_(d, test) { for (var k in d) { var v = clean_(d[k]); if (v && !SKIP.test(k) && test(k, v)) return v; } return ''; }
+function debug_(e, data) {
+  try {
+    var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName('Debug') || ss.insertSheet('Debug');
+    if (!sh.getLastRow()) sh.appendRow(['Received', 'Content type', 'Raw body', 'Parsed keys']);
+    sh.appendRow([new Date(), (e && e.postData && e.postData.type) || '', String((e && e.postData && e.postData.contents) || JSON.stringify((e && e.parameter) || {})).slice(0, 5000),
+                  Object.keys(data).join(', ')]);
+  } catch (x) {}
 }
 function sheet_() { var ss = SpreadsheetApp.getActive(); return ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME, 0); }
 function clean_(v) { return String(v == null ? '' : v).replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 2000); }
