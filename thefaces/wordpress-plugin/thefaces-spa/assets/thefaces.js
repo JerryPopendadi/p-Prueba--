@@ -144,6 +144,27 @@
     window.addEventListener("scroll", function () { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
     onScroll();
 
+    /* ---------- founders' video: YouTube loads only when the visitor presses play ---------- */
+    $$(".fo-video").forEach(function (box) {
+      var yt = $(".yt", box);
+      function show(id, play) {
+        yt.setAttribute("data-yt", id);
+        if (play) {
+          yt.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" title="THE FACES" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+          window.dataLayer.push({ event: "video_play", video_id: id });
+        } else {
+          var img = $("img", yt); if (img) img.src = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
+        }
+      }
+      yt.addEventListener("click", function (e) { if (!$("iframe", yt)) { e.preventDefault(); show(yt.getAttribute("data-yt"), true); } });
+      $$("[data-yt-lang]", box).forEach(function (b) {
+        b.addEventListener("click", function () {
+          $$("[data-yt-lang]", box).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+          show(b.getAttribute("data-yt-id"), !!$("iframe", yt));
+        });
+      });
+    });
+
     /* ---------- background videos: start loading after the page has loaded ---------- */
     function startVideos() {
       $$("video.lazyv").forEach(function (v) {

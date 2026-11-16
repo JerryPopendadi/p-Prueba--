@@ -104,6 +104,13 @@ EXPLORE_UI = {
 UI.update(EXPLORE_UI)
 from content_reviews import REVIEWS, REVIEWS_UI  # noqa: E402
 UI.update(REVIEWS_UI)
+
+FO_VIDEO = {"en": "M43ffm_eK9o", "ru": "uaOdDmGgYvE"}  # founders' story: English and Russian versions (YouTube)
+UI.update({
+ "fo_video": ["Watch: the story of THE FACES", "Смотрите: история THE FACES", "Mira: la historia de THE FACES", "Video: die Geschichte von THE FACES",
+              "ชมวิดีโอ: เรื่องราวของ THE FACES", "Tonton: kisah THE FACES", "動画：THE FACESの物語", "Regardez : l'histoire de THE FACES", "Дивіться: історія THE FACES"],
+ "fo_play": ["Play the video", "Смотреть видео", "Ver el vídeo", "Video abspielen", "เล่นวิดีโอ", "Putar video", "動画を再生", "Lire la vidéo", "Дивитися відео"],
+})
 UI["swipe"] = ["Swipe", "Листайте", "Desliza", "Wischen", "ปัดดู", "Geser", "スワイプ", "Faites glisser", "Гортайте"]
 UI["hero_h1"] = HERO_H1
 for _P in PAGES:  # one main search intent per page (no cannibalisation)
@@ -991,6 +998,21 @@ def b_salons(ctx):
 </section>'''
 
 
+def fo_video(ctx):
+    """Founders' video, English or Russian (Russian first for ru/uk visitors). The YouTube player loads only on click."""
+    first = "ru" if ctx.lang in ("ru", "uk") else "en"
+    vid = FO_VIDEO[first]
+    tabs = "".join(f'<button type="button" data-yt-lang="{k}" data-yt-id="{v}" aria-pressed="{"true" if k == first else "false"}">{lab}</button>'
+                   for k, v, lab in [("en", FO_VIDEO["en"], "English"), ("ru", FO_VIDEO["ru"], "Русский")])
+    return f'''<div class="wrap fo-video rv">
+  <div class="fo-v-head"><p class="eyebrow">{E(ctx.t("fo_video"))}</p><div class="fo-v-tabs" role="group">{tabs}</div></div>
+  <div class="yt" data-yt="{vid}">
+   <img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+   <button type="button" class="yt-play" aria-label="{E(ctx.t("fo_play"))}"><span aria-hidden="true"></span>{E(ctx.t("fo_play"))}</button>
+  </div>
+ </div>'''
+
+
 def b_founders(ctx):
     return f'''<section class="founders sec" id="founders">
  <div class="wrap fo-grid">
@@ -1006,6 +1028,7 @@ def b_founders(ctx):
    <div class="stats rv d4"><div><b>20+</b><span>{E(ctx.t("st_years"))}</span></div><div><b>2</b><span>{E(ctx.t("st_salons"))}</span></div><div><b>50+</b><span>{E(ctx.t("st_treat"))}</span></div></div>
   </div>
  </div>
+ {fo_video(ctx)}
 </section>'''
 
 

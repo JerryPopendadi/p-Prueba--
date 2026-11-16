@@ -218,6 +218,14 @@ Ninguna web es invulnerable. Con estas capas se cubren los ataques automáticos 
    - directorios de spas de Bali, blogs de viajes y prensa local, y hoteles partners.
 5. **Enlaces externos (69):** son sobre todo los botones de reserva de Altegio, WhatsApp, mapas y redes. Son necesarios; es solo una recomendación de Seobility.
 
+## 2r. Vídeo de los fundadores (versión 1.6.5)
+- **Dónde está:** en el bloque de fundadores (página Fundadores y portada en ordenador) hay ahora el vídeo de la historia de THE FACES en dos versiones:
+  - English: `M43ffm_eK9o`;
+  - Русский: `uaOdDmGgYvE`.
+- **Qué versión se ve primero:** en ruso y ucraniano sale primero la rusa; en los demás idiomas, la inglesa. Con los botones «English / Русский» se cambia.
+- **Velocidad y privacidad:** YouTube solo se carga al pulsar play, con youtube-nocookie y sin cookies hasta entonces. En GA4 se mide con el evento `video_play`.
+- **Para cambiar los vídeos:** edita `FO_VIDEO` en `thefaces/src/build.py`.
+
 ## 3. Secciones sueltas
 Para usar una sección dentro de otra página (por ejemplo el blog o una landing de anuncios):
 
