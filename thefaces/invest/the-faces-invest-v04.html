@@ -1,4 +1,4 @@
-<!-- THE FACES INVEST · v04 · Elementor HTML widget · AUTO LANGUAGE (EN/ES/RU/FR/JA/ID)
+<!-- THE FACES INVEST · v04.1 · Elementor HTML widget · AUTO LANGUAGE (EN/ES/RU/FR/JA/ID)
      Investor & partner enquiry form -> Google Sheet + instant email (Google Apps Script, CONFIG.sheetUrl) -> conversion "generate_lead" (GTM / GA4 / Google Ads).
      Founders' video (English / Russian). Booking buttons link straight to Google Calendar.
      IMPORTANT: never write a WordPress shortcode (square brackets) inside this widget: this site executes them and it breaks the script.
@@ -17,6 +17,8 @@
 #tf1 .btn{text-decoration:none;line-height:1.4}#tf1 .btn.blue:hover,#tf1 .btn.blue:focus{color:#fff}#tf1 .btn.outline:hover,#tf1 .btn:hover{color:#fff}#tf1 .nav .btn{white-space:nowrap}
 #tf1 select.lang{width:auto}#tf1 .linkbtn{min-height:0}
 #tf1 .wrap{width:min(1220px,calc(100% - 48px));margin:auto}
+#tf1 img,#tf1 iframe,#tf1 table{max-width:100%}
+#tf1 h1,#tf1 h2,#tf1 h3,#tf1 p,#tf1 a,#tf1 li,#tf1 td{overflow-wrap:break-word}
 #tf1 h1{font-size:clamp(42px,5.2vw,80px);line-height:1.06;letter-spacing:-.055em;font-weight:400;margin-bottom:24px}
 #tf1 h1 em,#tf1 h2 em{font-style:normal;color:#6f8a71;display:block}
 #tf1 h2{font-size:clamp(32px,4.4vw,62px);font-weight:400;letter-spacing:-.05em;line-height:1.1;max-width:860px;margin-bottom:22px}
@@ -199,8 +201,9 @@
 #tf1 .cookie p{font-size:12px;margin:0 0 12px}
 #tf1 .cookie .row{display:flex;gap:8px}
 #tf1 .cookie .btn{flex:1;min-height:40px;padding:8px}
-#tf1 .fade{opacity:0;transform:translateY(16px);transition:opacity .65s,transform .65s}
-#tf1 .fade.on{opacity:1;transform:none}
+/* content is always visible; the fade-in only runs once the script is working */
+#tf1.js .fade{opacity:0;transform:translateY(16px);transition:opacity .65s,transform .65s}
+#tf1.js .fade.on{opacity:1;transform:none}
 @media(max-width:1050px){
 #tf1 .nav a:not(.btn){display:none}
 #tf1 .strip-grid{grid-template-columns:repeat(3,1fr)}
@@ -668,7 +671,7 @@ var CONFIG={
  languages:['en','es','ru','fr','ja','id']
 };
 /* ================================ */
-var root=document.getElementById('tf1');if(!root||root.dataset.ready)return;root.dataset.ready='1';
+var root=document.getElementById('tf1');if(!root||root.dataset.ready)return;root.dataset.ready='1';root.classList.add('js');
 function $(s){return root.querySelector(s)}function $$(s){return Array.prototype.slice.call(root.querySelectorAll(s))}
 function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
 
