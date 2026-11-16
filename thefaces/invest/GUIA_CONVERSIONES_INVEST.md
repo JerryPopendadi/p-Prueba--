@@ -1,7 +1,27 @@
-# THE FACES INVEST · v03: vídeo, formulario y conversiones
+# THE FACES INVEST · v04: vídeo, formulario para inversores y conversiones
+
+## Por qué fallaba la v03 (16/11/2026)
+- En un comentario del código estaba escrito el shortcode de Fluent Forms entre corchetes.
+- Este WordPress **ejecuta los shortcodes dentro del widget HTML**: insertó el formulario antiguo («Blank Form #3») en medio del JavaScript y lo rompió entero.
+- Por eso los botones «Book» se quedaban con el enlace `#`, y el formulario y las traducciones no funcionaban.
+- **La v04** no contiene ningún shortcode, y los botones de reserva llevan el enlace del calendario directamente en el HTML, así funcionan aunque falle el JavaScript.
+- **Regla:** no escribas nunca nada entre corchetes tipo shortcode dentro de este widget.
+- El formulario antiguo de Fluent Forms (#3) **no tiene campos obligatorios**: de ahí los mensajes vacíos. Desactívalo o bórralo, y borra el widget Shortcode de esta página.
+
+## Formulario v04 (orientado a inversores y partners)
+- **Pasos visibles:** 1 · Sobre ti → 2 · Tu interés → 3 · Enviar.
+- **Campos obligatorios:** nombre, email, país, **perfil** (inversor privado, family office / fondo, hotel o resort, promotor / propietario, operador / emprendedor) e **interés**.
+  - El interés va agrupado: «Proyectos en Bali» (Ubud, SANUR Five Elements, White Temple, Waterfall, cualquiera) y «Formatos de colaboración».
+- **Campos opcionales:** teléfono / WhatsApp, **presupuesto orientativo** (rangos), **contacto preferido**, mensaje y novedades.
+- **Interés preseleccionado:** al pulsar «Ask about this project» de un proyecto, el formulario ya trae ese proyecto.
+- **Tras enviar:** «Gracias» con el botón de reservar llamada en el calendario.
+- **Conversión** `generate_lead` con `lead_id`, `profile`, `interest`, `budget`, `contact_pref`, `country`, `form_language`, `placement` y `value`.
+- **Después de pegar el nuevo script de Google:** en Apps Script haz **Implementar → Gestionar implementaciones → Editar (lápiz) → Versión: Nueva versión → Implementar**. La URL no cambia.
+
+
 
 Página: `thefacespeace.com/book-an-investor-meeting/` (widget HTML de Elementor).
-Archivo nuevo: `the-faces-invest-v03.html` → sustituye todo el contenido del widget HTML.
+Archivo nuevo: `the-faces-invest-v04.html` → sustituye todo el contenido del widget HTML.
 
 ## Qué cambia en v03
 - **Vídeo de los fundadores** (inglés `M43ffm_eK9o` / ruso `uaOdDmGgYvE`) debajo del bloque «Founders».
@@ -33,7 +53,7 @@ Archivo nuevo: `the-faces-invest-v03.html` → sustituye todo el contenido del w
 Sin `sheetUrl`, el formulario vuelve a Fluent Forms. En ese caso hace falta el widget Shortcode `[fluentform id="3"]` debajo del HTML.
 
 ## 2. Registrar la conversión en Google (Google Tag Manager `GTM-PHJSTTBR`)
-1. **Variables → Nueva → Variable de capa de datos**, una por cada una: `lead_id`, `interest`, `country`, `form_language`, `placement`, `value`.
+1. **Variables → Nueva → Variable de capa de datos**, una por cada una: `lead_id`, `profile`, `interest`, `budget`, `contact_pref`, `country`, `form_language`, `placement`, `value`.
 2. **Activador:** Evento personalizado → nombre del evento `generate_lead`.
 3. **Etiqueta GA4 – Evento:**
    - nombre `generate_lead`;

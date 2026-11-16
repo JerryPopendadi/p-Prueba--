@@ -12,7 +12,7 @@
  */
 var NOTIFY = 'info@thefacespeace.com';   // who receives the email for every new enquiry (comma-separate several addresses)
 var SHEET_NAME = 'Leads';
-var FIELDS = ['received_at', 'lead_id', 'name', 'email', 'phone', 'country', 'interest', 'interest_label', 'message', 'marketing', 'consent',
+var FIELDS = ['received_at', 'lead_id', 'name', 'email', 'phone', 'country', 'profile', 'interest', 'interest_label', 'budget', 'contact_pref', 'message', 'marketing', 'consent',
               'language', 'placement', 'page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
               'gclid', 'gbraid', 'wbraid', 'user_agent', 'status'];
 
@@ -21,7 +21,7 @@ function doPost(e) {
   if (p.website) return out_({ ok: true });                                   // honeypot filled → bot, ignore silently
   var name = clean_(p.name, 100), email = clean_(p.email, 150).toLowerCase();
   var valid = name.length >= 2 && /^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(email) &&
-              clean_(p.country, 80).length >= 2 && clean_(p.interest, 80) && p.consent === 'yes';
+              clean_(p.country, 80).length >= 2 && clean_(p.interest, 80) && clean_(p.profile, 60) && p.consent === 'yes';
   if (!valid) return out_({ ok: false, error: 'invalid' });                   // never store empty enquiries
 
   var cache = CacheService.getScriptCache();                                   // same email: at most once every 2 minutes
@@ -43,7 +43,9 @@ function doPost(e) {
   var lines = [
     'New partnership enquiry — THE FACES INVEST', '',
     'Name: ' + name, 'Email: ' + email, 'Phone / WhatsApp: ' + (clean_(p.phone, 40) || '—'),
-    'Country: ' + clean_(p.country, 80), 'Interested in: ' + (clean_(p.interest_label, 80) || clean_(p.interest, 80)),
+    'Country: ' + clean_(p.country, 80), 'Profile: ' + clean_(p.profile, 60),
+    'Interested in: ' + (clean_(p.interest_label, 80) || clean_(p.interest, 80)),
+    'Indicative budget: ' + (clean_(p.budget, 40) || 'prefers to discuss'), 'Preferred contact: ' + (clean_(p.contact_pref, 20) || 'email'),
     'Message: ' + (clean_(p.message, 2000) || '—'), 'News opt-in: ' + (p.marketing === 'yes' ? 'yes' : 'no'), '',
     'Language: ' + clean_(p.language, 5) + ' · Clicked: ' + clean_(p.placement, 40) + ' · Page: ' + clean_(p.page, 300),
     'Campaign: ' + ['utm_source', 'utm_medium', 'utm_campaign', 'gclid'].map(function (k) { return p[k] ? k + '=' + clean_(p[k], 150) : ''; }).filter(String).join(' · '),
@@ -61,6 +63,10 @@ function doGet() { return out_({ ok: true, service: 'THE FACES INVEST leads' });
 function sheet_() {
   var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) { sh = ss.insertSheet(SHEET_NAME); sh.appendRow(FIELDS); sh.setFrozenRows(1); }
+  else if (sh.getRange(1, 1, 1, FIELDS.length).getValues()[0].join('|') !== FIELDS.join('|')) {
+    if (sh.getLastRow() > 1) { sh = ss.insertSheet(SHEET_NAME + ' ' + Utilities.formatDate(new Date(), 'UTC', 'yyyy-MM-dd')); }  // keep old rows, start a fresh tab
+    sh.getRange(1, 1, 1, FIELDS.length).setValues([FIELDS]); sh.setFrozenRows(1);
+  }
   return sh;
 }
 function clean_(v, n) { return String(v == null ? '' : v).replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n || 200); }
