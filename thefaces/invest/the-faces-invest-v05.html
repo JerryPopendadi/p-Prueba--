@@ -1,4 +1,4 @@
-<!-- THE FACES INVEST · v05.1 · Elementor HTML widget · AUTO LANGUAGE (EN/ES/RU/FR/JA/ID)
+<!-- THE FACES INVEST · v05.2 · Elementor HTML widget · AUTO LANGUAGE (EN/ES/RU/FR/JA/ID)
      Enquiry form: Forminator form 703, placed in the contact card (the only shortcode in this widget, inside div#tf1-form-slot).
      On success the page sends the conversion "generate_lead" (lead id, profile, interest, budget, country, language, button clicked, campaign) to GTM / GA4 / Google Ads,
      and fills Forminator hidden fields with the same data so every entry, email and Google Sheet row carries it.
@@ -616,7 +616,8 @@ var CONFIG={
  whatsapp:'',                    // digits only, e.g. 6281234567890
  telegram:'',                    // username without @
  calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
- forminatorId:703,               // Forminator form shown in the contact card
+ forminatorId:703,
+ sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',  // Google Apps Script web app: each confirmed enquiry is also saved in the Google Sheet (no Forminator webhook needed)               // Forminator form shown in the contact card
  /* Forminator field names (Forminator → form 703 → each field → "Field ID"). Leave '' for fields the form does not have. */
  fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',budget:'radio-1',profile:'',interest:'',contact_pref:'',message:''},  // form 703: Full Name, Email, Phone/WhatsApp, Country, Investment Budget (radio), Captcha
  /* Hidden fields filled by this page so each entry / email / Google Sheet row has the campaign data. */
@@ -872,13 +873,21 @@ function wireFF(){
   var lead_id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
   var hv={lead_id:lead_id,language:lang,placement:lastGo||'form',page:location.href.split('#')[0].slice(0,250)};for(var k in attr)hv[k]=attr[k];
   Object.keys(CONFIG.hidden||{}).forEach(function(k){if(hv[k]!==undefined)ffSet(FF,k,hv[k])});
-  pending={lead_id:lead_id,email:em,phone:ffVal(FF,'phone'),country:ffVal(FF,'country'),profile:ffVal(FF,'profile'),interest:ffVal(FF,'interest'),budget:ffVal(FF,'budget'),contact_pref:ffVal(FF,'contact_pref')};
+  pending={lead_id:lead_id,name:nm,hv:hv,email:em,phone:ffVal(FF,'phone'),country:ffVal(FF,'country'),profile:ffVal(FF,'profile'),interest:ffVal(FF,'interest'),budget:ffVal(FF,'budget'),contact_pref:ffVal(FF,'contact_pref')};
  },true);
  var done=function(){if(!pending)return;var d=pending;pending=null;
   var ev={lead_id:d.lead_id,form_id:'forminator_'+CONFIG.forminatorId,lead_method:'forminator',interest:d.interest||'not_set',profile:d.profile||'not_set',budget:d.budget||'not_given',
    contact_pref:d.contact_pref||'',country:d.country||'',form_language:lang,placement:lastGo||'form',value:CONFIG.leadValue,currency:'USD'};
   if(CONFIG.enhancedConversions&&store('tf_consent')!=='denied')ev.user_data={email:d.email,phone_number:d.phone||undefined};
   track('generate_lead',ev);
+  /* save the enquiry in the Google Sheet (same field ids as Forminator, so the sheet columns are named) */
+  if(/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(CONFIG.sheetUrl||'')){
+   var F=CONFIG.fields||{},H=CONFIG.hidden||{},row={};
+   row[F.name||'name-1']=d.name;row[F.email||'email-1']=d.email;if(d.phone)row[F.phone||'phone-1']=d.phone;if(d.country)row[F.country||'text-1']=d.country;if(d.budget)row[F.budget||'radio-1']=d.budget;
+   ['profile','interest','contact_pref'].forEach(function(k){if(d[k])row[F[k]||k]=d[k]});
+   Object.keys(H).forEach(function(k){if(d.hv&&d.hv[k]!==undefined)row[H[k]]=d.hv[k]});
+   try{fetch(CONFIG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams(row)})}catch(x){}
+  }
   var th=document.createElement('div');th.className='tf1-thanks';th.innerHTML='<a class="btn blue" target="_blank" rel="noopener noreferrer" data-cal="thanks" href="'+(calOk?CONFIG.calendar:'#')+'">'+t('book')+'</a>';
   var slot=$('#tf1-form-slot');if(slot&&!slot.querySelector('.tf1-thanks'))slot.appendChild(th)};
  var fail=function(){if(pending){track('thefaces_form_fail',{form_id:CONFIG.forminatorId});pending=null}};
