@@ -140,10 +140,10 @@ Hay dos documentos que mandan:
 - **Pliego de cláusulas administrativas**: solvencia exigida, documentación, plazos y criterios de adjudicación.
 - **Pliego de prescripciones técnicas**: qué hay que fabricar e instalar, con qué materiales, medidas y acabados.
 
-Conviene anotar desde el principio qué criterios se valoran con fórmula (precio, plazo, garantía) y cuáles mediante **juicio de valor** (memoria técnica, propuesta gráfica).
+Por eso conviene anotar desde el principio qué criterios se valoran con fórmula (precio, plazo, garantía) y cuáles mediante **juicio de valor** (memoria técnica, propuesta gráfica).
 
 ## La memoria técnica: donde se gana la puntuación
-Una buena memoria demuestra que la empresa ha entendido el edificio y el proyecto:
+Además, una buena memoria demuestra que la empresa ha entendido el edificio y el proyecto:
 - Metodología: cómo se estudian los recorridos y se valida la nomenclatura.
 - **Planificación** por fases, compatible con el edificio en uso.
 - Equipo y medios propios de fabricación e instalación.
@@ -159,7 +159,7 @@ Una buena memoria demuestra que la empresa ha entendido el edificio y el proyect
 - Ofertar materiales distintos a los exigidos sin justificarlo como mejora admitida.
 
 ## Seguridad y coordinación
-En edificios públicos en funcionamiento se exige la documentación de **prevención de riesgos laborales** y la coordinación de actividades empresariales (Real Decreto 171/2004). Tenerla preparada agiliza el inicio de los trabajos tras la adjudicación.
+En edificios públicos en funcionamiento se exige la documentación de **prevención de riesgos laborales** y la coordinación de actividades empresariales (Real Decreto 171/2004). Por tanto, tenerla preparada agiliza el inicio de los trabajos tras la adjudicación.
 
 ## Constructoras y subcontratación
 Muchas obras públicas incluyen la señalización dentro de un contrato mayor. En ese caso la constructora busca un subcontratista que cumpla plazos y entregue la documentación técnica que le pide la dirección facultativa. Es un trabajo que conocemos bien en proyectos de [señalética para organismos públicos](/senaletica-organismos-publicos).

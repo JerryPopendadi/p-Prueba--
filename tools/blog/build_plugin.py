@@ -7,25 +7,15 @@ Comprueba (salvo --sin-comprobar) que cada imagen y cada enlace interno responde
 """
 import base64, html, json, pathlib, re, subprocess, sys, zipfile
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-from posts_1 import POSTS as P1
-from posts_2 import POSTS as P2
-from posts_3 import POSTS as P3
-from faqs import FAQS
+from compose import compose
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / 'wordpress' / 'plugin'; OUT.mkdir(parents=True, exist_ok=True)
 SITE = 'https://senalval.es'
 UP = SITE + '/wp-content/uploads/'
-POSTS = P1 + P2 + P3
-for _p in POSTS:  # preguntas frecuentes antes del párrafo final
-    q = FAQS[_p['slug']]
-    faq = '\n## Preguntas frecuentes\n' + '\n'.join(f'### {a}\n{b}' for a, b in q) + '\n'
-    body = _p['body'].rstrip()
-    i = body.rfind('\n> ')
-    _p['body'] = body[:i] + '\n' + faq + body[i:] + '\n'
-assert set(FAQS) == {p['slug'] for p in POSTS}, 'faltan o sobran FAQ'
 CHECK = '--sin-comprobar' not in sys.argv
 
+POSTS = compose()
 slugs = [p['slug'] for p in POSTS]
 assert len(slugs) == len(set(slugs)), 'slugs repetidos'
 
@@ -91,7 +81,7 @@ if CHECK:
     for b in bad: print('  ✗', *b)
     assert not bad, 'hay imágenes o enlaces rotos'
 
-data = [dict(slug=p['slug'], title=p['title'], content=to_blocks(p), excerpt=p['excerpt'], cats=p['cats'], tags=p['tags'],
+data = [dict(slug=p['slug'], old_slug=p['old_slug'], title=p['title'], content=to_blocks(p), excerpt=p['excerpt'], cats=p['cats'], tags=p['tags'],
              img=UP + p['img'], seo_title=p['seo_title'], metadesc=p['metadesc'], focus=p['focus']) for p in POSTS]
 payload = base64.b64encode(json.dumps(data, ensure_ascii=False).encode('utf-8')).decode('ascii')
 
@@ -99,7 +89,7 @@ PHP = r'''<?php
 /**
  * Plugin Name: SeñalVal · Entradas del blog
  * Description: Crea __N__ entradas de blog optimizadas para SEO (señalética en Valladolid, Madrid, Burgos, Castilla y León, sectores y normativa) con imágenes de la biblioteca de medios. Herramientas → Entradas SeñalVal.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: SeñalVal
  * Requires at least: 6.0
  * Requires PHP: 7.4
@@ -148,11 +138,24 @@ add_action( 'admin_menu', function () {
 } );
 
 function senalval_blog_run( $mode, $days, $hour ) {
-	$created = 0; $skipped = 0; $n = 0;
+	$created = 0; $skipped = 0; $updated = 0; $n = 0;
 	$tz   = wp_timezone();
 	$base = new DateTime( 'now', $tz );
 	foreach ( senalval_blog_data() as $p ) {
-		if ( senalval_blog_existing( $p['slug'] ) ) { $skipped++; continue; }
+		$prev = senalval_blog_existing( $p['slug'] );
+		if ( ! $prev && $p['old_slug'] !== $p['slug'] ) { $prev = senalval_blog_existing( $p['old_slug'] ); }
+		if ( $prev ) {
+			if ( get_post_meta( $prev->ID, '_senalval_blog_pack', true ) ) { // creada por una versión anterior: se actualiza
+				wp_update_post( wp_slash( array( 'ID' => $prev->ID, 'post_name' => $p['slug'], 'post_title' => $p['title'], 'post_content' => $p['content'], 'post_excerpt' => $p['excerpt'] ) ) );
+				$att = senalval_blog_attachment_id( $p['img'] );
+				if ( $att ) { set_post_thumbnail( $prev->ID, $att ); }
+				foreach ( array( '_yoast_wpseo_title' => 'seo_title', '_yoast_wpseo_metadesc' => 'metadesc', '_yoast_wpseo_focuskw' => 'focus', 'rank_math_title' => 'seo_title', 'rank_math_description' => 'metadesc', 'rank_math_focus_keyword' => 'focus' ) as $k => $f ) { update_post_meta( $prev->ID, $k, $p[ $f ] ); }
+				$updated++;
+			} else {
+				$skipped++;
+			}
+			continue;
+		}
 		$post = array(
 			'post_type'    => 'post',
 			'post_name'    => $p['slug'],
@@ -187,7 +190,7 @@ function senalval_blog_run( $mode, $days, $hour ) {
 		update_post_meta( $id, '_senalval_blog_pack', '1' );
 		$created++; $n++;
 	}
-	return array( $created, $skipped );
+	return array( $created, $skipped, $updated );
 }
 
 function senalval_blog_page() {
@@ -198,8 +201,8 @@ function senalval_blog_page() {
 			$mode = in_array( $_POST['modo'] ?? '', array( 'publish', 'schedule', 'draft' ), true ) ? $_POST['modo'] : 'schedule';
 			$days = max( 1, min( 14, (int) ( $_POST['dias'] ?? 2 ) ) );
 			$hour = max( 0, min( 23, (int) ( $_POST['hora'] ?? 9 ) ) );
-			list( $c, $s ) = senalval_blog_run( $mode, $days, $hour );
-			$msg = sprintf( 'Entradas creadas: %d. Ya existían (no se han tocado): %d.', $c, $s );
+			list( $c, $s, $u ) = senalval_blog_run( $mode, $days, $hour );
+			$msg = sprintf( 'Entradas creadas: %d. Actualizadas (de una versión anterior del plugin): %d. Ya existían y no se han tocado: %d.', $c, $u, $s );
 		} elseif ( isset( $_POST['borrar'] ) ) {
 			$ids = get_posts( array( 'post_type' => 'post', 'post_status' => 'any', 'meta_key' => '_senalval_blog_pack', 'meta_value' => '1', 'numberposts' => -1, 'fields' => 'ids' ) );
 			foreach ( $ids as $id ) { wp_trash_post( $id ); }
@@ -209,7 +212,7 @@ function senalval_blog_page() {
 	$data = senalval_blog_data();
 	echo '<div class="wrap"><h1>Entradas del blog SeñalVal</h1>';
 	if ( $msg ) { echo '<div class="notice notice-success"><p>' . esc_html( $msg ) . '</p></div>'; }
-	echo '<p>Este plugin crea <strong>' . count( $data ) . ' entradas</strong> con texto, categorías, etiquetas, imagen destacada de su biblioteca de medios y título y descripción para Yoast SEO. Las entradas que ya existan (mismo slug) no se tocan.</p>';
+	echo '<p>Este plugin crea <strong>' . count( $data ) . ' entradas</strong> con texto, categorías, etiquetas, imagen destacada de su biblioteca de medios y título y descripción para Yoast SEO. Si ya creó entradas con una versión anterior de este plugin, se actualizan sin duplicarse. Las entradas propias del blog no se tocan.</p>';
 	echo '<form method="post">';
 	wp_nonce_field( 'senalval_blog', 'senalval_blog_nonce' );
 	echo '<table class="form-table"><tr><th>Cómo publicarlas</th><td>';
@@ -221,7 +224,7 @@ function senalval_blog_page() {
 	echo '</form>';
 	echo '<h2>Entradas incluidas</h2><table class="widefat striped"><thead><tr><th>#</th><th>Título</th><th>Palabra clave</th><th>Estado</th></tr></thead><tbody>';
 	foreach ( $data as $i => $p ) {
-		$e = senalval_blog_existing( $p['slug'] );
+		$e = senalval_blog_existing( $p['slug'] ); if ( ! $e ) { $e = senalval_blog_existing( $p['old_slug'] ); }
 		$st = $e ? '<a href="' . esc_url( get_edit_post_link( $e->ID ) ) . '">' . esc_html( $e->post_status ) . '</a>' : '—';
 		echo '<tr><td>' . ( $i + 1 ) . '</td><td>' . esc_html( $p['title'] ) . '</td><td>' . esc_html( $p['focus'] ) . '</td><td>' . $st . '</td></tr>';
 	}
