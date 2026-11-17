@@ -145,7 +145,7 @@ UI_X = {
 "ck_text": ["Nous utilisons des cookies d'analyse et de publicité uniquement avec votre accord.", "Ми використовуємо аналітичні та рекламні cookie лише з вашої згоди."],
 "ck_accept": ["Accepter", "Прийняти"],
 "ck_reject": ["Refuser", "Відхилити"],
-"ck_more": ["En savoir plus", "Детальніше"],
+"ck_more": ["Politique de cookies", "Політика cookie"],
 "mb_menu": ["Carte & tarifs", "Меню та ціни"],
 "book_cta": ["Réserver un soin", "Записатися на процедуру"],
 "book_online": ["Réserver en ligne", "Записатися онлайн"],

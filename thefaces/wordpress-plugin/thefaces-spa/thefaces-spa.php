@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.6.8
+ * Version:           1.6.9
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.6.8' );
+define( 'TF_SPA_VERSION', '1.6.9' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -459,12 +459,55 @@ function tf_spa_current_page() {
 	return $found;
 }
 
+/** Language of the page being shown (plugin page, journal article or address). */
+function tf_spa_page_lang() {
+	$cur = tf_spa_current_page();
+	if ( $cur ) {
+		return tf_spa_lang( $cur['lang'] );
+	}
+	if ( tf_spa_is_post() ) {
+		$l = get_post_meta( get_queried_object_id(), '_tf_lang', true );
+		if ( $l ) {
+			return $l;
+		}
+	}
+	return tf_spa_lang();
+}
+
+/** Speed: preload the hero image of the home page (the largest image people see first). */
+function tf_spa_preload_hero() {
+	$cur = tf_spa_current_page();
+	if ( ! $cur || ! in_array( $cur['page'], array( '', 'home' ), true ) ) {
+		return;
+	}
+	echo '<link rel="preload" as="image" href="' . esc_url( tf_spa_media_url( 'hero-poster-2.jpg' ) ) . '" fetchpriority="high">' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+add_action( 'wp_head', 'tf_spa_preload_hero', 1 );
+
+/** Speed: on the plugin's pages the theme fonts are not used (the pages bring their own), so skip them. */
+function tf_spa_skip_theme_fonts() {
+	if ( tf_spa_current_page() || tf_spa_is_post() ) {
+		remove_action( 'wp_head', 'wp_print_font_faces', 50 );
+		remove_action( 'wp_head', 'wp_print_font_faces_from_style_variations', 50 );
+	}
+}
+add_action( 'template_redirect', 'tf_spa_skip_theme_fonts' );
+
 /** Styles and scripts: only where the shortcode is used (or everywhere, if set). */
 function tf_spa_assets() {
 	if ( ! tf_spa_opt( 'load_always' ) && ! tf_spa_current_page() && ! tf_spa_is_post() ) {
 		return;
 	}
-	wp_enqueue_style( 'thefaces-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@200;300;400;500&family=Noto+Sans+Thai:wght@200;300;400;500&display=swap', array(), null );
+	// Japanese and Thai fonts are heavy: load them only on the pages in those languages.
+	$fl  = tf_spa_page_lang();
+	$fam = 'family=Inter:wght@400;500&family=Montserrat:wght@200;300;400;500;600';
+	if ( 'ja' === $fl ) {
+		$fam .= '&family=Noto+Sans+JP:wght@200;300;400;500';
+	} elseif ( 'th' === $fl ) {
+		$fam .= '&family=Noto+Sans+Thai:wght@200;300;400;500';
+	}
+	wp_enqueue_style( 'thefaces-fonts', 'https://fonts.googleapis.com/css2?' . $fam . '&display=swap', array(), null );
 	wp_enqueue_style( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.css', array(), TF_SPA_VERSION );
 	wp_add_inline_style( 'thefaces-spa', 'body.tf-canvas{margin:0;background:#fff}body.admin-bar .tf .top{top:32px}@media (max-width:782px){body.admin-bar .tf .top{top:46px}}' );
 	wp_enqueue_script( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.js', array(), TF_SPA_VERSION, true );

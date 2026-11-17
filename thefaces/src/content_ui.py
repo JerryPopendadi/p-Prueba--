@@ -243,7 +243,7 @@ UI = {
 "ck_text": ["We use analytics and advertising cookies only with your consent.", "Мы используем аналитические и рекламные cookie только с вашего согласия.", "Usamos cookies de analítica y publicidad solo con tu consentimiento.", "Wir verwenden Analyse- und Werbe-Cookies nur mit Ihrer Einwilligung.", "เราใช้คุกกี้เพื่อการวิเคราะห์และโฆษณาเมื่อได้รับความยินยอมจากคุณเท่านั้น", "Kami menggunakan cookie analitik dan iklan hanya dengan persetujuan Anda.", "分析・広告用Cookieは、同意いただいた場合にのみ使用します。"],
 "ck_accept": ["Accept", "Принять", "Aceptar", "Akzeptieren", "ยอมรับ", "Terima", "同意する"],
 "ck_reject": ["Reject", "Отклонить", "Rechazar", "Ablehnen", "ปฏิเสธ", "Tolak", "拒否する"],
-"ck_more": ["Learn more", "Подробнее", "Más información", "Mehr erfahren", "ดูเพิ่มเติม", "Selengkapnya", "詳細"],
+"ck_more": ["Cookie policy", "Политика cookie", "Política de cookies", "Cookie-Richtlinie", "นโยบายคุกกี้", "Kebijakan cookie", "Cookieポリシー"],
 "mb_menu": ["Menu & prices", "Меню и цены", "Menú y precios", "Menü & Preise", "เมนูและราคา", "Menu & harga", "メニュー・料金"],
 "book_cta": ["Book a treatment", "Записаться на процедуру", "Reservar tratamiento", "Behandlung buchen", "จองทรีตเมนต์", "Pesan perawatan", "施術を予約"],
 "book_online": ["Book online", "Записаться онлайн", "Reservar online", "Online buchen", "จองออนไลน์", "Pesan online", "オンライン予約"],
