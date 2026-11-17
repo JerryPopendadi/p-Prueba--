@@ -811,3 +811,9 @@ a.btn[data-book][href]:hover{background:#1b261c;border-color:#1b261c;color:#fff}
 
 .yt-play{white-space:nowrap}
 @media (max-width:760px){.yt-play{padding:10px 18px 10px 10px;font-size:11.5px;gap:10px}.yt-play span{width:30px;height:30px}.yt-play span::after{left:11px;top:8px}}
+
+/* main menu: dropdown buttons and plain links on one line (theme button styles reset) */
+.top nav>a,.top nav>.dd{display:inline-flex;align-items:center;height:34px;margin:0;vertical-align:middle}
+.top nav>a,.top nav .dd>button{line-height:1!important;font-size:11px!important;letter-spacing:.12em!important;font-weight:500!important;text-transform:uppercase!important}
+.top nav .dd>button{height:34px;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:inherit!important;font-family:inherit!important;min-height:0!important;vertical-align:middle}
+.top nav .dd>button span{font-size:9px;line-height:1;position:relative;top:-1px}
