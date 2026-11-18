@@ -36,7 +36,8 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
 
 /* hero with form */
 #tfl .hero{position:relative;color:#fff;background:linear-gradient(90deg,rgba(10,20,15,.88) 0%,rgba(10,20,15,.62) 55%,rgba(10,20,15,.35) 100%),url('https://thefacespeace.com/wp-content/uploads/2026/11/DSC03305-scaled.jpg') center/cover no-repeat}
-#tfl .hero .c{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:78px 0 90px}
+#tfl .hgrid{display:grid;grid-template-columns:1.1fr .9fr;grid-template-areas:"t f" "m f";grid-template-rows:auto 1fr;column-gap:56px;align-items:start;padding:70px 0 84px}
+#tfl .htxt{grid-area:t;padding-top:26px}#tfl .hgrid>.fcard{grid-area:f}#tfl .hmore{grid-area:m}
 #tfl .hero .eb{color:#E2D3B5}
 #tfl .hero p.lead{color:rgba(255,255,255,.92);font-size:18px;line-height:1.7;max-width:600px}
 #tfl .ticks{list-style:none;padding:0;margin:26px 0 30px;display:grid;gap:10px}
@@ -161,7 +162,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
 @media(max-width:1000px){#tfl .g4{grid-template-columns:1fr 1fr}#tfl .g3{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
 #tfl .sec{padding:68px 0}
-#tfl .hero .c{grid-template-columns:1fr;gap:34px;padding:54px 0 60px}
+#tfl .hgrid{grid-template-columns:1fr;grid-template-areas:"t" "f" "m";row-gap:26px;padding:40px 0 54px}#tfl .htxt{padding-top:0}#tfl .hmore .ticks{margin-top:6px}
 #tfl .g2,#tfl .fnd .gx,#tfl .faq .gx{grid-template-columns:1fr;gap:32px}
 #tfl .kn-g{grid-template-columns:1fr 1fr}#tfl .kn-i{border-bottom:1px solid rgba(255,255,255,.14)}#tfl .kn-i:nth-child(2n){border-right:0}
 #tfl .fnd img{height:380px}
@@ -176,6 +177,22 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
 #tfl .box{padding:24px}
 }
 @media(prefers-reduced-motion:reduce){#tfl *{transition:none!important}}
+
+#tfl .next{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px}
+#tfl .next li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink)}
+#tfl .next b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--forest);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+#tfl #tf1-form-slot .forminator-description{font-size:12px!important;color:var(--muted)!important}
+#tfl #tf1-form-slot textarea[name="textarea-1"]{min-height:48px!important;height:48px!important;resize:none!important;overflow:hidden;font-family:Montserrat,Arial,sans-serif!important}
+/* video */
+#tfl .vid{background:#fff}
+#tfl .vbox{position:relative;max-width:980px;margin:36px auto 0;aspect-ratio:16/9;background:#111 center/cover no-repeat;cursor:pointer;overflow:hidden}
+#tfl .vbox:after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.45))}
+#tfl .vbox button{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:88px;height:88px;border-radius:50%;border:0;background:#fff;color:var(--forest);font-size:30px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+#tfl .vbox span{position:absolute;left:24px;bottom:20px;z-index:2;color:#fff;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+#tfl .vbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3}
+#tfl .ig{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+#tfl .ig a{border:1px solid var(--line);padding:11px 18px;font-size:13px;font-weight:500;background:var(--paper)}
+#tfl .ig a:hover{border-color:var(--forest)}
 </style>
 
 <div id="tfl">
@@ -191,30 +208,33 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
 </header>
 
 <section class="hero" id="tfl-hero">
-  <div class="c">
-    <div>
-      <span class="eb">THE FACES PARTNERS · Bali, Indonesia</span>
-      <h1>We build and run spas in Bali. You can co-own one.</h1>
-      <p class="lead">THE FACES is a Bali spa company, founded by Anna and Evgenii Dubinin. We are looking for a few partners to become shareholders in our new spas. Our team builds, staffs and runs the spa; you receive a monthly report.</p>
+  <div class="c hgrid">
+    <div class="htxt">
+      <span class="eb" id="tfl-eb">THE FACES PARTNERS · Bali, Indonesia</span>
+      <h1 id="tfl-h1">We build and run spas in Bali. You can co-own one.</h1>
+      <p class="lead" id="tfl-lead">A Bali spa company since 2013. Become a shareholder in one of our spas: our team builds, staffs and runs it, and you receive a monthly report.</p>
+    </div>
+    <div class="fcard" id="tfl-form">
+      <h3>Request a partnership call</h3>
+      <p class="small">About 1 minute. Confidential. We reply personally within 24 hours.</p>
+      <div id="tf1-form-slot"><p class="fload">Loading the form…</p></div>
+      <p class="fwait" id="tf1-form-wait" hidden><span>The form could not load. Write to us or book a call:</span> <a href="mailto:info@thefacespeace.com?subject=Spa%20partnership%20Bali">info@thefacespeace.com</a> · <a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="missing">Book a private call</a></p>
+      <ol class="next"><li><b>1</b>We reply within 24 hours</li><li><b>2</b>30-min private call with the founders</li><li><b>3</b>Visit the spa, in Bali or online</li></ol>
+      <ul class="trust"><li>Confidential</li><li>Never sold</li><li>No obligation</li></ul>
+      <div class="fdirect"><a data-wa="form" href="https://wa.me/6282323223433" target="_blank" rel="noopener">WhatsApp us instead</a><a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="form">Prefer to book a call directly?</a></div>
+    </div>
+    <div class="hmore">
       <ul class="ticks">
-        <li>A real spa business, not a fund or a financial product</li>
+        <li>A real spa business you can visit, not a fund or a financial product</li>
         <li>Registered shares, formalised by notarial deed</li>
         <li>Fully managed by THE FACES, with monthly reporting</li>
         <li>4 spa projects in Ubud and Sanur · terms agreed individually</li>
       </ul>
       <div class="acts">
         <a class="btn btn-l" href="#tfl-form" data-go="hero">Request a partnership call</a>
-        <a class="btn btn-ow" href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="hero">Book 30 min with the founders</a>
+        <a class="btn btn-ow" href="#tfl-video" data-go="hero_video">▶ Watch the founders</a>
       </div>
       <small class="note">For business partners only. Not a spa booking, not a public offer.</small>
-    </div>
-    <div class="fcard" id="tfl-form">
-      <h3>Request a partnership call</h3>
-      <p class="small">About 1 minute. We reply personally, usually within 24 hours.</p>
-      <div id="tf1-form-slot"><p class="fload">Loading the form…</p></div>
-      <p class="fwait" id="tf1-form-wait" hidden><span>The form could not load. Write to us or book a call:</span> <a href="mailto:info@thefacespeace.com?subject=Spa%20partnership%20Bali">info@thefacespeace.com</a> · <a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="missing">Book a private call</a></p>
-      <ul class="trust"><li>Confidential</li><li>Never sold</li><li>No obligation</li></ul>
-      <div class="fdirect"><a data-wa="form" href="https://wa.me/6282323223433" target="_blank" rel="noopener">WhatsApp us instead</a><a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="form">Prefer to book a call directly?</a></div>
     </div>
   </div>
 </section>
@@ -225,6 +245,17 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
     <div class="kn-i"><strong>20+ years</strong><span>in beauty and wellness</span></div>
     <div class="kn-i"><strong>4 projects</strong><span>in Ubud and Sanur</span></div>
     <div class="kn-i"><strong>Monthly</strong><span>reporting to every partner</span></div>
+  </div>
+</section>
+
+<section class="sec vid" id="tfl-video" style="padding-bottom:70px">
+  <div class="c" style="text-align:center">
+    <span class="eb">Meet the founders</span>
+    <h2 style="max-width:820px;margin-left:auto;margin-right:auto">Anna and Evgenii, in their own words</h2>
+    <p style="max-width:640px;margin:0 auto">Who we are, how THE FACES started in Bali and how we work with partners.</p>
+    <div class="vbox" id="tfl-vbox" data-v="M43ffm_eK9o" role="button" tabindex="0" aria-label="Play the founders' video"><button type="button" aria-hidden="true">▶</button><span>Watch the founders</span></div>
+    <div class="ig"><a href="https://www.instagram.com/thefacesubud/" target="_blank" rel="noopener" data-ig="ubud">See THE FACES Ubud live · @thefacesubud</a><a href="https://www.instagram.com/thefaces_sanur/" target="_blank" rel="noopener" data-ig="sanur">THE FACES Sanur · @thefaces_sanur</a></div>
+    <div class="acts" style="justify-content:center;margin-top:30px"><a class="btn" href="#tfl-form" data-go="video">Request a call with the founders</a></div>
   </div>
 </section>
 
@@ -382,13 +413,28 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
   var root=document.getElementById('tfl');if(!root||root.dataset.ready)return;root.dataset.ready='1';
   var CFG={
     forminatorId:703,
-    fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',budget:'radio-1'},
+    fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'textarea-1',budget:'radio-1'},
     hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},
     sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',
     calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98'
   };
   var PROJ={proj_ub:'project_ubud',proj_wt:'project_white_temple',proj_wf:'project_waterfall',proj_fe:'project_sanur_five_elements'};
   function q(s){return root.querySelector(s)}
+  /* message match: the headline follows the search (Google Ads final URL suffix sends utm_term={keyword}) */
+  var MM=[
+    [/hotel|resort|operator|management|villa owner/i,'For hotels, resorts and property owners','A THE FACES spa for your hotel in Bali.','We create the concept, train the team and run the spa inside your property, with regular reporting. Or co-own one of our own spas in Ubud and Sanur.','hotel_property'],
+    [/for sale|buy|purchase|acquire/i,'Spa business in Bali','Looking to buy a spa in Bali? Co-own one that already has a team.','Instead of buying and running a spa alone, become a shareholder in a THE FACES spa. Our team runs it every day; you receive a monthly report.',''],
+    [/franchise|licen/i,'Franchise and licensing','A proven Bali spa concept, with the team that runs it.','THE FACES offers co-ownership of our own spas and licensing of our Five Elements concept. Talk to the founders about the format that suits you.','franchise'],
+    [/business partner|partnership|co-own|coown|partner/i,'THE FACES PARTNERS · Bali, Indonesia','We build and run spas in Bali. You can co-own one.','',''],
+    [/opportunit|invest|business/i,'Bali business you can visit','A spa business in Bali you can see before you decide.','Become a shareholder in a THE FACES spa. Visit it, meet the team and review the documents first. Our team runs it; you receive a monthly report.','']
+  ];
+  var kw='';try{var uq=new URLSearchParams(location.search);kw=String(uq.get('utm_term')||uq.get('keyword')||'').replace(/[+"\[\]]/g,' ').trim().slice(0,80);if(kw)sessionStorage.setItem('tf_kw',kw);else kw=sessionStorage.getItem('tf_kw')||''}catch(e){}
+  var mmInterest='';
+  if(kw){for(var i=0;i<MM.length;i++){if(MM[i][0].test(kw)){var m=MM[i];q('#tfl-eb').textContent=m[1];q('#tfl-h1').textContent=m[2];if(m[3])q('#tfl-lead').textContent=m[3];mmInterest=m[4];break}}}
+  /* founders' video: loads only when played */
+  (function(){var v=q('#tfl-vbox');if(!v)return;var id=v.getAttribute('data-v');v.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';
+    function play(){if(v.querySelector('iframe'))return;v.insertAdjacentHTML('beforeend','<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1" title="THE FACES founders" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>');track('thefaces_video_play',{video_id:id,placement:'partners_landing'})}
+    v.addEventListener('click',play);v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play()}})})();
   window.dataLayer=window.dataLayer||[];
   function track(ev,o){var d={event:ev,page:location.pathname,landing:'partners'};for(var k in o)d[k]=o[k];window.dataLayer.push(d)}
   var attr={};
@@ -400,6 +446,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
     if(a.hasAttribute('data-go')){lastGo=a.getAttribute('data-go');if(PROJ[lastGo])project=PROJ[lastGo];track('thefaces_cta',{placement:lastGo})}
     if(a.hasAttribute('data-cal'))track('thefaces_booking_click',{placement:a.getAttribute('data-cal'),link_url:CFG.calendar});
     if(a.hasAttribute('data-wa'))track('thefaces_whatsapp_click',{placement:a.getAttribute('data-wa')});
+    if(a.hasAttribute('data-ig'))track('thefaces_instagram_click',{placement:a.getAttribute('data-ig')});
     if(a.hasAttribute('data-mail'))track('thefaces_email_click',{placement:a.getAttribute('data-mail')})},true);
 
   function findForm(){return document.querySelector('#tf-form-703-src form.forminator-custom-form')||document.querySelector('form.forminator-custom-form[data-form-id="'+CFG.forminatorId+'"]')||document.querySelector('#forminator-module-'+CFG.forminatorId)}
@@ -412,16 +459,25 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
   var iv=setInterval(function(){var f=findForm();
     if(f){clearInterval(iv);var slot=q('#tf1-form-slot');slot.innerHTML='';slot.appendChild(f);wire(f)}
     else{tries++;if(tries>40){clearInterval(iv);var s=q('#tf1-form-slot');if(s)s.innerHTML='';var w=q('#tf1-form-wait');if(w)w.hidden=false;track('thefaces_form_missing',{form_id:CFG.forminatorId})}}},250);
+  function relabel(f){
+    [].forEach.call(f.querySelectorAll('label,.forminator-label,.forminator-description,span'),function(el){
+      if(el.children.length>1)return;
+      var t=el.textContent;
+      if(/Investment Budget/i.test(t))el.firstChild&&(el.firstChild.nodeValue=String(el.firstChild.nodeValue).replace(/Investment Budget/i,'Approximate budget for a project'));
+      if(/Select your investment range/i.test(t))el.textContent='Used only to suggest the right project. Not a commitment.';
+    });
+    var c=f.querySelector('[name="textarea-1"]');if(c){c.setAttribute('rows','1');c.setAttribute('placeholder','e.g. Australia');c.setAttribute('autocomplete','country-name')}
+  }
   function wire(f){
-    if(f.dataset.tflWired)return;f.dataset.tflWired='1';
+    if(f.dataset.tflWired)return;f.dataset.tflWired='1';relabel(f);
     f.addEventListener('focusin',function(){if(!f.dataset.tflStart){f.dataset.tflStart='1';track('thefaces_form_start',{form_id:CFG.forminatorId,placement:'partners_landing'})}});
     f.addEventListener('submit',function(){
       var em=fVal(f,'email'),nm=fVal(f,'name');
       if(!/^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(em)||nm.replace(/\s/g,'').length<2){track('thefaces_form_error',{field:em?'name':'email'});return}
       var id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
-      var hv={lead_id:id,language:'en',placement:'partners_'+(lastGo||'form'),page:location.href.split('#')[0].slice(0,250)};for(var k in attr)hv[k]=attr[k];
+      var hv={lead_id:id,language:'en',placement:('partners_'+(lastGo||'form')+(kw?' | kw: '+kw:'')).slice(0,180),page:location.href.split('#')[0].slice(0,250)};for(var k in attr)hv[k]=attr[k];
       Object.keys(CFG.hidden).forEach(function(k){var el=fEl(f,k);if(el){if(hv[k]!==undefined)el.value=hv[k]}});
-      pending={lead_id:id,name:nm,email:em,phone:fVal(f,'phone'),country:fVal(f,'country'),budget:fVal(f,'budget'),interest:project||'partnership_general',hv:hv};
+      pending={lead_id:id,name:nm,email:em,phone:fVal(f,'phone'),country:fVal(f,'country'),budget:fVal(f,'budget'),interest:project||mmInterest||'partnership_general',hv:hv};
     },true);
     function done(){if(!pending)return;var d=pending;pending=null;
       /* the conversion: GTM trigger generate_lead -> Google Ads conversion */
