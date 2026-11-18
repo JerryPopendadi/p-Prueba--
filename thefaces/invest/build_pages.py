@@ -6,7 +6,7 @@ d=os.path.dirname(os.path.abspath(__file__))
 PAGES=['the-faces-ubud-invest-v2','the-faces-hotels-v7','the-faces-invest-hub-v2','the-faces-invest-global-v2','the-faces-book-meeting-v2','the-faces-waterfall-v2','the-faces-partners-landing']
 def enc(m):
     b=base64.b64encode(m.group(2).encode('utf-8')).decode()
-    return m.group(1)+"(function(){var s=document.createElement('script');s.text=decodeURIComponent(escape(atob('"+b+"')));document.currentScript.parentNode.insertBefore(s,document.currentScript)})();</script>"
+    return m.group(1)+"(function(){var s=document.createElement('script');s.text=decodeURIComponent(escape(atob('"+b+"')));var c=document.currentScript;if(c){if(c.parentNode){c.parentNode.insertBefore(s,c);return}}(document.body||document.documentElement).appendChild(s)})();</script>"
 for p in PAGES:
     s=open(os.path.join(d,p+'.src.html'),encoding='utf-8').read()
     out,n=re.subn(r'(<script data-cfasync[^>]*>)(.*?)</script>',enc,s,flags=re.S)

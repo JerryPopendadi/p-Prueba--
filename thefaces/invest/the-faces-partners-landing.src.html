@@ -544,8 +544,8 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
     return String(el.value||'').trim()}
   var pending=null,tries=0;
   var iv=setInterval(function(){var f=findForm();
-    if(f){clearInterval(iv);var slot=q('#tf1-form-slot');slot.innerHTML='';slot.appendChild(f);wire(f)}
-    else{tries++;if(tries>40){clearInterval(iv);var s=q('#tf1-form-slot');if(s)s.innerHTML='';var w=q('#tf1-form-wait');if(w)w.hidden=false;track('thefaces_form_missing',{form_id:CFG.forminatorId})}}},250);
+    if(f){clearInterval(iv);var slot=q('#tf1-form-slot');slot.innerHTML='';slot.appendChild(f);var w0=q('#tf1-form-wait');if(w0)w0.hidden=true;wire(f)}
+    else{tries++;if(tries===32){var s=q('#tf1-form-slot');if(s)s.innerHTML='';var w=q('#tf1-form-wait');if(w)w.hidden=false;track('thefaces_form_missing',{form_id:CFG.forminatorId})}if(tries>240)clearInterval(iv)}},250);
   function relabel(f){
     [].forEach.call(f.querySelectorAll('label,.forminator-label,.forminator-description,span'),function(el){
       if(el.children.length>1)return;
