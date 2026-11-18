@@ -13,11 +13,11 @@ Today that culture meets a global market:
 • 6.95M foreign visitors to Bali in 2025, +9.7% (BPS Bali)
 • US$6.8T global wellness economy in 2024, forecast near US$9.8T by 2029 (Global Wellness Institute)
 
-That is why private investors are looking at Bali spas, and why we built THE FACES here.
+That is why partners from around the world are looking at Bali spas, and why we built THE FACES here.
 
-Why Bali is becoming a wellness investment destination 👉 https://thefacespeace.com/bali-wellness-investment-destination-2026/?utm_source=linkedin&utm_medium=social&utm_campaign=blog_06
+Why Bali is becoming a wellness business destination 👉 https://thefacespeace.com/bali-wellness-business-destination-2026/?utm_source=linkedin&utm_medium=social&utm_campaign=blog_06
 
-#Bali #WellnessInvestment #SpaBusiness #Hospitality #THEFACESPARTNERS
+#Bali #WellnessBusiness #SpaBusiness #Hospitality #THEFACESPARTNERS
 
 ## 7. The Five Elements
 
@@ -51,7 +51,7 @@ Learn to read them and you can judge any spa's accounts.
 
 The simple guide 👉 https://thefacespeace.com/what-makes-a-spa-profitable/?utm_source=linkedin&utm_medium=social&utm_campaign=blog_08
 
-#SpaBusiness #Investing #DueDiligence #Hospitality #THEFACESPARTNERS
+#SpaBusiness #Partnership #DueDiligence #Hospitality #THEFACESPARTNERS
 
 ## 9. A spa for your property
 
@@ -69,17 +69,17 @@ How a hotel spa partnership works 👉 https://thefacespeace.com/hotel-spa-partn
 
 #HotelSpa #Hospitality #Bali #ResortDevelopment #THEFACESPARTNERS
 
-## 10. A 3-day investor trip
+## 10. A 3-day partner trip
 
 Numbers on a screen tell part of the story. Walking into the spa tells the rest.
 
-A 3-day investor trip to Bali:
+A 3-day partner trip to Bali:
 🌿 Day 1 · Ubud: book a treatment at an operating spa, meet the team, review the numbers
 🌊 Day 2 · Sanur: walk the street opposite the Hyatt, see two new projects with 10-year leases
 🌅 Day 3 · Uluwatu: sunset, notes and time to think
 
 Can't travel? We run live video walkthroughs.
 
-The full itinerary 👉 https://thefacespeace.com/investor-trip-bali-3-days/?utm_source=linkedin&utm_medium=social&utm_campaign=blog_10
+The full itinerary 👉 https://thefacespeace.com/partner-trip-bali-3-days/?utm_source=linkedin&utm_medium=social&utm_campaign=blog_10
 
-#InvestorTrip #Bali #SpaInvestment #DueDiligence #THEFACESPARTNERS
+#PartnerTrip #Bali #SpaBusiness #DueDiligence #THEFACESPARTNERS

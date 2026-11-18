@@ -2,7 +2,7 @@
 
 ## Carrusel 6 · Why Bali, why wellness
 Imágenes: 06-01.jpg … 06-06.jpg
-Enlace para la bio: https://thefacespeace.com/bali-wellness-investment-destination-2026/?utm_source=instagram&utm_medium=social&utm_campaign=blog_06
+Enlace para la bio: https://thefacespeace.com/bali-wellness-business-destination-2026/?utm_source=instagram&utm_medium=social&utm_campaign=blog_06
 
 Bali has always been a place people visit to feel better.
 
@@ -12,11 +12,11 @@ Today that culture meets a global market:
 • 6.95M foreign visitors to Bali in 2025, +9.7% (BPS Bali)
 • US$6.8T global wellness economy in 2024, forecast near US$9.8T by 2029 (Global Wellness Institute)
 
-That is why private investors are looking at Bali spas, and why we built THE FACES here.
+That is why partners from around the world are looking at Bali spas, and why we built THE FACES here.
 
-Why Bali is becoming a wellness investment destination 👉 link in bio
+Why Bali is becoming a wellness business destination 👉 link in bio
 
-#Bali #WellnessInvestment #SpaBusiness #Hospitality #THEFACESPARTNERS
+#Bali #WellnessBusiness #SpaBusiness #Hospitality #THEFACESPARTNERS
 
 ## Carrusel 7 · The Five Elements
 Imágenes: 07-01.jpg … 07-06.jpg
@@ -54,7 +54,7 @@ Learn to read them and you can judge any spa's accounts.
 
 The simple guide 👉 link in bio
 
-#SpaBusiness #Investing #DueDiligence #Hospitality #THEFACESPARTNERS
+#SpaBusiness #Partnership #DueDiligence #Hospitality #THEFACESPARTNERS
 
 ## Carrusel 9 · A spa for your property
 Imágenes: 09-01.jpg … 09-06.jpg
@@ -74,13 +74,13 @@ How a hotel spa partnership works 👉 link in bio
 
 #HotelSpa #Hospitality #Bali #ResortDevelopment #THEFACESPARTNERS
 
-## Carrusel 10 · A 3-day investor trip
+## Carrusel 10 · A 3-day partner trip
 Imágenes: 10-01.jpg … 10-06.jpg
-Enlace para la bio: https://thefacespeace.com/investor-trip-bali-3-days/?utm_source=instagram&utm_medium=social&utm_campaign=blog_10
+Enlace para la bio: https://thefacespeace.com/partner-trip-bali-3-days/?utm_source=instagram&utm_medium=social&utm_campaign=blog_10
 
 Numbers on a screen tell part of the story. Walking into the spa tells the rest.
 
-A 3-day investor trip to Bali:
+A 3-day partner trip to Bali:
 🌿 Day 1 · Ubud: book a treatment at an operating spa, meet the team, review the numbers
 🌊 Day 2 · Sanur: walk the street opposite the Hyatt, see two new projects with 10-year leases
 🌅 Day 3 · Uluwatu: sunset, notes and time to think
@@ -89,4 +89,4 @@ Can't travel? We run live video walkthroughs.
 
 The full itinerary 👉 link in bio
 
-#InvestorTrip #Bali #SpaInvestment #DueDiligence #THEFACESPARTNERS
+#PartnerTrip #Bali #SpaBusiness #DueDiligence #THEFACESPARTNERS

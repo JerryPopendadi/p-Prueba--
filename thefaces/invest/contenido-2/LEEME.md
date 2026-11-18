@@ -3,11 +3,11 @@
 ## Blog (5 artículos SEO) · carpeta blog/
 Cada archivo empieza con un comentario con el título, slug, título y descripción para Yoast, frase clave, extracto e imagen destacada.
 Publicar: Entradas › Añadir nueva › ⋮ › Editor de código › pega todo lo que va después del comentario.
-06 Why Bali is a wellness investment destination (2026)
+06 Why Bali is a wellness business destination (2026)
 07 The Five Elements spa concept
 08 What makes a premium spa profitable
 09 Hotel spa partnership in Bali
-10 A 3-day investor trip to Bali
+10 A 3-day partner trip to Bali
 Nota: el 06 enlaza al artículo «Ubud vs Sanur» de la tanda 1. Publica antes ese, o quita ese enlace.
 
 ## LinkedIn · linkedin/linkedin-posts.md

@@ -7,7 +7,7 @@ B = 'https://thefacespeace.com/'
 def utm(slug, src, n): return f'{B}{slug}/?utm_source={src}&utm_medium=social&utm_campaign=blog_{n:02d}'
 
 P = [
- dict(n=6, slug='bali-wellness-investment-destination-2026', t='Why Bali, why wellness', s=[
+ dict(n=6, slug='bali-wellness-business-destination-2026', t='Why Bali, why wellness', s=[
   ('photo', 'terraces-aerial.jpg', 'BALI · 2026', 'Where wellness\nis a way of life', ''),
   ('photo', 'terraces-flowers.jpg', '01', 'An island built\non ritual', 'Temples, rice terraces and ceremonies at sunset. Wellness was here long before it became an industry.'),
   ('stat', None, '02 · VISITORS', '6.95M', 'foreign visitors to Bali in 2025, +9.7% on 2024 · BPS Bali'),
@@ -22,11 +22,11 @@ Today that culture meets a global market:
 • 6.95M foreign visitors to Bali in 2025, +9.7% (BPS Bali)
 • US$6.8T global wellness economy in 2024, forecast near US$9.8T by 2029 (Global Wellness Institute)
 
-That is why private investors are looking at Bali spas, and why we built THE FACES here.
+That is why partners from around the world are looking at Bali spas, and why we built THE FACES here.
 
-Why Bali is becoming a wellness investment destination 👉 {url}
+Why Bali is becoming a wellness business destination 👉 {url}
 
-#Bali #WellnessInvestment #SpaBusiness #Hospitality #THEFACESPARTNERS"""),
+#Bali #WellnessBusiness #SpaBusiness #Hospitality #THEFACESPARTNERS"""),
  dict(n=7, slug='five-elements-spa-concept', t='The Five Elements', s=[
   ('photo', 'temple-dusk.jpg', 'THE FIVE ELEMENTS', 'Not a treatment.\nA ritual.', ''),
   ('list', None, 'THE ELEMENTS', 'Earth · Water · Fire\nAir · Love', 'Each one shapes the menu, the scent, the music and the colour of every room.'),
@@ -49,7 +49,7 @@ Why ritual is a business advantage 👉 {url}
 
 #SpaConcept #WellnessBusiness #Bali #BrandBuilding #THEFACESPARTNERS"""),
  dict(n=8, slug='what-makes-a-spa-profitable', t='What makes a spa profitable', s=[
-  ('photo', 'DSC03305-scaled.jpg', 'FOR INVESTORS', 'What makes a spa\nprofitable?', ''),
+  ('photo', 'DSC03305-scaled.jpg', 'FOR PARTNERS', 'What makes a spa\nprofitable?', ''),
   ('num', None, '01', 'Utilisation', 'The share of treatment hours actually booked. The biggest lever on profit.'),
   ('num', None, '02', 'Average ticket', 'Signature rituals and couples programmes raise revenue per visit.'),
   ('num', None, '03', 'Repeat guests', 'Returning guests and packages bring revenue at almost no marketing cost.'),
@@ -68,7 +68,7 @@ Learn to read them and you can judge any spa's accounts.
 
 The simple guide 👉 {url}
 
-#SpaBusiness #Investing #DueDiligence #Hospitality #THEFACESPARTNERS"""),
+#SpaBusiness #Partnership #DueDiligence #Hospitality #THEFACESPARTNERS"""),
  dict(n=9, slug='hotel-spa-partnership-bali', t='A spa for your property', s=[
   ('photo', 'jungle-balcony.jpg', 'HOTEL & VILLA OWNERS', 'A spa your guests\nwill remember', ''),
   ('list', None, 'FOUR FORMATS', 'Spa development\nWellness management\nHotel & resort spa\nFranchise & licensing', ''),
@@ -89,8 +89,8 @@ THE FACES partners with owners in four ways:
 How a hotel spa partnership works 👉 {url}
 
 #HotelSpa #Hospitality #Bali #ResortDevelopment #THEFACESPARTNERS"""),
- dict(n=10, slug='investor-trip-bali-3-days', t='A 3-day investor trip', s=[
-  ('photo', 'uluwatu-sunset.jpg', 'INVESTOR TRIP', '3 days in Bali.\nDecide with facts.', ''),
+ dict(n=10, slug='partner-trip-bali-3-days', t='A 3-day partner trip', s=[
+  ('photo', 'uluwatu-sunset.jpg', 'PARTNER TRIP', '3 days in Bali.\nDecide with facts.', ''),
   ('photo', 'terraces-aerial.jpg', 'DAY 1 · UBUD', 'Book a treatment.\nMeet the team.', 'See an operating spa as a guest, then review the numbers with the founders.'),
   ('photo', 'Screenshot-2026-11-10-at-09.35.15.jpg', 'DAY 2 · SANUR', 'Walk the street.\nCount the flow.', 'Two new projects, 10-year leases signed.'),
   ('photo', 'uluwatu-gate.jpg', 'DAY 3 · ULUWATU', 'Time to think.', 'Sunset on the cliffs, your notes, your questions.'),
@@ -98,7 +98,7 @@ How a hotel spa partnership works 👉 {url}
   ('cta', None, '', 'Plan your visit', 'Link in bio'),
  ], li="""Numbers on a screen tell part of the story. Walking into the spa tells the rest.
 
-A 3-day investor trip to Bali:
+A 3-day partner trip to Bali:
 🌿 Day 1 · Ubud: book a treatment at an operating spa, meet the team, review the numbers
 🌊 Day 2 · Sanur: walk the street opposite the Hyatt, see two new projects with 10-year leases
 🌅 Day 3 · Uluwatu: sunset, notes and time to think
@@ -107,7 +107,7 @@ Can't travel? We run live video walkthroughs.
 
 The full itinerary 👉 {url}
 
-#InvestorTrip #Bali #SpaInvestment #DueDiligence #THEFACESPARTNERS"""),
+#PartnerTrip #Bali #SpaBusiness #DueDiligence #THEFACESPARTNERS"""),
 ]
 
 CSS = """*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1350px;font-family:Montserrat,sans-serif;background:#0b0b0a;color:#fff;position:relative;overflow:hidden}
@@ -148,7 +148,7 @@ def slide(p, i, s):
         body = f'{logo}<div class="mid"><p class="ey">{E(ey)}</p><h2>{E(h)}</h2><div class="line"></div><p>{E(txt)}</p></div>'; cls = 'dark'
     else:
         body = f'<div class="mid"><img class="biglogo" src="{I}logo-gold-transparent.png"><p class="ey" style="letter-spacing:.3em">{E(p["t"].upper())}</p><h2 style="font-size:60px">{E(h)}</h2><span class="btn">{E(txt.upper())}</span></div><div class="disc">thefacespeace.com · Information only, not an offer · Capital at risk</div>'; cls = 'dark cta'
-    foot = f'<div class="foot"><span>@THEFACESINVEST</span><span>{i+1:02d} / {tot:02d}{"  →" if i < tot-1 else ""}</span></div>' if kind != 'cta' else ''
+    foot = f'<div class="foot"><span>THEFACESPEACE.COM</span><span>{i+1:02d} / {tot:02d}{"  →" if i < tot-1 else ""}</span></div>' if kind != 'cta' else ''
     return f'<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="{FONTS}"><style>{CSS}</style></head><body class="{cls}">{body}{foot}</body></html>'
 
 if __name__ == '__main__':
