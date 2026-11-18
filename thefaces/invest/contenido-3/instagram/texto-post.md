@@ -1,4 +1,4 @@
-# Carrusel «SPA que ya funciona» · estilo recuadros (RU + EN)
+# Carrusel «SPA que ya funciona» · estilo THE FACES PARTNERS (RU + EN), sin precios
 
 Imágenes: ru-01.jpg … ru-07.jpg (ruso) · en-01.jpg … en-07.jpg (inglés). Fotos de thefacesbali.com.
 
@@ -11,7 +11,7 @@ THE FACES — SPA-бренд Анны и Евгения Дубининых, на
 
 ✨ Авторская концепция «Пять стихий»: Земля, Вода, Огонь, Воздух, Любовь
 🌊 4 SPA-проекта в Убуде и Сануре
-🤝 Партнёрство от $250 000
+🤝 Вы — партнёр, мы управляем SPA. Условия обсуждаются индивидуально
 📊 Наша команда ведёт всё: персонал, ритуалы, маркетинг, запись. Вы получаете ежемесячный отчёт
 📑 Договор, отчётность и визит на объект — до любого решения
 
@@ -29,7 +29,7 @@ THE FACES is the spa brand of Anna and Evgenii Dubinin, in Bali since 2013.
 
 ✨ Signature Five Elements concept: Earth, Water, Fire, Air, Love
 🌊 4 spa projects in Ubud and Sanur
-🤝 Partnership from $250,000
+🤝 You are the partner, we run the spa. Terms are agreed individually
 📊 Our team runs everything: staff, rituals, marketing, bookings. You receive a monthly report
 📑 Agreement, reports and a site visit — before any decision
 
