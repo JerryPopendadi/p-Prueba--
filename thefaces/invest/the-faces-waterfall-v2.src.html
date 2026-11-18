@@ -273,6 +273,7 @@ background:linear-gradient(90deg,rgba(10,20,15,.82) 0%,rgba(10,20,15,.45) 55%,rg
 </style>
 
 <div id="tfw">
+<span id="tf1" hidden></span>
 
 <header class="top">
   <div class="c">
@@ -642,7 +643,7 @@ var TF_I18N = {"Call us":{"fr":"Appelez-nous","ru":"Позвонить","vi":"G�
   var root=document.getElementById('tfw');if(!root||root.dataset.formReady)return;root.dataset.formReady='1';
   var CFG={
     forminatorId:703,
-    fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',budget:'radio-1'},
+    fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'textarea-1',budget:'radio-1'},
     hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},
     sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',
     calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
@@ -668,7 +669,7 @@ var TF_I18N = {"Call us":{"fr":"Appelez-nous","ru":"Позвонить","vi":"G�
     if(a.hasAttribute('data-cal'))track('thefaces_booking_click',{placement:a.getAttribute('data-cal'),link_url:CFG.calendar})},true);
 
   function findForm(){return document.querySelector('#tf-form-703-src form.forminator-custom-form')||document.querySelector('form.forminator-custom-form[data-form-id="'+CFG.forminatorId+'"]')||document.querySelector('#forminator-module-'+CFG.forminatorId)}
-  function fEl(f,key){var n=CFG.fields[key]||CFG.hidden[key];if(!n||!f)return null;return f.querySelector('[name="'+n+'"]')||f.querySelector('[name^="'+n+'-"]')}
+  function fEl(f,key){var n=CFG.fields[key]||CFG.hidden[key];if(!n||!f)return null;return f.querySelector('[name="'+n+'"]')||f.querySelector('[name^="'+n+'-"]')||(key==='country'?f.querySelector('[name="text-1"]'):null)}
   function fVal(f,key){var el=fEl(f,key);if(!el)return '';
     if(el.type==='radio'||el.type==='checkbox'){var c=f.querySelector('[name="'+el.name+'"]:checked');return c?c.value:''}
     if(key==='name'){if(el.name!==CFG.fields.name)return [].map.call(f.querySelectorAll('[name^="'+CFG.fields.name+'-"]'),function(x){return x.value}).join(' ').trim()}
@@ -694,7 +695,7 @@ var TF_I18N = {"Call us":{"fr":"Appelez-nous","ru":"Позвонить","vi":"G�
         form_language:lang(),placement:d.hv.placement,page_path:location.pathname,value:0,currency:'USD'});
       /* the Google Sheet row */
       var F=CFG.fields,H=CFG.hidden,row={};
-      row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row[F.country]=d.country;if(d.budget)row[F.budget]=d.budget;
+      row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row['text-1']=d.country;if(d.budget)row[F.budget]=d.budget;
       row['Interest']=CFG.interest;
       Object.keys(H).forEach(function(k){if(d.hv[k]!==undefined)row[H[k]]=d.hv[k]});
       try{fetch(CFG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams(row)})}catch(x){}

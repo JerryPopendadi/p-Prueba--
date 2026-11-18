@@ -236,6 +236,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
 </style>
 
 <div id="tfl" data-tf-lang-root lang="en">
+<span id="tf1" hidden></span>
 
 <header class="top">
   <div class="c">
@@ -536,7 +537,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
     if(a.hasAttribute('data-mail'))track('thefaces_email_click',{placement:a.getAttribute('data-mail')})},true);
 
   function findForm(){return document.querySelector('#tf-form-703-src form.forminator-custom-form')||document.querySelector('form.forminator-custom-form[data-form-id="'+CFG.forminatorId+'"]')||document.querySelector('#forminator-module-'+CFG.forminatorId)}
-  function fEl(f,key){var n=CFG.fields[key]||CFG.hidden[key];if(!n||!f)return null;return f.querySelector('[name="'+n+'"]')||f.querySelector('[name^="'+n+'-"]')}
+  function fEl(f,key){var n=CFG.fields[key]||CFG.hidden[key];if(!n||!f)return null;return f.querySelector('[name="'+n+'"]')||f.querySelector('[name^="'+n+'-"]')||(key==='country'?f.querySelector('[name="text-1"]'):null)}
   function fVal(f,key){var el=fEl(f,key);if(!el)return '';
     if(el.type==='radio'||el.type==='checkbox'){var c=f.querySelector('[name="'+el.name+'"]:checked');return c?c.value:''}
     if(key==='name'){if(el.name!==CFG.fields.name)return [].map.call(f.querySelectorAll('[name^="'+CFG.fields.name+'-"]'),function(x){return x.value}).join(' ').trim()}
@@ -573,7 +574,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
         /* enhanced conversions: the Google tag hashes these before sending */
         user_data:(function(){var u={email:d.email.toLowerCase()};var ph=String(d.phone||'').replace(/[^\d+]/g,'');if(ph.length>7)u.phone_number=(ph.charAt(0)==='+'?ph:'+'+ph);return u})()});
       var F=CFG.fields,H=CFG.hidden,row={};
-      row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row[F.country]=d.country;if(d.budget)row[F.budget]=d.budget;
+      row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row['text-1']=d.country;if(d.budget)row[F.budget]=d.budget;
       row['Interest']=d.interest;
       Object.keys(H).forEach(function(k){if(d.hv[k]!==undefined)row[H[k]]=d.hv[k]});
       try{fetch(CFG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams(row)})}catch(x){}
