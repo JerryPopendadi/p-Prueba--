@@ -9,6 +9,7 @@
  *   Execute as: Me   ·   Who has access: Anyone
  * Полученный URL вставить в index.html → CONFIG.apiUrl
  * и в Payhip → Settings → Developer → Webhooks.
+ * PayPal: сайт сам передаёт этот URL как notify_url (IPN) — в PayPal ничего настраивать не нужно.
  *
  * Свойства скрипта (Project Settings → Script properties):
  *   PAYHIP_API_KEY — ключ из Payhip (для проверки подписи вебхука)
@@ -19,7 +20,8 @@ var PROGRAMS = { single: 'Разовая тренировка', pack8: 'Паке
                  group: 'Jungle Group · 4 недели', nutrition: 'Консультация по питанию' };
 var LEAD_HEADERS = ['ID','Дата','Программа','Сумма','Имя','Email','Телефон','Instagram','Цель','Уровень','Поток','Дни','Время',
                     'Часовой пояс','Заметки','Язык','Статус','Оплачено','Комментарий'];
-var PAY_HEADERS = ['ID','Дата','Источник','Email','Имя','Продукт','Сумма','Валюта','Заявка','Внешний ID'];
+var PAY_HEADERS = ['ID','Дата','Источник','Email','Имя','Продукт','Сумма','Валюта','Заявка','Внешний ID','Обработано'];
+var LANGS = ['ru','en','uk','fr','de'];
 
 /* ---------- GET: свободные места ---------- */
 function doGet(e) {
@@ -42,8 +44,14 @@ function doGet(e) {
 
 /* ---------- POST: заявки и вебхуки ---------- */
 function doPost(e) {
+  var raw = (e && e.postData && e.postData.contents) || '';
+  // PayPal IPN приходит как form-urlencoded
+  if (/(^|&)txn_id=/.test(raw) || (e.postData && /x-www-form-urlencoded/.test(e.postData.type) && /(^|&)payment_status=/.test(raw))) {
+    var l0 = LockService.getScriptLock(); l0.waitLock(20000);
+    try { return handlePayPal_(raw); } catch (err) { console.error(err); return ContentService.createTextOutput('ERR'); } finally { l0.releaseLock(); }
+  }
   var body;
-  try { body = JSON.parse(e.postData.contents); } catch (err) { return json_({ ok: false, error: 'bad json' }); }
+  try { body = JSON.parse(raw); } catch (err) { return json_({ ok: false, error: 'bad json' }); }
   var lock = LockService.getScriptLock();
   if (!lock.tryLock(20000)) return json_({ ok: false, error: 'busy' });
   try {
@@ -76,7 +84,7 @@ function handleLead_(b) {
   var sh = sheet_(SH.LEADS, LEAD_HEADERS);
   sh.appendRow([id, new Date(), PROGRAMS[program], Number(b.price) || '', name, email, phone,
     clean_(b.instagram, 60), clean_(b.goal, 40), clean_(b.level, 40), clean_(b.group, 10), clean_(b.days, 80),
-    clean_(b.times, 60), clean_(b.tz, 60), clean_(b.notes, 1500), b.lang === 'en' ? 'EN' : 'RU', 'Новая', '', '']);
+    clean_(b.times, 60), clean_(b.tz, 60), clean_(b.notes, 1500), (LANGS.indexOf(b.lang) > -1 ? b.lang : 'en').toUpperCase(), 'Новая', '', '']);
 
   var owner = setting_('OWNER_EMAIL');
   if (owner) {
@@ -90,13 +98,17 @@ function handleLead_(b) {
         '<p style="color:#888">Если программа с оплатой сразу — клиент сейчас на странице оплаты. Оплата появится в панели автоматически.</p>'
     });
   }
-  var ru = b.lang !== 'en';
+  var L = LANGS.indexOf(b.lang) > -1 ? b.lang : 'en';
+  var M = {
+    ru: ['Заявка получена 🌿', 'Привет, {n}!', 'Я получила твою заявку на «{p}». Свяжусь с тобой в течение 24 часов, чтобы согласовать расписание.'],
+    uk: ['Заявку отримано 🌿', 'Привіт, {n}!', 'Я отримала твою заявку на «{p}». Зв’яжуся з тобою протягом 24 годин, щоб узгодити розклад.'],
+    en: ['Request received 🌿', 'Hi {n}!', 'I received your request for “{p}”. I will contact you within 24 hours to set up the schedule.'],
+    fr: ['Demande reçue 🌿', 'Salut {n} !', 'J’ai bien reçu ta demande pour « {p} ». Je te contacte sous 24 heures pour organiser le planning.'],
+    de: ['Anfrage erhalten 🌿', 'Hi {n}!', 'Ich habe deine Anfrage für „{p}“ erhalten. Ich melde mich innerhalb von 24 Stunden, um den Zeitplan abzustimmen.']
+  }[L];
   MailApp.sendEmail({
-    to: email, name: setting_('BRAND') || 'Valeriia', replyTo: owner || undefined,
-    subject: ru ? 'Заявка получена 🌿' : 'Request received 🌿',
-    htmlBody: ru
-      ? '<p>Привет, ' + esc_(name) + '!</p><p>Я получила твою заявку на «' + esc_(PROGRAMS[program]) + '». Свяжусь с тобой в течение 24 часов, чтобы согласовать расписание.</p><p>Лера</p>'
-      : '<p>Hi ' + esc_(name) + '!</p><p>I received your request for “' + esc_(PROGRAMS[program]) + '”. I will contact you within 24 hours to set up the schedule.</p><p>Lera</p>'
+    to: email, name: setting_('BRAND') || 'Lera', replyTo: owner || undefined, subject: M[0],
+    htmlBody: '<p>' + esc_(M[1].replace('{n}', name)) + '</p><p>' + esc_(M[2].replace('{p}', PROGRAMS[program])) + '</p><p>Lera</p>'
   });
   return json_({ ok: true, id: id });
 }
@@ -121,6 +133,40 @@ function handlePayhip_(b) {
   sh.appendRow(['P' + Date.now().toString(36).toUpperCase(), new Date(), 'Payhip', clean_(b.email, 120), clean_(b.customer_name || '', 80),
     clean_(product, 200), isFinite(amount) ? amount : '', String(b.currency || 'USD').toUpperCase(), '', ext]);
   return json_({ ok: true });
+}
+
+/* ---------- PayPal IPN ---------- */
+function handlePayPal_(raw) {
+  // 1) проверяем у PayPal, что уведомление настоящее
+  var v = UrlFetchApp.fetch('https://ipnpb.paypal.com/cgi-bin/webscr', {
+    method: 'post', payload: 'cmd=_notify-validate&' + raw, contentType: 'application/x-www-form-urlencoded', muteHttpExceptions: true });
+  if (v.getContentText().trim() !== 'VERIFIED') { console.warn('IPN not verified'); return ContentService.createTextOutput('IGNORED'); }
+  var q = {};
+  raw.split('&').forEach(function (kv) { var i = kv.indexOf('='); if (i > 0) q[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); });
+  if (q.payment_status !== 'Completed') return ContentService.createTextOutput('OK');
+  var mine = setting_('PAYPAL_EMAIL').toLowerCase();
+  if (mine && String(q.receiver_email || q.business || '').toLowerCase() !== mine) { console.warn('IPN receiver mismatch'); return ContentService.createTextOutput('IGNORED'); }
+  var sh = sheet_(SH.PAYMENTS, PAY_HEADERS), txn = String(q.txn_id || '');
+  if (txn && sh.getLastRow() > 1) {
+    var ids = sh.getRange(2, 10, sh.getLastRow() - 1, 1).getValues().map(function (r) { return String(r[0]); });
+    if (ids.indexOf(txn) > -1) return ContentService.createTextOutput('OK'); // PayPal шлёт повторы
+  }
+  var ref = /^L[A-Z0-9]{6,20}$/.test(q.custom || '') ? q.custom : '';
+  sh.appendRow(['PP' + Date.now().toString(36).toUpperCase(), new Date(), 'PayPal', clean_(String(q.payer_email || '').toLowerCase(), 120),
+    clean_(((q.first_name || '') + ' ' + (q.last_name || '')).trim(), 80), PROGRAMS[q.item_number] || clean_(q.item_name, 120),
+    Number(q.mc_gross) || '', String(q.mc_currency || 'USD'), ref, txn, '']);
+  if (ref) {
+    var ls = ss_().getSheetByName(SH.LEADS);
+    if (ls && ls.getLastRow() > 1) {
+      var ids2 = ls.getRange(2, 1, ls.getLastRow() - 1, 1).getValues();
+      for (var i = 0; i < ids2.length; i++) if (String(ids2[i][0]) === ref) {
+        ls.getRange(i + 2, LEAD_HEADERS.indexOf('Статус') + 1).setValue('Оплачено');
+        ls.getRange(i + 2, LEAD_HEADERS.indexOf('Оплачено') + 1).setValue((q.mc_gross || '') + ' ' + (q.mc_currency || '') + ' PayPal');
+        break;
+      }
+    }
+  }
+  return ContentService.createTextOutput('OK');
 }
 
 /* ---------- helpers ---------- */

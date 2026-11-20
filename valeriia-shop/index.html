@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lera — тренер и нутрициолог · Bali</title>
+<title>Lera — coach & nutritionist · Bali</title>
 <meta name="description" content="Онлайн-тренировки 1:1, мини-группы и питание без диет с Лерой — мамой, тренером и нутрициологом с Бали.">
 <meta name="theme-color" content="#F3F4EF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,10 @@ window.CONFIG = {
   // Часовой пояс Леры — по нему указано всё расписание
   tz: 'Asia/Makassar', tzLabel: { ru: 'Бали', en: 'Bali' },
   supportEmail: 'hello@example.com',
+  // PayPal: достаточно email бизнес-аккаунта PayPal Леры. Пусто = кнопки PayPal нет.
+  paypal: { email: '', currency: 'USD' },
+  // Крипта (вручную): адрес кошелька USDT. contact — ссылка, куда клиент пишет после оплаты ({msg} = текст).
+  crypto: { network: 'USDT · TRC20 (Tron)', address: '', contact: 'https://wa.me/00000000000?text={msg}' },
   // Цены и ссылки на оплату Stripe (Payment Links). payNow:false = сначала заявка, оплата после созвона.
   programs: {
     single:    { price: 110,  stripe: '', payNow: true },
@@ -63,9 +67,9 @@ h3{font-size:24px;letter-spacing:-.02em;line-height:1.15}
 .btn.light:hover{border-color:var(--ink)}
 .btn.full{width:100%}
 .btn svg{width:16px;height:16px}
-[data-en]{display:none}
-html[lang=en] [data-ru]{display:none}
-html[lang=en] [data-en]{display:revert}
+[data-en],[data-uk],[data-fr],[data-de]{display:none}
+html:not([lang=ru]) [data-ru]{display:none}
+html[lang=en] [data-en],html[lang=uk] [data-uk],html[lang=fr] [data-fr],html[lang=de] [data-de]{display:revert}
 
 header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
 header.solid{border-color:var(--line)}
@@ -262,8 +266,27 @@ textarea{min-height:84px;resize:vertical}
 .done{text-align:center;padding:30px 0 10px}
 .done .ok{width:72px;height:72px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
 .done .ok svg{stroke:var(--moss)}
+.lang{flex-wrap:nowrap}
 .done h3{font-size:28px}
 
+.paylist{display:grid;gap:10px}
+.payopt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--bg);border:1px solid transparent;border-radius:18px;padding:16px 18px;text-decoration:none;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s}
+.payopt:hover{border-color:var(--ink);background:#fff}
+.payopt b{display:block;font-weight:600;font-size:15.5px}
+.payopt small{display:block;color:var(--muted);font-size:13px}
+.payopt .arr{margin-left:auto;font-size:18px;color:var(--muted)}
+.pi{width:42px;height:42px;border-radius:12px;flex:none;background:#fff center/22px no-repeat}
+.pi-card{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141A14' stroke-width='1.8'%3E%3Crect x='2.5' y='5' width='19' height='14' rx='2.5'/%3E%3Cpath d='M2.5 10h19M6 15h4'/%3E%3C/svg%3E")}
+.pi-paypal{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23003087' d='M7.5 21H4.2L7 3h7c3.4 0 5.3 1.8 4.7 5-.7 3.8-3.3 5.3-6.6 5.3H9.6z'/%3E%3Cpath fill='%23009CDE' d='M19.6 8.2c-.7 3.6-3.2 5.6-6.7 5.6h-2l-1.2 7.2H6.9l.2-1.2h2.2l1-6.3h2.3c3 0 5.3-1.4 6-4.6.4.2.8.6 1 1.3z'/%3E%3C/svg%3E")}
+.pi-crypto{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%2326A17B'/%3E%3Cpath fill='%23fff' d='M13.2 10.4V8.9h3.4V6.6H7.4v2.3h3.4v1.5c-2.8.1-4.9.7-4.9 1.4s2.1 1.3 4.9 1.4v4.9h2.4v-4.9c2.8-.1 4.9-.7 4.9-1.4s-2.1-1.3-4.9-1.4zm0 2.4v0c-.1 0-.5 0-1.2 0-.6 0-1 0-1.2 0-2.4-.1-4.2-.5-4.2-1s1.8-.9 4.2-1v1.6h2.4v-1.6c2.4.1 4.2.5 4.2 1s-1.8.9-4.2 1z'/%3E%3C/svg%3E")}
+.crypto{margin-top:14px;background:var(--bg);border-radius:18px;padding:18px}
+.crypto .l{font-size:14px;font-weight:500;margin-bottom:10px}
+.crypto .addr{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.crypto code{flex:1;background:#fff;border-radius:12px;padding:12px;font-size:13px;word-break:break-all}
+.crypto .btn{padding:11px 16px;font-size:13.5px}
+.crypto .m{margin-bottom:12px}
+@media (max-width:420px){.lang button{padding:6px 7px}.logo span{display:none}}
+.m{color:var(--muted);font-size:14px}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
 .reveal.in{opacity:1;transform:none}
 
@@ -302,38 +325,38 @@ textarea{min-height:84px;resize:vertical}
 <header id="hdr"><div class="wrap">
   <a class="logo" href="#top">lera<span>coach · nutrition</span></a>
   <nav>
-    <a href="#programs"><span data-ru>Программы</span><span data-en>Programs</span></a>
-    <a href="#schedule"><span data-ru>Расписание</span><span data-en>Schedule</span></a>
-    <a href="#guides"><span data-ru>Гайды</span><span data-en>Guides</span></a>
-    <a href="#about"><span data-ru>Обо мне</span><span data-en>About</span></a>
+    <a href="#programs"><span data-ru>Программы</span><span data-en>Programs</span><span data-uk>Програми</span><span data-fr>Programmes</span><span data-de>Programme</span></a>
+    <a href="#schedule"><span data-ru>Расписание</span><span data-en>Schedule</span><span data-uk>Розклад</span><span data-fr>Planning</span><span data-de>Zeitplan</span></a>
+    <a href="#guides"><span data-ru>Гайды</span><span data-en>Guides</span><span data-uk>Гайди</span><span data-fr>Guides</span><span data-de>Guides</span></a>
+    <a href="#about"><span data-ru>Обо мне</span><span data-en>About</span><span data-uk>Про мене</span><span data-fr>À propos</span><span data-de>Über mich</span></a>
     <a href="#faq">FAQ</a>
   </nav>
   <div class="hright">
-    <div class="lang"><button data-l="ru">RU</button><button data-l="en">EN</button></div>
-    <a class="btn" href="#programs"><span data-ru>Записаться</span><span data-en>Book</span></a>
+    <div class="lang"><button data-l="en">EN</button><button data-l="ru">RU</button><button data-l="uk">UA</button><button data-l="fr">FR</button><button data-l="de">DE</button></div>
+    <a class="btn" href="#programs"><span data-ru>Записаться</span><span data-en>Book</span><span data-uk>Записатися</span><span data-fr>Réserver</span><span data-de>Buchen</span></a>
   </div>
 </div></header>
 
 <main id="top">
 <section class="hero"><div class="wrap">
   <div class="reveal">
-    <span class="label"><i></i><span data-ru>Онлайн из Бали · на русском и английском</span><span data-en>Online from Bali · in Russian & English</span></span>
-    <h1><span data-ru>Форма, в которой хочется жить</span><span data-en>A body you love living in</span></h1>
-    <p class="lead"><span data-ru>Я Лера — мама, тренер и нутрициолог. Помогаю женщинам прийти в форму спокойно: без жёстких диет, без часов в зале, с поддержкой на каждом шаге.</span><span data-en>I’m Lera — a mom, coach and nutritionist. I help women get in shape calmly: no crash diets, no hours at the gym, with support at every step.</span></p>
+    <span class="label"><i></i><span data-ru>Онлайн из Бали · на русском и английском</span><span data-en>Online from Bali · in Russian & English</span><span data-uk>Онлайн з Балі · російською та англійською</span><span data-fr>En ligne depuis Bali · en russe et en anglais</span><span data-de>Online aus Bali · auf Russisch und Englisch</span></span>
+    <h1><span data-ru>Форма, в которой хочется жить</span><span data-en>A body you love living in</span><span data-uk>Форма, у якій хочеться жити</span><span data-fr>Un corps dans lequel on aime vivre</span><span data-de>Ein Körper, in dem du gern lebst</span></h1>
+    <p class="lead"><span data-ru>Я Лера — мама, тренер и нутрициолог. Помогаю женщинам прийти в форму спокойно: без жёстких диет, без часов в зале, с поддержкой на каждом шаге.</span><span data-en>I’m Lera — a mom, coach and nutritionist. I help women get in shape calmly: no crash diets, no hours at the gym, with support at every step.</span><span data-uk>Я Лера — мама, тренерка й нутриціологиня. Допомагаю жінкам прийти у форму спокійно: без жорстких дієт, без годин у залі, з підтримкою на кожному кроці.</span><span data-fr>Je suis Lera — maman, coach et nutritionniste. J’aide les femmes à retrouver la forme sereinement : sans régimes stricts, sans heures à la salle, avec un accompagnement à chaque étape.</span><span data-de>Ich bin Lera — Mama, Coach und Ernährungsberaterin. Ich helfe Frauen, entspannt in Form zu kommen: ohne strenge Diäten, ohne Stunden im Studio, mit Unterstützung bei jedem Schritt.</span></p>
     <div class="ctas">
-      <a class="btn" href="#programs"><span data-ru>Выбрать программу</span><span data-en>Choose a program</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn light" href="#guides"><span data-ru>Гайды от $20</span><span data-en>Guides from $20</span></a>
+      <a class="btn" href="#programs"><span data-ru>Выбрать программу</span><span data-en>Choose a program</span><span data-uk>Обрати програму</span><span data-fr>Choisir un programme</span><span data-de>Programm wählen</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn light" href="#guides"><span data-ru>Гайды от $20</span><span data-en>Guides from $20</span><span data-uk>Гайди від $20</span><span data-fr>Guides dès 20 $</span><span data-de>Guides ab 20 $</span></a>
     </div>
     <div class="trust">
-      <div><b>1:1</b><span data-ru>лично с Лерой</span><span data-en>personally with Lera</span></div>
-      <div><b>45–60′</b><span data-ru>тренировка</span><span data-en>per session</span></div>
-      <div><b>≤ 8</b><span data-ru>в группе</span><span data-en>per group</span></div>
+      <div><b>1:1</b><span data-ru>лично с Лерой</span><span data-en>personally with Lera</span><span data-uk>особисто з Лерою</span><span data-fr>en personne avec Lera</span><span data-de>persönlich mit Lera</span></div>
+      <div><b>45–60′</b><span data-ru>тренировка</span><span data-en>per session</span><span data-uk>тренування</span><span data-fr>par séance</span><span data-de>pro Einheit</span></div>
+      <div><b>≤ 8</b><span data-ru>в группе</span><span data-en>per group</span><span data-uk>у групі</span><span data-fr>par groupe</span><span data-de>pro Gruppe</span></div>
     </div>
   </div>
   <div class="ph reveal">
     <img src="img/lera-2.jpg" alt="Lera, Bali">
-    <div class="float"><div class="t"><i></i><span data-ru>Идёт набор</span><span data-en>Now enrolling</span></div>
-      <div class="m"><span data-ru>Персональные тренировки и группы · Пн / Ср / Пт</span><span data-en>Personal training & groups · Mon / Wed / Fri</span></div></div>
+    <div class="float"><div class="t"><i></i><span data-ru>Идёт набор</span><span data-en>Now enrolling</span><span data-uk>Йде набір</span><span data-fr>Inscriptions ouvertes</span><span data-de>Jetzt anmelden</span></div>
+      <div class="m"><span data-ru>Персональные тренировки и группы · Пн / Ср / Пт</span><span data-en>Personal training & groups · Mon / Wed / Fri</span><span data-uk>Персональні тренування й групи · Пн / Ср / Пт</span><span data-fr>Coaching individuel et groupes · lun / mer / ven</span><span data-de>Personal Training & Gruppen · Mo / Mi / Fr</span></div></div>
   </div>
 </div></section>
 
@@ -345,160 +368,160 @@ textarea{min-height:84px;resize:vertical}
     <div><img src="img/lera-boat.jpg" alt="" loading="lazy" style="object-position:60% 40%"></div>
     <div><img src="img/lera-hero.jpg" alt="" loading="lazy" style="object-position:50% 30%"></div>
   </div>
-  <div class="cap"><span data-ru>Жизнь на Бали, тренировки и нормальная еда</span><span data-en>Bali life, training and real food</span><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">@whynotleraa →</a></div>
+  <div class="cap"><span data-ru>Жизнь на Бали, тренировки и нормальная еда</span><span data-en>Bali life, training and real food</span><span data-uk>Життя на Балі, тренування й нормальна їжа</span><span data-fr>La vie à Bali, le sport et une vraie alimentation</span><span data-de>Leben auf Bali, Training und echtes Essen</span><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">@whynotleraa →</a></div>
 </div></div>
 
 <section class="story" id="story"><div class="wrap">
   <div class="box reveal">
     <div class="ph"><img src="img/lera-hero.jpg" alt="Lera" loading="lazy"></div>
     <div class="txt">
-      <div class="kicker"><span data-ru>Моя история</span><span data-en>My story</span></div>
-      <h2><span data-ru>Мама, работаю — и держу форму</span><span data-en>A mom, working — and staying in shape</span></h2>
-      <p><span data-ru>У меня нет свободных часов в зале. Есть материнство, работа и жизнь — как у тебя. Поэтому мой подход простой: короткие точные тренировки, нормальная еда и привычки, которые реально держать годами. Это не генетика и не свободное время. Это система — и я научу ей тебя.</span><span data-en>I don’t have spare hours at the gym. I have motherhood, work and a life — just like you. So my approach is simple: short, precise workouts, real food and habits you can keep for years. It isn’t genetics or free time. It’s a system — and I’ll teach it to you.</span></p>
+      <div class="kicker"><span data-ru>Моя история</span><span data-en>My story</span><span data-uk>Моя історія</span><span data-fr>Mon histoire</span><span data-de>Meine Geschichte</span></div>
+      <h2><span data-ru>Мама, работаю — и держу форму</span><span data-en>A mom, working — and staying in shape</span><span data-uk>Мама, працюю — і тримаю форму</span><span data-fr>Maman, je travaille — et je reste en forme</span><span data-de>Mama, berufstätig — und in Form</span></h2>
+      <p><span data-ru>У меня нет свободных часов в зале. Есть материнство, работа и жизнь — как у тебя. Поэтому мой подход простой: короткие точные тренировки, нормальная еда и привычки, которые реально держать годами. Это не генетика и не свободное время. Это система — и я научу ей тебя.</span><span data-en>I don’t have spare hours at the gym. I have motherhood, work and a life — just like you. So my approach is simple: short, precise workouts, real food and habits you can keep for years. It isn’t genetics or free time. It’s a system — and I’ll teach it to you.</span><span data-uk>У мене немає вільних годин у залі. Є материнство, робота й життя — як у тебе. Тому мій підхід простий: короткі точні тренування, нормальна їжа і звички, які реально тримати роками. Це не генетика й не вільний час. Це система — і я навчу їй тебе.</span><span data-fr>Je n’ai pas d’heures libres à la salle. J’ai la maternité, le travail et une vie — comme toi. Mon approche est donc simple : des entraînements courts et précis, une vraie alimentation et des habitudes que l’on garde des années. Ce n’est ni la génétique ni le temps libre. C’est un système — et je vais te l’apprendre.</span><span data-de>Ich habe keine freien Stunden im Studio. Ich habe Mutterschaft, Arbeit und ein Leben — genau wie du. Deshalb ist mein Ansatz einfach: kurze, präzise Workouts, echtes Essen und Gewohnheiten, die du jahrelang beibehältst. Das ist keine Genetik und keine Freizeit. Es ist ein System — und ich bringe es dir bei.</span></p>
       <div class="facts">
-        <div><b>45–60′</b><span data-ru>помещается между работой и детьми</span><span data-en>fits between work and kids</span></div>
-        <div><b><span data-ru>0 диет</span><span data-en>0 diets</span></b><span data-ru>КБЖУ и нормальная еда</span><span data-en>macros and real food</span></div>
-        <div><b><span data-ru>Дома</span><span data-en>At home</span></b><span data-ru>или в зале — нужен коврик</span><span data-en>or the gym — just a mat</span></div>
+        <div><b>45–60′</b><span data-ru>помещается между работой и детьми</span><span data-en>fits between work and kids</span><span data-uk>вміщується між роботою й дітьми</span><span data-fr>tient entre le travail et les enfants</span><span data-de>passt zwischen Arbeit und Kinder</span></div>
+        <div><b><span data-ru>0 диет</span><span data-en>0 diets</span><span data-uk>0 дієт</span><span data-fr>0 régime</span><span data-de>0 Diäten</span></b><span data-ru>КБЖУ и нормальная еда</span><span data-en>macros and real food</span><span data-uk>КБЖВ і нормальна їжа</span><span data-fr>macros et vraie nourriture</span><span data-de>Makros und echtes Essen</span></div>
+        <div><b><span data-ru>Дома</span><span data-en>At home</span><span data-uk>Вдома</span><span data-fr>À la maison</span><span data-de>Zu Hause</span></b><span data-ru>или в зале — нужен коврик</span><span data-en>or the gym — just a mat</span><span data-uk>або в залі — потрібен килимок</span><span data-fr>ou à la salle — un tapis suffit</span><span data-de>oder im Studio — nur eine Matte</span></div>
       </div>
-      <div class="sign"><b>Лера</b> · <span data-ru>мама, тренер, нутрициолог</span><span data-en>mom, coach, nutritionist</span></div>
+      <div class="sign"><b>Лера</b> · <span data-ru>мама, тренер, нутрициолог</span><span data-en>mom, coach, nutritionist</span><span data-uk>мама, тренерка, нутриціологиня</span><span data-fr>maman, coach, nutritionniste</span><span data-de>Mama, Coach, Ernährungsberaterin</span></div>
     </div>
   </div>
 </div></section>
 
 <section id="programs"><div class="wrap">
   <div class="shead reveal">
-    <div><div class="kicker"><span data-ru>Программы</span><span data-en>Programs</span></div>
-    <h2><span data-ru>Выбери свой формат</span><span data-en>Choose your format</span></h2></div>
-    <p><span data-ru>Все занятия — онлайн в Zoom. Время указано по Бали, в расписании оно пересчитано в твой часовой пояс.</span><span data-en>All sessions are live on Zoom. Times are Bali time — the schedule converts them to yours.</span></p>
+    <div><div class="kicker"><span data-ru>Программы</span><span data-en>Programs</span><span data-uk>Програми</span><span data-fr>Programmes</span><span data-de>Programme</span></div>
+    <h2><span data-ru>Выбери свой формат</span><span data-en>Choose your format</span><span data-uk>Обери свій формат</span><span data-fr>Choisis ta formule</span><span data-de>Wähle dein Format</span></h2></div>
+    <p><span data-ru>Все занятия — онлайн в Zoom. Время указано по Бали, в расписании оно пересчитано в твой часовой пояс.</span><span data-en>All sessions are live on Zoom. Times are Bali time — the schedule converts them to yours.</span><span data-uk>Усі заняття — наживо в Zoom. Час указано за Балі — у розкладі його перераховано у твій часовий пояс.</span><span data-fr>Toutes les séances ont lieu en direct sur Zoom. Les horaires sont à l’heure de Bali — le planning les convertit dans ton fuseau.</span><span data-de>Alle Einheiten finden live über Zoom statt. Die Zeiten sind Bali-Zeit — der Zeitplan rechnet sie in deine Zeitzone um.</span></p>
   </div>
   <div class="grid">
     <article class="card feat reveal">
       <div class="ph"><img src="img/lera-about.jpg" alt="" loading="lazy"></div>
       <div class="in">
-        <span class="tag">Signature · <span data-ru>4 места в месяц</span><span data-en>4 spots a month</span></span>
-        <h3 style="margin-top:18px"><span data-ru>Трансформация 12 недель</span><span data-en>12-Week Transformation</span></h3>
-        <p class="desc"><span data-ru>Тренировки, питание и поддержка каждый день — максимальный результат.</span><span data-en>Training, nutrition and daily support — maximum results.</span></p>
-        <div class="chips"><span>12 <i data-ru style="font-style:normal">недель</i><i data-en style="font-style:normal">weeks</i></span><span>24 × 60 <i data-ru style="font-style:normal">мин 1:1</i><i data-en style="font-style:normal">min 1:1</i></span><span><i data-ru style="font-style:normal">2 раза в неделю</i><i data-en style="font-style:normal">2× per week</i></span></div>
+        <span class="tag">Signature · <span data-ru>4 места в месяц</span><span data-en>4 spots a month</span><span data-uk>4 місця на місяць</span><span data-fr>4 places par mois</span><span data-de>4 Plätze pro Monat</span></span>
+        <h3 style="margin-top:18px"><span data-ru>Трансформация 12 недель</span><span data-en>12-Week Transformation</span><span data-uk>Трансформація 12 тижнів</span><span data-fr>Transformation 12 semaines</span><span data-de>12-Wochen-Transformation</span></h3>
+        <p class="desc"><span data-ru>Тренировки, питание и поддержка каждый день — максимальный результат.</span><span data-en>Training, nutrition and daily support — maximum results.</span><span data-uk>Тренування, харчування й підтримка щодня — максимальний результат.</span><span data-fr>Entraînement, nutrition et soutien au quotidien — un résultat maximal.</span><span data-de>Training, Ernährung und tägliche Unterstützung — maximale Ergebnisse.</span></p>
+        <div class="chips"><span>12 <i data-ru style="font-style:normal">недель</i><i data-en style="font-style:normal">weeks</i><i data-uk style="font-style:normal">тижнів</i><i data-fr style="font-style:normal">semaines</i><i data-de style="font-style:normal">Wochen</i></span><span>24 × 60 <i data-ru style="font-style:normal">мин 1:1</i><i data-en style="font-style:normal">min 1:1</i><i data-uk style="font-style:normal">хв 1:1</i><i data-fr style="font-style:normal">min en 1:1</i><i data-de style="font-style:normal">Min. 1:1</i></span><span><i data-ru style="font-style:normal">2 раза в неделю</i><i data-en style="font-style:normal">2× per week</i><i data-uk style="font-style:normal">2 рази на тиждень</i><i data-fr style="font-style:normal">2× par semaine</i><i data-de style="font-style:normal">2× pro Woche</i></span></div>
         <ul class="list">
-          <li><span data-ru>24 персональные тренировки по 60 минут</span><span data-en>24 personal 60-minute sessions</span></li>
-          <li><span data-ru>План питания с КБЖУ, корректировка каждые 2 недели</span><span data-en>Nutrition plan with macros, adjusted every 2 weeks</span></li>
-          <li><span data-ru>Чек-ин 30 минут раз в неделю: замеры и разбор</span><span data-en>Weekly 30-min check-in: measurements and review</span></li>
-          <li><span data-ru>Чат с Лерой Пн–Пт 9:00–19:00</span><span data-en>Chat with Lera Mon–Fri 9:00–19:00</span></li>
-          <li><span data-ru>Оба гайда в подарок</span><span data-en>Both guides included</span></li>
+          <li><span data-ru>24 персональные тренировки по 60 минут</span><span data-en>24 personal 60-minute sessions</span><span data-uk>24 персональні тренування по 60 хвилин</span><span data-fr>24 séances individuelles de 60 minutes</span><span data-de>24 persönliche Einheiten à 60 Minuten</span></li>
+          <li><span data-ru>План питания с КБЖУ, корректировка каждые 2 недели</span><span data-en>Nutrition plan with macros, adjusted every 2 weeks</span><span data-uk>План харчування з КБЖВ, коригування кожні 2 тижні</span><span data-fr>Plan nutritionnel avec macros, ajusté toutes les 2 semaines</span><span data-de>Ernährungsplan mit Makros, alle 2 Wochen angepasst</span></li>
+          <li><span data-ru>Чек-ин 30 минут раз в неделю: замеры и разбор</span><span data-en>Weekly 30-min check-in: measurements and review</span><span data-uk>Чек-ін 30 хвилин щотижня: заміри й розбір</span><span data-fr>Bilan hebdomadaire de 30 min : mesures et analyse</span><span data-de>Wöchentlicher 30-Min.-Check-in: Maße und Auswertung</span></li>
+          <li><span data-ru>Чат с Лерой Пн–Пт 9:00–19:00</span><span data-en>Chat with Lera Mon–Fri 9:00–19:00</span><span data-uk>Чат із Лерою Пн–Пт 9:00–19:00</span><span data-fr>Chat avec Lera du lun au ven, 9:00–19:00</span><span data-de>Chat mit Lera Mo–Fr 9:00–19:00</span></li>
+          <li><span data-ru>Оба гайда в подарок</span><span data-en>Both guides included</span><span data-uk>Обидва гайди в подарунок</span><span data-fr>Les deux guides offerts</span><span data-de>Beide Guides inklusive</span></li>
         </ul>
         <div class="row">
-          <div class="price" data-price="transform">$2,400<small><span data-ru>или 3 платежа по $800</span><span data-en>or 3 × $800</span></small></div>
-          <button class="btn" data-book="transform"><span data-ru>Подать заявку</span><span data-en>Apply</span></button>
+          <div class="price" data-price="transform">$2,400<small><span data-ru>или 3 платежа по $800</span><span data-en>or 3 × $800</span><span data-uk>або 3 платежі по $800</span><span data-fr>ou 3 × 800 $</span><span data-de>oder 3 × 800 $</span></small></div>
+          <button class="btn" data-book="transform"><span data-ru>Подать заявку</span><span data-en>Apply</span><span data-uk>Подати заявку</span><span data-fr>Postuler</span><span data-de>Bewerben</span></button>
         </div>
-        <div class="note"><span data-ru>Сначала короткий бесплатный созвон, чтобы понять, подходит ли формат.</span><span data-en>Starts with a short free call to make sure it’s a fit.</span></div>
+        <div class="note"><span data-ru>Сначала короткий бесплатный созвон, чтобы понять, подходит ли формат.</span><span data-en>Starts with a short free call to make sure it’s a fit.</span><span data-uk>Спершу короткий безкоштовний дзвінок, щоб зрозуміти, чи підходить формат.</span><span data-fr>On commence par un court appel gratuit pour vérifier que la formule te convient.</span><span data-de>Wir starten mit einem kurzen kostenlosen Gespräch, um zu sehen, ob es passt.</span></div>
       </div>
     </article>
 
     <article class="card reveal">
-      <span class="tag pop"><span data-ru>Популярное</span><span data-en>Most popular</span></span>
-      <h3><span data-ru>Пакет 8 тренировок</span><span data-en>8-Session Pack</span></h3>
-      <p class="desc"><span data-ru>Персонально с Лерой, программа под твою цель.</span><span data-en>Personal with Lera, built around your goal.</span></p>
-      <div class="chips"><span>8 × 60 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span><span><i data-ru style="font-style:normal">4 недели</i><i data-en style="font-style:normal">4 weeks</i></span><span>2×/<i data-ru style="font-style:normal">нед</i><i data-en style="font-style:normal">wk</i></span></div>
+      <span class="tag pop"><span data-ru>Популярное</span><span data-en>Most popular</span><span data-uk>Найпопулярніше</span><span data-fr>Le plus choisi</span><span data-de>Am beliebtesten</span></span>
+      <h3><span data-ru>Пакет 8 тренировок</span><span data-en>8-Session Pack</span><span data-uk>Пакет 8 тренувань</span><span data-fr>Pack 8 séances</span><span data-de>8er-Paket</span></h3>
+      <p class="desc"><span data-ru>Персонально с Лерой, программа под твою цель.</span><span data-en>Personal with Lera, built around your goal.</span><span data-uk>Персонально з Лерою, програма під твою ціль.</span><span data-fr>En individuel avec Lera, construit autour de ton objectif.</span><span data-de>Persönlich mit Lera, abgestimmt auf dein Ziel.</span></p>
+      <div class="chips"><span>8 × 60 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i><i data-uk style="font-style:normal">хв</i><i data-fr style="font-style:normal">min</i><i data-de style="font-style:normal">Min.</i></span><span><i data-ru style="font-style:normal">4 недели</i><i data-en style="font-style:normal">4 weeks</i><i data-uk style="font-style:normal">4 тижні</i><i data-fr style="font-style:normal">4 semaines</i><i data-de style="font-style:normal">4 Wochen</i></span><span>2×/<i data-ru style="font-style:normal">нед</i><i data-en style="font-style:normal">wk</i><i data-uk style="font-style:normal">тиж</i><i data-fr style="font-style:normal">sem.</i><i data-de style="font-style:normal">Wo.</i></span></div>
       <ul class="list">
-        <li><span data-ru>Техника и прогрессия нагрузки</span><span data-en>Technique and progression</span></li>
-        <li><span data-ru>Разбор питания</span><span data-en>Nutrition review</span></li>
-        <li><span data-ru>Действует 6 недель</span><span data-en>Valid for 6 weeks</span></li>
+        <li><span data-ru>Техника и прогрессия нагрузки</span><span data-en>Technique and progression</span><span data-uk>Техніка й прогресія навантаження</span><span data-fr>Technique et progression</span><span data-de>Technik und Steigerung</span></li>
+        <li><span data-ru>Разбор питания</span><span data-en>Nutrition review</span><span data-uk>Розбір харчування</span><span data-fr>Analyse de l’alimentation</span><span data-de>Ernährungsanalyse</span></li>
+        <li><span data-ru>Действует 6 недель</span><span data-en>Valid for 6 weeks</span><span data-uk>Діє 6 тижнів</span><span data-fr>Valable 6 semaines</span><span data-de>6 Wochen gültig</span></li>
       </ul>
-      <div class="price" data-price="pack8">$800<small><span data-ru>$100 за тренировку</span><span data-en>$100 per session</span></small></div>
-      <button class="btn full" data-book="pack8"><span data-ru>Записаться</span><span data-en>Book</span></button>
+      <div class="price" data-price="pack8">$800<small><span data-ru>$100 за тренировку</span><span data-en>$100 per session</span><span data-uk>$100 за тренування</span><span data-fr>100 $ la séance</span><span data-de>100 $ pro Einheit</span></small></div>
+      <button class="btn full" data-book="pack8"><span data-ru>Записаться</span><span data-en>Book</span><span data-uk>Записатися</span><span data-fr>Réserver</span><span data-de>Buchen</span></button>
     </article>
 
     <article class="card reveal">
-      <span class="tag"><span data-ru>Мини-группа</span><span data-en>Small group</span></span>
+      <span class="tag"><span data-ru>Мини-группа</span><span data-en>Small group</span><span data-uk>Міні-група</span><span data-fr>Petit groupe</span><span data-de>Kleingruppe</span></span>
       <h3>Jungle Group</h3>
-      <p class="desc"><span data-ru>Живые тренировки в Zoom, до 8 человек.</span><span data-en>Live Zoom sessions, max 8 people.</span></p>
-      <div class="chips"><span>12 × 45 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span><span><i data-ru style="font-style:normal">Пн · Ср · Пт</i><i data-en style="font-style:normal">Mon · Wed · Fri</i></span></div>
+      <p class="desc"><span data-ru>Живые тренировки в Zoom, до 8 человек.</span><span data-en>Live Zoom sessions, max 8 people.</span><span data-uk>Живі тренування в Zoom, до 8 людей.</span><span data-fr>Séances en direct sur Zoom, 8 personnes max.</span><span data-de>Live-Einheiten über Zoom, max. 8 Personen.</span></p>
+      <div class="chips"><span>12 × 45 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i><i data-uk style="font-style:normal">хв</i><i data-fr style="font-style:normal">min</i><i data-de style="font-style:normal">Min.</i></span><span><i data-ru style="font-style:normal">Пн · Ср · Пт</i><i data-en style="font-style:normal">Mon · Wed · Fri</i><i data-uk style="font-style:normal">Пн · Ср · Пт</i><i data-fr style="font-style:normal">Lun · Mer · Ven</i><i data-de style="font-style:normal">Mo · Mi · Fr</i></span></div>
       <ul class="list">
-        <li><span data-ru>Сила, кор, ягодицы, мобильность</span><span data-en>Strength, core, glutes, mobility</span></li>
-        <li><span data-ru>14:00 или 19:00 по Бали</span><span data-en>14:00 or 19:00 Bali time</span></li>
-        <li><span data-ru>Чат группы + гайд Flat Belly</span><span data-en>Group chat + Flat Belly guide</span></li>
+        <li><span data-ru>Сила, кор, ягодицы, мобильность</span><span data-en>Strength, core, glutes, mobility</span><span data-uk>Сила, кор, сідниці, мобільність</span><span data-fr>Force, gainage, fessiers, mobilité</span><span data-de>Kraft, Core, Po, Mobilität</span></li>
+        <li><span data-ru>14:00 или 19:00 по Бали</span><span data-en>14:00 or 19:00 Bali time</span><span data-uk>14:00 або 19:00 за Балі</span><span data-fr>14:00 ou 19:00, heure de Bali</span><span data-de>14:00 oder 19:00 Bali-Zeit</span></li>
+        <li><span data-ru>Чат группы + гайд Flat Belly</span><span data-en>Group chat + Flat Belly guide</span><span data-uk>Чат групи + гайд Flat Belly</span><span data-fr>Chat du groupe + guide Flat Belly</span><span data-de>Gruppenchat + Flat-Belly-Guide</span></li>
       </ul>
-      <div class="price" data-price="group">$169<small><span data-ru>4 недели · ≈ $14 за занятие</span><span data-en>4 weeks · ≈ $14 per session</span></small></div>
-      <button class="btn full" data-book="group"><span data-ru>Занять место</span><span data-en>Join</span></button>
+      <div class="price" data-price="group">$169<small><span data-ru>4 недели · ≈ $14 за занятие</span><span data-en>4 weeks · ≈ $14 per session</span><span data-uk>4 тижні · ≈ $14 за заняття</span><span data-fr>4 semaines · ≈ 14 $ la séance</span><span data-de>4 Wochen · ≈ 14 $ pro Einheit</span></small></div>
+      <button class="btn full" data-book="group"><span data-ru>Занять место</span><span data-en>Join</span><span data-uk>Зайняти місце</span><span data-fr>Rejoindre</span><span data-de>Mitmachen</span></button>
     </article>
 
     <article class="card reveal">
-      <span class="tag"><span data-ru>Питание</span><span data-en>Nutrition</span></span>
-      <h3><span data-ru>Консультация нутрициолога</span><span data-en>Nutrition Consultation</span></h3>
-      <p class="desc"><span data-ru>Разбор рациона и персональный план.</span><span data-en>Diet review and a personal plan.</span></p>
-      <div class="chips"><span>75 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span><span><i data-ru style="font-style:normal">план за 5 дней</i><i data-en style="font-style:normal">plan in 5 days</i></span></div>
+      <span class="tag"><span data-ru>Питание</span><span data-en>Nutrition</span><span data-uk>Харчування</span><span data-fr>Nutrition</span><span data-de>Ernährung</span></span>
+      <h3><span data-ru>Консультация нутрициолога</span><span data-en>Nutrition Consultation</span><span data-uk>Консультація нутриціолога</span><span data-fr>Consultation nutrition</span><span data-de>Ernährungsberatung</span></h3>
+      <p class="desc"><span data-ru>Разбор рациона и персональный план.</span><span data-en>Diet review and a personal plan.</span><span data-uk>Розбір раціону й персональний план.</span><span data-fr>Analyse de l’alimentation et plan personnalisé.</span><span data-de>Analyse deiner Ernährung und ein persönlicher Plan.</span></p>
+      <div class="chips"><span>75 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i><i data-uk style="font-style:normal">хв</i><i data-fr style="font-style:normal">min</i><i data-de style="font-style:normal">Min.</i></span><span><i data-ru style="font-style:normal">план за 5 дней</i><i data-en style="font-style:normal">plan in 5 days</i><i data-uk style="font-style:normal">план за 5 днів</i><i data-fr style="font-style:normal">plan en 5 jours</i><i data-de style="font-style:normal">Plan in 5 Tagen</i></span></div>
       <ul class="list">
-        <li><span data-ru>Анкета, цели и привычки</span><span data-en>Questionnaire, goals and habits</span></li>
-        <li><span data-ru>План питания с КБЖУ</span><span data-en>Meal plan with macros</span></li>
-        <li><span data-ru>2 недели вопросов в чате</span><span data-en>2 weeks of chat support</span></li>
+        <li><span data-ru>Анкета, цели и привычки</span><span data-en>Questionnaire, goals and habits</span><span data-uk>Анкета, цілі й звички</span><span data-fr>Questionnaire, objectifs et habitudes</span><span data-de>Fragebogen, Ziele und Gewohnheiten</span></li>
+        <li><span data-ru>План питания с КБЖУ</span><span data-en>Meal plan with macros</span><span data-uk>План харчування з КБЖВ</span><span data-fr>Plan de repas avec macros</span><span data-de>Essensplan mit Makros</span></li>
+        <li><span data-ru>2 недели вопросов в чате</span><span data-en>2 weeks of chat support</span><span data-uk>2 тижні запитань у чаті</span><span data-fr>2 semaines de suivi par chat</span><span data-de>2 Wochen Chat-Support</span></li>
       </ul>
-      <div class="price" data-price="nutrition">$180<small><span data-ru>разовая оплата</span><span data-en>one-time</span></small></div>
-      <button class="btn full" data-book="nutrition"><span data-ru>Записаться</span><span data-en>Book</span></button>
+      <div class="price" data-price="nutrition">$180<small><span data-ru>разовая оплата</span><span data-en>one-time</span><span data-uk>разова оплата</span><span data-fr>paiement unique</span><span data-de>einmalig</span></small></div>
+      <button class="btn full" data-book="nutrition"><span data-ru>Записаться</span><span data-en>Book</span><span data-uk>Записатися</span><span data-fr>Réserver</span><span data-de>Buchen</span></button>
     </article>
 
     <article class="card wide reveal">
-      <div><span class="tag"><span data-ru>Попробовать</span><span data-en>Try it</span></span>
-        <h3 style="margin:14px 0 4px"><span data-ru>Разовая тренировка · 60 минут</span><span data-en>Single session · 60 minutes</span></h3>
-        <p class="desc"><span data-ru>Знакомство, разбор техники и план на 2 недели. Засчитывается, если в течение 7 дней возьмёшь пакет.</span><span data-en>Meet Lera, technique review and a 2-week plan. Credited if you upgrade within 7 days.</span></p></div>
-      <div style="display:flex;align-items:center;gap:20px"><div class="price" data-price="single">$110</div><button class="btn" data-book="single"><span data-ru>Записаться</span><span data-en>Book</span></button></div>
+      <div><span class="tag"><span data-ru>Попробовать</span><span data-en>Try it</span><span data-uk>Спробувати</span><span data-fr>Essayer</span><span data-de>Ausprobieren</span></span>
+        <h3 style="margin:14px 0 4px"><span data-ru>Разовая тренировка · 60 минут</span><span data-en>Single session · 60 minutes</span><span data-uk>Разове тренування · 60 хвилин</span><span data-fr>Séance individuelle · 60 minutes</span><span data-de>Einzelstunde · 60 Minuten</span></h3>
+        <p class="desc"><span data-ru>Знакомство, разбор техники и план на 2 недели. Засчитывается, если в течение 7 дней возьмёшь пакет.</span><span data-en>Meet Lera, technique review and a 2-week plan. Credited if you upgrade within 7 days.</span><span data-uk>Знайомство, розбір техніки й план на 2 тижні. Зараховується, якщо протягом 7 днів візьмеш пакет.</span><span data-fr>Rencontre avec Lera, analyse de la technique et plan de 2 semaines. Déduite si tu prends un pack sous 7 jours.</span><span data-de>Lera kennenlernen, Technik-Check und ein 2-Wochen-Plan. Wird angerechnet, wenn du innerhalb von 7 Tagen ein Paket buchst.</span></p></div>
+      <div style="display:flex;align-items:center;gap:20px"><div class="price" data-price="single">$110</div><button class="btn" data-book="single"><span data-ru>Записаться</span><span data-en>Book</span><span data-uk>Записатися</span><span data-fr>Réserver</span><span data-de>Buchen</span></button></div>
     </article>
   </div>
 </div></section>
 
 <section class="sch" id="schedule"><div class="wrap">
   <div class="shead reveal">
-    <div><div class="kicker"><span data-ru>Расписание</span><span data-en>Schedule</span></div>
-    <h2><span data-ru>Всё по времени</span><span data-en>Clear times</span></h2></div>
-    <p><span data-ru>Группы — три раза в неделю. Персональные — в любое удобное окно.</span><span data-en>Groups three times a week. Personal sessions in any open slot.</span></p>
+    <div><div class="kicker"><span data-ru>Расписание</span><span data-en>Schedule</span><span data-uk>Розклад</span><span data-fr>Planning</span><span data-de>Zeitplan</span></div>
+    <h2><span data-ru>Всё по времени</span><span data-en>Clear times</span><span data-uk>Усе за часом</span><span data-fr>Des horaires clairs</span><span data-de>Klare Zeiten</span></h2></div>
+    <p><span data-ru>Группы — три раза в неделю. Персональные — в любое удобное окно.</span><span data-en>Groups three times a week. Personal sessions in any open slot.</span><span data-uk>Групи — тричі на тиждень. Персональні — у будь-яке вільне вікно.</span><span data-fr>Groupes trois fois par semaine. Séances individuelles sur tout créneau libre.</span><span data-de>Gruppen dreimal pro Woche. Personal Training in jedem freien Slot.</span></p>
   </div>
   <div class="sched">
-    <div class="slot reveal" data-slot="G-AM"><div class="h"><b><span data-ru>Дневной поток</span><span data-en>Day cohort</span></b><span class="left" data-left></span></div><div class="days"></div><div class="local"></div></div>
-    <div class="slot reveal" data-slot="G-PM"><div class="h"><b><span data-ru>Вечерний поток</span><span data-en>Evening cohort</span></b><span class="left" data-left></span></div><div class="days"></div><div class="local"></div></div>
+    <div class="slot reveal" data-slot="G-AM"><div class="h"><b><span data-ru>Дневной поток</span><span data-en>Day cohort</span><span data-uk>Денний потік</span><span data-fr>Groupe de jour</span><span data-de>Tagesgruppe</span></b><span class="left" data-left></span></div><div class="days"></div><div class="local"></div></div>
+    <div class="slot reveal" data-slot="G-PM"><div class="h"><b><span data-ru>Вечерний поток</span><span data-en>Evening cohort</span><span data-uk>Вечірній потік</span><span data-fr>Groupe du soir</span><span data-de>Abendgruppe</span></b><span class="left" data-left></span></div><div class="days"></div><div class="local"></div></div>
   </div>
   <div class="hours reveal">
-    <div class="kicker"><span data-ru>Персональные 1:1</span><span data-en>Personal 1:1</span></div>
+    <div class="kicker"><span data-ru>Персональные 1:1</span><span data-en>Personal 1:1</span><span data-uk>Персональні 1:1</span><span data-fr>Individuel 1:1</span><span data-de>Personal 1:1</span></div>
     <div class="rows">
-      <div><b>08:00 – 20:00</b><span data-ru>понедельник – пятница</span><span data-en>Monday – Friday</span></div>
-      <div><b>09:00 – 13:00</b><span data-ru>суббота</span><span data-en>Saturday</span></div>
-      <div><b><span data-ru>Отдых</span><span data-en>Rest</span></b><span data-ru>воскресенье</span><span data-en>Sunday</span></div>
+      <div><b>08:00 – 20:00</b><span data-ru>понедельник – пятница</span><span data-en>Monday – Friday</span><span data-uk>понеділок – п’ятниця</span><span data-fr>Lundi – vendredi</span><span data-de>Montag – Freitag</span></div>
+      <div><b>09:00 – 13:00</b><span data-ru>суббота</span><span data-en>Saturday</span><span data-uk>субота</span><span data-fr>Samedi</span><span data-de>Samstag</span></div>
+      <div><b><span data-ru>Отдых</span><span data-en>Rest</span><span data-uk>Відпочинок</span><span data-fr>Repos</span><span data-de>Ruhetag</span></b><span data-ru>воскресенье</span><span data-en>Sunday</span><span data-uk>неділя</span><span data-fr>Dimanche</span><span data-de>Sonntag</span></div>
     </div>
   </div>
   <p class="tznote" id="tznote"></p>
 </div></section>
 
 <section><div class="wrap">
-  <div class="shead reveal"><div><div class="kicker"><span data-ru>Как начать</span><span data-en>How to start</span></div>
-    <h2><span data-ru>Четыре простых шага</span><span data-en>Four simple steps</span></h2></div></div>
+  <div class="shead reveal"><div><div class="kicker"><span data-ru>Как начать</span><span data-en>How to start</span><span data-uk>Як почати</span><span data-fr>Comment commencer</span><span data-de>So startest du</span></div>
+    <h2><span data-ru>Четыре простых шага</span><span data-en>Four simple steps</span><span data-uk>Чотири прості кроки</span><span data-fr>Quatre étapes simples</span><span data-de>Vier einfache Schritte</span></h2></div></div>
   <div class="steps">
-    <div class="step reveal"><div class="n">1</div><h3><span data-ru>Анкета</span><span data-en>Short form</span></h3><p><span data-ru>Цель, уровень, удобные дни. Две минуты.</span><span data-en>Goal, level, preferred days. Two minutes.</span></p></div>
-    <div class="step reveal"><div class="n">2</div><h3><span data-ru>Оплата</span><span data-en>Payment</span></h3><p><span data-ru>Безопасно через Stripe: карта, Apple Pay, Google Pay.</span><span data-en>Secure via Stripe: card, Apple Pay, Google Pay.</span></p></div>
-    <div class="step reveal"><div class="n">3</div><h3><span data-ru>Календарь</span><span data-en>Calendar</span></h3><p><span data-ru>За 24 часа приходит приглашение с Zoom и напоминаниями.</span><span data-en>Within 24 hours: a calendar invite with Zoom and reminders.</span></p></div>
-    <div class="step reveal"><div class="n">4</div><h3><span data-ru>Тренируемся</span><span data-en>We train</span></h3><p><span data-ru>Лично с Лерой, с прогрессом и поддержкой.</span><span data-en>Personally with Lera, with progress and support.</span></p></div>
+    <div class="step reveal"><div class="n">1</div><h3><span data-ru>Анкета</span><span data-en>Short form</span><span data-uk>Анкета</span><span data-fr>Court formulaire</span><span data-de>Kurzes Formular</span></h3><p><span data-ru>Цель, уровень, удобные дни. Две минуты.</span><span data-en>Goal, level, preferred days. Two minutes.</span><span data-uk>Ціль, рівень, зручні дні. Дві хвилини.</span><span data-fr>Objectif, niveau, jours préférés. Deux minutes.</span><span data-de>Ziel, Level, Wunschtage. Zwei Minuten.</span></p></div>
+    <div class="step reveal"><div class="n">2</div><h3><span data-ru>Оплата</span><span data-en>Payment</span><span data-uk>Оплата</span><span data-fr>Paiement</span><span data-de>Zahlung</span></h3><p><span data-ru>Карта, Apple Pay, Google Pay, PayPal или крипта.</span><span data-en>Card, Apple Pay, Google Pay, PayPal or crypto.</span><span data-uk>Картка, Apple Pay, Google Pay, PayPal або крипта.</span><span data-fr>Carte, Apple Pay, Google Pay, PayPal ou crypto.</span><span data-de>Karte, Apple Pay, Google Pay, PayPal oder Krypto.</span></p></div>
+    <div class="step reveal"><div class="n">3</div><h3><span data-ru>Календарь</span><span data-en>Calendar</span><span data-uk>Календар</span><span data-fr>Calendrier</span><span data-de>Kalender</span></h3><p><span data-ru>За 24 часа приходит приглашение с Zoom и напоминаниями.</span><span data-en>Within 24 hours: a calendar invite with Zoom and reminders.</span><span data-uk>Протягом 24 годин приходить запрошення із Zoom і нагадуваннями.</span><span data-fr>Sous 24 heures : une invitation avec le lien Zoom et des rappels.</span><span data-de>Innerhalb von 24 Stunden: Kalendereinladung mit Zoom-Link und Erinnerungen.</span></p></div>
+    <div class="step reveal"><div class="n">4</div><h3><span data-ru>Тренируемся</span><span data-en>We train</span><span data-uk>Тренуємося</span><span data-fr>On s’entraîne</span><span data-de>Wir trainieren</span></h3><p><span data-ru>Лично с Лерой, с прогрессом и поддержкой.</span><span data-en>Personally with Lera, with progress and support.</span><span data-uk>Особисто з Лерою, з прогресом і підтримкою.</span><span data-fr>En personne avec Lera, avec suivi et soutien.</span><span data-de>Persönlich mit Lera, mit Fortschritt und Unterstützung.</span></p></div>
   </div>
 </div></section>
 
 <section class="faqw" id="guides"><div class="wrap">
-  <div class="shead reveal"><div><div class="kicker"><span data-ru>Гайды · PDF</span><span data-en>Guides · PDF</span></div>
-    <h2><span data-ru>Начни самостоятельно</span><span data-en>Start on your own</span></h2></div>
-    <p><span data-ru>Скачивание сразу после оплаты. Русская и английская версии.</span><span data-en>Instant download after payment. Russian and English editions.</span></p></div>
+  <div class="shead reveal"><div><div class="kicker"><span data-ru>Гайды · PDF</span><span data-en>Guides · PDF</span><span data-uk>Гайди · PDF</span><span data-fr>Guides · PDF</span><span data-de>Guides · PDF</span></div>
+    <h2><span data-ru>Начни самостоятельно</span><span data-en>Start on your own</span><span data-uk>Почни самостійно</span><span data-fr>Commence en autonomie</span><span data-de>Starte selbstständig</span></h2></div>
+    <p><span data-ru>Скачивание сразу после оплаты. Русская и английская версии.</span><span data-en>Instant download after payment. Russian and English editions.</span><span data-uk>Завантаження одразу після оплати. Російська та англійська версії.</span><span data-fr>Téléchargement immédiat après paiement. Versions russe et anglaise.</span><span data-de>Sofortiger Download nach der Zahlung. Russische und englische Ausgabe.</span></p></div>
   <div class="guides">
     <article class="guide reveal" style="background:#fff">
       <div class="stage"><div class="book"><img src="img/cover-recipes.jpg" alt="21-Day Recipe Book" loading="lazy"></div></div>
-      <div class="body"><h3><span data-ru>Книга рецептов на 21 день</span><span data-en>21-Day Recipe Book</span></h3>
-      <p><span data-ru>21 рецепт с КБЖУ, меню на 3 недели и список продуктов.</span><span data-en>21 recipes with macros, a 3-week plan and shopping list.</span></p>
-      <div class="row"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_RECIPES" data-product="PAYHIP_RECIPES" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
+      <div class="body"><h3><span data-ru>Книга рецептов на 21 день</span><span data-en>21-Day Recipe Book</span><span data-uk>Книга рецептів на 21 день</span><span data-fr>Livre de recettes 21 jours</span><span data-de>21-Tage-Rezeptbuch</span></h3>
+      <p><span data-ru>21 рецепт с КБЖУ, меню на 3 недели и список продуктов.</span><span data-en>21 recipes with macros, a 3-week plan and shopping list.</span><span data-uk>21 рецепт із КБЖВ, меню на 3 тижні та список продуктів.</span><span data-fr>21 recettes avec macros, un plan sur 3 semaines et une liste de courses.</span><span data-de>21 Rezepte mit Makros, ein 3-Wochen-Plan und eine Einkaufsliste.</span></p>
+      <div class="row"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_RECIPES" data-product="PAYHIP_RECIPES" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span><span data-uk>Купити</span><span data-fr>Acheter</span><span data-de>Kaufen</span></a></div></div>
     </article>
     <article class="guide reveal" style="background:#fff">
       <div class="stage"><div class="book"><img src="img/cover-belly.jpg" alt="Flat Belly" loading="lazy"></div></div>
-      <div class="body"><h3><span data-ru>Плоский живот · 30 дней</span><span data-en>Flat Belly · 30 days</span></h3>
-      <p><span data-ru>5 упражнений с фото, питание, сон и трекер привычек.</span><span data-en>5 exercises with photos, nutrition, sleep and a habit tracker.</span></p>
-      <div class="row"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BELLY" data-product="PAYHIP_BELLY" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
+      <div class="body"><h3><span data-ru>Плоский живот · 30 дней</span><span data-en>Flat Belly · 30 days</span><span data-uk>Плаский живіт · 30 днів</span><span data-fr>Ventre plat · 30 jours</span><span data-de>Flacher Bauch · 30 Tage</span></h3>
+      <p><span data-ru>5 упражнений с фото, питание, сон и трекер привычек.</span><span data-en>5 exercises with photos, nutrition, sleep and a habit tracker.</span><span data-uk>5 вправ із фото, харчування, сон і трекер звичок.</span><span data-fr>5 exercices en photos, nutrition, sommeil et suivi des habitudes.</span><span data-de>5 Übungen mit Fotos, Ernährung, Schlaf und ein Gewohnheits-Tracker.</span></p>
+      <div class="row"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BELLY" data-product="PAYHIP_BELLY" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span><span data-uk>Купити</span><span data-fr>Acheter</span><span data-de>Kaufen</span></a></div></div>
     </article>
     <article class="guide bundle reveal" style="background:#fff">
       <div class="stage"><div class="book"><img src="img/cover-recipes.jpg" alt="" loading="lazy"></div><div class="book"><img src="img/cover-belly.jpg" alt="" loading="lazy"></div></div>
-      <div class="body"><h3><span data-ru>Оба гайда</span><span data-en>Both guides</span></h3>
-      <p><span data-ru>Питание и движение — полная система.</span><span data-en>Nutrition and movement — the full system.</span></p>
-      <div class="row"><div class="price">$34</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BUNDLE" data-product="PAYHIP_BUNDLE" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
+      <div class="body"><h3><span data-ru>Оба гайда</span><span data-en>Both guides</span><span data-uk>Обидва гайди</span><span data-fr>Les deux guides</span><span data-de>Beide Guides</span></h3>
+      <p><span data-ru>Питание и движение — полная система.</span><span data-en>Nutrition and movement — the full system.</span><span data-uk>Харчування й рух — повна система.</span><span data-fr>Nutrition et mouvement — le système complet.</span><span data-de>Ernährung und Bewegung — das komplette System.</span></p>
+      <div class="row"><div class="price">$34</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BUNDLE" data-product="PAYHIP_BUNDLE" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span><span data-uk>Купити</span><span data-fr>Acheter</span><span data-de>Kaufen</span></a></div></div>
     </article>
   </div>
 </div></section>
@@ -509,42 +532,42 @@ textarea{min-height:84px;resize:vertical}
     <div><img src="img/lera-boat.jpg" alt="" loading="lazy" style="object-position:60% 40%"></div>
   </div>
   <div class="reveal">
-    <div class="kicker"><span data-ru>Обо мне</span><span data-en>About me</span></div>
-    <h2 style="margin-top:14px"><span data-ru>Привет, я Лера</span><span data-en>Hi, I’m Lera</span></h2>
-    <p><span data-ru>Мама, тренер и нутрициолог. Живу на Бали и тренирую онлайн женщин по всему миру — на русском и английском. Мне близок спокойный подход: сила, нормальная еда, сон и привычки, которые встраиваются в жизнь, а не ломают её.</span><span data-en>Mom, coach and nutritionist. I live in Bali and coach women worldwide online, in Russian and English. My approach is calm: strength, real food, sleep and habits that fit into your life instead of breaking it.</span></p>
-    <p><span data-ru>«Не нужно быть идеальной. Нужно возвращаться к своей системе».</span><span data-en>“You don’t need to be perfect. You need to keep returning to your routine.”</span></p>
+    <div class="kicker"><span data-ru>Обо мне</span><span data-en>About me</span><span data-uk>Про мене</span><span data-fr>À propos de moi</span><span data-de>Über mich</span></div>
+    <h2 style="margin-top:14px"><span data-ru>Привет, я Лера</span><span data-en>Hi, I’m Lera</span><span data-uk>Привіт, я Лера</span><span data-fr>Salut, moi c’est Lera</span><span data-de>Hi, ich bin Lera</span></h2>
+    <p><span data-ru>Мама, тренер и нутрициолог. Живу на Бали и тренирую онлайн женщин по всему миру — на русском и английском. Мне близок спокойный подход: сила, нормальная еда, сон и привычки, которые встраиваются в жизнь, а не ломают её.</span><span data-en>Mom, coach and nutritionist. I live in Bali and coach women worldwide online, in Russian and English. My approach is calm: strength, real food, sleep and habits that fit into your life instead of breaking it.</span><span data-uk>Мама, тренерка й нутриціологиня. Живу на Балі й треную онлайн жінок з усього світу — російською та англійською. Мені близький спокійний підхід: сила, нормальна їжа, сон і звички, які вбудовуються в життя, а не ламають його.</span><span data-fr>Maman, coach et nutritionniste. Je vis à Bali et j’accompagne en ligne des femmes du monde entier, en russe et en anglais. Mon approche est douce : force, vraie alimentation, sommeil et habitudes qui s’intègrent à ta vie au lieu de la bousculer.</span><span data-de>Mama, Coach und Ernährungsberaterin. Ich lebe auf Bali und coache Frauen weltweit online, auf Russisch und Englisch. Mein Ansatz ist ruhig: Kraft, echtes Essen, Schlaf und Gewohnheiten, die in dein Leben passen, statt es auf den Kopf zu stellen.</span></p>
+    <p><span data-ru>«Не нужно быть идеальной. Нужно возвращаться к своей системе».</span><span data-en>“You don’t need to be perfect. You need to keep returning to your routine.”</span><span data-uk>«Не треба бути ідеальною. Треба повертатися до своєї системи».</span><span data-fr>« Pas besoin d’être parfaite. Il suffit de revenir à ta routine. »</span><span data-de>„Du musst nicht perfekt sein. Du musst nur immer wieder zu deiner Routine zurückkehren.“</span></p>
     <div class="soc"><a class="btn light" href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram · @whynotleraa</a><a class="btn light" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a></div>
   </div>
 </div></section>
 
 <section class="faqw" id="faq"><div class="wrap">
-  <div class="shead reveal"><div><div class="kicker">FAQ</div><h2><span data-ru>Частые вопросы</span><span data-en>Questions</span></h2></div></div>
+  <div class="shead reveal"><div><div class="kicker">FAQ</div><h2><span data-ru>Частые вопросы</span><span data-en>Questions</span><span data-uk>Часті запитання</span><span data-fr>Questions fréquentes</span><span data-de>Häufige Fragen</span></h2></div></div>
   <div class="faq">
-    <details><summary><span data-ru>Что нужно для тренировок?</span><span data-en>What do I need?</span></summary><p><span data-ru>Телефон или ноутбук с камерой, коврик и немного места. Гантели и резинки — по желанию: программа подстраивается под то, что есть.</span><span data-en>A phone or laptop with a camera, a mat and a little space. Dumbbells and bands are optional — the program adapts to what you have.</span></p></details>
-    <details><summary><span data-ru>Как выбирается время?</span><span data-en>How is the time chosen?</span></summary><p><span data-ru>В анкете отмечаешь удобные дни и время. Лера подтверждает расписание в течение 24 часов и присылает приглашение в календарь.</span><span data-en>Pick your preferred days and times in the form. Lera confirms within 24 hours and sends a calendar invite.</span></p></details>
-    <details><summary><span data-ru>Можно перенести занятие?</span><span data-en>Can I reschedule?</span></summary><p><span data-ru>Да, бесплатно — не позднее чем за 24 часа.</span><span data-en>Yes, free of charge up to 24 hours before.</span></p></details>
-    <details><summary><span data-ru>Можно вернуть деньги?</span><span data-en>Refunds?</span></summary><p><span data-ru>За неиспользованные занятия — в течение 14 дней с оплаты. PDF после скачивания возврату не подлежат.</span><span data-en>For unused sessions within 14 days of payment. PDFs are non-refundable once downloaded.</span></p></details>
-    <details><summary><span data-ru>Подойдёт ли новичку и после родов?</span><span data-en>Is it for beginners and new moms?</span></summary><p><span data-ru>Да, нагрузка подбирается под уровень. После родов, при травмах или заболеваниях сначала получи разрешение врача и укажи это в анкете.</span><span data-en>Yes, intensity is matched to your level. Postpartum, with injuries or conditions, get your doctor’s clearance first and mention it in the form.</span></p></details>
-    <details><summary><span data-ru>Оплата безопасна?</span><span data-en>Is payment secure?</span></summary><p><span data-ru>Да. Оплата проходит через Stripe и Payhip, данные карты не попадают на этот сайт.</span><span data-en>Yes. Payments go through Stripe and Payhip; card details never touch this site.</span></p></details>
+    <details><summary><span data-ru>Что нужно для тренировок?</span><span data-en>What do I need?</span><span data-uk>Що потрібно для тренувань?</span><span data-fr>De quoi ai-je besoin ?</span><span data-de>Was brauche ich?</span></summary><p><span data-ru>Телефон или ноутбук с камерой, коврик и немного места. Гантели и резинки — по желанию: программа подстраивается под то, что есть.</span><span data-en>A phone or laptop with a camera, a mat and a little space. Dumbbells and bands are optional — the program adapts to what you have.</span><span data-uk>Телефон або ноутбук із камерою, килимок і трохи місця. Гантелі й резинки — за бажанням: програма підлаштовується під те, що є.</span><span data-fr>Un téléphone ou un ordinateur avec caméra, un tapis et un peu d’espace. Haltères et élastiques en option — le programme s’adapte à ton matériel.</span><span data-de>Ein Handy oder Laptop mit Kamera, eine Matte und etwas Platz. Hanteln und Bänder sind optional — das Programm passt sich deiner Ausrüstung an.</span></p></details>
+    <details><summary><span data-ru>Как выбирается время?</span><span data-en>How is the time chosen?</span><span data-uk>Як обирається час?</span><span data-fr>Comment choisit-on l’horaire ?</span><span data-de>Wie wird die Zeit gewählt?</span></summary><p><span data-ru>В анкете отмечаешь удобные дни и время. Лера подтверждает расписание в течение 24 часов и присылает приглашение в календарь.</span><span data-en>Pick your preferred days and times in the form. Lera confirms within 24 hours and sends a calendar invite.</span><span data-uk>В анкеті позначаєш зручні дні й час. Лера підтверджує розклад протягом 24 годин і надсилає запрошення в календар.</span><span data-fr>Indique tes jours et horaires préférés dans le formulaire. Lera confirme sous 24 heures et t’envoie une invitation.</span><span data-de>Wähle im Formular deine Wunschtage und -zeiten. Lera bestätigt innerhalb von 24 Stunden und schickt eine Kalendereinladung.</span></p></details>
+    <details><summary><span data-ru>Можно перенести занятие?</span><span data-en>Can I reschedule?</span><span data-uk>Можна перенести заняття?</span><span data-fr>Puis-je déplacer une séance ?</span><span data-de>Kann ich verschieben?</span></summary><p><span data-ru>Да, бесплатно — не позднее чем за 24 часа.</span><span data-en>Yes, free of charge up to 24 hours before.</span><span data-uk>Так, безкоштовно — не пізніше ніж за 24 години.</span><span data-fr>Oui, gratuitement jusqu’à 24 heures avant.</span><span data-de>Ja, kostenlos bis 24 Stunden vorher.</span></p></details>
+    <details><summary><span data-ru>Можно вернуть деньги?</span><span data-en>Refunds?</span><span data-uk>Можна повернути гроші?</span><span data-fr>Remboursements ?</span><span data-de>Rückerstattung?</span></summary><p><span data-ru>За неиспользованные занятия — в течение 14 дней с оплаты. PDF после скачивания возврату не подлежат.</span><span data-en>For unused sessions within 14 days of payment. PDFs are non-refundable once downloaded.</span><span data-uk>За невикористані заняття — протягом 14 днів з оплати. PDF після завантаження поверненню не підлягають.</span><span data-fr>Pour les séances non utilisées, dans les 14 jours suivant le paiement. Les PDF téléchargés ne sont pas remboursables.</span><span data-de>Für ungenutzte Einheiten innerhalb von 14 Tagen nach der Zahlung. Heruntergeladene PDFs sind nicht erstattungsfähig.</span></p></details>
+    <details><summary><span data-ru>Подойдёт ли новичку и после родов?</span><span data-en>Is it for beginners and new moms?</span><span data-uk>Чи підійде новачкам і після пологів?</span><span data-fr>Est-ce adapté aux débutantes et aux jeunes mamans ?</span><span data-de>Für Anfängerinnen und junge Mamas geeignet?</span></summary><p><span data-ru>Да, нагрузка подбирается под уровень. После родов, при травмах или заболеваниях сначала получи разрешение врача и укажи это в анкете.</span><span data-en>Yes, intensity is matched to your level. Postpartum, with injuries or conditions, get your doctor’s clearance first and mention it in the form.</span><span data-uk>Так, навантаження підбирається під рівень. Після пологів, за травм чи захворювань спершу отримай дозвіл лікаря й зазнач це в анкеті.</span><span data-fr>Oui, l’intensité est adaptée à ton niveau. Après un accouchement, une blessure ou en cas de pathologie, demande d’abord l’accord de ton médecin et indique-le dans le formulaire.</span><span data-de>Ja, die Intensität wird an dein Level angepasst. Nach der Geburt, bei Verletzungen oder Erkrankungen hol dir zuerst die Freigabe deiner Ärztin und gib es im Formular an.</span></p></details>
+    <details><summary><span data-ru>Оплата безопасна?</span><span data-en>Is payment secure?</span><span data-uk>Оплата безпечна?</span><span data-fr>Le paiement est-il sécurisé ?</span><span data-de>Ist die Zahlung sicher?</span></summary><p><span data-ru>Да. Оплата проходит через Stripe, PayPal и Payhip, данные карты не попадают на этот сайт.</span><span data-en>Yes. Payments go through Stripe, PayPal and Payhip; card details never touch this site.</span><span data-uk>Так. Оплата проходить через Stripe, PayPal і Payhip, дані картки не потрапляють на цей сайт.</span><span data-fr>Oui. Les paiements passent par Stripe, PayPal et Payhip ; tes données bancaires ne transitent jamais par ce site.</span><span data-de>Ja. Zahlungen laufen über Stripe, PayPal und Payhip; deine Kartendaten berühren diese Seite nie.</span></p></details>
   </div>
 </div></section>
 
 <section class="final"><div class="wrap">
   <div class="box reveal"><img src="img/lera-boat.jpg" alt="" loading="lazy">
-    <div class="in"><h2><span data-ru>Начни с одной тренировки</span><span data-en>Start with one session</span></h2>
-    <p><span data-ru>Познакомимся, разберём технику и составим план. Дальше — шаг за шагом.</span><span data-en>We’ll meet, check your technique and build a plan. Then — step by step.</span></p>
-    <a class="btn" href="#programs"><span data-ru>Выбрать формат</span><span data-en>Choose a format</span></a></div></div>
+    <div class="in"><h2><span data-ru>Начни с одной тренировки</span><span data-en>Start with one session</span><span data-uk>Почни з одного тренування</span><span data-fr>Commence par une séance</span><span data-de>Starte mit einer Einheit</span></h2>
+    <p><span data-ru>Познакомимся, разберём технику и составим план. Дальше — шаг за шагом.</span><span data-en>We’ll meet, check your technique and build a plan. Then — step by step.</span><span data-uk>Познайомимося, розберемо техніку й складемо план. Далі — крок за кроком.</span><span data-fr>On se rencontre, on vérifie ta technique et on construit un plan. Ensuite — pas à pas.</span><span data-de>Wir lernen uns kennen, prüfen deine Technik und erstellen einen Plan. Dann — Schritt für Schritt.</span></p>
+    <a class="btn" href="#programs"><span data-ru>Выбрать формат</span><span data-en>Choose a format</span><span data-uk>Обрати формат</span><span data-fr>Choisir une formule</span><span data-de>Format wählen</span></a></div></div>
 </div></section>
 </main>
 
 <footer><div class="wrap">
   <div><a class="logo" href="#top">lera</a><div class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span></div></div>
   <div>
-    <a href="/privacy-policy/"><span data-ru>Конфиденциальность</span><span data-en>Privacy</span></a>
-    <a href="/terms/"><span data-ru>Условия</span><span data-en>Terms</span></a>
-    <a href="/refund-policy/"><span data-ru>Возвраты</span><span data-en>Refunds</span></a>
-    <a id="mail" href="#"><span data-ru>Контакты</span><span data-en>Contact</span></a>
-    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span></p>
+    <a href="/privacy-policy/"><span data-ru>Конфиденциальность</span><span data-en>Privacy</span><span data-uk>Конфіденційність</span><span data-fr>Confidentialité</span><span data-de>Datenschutz</span></a>
+    <a href="/terms/"><span data-ru>Условия</span><span data-en>Terms</span><span data-uk>Умови</span><span data-fr>Conditions</span><span data-de>AGB</span></a>
+    <a href="/refund-policy/"><span data-ru>Возвраты</span><span data-en>Refunds</span><span data-uk>Повернення</span><span data-fr>Remboursements</span><span data-de>Rückerstattung</span></a>
+    <a id="mail" href="#"><span data-ru>Контакты</span><span data-en>Contact</span><span data-uk>Контакти</span><span data-fr>Contact</span><span data-de>Kontakt</span></a>
+    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span><span data-uk>Освітній контент, не медична рекомендація.</span><span data-fr>Contenu éducatif, pas un avis médical.</span><span data-de>Bildungsinhalte, keine medizinische Beratung.</span></p>
   </div>
 </div></footer>
 
@@ -552,68 +575,131 @@ textarea{min-height:84px;resize:vertical}
   <div class="sheet">
     <button class="x" data-close aria-label="Close">×</button>
     <form id="bookForm" novalidate>
-      <div class="eyebrow"><span data-ru>Запись</span><span data-en>Booking</span></div>
+      <div class="eyebrow"><span data-ru>Запись</span><span data-en>Booking</span><span data-uk>Запис</span><span data-fr>Réservation</span><span data-de>Buchung</span></div>
       <h3 id="mt"></h3>
       <div class="sum" id="msum"></div>
       <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="f">
-        <div><label class="l" for="fn"><span data-ru>Имя</span><span data-en>Name</span> *</label><input id="fn" name="name" required autocomplete="name"></div>
+        <div><label class="l" for="fn"><span data-ru>Имя</span><span data-en>Name</span><span data-uk>Ім’я</span><span data-fr>Prénom</span><span data-de>Name</span> *</label><input id="fn" name="name" required autocomplete="name"></div>
         <div><label class="l" for="fe">Email *</label><input id="fe" name="email" type="email" required autocomplete="email"></div>
         <div><label class="l" for="fp">WhatsApp / Telegram *</label><input id="fp" name="phone" required autocomplete="tel" placeholder="+34 …"></div>
         <div><label class="l" for="fi">Instagram</label><input id="fi" name="instagram" placeholder="@"></div>
-        <div><label class="l" for="fg"><span data-ru>Цель</span><span data-en>Goal</span></label>
-          <select id="fg" name="goal"><option value="fat-loss">Похудеть / Fat loss</option><option value="tone">Подтянуть тело / Tone</option><option value="strength">Сила / Strength</option><option value="glutes">Ягодицы / Glutes</option><option value="health">Здоровье и энергия / Health</option></select></div>
-        <div><label class="l" for="fl"><span data-ru>Уровень</span><span data-en>Level</span></label>
-          <select id="fl" name="level"><option value="beginner">Новичок / Beginner</option><option value="intermediate">Средний / Intermediate</option><option value="advanced">Продвинутый / Advanced</option></select></div>
-        <div class="w" id="groupRow"><label class="l"><span data-ru>Поток</span><span data-en>Cohort</span></label>
+        <div><label class="l" for="fg"><span data-ru>Цель</span><span data-en>Goal</span><span data-uk>Ціль</span><span data-fr>Objectif</span><span data-de>Ziel</span></label>
+          <select id="fg" name="goal"></select></div>
+        <div><label class="l" for="fl"><span data-ru>Уровень</span><span data-en>Level</span><span data-uk>Рівень</span><span data-fr>Niveau</span><span data-de>Level</span></label>
+          <select id="fl" name="level"></select></div>
+        <div class="w" id="groupRow"><label class="l"><span data-ru>Поток</span><span data-en>Cohort</span><span data-uk>Потік</span><span data-fr>Groupe</span><span data-de>Gruppe</span></label>
           <div class="chips">
-            <label><input type="radio" name="group" value="G-AM" checked><span>14:00 Bali · Mon/Wed/Fri</span></label>
-            <label><input type="radio" name="group" value="G-PM"><span>19:00 Bali · Mon/Wed/Fri</span></label>
+            <label><input type="radio" name="group" value="G-AM" checked><span id="g1"></span></label>
+            <label><input type="radio" name="group" value="G-PM"><span id="g2"></span></label>
           </div></div>
-        <div class="w" id="daysRow"><label class="l"><span data-ru>Удобные дни</span><span data-en>Preferred days</span></label><div class="chips" id="dayChips"></div></div>
-        <div class="w" id="timeRow"><label class="l"><span data-ru>Удобное время</span><span data-en>Preferred time</span></label>
+        <div class="w" id="daysRow"><label class="l"><span data-ru>Удобные дни</span><span data-en>Preferred days</span><span data-uk>Зручні дні</span><span data-fr>Jours préférés</span><span data-de>Wunschtage</span></label><div class="chips" id="dayChips"></div></div>
+        <div class="w" id="timeRow"><label class="l"><span data-ru>Удобное время</span><span data-en>Preferred time</span><span data-uk>Зручний час</span><span data-fr>Horaire préféré</span><span data-de>Wunschzeit</span></label>
           <div class="chips">
             <label><input type="checkbox" name="times" value="morning"><span>08–12</span></label>
             <label><input type="checkbox" name="times" value="day"><span>12–16</span></label>
             <label><input type="checkbox" name="times" value="evening"><span>16–20</span></label>
           </div></div>
-        <div class="w"><label class="l" for="fh"><span data-ru>Здоровье, травмы, пожелания</span><span data-en>Health, injuries, notes</span></label><textarea id="fh" name="notes"></textarea></div>
-        <div class="w"><label class="consent"><input type="checkbox" name="consent" required><span><span data-ru>Согласна на обработку моих данных (включая данные о здоровье) для записи и связи со мной.</span><span data-en>I agree to my data (including health info) being processed to arrange training and contact me.</span> <a href="/privacy-policy/" target="_blank">Privacy</a></span></label></div>
+        <div class="w"><label class="l" for="fh"><span data-ru>Здоровье, травмы, пожелания</span><span data-en>Health, injuries, notes</span><span data-uk>Здоров’я, травми, побажання</span><span data-fr>Santé, blessures, remarques</span><span data-de>Gesundheit, Verletzungen, Notizen</span></label><textarea id="fh" name="notes"></textarea></div>
+        <div class="w"><label class="consent"><input type="checkbox" name="consent" required><span><span data-ru>Согласна на обработку моих данных (включая данные о здоровье) для записи и связи со мной.</span><span data-en>I agree to my data (including health info) being processed to arrange training and contact me.</span><span data-uk>Погоджуюся на обробку моїх даних (зокрема про здоров’я) для запису й зв’язку зі мною.</span><span data-fr>J’accepte le traitement de mes données (y compris de santé) pour organiser les entraînements et me contacter.</span><span data-de>Ich stimme der Verarbeitung meiner Daten (inkl. Gesundheitsdaten) zur Trainingsplanung und Kontaktaufnahme zu.</span> <a href="/privacy-policy/" target="_blank">Privacy</a></span></label></div>
       </div>
       <button class="btn full" style="margin-top:22px" id="fsubmit" type="submit"></button>
       <div class="msg" id="fmsg" aria-live="polite"></div>
     </form>
+    <div id="payStep" hidden>
+      <div class="eyebrow" id="psEye"></div>
+      <h3 id="psTitle"></h3>
+      <div class="sum" id="psSum"></div>
+      <div class="paylist" id="payList"></div>
+      <div class="crypto" id="cryptoBox" hidden>
+        <div class="l" id="cbHow"></div>
+        <div class="addr"><code id="cbAddr"></code><button type="button" class="btn light" id="cbCopy"></button></div>
+        <div class="m" id="cbNote"></div>
+        <a class="btn full" id="cbSent" target="_blank" rel="noopener"></a>
+      </div>
+      <p class="m" id="psFoot" style="margin-top:16px"></p>
+    </div>
     <div class="done" id="done" hidden>
-      <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D7B98A" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
-      <h3><span data-ru>Заявка отправлена</span><span data-en>Request sent</span></h3>
-      <p style="color:var(--muted);margin-top:10px"><span data-ru>Лера свяжется с тобой в течение 24 часов. Проверь почту (и «Спам»).</span><span data-en>Lera will contact you within 24 hours. Check your inbox (and spam).</span></p>
+      <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
+      <h3 id="doneT"></h3>
+      <p class="m" id="doneM" style="margin-top:10px"></p>
     </div>
   </div>
 </div>
+<div class="toastbar" id="toastbar" hidden></div>
 
 <script>
 (function(){
   var C = window.CONFIG, html = document.documentElement;
+  var LANGS = ['en','ru','uk','fr','de'];
   var T = {
-    ru:{ transform:'Трансформация 12 недель', pack8:'Пакет 8 тренировок', group:'Jungle Group · 4 недели', single:'Разовая тренировка', nutrition:'Консультация по питанию',
-         pay:'Перейти к оплате', apply:'Отправить заявку', sending:'Отправляем…', err:'Не удалось отправить. Напиши нам: ', req:'Заполни имя, email, контакт и отметь согласие.',
-         left:function(n){return n>0?('Осталось мест: '+n):'Мест нет — лист ожидания'}, cap:function(n){return 'до '+n+' человек'},
-         local:'У тебя это ', same:'Совпадает с твоим временем', tz:'Всё время указано по часовому поясу Леры: ',
-         days:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], full:'Мест нет — запишем в лист ожидания'},
-    en:{ transform:'12-Week Transformation', pack8:'8-Session Pack', group:'Jungle Group · 4 weeks', single:'Single Session', nutrition:'Nutrition Consultation',
-         pay:'Continue to payment', apply:'Send application', sending:'Sending…', err:'Could not send. Email us: ', req:'Please fill in name, email, contact and consent.',
-         left:function(n){return n>0?(n+' spots left'):'Full — waitlist'}, cap:function(n){return 'max '+n+' people'},
-         local:'For you that’s ', same:'Same as your local time', tz:'All times are in Lera’s time zone: ',
-         days:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], full:'Full — we’ll add you to the waitlist'}
+    en:{ transform:'12-Week Transformation', pack8:'8-Session Pack', group:'Jungle Group · 4 weeks', single:'Single Session · 60 min', nutrition:'Nutrition Consultation',
+      next:'Continue', apply:'Send application', sending:'Sending…', err:'Could not send. Write to us: ', req:'Please fill in name, email, contact and consent.',
+      left:function(n){return n>0?(n+' spots left'):'Full — waitlist'}, cap:function(n){return 'max '+n+' people'},
+      local:'For you that’s ', same:'Same as your local time', tz:'All times are in Lera’s time zone: ',
+      days:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], full:'Full — we’ll add you to the waitlist',
+      goals:['Lose fat','Tone up','Get stronger','Glutes','Health & energy'], levels:['Beginner','Intermediate','Advanced'], cohort:'Bali · Mon/Wed/Fri',
+      payEye:'Step 2 of 2', payT:'Choose how to pay', card:'Card · Apple Pay · Google Pay', cardS:'Secure checkout by Stripe', pp:'PayPal', ppS:'Pay with your PayPal account or card',
+      cr:'Crypto · USDT', crS:'For clients without cards or PayPal', crHow:'Send exactly this amount to the address below:', copy:'Copy', copied:'Copied',
+      crNote:'Network: {net}. After sending, message Lera the transaction screenshot — she confirms and books you in.', crSent:'I’ve paid — message Lera',
+      payFoot:'Your request is saved. If you pay later, Lera will send you a reminder.',
+      doneT:'Request sent', doneM:'Lera will contact you within 24 hours. Check your inbox (and spam).', paidT:'Thank you! Payment received', paidM:'Lera will send your schedule within 24 hours.' },
+    ru:{ transform:'Трансформация 12 недель', pack8:'Пакет 8 тренировок', group:'Jungle Group · 4 недели', single:'Разовая тренировка · 60 мин', nutrition:'Консультация нутрициолога',
+      next:'Продолжить', apply:'Отправить заявку', sending:'Отправляем…', err:'Не удалось отправить. Напиши нам: ', req:'Заполни имя, email, контакт и отметь согласие.',
+      left:function(n){return n>0?('Осталось мест: '+n):'Мест нет — лист ожидания'}, cap:function(n){return 'до '+n+' человек'},
+      local:'У тебя это ', same:'Совпадает с твоим временем', tz:'Всё время указано по часовому поясу Леры: ',
+      days:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], full:'Мест нет — запишем в лист ожидания',
+      goals:['Похудеть','Подтянуть тело','Сила','Ягодицы','Здоровье и энергия'], levels:['Новичок','Средний','Продвинутый'], cohort:'Бали · Пн/Ср/Пт',
+      payEye:'Шаг 2 из 2', payT:'Выбери способ оплаты', card:'Карта · Apple Pay · Google Pay', cardS:'Безопасная оплата через Stripe', pp:'PayPal', ppS:'Через аккаунт PayPal или картой',
+      cr:'Крипта · USDT', crS:'Если нет карты или PayPal', crHow:'Отправь ровно эту сумму на адрес ниже:', copy:'Копировать', copied:'Скопировано',
+      crNote:'Сеть: {net}. После перевода отправь Лере скрин транзакции — она подтвердит и запишет тебя.', crSent:'Я оплатила — написать Лере',
+      payFoot:'Заявка уже сохранена. Если оплатишь позже — Лера напомнит.',
+      doneT:'Заявка отправлена', doneM:'Лера свяжется с тобой в течение 24 часов. Проверь почту (и «Спам»).', paidT:'Спасибо! Оплата получена', paidM:'Лера пришлёт расписание в течение 24 часов.' },
+    uk:{ transform:'Трансформація 12 тижнів', pack8:'Пакет 8 тренувань', group:'Jungle Group · 4 тижні', single:'Разове тренування · 60 хв', nutrition:'Консультація нутриціолога',
+      next:'Продовжити', apply:'Надіслати заявку', sending:'Надсилаємо…', err:'Не вдалося надіслати. Напиши нам: ', req:'Заповни ім’я, email, контакт і познач згоду.',
+      left:function(n){return n>0?('Залишилось місць: '+n):'Місць немає — лист очікування'}, cap:function(n){return 'до '+n+' людей'},
+      local:'У тебе це ', same:'Збігається з твоїм часом', tz:'Увесь час указано за часовим поясом Лери: ',
+      days:['Пн','Вт','Ср','Чт','Пт','Сб','Нд'], full:'Місць немає — запишемо в лист очікування',
+      goals:['Схуднути','Підтягнути тіло','Сила','Сідниці','Здоров’я та енергія'], levels:['Новачок','Середній','Просунутий'], cohort:'Балі · Пн/Ср/Пт',
+      payEye:'Крок 2 з 2', payT:'Обери спосіб оплати', card:'Картка · Apple Pay · Google Pay', cardS:'Безпечна оплата через Stripe', pp:'PayPal', ppS:'Через акаунт PayPal або карткою',
+      cr:'Крипта · USDT', crS:'Якщо немає картки чи PayPal', crHow:'Надішли рівно цю суму на адресу нижче:', copy:'Копіювати', copied:'Скопійовано',
+      crNote:'Мережа: {net}. Після переказу надішли Лері скрин транзакції — вона підтвердить і запише тебе.', crSent:'Я оплатила — написати Лері',
+      payFoot:'Заявку вже збережено. Якщо оплатиш пізніше — Лера нагадає.',
+      doneT:'Заявку надіслано', doneM:'Лера зв’яжеться з тобою протягом 24 годин. Перевір пошту (і «Спам»).', paidT:'Дякуємо! Оплату отримано', paidM:'Лера надішле розклад протягом 24 годин.' },
+    fr:{ transform:'Transformation 12 semaines', pack8:'Pack 8 séances', group:'Jungle Group · 4 semaines', single:'Séance individuelle · 60 min', nutrition:'Consultation nutrition',
+      next:'Continuer', apply:'Envoyer la demande', sending:'Envoi…', err:'Envoi impossible. Écris-nous : ', req:'Indique ton prénom, ton e-mail, un contact et ton accord.',
+      left:function(n){return n>0?(n+' places restantes'):'Complet — liste d’attente'}, cap:function(n){return n+' personnes max'},
+      local:'Pour toi : ', same:'Identique à ton heure locale', tz:'Tous les horaires sont dans le fuseau de Lera : ',
+      days:['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'], full:'Complet — on t’ajoute à la liste d’attente',
+      goals:['Perdre du poids','Raffermir','Gagner en force','Fessiers','Santé et énergie'], levels:['Débutante','Intermédiaire','Avancée'], cohort:'Bali · lun/mer/ven',
+      payEye:'Étape 2 sur 2', payT:'Choisis ton moyen de paiement', card:'Carte · Apple Pay · Google Pay', cardS:'Paiement sécurisé par Stripe', pp:'PayPal', ppS:'Avec ton compte PayPal ou par carte',
+      cr:'Crypto · USDT', crS:'Sans carte ni PayPal', crHow:'Envoie exactement ce montant à l’adresse ci-dessous :', copy:'Copier', copied:'Copié',
+      crNote:'Réseau : {net}. Après l’envoi, transmets à Lera la capture de la transaction — elle confirme et te réserve.', crSent:'J’ai payé — écrire à Lera',
+      payFoot:'Ta demande est enregistrée. Si tu paies plus tard, Lera te fera un rappel.',
+      doneT:'Demande envoyée', doneM:'Lera te contactera sous 24 heures. Vérifie ta boîte mail (et les spams).', paidT:'Merci ! Paiement reçu', paidM:'Lera t’enverra ton planning sous 24 heures.' },
+    de:{ transform:'12-Wochen-Transformation', pack8:'8er-Paket', group:'Jungle Group · 4 Wochen', single:'Einzelstunde · 60 Min.', nutrition:'Ernährungsberatung',
+      next:'Weiter', apply:'Anfrage senden', sending:'Wird gesendet…', err:'Senden fehlgeschlagen. Schreib uns: ', req:'Bitte Name, E-Mail, Kontakt und Zustimmung angeben.',
+      left:function(n){return n>0?('Noch '+n+' Plätze'):'Ausgebucht — Warteliste'}, cap:function(n){return 'max. '+n+' Personen'},
+      local:'Bei dir: ', same:'Entspricht deiner Ortszeit', tz:'Alle Zeiten in Leras Zeitzone: ',
+      days:['Mo','Di','Mi','Do','Fr','Sa','So'], full:'Ausgebucht — wir setzen dich auf die Warteliste',
+      goals:['Abnehmen','Straffen','Stärker werden','Po','Gesundheit & Energie'], levels:['Anfängerin','Fortgeschritten','Profi'], cohort:'Bali · Mo/Mi/Fr',
+      payEye:'Schritt 2 von 2', payT:'Zahlungsart wählen', card:'Karte · Apple Pay · Google Pay', cardS:'Sicherer Checkout über Stripe', pp:'PayPal', ppS:'Mit PayPal-Konto oder Karte',
+      cr:'Krypto · USDT', crS:'Ohne Karte oder PayPal', crHow:'Sende genau diesen Betrag an die Adresse unten:', copy:'Kopieren', copied:'Kopiert',
+      crNote:'Netzwerk: {net}. Schick Lera danach einen Screenshot der Transaktion — sie bestätigt und trägt dich ein.', crSent:'Bezahlt — Lera schreiben',
+      payFoot:'Deine Anfrage ist gespeichert. Wenn du später zahlst, erinnert Lera dich.',
+      doneT:'Anfrage gesendet', doneM:'Lera meldet sich innerhalb von 24 Stunden. Schau in dein Postfach (und in den Spam).', paidT:'Danke! Zahlung erhalten', paidM:'Lera schickt dir deinen Zeitplan innerhalb von 24 Stunden.' }
   };
-  var lang='ru', spots={};
+  var GOALS=['fat-loss','tone','strength','glutes','health'], LEVELS=['beginner','intermediate','advanced'];
+  var lang='en', spots={};
   function t(){ return T[lang]; }
+  function $(id){ return document.getElementById(id); }
   function money(n){ return '$'+Number(n).toLocaleString('en-US'); }
 
   document.querySelectorAll('[data-price]').forEach(function(el){
     var p=C.programs[el.dataset.price]; if(!p) return; var first=el.firstChild; if(first && first.nodeType===3) first.nodeValue=money(p.price);
   });
 
+  /* ---- time zones ---- */
   function tzOffset(tz, ms){
     var f=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
     var p={}; f.formatToParts(new Date(ms)).forEach(function(x){p[x.type]=x.value});
@@ -623,26 +709,34 @@ textarea{min-height:84px;resize:vertical}
     var now=new Date(), add=((8-now.getUTCDay())%7)||7;
     var d=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate()+add));
     var guess=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),+hhmm.slice(0,2),+hhmm.slice(3,5));
-    var inst=guess-tzOffset(C.tz,guess)*60000, loc=new Date(inst);
+    var loc=new Date(guess-tzOffset(C.tz,guess)*60000);
     var shift=Math.round((new Date(loc.getFullYear(),loc.getMonth(),loc.getDate())-new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()))/864e5);
-    var hh=('0'+loc.getHours()).slice(-2)+':'+('0'+loc.getMinutes()).slice(-2);
-    return {time:hh, shift:shift};
+    return {time:('0'+loc.getHours()).slice(-2)+':'+('0'+loc.getMinutes()).slice(-2), shift:shift};
   }
   var userTz=''; try{ userTz=Intl.DateTimeFormat().resolvedOptions().timeZone||''; }catch(e){}
 
   function render(){
-    C.groups.forEach(function(g){
+    C.groups.forEach(function(g, gi){
       var el=document.querySelector('[data-slot="'+g.id+'"]'); if(!el) return;
       var on=[0,2,4];
       el.querySelector('.days').innerHTML=t().days.map(function(d,i){var o=on.indexOf(i)>-1;return '<div class="'+(o?'on':'')+'">'+d+(o?'<em>'+g.time+'</em>':'')+'</div>'}).join('');
       var L=toLocal(g.time), same=(userTz===C.tz)||(L.time===g.time&&L.shift===0);
       el.querySelector('.local').textContent = same ? t().same : (t().local+L.time+(L.shift>0?' (+1)':L.shift<0?' (−1)':'')+' · '+userTz);
       el.querySelector('[data-left]').textContent = spots[g.id]==null ? t().cap(g.capacity) : t().left(spots[g.id]);
+      var chip=$('g'+(gi+1)); if(chip) chip.textContent=g.time+' '+t().cohort;
     });
-    document.getElementById('tznote').textContent = t().tz + C.tzLabel[lang] + ' ('+C.tz+')';
-    document.getElementById('dayChips').innerHTML = t().days.slice(0,6).map(function(d,i){return '<label><input type="checkbox" name="days" value="'+i+'"><span>'+d+'</span></label>'}).join('');
+    $('tznote').textContent = t().tz + (C.tzLabel[lang]||C.tzLabel.en) + ' ('+C.tz+')';
+    $('dayChips').innerHTML = t().days.slice(0,6).map(function(d,i){return '<label><input type="checkbox" name="days" value="'+i+'"><span>'+d+'</span></label>'}).join('');
+    $('fg').innerHTML = GOALS.map(function(v,i){return '<option value="'+v+'">'+t().goals[i]+'</option>'}).join('');
+    $('fl').innerHTML = LEVELS.map(function(v,i){return '<option value="'+v+'">'+t().levels[i]+'</option>'}).join('');
   }
-  function setLang(l){ lang=l; html.lang=l; document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)}); try{localStorage.setItem('vlang',l)}catch(e){} render(); }
+  function setLang(l){
+    if(LANGS.indexOf(l)<0) l='en';
+    lang=l; html.lang=l;
+    document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});
+    try{localStorage.setItem('vlang',l)}catch(e){}
+    render();
+  }
   document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click',function(){setLang(b.dataset.l)}) });
 
   if(C.apiUrl){
@@ -651,62 +745,99 @@ textarea{min-height:84px;resize:vertical}
     }).catch(function(){});
   }
 
-  var modal=document.getElementById('modal'), form=document.getElementById('bookForm'), cur=null;
+  /* ---- booking ---- */
+  var modal=$('modal'), form=$('bookForm'), cur=null, lead=null;
   function isFull(pid, gid){ if(pid!=='group') return false; return gid ? spots[gid]===0 : C.groups.every(function(g){return spots[g.id]===0}); }
+  function methods(p){ var m=[]; if(p.stripe) m.push('card'); if(C.paypal && C.paypal.email) m.push('paypal'); if(C.crypto && C.crypto.address) m.push('crypto'); return m; }
+  function show(which){ form.hidden=which!=='form'; $('payStep').hidden=which!=='pay'; $('done').hidden=which!=='done'; }
   function open(pid){
     cur=pid; var p=C.programs[pid];
-    form.hidden=false; document.getElementById('done').hidden=true; form.reset();
-    var m=document.getElementById('fmsg'); m.textContent=''; m.className='msg';
-    document.getElementById('mt').textContent=t()[pid];
-    document.getElementById('msum').textContent=money(p.price)+' USD';
-    document.getElementById('groupRow').style.display = pid==='group' ? '' : 'none';
-    document.getElementById('daysRow').style.display = pid==='group' ? 'none' : '';
-    document.getElementById('timeRow').style.display = pid==='group' ? 'none' : '';
-    document.getElementById('fsubmit').textContent = (p.payNow && p.stripe && !isFull(pid)) ? t().pay : t().apply;
+    show('form'); form.reset(); render();
+    var m=$('fmsg'); m.textContent=''; m.className='msg';
+    $('mt').textContent=t()[pid]; $('msum').textContent=money(p.price)+' USD';
+    $('groupRow').style.display = pid==='group' ? '' : 'none';
+    $('daysRow').style.display = pid==='group' ? 'none' : '';
+    $('timeRow').style.display = pid==='group' ? 'none' : '';
+    $('fsubmit').textContent = (p.payNow && methods(p).length && !isFull(pid)) ? t().next : t().apply;
     if(isFull(pid)) m.textContent=t().full;
     modal.classList.add('open'); document.body.style.overflow='hidden';
-    setTimeout(function(){document.getElementById('fn').focus()},50);
+    setTimeout(function(){$('fn').focus()},50);
   }
   function close(){ modal.classList.remove('open'); document.body.style.overflow=''; }
   document.querySelectorAll('[data-book]').forEach(function(b){ b.addEventListener('click',function(){open(b.dataset.book)}) });
   modal.addEventListener('click',function(e){ if(e.target===modal||e.target.hasAttribute('data-close')) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
 
+  function doneScreen(title, msg){ $('doneT').textContent=title; $('doneM').textContent=msg; show('done'); }
+
+  function payScreen(){
+    var p=C.programs[cur], ms=methods(p), list=$('payList'); list.innerHTML='';
+    $('psEye').textContent=t().payEye; $('psTitle').textContent=t().payT; $('psSum').textContent=t()[cur]+' · '+money(p.price)+' USD';
+    $('cryptoBox').hidden=true; $('psFoot').textContent=t().payFoot;
+    var back=location.origin+location.pathname;
+    ms.forEach(function(k){
+      var a=document.createElement(k==='crypto'?'button':'a'); a.className='payopt'; if(k==='crypto') a.type='button';
+      var title={card:t().card,paypal:t().pp,crypto:t().cr}[k], sub={card:t().cardS,paypal:t().ppS,crypto:t().crS}[k];
+      a.innerHTML='<span class="pi pi-'+k+'"></span><span><b></b><small></small></span><span class="arr">→</span>';
+      a.querySelector('b').textContent=title; a.querySelector('small').textContent=sub;
+      if(k==='card'){
+        a.href=p.stripe+(p.stripe.indexOf('?')>-1?'&':'?')+'prefilled_email='+encodeURIComponent(lead.email)+'&client_reference_id='+encodeURIComponent(lead.id);
+      } else if(k==='paypal'){
+        var q={cmd:'_xclick',business:C.paypal.email,item_name:T.ru[cur]+' / '+T.en[cur],item_number:cur,amount:p.price,currency_code:C.paypal.currency||'USD',
+               custom:lead.id,no_shipping:1,'return':back+'?paid=1','cancel_return':back,lc:{ru:'RU',uk:'UA',fr:'FR',de:'DE'}[lang]||'US',charset:'utf-8'};
+        if(C.apiUrl) q.notify_url=C.apiUrl;
+        a.href='https://www.paypal.com/cgi-bin/webscr?'+Object.keys(q).map(function(k){return k+'='+encodeURIComponent(q[k])}).join('&');
+      } else {
+        a.addEventListener('click',function(){
+          $('cbHow').textContent=t().crHow; $('cbAddr').textContent=C.crypto.address; $('cbCopy').textContent=t().copy;
+          $('cbNote').textContent=t().crNote.replace('{net}',C.crypto.network)+'  ·  '+money(p.price)+' = '+p.price+' USDT';
+          var msg=encodeURIComponent('Lera, I paid '+p.price+' USDT for '+T.en[cur]+' ('+lead.id+')');
+          $('cbSent').href=C.crypto.contact ? C.crypto.contact.replace('{msg}',msg) : 'mailto:'+C.supportEmail+'?subject='+msg;
+          $('cbSent').textContent=t().crSent; $('cryptoBox').hidden=false;
+        });
+      }
+      list.appendChild(a);
+    });
+    show('pay');
+  }
+  $('cbCopy').addEventListener('click',function(){
+    var v=$('cbAddr').textContent; (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){$('cbCopy').textContent=t().copied}).catch(function(){});
+  });
+
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var fd=new FormData(form), msg=document.getElementById('fmsg'); msg.className='msg';
+    var fd=new FormData(form), msg=$('fmsg'); msg.className='msg';
     if(fd.get('website')) return;
     var email=String(fd.get('email')||'').trim();
     if(!String(fd.get('name')||'').trim()||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)||!String(fd.get('phone')||'').trim()||!fd.get('consent')){ msg.textContent=t().req; msg.className='msg err'; return; }
     var id='L'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,6).toUpperCase();
     var p=C.programs[cur], gid=cur==='group'?fd.get('group'):'';
-    var payload={kind:'lead', id:id, program:cur, price:p.price, lang:lang, name:fd.get('name'), email:email, phone:fd.get('phone'),
+    lead={kind:'lead', id:id, program:cur, price:p.price, lang:lang, name:fd.get('name'), email:email, phone:fd.get('phone'),
       instagram:fd.get('instagram')||'', goal:fd.get('goal'), level:fd.get('level'), group:gid,
       days:fd.getAll('days').map(function(i){return T.en.days[i]}).join(', '), times:fd.getAll('times').join(', '),
       notes:fd.get('notes')||'', tz:userTz, page:location.href};
-    var payNow = p.payNow && p.stripe && !isFull(cur, gid);
-    var btn=document.getElementById('fsubmit'), label=btn.textContent; btn.disabled=true; btn.textContent=t().sending;
-    var send = C.apiUrl ? fetch(C.apiUrl,{method:'POST',body:JSON.stringify(payload)}).then(function(r){return r.json()}) : Promise.reject(new Error('no api'));
+    var payNow = p.payNow && methods(p).length && !isFull(cur, gid);
+    var btn=$('fsubmit'), label=btn.textContent; btn.disabled=true; btn.textContent=t().sending;
+    var send = C.apiUrl ? fetch(C.apiUrl,{method:'POST',body:JSON.stringify(lead)}).then(function(r){return r.json()}) : Promise.reject(new Error('no api'));
     send.then(function(res){
       if(!res || res.ok!==true) throw new Error((res&&res.error)||'error');
-      if(payNow){
-        location.href=p.stripe+(p.stripe.indexOf('?')>-1?'&':'?')+'prefilled_email='+encodeURIComponent(email)+'&client_reference_id='+encodeURIComponent(id)+(lang==='ru'?'&locale=ru':'');
-        return;
-      }
-      form.hidden=true; document.getElementById('done').hidden=false;
+      if(payNow) payScreen(); else doneScreen(t().doneT, t().doneM);
     }).catch(function(){
       msg.innerHTML=''; msg.appendChild(document.createTextNode(t().err));
       var a=document.createElement('a'); a.href='mailto:'+C.supportEmail; a.textContent=C.supportEmail; msg.appendChild(a); msg.className='msg err';
     }).then(function(){ btn.disabled=false; btn.textContent=label; });
   });
 
-  document.getElementById('mail').href='mailto:'+C.supportEmail;
-  var hdr=document.getElementById('hdr'); function onScroll(){ hdr.classList.toggle('solid',scrollY>40) } addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  /* ---- misc ---- */
+  $('mail').href='mailto:'+C.supportEmail;
+  var hdr=$('hdr'); function onScroll(){ hdr.classList.toggle('solid',scrollY>40) } addEventListener('scroll',onScroll,{passive:true}); onScroll();
   var io='IntersectionObserver' in window ? new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1}) : null;
   document.querySelectorAll('.reveal').forEach(function(el){ io?io.observe(el):el.classList.add('in') });
 
   var saved=null; try{saved=localStorage.getItem('vlang')}catch(e){}
-  setLang(saved || ((navigator.language||'ru').slice(0,2)==='en'?'en':'ru'));
+  var nav=(navigator.language||'en').slice(0,2).toLowerCase(); if(nav==='ua') nav='uk';
+  setLang(saved || (LANGS.indexOf(nav)>-1 ? nav : 'en'));
+  if(/[?&]paid=1/.test(location.search)){ modal.classList.add('open'); doneScreen(t().paidT, t().paidM); history.replaceState(null,'',location.pathname); }
 })();
 </script>
 </body>

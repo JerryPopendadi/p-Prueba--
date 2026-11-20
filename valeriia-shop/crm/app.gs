@@ -20,7 +20,7 @@ var HEAD = {
   'Заявки':    ['ID','Дата','Программа','Сумма','Имя','Email','Телефон','Instagram','Цель','Уровень','Поток','Дни','Время','Часовой пояс','Заметки','Язык','Статус','Оплачено','Комментарий'],
   'Клиенты':   ['Email','Имя','Телефон','Программа','Поток','Занятий всего','Проведено','Осталось','Начало','Статус','Заметки'],
   'Занятия':   ['ID','Дата','Время','Мин','Email','Имя','Тип','Статус','Ссылка','Событие','Заметки'],
-  'Оплаты':    ['ID','Дата','Источник','Email','Имя','Продукт','Сумма','Валюта','Заявка','Внешний ID'],
+  'Оплаты':    ['ID','Дата','Источник','Email','Имя','Продукт','Сумма','Валюта','Заявка','Внешний ID','Обработано'],
   'Группы':    ['ID','Название','Дни','Время','Старт','Мест','Занято','Событие','Активна'],
   'Программы': ['ID','Название','Цена','Занятий','Минут','Тип','Stripe Link ID','Активна'],
   'Настройки': ['Ключ','Значение','Пояснение']
@@ -63,6 +63,7 @@ function setup() {
     ['OWNER_EMAIL', Session.getEffectiveUser().getEmail(), 'Куда присылать уведомления и сводку'],
     ['BRAND', 'Valeriia', 'Имя в письмах'],
     ['ZOOM_LINK', '', 'Постоянная ссылка Zoom для занятий'],
+    ['PAYPAL_EMAIL', '', 'Email PayPal-аккаунта Леры (для проверки оплат)'],
     ['CALENDAR_ID', '', 'Пусто = основной календарь Леры'],
     ['DIGEST_HOUR', '8', 'Во сколько присылать утреннюю сводку'],
     ['PAYHIP_PRICE_IN_CENTS', 'да', 'Payhip присылает цену в центах? (проверить по первой продаже)'],
@@ -179,7 +180,7 @@ function addPayment(o) {
   var amount = Number(o && o.amount);
   if (!isFinite(amount) || amount <= 0) throw new Error('Сумма');
   sheet_(SH.PAYMENTS).appendRow(['M' + Date.now().toString(36).toUpperCase(), new Date(), 'Вручную', clean_(String(o.email || '').toLowerCase(), 120),
-    clean_(o.name, 80), clean_(o.product, 120), amount, clean_(o.currency || 'USD', 5), '', '']);
+    clean_(o.name, 80), clean_(o.product, 120), amount, clean_(o.currency || 'USD', 5), '', '', 'да']);
   return true;
 }
 
@@ -204,6 +205,7 @@ function createGroupSeries(groupId, startDate) {
 
 /* ================= STRIPE (каждые 15 минут) ================= */
 function syncStripe() {
+  processPending_(); // оплаты PayPal, которые API записал в таблицу
   var key = PropertiesService.getScriptProperties().getProperty('STRIPE_SECRET_KEY');
   if (!key) return 'Нет STRIPE_SECRET_KEY';
   var lock = LockService.getScriptLock(); if (!lock.tryLock(30000)) return 'busy';
@@ -228,7 +230,7 @@ function syncStripe() {
         var name = (s.customer_details && s.customer_details.name) || '';
         var ref = s.client_reference_id || '';
         pay.appendRow(['T' + Date.now().toString(36).toUpperCase() + added, new Date(s.created * 1000), 'Stripe', email, clean_(name, 80),
-          prog ? prog['Название'] : (s.payment_link || 'Stripe'), (s.amount_total || 0) / 100, String(s.currency || '').toUpperCase(), ref, s.id]);
+          prog ? prog['Название'] : (s.payment_link || 'Stripe'), (s.amount_total || 0) / 100, String(s.currency || '').toUpperCase(), ref, s.id, 'да']);
         known[s.id] = 1; added++;
         onPaid_(email, name, prog, ref, (s.amount_total || 0) / 100, String(s.currency || '').toUpperCase());
       });
@@ -237,6 +239,21 @@ function syncStripe() {
     setSetting_('LAST_STRIPE_SYNC', String(newest));
     return 'Новых оплат: ' + added;
   } finally { lock.releaseLock(); }
+}
+
+/** Оплаты PayPal: API только записывает строку, а здесь создаётся клиент, места в группе и т.д. */
+function processPending_() {
+  var sh = sheet_(SH.PAYMENTS), n = sh.getLastRow() - 1; if (n < 1) return;
+  var data = sh.getRange(2, 1, n, HEAD['Оплаты'].length).getValues();
+  var progs = rows_(SH.PROGRAMS), col = col_(SH.PAYMENTS, 'Обработано');
+  data.forEach(function (r, i) {
+    if (r[2] !== 'PayPal' || r[10]) return;
+    var lead = r[8] ? find_(SH.LEADS, 'ID', r[8]) : null;
+    var pname = (lead && lead.obj['Программа']) || r[5];
+    var prog = progs.filter(function (p) { return p['Название'] === pname; })[0] || null;
+    sh.getRange(i + 2, col).setValue('да');
+    onPaid_(String(r[3]).toLowerCase(), r[4], prog, r[8], Number(r[6]) || 0, r[7]);
+  });
 }
 
 function onPaid_(email, name, prog, ref, amount, cur) {
