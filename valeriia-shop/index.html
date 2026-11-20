@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valeriia — Coach & Nutritionist</title>
+<title>Lera · Coach & Nutritionist · Bali</title>
 <meta name="description" content="Personal online training, small groups and nutrition coaching with Valeriia. Book a session or download the guides.">
 <meta name="theme-color" content="#0A110C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@ window.CONFIG = {
   // URL веб-приложения API из Google Apps Script (см. crm/README.md). Пусто = заявки не отправляются.
   apiUrl: '',
   // Часовой пояс Леры — по нему указано всё расписание
-  tz: 'Europe/Madrid', tzLabel: { ru: 'Мадрид', en: 'Madrid' },
+  tz: 'Asia/Makassar', tzLabel: { ru: 'Бали', en: 'Bali' },
   supportEmail: 'hello@example.com',
   // Цены и ссылки на оплату Stripe (Payment Links). payNow:false = сначала заявка, оплата после созвона.
   programs: {
@@ -30,7 +30,7 @@ window.CONFIG = {
   },
   // Группы: время в часовом поясе Леры. capacity — запасное значение, если таблица недоступна.
   groups: [
-    { id: 'G-AM', time: '07:30', capacity: 8 },
+    { id: 'G-AM', time: '14:00', capacity: 8 },
     { id: 'G-PM', time: '19:00', capacity: 8 }
   ]
 };
@@ -92,7 +92,7 @@ header .btn{padding:11px 20px;font-size:12px}
 .hero .facts span{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .hero .ph{position:relative;height:min(78vh,700px)}
 .hero .ph .main{position:absolute;inset:0 0 0 40px;border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 40px 120px -30px rgba(0,0,0,.8)}
-.hero .ph .main img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hero .ph .main img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
 .hero .ph .main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,17,12,.75))}
 .hero .ph .ring{position:absolute;left:0;bottom:60px;width:150px;height:150px;border-radius:50%;background:rgba(10,17,12,.75);backdrop-filter:blur(8px);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;z-index:2}
 .hero .ph .ring svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 22s linear infinite}
@@ -114,10 +114,26 @@ section{padding:120px 0;position:relative}
 .shead.c{text-align:center;margin-left:auto;margin-right:auto}
 .shead p{color:var(--muted);font-size:17px;margin-top:20px}
 
+.mom .grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
+.mom .big{position:relative;border-radius:28px;overflow:hidden;height:640px}
+.mom .big img{width:100%;height:100%;object-fit:cover;object-position:45% 50%}
+.mom .big::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,17,12,.85))}
+.mom .big .cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.2}
+.mom .big .cap small{display:block;font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.mom p.t{color:var(--muted);font-size:17.5px;margin-top:22px}
+.mom p.t b{color:var(--text);font-weight:600}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}
+.proof div{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:18px}
+.proof b{display:block;font-family:var(--display);font-weight:500;font-size:26px;color:var(--gold);line-height:1.05}
+.proof span{font-size:13px;color:var(--muted)}
+.proof b span{font-size:inherit;color:inherit}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini div{height:200px;border-radius:16px;overflow:hidden}
+.mini img{width:100%;height:100%;object-fit:cover}
 #programs{background:linear-gradient(180deg,var(--bg),var(--bg2))}
 .feat{display:grid;grid-template-columns:.85fr 1.15fr;border:1px solid rgba(215,185,138,.45);border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#1A2A1E,#0F1912 60%);margin-bottom:28px;position:relative}
 .feat .ph{position:relative;min-height:540px}
-.feat .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 50%}
+.feat .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%}
 .feat .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 50%,#16251A)}
 .feat .ribbon{position:absolute;top:22px;left:22px;z-index:2;background:var(--gold);color:#16130E;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
 .feat .body{padding:50px 52px}
@@ -249,6 +265,7 @@ textarea{min-height:80px;resize:vertical}
 
 @media (max-width:1000px){
   nav{display:none}
+  .mom .grid{grid-template-columns:1fr;gap:36px}.mom .big{height:520px}
   .hero .wrap,.feat,.about{grid-template-columns:1fr}
   .hero .ph{height:560px;max-width:520px;width:100%;margin:10px auto 0}
   .feat .ph{min-height:380px}.feat .ph::after{background:linear-gradient(180deg,transparent 50%,#16251A)}
@@ -272,6 +289,7 @@ textarea{min-height:80px;resize:vertical}
   .steps,.hours .rows{grid-template-columns:1fr}
   .mosaic{grid-template-rows:200px 200px}
   .creds{grid-template-columns:1fr}
+  .proof{grid-template-columns:1fr}.mom .big{height:440px}.mini div{height:150px}
   .f{grid-template-columns:1fr}.f .w{grid-column:auto}
   .sheet{padding:28px 20px 24px}
   .days div{padding:9px 0;font-size:10px}
@@ -283,7 +301,7 @@ textarea{min-height:80px;resize:vertical}
 <body>
 
 <header id="hdr"><div class="wrap">
-  <a class="logo" href="#top">VALERIIA<small>COACH · NUTRITION</small></a>
+  <a class="logo" href="#top">LERA<small>COACH · NUTRITION · BALI</small></a>
   <nav>
     <a href="#programs"><span data-ru>Тренировки</span><span data-en>Training</span></a>
     <a href="#schedule"><span data-ru>Расписание</span><span data-en>Schedule</span></a>
@@ -303,12 +321,12 @@ textarea{min-height:80px;resize:vertical}
   <svg class="leaves" style="left:-120px;bottom:-140px;width:460px;transform:rotate(160deg)" viewBox="0 0 200 200" fill="none" stroke="#88A576" stroke-width=".8"><path d="M100 196C98 140 104 80 150 20"/><path d="M118 120c-30-8-52-26-60-52 26 2 50 20 60 52zM128 92c26-14 40-36 42-62-24 10-40 32-42 62zM110 150c-34 0-60-14-74-38 28-6 56 6 74 38z"/></svg>
   <div class="wrap">
     <div>
-      <div class="eyebrow"><span data-ru>Тренер · Нутрициолог · Онлайн</span><span data-en>Coach · Nutritionist · Online</span></div>
+      <div class="eyebrow"><span data-ru>Мама · Тренер · Нутрициолог · Бали</span><span data-en>Mom · Coach · Nutritionist · Bali</span></div>
       <h1 class="disp" style="margin-top:22px">
         <span data-ru>Сильное<span class="it">дикое, красивое</span>тело</span>
         <span data-en>Strong<span class="it">wild, beautiful</span>body</span>
       </h1>
-      <p class="lead"><span data-ru>Персональные онлайн-тренировки, мини-группы и питание без диет. Лера составит план под тебя и проведёт каждое занятие лично — где бы ты ни была.</span><span data-en>Personal online training, small groups and nutrition without crash diets. Lera builds the plan around you and coaches every session personally — wherever you are.</span></p>
+      <p class="lead"><span data-ru>Я мама, работаю — и держу это тело без голода и многочасовых тренировок. Покажу как: персональные онлайн-тренировки, мини-группы и питание, которое работает в реальной жизни.</span><span data-en>I’m a mom, I work — and I keep this body without starving or endless workouts. I’ll show you how: personal online training, small groups and nutrition that works in real life.</span></p>
       <div class="ctas">
         <a class="btn" href="#programs"><span data-ru>Выбрать тренировки</span><span data-en>Choose training</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn ghost" href="#guides"><span data-ru>Гайды от $20</span><span data-en>Guides from $20</span></a>
@@ -325,7 +343,7 @@ textarea{min-height:80px;resize:vertical}
         <svg viewBox="0 0 150 150"><defs><path id="c" d="M75 75m-58 0a58 58 0 1 1 116 0a58 58 0 1 1-116 0"/></defs><text fill="#A3AE98" font-size="10.5" letter-spacing="3.6" font-family="Manrope"><textPath href="#c">TRAIN · EAT · GLOW · REPEAT · TRAIN · EAT · GLOW ·</textPath></text></svg>
         <b>Lera</b>
       </div>
-      <div class="tag"><b><i></i><span data-ru>Набор открыт</span><span data-en>Booking open</span></b><span data-ru>группы и 1:1</span><span data-en>groups & 1:1</span></div>
+      <div class="tag"><b><i></i><span data-ru>Набор открыт</span><span data-en>Booking open</span></b>@whynotleraa · Bali</div>
     </div>
   </div>
 </section>
@@ -335,11 +353,29 @@ textarea{min-height:80px;resize:vertical}
   <span>Strength</span><span>discipline</span><span>Nutrition</span><span>glow</span><span>Core</span><span>balance</span><span>Jungle mode</span><span>consistency</span>
 </div></div>
 
+
+<section class="mom" id="mom"><div class="wrap grid">
+  <div class="big reveal"><img src="img/lera-mom.jpg" alt="Lera in Bali" loading="lazy">
+    <div class="cap"><small>Bali · @whynotleraa</small><span data-ru>«Все хотят жить, как я живу» — так живи.</span><span data-en>“Everyone wants to live like I do” — so do it.</span></div></div>
+  <div class="reveal">
+    <div class="eyebrow"><span data-ru>Почему мне верят</span><span data-en>Why women trust me</span></div>
+    <h2 class="disp" style="margin-top:16px"><span data-ru>Мама. Работаю.<span class="it" style="display:block">И в лучшей форме.</span></span><span data-en>Mom. Working.<span class="it" style="display:block">And in my best shape.</span></span></h2>
+    <p class="t"><span data-ru>У меня нет свободных часов в зале. Есть материнство, работа и жизнь — как у тебя. Поэтому я тренирую так, чтобы это <b>помещалось в настоящий день</b>: коротко, точно и без голода. Это тело — результат системы, а не генетики и свободного времени. И эту систему я даю тебе.</span><span data-en>I don’t have free hours at the gym. I have motherhood, work and a life — just like you. So I train in a way that <b>fits a real day</b>: short, precise and without starving. This body is the result of a system, not genetics or spare time. And that system is what I give you.</span></p>
+    <div class="proof">
+      <div><b>45–60′</b><span data-ru>тренировка помещается между работой и детьми</span><span data-en>a workout that fits between work and kids</span></div>
+      <div><b><span data-ru>Без голода</span><span data-en>No starving</span></b><span data-ru>нормальная еда и КБЖУ вместо диет</span><span data-en>real food and macros, not diets</span></div>
+      <div><b><span data-ru>Где угодно</span><span data-en>Anywhere</span></b><span data-ru>дома, в зале, в отпуске — нужен коврик</span><span data-en>home, gym or travel — just a mat</span></div>
+    </div>
+    <div class="mini"><div><img src="img/lera-boat.jpg" alt="" loading="lazy"></div><div><img src="img/lera-back.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div></div>
+    <div class="quote" style="font-size:26px"><span data-ru>«Если смогла я — сможешь и ты. Я покажу как».</span><span data-en>“If I could do it, so can you. I’ll show you how.”</span></div>
+  </div>
+</div></section>
+
 <section id="programs"><div class="wrap">
   <div class="shead reveal">
     <div class="eyebrow"><span data-ru>Тренировки с Лерой</span><span data-en>Train with Lera</span></div>
     <h2 class="disp" style="margin-top:16px"><span data-ru>Выбери свой <span class="it">формат</span></span><span data-en>Choose your <span class="it">format</span></span></h2>
-    <p><span data-ru>Все занятия проходят онлайн в Zoom: камера, коврик и немного места. Время указано по часовому поясу Леры — в расписании ниже оно пересчитано и в твой.</span><span data-en>All sessions are live on Zoom: a camera, a mat and a little space. Times are in Lera’s time zone — the schedule below also converts them to yours.</span></p>
+    <p><span data-ru>Все занятия — онлайн в Zoom: камера, коврик и немного места. Время указано по Бали — в расписании ниже оно пересчитано в твой часовой пояс.</span><span data-en>All sessions are live on Zoom: a camera, a mat and a little space. Times are Bali time — the schedule below converts them to your time zone.</span></p>
   </div>
 
   <article class="feat reveal">
@@ -395,7 +431,7 @@ textarea{min-height:80px;resize:vertical}
       </div>
       <ul class="list">
         <li><span data-ru>Живые тренировки: сила, кор, ягодицы, мобильность</span><span data-en>Live sessions: strength, core, glutes, mobility</span></li>
-        <li><span data-ru>Два потока: утро 07:30 или вечер 19:00</span><span data-en>Two cohorts: 07:30 morning or 19:00 evening</span></li>
+        <li><span data-ru>Два потока: 14:00 или 19:00 по Бали (09:00 / 14:00 Мск)</span><span data-en>Two cohorts: 14:00 or 19:00 Bali time</span></li>
         <li><span data-ru>Чат группы и гайд Flat Belly в подарок</span><span data-en>Group chat + Flat Belly guide included</span></li>
       </ul>
       <div class="pricerow"><div class="price" data-price="group">$169<small><span data-ru>≈ $14 за тренировку</span><span data-en>≈ $14 per session</span></small></div>
@@ -442,7 +478,7 @@ textarea{min-height:80px;resize:vertical}
   </div>
   <div class="sched">
     <div class="slot reveal" data-slot="G-AM">
-      <div class="h"><b><span data-ru>Утренний поток</span><span data-en>Morning cohort</span></b><span class="left" data-left></span></div>
+      <div class="h"><b><span data-ru>Дневной поток</span><span data-en>Day cohort</span></b><span class="left" data-left></span></div>
       <div class="days"></div><div class="local"></div>
     </div>
     <div class="slot reveal" data-slot="G-PM">
@@ -476,21 +512,21 @@ textarea{min-height:80px;resize:vertical}
 
 <section id="about"><div class="wrap about">
   <div class="mosaic reveal">
-    <div><img src="img/lera-2.jpg" alt="Valeriia" loading="lazy"></div>
-    <div><img src="img/lera-1.jpg" alt="" loading="lazy"></div>
+    <div><img src="img/lera-2.jpg" alt="Lera" loading="lazy" style="object-position:50% 25%"></div>
+    <div><img src="img/lera-1.jpg" alt="" loading="lazy" style="object-position:50% 45%"></div>
     <div><img src="img/lera-food.jpg" alt="" loading="lazy"></div>
   </div>
   <div class="reveal">
     <div class="eyebrow"><span data-ru>Обо мне</span><span data-en>About me</span></div>
     <h2 class="disp" style="margin-top:16px"><span data-ru>Привет, я <span class="it">Лера</span></span><span data-en>Hi, I’m <span class="it">Lera</span></span></h2>
-    <p><span data-ru>Тренер и нутрициолог. Я верю, что красивое тело строится не на запретах, а на силе, нормальной еде и привычках, которые легко повторять. Тренирую онлайн девушек по всему миру — на русском и английском.</span><span data-en>Coach and nutritionist. I believe a beautiful body is built on strength, real food and habits you can repeat — not on restriction. I coach women worldwide online, in Russian and English.</span></p>
+    <p><span data-ru>Мама, тренер и нутрициолог. Живу на Бали и тренирую онлайн девушек по всему миру — на русском и английском. Я верю, что красивое тело строится не на запретах, а на силе, нормальной еде и привычках, которые реально повторять, даже когда у тебя дети, работа и ноль свободного времени.</span><span data-en>Mom, coach and nutritionist. I live in Bali and coach women worldwide online, in Russian and English. I believe a beautiful body is built on strength, real food and habits you can actually repeat — even with kids, a job and zero free time.</span></p>
     <div class="creds">
       <div><b><span data-ru>Тренировки</span><span data-en>Training</span></b><span data-ru>сила, кор, ягодицы, мобильность</span><span data-en>strength, core, glutes, mobility</span></div>
       <div><b><span data-ru>Питание</span><span data-en>Nutrition</span></b><span data-ru>КБЖУ без жёстких диет</span><span data-en>macros without crash diets</span></div>
     </div>
     <div class="quote"><span data-ru>«Не нужно быть идеальной. Нужно возвращаться к своей системе».</span><span data-en>“You don’t need to be perfect. You need to keep returning to your routine.”</span></div>
     <div class="soc">
-      <a class="btn ghost" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn ghost" href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram @whynotleraa</a>
       <a class="btn ghost" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
     </div>
   </div>
@@ -539,20 +575,20 @@ textarea{min-height:80px;resize:vertical}
 <section class="final"><div class="wrap">
   <div class="eyebrow"><span data-ru>Твой первый шаг</span><span data-en>Your first step</span></div>
   <h2 class="disp" style="margin-top:18px"><span data-ru>Начни <span class="it">сегодня</span></span><span data-en>Start <span class="it">today</span></span></h2>
-  <p><span data-ru>Места в группах и на трансформацию ограничены.</span><span data-en>Group and Transformation spots are limited.</span></p>
+  <p><span data-ru>Мама с работой смогла. Значит, сможешь и ты. Места в группах и на трансформацию ограничены.</span><span data-en>A working mom did it — so can you. Group and Transformation spots are limited.</span></p>
   <a class="btn" href="#programs"><span data-ru>Выбрать формат</span><span data-en>Choose your format</span></a>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <div><a class="logo" href="#top">VALERIIA</a>
+  <div><a class="logo" href="#top">LERA</a>
     <div class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span></div></div>
   <div>
     <a href="/privacy-policy/"><span data-ru>Конфиденциальность</span><span data-en>Privacy</span></a>
     <a href="/terms/"><span data-ru>Условия</span><span data-en>Terms</span></a>
     <a href="/refund-policy/"><span data-ru>Возвраты</span><span data-en>Refunds</span></a>
     <a id="mail" href="#"><span data-ru>Контакты</span><span data-en>Contact</span></a>
-    <p style="margin-top:16px;font-size:12px;color:var(--dim)">© 2026 Valeriia. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span></p>
+    <p style="margin-top:16px;font-size:12px;color:var(--dim)">© 2026 Lera (@whynotleraa). <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span></p>
   </div>
 </div></footer>
 
@@ -575,8 +611,8 @@ textarea{min-height:80px;resize:vertical}
           <select id="fl" name="level"><option value="beginner">Новичок / Beginner</option><option value="intermediate">Средний / Intermediate</option><option value="advanced">Продвинутый / Advanced</option></select></div>
         <div class="w" id="groupRow"><label class="l"><span data-ru>Поток</span><span data-en>Cohort</span></label>
           <div class="chips">
-            <label><input type="radio" name="group" value="G-AM" checked><span>07:30 · Mon/Wed/Fri</span></label>
-            <label><input type="radio" name="group" value="G-PM"><span>19:00 · Mon/Wed/Fri</span></label>
+            <label><input type="radio" name="group" value="G-AM" checked><span>14:00 Bali · Mon/Wed/Fri</span></label>
+            <label><input type="radio" name="group" value="G-PM"><span>19:00 Bali · Mon/Wed/Fri</span></label>
           </div></div>
         <div class="w" id="daysRow"><label class="l"><span data-ru>Удобные дни</span><span data-en>Preferred days</span></label><div class="chips" id="dayChips"></div></div>
         <div class="w" id="timeRow"><label class="l"><span data-ru>Удобное время</span><span data-en>Preferred time</span></label>

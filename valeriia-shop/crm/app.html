@@ -284,7 +284,7 @@ function savePay(){
 /* ---------- демо для предпросмотра ---------- */
 function demo(){
   var t=new Date(), iso=function(d){return d.toISOString().slice(0,10)}, add=function(n){var d=new Date(t);d.setDate(d.getDate()+n);return iso(d)};
-  return { today:iso(t), tz:'Europe/Madrid', zoom:'https://zoom.us/j/demo',
+  return { today:iso(t), tz:'Asia/Makassar', zoom:'https://zoom.us/j/demo',
     kpi:{month:3240,newLeads:2,todaySessions:3,activeClients:5,lowClients:1},
     sessions:[
       {id:'S1',date:iso(t),time:'08:00',min:60,email:'anna@ex.com',name:'Анна К.',type:'Тренировка',status:'Запланировано',link:'https://zoom.us/j/demo',notes:'ягодицы + кор'},
@@ -302,7 +302,7 @@ function demo(){
       {email:'kate@ex.com',name:'Kate W.',phone:'',program:'Консультация по питанию',group:'',total:1,done:0,left:1,status:'Активен'},
       {email:'lena@ex.com',name:'Лена Д.',phone:'',program:'Jungle Group · 4 недели',group:'G-AM',total:12,done:4,left:8,status:'Активен'},
       {email:'julia@ex.com',name:'Юля Т.',phone:'',program:'Разовая тренировка',group:'',total:1,done:0,left:1,status:'Активен'}],
-    groups:[{id:'G-AM',name:'Утренний поток',days:'Пн, Ср, Пт',time:'07:30',start:add(3),cap:8,taken:5},{id:'G-PM',name:'Вечерний поток',days:'Пн, Ср, Пт',time:'19:00',start:'',cap:8,taken:7}],
+    groups:[{id:'G-AM',name:'Дневной поток',days:'Пн, Ср, Пт',time:'14:00',start:add(3),cap:8,taken:5},{id:'G-PM',name:'Вечерний поток',days:'Пн, Ср, Пт',time:'19:00',start:'',cap:8,taken:7}],
     payments:[
       {id:'P1',date:iso(t)+'T10:00',source:'Stripe',email:'anna@ex.com',name:'Анна К.',product:'Пакет 8 тренировок',amount:800,currency:'USD'},
       {id:'P2',date:iso(t)+'T08:20',source:'Payhip',email:'x@ex.com',name:'',product:'21-Day Recipe Book',amount:20,currency:'USD'},
