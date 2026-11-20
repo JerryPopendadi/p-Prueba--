@@ -25,6 +25,7 @@ var LANGS = ['ru','en','uk','fr','de'];
 
 /* ---------- GET: свободные места ---------- */
 function doGet(e) {
+  if (e && e.parameter && e.parameter.page === 'app') return studentPage_(); // приложение клиентки
   var action = (e && e.parameter && e.parameter.action) || '';
   if (action !== 'public') return json_({ ok: true });
   var cache = CacheService.getScriptCache();
@@ -87,6 +88,7 @@ function handleLead_(b) {
     clean_(b.times, 60), clean_(b.tz, 60), clean_(b.notes, 1500), (LANGS.indexOf(b.lang) > -1 ? b.lang : 'en').toUpperCase(), 'Новая', '', '']);
 
   var owner = setting_('OWNER_EMAIL');
+  try { if (PropertiesService.getScriptProperties().getProperty('TELEGRAM_BOT_TOKEN')) notifyLera_('🌿 Новая заявка: ' + PROGRAMS[program] + ' — ' + name + ' · ' + phone); } catch (err) {}
   if (owner) {
     MailApp.sendEmail({
       to: owner, replyTo: email,

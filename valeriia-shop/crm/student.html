@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lera · App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F4EF;--w:#fff;--ink:#141A14;--ink2:#3C463B;--mut:#6E776C;--line:#E2E5DC;--sage:#DCE4D2;--sage2:#C6D3B8;--moss:#2F3D2C;--sky:#DCE7EC;--rose:#EFE5DF;
+--h:'Inter Tight',Inter,system-ui,-apple-system,Arial,sans-serif;--b:Inter,system-ui,-apple-system,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.5 var(--b);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.app{max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+h1,h2,h3{font-family:var(--h);font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:14px 22px;font-weight:500;cursor:pointer;text-decoration:none}
+.btn.full{width:100%}
+.btn svg{width:19px;height:19px;flex:none}
+.btn.light{background:var(--w);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.5}
+input,select,textarea{width:100%;background:var(--w);border:1px solid var(--line);border-radius:16px;padding:14px 16px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--ink)}
+.mut{color:var(--mut)}
+/* login */
+.login{flex:1;display:flex;flex-direction:column;justify-content:center;padding:32px 22px}
+.logo{font-family:var(--h);font-weight:600;font-size:30px;letter-spacing:-.04em}
+.login h1{font-size:34px;margin:28px 0 10px}
+.login p{color:var(--ink2)}
+.login form{margin-top:26px;display:grid;gap:12px}
+.code{letter-spacing:.5em;text-align:center;font-size:24px;font-family:var(--h)}
+.err{color:#B4553A;font-size:14px;min-height:20px}
+.langs{display:flex;gap:6px;margin-top:30px;flex-wrap:wrap}
+.langs button{background:var(--w);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* top */
+.top{padding:calc(18px + env(safe-area-inset-top)) 20px 6px;display:flex;align-items:center;justify-content:space-between}
+.top .hi{font-family:var(--h);font-weight:600;font-size:26px;letter-spacing:-.03em}
+.top .sub{color:var(--mut);font-size:14px}
+.av{width:44px;height:44px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-family:var(--h);font-weight:600;color:var(--moss)}
+main{flex:1;padding:10px 16px calc(96px + env(safe-area-inset-bottom))}
+.view{display:none}.view.on{display:block}
+.card{background:var(--w);border-radius:24px;padding:20px;margin-bottom:12px}
+.card.dark{background:var(--moss);color:#fff}
+.card.dark .mut{color:#C9D1C4}
+.card.sage{background:var(--sage)}
+.k{font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.card.dark .k{color:#C9D1C4}
+.next .when{font-family:var(--h);font-weight:600;font-size:30px;letter-spacing:-.03em;margin:10px 0 2px}
+.next .btn{margin-top:16px;background:#fff;color:var(--ink)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.ring{width:84px;height:84px;flex:none}
+.big{font-family:var(--h);font-weight:600;font-size:28px;letter-spacing:-.03em}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quick button{background:var(--w);border:0;border-radius:22px;padding:18px;text-align:left;cursor:pointer}
+.quick b{display:block;font-family:var(--h);font-size:17px;margin-top:10px}
+.quick span{font-size:13px;color:var(--mut)}
+.ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.ico svg{width:20px;height:20px}
+.list .it{display:flex;gap:14px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.list .it:first-child{border-top:0}
+.date{width:54px;flex:none;text-align:center;background:var(--bg);border-radius:14px;padding:8px 0}
+.date b{display:block;font-family:var(--h);font-size:20px;line-height:1}
+.date span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.it .t{font-weight:600}
+.it .m{font-size:13.5px;color:var(--mut)}
+.it a{margin-left:auto}
+.small-btn{background:var(--bg);border:0;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:600;text-decoration:none;color:var(--ink);white-space:nowrap}
+.empty{color:var(--mut);padding:18px 4px;text-align:center}
+/* chat */
+.chat{display:flex;flex-direction:column;gap:6px;padding-bottom:84px}
+.bub{max-width:80%;padding:10px 14px;border-radius:20px;font-size:15px;white-space:pre-wrap;word-wrap:break-word}
+.bub.me{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:6px}
+.bub.her{align-self:flex-start;background:var(--w);border-bottom-left-radius:6px}
+.bub small{display:block;font-size:11px;opacity:.6;margin-top:3px}
+.day{align-self:center;font-size:12px;color:var(--mut);margin:10px 0 4px}
+.chathead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.composer{position:fixed;left:0;right:0;bottom:calc(68px + env(safe-area-inset-bottom));padding:10px 12px;background:linear-gradient(180deg,rgba(243,244,239,0),var(--bg) 30%);display:none}
+.composer.on{display:block}
+.composer .in{max-width:536px;margin:0 auto;display:flex;gap:8px;align-items:flex-end}
+.composer textarea{min-height:48px;max-height:140px;resize:none;border-radius:24px;padding:12px 16px}
+.send{width:48px;height:48px;border-radius:50%;background:var(--ink);border:0;color:#fff;display:flex;align-items:center;justify-content:center;flex:none;cursor:pointer}
+/* tabs */
+.tabs{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom));z-index:5}
+.tabs .in{max-width:560px;margin:0 auto;display:flex;justify-content:space-around}
+.tabs button{background:none;border:0;color:var(--mut);font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;position:relative}
+.tabs svg{width:23px;height:23px}
+.tabs button.on{color:var(--ink)}
+.dot{position:absolute;top:3px;right:12px;width:9px;height:9px;border-radius:50%;background:#C8553D;border:2px solid #fff}
+.mat{display:block;text-decoration:none;color:inherit}
+.mat .t{font-family:var(--h);font-weight:600;font-size:17px}
+.prof .row{padding:14px 0;border-top:1px solid var(--line)}
+.prof .row:first-child{border-top:0}
+.hint{font-size:13.5px;color:var(--ink2);background:var(--sky);border-radius:18px;padding:14px 16px;margin-top:12px}
+.loading{flex:1;display:flex;align-items:center;justify-content:center;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="app" id="app"><div class="loading">…</div></div>
+
+<script>
+var L = {
+  ru:{hi:'Привет',login:'Вход в приложение',loginP:'Введи email, который ты указала при оплате. Мы пришлём код для входа.',email:'Email',getCode:'Получить код',code:'Код из письма',enter:'Войти',back:'Другой email',
+      sent:'Если этот email есть в списке клиенток, код уже в почте (проверь «Спам»).',badCode:'Неверный или просроченный код',errEmail:'Проверь email',
+      home:'Главная',chat:'Чат',sched:'Занятия',mats:'Материалы',prof:'Профиль',next:'Следующая тренировка',noNext:'Занятий пока нет — Лера скоро поставит расписание',
+      zoom:'Открыть Zoom',left:'Осталось занятий',of:'из',done:'проведено',group:'Твой поток',write:'Написать Лере',writeS:'Ответит в течение дня',
+      schedS:'Ближайшие занятия',matsS:'Твои материалы',typeMsg:'Сообщение…',chatEmpty:'Напиши Лере — вопрос по технике, питанию или расписанию.',
+      noMats:'Здесь появятся гайды и видео от Леры',yourTime:'время у тебя',coachTime:'время Леры',program:'Программа',logout:'Выйти',lang:'Язык',
+      a2hs:'Совет: открой меню браузера → «На экран Домой», и приложение будет как обычное на телефоне.',today:'Сегодня',tomorrow:'Завтра',min:'мин',online:'тренер и нутрициолог'},
+  uk:{hi:'Привіт',login:'Вхід у застосунок',loginP:'Введи email, який ти вказала під час оплати. Ми надішлемо код для входу.',email:'Email',getCode:'Отримати код',code:'Код із листа',enter:'Увійти',back:'Інший email',
+      sent:'Якщо цей email є у списку клієнток, код уже на пошті (перевір «Спам»).',badCode:'Неправильний або прострочений код',errEmail:'Перевір email',
+      home:'Головна',chat:'Чат',sched:'Заняття',mats:'Матеріали',prof:'Профіль',next:'Наступне тренування',noNext:'Занять поки немає — Лера скоро складе розклад',
+      zoom:'Відкрити Zoom',left:'Залишилось занять',of:'з',done:'проведено',group:'Твій потік',write:'Написати Лері',writeS:'Відповість протягом дня',
+      schedS:'Найближчі заняття',matsS:'Твої матеріали',typeMsg:'Повідомлення…',chatEmpty:'Напиши Лері — питання щодо техніки, харчування чи розкладу.',
+      noMats:'Тут з’являться гайди й відео від Лери',yourTime:'твій час',coachTime:'час Лери',program:'Програма',logout:'Вийти',lang:'Мова',
+      a2hs:'Порада: відкрий меню браузера → «На екран Додому», і застосунок буде як звичайний.',today:'Сьогодні',tomorrow:'Завтра',min:'хв',online:'тренерка й нутриціологиня'},
+  en:{hi:'Hi',login:'Sign in',loginP:'Enter the email you used when paying. We’ll send you a login code.',email:'Email',getCode:'Get code',code:'Code from the email',enter:'Sign in',back:'Use another email',
+      sent:'If this email is on the client list, the code is in your inbox (check spam).',badCode:'Wrong or expired code',errEmail:'Check your email',
+      home:'Home',chat:'Chat',sched:'Sessions',mats:'Materials',prof:'Profile',next:'Next session',noNext:'No sessions yet — Lera will set your schedule soon',
+      zoom:'Open Zoom',left:'Sessions left',of:'of',done:'done',group:'Your cohort',write:'Message Lera',writeS:'Replies within a day',
+      schedS:'Upcoming sessions',matsS:'Your materials',typeMsg:'Message…',chatEmpty:'Write to Lera — technique, nutrition or schedule questions.',
+      noMats:'Guides and videos from Lera will appear here',yourTime:'your time',coachTime:'Lera’s time',program:'Program',logout:'Sign out',lang:'Language',
+      a2hs:'Tip: open your browser menu → “Add to Home Screen” to use it like a regular app.',today:'Today',tomorrow:'Tomorrow',min:'min',online:'coach & nutritionist'},
+  fr:{hi:'Salut',login:'Connexion',loginP:'Saisis l’e-mail utilisé lors du paiement. Nous t’enverrons un code.',email:'E-mail',getCode:'Recevoir le code',code:'Code reçu par e-mail',enter:'Se connecter',back:'Autre e-mail',
+      sent:'Si cet e-mail figure dans la liste des clientes, le code est dans ta boîte (vérifie les spams).',badCode:'Code incorrect ou expiré',errEmail:'Vérifie ton e-mail',
+      home:'Accueil',chat:'Chat',sched:'Séances',mats:'Contenus',prof:'Profil',next:'Prochaine séance',noNext:'Pas encore de séance — Lera prépare ton planning',
+      zoom:'Ouvrir Zoom',left:'Séances restantes',of:'sur',done:'faites',group:'Ton groupe',write:'Écrire à Lera',writeS:'Répond dans la journée',
+      schedS:'Prochaines séances',matsS:'Tes contenus',typeMsg:'Message…',chatEmpty:'Écris à Lera — technique, nutrition ou planning.',
+      noMats:'Les guides et vidéos de Lera apparaîtront ici',yourTime:'ton heure',coachTime:'heure de Lera',program:'Programme',logout:'Se déconnecter',lang:'Langue',
+      a2hs:'Astuce : menu du navigateur → « Sur l’écran d’accueil » pour l’utiliser comme une app.',today:'Aujourd’hui',tomorrow:'Demain',min:'min',online:'coach & nutritionniste'},
+  de:{hi:'Hi',login:'Anmelden',loginP:'Gib die E-Mail ein, mit der du bezahlt hast. Wir senden dir einen Code.',email:'E-Mail',getCode:'Code anfordern',code:'Code aus der E-Mail',enter:'Anmelden',back:'Andere E-Mail',
+      sent:'Wenn diese E-Mail auf der Kundinnenliste steht, ist der Code in deinem Postfach (Spam prüfen).',badCode:'Falscher oder abgelaufener Code',errEmail:'E-Mail prüfen',
+      home:'Start',chat:'Chat',sched:'Termine',mats:'Inhalte',prof:'Profil',next:'Nächste Einheit',noNext:'Noch keine Termine — Lera plant sie bald ein',
+      zoom:'Zoom öffnen',left:'Einheiten übrig',of:'von',done:'erledigt',group:'Deine Gruppe',write:'Lera schreiben',writeS:'Antwortet innerhalb eines Tages',
+      schedS:'Nächste Termine',matsS:'Deine Inhalte',typeMsg:'Nachricht…',chatEmpty:'Schreib Lera — Fragen zu Technik, Ernährung oder Terminen.',
+      noMats:'Hier erscheinen Guides und Videos von Lera',yourTime:'deine Zeit',coachTime:'Leras Zeit',program:'Programm',logout:'Abmelden',lang:'Sprache',
+      a2hs:'Tipp: Browser-Menü → „Zum Home-Bildschirm“, dann funktioniert es wie eine App.',today:'Heute',tomorrow:'Morgen',min:'Min.',online:'Coach & Ernährungsberaterin'}
+};
+var LANGS=['ru','uk','en','fr','de'], lang, token, D=null, lastId=0, pollT=null, tab='home', email='';
+function t(k){ return (L[lang]||L.en)[k]; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+function store(k,v){ try{ if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+/* ---- сервер или демо ---- */
+var DEMO = !(window.google && google.script && google.script.run);
+function call(fn,args,ok){
+  if(!DEMO){ var r=google.script.run.withSuccessHandler(ok).withFailureHandler(function(){ ok({ok:false,error:'net'}); }); r[fn].apply(r,args||[]); return; }
+  setTimeout(function(){ ok(demo(fn,args)); },150);
+}
+
+/* ---- время: занятия записаны во времени Леры, показываем во времени клиентки ---- */
+function tzOffset(tz,ms){ var f=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}); var p={}; f.formatToParts(new Date(ms)).forEach(function(x){p[x.type]=x.value}); return (Date.UTC(+p.year,+p.month-1,+p.day,+p.hour%24,+p.minute,+p.second)-ms)/60000; }
+function instant(date,time){ var g=Date.UTC(+date.slice(0,4),+date.slice(5,7)-1,+date.slice(8,10),+time.slice(0,2),+time.slice(3,5)); return new Date(g-tzOffset(D.tz,g)*60000); }
+function dayLabel(d){ var n=new Date(); n.setHours(0,0,0,0); var x=new Date(d); x.setHours(0,0,0,0); var diff=Math.round((x-n)/864e5);
+  if(diff===0) return t('today'); if(diff===1) return t('tomorrow'); return d.toLocaleDateString(lang==='uk'?'uk-UA':lang,{weekday:'long',day:'numeric',month:'long'}); }
+function hm(d){ return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+
+/* ---- экраны ---- */
+function loginView(step){
+  $('app').innerHTML='<div class="login"><div class="logo">lera</div><h1>'+t('login')+'</h1><p>'+t('loginP')+'</p>'+
+    (step==='code'
+      ? '<form id="f2"><p class="mut">'+esc(email)+'</p><input id="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" aria-label="'+t('code')+'"><div class="err" id="err">'+t('sent')+'</div><button class="btn full" id="go">'+t('enter')+'</button><button type="button" class="btn light full" id="bk">'+t('back')+'</button></form>'
+      : '<form id="f1"><input id="em" type="email" autocomplete="email" placeholder="'+t('email')+'" value="'+esc(email)+'"><div class="err" id="err"></div><button class="btn full" id="go">'+t('getCode')+'</button></form>')+
+    '<div class="langs">'+LANGS.map(function(l){return '<button data-l="'+l+'" class="'+(l===lang?'on':'')+'">'+(l==='uk'?'UA':l.toUpperCase())+'</button>'}).join('')+'</div></div>';
+  document.querySelectorAll('.langs button').forEach(function(b){ b.onclick=function(){ setLang(b.dataset.l); loginView(step); }; });
+  if(step==='code'){
+    $('code').focus();
+    $('bk').onclick=function(){ loginView('email'); };
+    $('f2').onsubmit=function(e){ e.preventDefault(); $('go').disabled=true;
+      call('stVerify',[email,$('code').value,navigator.userAgent.slice(0,120)],function(r){ $('go').disabled=false;
+        if(r.ok){ token=r.token; store('lera_token',token); start(); } else { $('err').textContent=t('badCode'); $('err').style.color='#B4553A'; } }); };
+  } else {
+    $('f1').onsubmit=function(e){ e.preventDefault(); email=$('em').value.trim().toLowerCase();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ $('err').textContent=t('errEmail'); return; }
+      $('go').disabled=true; call('stRequestCode',[email,lang],function(){ loginView('code'); }); };
+  }
+}
+
+var ICON={
+  home:'<path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/>',
+  chat:'<path d="M4 5h16v11H8l-4 4z"/>',
+  sched:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  mats:'<path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h6"/>',
+  prof:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>',
+  zoom:'<rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 11l6-3v8l-6-3"/>',
+  send:'<path d="M5 12h13M12 5l7 7-7 7"/>'
+};
+function svg(k,stroke){ return '<svg viewBox="0 0 24 24" fill="none" stroke="'+(stroke||'currentColor')+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ICON[k]+'</svg>'; }
+
+function shell(){
+  $('app').innerHTML='<div class="top"><div><div class="hi" id="hi"></div><div class="sub" id="sub"></div></div><div class="av">L</div></div>'+
+    '<main><section class="view" id="v-home"></section><section class="view" id="v-chat"></section><section class="view" id="v-sched"></section><section class="view" id="v-mats"></section><section class="view" id="v-prof"></section></main>'+
+    '<div class="composer" id="comp"><div class="in"><textarea id="msg" rows="1"></textarea><button class="send" id="sendBtn" aria-label="send">'+svg('send','#fff')+'</button></div></div>'+
+    '<nav class="tabs"><div class="in">'+['home','chat','sched','mats','prof'].map(function(k){return '<button data-t="'+k+'">'+svg(k)+'<span data-l="'+k+'"></span>'+(k==='chat'?'<i class="dot" id="dot" hidden></i>':'')+'</button>'}).join('')+'</div></nav>';
+  document.querySelectorAll('.tabs button').forEach(function(b){ b.onclick=function(){ go(b.dataset.t); }; });
+  $('sendBtn').onclick=send;
+  $('msg').addEventListener('input',function(){ this.style.height='auto'; this.style.height=Math.min(140,this.scrollHeight)+'px'; });
+  $('msg').addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey&&window.innerWidth>700){ e.preventDefault(); send(); } });
+}
+function go(k){
+  tab=k; document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on',v.id==='v-'+k); });
+  document.querySelectorAll('.tabs button').forEach(function(b){ b.classList.toggle('on',b.dataset.t===k); });
+  $('comp').classList.toggle('on',k==='chat');
+  if(k==='chat'){ $('dot').hidden=true; store('lera_seen',String(lastId)); setTimeout(function(){ scrollTo(0,document.body.scrollHeight); },30); }
+  schedulePoll();
+}
+function render(){
+  var me=D.me;
+  $('hi').textContent=t('hi')+(me.name?', '+me.name.split(' ')[0]:'')+' 👋'; $('sub').textContent=me.program||'';
+  document.querySelectorAll('[data-l]').forEach(function(s){ if(s.tagName==='SPAN') s.textContent=t(s.dataset.l); });
+  $('msg').placeholder=t('typeMsg');
+  var nx=D.sessions[0], nxd=nx?instant(nx.date,nx.time):null;
+  var pct=me.total?Math.round(me.done/me.total*100):0, C=2*Math.PI*36;
+  $('v-home').innerHTML=
+    '<div class="card dark next"><div class="k">'+t('next')+'</div>'+
+      (nx ? '<div class="when">'+dayLabel(nxd)+', '+hm(nxd)+'</div><div class="mut">'+esc(nx.type)+' · '+nx.min+' '+t('min')+'</div><a class="btn full" target="_blank" rel="noopener" href="'+esc(nx.link||'#')+'">'+svg('zoom')+t('zoom')+'</a>'
+          : '<p style="margin-top:10px">'+t('noNext')+'</p>')+'</div>'+
+    (me.group ? '<div class="card sage"><div class="k">'+t('group')+'</div><div class="big" style="margin-top:6px">'+esc(me.group.time)+'</div><div class="mut">'+esc(me.group.name)+' · '+esc(me.group.days)+'</div>'+(me.group.zoom?'<a class="btn full" style="margin-top:14px" target="_blank" rel="noopener" href="'+esc(me.group.zoom)+'">'+svg('zoom')+t('zoom')+'</a>':'')+'</div>' : '')+
+    (me.total ? '<div class="card"><div class="row"><div><div class="k">'+t('left')+'</div><div class="big" style="margin-top:6px">'+me.left+' <span class="mut" style="font-size:16px;font-weight:500">'+t('of')+' '+me.total+'</span></div><div class="mut" style="font-size:14px">'+me.done+' '+t('done')+'</div></div>'+
+      '<svg class="ring" viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" fill="none" stroke="#EEF1EA" stroke-width="9"/><circle cx="42" cy="42" r="36" fill="none" stroke="#2F3D2C" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+(C*pct/100)+' '+C+'" transform="rotate(-90 42 42)"/><text x="42" y="47" text-anchor="middle" font-family="Inter Tight" font-weight="600" font-size="17" fill="#141A14">'+pct+'%</text></svg></div></div>' : '')+
+    '<div class="quick"><button onclick="go(\'chat\')"><div class="ico" style="background:var(--rose)">'+svg('chat')+'</div><b>'+t('write')+'</b><span>'+t('writeS')+'</span></button>'+
+      '<button onclick="go(\'mats\')"><div class="ico" style="background:var(--sky)">'+svg('mats')+'</div><b>'+t('mats')+'</b><span>'+D.materials.length+'</span></button></div>';
+  // занятия
+  $('v-sched').innerHTML='<h2 style="font-size:24px;margin:6px 4px 12px">'+t('schedS')+'</h2><div class="card list">'+(D.sessions.length ? D.sessions.map(function(s){
+      var d=instant(s.date,s.time); return '<div class="it"><div class="date"><b>'+d.getDate()+'</b><span>'+d.toLocaleDateString(lang==='uk'?'uk-UA':lang,{month:'short'})+'</span></div><div><div class="t">'+hm(d)+' · '+esc(s.type)+'</div><div class="m">'+dayLabel(d)+' · '+s.min+' '+t('min')+' · '+t('coachTime')+' '+esc(s.time)+'</div></div>'+(s.link?'<a class="small-btn" target="_blank" rel="noopener" href="'+esc(s.link)+'">Zoom</a>':'')+'</div>';
+    }).join('') : '<div class="empty">'+t('noNext')+'</div>')+'</div>';
+  // материалы
+  $('v-mats').innerHTML='<h2 style="font-size:24px;margin:6px 4px 12px">'+t('matsS')+'</h2>'+(D.materials.length ? D.materials.map(function(m){
+      return '<a class="card mat" target="_blank" rel="noopener" href="'+esc(m.url)+'"><div class="row"><div><div class="t">'+esc(m.title)+'</div>'+(m.desc?'<div class="mut" style="font-size:14px;margin-top:2px">'+esc(m.desc)+'</div>':'')+'</div><span class="small-btn">→</span></div></a>';
+    }).join('') : '<div class="card empty">'+t('noMats')+'</div>');
+  // профиль
+  $('v-prof').innerHTML='<div class="card prof"><div class="row"><span class="mut">Email</span><b>'+esc(me.email)+'</b></div><div class="row"><span class="mut">'+t('program')+'</span><b style="text-align:right">'+esc(me.program||'—')+'</b></div>'+
+    '<div class="row"><span class="mut">'+t('lang')+'</span><select id="lsel" style="width:auto">'+LANGS.map(function(l){return '<option value="'+l+'"'+(l===lang?' selected':'')+'>'+(l==='uk'?'Українська':{ru:'Русский',en:'English',fr:'Français',de:'Deutsch'}[l])+'</option>'}).join('')+'</select></div></div>'+
+    '<div class="hint">'+t('a2hs')+'</div><button class="btn light full" style="margin-top:14px" id="lo">'+t('logout')+'</button>';
+  $('lsel').onchange=function(){ setLang(this.value); render(); renderChat(true); };
+  $('lo').onclick=function(){ call('stLogout',[token],function(){}); store('lera_token',null); token=null; clearTimeout(pollT); loginView('email'); };
+  renderChat(true);
+}
+function renderChat(full){
+  var box=$('v-chat'); if(!box) return;
+  var msgs=D.messages;
+  var html='<div class="chathead"><div class="av">L</div><div><b>'+esc(D.coach.name)+'</b><div class="mut" style="font-size:13px">'+t('online')+'</div></div></div><div class="chat">';
+  if(!msgs.length) html+='<div class="card empty">'+t('chatEmpty')+'</div>';
+  var lastDay='';
+  msgs.forEach(function(m){ var d=new Date(m.at), day=d.toDateString(); if(day!==lastDay){ html+='<div class="day">'+dayLabel(d)+'</div>'; lastDay=day; }
+    html+='<div class="bub '+(m.from==='client'?'me':'her')+'">'+esc(m.text)+'<small>'+hm(d)+'</small></div>'; });
+  box.innerHTML=html+'</div>';
+  if(tab==='chat') setTimeout(function(){ scrollTo(0,document.body.scrollHeight); },20);
+}
+function addMessages(list){
+  if(!list||!list.length) return;
+  var known={}; D.messages.forEach(function(m){known[m.id]=1});
+  var fresh=list.filter(function(m){return !known[m.id]}); if(!fresh.length) return;
+  D.messages=D.messages.concat(fresh); lastId=D.messages[D.messages.length-1].id;
+  renderChat();
+  var seen=+load('lera_seen')||0;
+  if(tab!=='chat' && fresh.some(function(m){return m.from==='lera' && m.id>seen})) $('dot').hidden=false;
+  if(tab==='chat') store('lera_seen',String(lastId));
+}
+function send(){
+  var v=$('msg').value.trim(); if(!v) return; $('msg').value=''; $('msg').style.height='auto';
+  D.messages.push({id:Date.now(),at:new Date().toISOString(),from:'client',text:v,pending:1}); renderChat();
+  call('stSend',[token,v],function(r){ D.messages=D.messages.filter(function(m){return !m.pending}); if(r.ok) addMessages(r.messages); renderChat(); });
+}
+function schedulePoll(){
+  clearTimeout(pollT); if(!token) return;
+  pollT=setTimeout(function(){ call('stPoll',[token,lastId],function(r){ if(r.ok) addMessages(r.messages); else if(r.error==='auth'){ store('lera_token',null); loginView('email'); return; } schedulePoll(); }); }, tab==='chat'?6000:30000);
+}
+function setLang(l){ lang=LANGS.indexOf(l)>-1?l:'en'; document.documentElement.lang=lang; store('lera_lang',lang); }
+function start(){
+  call('stData',[token],function(r){
+    if(!r.ok){ store('lera_token',null); token=null; loginView('email'); return; }
+    D=r; lastId=D.messages.length?D.messages[D.messages.length-1].id:0;
+    shell(); render(); go('home');
+    var seen=+load('lera_seen')||0; if(D.messages.some(function(m){return m.from==='lera'&&m.id>seen})) $('dot').hidden=false;
+  });
+}
+
+/* ---- демо-данные для предпросмотра (вне Google) ---- */
+function demo(fn,args){
+  if(fn==='stRequestCode') return {ok:true};
+  if(fn==='stVerify') return {ok:true,token:'demo'};
+  if(fn==='stLogout') return {ok:true};
+  if(fn==='stPoll') return {ok:true,messages:[]};
+  if(fn==='stSend') return {ok:true,messages:[{id:Date.now(),at:new Date().toISOString(),from:'client',text:args[1]}]};
+  var d=new Date(), iso=function(x){return x.toISOString().slice(0,10)}, add=function(n){var x=new Date(d);x.setDate(x.getDate()+n);return iso(x)};
+  var ago=function(h){return new Date(Date.now()-h*36e5).toISOString().slice(0,16)};
+  return {ok:true,tz:'Asia/Makassar',coach:{name:'Lera'},
+    me:{email:'anna@example.com',name:'Анна',program:'Пакет 8 тренировок',total:8,done:3,left:5,group:null},
+    sessions:[{date:add(1),time:'14:00',min:60,type:'Тренировка',link:'https://zoom.us/j/demo'},{date:add(3),time:'14:00',min:60,type:'Тренировка',link:'https://zoom.us/j/demo'},{date:add(6),time:'15:00',min:30,type:'Чек-ин',link:'https://zoom.us/j/demo'}],
+    materials:[{title:'Книга рецептов на 21 день',url:'https://example.com/recipes',desc:'PDF · RU / EN'},{title:'Flat Belly · 30 дней',url:'https://example.com/belly',desc:'PDF + трекер'},{title:'Разминка 10 минут',url:'https://example.com/warmup',desc:'Видео'}],
+    messages:[{id:1,at:ago(26),from:'client',text:'Лера, привет! Можно перенести четверг на пятницу?'},{id:2,at:ago(25),from:'lera',text:'Привет! Да, поставила на пятницу 14:00 по Бали. Приглашение уже в календаре 🌿'},{id:3,at:ago(2),from:'lera',text:'Как ощущения после вчерашней тренировки? Не забудь растяжку ягодиц сегодня.'}]};
+}
+
+/* ---- запуск ---- */
+setLang(load('lera_lang') || ((navigator.language||'en').slice(0,2)==='ua'?'uk':(navigator.language||'en').slice(0,2)));
+token=load('lera_token');
+if(token) start(); else loginView('email');
+</script>
+</body>
+</html>

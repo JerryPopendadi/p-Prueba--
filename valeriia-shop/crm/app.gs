@@ -15,7 +15,7 @@
  * Первый запуск: выбрать функцию setup → Run → разрешить доступ.
  */
 
-var SH = { LEADS: 'Заявки', CLIENTS: 'Клиенты', SESSIONS: 'Занятия', PAYMENTS: 'Оплаты', GROUPS: 'Группы', PROGRAMS: 'Программы', SETTINGS: 'Настройки' };
+var SH = { LEADS: 'Заявки', CLIENTS: 'Клиенты', SESSIONS: 'Занятия', PAYMENTS: 'Оплаты', GROUPS: 'Группы', PROGRAMS: 'Программы', SETTINGS: 'Настройки', MSG: 'Сообщения', ACCESS: 'Доступ', MATERIALS: 'Материалы' };
 var HEAD = {
   'Заявки':    ['ID','Дата','Программа','Сумма','Имя','Email','Телефон','Instagram','Цель','Уровень','Поток','Дни','Время','Часовой пояс','Заметки','Язык','Статус','Оплачено','Комментарий'],
   'Клиенты':   ['Email','Имя','Телефон','Программа','Поток','Занятий всего','Проведено','Осталось','Начало','Статус','Заметки'],
@@ -23,7 +23,10 @@ var HEAD = {
   'Оплаты':    ['ID','Дата','Источник','Email','Имя','Продукт','Сумма','Валюта','Заявка','Внешний ID','Обработано'],
   'Группы':    ['ID','Название','Дни','Время','Старт','Мест','Занято','Событие','Активна'],
   'Программы': ['ID','Название','Цена','Занятий','Минут','Тип','Stripe Link ID','Активна'],
-  'Настройки': ['Ключ','Значение','Пояснение']
+  'Настройки': ['Ключ','Значение','Пояснение'],
+  'Сообщения': ['ID','Дата','Email','От','Текст','Прочитано'],
+  'Доступ':    ['Email','Тип','Хеш','До','Создан','Попыток','Устройство'],
+  'Материалы': ['Название','Ссылка','Программы','Описание']
 };
 var LEAD_STATUSES = ['Новая','Связаться','Оплачено','В работе','Лист ожидания','Отказ','Архив'];
 
@@ -59,11 +62,17 @@ function setup() {
     ['G-AM', 'Дневной поток', 'Пн, Ср, Пт', '14:00', '', 8, 0, '', 'да'],
     ['G-PM', 'Вечерний поток', 'Пн, Ср, Пт', '19:00', '', 8, 0, '', 'да']
   ]);
+  seed_(SH.MATERIALS, [
+    ['Книга рецептов на 21 день', 'https://', 'все', 'PDF · RU / EN — вставь ссылку (Google Drive или Payhip)'],
+    ['Flat Belly · 30 дней', 'https://', 'все', 'PDF + трекер']
+  ]);
   seed_(SH.SETTINGS, [
     ['OWNER_EMAIL', Session.getEffectiveUser().getEmail(), 'Куда присылать уведомления и сводку'],
     ['BRAND', 'Valeriia', 'Имя в письмах'],
     ['ZOOM_LINK', '', 'Постоянная ссылка Zoom для занятий'],
     ['PAYPAL_EMAIL', '', 'Email PayPal-аккаунта Леры (для проверки оплат)'],
+    ['STUDENT_APP_URL', '', 'Адрес приложения клиенток: URL API + ?page=app'],
+    ['TELEGRAM_CHAT_ID', '', 'Чат Леры в Telegram для уведомлений (необязательно)'],
     ['CALENDAR_ID', '', 'Пусто = основной календарь Леры'],
     ['DIGEST_HOUR', '8', 'Во сколько присылать утреннюю сводку'],
     ['PAYHIP_PRICE_IN_CENTS', 'да', 'Payhip присылает цену в центах? (проверить по первой продаже)'],
@@ -119,7 +128,8 @@ function getDashboard() {
       lowClients: clients.filter(function (c) { return c.status === 'Активен' && c.left <= 1; }).length
     },
     programs: rows_(SH.PROGRAMS).map(function (r) { return { id: r.ID, name: r['Название'], sessions: +r['Занятий'] || 1, min: +r['Минут'] || 60, type: r['Тип'] }; }),
-    zoom: setting_('ZOOM_LINK')
+    zoom: setting_('ZOOM_LINK'),
+    chats: getChats(), appUrl: setting_('STUDENT_APP_URL')
   };
 }
 
@@ -201,6 +211,41 @@ function createGroupSeries(groupId, startDate) {
   f.sheet.getRange(f.row, col_(SH.GROUPS, 'Событие')).setValue(series.getId());
   f.sheet.getRange(f.row, col_(SH.GROUPS, 'Старт')).setValue(parseLocal_(startDate, '00:00'));
   return guests.length;
+}
+
+/* ================= ЧАТ С КЛИЕНТКАМИ ================= */
+function getChats() {
+  var names = {}; rows_(SH.CLIENTS).forEach(function (c) { names[String(c.Email).toLowerCase()] = c['Имя']; });
+  var map = {};
+  rows_(SH.MSG).forEach(function (m) {
+    var e = String(m.Email).toLowerCase(), c = map[e] || (map[e] = { email: e, name: names[e] || e, unread: 0, last: '', at: '' });
+    c.last = String(m['Текст']).slice(0, 120); c.at = iso_(m['Дата']); c.lastFrom = m['От'];
+    if (m['От'] === 'client' && !m['Прочитано']) c.unread++;
+  });
+  return Object.keys(map).map(function (k) { return map[k]; }).sort(function (a, b) { return b.at.localeCompare(a.at); });
+}
+function getThread(email) {
+  email = String(email || '').toLowerCase();
+  var sh = sheet_(SH.MSG), n = sh.getLastRow() - 1, out = []; if (n < 1) return out;
+  sh.getRange(2, 1, n, 6).getValues().forEach(function (r, i) {
+    if (String(r[2]).toLowerCase() !== email) return;
+    out.push({ id: Number(r[0]), at: iso_(r[1]), from: r[3], text: String(r[4]) });
+    if (r[3] === 'client' && !r[5]) sh.getRange(i + 2, 6).setValue('да');
+  });
+  return out.slice(-300);
+}
+function sendMessage(email, text) {
+  email = String(email || '').toLowerCase(); text = clean_(String(text || ''), 2000);
+  if (!email || !text) throw new Error('Пустое сообщение');
+  sheet_(SH.MSG).appendRow([Date.now(), new Date(), email, 'lera', text, '']);
+  var cache = CacheService.getScriptCache();
+  if (!cache.get('mailc:' + email)) { // письмо клиентке — не чаще раза в 15 минут
+    cache.put('mailc:' + email, '1', 900);
+    var url = setting_('STUDENT_APP_URL');
+    try { MailApp.sendEmail({ to: email, name: setting_('BRAND') || 'Lera', subject: '💬 Lera',
+      htmlBody: '<div style="font-family:Arial,sans-serif"><p style="white-space:pre-wrap">' + esc_(text) + '</p>' + (url ? '<p><a href="' + url + '">→ Open the app / Открыть приложение</a></p>' : '') + '</div>' }); } catch (err) { console.warn(err); }
+  }
+  return getThread(email);
 }
 
 /* ================= STRIPE (каждые 15 минут) ================= */

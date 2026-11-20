@@ -20,6 +20,8 @@ window.CONFIG = {
   // Часовой пояс Леры — по нему указано всё расписание
   tz: 'Asia/Makassar', tzLabel: { ru: 'Бали', en: 'Bali' },
   supportEmail: 'hello@example.com',
+  // Приложение клиенток: URL API + ?page=app (пусто = кнопки «App» нет)
+  appUrl: '',
   // PayPal: достаточно email бизнес-аккаунта PayPal Леры. Пусто = кнопки PayPal нет.
   paypal: { email: '', currency: 'USD' },
   // Крипта (вручную): адрес кошелька USDT. contact — ссылка, куда клиент пишет после оплаты ({msg} = текст).
@@ -47,6 +49,7 @@ window.CONFIG = {
   --max:1240px;--r:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{background:var(--white);color:var(--ink);font:16px/1.6 var(--b);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
@@ -331,7 +334,7 @@ textarea{min-height:84px;resize:vertical}
     <a href="#about"><span data-ru>Обо мне</span><span data-en>About</span><span data-uk>Про мене</span><span data-fr>À propos</span><span data-de>Über mich</span></a>
     <a href="#faq">FAQ</a>
   </nav>
-  <div class="hright">
+  <div class="hright"><a class="btn light" id="appLink" href="#" target="_blank" rel="noopener" hidden style="padding:10px 16px;font-size:14px">App</a>
     <div class="lang"><button data-l="en">EN</button><button data-l="ru">RU</button><button data-l="uk">UA</button><button data-l="fr">FR</button><button data-l="de">DE</button></div>
     <a class="btn" href="#programs"><span data-ru>Записаться</span><span data-en>Book</span><span data-uk>Записатися</span><span data-fr>Réserver</span><span data-de>Buchen</span></a>
   </div>
@@ -830,6 +833,7 @@ textarea{min-height:84px;resize:vertical}
 
   /* ---- misc ---- */
   $('mail').href='mailto:'+C.supportEmail;
+  if(C.appUrl){ $('appLink').href=C.appUrl; $('appLink').hidden=false; }
   var hdr=$('hdr'); function onScroll(){ hdr.classList.toggle('solid',scrollY>40) } addEventListener('scroll',onScroll,{passive:true}); onScroll();
   var io='IntersectionObserver' in window ? new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1}) : null;
   document.querySelectorAll('.reveal').forEach(function(el){ io?io.observe(el):el.classList.add('in') });
