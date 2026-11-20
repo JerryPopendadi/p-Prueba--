@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lera · Панель</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A110C;--bg2:#0F1912;--card:#132017;--card2:#18281C;--line:rgba(237,230,216,.09);--text:#EDE6D8;--muted:#A3AE98;--dim:#6F7C69;--gold:#D7B98A;--fern:#88A576;--red:#E58C6E;--blue:#8FB3D9;
+--d:'Oswald',Impact,sans-serif;--s:'Manrope',system-ui,-apple-system,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:15px/1.5 var(--s);-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit;color:inherit}
+.top{padding:22px 18px 8px;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.top h1{font-family:var(--d);font-weight:500;font-size:28px;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.top .d{color:var(--muted);font-size:13px;margin-top:4px}
+.top .refresh{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13px;cursor:pointer}
+main{max-width:900px;margin:0 auto;padding:8px 14px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 18px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.kpi b{display:block;font-family:var(--d);font-weight:500;font-size:28px;line-height:1.05}
+.kpi span{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.kpi.g b{color:var(--gold)}
+h2{font-family:var(--d);font-weight:500;font-size:18px;letter-spacing:.1em;text-transform:uppercase;margin:22px 4px 10px;display:flex;justify-content:space-between;align-items:center}
+h2 small{font-family:var(--s);font-size:12px;color:var(--muted);letter-spacing:0;text-transform:none}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.item .t{font-weight:700;font-size:15.5px}
+.item .m{color:var(--muted);font-size:13px;margin-top:2px}
+.time{font-family:var(--d);font-size:22px;font-weight:500;color:var(--gold);min-width:58px;line-height:1.1}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:4px 9px;background:var(--card2);color:var(--muted);white-space:nowrap}
+.pill.new{background:rgba(215,185,138,.16);color:var(--gold)}
+.pill.paid{background:rgba(136,165,118,.18);color:var(--fern)}
+.pill.warn{background:rgba(229,140,110,.15);color:var(--red)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.b{border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;color:var(--text);display:inline-flex;align-items:center;gap:6px}
+.b.gold{background:var(--gold);color:#16130E;border-color:var(--gold)}
+.b.ok{color:var(--fern);border-color:rgba(136,165,118,.4)}
+.b.no{color:var(--red);border-color:rgba(229,140,110,.35)}
+.bar{height:6px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--fern),var(--gold));border-radius:99px}
+.empty{color:var(--dim);font-size:14px;padding:14px 4px}
+.alert{border-color:rgba(215,185,138,.35);background:linear-gradient(135deg,#1C2A1F,#132017)}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:rgba(10,17,12,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:5}
+.tabs button{background:none;border:0;color:var(--dim);font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 8px;position:relative;letter-spacing:.03em}
+.tabs button svg{width:22px;height:22px}
+.tabs button.on{color:var(--gold)}
+.tabs .dot{position:absolute;top:0;right:6px;background:var(--red);color:#fff;font-size:10px;border-radius:99px;min-width:16px;height:16px;line-height:16px;text-align:center;padding:0 4px}
+.view{display:none}.view.on{display:block}
+.fab{position:fixed;right:18px;bottom:calc(92px + env(safe-area-inset-bottom));background:var(--gold);color:#16130E;border:0;border-radius:999px;padding:14px 20px;font-weight:700;box-shadow:0 12px 30px -8px rgba(215,185,138,.6);cursor:pointer;z-index:6}
+.sheet{position:fixed;inset:0;background:rgba(5,9,6,.75);display:none;align-items:flex-end;justify-content:center;z-index:10}
+.sheet.on{display:flex}
+.sheet .in{background:var(--bg2);border:1px solid var(--line);border-radius:22px 22px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));width:100%;max-width:560px;max-height:90vh;overflow:auto}
+.sheet h3{font-family:var(--d);font-weight:500;font-size:22px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fg .w{grid-column:span 2}
+label{display:block;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;font-weight:600}
+input,select,textarea{width:100%;background:rgba(237,230,216,.05);border:1px solid var(--line);border-radius:12px;padding:11px 12px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+select option{background:var(--bg2)}
+.toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);background:var(--card2);border:1px solid var(--gold);border-radius:999px;padding:10px 18px;font-size:14px;z-index:20;display:none}
+.search{width:100%;margin:4px 0 12px}
+.seg{display:flex;gap:6px;overflow:auto;margin:0 0 12px;padding-bottom:2px}
+.seg button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;white-space:nowrap;cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--text);color:var(--bg)}
+details.more{margin-top:8px;font-size:13px;color:var(--muted)}
+details.more summary{cursor:pointer;color:var(--gold);font-size:12.5px}
+@media (max-width:640px){.kpis{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr}.fg .w{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="top">
+  <div><h1>Lera · Панель</h1><div class="d" id="today"></div></div>
+  <button class="refresh" onclick="load()">↻ Обновить</button>
+</div>
+<main>
+  <div class="kpis">
+    <div class="kpi g"><b id="kMonth">—</b><span>Доход за месяц</span></div>
+    <div class="kpi"><b id="kToday">—</b><span>Занятий сегодня</span></div>
+    <div class="kpi"><b id="kLeads">—</b><span>Новых заявок</span></div>
+    <div class="kpi"><b id="kClients">—</b><span>Активных клиентов</span></div>
+  </div>
+
+  <section class="view on" id="v-home">
+    <div id="alerts"></div>
+    <h2>Сегодня <small id="todayCount"></small></h2><div id="todayList"></div>
+    <h2>Дальше</h2><div id="nextList"></div>
+  </section>
+
+  <section class="view" id="v-leads">
+    <h2>Заявки</h2>
+    <div class="seg" id="leadSeg"></div>
+    <div id="leadList"></div>
+  </section>
+
+  <section class="view" id="v-clients">
+    <h2>Клиенты</h2>
+    <input class="search" id="cSearch" placeholder="Поиск по имени или email" oninput="renderClients()">
+    <div id="clientList"></div>
+  </section>
+
+  <section class="view" id="v-groups">
+    <h2>Группы</h2><div id="groupList"></div>
+  </section>
+
+  <section class="view" id="v-money">
+    <h2>Оплаты <small id="mSum"></small></h2><div id="payList"></div>
+  </section>
+</main>
+
+<button class="fab" id="fab" onclick="openSession()">＋ Занятие</button>
+
+<nav class="tabs">
+  <button class="on" data-v="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Сегодня</button>
+  <button data-v="leads"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H7l-3 3z"/></svg>Заявки<span class="dot" id="leadDot" hidden></span></button>
+  <button data-v="clients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Клиенты</button>
+  <button data-v="groups"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/></svg>Группы</button>
+  <button data-v="money"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M17 7H9.5a3 3 0 000 6h5a3 3 0 010 6H6"/></svg>Деньги</button>
+</nav>
+
+<!-- новое занятие -->
+<div class="sheet" id="sSession"><div class="in">
+  <h3>Новое занятие</h3>
+  <div class="fg">
+    <div class="w"><label>Клиент</label><select id="sClient"></select></div>
+    <div><label>Дата</label><input type="date" id="sDate"></div>
+    <div><label>Время (по Лере)</label><input type="time" id="sTime" value="09:00"></div>
+    <div><label>Минут</label><input type="number" id="sMin" value="60" min="15" max="240"></div>
+    <div><label>Тип</label><select id="sType"><option>Тренировка</option><option>Чек-ин</option><option>Консультация по питанию</option><option>Созвон</option></select></div>
+    <div class="w"><label>Заметка</label><input id="sNotes" placeholder="например: ягодицы + кор"></div>
+  </div>
+  <p style="color:var(--muted);font-size:12.5px;margin-top:10px">Клиенту придёт приглашение в календарь с Zoom-ссылкой и напоминаниями.</p>
+  <div class="acts"><button class="b gold" onclick="saveSession()">Сохранить</button><button class="b" onclick="closeSheets()">Отмена</button></div>
+</div></div>
+
+<!-- оплата вручную -->
+<div class="sheet" id="sPay"><div class="in">
+  <h3>Оплата вручную</h3>
+  <div class="fg">
+    <div class="w"><label>Имя</label><input id="pName"></div>
+    <div class="w"><label>Email</label><input id="pEmail" type="email"></div>
+    <div class="w"><label>За что</label><input id="pProduct" placeholder="Пакет 8 тренировок"></div>
+    <div><label>Сумма</label><input id="pAmount" type="number" min="1" step="0.01"></div>
+    <div><label>Валюта</label><select id="pCur"><option>USD</option><option>EUR</option><option>RUB</option></select></div>
+  </div>
+  <div class="acts"><button class="b gold" onclick="savePay()">Сохранить</button><button class="b" onclick="closeSheets()">Отмена</button></div>
+</div></div>
+
+<script>
+var D = null, leadFilter = 'Активные';
+var STAT = ['Новая','Связаться','Оплачено','В работе','Лист ожидания','Отказ','Архив'];
+
+/* ---------- сервер (или демо-данные, если открыто вне Google) ---------- */
+function call(fn, args, ok) {
+  if (window.google && google.script && google.script.run) {
+    var r = google.script.run.withSuccessHandler(ok || function(){}).withFailureHandler(function(e){ toast('Ошибка: ' + (e && e.message || e)); });
+    r[fn].apply(r, args || []);
+  } else { // предпросмотр
+    if (fn === 'getDashboard') return ok(demo());
+    toast('Демо: ' + fn); ok && ok(true);
+  }
+}
+function load(){ call('getDashboard', [], function(d){ D = d; render(); }); }
+
+/* ---------- рендер ---------- */
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+function money(n){ return '$' + Number(n||0).toLocaleString('en-US'); }
+function fmtDate(iso){ if(!iso) return ''; var d=new Date(iso.slice(0,10)+'T00:00:00'); return d.toLocaleDateString('ru-RU',{weekday:'short',day:'numeric',month:'short'}); }
+function wa(phone){ var p=String(phone||'').replace(/[^\d]/g,''); return p ? 'https://wa.me/'+p : ''; }
+
+function render(){
+  document.getElementById('today').textContent = fmtDate(D.today) + ' · ' + D.tz;
+  kMonth.textContent = money(D.kpi.month); kToday.textContent = D.kpi.todaySessions; kLeads.textContent = D.kpi.newLeads; kClients.textContent = D.kpi.activeClients;
+  var dot = document.getElementById('leadDot'); dot.hidden = !D.kpi.newLeads; dot.textContent = D.kpi.newLeads;
+  renderHome(); renderLeads(); renderClients(); renderGroups(); renderMoney();
+}
+
+function sessionCard(s){
+  return '<div class="item"><div class="row"><div style="display:flex;gap:14px"><div class="time">'+esc(s.time)+'</div><div><div class="t">'+esc(s.name||s.email)+'</div>'+
+    '<div class="m">'+esc(s.type)+' · '+s.min+' мин'+(s.notes?' · '+esc(s.notes):'')+'</div></div></div>'+
+    '<span class="pill '+(s.status==='Запланировано'?'new':s.status==='Проведено'?'paid':'warn')+'">'+esc(s.status)+'</span></div>'+
+    (s.status==='Запланировано' ? '<div class="acts"><button class="b ok" onclick="sStatus(\''+s.id+'\',\'Проведено\')">✓ Проведено</button>'+
+      '<button class="b" onclick="sStatus(\''+s.id+'\',\'Неявка\')">Неявка</button><button class="b no" onclick="sStatus(\''+s.id+'\',\'Отменено\')">Отменить</button>'+
+      (s.link?'<a class="b" href="'+esc(s.link)+'" target="_blank">Zoom</a>':'')+'</div>' : '')+'</div>';
+}
+function renderHome(){
+  var today = D.sessions.filter(function(s){return s.date===D.today && s.status==='Запланировано'});
+  var next = D.sessions.filter(function(s){return s.date>D.today && s.status==='Запланировано'}).slice(0,12);
+  todayCount.textContent = today.length ? today.length + ' шт.' : '';
+  todayList.innerHTML = today.length ? today.map(sessionCard).join('') : '<div class="empty">Сегодня занятий нет 🌿</div>';
+  var byDay = {}; next.forEach(function(s){ (byDay[s.date]=byDay[s.date]||[]).push(s) });
+  nextList.innerHTML = next.length ? Object.keys(byDay).map(function(d){ return '<div class="m" style="margin:12px 4px 6px;color:var(--muted)">'+fmtDate(d)+'</div>'+byDay[d].map(sessionCard).join(''); }).join('') : '<div class="empty">Пока ничего не запланировано</div>';
+  var a = [];
+  var newL = D.leads.filter(function(l){return l.status==='Новая'});
+  if (newL.length) a.push('<div class="item alert"><div class="t">📩 '+newL.length+' новых заявок</div><div class="m">Ответь в течение 24 часов — так обещано на сайте.</div><div class="acts"><button class="b gold" onclick="tab(\'leads\')">Открыть заявки</button></div></div>');
+  var uns = D.clients.filter(function(c){ return c.status==='Активен' && !c.group && !D.sessions.some(function(s){return s.email===c.email && s.status==='Запланировано'}) });
+  if (uns.length) a.push('<div class="item alert"><div class="t">🗓 Оплатили, но нет занятий: '+uns.length+'</div><div class="m">'+uns.map(function(c){return esc(c.name)}).join(', ')+'</div><div class="acts"><button class="b gold" onclick="openSession(\''+esc(uns[0].email)+'\')">Поставить занятие</button></div></div>');
+  var low = D.clients.filter(function(c){return c.status==='Активен' && c.left<=1});
+  if (low.length) a.push('<div class="item alert"><div class="t">🔁 Заканчивается пакет: '+low.length+'</div><div class="m">'+low.map(function(c){return esc(c.name)+' ('+c.left+')'}).join(', ')+' — предложи продление.</div></div>');
+  alerts.innerHTML = a.join('');
+}
+
+function renderLeads(){
+  var groups = {'Активные':function(l){return ['Новая','Связаться','Оплачено','Лист ожидания'].indexOf(l.status)>-1}, 'Все':function(){return true}};
+  STAT.forEach(function(s){ groups[s]=function(l){return l.status===s} });
+  leadSeg.innerHTML = Object.keys(groups).map(function(k){ var n=D.leads.filter(groups[k]).length; return '<button class="'+(k===leadFilter?'on':'')+'" onclick="leadFilter=\''+k+'\';renderLeads()">'+k+' '+n+'</button>' }).join('');
+  var list = D.leads.filter(groups[leadFilter]);
+  leadList.innerHTML = list.length ? list.map(function(l){
+    var cls = l.status==='Новая'?'new':l.status==='Оплачено'||l.status==='В работе'?'paid':'';
+    return '<div class="item"><div class="row"><div><div class="t">'+esc(l.name)+'</div><div class="m">'+esc(l.program)+(l.group?' · '+esc(l.group):'')+' · '+money(l.price)+'</div>'+
+      '<div class="m">'+fmtDate(l.date)+' · '+esc(l.goal)+' · '+esc(l.level)+'</div></div><span class="pill '+cls+'">'+esc(l.status)+'</span></div>'+
+      '<details class="more"><summary>Подробнее</summary><div style="margin-top:6px">📧 '+esc(l.email)+'<br>📱 '+esc(l.phone)+(l.ig?'<br>📷 '+esc(l.ig):'')+
+      (l.days?'<br>Дни: '+esc(l.days):'')+(l.times?' · Время: '+esc(l.times):'')+'<br>Пояс клиента: '+esc(l.tz)+' · Язык: '+esc(l.lang)+
+      (l.notes?'<br>Заметки: '+esc(l.notes):'')+(l.paid?'<br>Оплачено: '+esc(l.paid):'')+'</div></details>'+
+      '<div class="acts">'+(wa(l.phone)?'<a class="b" target="_blank" href="'+wa(l.phone)+'">WhatsApp</a>':'')+'<a class="b" href="mailto:'+esc(l.email)+'">Email</a>'+
+      '<select class="b" style="width:auto" onchange="lStatus(\''+l.id+'\',this.value)">'+STAT.map(function(s){return '<option'+(s===l.status?' selected':'')+'>'+s+'</option>'}).join('')+'</select>'+
+      (['Новая','Связаться','Лист ожидания'].indexOf(l.status)>-1?'<button class="b ok" onclick="activate(\''+l.id+'\')">Сделать клиентом</button>':'')+'</div></div>';
+  }).join('') : '<div class="empty">Нет заявок в этом списке</div>';
+}
+
+function renderClients(){
+  var q = (cSearch.value||'').toLowerCase();
+  var list = D.clients.filter(function(c){ return !q || (c.name+' '+c.email).toLowerCase().indexOf(q)>-1 })
+    .sort(function(a,b){ return (a.status==='Активен'?0:1)-(b.status==='Активен'?0:1) || a.left-b.left });
+  clientList.innerHTML = list.length ? list.map(function(c){
+    var pct = c.total ? Math.round(c.done/c.total*100) : 0;
+    return '<div class="item"><div class="row"><div><div class="t">'+esc(c.name)+'</div><div class="m">'+esc(c.program)+(c.group?' · '+esc(c.group):'')+'</div></div>'+
+      '<span class="pill '+(c.status==='Активен'?(c.left<=1?'warn':'paid'):'')+'">'+(c.status==='Активен'?'осталось '+c.left:esc(c.status))+'</span></div>'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div><div class="m" style="margin-top:6px">Проведено '+c.done+' из '+c.total+'</div>'+
+      '<div class="acts"><button class="b gold" onclick="openSession(\''+esc(c.email)+'\')">＋ Занятие</button>'+(wa(c.phone)?'<a class="b" target="_blank" href="'+wa(c.phone)+'">WhatsApp</a>':'')+'<a class="b" href="mailto:'+esc(c.email)+'">Email</a></div></div>';
+  }).join('') : '<div class="empty">Клиентов пока нет — они появятся сами после первой оплаты</div>';
+}
+
+function renderGroups(){
+  groupList.innerHTML = D.groups.map(function(g){
+    var pct = g.cap ? Math.round(g.taken/g.cap*100) : 0;
+    var members = D.clients.filter(function(c){return c.group===g.id && c.status==='Активен'});
+    return '<div class="item"><div class="row"><div><div class="t">'+esc(g.name)+' · '+esc(g.time)+'</div><div class="m">'+esc(g.days)+(g.start?' · старт '+fmtDate(g.start):'')+'</div></div>'+
+      '<span class="pill '+(g.taken>=g.cap?'warn':'paid')+'">'+g.taken+' / '+g.cap+'</span></div><div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="m" style="margin-top:8px">'+(members.length?members.map(function(c){return esc(c.name)}).join(', '):'Пока никого')+'</div>'+
+      '<div class="acts"><input type="date" id="gs-'+g.id+'" style="width:auto"><button class="b gold" onclick="series(\''+g.id+'\')">Создать занятия в календаре</button></div></div>';
+  }).join('');
+}
+
+function renderMoney(){
+  var m = D.today.slice(0,7), sum = D.payments.filter(function(p){return p.date.slice(0,7)===m}).reduce(function(s,p){return s+p.amount},0);
+  mSum.innerHTML = 'за месяц <b style="color:var(--gold)">'+money(Math.round(sum))+'</b> · <a href="#" style="color:var(--gold)" onclick="openPay();return false">＋ вручную</a>';
+  payList.innerHTML = D.payments.length ? D.payments.map(function(p){
+    return '<div class="item"><div class="row"><div><div class="t">'+esc(p.name||p.email)+'</div><div class="m">'+esc(p.product)+' · '+esc(p.source)+' · '+fmtDate(p.date)+'</div></div>'+
+      '<div class="time" style="font-size:20px">'+(p.currency==='USD'?'$':'')+Number(p.amount).toLocaleString('en-US')+(p.currency!=='USD'?' '+esc(p.currency):'')+'</div></div></div>';
+  }).join('') : '<div class="empty">Оплат пока нет</div>';
+}
+
+/* ---------- действия ---------- */
+function toast(t){ var el=document.getElementById('toast'); el.textContent=t; el.style.display='block'; clearTimeout(el._t); el._t=setTimeout(function(){el.style.display='none'},2600); }
+function tab(v){ document.querySelectorAll('.view').forEach(function(x){x.classList.toggle('on',x.id==='v-'+v)}); document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)}); scrollTo(0,0); }
+document.querySelectorAll('.tabs button').forEach(function(b){ b.onclick=function(){tab(b.dataset.v)} });
+function closeSheets(){ document.querySelectorAll('.sheet').forEach(function(s){s.classList.remove('on')}); }
+document.querySelectorAll('.sheet').forEach(function(s){ s.addEventListener('click',function(e){ if(e.target===s) closeSheets(); }) });
+
+function sStatus(id, st){ if(st==='Отменено' && !confirm('Отменить занятие и удалить из календаря?')) return; call('setSessionStatus',[id,st],function(){ toast('Готово: '+st); load(); }); }
+function lStatus(id, st){ call('setLeadStatus',[id,st,null],function(){ toast('Статус: '+st); load(); }); }
+function activate(id){ call('activateLead',[id],function(){ toast('Клиент добавлен'); load(); }); }
+function series(gid){ var d=document.getElementById('gs-'+gid).value; if(!d) return toast('Выбери дату старта (понедельник)'); call('createGroupSeries',[gid,d],function(n){ toast('Создано. Приглашено: '+n); load(); }); }
+
+function openSession(email){
+  var opts = D.clients.filter(function(c){return c.status==='Активен'}).map(function(c){ return '<option value="'+esc(c.email)+'"'+(c.email===email?' selected':'')+'>'+esc(c.name)+' · осталось '+c.left+'</option>'; });
+  sClient.innerHTML = '<option value="">— без клиента (личное) —</option>' + opts.join('');
+  sDate.value = D.today; document.getElementById('sSession').classList.add('on');
+}
+function saveSession(){
+  var o = { email:sClient.value, date:sDate.value, time:sTime.value, min:sMin.value, type:sType.value, notes:sNotes.value };
+  if(!o.date||!o.time) return toast('Укажи дату и время');
+  call('addSession',[o],function(){ closeSheets(); sNotes.value=''; toast('Занятие добавлено, приглашение отправлено'); load(); });
+}
+function openPay(){ document.getElementById('sPay').classList.add('on'); }
+function savePay(){
+  var o = { name:pName.value, email:pEmail.value, product:pProduct.value, amount:pAmount.value, currency:pCur.value };
+  if(!(+o.amount>0)) return toast('Укажи сумму');
+  call('addPayment',[o],function(){ closeSheets(); toast('Оплата добавлена'); load(); });
+}
+
+/* ---------- демо для предпросмотра ---------- */
+function demo(){
+  var t=new Date(), iso=function(d){return d.toISOString().slice(0,10)}, add=function(n){var d=new Date(t);d.setDate(d.getDate()+n);return iso(d)};
+  return { today:iso(t), tz:'Europe/Madrid', zoom:'https://zoom.us/j/demo',
+    kpi:{month:3240,newLeads:2,todaySessions:3,activeClients:5,lowClients:1},
+    sessions:[
+      {id:'S1',date:iso(t),time:'08:00',min:60,email:'anna@ex.com',name:'Анна К.',type:'Тренировка',status:'Запланировано',link:'https://zoom.us/j/demo',notes:'ягодицы + кор'},
+      {id:'S2',date:iso(t),time:'12:30',min:30,email:'maria@ex.com',name:'Мария С.',type:'Чек-ин',status:'Запланировано',link:'https://zoom.us/j/demo',notes:''},
+      {id:'S3',date:iso(t),time:'18:00',min:75,email:'kate@ex.com',name:'Kate W.',type:'Консультация по питанию',status:'Запланировано',link:'',notes:''},
+      {id:'S4',date:add(1),time:'09:00',min:60,email:'anna@ex.com',name:'Анна К.',type:'Тренировка',status:'Запланировано',link:'',notes:''},
+      {id:'S5',date:add(2),time:'19:00',min:60,email:'maria@ex.com',name:'Мария С.',type:'Тренировка',status:'Запланировано',link:'',notes:''}],
+    leads:[
+      {id:'L1',date:iso(t)+'T09:12',program:'Трансформация 12 недель',price:2400,name:'Ольга П.',email:'olga@ex.com',phone:'+34 600 000 000',ig:'@olga',goal:'fat-loss',level:'beginner',group:'',days:'Mon, Wed',times:'evening',tz:'Europe/Berlin',notes:'',lang:'RU',status:'Новая',paid:''},
+      {id:'L2',date:add(-1)+'T19:40',program:'Jungle Group · 4 недели',price:169,name:'Sofia R.',email:'sofia@ex.com',phone:'+1 555 0100',ig:'',goal:'tone',level:'intermediate',group:'G-PM',days:'',times:'',tz:'America/New_York',notes:'',lang:'EN',status:'Новая',paid:''},
+      {id:'L3',date:add(-2)+'T11:05',program:'Пакет 8 тренировок',price:800,name:'Анна К.',email:'anna@ex.com',phone:'+7 900 000 00 00',ig:'',goal:'glutes',level:'intermediate',group:'',days:'Mon, Thu',times:'morning',tz:'Europe/Moscow',notes:'',lang:'RU',status:'Оплачено',paid:'800 USD'}],
+    clients:[
+      {email:'anna@ex.com',name:'Анна К.',phone:'+7 900 000 00 00',program:'Пакет 8 тренировок',group:'',total:8,done:3,left:5,status:'Активен'},
+      {email:'maria@ex.com',name:'Мария С.',phone:'+34 611 111 111',program:'Трансформация 12 недель',group:'',total:24,done:23,left:1,status:'Активен'},
+      {email:'kate@ex.com',name:'Kate W.',phone:'',program:'Консультация по питанию',group:'',total:1,done:0,left:1,status:'Активен'},
+      {email:'lena@ex.com',name:'Лена Д.',phone:'',program:'Jungle Group · 4 недели',group:'G-AM',total:12,done:4,left:8,status:'Активен'},
+      {email:'julia@ex.com',name:'Юля Т.',phone:'',program:'Разовая тренировка',group:'',total:1,done:0,left:1,status:'Активен'}],
+    groups:[{id:'G-AM',name:'Утренний поток',days:'Пн, Ср, Пт',time:'07:30',start:add(3),cap:8,taken:5},{id:'G-PM',name:'Вечерний поток',days:'Пн, Ср, Пт',time:'19:00',start:'',cap:8,taken:7}],
+    payments:[
+      {id:'P1',date:iso(t)+'T10:00',source:'Stripe',email:'anna@ex.com',name:'Анна К.',product:'Пакет 8 тренировок',amount:800,currency:'USD'},
+      {id:'P2',date:iso(t)+'T08:20',source:'Payhip',email:'x@ex.com',name:'',product:'21-Day Recipe Book',amount:20,currency:'USD'},
+      {id:'P3',date:add(-3)+'T15:00',source:'Stripe',email:'maria@ex.com',name:'Мария С.',product:'Трансформация 12 недель',amount:2400,currency:'USD'},
+      {id:'P4',date:add(-4)+'T12:00',source:'Payhip',email:'y@ex.com',name:'',product:'Flat Belly · 30-Day Guide',amount:20,currency:'USD'}],
+    programs:[] };
+}
+load();
+</script>
+</body>
+</html>
