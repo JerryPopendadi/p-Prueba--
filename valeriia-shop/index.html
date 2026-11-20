@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lera · Coach & Nutritionist · Bali</title>
-<meta name="description" content="Personal online training, small groups and nutrition coaching with Valeriia. Book a session or download the guides.">
-<meta name="theme-color" content="#0A110C">
+<title>Lera — тренер и нутрициолог · Bali</title>
+<meta name="description" content="Онлайн-тренировки 1:1, мини-группы и питание без диет с Лерой — мамой, тренером и нутрициологом с Бали.">
+<meta name="theme-color" content="#F3F4EF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Oswald:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://payhip.com/payhip.js"></script>
 <script>
 /* ============================================================
@@ -37,263 +37,262 @@ window.CONFIG = {
 </script>
 <style>
 :root{
-  --bg:#0A110C;--bg2:#0F1912;--card:#132017;--card2:#18281C;--line:rgba(215,185,138,.16);--line2:rgba(237,230,216,.10);
-  --text:#EDE6D8;--muted:#A3AE98;--dim:#6F7C69;--gold:#D7B98A;--gold2:#E9D2A6;--leaf:#5E7F4F;--fern:#88A576;--jungle:#1F3324;
-  --display:'Oswald',Impact,sans-serif;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
-  --max:1200px;--r:20px;
+  --bg:#F3F4EF;--white:#FFFFFF;--ink:#141A14;--ink2:#3C463B;--muted:#6E776C;--line:#E2E5DC;
+  --sage:#DCE4D2;--sage2:#C6D3B8;--moss:#2F3D2C;--sky:#DCE7EC;--rose:#EFE5DF;--sand:#ECE7DC;
+  --h:'Inter Tight',Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;--b:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  --max:1240px;--r:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body{background:var(--white);color:var(--ink);font:16px/1.6 var(--b);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
-button{font:inherit}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
-.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold)}
-.disp{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.01em;line-height:.95}
-.it{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:400;color:var(--gold);letter-spacing:0}
-h2.disp{font-size:clamp(40px,6vw,78px)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#16130E;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:17px 30px;border-radius:999px;border:0;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s;box-shadow:0 10px 40px -12px rgba(215,185,138,.55)}
-.btn:hover{background:var(--gold2);transform:translateY(-2px)}
-.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(237,230,216,.35);box-shadow:none}
-.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+h1,h2,h3{font-family:var(--h);font-weight:500;letter-spacing:-.035em;line-height:1.02}
+h1{font-size:clamp(46px,6.4vw,92px)}
+h2{font-size:clamp(36px,4.6vw,64px)}
+h3{font-size:24px;letter-spacing:-.02em;line-height:1.15}
+.label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink2);background:var(--white);border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+.label i{width:7px;height:7px;border-radius:50%;background:#7FA36B;display:inline-block}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:19px;color:var(--ink2);line-height:1.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500;font-size:15.5px;padding:16px 28px;border-radius:999px;border:0;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{background:var(--moss);transform:translateY(-1px)}
+.btn.light{background:var(--white);color:var(--ink);border:1px solid var(--line)}
+.btn.light:hover{border-color:var(--ink)}
 .btn.full{width:100%}
 .btn svg{width:16px;height:16px}
 [data-en]{display:none}
 html[lang=en] [data-ru]{display:none}
 html[lang=en] [data-en]{display:revert}
 
-header{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-header.solid{background:rgba(10,17,12,.82);backdrop-filter:blur(14px);border-color:var(--line2)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:18px}
-.logo{font-family:var(--display);font-size:20px;letter-spacing:.34em;text-decoration:none;font-weight:500}
-.logo small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.38em;color:var(--muted);margin-top:-2px}
-nav{display:flex;gap:30px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-nav a{text-decoration:none;color:var(--muted);transition:color .2s}
-nav a:hover{color:var(--gold)}
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.solid{border-color:var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.logo{font-family:var(--h);font-weight:600;font-size:24px;letter-spacing:-.04em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{font-family:var(--b);font-weight:500;font-size:12px;letter-spacing:0;color:var(--muted)}
+nav{display:flex;gap:30px;font-size:15px}
+nav a{text-decoration:none;color:var(--ink2)}
+nav a:hover{color:var(--ink)}
 .hright{display:flex;gap:12px;align-items:center}
-.lang{display:flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-size:11px;font-weight:700}
-.lang button{background:none;border:0;color:var(--muted);padding:8px 12px;cursor:pointer}
-.lang button.on{background:var(--text);color:var(--bg)}
-header .btn{padding:11px 20px;font-size:12px}
+.lang{display:flex;background:var(--bg);border-radius:999px;padding:3px;font-size:12px;font-weight:600}
+.lang button{background:none;border:0;padding:6px 11px;border-radius:999px;cursor:pointer;color:var(--muted)}
+.lang button.on{background:var(--white);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+header .btn{padding:11px 20px;font-size:14px}
 
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden;
-  background:radial-gradient(60% 70% at 78% 40%,rgba(94,127,79,.38),transparent 70%),radial-gradient(50% 60% at 10% 90%,rgba(31,51,36,.9),transparent 70%),var(--bg)}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:2;width:100%}
-.hero h1{font-size:clamp(54px,9vw,128px)}
-.hero h1 .it{font-size:.62em;display:block;margin:.1em 0 .04em}
-.hero .lead{font-size:18px;color:var(--muted);max-width:31em;margin:26px 0 36px}
-.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
-.hero .facts{display:flex;gap:34px;margin-top:52px;flex-wrap:wrap}
-.hero .facts div{border-left:1px solid var(--line);padding-left:16px}
-.hero .facts b{display:block;font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:.02em}
-.hero .facts span{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.hero .ph{position:relative;height:min(78vh,700px)}
-.hero .ph .main{position:absolute;inset:0 0 0 40px;border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 40px 120px -30px rgba(0,0,0,.8)}
-.hero .ph .main img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.hero .ph .main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,17,12,.75))}
-.hero .ph .ring{position:absolute;left:0;bottom:60px;width:150px;height:150px;border-radius:50%;background:rgba(10,17,12,.75);backdrop-filter:blur(8px);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;z-index:2}
-.hero .ph .ring svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 22s linear infinite}
-.hero .ph .ring b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:30px;color:var(--gold);line-height:1}
-.hero .ph .tag{position:absolute;right:18px;bottom:26px;z-index:2;background:rgba(10,17,12,.7);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:13px}
-.hero .ph .tag b{display:block;font-family:var(--display);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:15px}
-.hero .ph .tag i{display:inline-block;width:8px;height:8px;background:#7DCB6B;border-radius:50%;margin-right:7px;box-shadow:0 0 0 4px rgba(125,203,107,.2)}
-@keyframes spin{to{transform:rotate(360deg)}}
-.leaves{position:absolute;pointer-events:none;opacity:.16;z-index:1}
+/* hero */
+.hero{padding:40px 0 70px;background:linear-gradient(180deg,var(--white),var(--bg))}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero h1{margin:22px 0 24px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.trust{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap;font-size:14px;color:var(--ink2)}
+.trust div{display:flex;align-items:center;gap:10px}
+.trust b{font-family:var(--h);font-size:22px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+.hero .ph{position:relative;height:min(76vh,700px);border-radius:var(--r);overflow:hidden}
+.hero .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.float{position:absolute;left:20px;bottom:20px;right:20px;max-width:340px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-radius:20px;padding:16px 18px;font-size:14px;box-shadow:0 12px 40px -12px rgba(20,26,20,.25)}
+.float .t{font-weight:600;display:flex;align-items:center;gap:8px}
+.float .t i{width:8px;height:8px;border-radius:50%;background:#7FA36B;box-shadow:0 0 0 4px rgba(127,163,107,.2)}
+.float .m{color:var(--muted);margin-top:2px}
 
-.marquee{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);overflow:hidden;background:var(--bg2)}
-.marquee .track{display:flex;width:max-content;animation:mq 32s linear infinite}
-.marquee span{font-family:var(--display);font-size:26px;letter-spacing:.14em;text-transform:uppercase;padding:20px 28px;white-space:nowrap;color:var(--muted)}
-.marquee span:nth-child(even){font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;color:var(--gold);font-size:30px}
-@keyframes mq{to{transform:translateX(-50%)}}
+/* strip */
+.strip{padding:14px 0 0;background:var(--bg)}
+.strip .row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.strip .row div{aspect-ratio:4/5;border-radius:22px;overflow:hidden}
+.strip .row img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.strip .row div:hover img{transform:scale(1.04)}
+.strip .cap{display:flex;justify-content:space-between;align-items:center;padding:18px 2px 0;font-size:14px;color:var(--muted)}
+.strip .cap a{color:var(--ink);font-weight:500}
 
-section{padding:120px 0;position:relative}
-.shead{max-width:760px;margin-bottom:60px}
-.shead.c{text-align:center;margin-left:auto;margin-right:auto}
-.shead p{color:var(--muted);font-size:17px;margin-top:20px}
+section{padding:120px 0}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px}
+.shead > div{max-width:640px}
+.shead h2{margin-top:14px}
+.shead p{color:var(--ink2);font-size:17.5px;max-width:420px}
 
-.mom .grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
-.mom .big{position:relative;border-radius:28px;overflow:hidden;height:640px}
-.mom .big img{width:100%;height:100%;object-fit:cover;object-position:45% 50%}
-.mom .big::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,17,12,.85))}
-.mom .big .cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.2}
-.mom .big .cap small{display:block;font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.mom p.t{color:var(--muted);font-size:17.5px;margin-top:22px}
-.mom p.t b{color:var(--text);font-weight:600}
-.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}
-.proof div{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:18px}
-.proof b{display:block;font-family:var(--display);font-weight:500;font-size:26px;color:var(--gold);line-height:1.05}
-.proof span{font-size:13px;color:var(--muted)}
-.proof b span{font-size:inherit;color:inherit}
-.mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mini div{height:200px;border-radius:16px;overflow:hidden}
-.mini img{width:100%;height:100%;object-fit:cover}
-#programs{background:linear-gradient(180deg,var(--bg),var(--bg2))}
-.feat{display:grid;grid-template-columns:.85fr 1.15fr;border:1px solid rgba(215,185,138,.45);border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#1A2A1E,#0F1912 60%);margin-bottom:28px;position:relative}
-.feat .ph{position:relative;min-height:540px}
-.feat .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%}
-.feat .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 50%,#16251A)}
-.feat .ribbon{position:absolute;top:22px;left:22px;z-index:2;background:var(--gold);color:#16130E;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
-.feat .body{padding:50px 52px}
-.feat h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:46px;line-height:1;letter-spacing:.01em}
-.feat .sub{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--gold);margin:8px 0 22px}
-.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
-.specs div{background:rgba(237,230,216,.04);border:1px solid var(--line2);border-radius:14px;padding:14px}
-.specs b{display:block;font-family:var(--display);font-weight:500;font-size:24px;letter-spacing:.02em}
-.specs span{font-size:11.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-.list{list-style:none}
-.list li{position:relative;padding:9px 0 9px 30px;border-bottom:1px solid var(--line2);font-size:15px;color:#d9d2c3}
-.list li::before{content:"";position:absolute;left:2px;top:15px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0 3px,transparent 4px);border:1px solid var(--line)}
-.pricerow{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:28px;flex-wrap:wrap}
-.price{font-family:var(--display);font-weight:500;font-size:56px;line-height:.9;letter-spacing:.01em}
-.price small{display:block;font-family:var(--sans);font-size:12px;color:var(--muted);letter-spacing:.04em;margin-top:8px;text-transform:none;font-weight:500;max-width:260px;line-height:1.4}
-.scarce{font-size:13px;color:var(--gold);margin-top:14px;display:flex;align-items:center;gap:8px}
-.scarce i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite;flex:none}
-@keyframes pulse{50%{opacity:.25}}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.card{background:var(--card);border:1px solid var(--line2);border-radius:var(--r);padding:36px;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
-.card:hover{border-color:var(--line);transform:translateY(-3px)}
-.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.card .kind{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--fern);font-weight:700}
-.card h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:32px;line-height:1.02;margin:8px 0 6px}
-.card .tim{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
-.card .tim > span{font-size:12.5px;border:1px solid var(--line2);border-radius:999px;padding:6px 12px;color:#d9d2c3;display:inline-flex;gap:6px;align-items:center}
-.card .tim svg{width:13px;height:13px;stroke:var(--gold);flex:none}
-.card .list{flex:1;margin-bottom:24px}
-.card .pricerow{margin-top:auto}
-.card .price{font-size:44px}
-.save{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(136,165,118,.16);color:var(--fern);border-radius:999px;padding:6px 10px;white-space:nowrap}
+/* story */
+.story{background:var(--bg)}
+.story .box{background:var(--sage);border-radius:36px;display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden}
+.story .ph{min-height:620px;position:relative}
+.story .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.story .txt{padding:64px 60px;display:flex;flex-direction:column;justify-content:center}
+.story h2{font-size:clamp(34px,4vw,56px);margin:16px 0 22px}
+.story p{color:var(--ink2);font-size:17.5px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.facts div{background:rgba(255,255,255,.65);border-radius:18px;padding:18px}
+.facts b{display:block;font-family:var(--h);font-weight:500;font-size:26px;letter-spacing:-.03em}
+.facts span{font-size:13.5px;color:var(--ink2)}
+.facts b span{font-size:inherit;color:inherit}
+.card.wide{grid-column:span 3;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.sign{margin-top:30px;font-size:15px;color:var(--ink2)}
+.sign b{color:var(--ink)}
 
-.sched{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.slot{background:var(--card);border:1px solid var(--line2);border-radius:var(--r);padding:30px}
-.slot .h{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px}
-.slot .h b{font-family:var(--display);font-weight:500;font-size:20px;letter-spacing:.08em;text-transform:uppercase}
-.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:18px}
-.days div{text-align:center;padding:12px 0;border-radius:12px;font-size:12px;letter-spacing:.08em;color:var(--dim);border:1px solid var(--line2)}
-.days div.on{background:var(--jungle);color:var(--text);border-color:rgba(136,165,118,.4)}
-.days div.on em{display:block;font-style:normal;font-family:var(--display);font-size:17px;color:var(--gold);margin-top:2px}
-.slot .local{font-size:13px;color:var(--muted)}
-.slot .left{font-size:13px;color:var(--gold);font-weight:600;text-align:right}
-.hours{margin-top:24px;background:var(--card);border:1px solid var(--line2);border-radius:var(--r);padding:30px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center}
+/* programs */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+.card:hover{box-shadow:0 24px 60px -30px rgba(20,26,20,.35);transform:translateY(-2px)}
+.card .tag{align-self:flex-start;font-size:12.5px;font-weight:500;border-radius:999px;padding:5px 11px;background:var(--bg);color:var(--ink2)}
+.card .tag.pop{background:var(--ink);color:#fff}
+.card h3{margin:18px 0 8px}
+.card .desc{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0}
+.chips span{font-size:13px;background:var(--bg);border-radius:999px;padding:6px 11px;color:var(--ink2)}
+.list{list-style:none;margin:6px 0 26px;flex:1}
+.list li{position:relative;padding:9px 0 9px 28px;font-size:15px;color:var(--ink2);border-top:1px solid var(--line)}
+.list li::before{content:"";position:absolute;left:2px;top:15px;width:15px;height:15px;border-radius:50%;background:var(--sage) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F3D2C' stroke-width='3'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/10px no-repeat}
+.price{font-family:var(--h);font-weight:500;font-size:44px;letter-spacing:-.04em;line-height:1}
+.price small{display:block;font-family:var(--b);font-size:13px;letter-spacing:0;color:var(--muted);font-weight:400;margin-top:6px}
+.card .btn{margin-top:18px}
+.card.feat{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;padding:0;overflow:hidden;background:var(--moss);color:#fff;border:0}
+.card.feat .ph{position:relative;min-height:520px}
+.card.feat .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.card.feat .in{padding:46px 48px;display:flex;flex-direction:column}
+.card.feat .tag{background:rgba(255,255,255,.14);color:#fff}
+.card.feat h3{font-size:clamp(30px,3vw,42px);letter-spacing:-.035em;line-height:1.05}
+.card.feat .desc,.card.feat .price small{color:#C9D1C4}
+.card.feat .chips span{background:rgba(255,255,255,.1);color:#E6EBE2}
+.card.feat .list li{color:#E6EBE2;border-color:rgba(255,255,255,.12)}
+.card.feat .list li::before{background-color:var(--sage2)}
+.card.feat .btn{background:#fff;color:var(--ink)}
+.card.feat .btn:hover{background:var(--sage)}
+.card.feat .row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.card.feat .note{margin-top:14px;font-size:13.5px;color:#C9D1C4}
+
+/* schedule */
+.sch{background:var(--bg)}
+.sched{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.slot{background:var(--white);border-radius:var(--r);padding:28px}
+.slot .h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.slot .h b{font-family:var(--h);font-weight:500;font-size:22px;letter-spacing:-.02em}
+.slot .left{font-size:13.5px;color:var(--moss);background:var(--sage);border-radius:999px;padding:5px 11px;white-space:nowrap}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px}
+.days div{text-align:center;padding:12px 0;border-radius:14px;font-size:12.5px;color:#A5ACA2;background:var(--bg)}
+.days div.on{background:var(--ink);color:#fff}
+.days div.on em{display:block;font-style:normal;font-family:var(--h);font-size:16px;font-weight:500;margin-top:2px}
+.slot .local{font-size:14px;color:var(--muted)}
+.hours{margin-top:18px;background:var(--white);border-radius:var(--r);padding:26px 28px;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center}
 .hours .rows{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.hours .rows div{border-left:1px solid var(--line);padding-left:14px}
-.hours .rows b{display:block;font-family:var(--display);font-weight:500;font-size:22px}
-.hours .rows span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.tznote{margin-top:16px;font-size:13px;color:var(--dim)}
+.hours .rows b{display:block;font-family:var(--h);font-weight:500;font-size:22px;letter-spacing:-.02em}
+.hours .rows span{font-size:13.5px;color:var(--muted)}
+.tznote{margin-top:16px;font-size:13.5px;color:var(--muted)}
 
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.step{border-top:1px solid var(--line);padding-top:24px}
-.step .n{font-family:var(--serif);font-style:italic;font-size:56px;line-height:1;color:var(--gold)}
-.step h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:21px;letter-spacing:.04em;margin:12px 0 8px}
-.step p{font-size:14.5px;color:var(--muted)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{background:var(--bg);border-radius:var(--r);padding:28px}
+.step .n{width:40px;height:40px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--h);font-weight:600}
+.step h3{font-size:21px;margin:22px 0 8px}
+.step p{font-size:15px;color:var(--ink2)}
 
-#about{background:var(--bg2);overflow:hidden}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.mosaic{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:260px 260px;gap:14px}
-.mosaic div{border-radius:18px;overflow:hidden}
-.mosaic div:first-child{grid-row:span 2;border-radius:999px 999px 18px 18px}
-.mosaic img{width:100%;height:100%;object-fit:cover}
-.about p{color:var(--muted);font-size:17px;margin-top:18px}
-.creds{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
-.creds div{border:1px solid var(--line2);border-radius:14px;padding:16px;font-size:14px}
-.creds b{display:block;font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
-.quote{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.25;color:var(--text);margin-top:30px;padding-left:22px;border-left:2px solid var(--gold)}
-.soc{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+/* guides */
+.guides{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.guide{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.guide .stage{height:300px;display:flex;align-items:center;justify-content:center;background:var(--sky)}
+.guide:nth-child(2) .stage{background:var(--rose)}
+.guide:nth-child(3) .stage{background:var(--sage)}
+.book{width:160px;border-radius:4px 10px 10px 4px;overflow:hidden;box-shadow:0 26px 40px -18px rgba(20,26,20,.45);transition:transform .5s}
+.guide:hover .book{transform:translateY(-6px) rotate(-1deg)}
+.guide .body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+.guide h3{font-size:22px}
+.guide p{color:var(--muted);font-size:15px;margin:8px 0 22px;flex:1}
+.guide .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.guide .price{font-size:34px}
+.guide .btn{padding:12px 22px;font-size:14px}
+.guide.bundle .book{width:120px}
+.guide.bundle .book+.book{margin-left:-36px;transform:rotate(6deg) translateY(8px)}
 
-.guides{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-.guide{background:var(--card);border:1px solid var(--line2);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.guide .stage{height:300px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 60%,rgba(94,127,79,.35),transparent 70%),var(--card2);perspective:1000px}
-.book{width:170px;border-radius:3px 8px 8px 3px;overflow:hidden;box-shadow:0 30px 50px -16px rgba(0,0,0,.8);transform:rotateY(-14deg);transition:transform .5s}
-.guide:hover .book{transform:rotateY(0)}
-.guide .body{padding:26px 28px 30px;display:flex;flex-direction:column;flex:1}
-.guide h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:24px;line-height:1.05}
-.guide p{color:var(--muted);font-size:14.5px;margin:10px 0 20px;flex:1}
-.guide .pricerow{margin-top:0;align-items:center}
-.guide .price{font-size:38px}
-.guide .btn{padding:14px 22px;font-size:12px}
-.guide.bundle .book{width:130px}
-.guide.bundle .book+.book{margin-left:-40px;transform:rotateY(-14deg) rotate(6deg) translateY(10px)}
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pair div{border-radius:var(--r);overflow:hidden;aspect-ratio:3/4}
+.pair div:last-child{margin-top:60px}
+.pair img{width:100%;height:100%;object-fit:cover}
+.about p{color:var(--ink2);font-size:17.5px;margin-top:20px}
+.soc{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
 
-.faq{max-width:860px;margin:0 auto}
-details{border-bottom:1px solid var(--line2);padding:24px 0}
-summary{cursor:pointer;list-style:none;font-family:var(--display);font-weight:500;font-size:21px;letter-spacing:.03em;text-transform:uppercase;display:flex;justify-content:space-between;gap:20px}
+/* faq */
+.faqw{background:var(--bg)}
+.faq{max-width:860px}
+details{background:var(--white);border-radius:20px;padding:22px 26px;margin-bottom:10px}
+summary{cursor:pointer;list-style:none;font-family:var(--h);font-weight:500;font-size:19px;letter-spacing:-.01em;display:flex;justify-content:space-between;gap:20px}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";color:var(--gold);font-weight:300;transition:transform .2s}
+summary::after{content:"+";font-family:var(--b);font-weight:300;font-size:24px;line-height:1;color:var(--muted);transition:transform .2s}
 details[open] summary::after{transform:rotate(45deg)}
-details p{color:var(--muted);margin-top:12px;font-size:15.5px}
+details p{color:var(--ink2);margin-top:10px;font-size:15.5px}
 
-.final{text-align:center;overflow:hidden;background:radial-gradient(60% 80% at 50% 100%,rgba(94,127,79,.45),transparent 70%),var(--bg)}
-.final h2{font-size:clamp(46px,8vw,110px)}
-.final p{color:var(--muted);font-size:18px;margin:22px 0 36px}
-footer{border-top:1px solid var(--line2);padding:50px 0 36px;font-size:13.5px;color:var(--muted)}
-footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+/* final */
+.final{padding:0 0 30px;background:var(--bg)}
+.final .box{position:relative;border-radius:36px;overflow:hidden;min-height:520px;display:flex;align-items:flex-end}
+.final .box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.final .box::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,26,20,0) 30%,rgba(20,26,20,.6))}
+.final .in{position:relative;z-index:2;padding:56px;color:#fff;max-width:720px}
+.final h2{color:#fff}
+.final p{margin:16px 0 28px;font-size:18px;opacity:.9}
+.final .btn{background:#fff;color:var(--ink)}
+footer{background:var(--bg);padding:40px 0 36px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px}
 footer a{text-decoration:none;margin-right:20px}
-footer a:hover{color:var(--gold)}
-.pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.pay span{border:1px solid var(--line2);border-radius:6px;padding:4px 10px;font-size:11.5px}
+footer a:hover{color:var(--ink)}
+.pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pay span{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:12px}
 
-.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,9,6,.78);backdrop-filter:blur(8px)}
+/* modal (form) */
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(20,26,20,.45);backdrop-filter:blur(6px)}
 .modal.open{display:flex}
-.sheet{width:100%;max-width:620px;max-height:92vh;overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:24px;padding:34px 34px 30px;position:relative}
-.sheet .x{position:absolute;right:18px;top:16px;background:none;border:0;color:var(--muted);font-size:28px;cursor:pointer;line-height:1}
-.sheet h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:30px;line-height:1.05;margin:6px 0 4px}
-.sheet .sum{color:var(--gold);font-size:14px;margin-bottom:22px}
+.sheet{width:100%;max-width:620px;max-height:92vh;overflow:auto;background:var(--white);border-radius:28px;padding:34px 34px 30px;position:relative}
+.sheet .x{position:absolute;right:18px;top:14px;background:var(--bg);border:0;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1;color:var(--ink2)}
+.sheet .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sheet h3{font-size:30px;letter-spacing:-.03em;margin:8px 0 4px}
+.sheet .sum{color:var(--moss);font-size:15px;font-weight:500;margin-bottom:22px}
 .f{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .f .w{grid-column:span 2}
-.f label.l{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
-input,select,textarea{width:100%;background:rgba(237,230,216,.05);border:1px solid var(--line2);border-radius:12px;color:var(--text);padding:13px 14px;font:inherit;font-size:15px;outline:none;transition:border-color .2s}
-input:focus,select:focus,textarea:focus{border-color:var(--gold)}
-select option{background:var(--bg2)}
-textarea{min-height:80px;resize:vertical}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips label{cursor:pointer}
-.chips input{display:none}
-.chips label > span{display:inline-block;border:1px solid var(--line2);border-radius:999px;padding:8px 14px;font-size:13px;color:var(--text);font-weight:500}
-.chips input:checked+span{background:var(--gold);color:#16130E;border-color:var(--gold)}
-.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
-.consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--gold);padding:0}
+.f label.l{display:block;font-size:13px;color:var(--ink2);margin-bottom:6px;font-weight:500}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid transparent;border-radius:14px;color:var(--ink);padding:13px 14px;font:inherit;font-size:15px;outline:none;transition:border-color .2s,background .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);background:#fff}
+textarea{min-height:84px;resize:vertical}
+.f .chips label{cursor:pointer}
+.f .chips input{display:none}
+.f .chips label > span{display:inline-block;background:var(--bg);border-radius:999px;padding:9px 14px;font-size:14px;color:var(--ink)}
+.f .chips input:checked+span{background:var(--ink);color:#fff}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink2)}
+.consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--ink);padding:0}
 .hp{position:absolute;left:-9999px;width:1px;height:1px}
-.msg{margin-top:14px;font-size:14px;min-height:20px;color:var(--gold)}
-.msg.err{color:#E58C6E}
+.msg{margin-top:14px;font-size:14px;min-height:20px;color:var(--moss)}
+.msg.err{color:#B4553A}
 .done{text-align:center;padding:30px 0 10px}
-.done .ok{width:72px;height:72px;border-radius:50%;background:var(--jungle);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;border:1px solid var(--fern)}
+.done .ok{width:72px;height:72px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.done .ok svg{stroke:var(--moss)}
+.done h3{font-size:28px}
 
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
 .reveal.in{opacity:1;transform:none}
 
-@media (max-width:1000px){
+@media (max-width:1040px){
   nav{display:none}
-  .mom .grid{grid-template-columns:1fr;gap:36px}.mom .big{height:520px}
-  .hero .wrap,.feat,.about{grid-template-columns:1fr}
-  .hero .ph{height:560px;max-width:520px;width:100%;margin:10px auto 0}
-  .feat .ph{min-height:380px}.feat .ph::after{background:linear-gradient(180deg,transparent 50%,#16251A)}
-  .feat .body{padding:34px 28px}
-  .cards,.sched,.guides{grid-template-columns:1fr}
+  .hero .wrap,.story .box,.about .wrap,.card.feat{grid-template-columns:1fr}
+  .hero .ph{height:560px}
+  .strip .row{grid-template-columns:repeat(5,70%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+  .strip .row div{scroll-snap-align:start}
+  .story .ph{min-height:460px}.story .txt{padding:40px 30px}
+  .grid,.guides,.sched{grid-template-columns:1fr}
+  .card.feat,.card.wide{grid-column:auto}.card.feat .ph{min-height:360px}.card.feat .in{padding:32px 26px}
   .steps{grid-template-columns:1fr 1fr}
   .hours{grid-template-columns:1fr}
-  section{padding:90px 0}
+  .shead{flex-direction:column;align-items:flex-start;gap:16px}
+  section{padding:84px 0}
 }
 @media (max-width:600px){
   .wrap{padding:0 16px}
   header .btn{display:none}
-  .hero{padding:100px 0 50px}
-  .hero .ph{height:460px}
-  .hero .ph .main{left:20px}
-  .hero .ph .ring{width:118px;height:118px;bottom:40px}
-  .hero .facts{gap:20px}
-  .specs b{font-size:19px}
-  .feat h3{font-size:36px}
-  .card{padding:26px 22px}
-  .steps,.hours .rows{grid-template-columns:1fr}
-  .mosaic{grid-template-rows:200px 200px}
-  .creds{grid-template-columns:1fr}
-  .proof{grid-template-columns:1fr}.mom .big{height:440px}.mini div{height:150px}
+  .hero{padding:20px 0 50px}
+  .hero .ph{height:470px}
+  .trust{gap:18px}
+  .facts,.steps,.hours .rows{grid-template-columns:1fr}
+  .final .in{padding:30px 24px}
   .f{grid-template-columns:1fr}.f .w{grid-column:auto}
   .sheet{padding:28px 20px 24px}
-  .days div{padding:9px 0;font-size:10px}
-  .days div.on em{font-size:13px}
+  .days div{padding:9px 0;font-size:10.5px}.days div.on em{font-size:13px}
+  .pair div:last-child{margin-top:30px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
@@ -301,9 +300,9 @@ textarea{min-height:80px;resize:vertical}
 <body>
 
 <header id="hdr"><div class="wrap">
-  <a class="logo" href="#top">LERA<small>COACH · NUTRITION · BALI</small></a>
+  <a class="logo" href="#top">lera<span>coach · nutrition</span></a>
   <nav>
-    <a href="#programs"><span data-ru>Тренировки</span><span data-en>Training</span></a>
+    <a href="#programs"><span data-ru>Программы</span><span data-en>Programs</span></a>
     <a href="#schedule"><span data-ru>Расписание</span><span data-en>Schedule</span></a>
     <a href="#guides"><span data-ru>Гайды</span><span data-en>Guides</span></a>
     <a href="#about"><span data-ru>Обо мне</span><span data-en>About</span></a>
@@ -311,284 +310,241 @@ textarea{min-height:80px;resize:vertical}
   </nav>
   <div class="hright">
     <div class="lang"><button data-l="ru">RU</button><button data-l="en">EN</button></div>
-    <a class="btn" href="#programs"><span data-ru>Записаться</span><span data-en>Book now</span></a>
+    <a class="btn" href="#programs"><span data-ru>Записаться</span><span data-en>Book</span></a>
   </div>
 </div></header>
 
 <main id="top">
-<section class="hero">
-  <svg class="leaves" style="right:-80px;top:-60px;width:520px" viewBox="0 0 200 200" fill="none" stroke="#88A576" stroke-width=".8"><path d="M100 196C98 140 104 80 150 20"/><path d="M118 120c-30-8-52-26-60-52 26 2 50 20 60 52zM128 92c26-14 40-36 42-62-24 10-40 32-42 62zM110 150c-34 0-60-14-74-38 28-6 56 6 74 38zM138 64c-22-10-34-28-34-50 20 6 32 24 34 50z"/></svg>
-  <svg class="leaves" style="left:-120px;bottom:-140px;width:460px;transform:rotate(160deg)" viewBox="0 0 200 200" fill="none" stroke="#88A576" stroke-width=".8"><path d="M100 196C98 140 104 80 150 20"/><path d="M118 120c-30-8-52-26-60-52 26 2 50 20 60 52zM128 92c26-14 40-36 42-62-24 10-40 32-42 62zM110 150c-34 0-60-14-74-38 28-6 56 6 74 38z"/></svg>
-  <div class="wrap">
-    <div>
-      <div class="eyebrow"><span data-ru>Мама · Тренер · Нутрициолог · Бали</span><span data-en>Mom · Coach · Nutritionist · Bali</span></div>
-      <h1 class="disp" style="margin-top:22px">
-        <span data-ru>Сильное<span class="it">дикое, красивое</span>тело</span>
-        <span data-en>Strong<span class="it">wild, beautiful</span>body</span>
-      </h1>
-      <p class="lead"><span data-ru>Я мама, работаю — и держу это тело без голода и многочасовых тренировок. Покажу как: персональные онлайн-тренировки, мини-группы и питание, которое работает в реальной жизни.</span><span data-en>I’m a mom, I work — and I keep this body without starving or endless workouts. I’ll show you how: personal online training, small groups and nutrition that works in real life.</span></p>
-      <div class="ctas">
-        <a class="btn" href="#programs"><span data-ru>Выбрать тренировки</span><span data-en>Choose training</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn ghost" href="#guides"><span data-ru>Гайды от $20</span><span data-en>Guides from $20</span></a>
-      </div>
-      <div class="facts">
-        <div><b>1:1</b><span data-ru>лично с Лерой</span><span data-en>with Lera</span></div>
-        <div><b>≤ 8</b><span data-ru>человек в группе</span><span data-en>per group</span></div>
-        <div><b>RU · EN</b><span data-ru>два языка</span><span data-en>two languages</span></div>
-      </div>
+<section class="hero"><div class="wrap">
+  <div class="reveal">
+    <span class="label"><i></i><span data-ru>Онлайн из Бали · на русском и английском</span><span data-en>Online from Bali · in Russian & English</span></span>
+    <h1><span data-ru>Форма, в которой хочется жить</span><span data-en>A body you love living in</span></h1>
+    <p class="lead"><span data-ru>Я Лера — мама, тренер и нутрициолог. Помогаю женщинам прийти в форму спокойно: без жёстких диет, без часов в зале, с поддержкой на каждом шаге.</span><span data-en>I’m Lera — a mom, coach and nutritionist. I help women get in shape calmly: no crash diets, no hours at the gym, with support at every step.</span></p>
+    <div class="ctas">
+      <a class="btn" href="#programs"><span data-ru>Выбрать программу</span><span data-en>Choose a program</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn light" href="#guides"><span data-ru>Гайды от $20</span><span data-en>Guides from $20</span></a>
     </div>
-    <div class="ph">
-      <div class="main"><img src="img/lera-hero.jpg" alt="Valeriia training"></div>
-      <div class="ring">
-        <svg viewBox="0 0 150 150"><defs><path id="c" d="M75 75m-58 0a58 58 0 1 1 116 0a58 58 0 1 1-116 0"/></defs><text fill="#A3AE98" font-size="10.5" letter-spacing="3.6" font-family="Manrope"><textPath href="#c">TRAIN · EAT · GLOW · REPEAT · TRAIN · EAT · GLOW ·</textPath></text></svg>
-        <b>Lera</b>
-      </div>
-      <div class="tag"><b><i></i><span data-ru>Набор открыт</span><span data-en>Booking open</span></b>@whynotleraa · Bali</div>
+    <div class="trust">
+      <div><b>1:1</b><span data-ru>лично с Лерой</span><span data-en>personally with Lera</span></div>
+      <div><b>45–60′</b><span data-ru>тренировка</span><span data-en>per session</span></div>
+      <div><b>≤ 8</b><span data-ru>в группе</span><span data-en>per group</span></div>
     </div>
   </div>
-</section>
+  <div class="ph reveal">
+    <img src="img/lera-2.jpg" alt="Lera, Bali">
+    <div class="float"><div class="t"><i></i><span data-ru>Идёт набор</span><span data-en>Now enrolling</span></div>
+      <div class="m"><span data-ru>Персональные тренировки и группы · Пн / Ср / Пт</span><span data-en>Personal training & groups · Mon / Wed / Fri</span></div></div>
+  </div>
+</div></section>
 
-<div class="marquee"><div class="track">
-  <span>Strength</span><span>discipline</span><span>Nutrition</span><span>glow</span><span>Core</span><span>balance</span><span>Jungle mode</span><span>consistency</span>
-  <span>Strength</span><span>discipline</span><span>Nutrition</span><span>glow</span><span>Core</span><span>balance</span><span>Jungle mode</span><span>consistency</span>
+<div class="strip"><div class="wrap">
+  <div class="row">
+    <div><img src="img/lera-about.jpg" alt="" loading="lazy" style="object-position:30% 50%"></div>
+    <div><img src="img/lera-mom.jpg" alt="" loading="lazy"></div>
+    <div><img src="img/lera-food.jpg" alt="" loading="lazy"></div>
+    <div><img src="img/lera-boat.jpg" alt="" loading="lazy" style="object-position:60% 40%"></div>
+    <div><img src="img/lera-hero.jpg" alt="" loading="lazy" style="object-position:50% 30%"></div>
+  </div>
+  <div class="cap"><span data-ru>Жизнь на Бали, тренировки и нормальная еда</span><span data-en>Bali life, training and real food</span><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">@whynotleraa →</a></div>
 </div></div>
 
-
-<section class="mom" id="mom"><div class="wrap grid">
-  <div class="big reveal"><img src="img/lera-mom.jpg" alt="Lera in Bali" loading="lazy">
-    <div class="cap"><small>Bali · @whynotleraa</small><span data-ru>«Все хотят жить, как я живу» — так живи.</span><span data-en>“Everyone wants to live like I do” — so do it.</span></div></div>
-  <div class="reveal">
-    <div class="eyebrow"><span data-ru>Почему мне верят</span><span data-en>Why women trust me</span></div>
-    <h2 class="disp" style="margin-top:16px"><span data-ru>Мама. Работаю.<span class="it" style="display:block">И в лучшей форме.</span></span><span data-en>Mom. Working.<span class="it" style="display:block">And in my best shape.</span></span></h2>
-    <p class="t"><span data-ru>У меня нет свободных часов в зале. Есть материнство, работа и жизнь — как у тебя. Поэтому я тренирую так, чтобы это <b>помещалось в настоящий день</b>: коротко, точно и без голода. Это тело — результат системы, а не генетики и свободного времени. И эту систему я даю тебе.</span><span data-en>I don’t have free hours at the gym. I have motherhood, work and a life — just like you. So I train in a way that <b>fits a real day</b>: short, precise and without starving. This body is the result of a system, not genetics or spare time. And that system is what I give you.</span></p>
-    <div class="proof">
-      <div><b>45–60′</b><span data-ru>тренировка помещается между работой и детьми</span><span data-en>a workout that fits between work and kids</span></div>
-      <div><b><span data-ru>Без голода</span><span data-en>No starving</span></b><span data-ru>нормальная еда и КБЖУ вместо диет</span><span data-en>real food and macros, not diets</span></div>
-      <div><b><span data-ru>Где угодно</span><span data-en>Anywhere</span></b><span data-ru>дома, в зале, в отпуске — нужен коврик</span><span data-en>home, gym or travel — just a mat</span></div>
+<section class="story" id="story"><div class="wrap">
+  <div class="box reveal">
+    <div class="ph"><img src="img/lera-hero.jpg" alt="Lera" loading="lazy"></div>
+    <div class="txt">
+      <div class="kicker"><span data-ru>Моя история</span><span data-en>My story</span></div>
+      <h2><span data-ru>Мама, работаю — и держу форму</span><span data-en>A mom, working — and staying in shape</span></h2>
+      <p><span data-ru>У меня нет свободных часов в зале. Есть материнство, работа и жизнь — как у тебя. Поэтому мой подход простой: короткие точные тренировки, нормальная еда и привычки, которые реально держать годами. Это не генетика и не свободное время. Это система — и я научу ей тебя.</span><span data-en>I don’t have spare hours at the gym. I have motherhood, work and a life — just like you. So my approach is simple: short, precise workouts, real food and habits you can keep for years. It isn’t genetics or free time. It’s a system — and I’ll teach it to you.</span></p>
+      <div class="facts">
+        <div><b>45–60′</b><span data-ru>помещается между работой и детьми</span><span data-en>fits between work and kids</span></div>
+        <div><b><span data-ru>0 диет</span><span data-en>0 diets</span></b><span data-ru>КБЖУ и нормальная еда</span><span data-en>macros and real food</span></div>
+        <div><b><span data-ru>Дома</span><span data-en>At home</span></b><span data-ru>или в зале — нужен коврик</span><span data-en>or the gym — just a mat</span></div>
+      </div>
+      <div class="sign"><b>Лера</b> · <span data-ru>мама, тренер, нутрициолог</span><span data-en>mom, coach, nutritionist</span></div>
     </div>
-    <div class="mini"><div><img src="img/lera-boat.jpg" alt="" loading="lazy"></div><div><img src="img/lera-back.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div></div>
-    <div class="quote" style="font-size:26px"><span data-ru>«Если смогла я — сможешь и ты. Я покажу как».</span><span data-en>“If I could do it, so can you. I’ll show you how.”</span></div>
   </div>
 </div></section>
 
 <section id="programs"><div class="wrap">
   <div class="shead reveal">
-    <div class="eyebrow"><span data-ru>Тренировки с Лерой</span><span data-en>Train with Lera</span></div>
-    <h2 class="disp" style="margin-top:16px"><span data-ru>Выбери свой <span class="it">формат</span></span><span data-en>Choose your <span class="it">format</span></span></h2>
-    <p><span data-ru>Все занятия — онлайн в Zoom: камера, коврик и немного места. Время указано по Бали — в расписании ниже оно пересчитано в твой часовой пояс.</span><span data-en>All sessions are live on Zoom: a camera, a mat and a little space. Times are Bali time — the schedule below converts them to your time zone.</span></p>
+    <div><div class="kicker"><span data-ru>Программы</span><span data-en>Programs</span></div>
+    <h2><span data-ru>Выбери свой формат</span><span data-en>Choose your format</span></h2></div>
+    <p><span data-ru>Все занятия — онлайн в Zoom. Время указано по Бали, в расписании оно пересчитано в твой часовой пояс.</span><span data-en>All sessions are live on Zoom. Times are Bali time — the schedule converts them to yours.</span></p>
   </div>
-
-  <article class="feat reveal">
-    <div class="ph"><span class="ribbon">Signature</span><img src="img/lera-about.jpg" alt="" loading="lazy"></div>
-    <div class="body">
-      <div class="eyebrow"><span data-ru>Максимальный результат · 1:1</span><span data-en>Maximum results · 1:1</span></div>
-      <h3 style="margin-top:12px"><span data-ru>Трансформация 12 недель</span><span data-en>12-Week Transformation</span></h3>
-      <div class="sub"><span data-ru>тренировки + питание + поддержка каждый день</span><span data-en>training + nutrition + daily support</span></div>
-      <div class="specs">
-        <div><b>12</b><span data-ru>недель</span><span data-en>weeks</span></div>
-        <div><b>24 × 60′</b><span data-ru>занятий 1:1</span><span data-en>1:1 sessions</span></div>
-        <div><b>2×</b><span data-ru>в неделю</span><span data-en>per week</span></div>
+  <div class="grid">
+    <article class="card feat reveal">
+      <div class="ph"><img src="img/lera-about.jpg" alt="" loading="lazy"></div>
+      <div class="in">
+        <span class="tag">Signature · <span data-ru>4 места в месяц</span><span data-en>4 spots a month</span></span>
+        <h3 style="margin-top:18px"><span data-ru>Трансформация 12 недель</span><span data-en>12-Week Transformation</span></h3>
+        <p class="desc"><span data-ru>Тренировки, питание и поддержка каждый день — максимальный результат.</span><span data-en>Training, nutrition and daily support — maximum results.</span></p>
+        <div class="chips"><span>12 <i data-ru style="font-style:normal">недель</i><i data-en style="font-style:normal">weeks</i></span><span>24 × 60 <i data-ru style="font-style:normal">мин 1:1</i><i data-en style="font-style:normal">min 1:1</i></span><span><i data-ru style="font-style:normal">2 раза в неделю</i><i data-en style="font-style:normal">2× per week</i></span></div>
+        <ul class="list">
+          <li><span data-ru>24 персональные тренировки по 60 минут</span><span data-en>24 personal 60-minute sessions</span></li>
+          <li><span data-ru>План питания с КБЖУ, корректировка каждые 2 недели</span><span data-en>Nutrition plan with macros, adjusted every 2 weeks</span></li>
+          <li><span data-ru>Чек-ин 30 минут раз в неделю: замеры и разбор</span><span data-en>Weekly 30-min check-in: measurements and review</span></li>
+          <li><span data-ru>Чат с Лерой Пн–Пт 9:00–19:00</span><span data-en>Chat with Lera Mon–Fri 9:00–19:00</span></li>
+          <li><span data-ru>Оба гайда в подарок</span><span data-en>Both guides included</span></li>
+        </ul>
+        <div class="row">
+          <div class="price" data-price="transform">$2,400<small><span data-ru>или 3 платежа по $800</span><span data-en>or 3 × $800</span></small></div>
+          <button class="btn" data-book="transform"><span data-ru>Подать заявку</span><span data-en>Apply</span></button>
+        </div>
+        <div class="note"><span data-ru>Сначала короткий бесплатный созвон, чтобы понять, подходит ли формат.</span><span data-en>Starts with a short free call to make sure it’s a fit.</span></div>
       </div>
-      <ul class="list">
-        <li><span data-ru>24 персональные тренировки по 60 минут, 2 раза в неделю</span><span data-en>24 personal 60-min sessions, twice a week</span></li>
-        <li><span data-ru>Персональный план питания с КБЖУ, корректировка каждые 2 недели</span><span data-en>Personal nutrition plan with macros, adjusted every 2 weeks</span></li>
-        <li><span data-ru>Еженедельный чек-ин 30 минут: замеры, фото, разбор недели</span><span data-en>Weekly 30-min check-in: measurements, photos, review</span></li>
-        <li><span data-ru>Чат с Лерой Пн–Пт 9:00–19:00, ответ в течение 3 часов</span><span data-en>Chat with Lera Mon–Fri 9:00–19:00, reply within 3 hours</span></li>
-        <li><span data-ru>Оба гайда (книга рецептов + Flat Belly) в подарок</span><span data-en>Both guides (Recipe Book + Flat Belly) included</span></li>
-      </ul>
-      <div class="pricerow">
-        <div class="price" data-price="transform">$2,400<small><span data-ru>или 3 платежа по $800 · $100 за занятие</span><span data-en>or 3 × $800 · $100 per session</span></small></div>
-        <button class="btn" data-book="transform"><span data-ru>Подать заявку</span><span data-en>Apply now</span></button>
-      </div>
-      <div class="scarce"><i></i><span data-ru>Только 4 места в месяц — сначала короткий созвон</span><span data-en>Only 4 spots per month — short call first</span></div>
-    </div>
-  </article>
-
-  <div class="cards">
-    <article class="card reveal">
-      <div class="top"><div><div class="kind"><span data-ru>Персонально · 1:1</span><span data-en>Personal · 1:1</span></div>
-      <h3><span data-ru>Пакет 8 тренировок</span><span data-en>8-Session Pack</span></h3></div><span class="save"><span data-ru>−$80</span><span data-en>save $80</span></span></div>
-      <div class="tim">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 × 60 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><i data-ru style="font-style:normal">4 недели · 2 раза в неделю</i><i data-en style="font-style:normal">4 weeks · 2× per week</i></span>
-      </div>
-      <ul class="list">
-        <li><span data-ru>Программа под твою цель и уровень</span><span data-en>Program built for your goal and level</span></li>
-        <li><span data-ru>Техника, прогрессия нагрузки, разбор питания</span><span data-en>Technique, progression and a nutrition review</span></li>
-        <li><span data-ru>Пакет действует 6 недель</span><span data-en>Valid for 6 weeks</span></li>
-      </ul>
-      <div class="pricerow"><div class="price" data-price="pack8">$800<small><span data-ru>$100 за тренировку</span><span data-en>$100 per session</span></small></div>
-      <button class="btn" data-book="pack8"><span data-ru>Записаться</span><span data-en>Book</span></button></div>
     </article>
 
     <article class="card reveal">
-      <div class="top"><div><div class="kind"><span data-ru>Мини-группа · онлайн</span><span data-en>Small group · online</span></div>
-      <h3>Jungle Group · <span data-ru>4 недели</span><span data-en>4 weeks</span></h3></div></div>
-      <div class="tim">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>12 × 45 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><i data-ru style="font-style:normal">Пн · Ср · Пт</i><i data-en style="font-style:normal">Mon · Wed · Fri</i></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/></svg><i data-ru style="font-style:normal">до 8 человек</i><i data-en style="font-style:normal">max 8 people</i></span>
-      </div>
+      <span class="tag pop"><span data-ru>Популярное</span><span data-en>Most popular</span></span>
+      <h3><span data-ru>Пакет 8 тренировок</span><span data-en>8-Session Pack</span></h3>
+      <p class="desc"><span data-ru>Персонально с Лерой, программа под твою цель.</span><span data-en>Personal with Lera, built around your goal.</span></p>
+      <div class="chips"><span>8 × 60 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span><span><i data-ru style="font-style:normal">4 недели</i><i data-en style="font-style:normal">4 weeks</i></span><span>2×/<i data-ru style="font-style:normal">нед</i><i data-en style="font-style:normal">wk</i></span></div>
       <ul class="list">
-        <li><span data-ru>Живые тренировки: сила, кор, ягодицы, мобильность</span><span data-en>Live sessions: strength, core, glutes, mobility</span></li>
-        <li><span data-ru>Два потока: 14:00 или 19:00 по Бали (09:00 / 14:00 Мск)</span><span data-en>Two cohorts: 14:00 or 19:00 Bali time</span></li>
-        <li><span data-ru>Чат группы и гайд Flat Belly в подарок</span><span data-en>Group chat + Flat Belly guide included</span></li>
+        <li><span data-ru>Техника и прогрессия нагрузки</span><span data-en>Technique and progression</span></li>
+        <li><span data-ru>Разбор питания</span><span data-en>Nutrition review</span></li>
+        <li><span data-ru>Действует 6 недель</span><span data-en>Valid for 6 weeks</span></li>
       </ul>
-      <div class="pricerow"><div class="price" data-price="group">$169<small><span data-ru>≈ $14 за тренировку</span><span data-en>≈ $14 per session</span></small></div>
-      <button class="btn" data-book="group"><span data-ru>Занять место</span><span data-en>Join</span></button></div>
+      <div class="price" data-price="pack8">$800<small><span data-ru>$100 за тренировку</span><span data-en>$100 per session</span></small></div>
+      <button class="btn full" data-book="pack8"><span data-ru>Записаться</span><span data-en>Book</span></button>
     </article>
 
     <article class="card reveal">
-      <div class="top"><div><div class="kind"><span data-ru>Персонально · 1:1</span><span data-en>Personal · 1:1</span></div>
-      <h3><span data-ru>Разовая тренировка</span><span data-en>Single Session</span></h3></div></div>
-      <div class="tim">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>60 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><i data-ru style="font-style:normal">Пн–Пт 08:00–20:00 · Сб 09:00–13:00</i><i data-en style="font-style:normal">Mon–Fri 08:00–20:00 · Sat 09:00–13:00</i></span>
-      </div>
+      <span class="tag"><span data-ru>Мини-группа</span><span data-en>Small group</span></span>
+      <h3>Jungle Group</h3>
+      <p class="desc"><span data-ru>Живые тренировки в Zoom, до 8 человек.</span><span data-en>Live Zoom sessions, max 8 people.</span></p>
+      <div class="chips"><span>12 × 45 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span><span><i data-ru style="font-style:normal">Пн · Ср · Пт</i><i data-en style="font-style:normal">Mon · Wed · Fri</i></span></div>
       <ul class="list">
-        <li><span data-ru>Попробовать формат и познакомиться</span><span data-en>Try the format and meet Lera</span></li>
-        <li><span data-ru>Разбор техники + план на 2 недели</span><span data-en>Technique review + 2-week plan</span></li>
+        <li><span data-ru>Сила, кор, ягодицы, мобильность</span><span data-en>Strength, core, glutes, mobility</span></li>
+        <li><span data-ru>14:00 или 19:00 по Бали</span><span data-en>14:00 or 19:00 Bali time</span></li>
+        <li><span data-ru>Чат группы + гайд Flat Belly</span><span data-en>Group chat + Flat Belly guide</span></li>
       </ul>
-      <div class="pricerow"><div class="price" data-price="single">$110<small><span data-ru>засчитывается, если в течение 7 дней купишь пакет</span><span data-en>credited if you upgrade to a pack within 7 days</span></small></div>
-      <button class="btn" data-book="single"><span data-ru>Записаться</span><span data-en>Book</span></button></div>
+      <div class="price" data-price="group">$169<small><span data-ru>4 недели · ≈ $14 за занятие</span><span data-en>4 weeks · ≈ $14 per session</span></small></div>
+      <button class="btn full" data-book="group"><span data-ru>Занять место</span><span data-en>Join</span></button>
     </article>
 
     <article class="card reveal">
-      <div class="top"><div><div class="kind"><span data-ru>Нутрициология</span><span data-en>Nutrition</span></div>
-      <h3><span data-ru>Консультация по питанию</span><span data-en>Nutrition Consultation</span></h3></div></div>
-      <div class="tim">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>75 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 3h9l3 3v15H6z"/><path d="M9 12h6M9 16h6"/></svg><i data-ru style="font-style:normal">план через 5 рабочих дней</i><i data-en style="font-style:normal">plan within 5 working days</i></span>
-      </div>
+      <span class="tag"><span data-ru>Питание</span><span data-en>Nutrition</span></span>
+      <h3><span data-ru>Консультация нутрициолога</span><span data-en>Nutrition Consultation</span></h3>
+      <p class="desc"><span data-ru>Разбор рациона и персональный план.</span><span data-en>Diet review and a personal plan.</span></p>
+      <div class="chips"><span>75 <i data-ru style="font-style:normal">мин</i><i data-en style="font-style:normal">min</i></span><span><i data-ru style="font-style:normal">план за 5 дней</i><i data-en style="font-style:normal">plan in 5 days</i></span></div>
       <ul class="list">
-        <li><span data-ru>Разбор рациона, анкета и цели</span><span data-en>Diet review, questionnaire and goals</span></li>
-        <li><span data-ru>Персональный план питания с КБЖУ</span><span data-en>Personal meal plan with macros</span></li>
-        <li><span data-ru>2 недели вопросов в чате</span><span data-en>2 weeks of chat questions</span></li>
+        <li><span data-ru>Анкета, цели и привычки</span><span data-en>Questionnaire, goals and habits</span></li>
+        <li><span data-ru>План питания с КБЖУ</span><span data-en>Meal plan with macros</span></li>
+        <li><span data-ru>2 недели вопросов в чате</span><span data-en>2 weeks of chat support</span></li>
       </ul>
-      <div class="pricerow"><div class="price" data-price="nutrition">$180<small><span data-ru>разовая оплата</span><span data-en>one-time payment</span></small></div>
-      <button class="btn" data-book="nutrition"><span data-ru>Записаться</span><span data-en>Book</span></button></div>
+      <div class="price" data-price="nutrition">$180<small><span data-ru>разовая оплата</span><span data-en>one-time</span></small></div>
+      <button class="btn full" data-book="nutrition"><span data-ru>Записаться</span><span data-en>Book</span></button>
+    </article>
+
+    <article class="card wide reveal">
+      <div><span class="tag"><span data-ru>Попробовать</span><span data-en>Try it</span></span>
+        <h3 style="margin:14px 0 4px"><span data-ru>Разовая тренировка · 60 минут</span><span data-en>Single session · 60 minutes</span></h3>
+        <p class="desc"><span data-ru>Знакомство, разбор техники и план на 2 недели. Засчитывается, если в течение 7 дней возьмёшь пакет.</span><span data-en>Meet Lera, technique review and a 2-week plan. Credited if you upgrade within 7 days.</span></p></div>
+      <div style="display:flex;align-items:center;gap:20px"><div class="price" data-price="single">$110</div><button class="btn" data-book="single"><span data-ru>Записаться</span><span data-en>Book</span></button></div>
     </article>
   </div>
 </div></section>
 
-<section id="schedule"><div class="wrap">
+<section class="sch" id="schedule"><div class="wrap">
   <div class="shead reveal">
-    <div class="eyebrow"><span data-ru>Расписание</span><span data-en>Schedule</span></div>
-    <h2 class="disp" style="margin-top:16px"><span data-ru>Чёткое <span class="it">время</span></span><span data-en>Clear <span class="it">times</span></span></h2>
+    <div><div class="kicker"><span data-ru>Расписание</span><span data-en>Schedule</span></div>
+    <h2><span data-ru>Всё по времени</span><span data-en>Clear times</span></h2></div>
+    <p><span data-ru>Группы — три раза в неделю. Персональные — в любое удобное окно.</span><span data-en>Groups three times a week. Personal sessions in any open slot.</span></p>
   </div>
   <div class="sched">
-    <div class="slot reveal" data-slot="G-AM">
-      <div class="h"><b><span data-ru>Дневной поток</span><span data-en>Day cohort</span></b><span class="left" data-left></span></div>
-      <div class="days"></div><div class="local"></div>
-    </div>
-    <div class="slot reveal" data-slot="G-PM">
-      <div class="h"><b><span data-ru>Вечерний поток</span><span data-en>Evening cohort</span></b><span class="left" data-left></span></div>
-      <div class="days"></div><div class="local"></div>
-    </div>
+    <div class="slot reveal" data-slot="G-AM"><div class="h"><b><span data-ru>Дневной поток</span><span data-en>Day cohort</span></b><span class="left" data-left></span></div><div class="days"></div><div class="local"></div></div>
+    <div class="slot reveal" data-slot="G-PM"><div class="h"><b><span data-ru>Вечерний поток</span><span data-en>Evening cohort</span></b><span class="left" data-left></span></div><div class="days"></div><div class="local"></div></div>
   </div>
   <div class="hours reveal">
-    <div class="eyebrow"><span data-ru>Персональные 1:1</span><span data-en>Personal 1:1</span></div>
+    <div class="kicker"><span data-ru>Персональные 1:1</span><span data-en>Personal 1:1</span></div>
     <div class="rows">
-      <div><b>08:00 – 20:00</b><span data-ru>Понедельник – пятница</span><span data-en>Monday – Friday</span></div>
-      <div><b>09:00 – 13:00</b><span data-ru>Суббота</span><span data-en>Saturday</span></div>
-      <div><b>—</b><span data-ru>Воскресенье: отдых</span><span data-en>Sunday: rest day</span></div>
+      <div><b>08:00 – 20:00</b><span data-ru>понедельник – пятница</span><span data-en>Monday – Friday</span></div>
+      <div><b>09:00 – 13:00</b><span data-ru>суббота</span><span data-en>Saturday</span></div>
+      <div><b><span data-ru>Отдых</span><span data-en>Rest</span></b><span data-ru>воскресенье</span><span data-en>Sunday</span></div>
     </div>
   </div>
   <p class="tznote" id="tznote"></p>
 </div></section>
 
-<section style="background:var(--bg2)"><div class="wrap">
-  <div class="shead c reveal">
-    <div class="eyebrow"><span data-ru>Как это работает</span><span data-en>How it works</span></div>
-    <h2 class="disp" style="margin-top:16px"><span data-ru>От заявки до <span class="it">первой тренировки</span></span><span data-en>From booking to <span class="it">first session</span></span></h2>
-  </div>
+<section><div class="wrap">
+  <div class="shead reveal"><div><div class="kicker"><span data-ru>Как начать</span><span data-en>How to start</span></div>
+    <h2><span data-ru>Четыре простых шага</span><span data-en>Four simple steps</span></h2></div></div>
   <div class="steps">
-    <div class="step reveal"><div class="n">01</div><h3><span data-ru>Анкета</span><span data-en>Short form</span></h3><p><span data-ru>Цель, уровень, удобные дни и время. 2 минуты.</span><span data-en>Goal, level, preferred days and time. 2 minutes.</span></p></div>
-    <div class="step reveal"><div class="n">02</div><h3><span data-ru>Оплата</span><span data-en>Payment</span></h3><p><span data-ru>Безопасно через Stripe: карта, Apple Pay, Google Pay.</span><span data-en>Secure via Stripe: card, Apple Pay, Google Pay.</span></p></div>
-    <div class="step reveal"><div class="n">03</div><h3><span data-ru>Календарь</span><span data-en>Calendar</span></h3><p><span data-ru>В течение 24 часов придёт приглашение со ссылкой Zoom и напоминаниями.</span><span data-en>Within 24 hours you get a calendar invite with the Zoom link and reminders.</span></p></div>
-    <div class="step reveal"><div class="n">04</div><h3><span data-ru>Тренируемся</span><span data-en>We train</span></h3><p><span data-ru>Лично с Лерой, с прогрессом и поддержкой.</span><span data-en>Personally with Lera, with progress tracking and support.</span></p></div>
+    <div class="step reveal"><div class="n">1</div><h3><span data-ru>Анкета</span><span data-en>Short form</span></h3><p><span data-ru>Цель, уровень, удобные дни. Две минуты.</span><span data-en>Goal, level, preferred days. Two minutes.</span></p></div>
+    <div class="step reveal"><div class="n">2</div><h3><span data-ru>Оплата</span><span data-en>Payment</span></h3><p><span data-ru>Безопасно через Stripe: карта, Apple Pay, Google Pay.</span><span data-en>Secure via Stripe: card, Apple Pay, Google Pay.</span></p></div>
+    <div class="step reveal"><div class="n">3</div><h3><span data-ru>Календарь</span><span data-en>Calendar</span></h3><p><span data-ru>За 24 часа приходит приглашение с Zoom и напоминаниями.</span><span data-en>Within 24 hours: a calendar invite with Zoom and reminders.</span></p></div>
+    <div class="step reveal"><div class="n">4</div><h3><span data-ru>Тренируемся</span><span data-en>We train</span></h3><p><span data-ru>Лично с Лерой, с прогрессом и поддержкой.</span><span data-en>Personally with Lera, with progress and support.</span></p></div>
   </div>
 </div></section>
 
-<section id="about"><div class="wrap about">
-  <div class="mosaic reveal">
-    <div><img src="img/lera-2.jpg" alt="Lera" loading="lazy" style="object-position:50% 25%"></div>
-    <div><img src="img/lera-1.jpg" alt="" loading="lazy" style="object-position:50% 45%"></div>
-    <div><img src="img/lera-food.jpg" alt="" loading="lazy"></div>
-  </div>
-  <div class="reveal">
-    <div class="eyebrow"><span data-ru>Обо мне</span><span data-en>About me</span></div>
-    <h2 class="disp" style="margin-top:16px"><span data-ru>Привет, я <span class="it">Лера</span></span><span data-en>Hi, I’m <span class="it">Lera</span></span></h2>
-    <p><span data-ru>Мама, тренер и нутрициолог. Живу на Бали и тренирую онлайн девушек по всему миру — на русском и английском. Я верю, что красивое тело строится не на запретах, а на силе, нормальной еде и привычках, которые реально повторять, даже когда у тебя дети, работа и ноль свободного времени.</span><span data-en>Mom, coach and nutritionist. I live in Bali and coach women worldwide online, in Russian and English. I believe a beautiful body is built on strength, real food and habits you can actually repeat — even with kids, a job and zero free time.</span></p>
-    <div class="creds">
-      <div><b><span data-ru>Тренировки</span><span data-en>Training</span></b><span data-ru>сила, кор, ягодицы, мобильность</span><span data-en>strength, core, glutes, mobility</span></div>
-      <div><b><span data-ru>Питание</span><span data-en>Nutrition</span></b><span data-ru>КБЖУ без жёстких диет</span><span data-en>macros without crash diets</span></div>
-    </div>
-    <div class="quote"><span data-ru>«Не нужно быть идеальной. Нужно возвращаться к своей системе».</span><span data-en>“You don’t need to be perfect. You need to keep returning to your routine.”</span></div>
-    <div class="soc">
-      <a class="btn ghost" href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram @whynotleraa</a>
-      <a class="btn ghost" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
-    </div>
-  </div>
-</div></section>
-
-<section id="guides"><div class="wrap">
-  <div class="shead reveal">
-    <div class="eyebrow"><span data-ru>Гайды · мгновенная загрузка</span><span data-en>Guides · instant download</span></div>
-    <h2 class="disp" style="margin-top:16px"><span data-ru>Начни <span class="it">сама</span></span><span data-en>Start <span class="it">on your own</span></span></h2>
-    <p><span data-ru>PDF на русском, английском и двуязычная версия. Оплата → письмо со ссылкой → скачиваешь.</span><span data-en>PDFs in Russian, English and a bilingual edition. Pay → email with link → download.</span></p>
-  </div>
+<section class="faqw" id="guides"><div class="wrap">
+  <div class="shead reveal"><div><div class="kicker"><span data-ru>Гайды · PDF</span><span data-en>Guides · PDF</span></div>
+    <h2><span data-ru>Начни самостоятельно</span><span data-en>Start on your own</span></h2></div>
+    <p><span data-ru>Скачивание сразу после оплаты. Русская и английская версии.</span><span data-en>Instant download after payment. Russian and English editions.</span></p></div>
   <div class="guides">
-    <article class="guide reveal">
+    <article class="guide reveal" style="background:#fff">
       <div class="stage"><div class="book"><img src="img/cover-recipes.jpg" alt="21-Day Recipe Book" loading="lazy"></div></div>
       <div class="body"><h3><span data-ru>Книга рецептов на 21 день</span><span data-en>21-Day Recipe Book</span></h3>
-      <p><span data-ru>21 рецепт с КБЖУ, меню на 3 недели, перекусы и список продуктов.</span><span data-en>21 recipes with macros, 3-week meal plan, snacks and shopping list.</span></p>
-      <div class="pricerow"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_RECIPES" data-product="PAYHIP_RECIPES" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
+      <p><span data-ru>21 рецепт с КБЖУ, меню на 3 недели и список продуктов.</span><span data-en>21 recipes with macros, a 3-week plan and shopping list.</span></p>
+      <div class="row"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_RECIPES" data-product="PAYHIP_RECIPES" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
     </article>
-    <article class="guide reveal">
-      <div class="stage"><div class="book"><img src="img/cover-belly.jpg" alt="Flat Belly 30-Day Guide" loading="lazy"></div></div>
+    <article class="guide reveal" style="background:#fff">
+      <div class="stage"><div class="book"><img src="img/cover-belly.jpg" alt="Flat Belly" loading="lazy"></div></div>
       <div class="body"><h3><span data-ru>Плоский живот · 30 дней</span><span data-en>Flat Belly · 30 days</span></h3>
-      <p><span data-ru>5 упражнений на пресс с фото, питание, вода, сон и трекер на 30 дней.</span><span data-en>5 core exercises with photos, nutrition, hydration, sleep and a 30-day tracker.</span></p>
-      <div class="pricerow"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BELLY" data-product="PAYHIP_BELLY" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
+      <p><span data-ru>5 упражнений с фото, питание, сон и трекер привычек.</span><span data-en>5 exercises with photos, nutrition, sleep and a habit tracker.</span></p>
+      <div class="row"><div class="price">$20</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BELLY" data-product="PAYHIP_BELLY" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
     </article>
-    <article class="guide bundle reveal">
+    <article class="guide bundle reveal" style="background:#fff">
       <div class="stage"><div class="book"><img src="img/cover-recipes.jpg" alt="" loading="lazy"></div><div class="book"><img src="img/cover-belly.jpg" alt="" loading="lazy"></div></div>
       <div class="body"><h3><span data-ru>Оба гайда</span><span data-en>Both guides</span></h3>
-      <p><span data-ru>Питание + движение — полная система.</span><span data-en>Nutrition + movement — the full system.</span></p>
-      <div class="pricerow"><div class="price">$34</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BUNDLE" data-product="PAYHIP_BUNDLE" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
+      <p><span data-ru>Питание и движение — полная система.</span><span data-en>Nutrition and movement — the full system.</span></p>
+      <div class="row"><div class="price">$34</div><a class="btn payhip-buy-button" href="https://payhip.com/b/PAYHIP_BUNDLE" data-product="PAYHIP_BUNDLE" data-theme="none"><span data-ru>Купить</span><span data-en>Buy</span></a></div></div>
     </article>
   </div>
 </div></section>
 
-<section id="faq" style="background:var(--bg2)"><div class="wrap">
-  <div class="shead c"><div class="eyebrow">FAQ</div><h2 class="disp" style="margin-top:16px"><span data-ru>Вопросы</span><span data-en>Questions</span></h2></div>
+<section class="about" id="about"><div class="wrap">
+  <div class="pair reveal">
+    <div><img src="img/lera-mom.jpg" alt="" loading="lazy" style="object-position:45% 50%"></div>
+    <div><img src="img/lera-boat.jpg" alt="" loading="lazy" style="object-position:60% 40%"></div>
+  </div>
+  <div class="reveal">
+    <div class="kicker"><span data-ru>Обо мне</span><span data-en>About me</span></div>
+    <h2 style="margin-top:14px"><span data-ru>Привет, я Лера</span><span data-en>Hi, I’m Lera</span></h2>
+    <p><span data-ru>Мама, тренер и нутрициолог. Живу на Бали и тренирую онлайн женщин по всему миру — на русском и английском. Мне близок спокойный подход: сила, нормальная еда, сон и привычки, которые встраиваются в жизнь, а не ломают её.</span><span data-en>Mom, coach and nutritionist. I live in Bali and coach women worldwide online, in Russian and English. My approach is calm: strength, real food, sleep and habits that fit into your life instead of breaking it.</span></p>
+    <p><span data-ru>«Не нужно быть идеальной. Нужно возвращаться к своей системе».</span><span data-en>“You don’t need to be perfect. You need to keep returning to your routine.”</span></p>
+    <div class="soc"><a class="btn light" href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram · @whynotleraa</a><a class="btn light" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a></div>
+  </div>
+</div></section>
+
+<section class="faqw" id="faq"><div class="wrap">
+  <div class="shead reveal"><div><div class="kicker">FAQ</div><h2><span data-ru>Частые вопросы</span><span data-en>Questions</span></h2></div></div>
   <div class="faq">
-    <details><summary><span data-ru>Что нужно для тренировок?</span><span data-en>What do I need?</span></summary><p><span data-ru>Телефон или ноутбук с камерой, коврик и 2×2 метра места. Гантели и резинки — по желанию: Лера адаптирует программу под то, что у тебя есть.</span><span data-en>A phone or laptop with a camera, a mat and 2×2 m of space. Dumbbells and bands are optional — Lera adapts the program to what you have.</span></p></details>
-    <details><summary><span data-ru>Как выбирается время?</span><span data-en>How is the time chosen?</span></summary><p><span data-ru>В анкете ты отмечаешь удобные дни и время. Лера подтверждает расписание в течение 24 часов и присылает приглашение в календарь с напоминаниями.</span><span data-en>In the form you pick your preferred days and times. Lera confirms the schedule within 24 hours and sends a calendar invite with reminders.</span></p></details>
-    <details><summary><span data-ru>Можно перенести занятие?</span><span data-en>Can I reschedule?</span></summary><p><span data-ru>Да, бесплатно — не позднее чем за 24 часа. При отмене позже занятие считается проведённым.</span><span data-en>Yes, free of charge up to 24 hours before. Later cancellations count as a completed session.</span></p></details>
-    <details><summary><span data-ru>Можно вернуть деньги?</span><span data-en>Refunds?</span></summary><p><span data-ru>Пакеты и группы — возврат за неиспользованные занятия в течение 14 дней с оплаты. PDF-гайды возврату не подлежат после скачивания.</span><span data-en>Packs and groups: refund for unused sessions within 14 days of payment. PDF guides are non-refundable once downloaded.</span></p></details>
-    <details><summary><span data-ru>Подойдёт ли новичку?</span><span data-en>Is it for beginners?</span></summary><p><span data-ru>Да, нагрузка подбирается под уровень. При заболеваниях, травмах или беременности сначала проконсультируйся с врачом и укажи это в анкете.</span><span data-en>Yes, intensity is matched to your level. With health conditions, injuries or pregnancy, consult your doctor first and mention it in the form.</span></p></details>
-    <details><summary><span data-ru>Оплата безопасна?</span><span data-en>Is payment secure?</span></summary><p><span data-ru>Да. Оплата проходит через Stripe и Payhip — данные карты не попадают на этот сайт.</span><span data-en>Yes. Payments go through Stripe and Payhip — card details never touch this site.</span></p></details>
+    <details><summary><span data-ru>Что нужно для тренировок?</span><span data-en>What do I need?</span></summary><p><span data-ru>Телефон или ноутбук с камерой, коврик и немного места. Гантели и резинки — по желанию: программа подстраивается под то, что есть.</span><span data-en>A phone or laptop with a camera, a mat and a little space. Dumbbells and bands are optional — the program adapts to what you have.</span></p></details>
+    <details><summary><span data-ru>Как выбирается время?</span><span data-en>How is the time chosen?</span></summary><p><span data-ru>В анкете отмечаешь удобные дни и время. Лера подтверждает расписание в течение 24 часов и присылает приглашение в календарь.</span><span data-en>Pick your preferred days and times in the form. Lera confirms within 24 hours and sends a calendar invite.</span></p></details>
+    <details><summary><span data-ru>Можно перенести занятие?</span><span data-en>Can I reschedule?</span></summary><p><span data-ru>Да, бесплатно — не позднее чем за 24 часа.</span><span data-en>Yes, free of charge up to 24 hours before.</span></p></details>
+    <details><summary><span data-ru>Можно вернуть деньги?</span><span data-en>Refunds?</span></summary><p><span data-ru>За неиспользованные занятия — в течение 14 дней с оплаты. PDF после скачивания возврату не подлежат.</span><span data-en>For unused sessions within 14 days of payment. PDFs are non-refundable once downloaded.</span></p></details>
+    <details><summary><span data-ru>Подойдёт ли новичку и после родов?</span><span data-en>Is it for beginners and new moms?</span></summary><p><span data-ru>Да, нагрузка подбирается под уровень. После родов, при травмах или заболеваниях сначала получи разрешение врача и укажи это в анкете.</span><span data-en>Yes, intensity is matched to your level. Postpartum, with injuries or conditions, get your doctor’s clearance first and mention it in the form.</span></p></details>
+    <details><summary><span data-ru>Оплата безопасна?</span><span data-en>Is payment secure?</span></summary><p><span data-ru>Да. Оплата проходит через Stripe и Payhip, данные карты не попадают на этот сайт.</span><span data-en>Yes. Payments go through Stripe and Payhip; card details never touch this site.</span></p></details>
   </div>
 </div></section>
 
 <section class="final"><div class="wrap">
-  <div class="eyebrow"><span data-ru>Твой первый шаг</span><span data-en>Your first step</span></div>
-  <h2 class="disp" style="margin-top:18px"><span data-ru>Начни <span class="it">сегодня</span></span><span data-en>Start <span class="it">today</span></span></h2>
-  <p><span data-ru>Мама с работой смогла. Значит, сможешь и ты. Места в группах и на трансформацию ограничены.</span><span data-en>A working mom did it — so can you. Group and Transformation spots are limited.</span></p>
-  <a class="btn" href="#programs"><span data-ru>Выбрать формат</span><span data-en>Choose your format</span></a>
+  <div class="box reveal"><img src="img/lera-boat.jpg" alt="" loading="lazy">
+    <div class="in"><h2><span data-ru>Начни с одной тренировки</span><span data-en>Start with one session</span></h2>
+    <p><span data-ru>Познакомимся, разберём технику и составим план. Дальше — шаг за шагом.</span><span data-en>We’ll meet, check your technique and build a plan. Then — step by step.</span></p>
+    <a class="btn" href="#programs"><span data-ru>Выбрать формат</span><span data-en>Choose a format</span></a></div></div>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <div><a class="logo" href="#top">LERA</a>
-    <div class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span></div></div>
+  <div><a class="logo" href="#top">lera</a><div class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span></div></div>
   <div>
     <a href="/privacy-policy/"><span data-ru>Конфиденциальность</span><span data-en>Privacy</span></a>
     <a href="/terms/"><span data-ru>Условия</span><span data-en>Terms</span></a>
     <a href="/refund-policy/"><span data-ru>Возвраты</span><span data-en>Refunds</span></a>
     <a id="mail" href="#"><span data-ru>Контакты</span><span data-en>Contact</span></a>
-    <p style="margin-top:16px;font-size:12px;color:var(--dim)">© 2026 Lera (@whynotleraa). <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span></p>
+    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span></p>
   </div>
 </div></footer>
 
