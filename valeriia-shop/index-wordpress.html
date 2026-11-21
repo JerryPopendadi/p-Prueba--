@@ -23,7 +23,7 @@ window.CONFIG = {
   // USDT (pago manual): dirección TRC20 de Lera
   crypto: { network: 'USDT · TRC20 (Tron)', address: '' },
   // Contacto de Lera: WhatsApp en formato internacional sin + (ej. 6281234567890) y/o Telegram sin @
-  whatsapp: '', telegram: '',
+  whatsapp: '6287723434348', telegram: '',
   supportEmail: 'hello@example.com',
   instagram: 'whynotleraa',
   // (opcional) URL del API de Google Apps Script — si está, las solicitudes de entrenamiento van a la tabla
@@ -269,6 +269,10 @@ footer a:hover{color:var(--ink)}
 .pays{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .pays span{background:var(--w);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:600}
 
+/* whatsapp */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:44;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.35);transition:transform .2s}
+.wa-float:hover{transform:scale(1.07)}
+@media (max-width:1060px){.wa-float{bottom:84px;right:16px;width:52px;height:52px}}
 /* sticky mobile */
 .sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:45;background:var(--ink);color:#fff;border-radius:999px;padding:8px 8px 8px 22px;display:none;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 20px 40px -14px rgba(21,26,20,.6);transform:translateY(140%);transition:transform .4s}
 .sticky.show{transform:none}
@@ -508,7 +512,7 @@ textarea{min-height:80px;resize:vertical}
     <p class="t"><span data-ru>Мама, тренер и нутрициолог. Живу на Бали. У меня нет свободных часов в зале — есть материнство, работа и жизнь, как у тебя. Поэтому моя система простая: нормальная еда, короткие точные тренировки и привычки, которые реально держать годами. Эти гайды — то, что я сама делаю каждый день.</span><span data-en>Mom, coach and nutritionist. I live in Bali. I don’t have spare hours at the gym — I have motherhood, work and a life, just like you. So my system is simple: real food, short precise workouts and habits you can actually keep for years. These guides are what I do myself every day.</span><span data-uk>Мама, тренерка й нутриціологиня. Живу на Балі. У мене немає вільних годин у залі — є материнство, робота й життя, як у тебе. Тому моя система проста: нормальна їжа, короткі точні тренування і звички, які реально тримати роками. Ці гайди — те, що я сама роблю щодня.</span><span data-fr>Maman, coach et nutritionniste. Je vis à Bali. Je n’ai pas d’heures libres à la salle — j’ai la maternité, le travail et une vie, comme toi. Mon système est donc simple : vraie nourriture, entraînements courts et précis, et habitudes que l’on garde des années. Ces guides, c’est ce que je fais moi-même chaque jour.</span><span data-de>Mama, Coach und Ernährungsberaterin. Ich lebe auf Bali. Ich habe keine freien Stunden im Studio — ich habe Mutterschaft, Arbeit und ein Leben, genau wie du. Deshalb ist mein System einfach: echtes Essen, kurze präzise Workouts und Gewohnheiten, die du jahrelang hältst. Diese Guides sind das, was ich selbst jeden Tag mache.</span></p>
     <div class="afacts"><span>👩‍👧 <span data-ru>мама</span><span data-en>mom</span><span data-uk>мама</span><span data-fr>maman</span><span data-de>Mama</span></span><span>💪 <span data-ru>тренер и нутрициолог</span><span data-en>coach & nutritionist</span><span data-uk>тренерка й нутриціологиня</span><span data-fr>coach & nutritionniste</span><span data-de>Coach & Ernährung</span></span><span>🌴 <span data-ru>живёт на Бали</span><span data-en>lives in Bali</span><span data-uk>живе на Балі</span><span data-fr>vit à Bali</span><span data-de>lebt auf Bali</span></span></div>
     <div class="quote"><span data-ru>«Не нужно быть идеальной. Нужно возвращаться к своей системе».</span><span data-en>“You don’t need to be perfect. You need to keep returning to your routine.”</span><span data-uk>«Не треба бути ідеальною. Треба повертатися до своєї системи».</span><span data-fr>« Pas besoin d’être parfaite. Il suffit de revenir à ta routine. »</span><span data-de>„Du musst nicht perfekt sein. Du musst nur immer wieder zu deiner Routine zurückkehren.“</span></div>
-    <a class="btn light" id="igBtn" href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram · @whynotleraa</a>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px"><a class="btn light" id="igBtn" style="margin-top:0" href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram · @whynotleraa</a><a class="btn light waLink" style="margin-top:0" href="#" target="_blank" rel="noopener" hidden>WhatsApp</a></div>
   </div>
 </div></section>
 
@@ -558,11 +562,12 @@ textarea{min-height:80px;resize:vertical}
 <footer><div class="wrap">
   <div><a class="logo" href="#top">lera<i></i></a><div class="pays"><span>PayPal</span><span>Visa</span><span>Mastercard</span><span>USDT</span></div></div>
   <div>
-    <a href="/privacy-policy/"><span data-ru>Конфиденциальность</span><span data-en>Privacy</span><span data-uk>Конфіденційність</span><span data-fr>Confidentialité</span><span data-de>Datenschutz</span></a><a href="/terms/"><span data-ru>Условия</span><span data-en>Terms</span><span data-uk>Умови</span><span data-fr>Conditions</span><span data-de>AGB</span></a><a id="mail" href="#"><span data-ru>Контакты</span><span data-en>Contact</span><span data-uk>Контакти</span><span data-fr>Contact</span><span data-de>Kontakt</span></a><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram</a>
+    <a href="/privacy-policy/"><span data-ru>Конфиденциальность</span><span data-en>Privacy</span><span data-uk>Конфіденційність</span><span data-fr>Confidentialité</span><span data-de>Datenschutz</span></a><a href="/terms/"><span data-ru>Условия</span><span data-en>Terms</span><span data-uk>Умови</span><span data-fr>Conditions</span><span data-de>AGB</span></a><a id="mail" href="#" target="_blank" rel="noopener"><span data-ru>Контакты</span><span data-en>Contact</span><span data-uk>Контакти</span><span data-fr>Contact</span><span data-de>Kontakt</span></a><a class="waLink" href="#" target="_blank" rel="noopener" hidden>WhatsApp</a><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram</a>
     <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span><span data-uk>Освітній контент, не медична рекомендація.</span><span data-fr>Contenu éducatif, pas un avis médical.</span><span data-de>Bildungsinhalte, keine medizinische Beratung.</span></p>
   </div>
 </div></footer>
 
+<a class="wa-float waLink" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" hidden><svg viewBox="0 0 32 32" width="28" height="28"><path fill="#fff" d="M16 3a13 13 0 00-11.2 19.6L3 29l6.6-1.7A13 13 0 1016 3zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1116 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-1.9-.9-3.200-2.400-3.800-3.700-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.400c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.2 2.100 3.300 5.200 4.600 2.500 1 3 .8 3.600.7.6-.1 1.900-.8 2.100-1.500.3-.7.3-1.300.2-1.500-.1-.1-.3-.2-.6-.3z"/></svg></a>
 <div class="sticky" id="sticky"><b><span data-ru>Гайды Леры · от $20</span><span data-en>Lera’s guides · from $20</span><span data-uk>Гайди Лери · від $20</span><span data-fr>Guides de Lera · dès 20 $</span><span data-de>Leras Guides · ab 20 $</span></b><a class="btn lime" href="#guides"><span data-ru>Купить</span><span data-en>Buy</span><span data-uk>Купити</span><span data-fr>Acheter</span><span data-de>Kaufen</span></a></div>
 
 <!-- USDT -->
@@ -692,7 +697,8 @@ textarea{min-height:80px;resize:vertical}
   $('lbPrev').onclick=function(){ lbMove(-1); }; $('lbNext').onclick=function(){ lbMove(1); };
   $('lb').addEventListener('click',function(e){ if(e.target.id==='lb'||e.target.hasAttribute('data-lbclose')) closeLb(); });
 
-  $('mail').href='mailto:'+C.supportEmail;
+  $('mail').href = C.whatsapp ? 'https://wa.me/'+C.whatsapp.replace(/\D/g,'') : 'mailto:'+C.supportEmail;
+  if(C.whatsapp){ document.querySelectorAll('.waLink').forEach(function(a){ a.href='https://wa.me/'+C.whatsapp.replace(/\D/g,'')+'?text='+encodeURIComponent('Hi Lera! 🌿'); a.hidden=false; }); }
   if(C.instagram){ document.querySelectorAll('a[href*="instagram.com/whynotleraa"]').forEach(function(a){ a.href='https://www.instagram.com/'+C.instagram+'/'; }); }
 })();
 </script>
