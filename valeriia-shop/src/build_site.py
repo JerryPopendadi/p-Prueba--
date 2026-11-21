@@ -27,5 +27,8 @@ if len(sys.argv) > 1:
     wp = re.sub(r'(src|poster)="(img|video)/', lambda m: f'{m.group(1)}="{base}', out)
     wp = re.sub(r"url\((img)/", f"url({base}", wp)
     wp = wp.replace("'img/", "'" + base)
+    wp = wp.replace('href="legal.html"', 'href="/lera-legal/"')
     open(os.path.join(here,'..','index-wordpress.html'),'w',encoding='utf-8').write(wp)
+    lg = open(os.path.join(here,'..','legal.html'), encoding='utf-8').read().replace('href="./"', 'href="/lera/"')
+    open(os.path.join(here,'..','legal-wordpress.html'),'w',encoding='utf-8').write(lg)
     print('index-wordpress.html', base)

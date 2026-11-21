@@ -269,6 +269,8 @@ footer a:hover{color:var(--ink)}
 .pays{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .pays span{background:var(--w);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:600}
 
+/* Ocultar el WhatsApp/chat del sitio anfitrión (domdiseno) en la página de Lera — sólo queda el de Lera (.wa-float) */
+.joinchat,#joinchat,.joinchat__button,.ht-ctc,.ht_ctc_chat_greetings_box,#ht-ctc-chat,.wa__btn_popup,.wa__popup_chat_box,#qlwapp,.qlwapp,.wp-whatsapp,.wh-widget-send-button-wrapper,#whatsapp-chat-widget,.wpp-whatsapp,.whatsappme,.floating-wpp,#floating-wpp,.ccw_plugin,.chaty-widget,[id^="chaty-widget"],.wa-chat-box,.whatsapp-chat,#wa-widget,.nta-wa,.wa-floating-button,.whatsapp-float,.float-whatsapp,a[href*="wa.me/"]:not(.waLink):not(#cDone):not(#mail),a[href*="api.whatsapp.com"],a[href*="whatsapp://"]{display:none!important;visibility:hidden!important}
 /* whatsapp */
 .wa-float{position:fixed;right:22px;bottom:22px;z-index:44;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.35);transition:transform .2s}
 .wa-float:hover{transform:scale(1.07)}
@@ -562,8 +564,8 @@ textarea{min-height:80px;resize:vertical}
 <footer><div class="wrap">
   <div><a class="logo" href="#top">lera<i></i></a><div class="pays"><span>PayPal</span><span>Visa</span><span>Mastercard</span><span>USDT</span></div></div>
   <div>
-    <a id="mail" href="#" target="_blank" rel="noopener">{{f_contact}}</a><a class="waLink" href="#" target="_blank" rel="noopener" hidden>WhatsApp</a><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram</a>
-    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. {{f_disc}}</p>
+    <a href="legal.html">{{f_legal}}</a><a id="mail" href="#" target="_blank" rel="noopener">{{f_contact}}</a><a class="waLink" href="#" target="_blank" rel="noopener" hidden>WhatsApp</a><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram</a>
+    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. {{f_disc}}</p><p style="margin-top:6px;font-size:12px">{{f_owner}}</p>
   </div>
 </div></footer>
 

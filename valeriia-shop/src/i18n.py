@@ -136,6 +136,12 @@ T = {
 'f_terms': ('Условия','Terms','Умови','Conditions','AGB'),
 'f_contact': ('Контакты','Contact','Контакти','Contact','Kontakt'),
 'f_disc': ('Образовательный контент, не медицинская рекомендация.','Educational content, not medical advice.','Освітній контент, не медична рекомендація.','Contenu éducatif, pas un avis médical.','Bildungsinhalte, keine medizinische Beratung.'),
+'f_legal': ('Правовая информация и конфиденциальность','Legal & privacy','Правова інформація та конфіденційність','Mentions légales et confidentialité','Impressum & Datenschutz'),
+'f_owner': ('Сайт принадлежит Лере (Бали, Индонезия): она продавец и оператор данных. domdiseno.com — только бесплатное техническое размещение.',
+            'This site belongs to Lera (Bali, Indonesia), the seller and data controller. domdiseno.com only provides free technical hosting.',
+            'Сайт належить Лері (Балі, Індонезія): вона продавець і оператор даних. domdiseno.com — лише безкоштовне технічне розміщення.',
+            'Ce site appartient à Lera (Bali, Indonésie), vendeuse et responsable des données. domdiseno.com fournit uniquement un hébergement technique gratuit.',
+            'Diese Seite gehört Lera (Bali, Indonesien), Verkäuferin und Verantwortliche für die Daten. domdiseno.com stellt nur kostenloses technisches Hosting bereit.'),
 # sticky
 'sticky': ('Гайды Леры · от $20','Lera’s guides · from $20','Гайди Лери · від $20','Guides de Lera · dès 20 $','Leras Guides · ab 20 $'),
 # crypto modal
