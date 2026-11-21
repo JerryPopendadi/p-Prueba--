@@ -1,0 +1,15 @@
+THE FACES · imágenes de la web para la Biblioteca de medios de WordPress
+
+1. Actualiza el plugin THE FACES Spa a la versión 1.6.8.
+2. En WordPress: Medios › Añadir nuevo. Arrastra TODAS las imágenes de esta carpeta (no los archivos 00-...).
+   No cambies los nombres: el plugin reconoce cada foto por su nombre.
+3. Ajustes › THE FACES › «Imágenes en Medios y en el sitemap» › pulsa «Buscar y conectar las imágenes de Medios».
+   Debe decir «Conectadas: 30 de 30».
+4. Vacía la caché de la web.
+
+Qué hace el plugin con ellas:
+- Rellena el título y el texto alternativo de cada foto (ver 00-LISTA-imagenes.csv).
+- La web pasa a mostrar las fotos desde Medios.
+- El sitemap de Yoast (https://thefacesbali.com/sitemap_index.xml) incluye las fotos de cada página y artículo.
+
+Si una foto se borra de Medios, la web vuelve a usar la copia del plugin: nada se rompe.

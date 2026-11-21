@@ -1,0 +1,24 @@
+/* THE FACES PARTNERS · blog: dark readable text on every post and blog page (Astra's global text colour is white) */
+body.single-post .site-content,body.blog .site-content,body.archive .site-content,body.search .site-content{color:#2b2622}
+body.single-post .entry-content,body.single-post .entry-content p,body.single-post .entry-content li,body.single-post .entry-content strong,body.single-post .entry-content em,body.single-post .entry-content td,body.single-post .entry-content th,body.single-post .entry-content blockquote,body.single-post .entry-content figcaption,
+body.blog .entry-content,body.blog .entry-content p,body.archive .entry-content,body.archive .entry-content p,body.search .entry-content p{color:#3a332d!important}
+body.single-post .entry-content{font-family:Montserrat,Arial,sans-serif;font-size:17px;line-height:1.8;max-width:760px;margin-left:auto;margin-right:auto}
+body.single-post .entry-content p{margin:0 0 1.3em}
+body.single-post .entry-content strong{font-weight:600;color:#1f1b18!important}
+body.single-post .entry-title,body.single-post .entry-content h1,body.single-post .entry-content h2,body.single-post .entry-content h3,body.single-post .entry-content h4,
+body.blog .entry-title,body.blog .entry-title a,body.archive .entry-title,body.archive .entry-title a{color:#1f1b18!important}
+body.single-post .entry-content h2{font-size:clamp(24px,2.6vw,32px);font-weight:500;line-height:1.25;margin:2em 0 .7em;padding-top:.9em;border-top:1px solid #e6dfd3}
+body.single-post .entry-content h2:before{content:"";display:block;width:44px;height:2px;background:#b08d4a;margin-bottom:.7em}
+body.single-post .entry-content h3{font-size:21px;font-weight:600;margin:1.6em 0 .5em}
+body.single-post .entry-content ul,body.single-post .entry-content ol{margin:0 0 1.4em 1.2em}
+body.single-post .entry-content li{margin:0 0 .5em}
+body.single-post .entry-content a,body.blog .entry-content a,body.archive .entry-content a{color:#8c6d33!important;text-decoration:underline;text-underline-offset:3px}
+body.single-post .entry-content a:hover{color:#1f1b18!important}
+body.single-post .entry-content blockquote{border-left:3px solid #b08d4a;background:#f7f3ec;padding:18px 22px;margin:1.6em 0;font-style:normal}
+body.single-post .entry-content table{width:100%;border-collapse:collapse;margin:1.4em 0;font-size:15px}
+body.single-post .entry-content th{background:#1f1b18;color:#fff!important;text-align:left;padding:12px 14px;font-weight:600}
+body.single-post .entry-content td{border-bottom:1px solid #e6dfd3;padding:12px 14px}
+body.single-post .entry-content img{border-radius:6px;height:auto}
+body.single-post .entry-meta,body.single-post .entry-meta *,body.blog .entry-meta,body.blog .entry-meta *,body.archive .entry-meta,body.archive .entry-meta *{color:#8c6d33!important}
+body.single-post .entry-content hr{border:0;border-top:1px solid #e6dfd3;margin:2em 0}
+@media(max-width:600px){body.single-post .entry-content{font-size:16px}}

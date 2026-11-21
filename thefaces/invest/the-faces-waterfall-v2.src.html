@@ -1,0 +1,723 @@
+<style>
+#tfw,#tfw *{box-sizing:border-box}
+#tfw{--paper:#F8F7F3;--ink:#1C241F;--muted:#5F665F;--forest:#263A30;--forest2:#405B4A;--sage:#8B998A;--line:#DDDCD5;--gold:#B29A70;--gold2:#8C744A;--wa:#1F9D55;
+font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper);font-size:15px;line-height:1.75;width:100%;overflow-x:clip}
+#tfw h1,#tfw h2,#tfw h3,#tfw p{margin:0 0 18px}
+#tfw h1,#tfw h2,#tfw h3{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.06;color:inherit}
+#tfw h1{font-size:clamp(50px,7.4vw,112px);letter-spacing:-1.5px}
+#tfw h2{font-size:clamp(38px,4.8vw,70px);letter-spacing:-.8px}
+#tfw h3{font-size:28px}
+#tfw p{color:var(--muted)}
+#tfw a{text-decoration:none;color:inherit}
+#tfw .c{width:min(1240px,90%);margin:auto}
+#tfw .sec{padding:104px 0;scroll-margin-top:70px}
+#tfw .eb{display:block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);margin-bottom:22px}
+#tfw .num{font-variant-numeric:tabular-nums}
+#tfw .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 30px;background:var(--forest);color:#fff;text-transform:uppercase;letter-spacing:1.5px;font-size:11.5px;font-weight:600;border:1px solid var(--forest);text-align:center;cursor:pointer;transition:all .25s ease;font-family:Montserrat,Arial,sans-serif;line-height:1.3}
+#tfw .btn:hover{background:var(--forest2);border-color:var(--forest2);transform:translateY(-2px)}
+#tfw .btn-l{background:#fff;color:var(--forest);border-color:#fff}
+#tfw .btn-l:hover{background:#EFEDE6;border-color:#EFEDE6;color:var(--forest)}
+#tfw .btn-o{background:transparent;color:var(--forest);border-color:var(--forest)}
+#tfw .btn-o:hover{color:#fff}
+#tfw .btn-ow{background:transparent;color:#fff;border-color:rgba(255,255,255,.75)}
+#tfw .btn-wa{background:var(--wa);border-color:var(--wa)}
+#tfw .btn-wa:hover{background:#178246;border-color:#178246}
+#tfw .ico{width:16px;height:16px;flex:none}
+
+/* TOP BAR */
+#tfw .top{position:sticky;top:0;z-index:50;background:rgba(248,247,243,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+#tfw .top .c{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+#tfw .brand{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:3px;font-weight:600;white-space:nowrap}
+#tfw .brand small{font-family:Montserrat;font-size:9px;letter-spacing:3px;color:var(--gold2);margin-left:8px;font-weight:600}
+#tfw .topr{display:flex;align-items:center;gap:22px;font-size:12.5px;font-weight:500}
+#tfw .topr a.tl{display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+#tfw .topr a.tl:hover{color:var(--gold2)}
+#tfw .topr .btn{padding:12px 20px}
+@media(max-width:900px){#tfw .topr a.tl{display:none}}
+@media(max-width:520px){#tfw .topr .btn{padding:11px 14px;font-size:10.5px}#tfw .brand small{display:none}}
+
+/* HERO */
+#tfw .hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;
+background:linear-gradient(90deg,rgba(10,20,15,.82) 0%,rgba(10,20,15,.45) 55%,rgba(10,20,15,.15) 100%),url('https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-1.jpg') center/cover no-repeat}
+#tfw .hero .c{padding:90px 0 120px}
+#tfw .hero h1{max-width:860px;margin-bottom:24px}
+#tfw .hero p.lead{color:rgba(255,255,255,.9);max-width:600px;font-size:18px;line-height:1.75}
+#tfw .hero .eb{color:#E2D3B5}
+#tfw .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+#tfw .chip{border:1px solid rgba(255,255,255,.35);padding:8px 14px;font-size:12px;letter-spacing:.5px;color:#fff;background:rgba(255,255,255,.06)}
+#tfw .acts{display:flex;gap:12px;flex-wrap:wrap}
+#tfw .hero small.note{display:block;margin-top:22px;color:rgba(255,255,255,.65);font-size:12px}
+
+/* KEY NUMBERS */
+#tfw .kn{background:var(--forest);color:#fff}
+#tfw .kn-g{display:grid;grid-template-columns:repeat(4,1fr)}
+#tfw .kn-i{padding:38px 24px;border-right:1px solid rgba(255,255,255,.14)}
+#tfw .kn-i:last-child{border-right:0}
+#tfw .kn-i span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#B7C2B7;margin-bottom:8px}
+#tfw .kn-i strong{display:block;font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;line-height:1.15}
+#tfw .kn-i em{display:block;font-style:normal;font-size:12px;color:#B7C2B7;margin-top:4px}
+
+/* GRID HELPERS */
+#tfw .g2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+#tfw .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+#tfw .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+#tfw .img{width:100%;height:640px;object-fit:cover;display:block}
+#tfw .card{background:#fff;border:1px solid var(--line);padding:30px 28px}
+#tfw .card h3{font-size:26px;margin-bottom:10px}
+#tfw .card p{font-size:14px;margin:0}
+#tfw .card .k{font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--gold);line-height:1;margin-bottom:14px}
+
+/* WHY */
+#tfw .why .stat b{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(44px,4.4vw,64px);font-weight:400;line-height:1;color:var(--forest)}
+#tfw .why .stat span{display:block;font-size:13.5px;color:var(--muted);margin-top:10px}
+#tfw .why .stat a{font-size:11px;color:var(--gold2);border-bottom:1px solid var(--gold);display:inline-block;margin-top:8px}
+#tfw .stat{border-top:1px solid var(--ink);padding-top:22px}
+
+/* PROOF */
+#tfw .proof{background:#fff}
+#tfw .pc{display:grid;gap:8px;align-content:start;color:var(--ink);transition:all .25s ease}
+#tfw .pc:hover{border-color:var(--forest);transform:translateY(-3px)}
+#tfw .pc-h{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--gold2)}
+#tfw .pc-h svg{width:26px;height:26px}
+#tfw .pc h3{font-size:30px;margin:6px 0 0}
+#tfw .pc-n{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--forest);line-height:1.1}
+#tfw .pc-l{font-size:11px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:var(--forest);border-bottom:1px solid var(--gold);justify-self:start;padding-bottom:4px;margin-top:6px}
+/* LANG */
+#tfw .lsel{border:1px solid var(--line);background:#fff;font:600 11.5px Montserrat,Arial,sans-serif;padding:9px 8px;color:var(--ink);cursor:pointer;max-width:96px}
+#tfw[data-lang="ja"],#tfw[data-lang="zh"]{font-family:Montserrat,"Noto Sans JP","Noto Sans SC","PingFang SC","Hiragino Sans","Microsoft YaHei",sans-serif}
+#tfw[data-lang="ja"] h1,#tfw[data-lang="zh"] h1,#tfw[data-lang="th"] h1,#tfw[data-lang="vi"] h1,#tfw[data-lang="ru"] h1{font-size:clamp(40px,5.6vw,84px);letter-spacing:0;line-height:1.15}
+#tfw[data-lang="ja"] h2,#tfw[data-lang="zh"] h2,#tfw[data-lang="th"] h2,#tfw[data-lang="vi"] h2,#tfw[data-lang="ru"] h2{font-size:clamp(32px,3.8vw,56px);letter-spacing:0;line-height:1.18}
+#tfw[data-lang="ja"] h1,#tfw[data-lang="ja"] h2,#tfw[data-lang="ja"] h3,#tfw[data-lang="zh"] h1,#tfw[data-lang="zh"] h2,#tfw[data-lang="zh"] h3,#tfw[data-lang="th"] h1,#tfw[data-lang="th"] h2,#tfw[data-lang="th"] h3{font-family:inherit;font-weight:300}
+
+/* GALLERY */
+#tfw .gal{background:#EEEDE7}
+#tfw .gal-g{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+#tfw .gal-i{overflow:hidden;background:#D8D8D2;margin:0;position:relative}
+#tfw .gal-i img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#tfw .gal-i:hover img{transform:scale(1.04)}
+#tfw .gal-i figcaption{position:absolute;left:12px;bottom:12px;background:rgba(28,36,31,.75);color:#fff;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px}
+#tfw .gal-i:nth-child(1),#tfw .gal-i:nth-child(2){height:520px}
+#tfw .gal-i:nth-child(1){grid-column:span 7}
+#tfw .gal-i:nth-child(2){grid-column:span 5}
+#tfw .gal-i:nth-child(n+3){grid-column:span 3;height:320px}
+
+/* SIMULATOR */
+#tfw .sim{background:#fff}
+#tfw .sim-g{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+#tfw .scen{display:flex;gap:0;border:1px solid var(--forest);margin-bottom:28px}
+#tfw .scen button{flex:1;background:transparent;border:0;padding:14px 8px;font:600 11px Montserrat,Arial,sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:var(--forest);cursor:pointer}
+#tfw .scen button+button{border-left:1px solid var(--forest)}
+#tfw .scen button[aria-pressed="true"]{background:var(--forest);color:#fff}
+#tfw .fld{margin-bottom:24px}
+#tfw .fld label{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
+#tfw .fld label output{color:var(--forest);font-size:15px;letter-spacing:0}
+#tfw .fld input[type=range]{width:100%;accent-color:var(--forest);height:28px}
+#tfw .fld small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+#tfw .res{background:var(--paper);border:1px solid var(--line);padding:36px}
+#tfw .res-big{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+#tfw .res-big div{padding:18px 14px 16px 0;border-bottom:1px solid var(--line)}
+#tfw .res-big span{display:block;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+#tfw .res-big b{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,3.2vw,44px);line-height:1.15;color:var(--forest)}
+#tfw .res-big .hl b{color:var(--gold2)}
+#tfw .chart{margin-top:30px}
+#tfw .chart-t{font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
+#tfw .bars{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;height:190px;align-items:end;border-bottom:1px solid var(--ink)}
+#tfw .bar{position:relative;background:var(--sage);transition:height .45s ease;min-height:2px}
+#tfw .bar.ok{background:var(--forest)}
+#tfw .bar i{position:absolute;top:-22px;left:0;right:0;text-align:center;font-style:normal;font-size:11.5px;font-weight:600;color:var(--ink)}
+#tfw .bline{position:absolute;left:0;right:0;border-top:1.5px dashed var(--gold2);transition:bottom .45s ease}
+#tfw .bline span{position:absolute;right:0;top:-20px;font-size:10.5px;font-weight:600;color:var(--gold2);background:var(--paper);padding:0 4px}
+#tfw .yrs{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+#tfw .legal{font-size:11.5px;line-height:1.7;color:#777;margin-top:20px}
+
+/* SAFETY */
+#tfw .safe{background:#EAEDE8}
+#tfw .safe .card{display:grid;gap:10px;align-content:start}
+#tfw .safe .card svg{width:34px;height:34px;color:var(--forest)}
+#tfw .safe .card h3{font-size:24px;margin:4px 0 0}
+
+/* TERMS */
+#tfw .terms-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+#tfw .tc{background:#fff;padding:48px;border:1px solid var(--line)}
+#tfw .big{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,6vw,88px);line-height:1;color:var(--forest)}
+#tfw .tr{display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding:15px 0;font-size:13.5px}
+#tfw .tr span{color:var(--muted)}
+#tfw .tr strong{font-weight:600;text-align:right}
+#tfw .ul{list-style:none;padding:0;margin:0 0 26px}
+#tfw .ul li{position:relative;padding:10px 0 10px 32px;border-top:1px solid var(--line);font-size:14.5px}
+#tfw .ul li::before{content:"";position:absolute;left:2px;top:17px;width:14px;height:8px;border-left:2px solid var(--forest);border-bottom:2px solid var(--forest);transform:rotate(-45deg)}
+
+/* FOUNDERS */
+#tfw .fnd{background:var(--forest);color:#fff}
+#tfw .fnd p{color:rgba(255,255,255,.8)}
+#tfw .fnd .eb{color:#E2D3B5}
+#tfw .fnd-v{min-height:520px;background:linear-gradient(rgba(30,50,35,.1),rgba(30,50,35,.3)),url('https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-3.jpg') center/cover no-repeat}
+#tfw .fnd .tf-n{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E2D3B5;font-weight:600;margin-bottom:16px}
+#tfw .fnd .ul li{border-top-color:rgba(255,255,255,.18);color:#fff}
+#tfw .fnd .ul li::before{border-color:#E2D3B5}
+
+/* PROCESS */
+#tfw .step{border-top:1px solid var(--line);padding-top:24px}
+#tfw .step .n{font-family:'Cormorant Garamond',serif;font-size:46px;color:var(--gold);margin-bottom:12px;line-height:1}
+#tfw .step h3{font-size:26px}
+#tfw .step p{font-size:13.5px}
+#tfw .step em{display:inline-block;font-style:normal;font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--forest);background:#E5EAE3;padding:4px 9px;margin-bottom:12px}
+
+/* FAQ */
+#tfw .faq details{border-top:1px solid var(--line)}
+#tfw .faq details:last-child{border-bottom:1px solid var(--line)}
+#tfw .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:22px 0;font-size:16.5px;font-weight:500}
+#tfw .faq summary::-webkit-details-marker{display:none}
+#tfw .faq summary::after{content:"+";font-size:26px;line-height:.8;color:var(--gold2);font-weight:300;transition:transform .3s}
+#tfw .faq details[open] summary::after{transform:rotate(45deg)}
+#tfw .faq details p{padding:0 0 22px;margin:0;max-width:820px;font-size:14.5px}
+
+/* CONTACT */
+#tfw .cta{background:linear-gradient(rgba(15,30,20,.86),rgba(15,30,20,.86)),url('https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-6.jpg') center/cover no-repeat;color:#fff;text-align:center}
+#tfw .cta h2{max-width:900px;margin:0 auto 22px}
+#tfw .cta>.c>p{color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 46px}
+#tfw .cta .eb{color:#E2D3B5}
+#tfw .cg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:left}
+#tfw .cc{display:grid;gap:10px;align-content:start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);padding:28px 24px;color:#fff;transition:all .25s ease}
+#tfw .cc:hover{background:#fff;color:var(--forest);transform:translateY(-3px)}
+#tfw .cc svg{width:28px;height:28px}
+#tfw .cc b{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;line-height:1.1}
+#tfw .cc span{font-size:13px;opacity:.85;word-break:break-word}
+#tfw .cc.main{background:#fff;color:var(--forest)}
+#tfw .cc.main:hover{background:#EFEDE6}
+#tfw .resp{margin-top:30px;font-size:12.5px;color:rgba(255,255,255,.7)}
+
+#tfw .foot{background:#17251C;color:#fff;text-align:center;padding:34px 20px 110px;font-size:11px;letter-spacing:1px}
+#tfw .foot p{color:rgba(255,255,255,.55);margin:12px auto 0;font-size:10.5px;max-width:900px;line-height:1.7}
+
+/* STICKY MOBILE BAR */
+#tfw .mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;grid-template-columns:1fr 1fr 1fr 1.6fr;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom,0px)}
+#tfw .mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px;font-size:10.5px;font-weight:600;color:var(--forest);letter-spacing:.3px}
+#tfw .mbar a svg{width:20px;height:20px}
+#tfw .mbar a.go{background:var(--forest);color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+#tfw .mbar a.wa{color:var(--wa)}
+/* desktop floating */
+#tfw .fab{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateY(16px);pointer-events:none;transition:all .35s ease}
+#tfw .fab.on{opacity:1;transform:none;pointer-events:auto}
+#tfw .fab a{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--forest);color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#tfw .fab a.wa{background:var(--wa)}
+#tfw .fab a svg{width:24px;height:24px}
+
+/* RESPONSIVE */
+@media(max-width:1000px){#tfw .kn-g{grid-template-columns:repeat(3,1fr)}#tfw .kn-i:nth-child(3){border-right:0}#tfw .cg{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+#tfw .sec{padding:72px 0}
+#tfw .g2,#tfw .terms-g,#tfw .sim-g{grid-template-columns:1fr;gap:40px}
+#tfw .g3,#tfw .g4{grid-template-columns:1fr 1fr}
+#tfw .img{height:460px}
+#tfw .gal-i:nth-child(n){grid-column:span 6;height:300px}
+#tfw .fnd-v{min-height:380px}
+#tfw .mbar{display:grid}
+#tfw .fab{display:none}
+}
+@media(max-width:600px){
+#tfw h1{font-size:52px}#tfw h2{font-size:40px}
+#tfw .hero{min-height:auto}#tfw .hero .c{padding:70px 0 80px}
+#tfw .hero p.lead{font-size:15.5px}
+#tfw .acts{flex-direction:column;align-items:stretch}
+#tfw .kn-g{grid-template-columns:1fr 1fr}#tfw .kn-i{padding:24px 14px;border-bottom:1px solid rgba(255,255,255,.14)}#tfw .kn-i:nth-child(2n){border-right:0}#tfw .kn-i:nth-child(3){border-right:1px solid rgba(255,255,255,.14)}#tfw .kn-i:last-child{grid-column:span 2}
+#tfw .kn-i strong{font-size:28px}
+#tfw .g3,#tfw .g4,#tfw .cg{grid-template-columns:1fr}
+#tfw .gal-i:nth-child(n){grid-column:span 12;height:300px}
+#tfw .tc,#tfw .res{padding:26px}
+#tfw .scen button{font-size:9.5px;letter-spacing:.4px;padding:13px 4px}
+#tfw .res-big b{font-size:30px}
+}
+@media(prefers-reduced-motion:reduce){#tfw *{transition:none!important}}
+
+#tfw .ap-g{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:start}
+#tfw .ap-steps{list-style:none;padding:0;margin:24px 0 0;counter-reset:a;display:grid;gap:10px}
+#tfw .ap-steps li{counter-increment:a;display:flex;gap:14px;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:16px 18px;font-size:14px}
+#tfw .ap-steps li::before{content:counter(a);flex:none;width:30px;height:30px;border-radius:50%;background:#211C19;color:#fff;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center}
+#tfw .ap-q{margin-top:16px;font-size:13px;border-left:3px solid #c9a35a;padding:6px 0 6px 14px}
+#tfw .ap-f{min-width:0}
+#tfw .ap-f #tff{box-shadow:0 20px 50px rgba(0,0,0,.08)}
+@media(max-width:900px){#tfw .ap-g{grid-template-columns:1fr}}
+
+#tfw .brand{display:inline-flex;align-items:center;gap:4px}
+#tfw .brand img{height:40px;width:auto;display:block}
+#tfw .cta-logo{display:block;height:64px;width:auto;margin:0 auto 26px;filter:invert(1)}
+#tfw .foot-logo{height:46px;width:auto;margin:0 auto 14px;filter:invert(1);opacity:.9}
+#tfw .g3.two{grid-template-columns:1fr 1fr;max-width:860px}
+#tfw .fcard{background:#fff;border:1px solid var(--line);padding:clamp(22px,3vw,38px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+#tfw .fcard h3{font-size:30px;margin:0 0 6px}
+#tfw .fcard .small{font-size:13px;margin:0 0 20px}
+#tfw #tf1-form-slot{min-height:120px}
+#tfw #tf1-form-slot .forminator-ui.forminator-custom-form{margin:0!important;font-family:Montserrat,Arial,sans-serif!important}
+#tfw #tf1-form-slot .forminator-row{margin-bottom:14px!important}
+#tfw #tf1-form-slot .forminator-label{font-size:12px!important;font-weight:600!important;color:var(--ink)!important;margin-bottom:6px!important;letter-spacing:.3px}
+#tfw #tf1-form-slot .forminator-input,#tfw #tf1-form-slot .forminator-textarea,#tfw #tf1-form-slot select,#tfw #tf1-form-slot .select2-selection{width:100%!important;min-height:50px!important;padding:12px 14px!important;border:1px solid var(--line)!important;border-radius:0!important;background:#fff!important;color:var(--ink)!important;font-size:16px!important;box-shadow:none!important}
+#tfw #tf1-form-slot .forminator-input:focus,#tfw #tf1-form-slot .forminator-textarea:focus{border-color:var(--forest)!important;outline:2px solid rgba(38,58,48,.18)!important}
+#tfw #tf1-form-slot .forminator-radio,#tfw #tf1-form-slot .forminator-checkbox{font-size:14px!important;color:var(--ink)!important}
+#tfw #tf1-form-slot .forminator-button-submit{width:100%!important;min-height:56px!important;background:var(--forest)!important;border:0!important;color:#fff!important;border-radius:0!important;font:600 12px Montserrat,Arial,sans-serif!important;letter-spacing:.16em!important;text-transform:uppercase!important;cursor:pointer}
+#tfw #tf1-form-slot .forminator-button-submit:hover{background:var(--forest2)!important}
+#tfw #tf1-form-slot .forminator-error-message{font-size:12px!important;color:#b3261e!important}
+#tfw #tf1-form-slot .forminator-response-message{font-size:14px!important}
+#tfw .fload{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+#tfw .fload:before{content:"";width:18px;height:18px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--forest);animation:tfwSpin 1s linear infinite}
+@keyframes tfwSpin{to{transform:rotate(360deg)}}
+#tfw .fwait{font-size:14px;color:var(--ink)}
+#tfw .fwait a{text-decoration:underline}
+#tfw .trust{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--muted)}
+#tfw .trust li:before{content:"✓ ";color:var(--forest);font-weight:700}
+#tfw .fdirect{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 20px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px}
+#tfw .fdirect a{border-bottom:1px solid var(--gold)}
+#tfw .thanks{margin-top:16px;padding:22px;background:#E5EAE3;text-align:center}
+#tfw .thanks p{color:var(--ink);margin:0 0 14px}
+@media(max-width:600px){#tfw .g3.two{grid-template-columns:1fr}#tfw .brand img{height:34px}}
+</style>
+
+<div id="tfw">
+<span id="tf1" hidden></span>
+
+<header class="top">
+  <div class="c">
+    <a href="#tfw-hero" class="brand"><img src="https://thefacespeace.com/wp-content/uploads/2026/08/cropped-negro-logo-e1788874445128.png" alt="THE FACES" width="96" height="48"><small>PARTNERS · WATERFALL</small></a>
+    <div class="topr">
+      <select class="lsel" id="tfw-lang" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option><option value="vi">VI</option><option value="ja">日本語</option><option value="zh">中文</option><option value="id">ID</option><option value="th">ไทย</option></select>
+      <a class="tl" data-tf="phone" href="#tfw-contact"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg><span data-tf-text="phone">Call us</span></a>
+      <a class="tl" data-tf="email" href="#tfw-contact"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="m3 7 9 6 9-6"></path></svg><span data-tf-text="email">Email</span></a>
+      <a class="btn" href="#tfw-apply" data-go="top">Request a call</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="tfw-hero">
+  <div class="c">
+    <span class="eb">Wellness project · Bali</span>
+    <h1>WATERFALL: a new wellness destination in Bali, open to one partner</h1>
+    <p class="lead">WATERFALL is a new spa and wellness project by THE FACES, the team behind an operating spa in Ubud. THE FACES builds, staffs and runs the destination, with regular reporting to its partner.</p>
+    <div class="chips">
+      <span class="chip">Under construction</span>
+      <span class="chip">One partner sought</span>
+      <span class="chip">Fully managed by THE FACES</span>
+      <span class="chip">Monthly reporting</span>
+    </div>
+    <div class="acts">
+      <a class="btn btn-l" href="#tfw-apply" data-go="hero">Request a partnership call</a>
+      <a class="btn btn-ow" href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="hero">Book a private call</a>
+    </div>
+    <small class="note">One partner sought for this project. Not a public offer.</small>
+  </div>
+</section>
+
+<section class="kn">
+  <div class="c kn-g">
+    <div class="kn-i"><span>Location</span><strong>Bali</strong><em>Bali, Indonesia</em></div>
+    <div class="kn-i"><span>Operator</span><strong>THE FACES</strong><em>~3 years running a spa in Ubud</em></div>
+    <div class="kn-i"><span>Status</span><strong>Development</strong><em>construction under way</em></div>
+    <div class="kn-i"><span>Partners sought</span><strong>1</strong><em>terms agreed individually</em></div>
+  </div>
+</section>
+
+<section class="sec" id="tfw-project">
+  <div class="c g2">
+    <div>
+      <span class="eb">The project</span>
+      <h2>A new expression of wellness in Bali</h2>
+      <p>WATERFALL is a spa and wellness destination in THE FACES portfolio, built around architecture, nature and restorative rituals.</p>
+      <p>Sculpted stone treatment rooms, arched windows onto the jungle, a stone bath suite and a tropical lounge terrace. The kind of place guests photograph, return to and recommend.</p>
+      <a class="btn" href="#tfw-apply" data-go="project">Request a partnership call</a>
+    </div>
+    <div><img decoding="async" class="img" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-2.jpg" alt="WATERFALL Bali spa treatment room" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="sec why" style="padding-top:0">
+  <div class="c">
+    <span class="eb">Why wellness · Why Bali</span>
+    <h2 style="max-width:820px;margin-bottom:46px">A growing market with guests arriving every day</h2>
+    <div class="g3 two">
+      <div class="stat"><b class="num">6.95M</b><span>international visitors to Bali in 2025, +9.7% year on year.</span><a href="https://bali.bps.go.id/" target="_blank" rel="noopener">Source: BPS Bali</a></div>
+      <div class="stat"><b class="num">$6.8T</b><span>global wellness economy in 2024, forecast near $9.8T by 2029 (≈ 7.6% a year).</span><a href="https://globalwellnessinstitute.org/2025-global-wellness-economy-monitor/" target="_blank" rel="noopener">Source: Global Wellness Institute</a></div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="sec proof" id="tfw-proof">
+  <div class="c">
+    <span class="eb">Proof, not promises</span>
+    <h2 style="max-width:880px">Our spas are already open</h2>
+    <p style="max-width:720px;margin-bottom:46px">WATERFALL is run by the same team and the same model as THE FACES spas operating in Bali today. See them live on Instagram.</p>
+    <div class="g3" id="tfw-proof-g">
+      <a class="card pc" data-ig="0" href="#" target="_blank" rel="noopener">
+        <span class="pc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg><span data-ig-handle="">@</span></span>
+        <h3>THE FACES Ubud</h3>
+        <div class="pc-n">Operating</div>
+        <p>for about 3 years, with real clients and an experienced team</p>
+        <span class="pc-l">See it on Instagram →</span>
+      </a>
+      <a class="card pc" data-ig="1" href="#" target="_blank" rel="noopener">
+        <span class="pc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg><span data-ig-handle="">@</span></span>
+        <h3>THE FACES Sanur</h3>
+        <div class="pc-n">Operating</div>
+        <p>existing spa whose results are the base model for our new projects</p>
+        <span class="pc-l">See it on Instagram →</span>
+      </a>
+      <a class="card pc" data-ig="2" href="#" target="_blank" rel="noopener">
+        <span class="pc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg><span data-ig-handle="">@</span></span>
+        <h3>THE FACES PARTNERS</h3>
+        <div class="pc-n">Project updates</div>
+        <p>construction progress, founders and partner news</p>
+        <span class="pc-l">See it on Instagram →</span>
+      </a>
+    </div>
+    <p class="legal">Past results of operating spas do not guarantee results of a new project. Financial statements of operating spas are available during due diligence.</p>
+  </div>
+</section>
+
+<section class="sec gal">
+  <div class="c">
+    <span class="eb">Architecture &amp; development</span>
+    <h2 style="max-width:760px">Designed around nature</h2>
+    <p style="max-width:680px;margin-bottom:46px">Real progress on site and the design direction for the finished spaces.</p>
+    <div class="gal-g">
+      <figure class="gal-i"><img decoding="async" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-1.jpg" alt="WATERFALL exterior lounge terrace" loading="lazy"><figcaption>Terrace · visualisation</figcaption></figure>
+      <figure class="gal-i"><img decoding="async" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-2.jpg" alt="WATERFALL treatment room" loading="lazy"><figcaption>Treatment room</figcaption></figure>
+      <figure class="gal-i"><img decoding="async" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-3.jpg" alt="WATERFALL interior corridor" loading="lazy"><figcaption>On site</figcaption></figure>
+      <figure class="gal-i"><img decoding="async" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-4.jpg" alt="WATERFALL couple room under construction" loading="lazy"><figcaption>On site</figcaption></figure>
+      <figure class="gal-i"><img decoding="async" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-5.jpg" alt="WATERFALL building facade under construction" loading="lazy"><figcaption>Construction</figcaption></figure>
+      <figure class="gal-i"><img decoding="async" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-6.jpg" alt="WATERFALL stone bath suite" loading="lazy"><figcaption>Bath suite</figcaption></figure>
+    </div>
+    <p style="font-size:12px;margin-top:20px">Project photography and architectural visualisations. Final finishes and layouts may vary.</p>
+  </div>
+</section>
+
+
+
+<section class="sec safe">
+  <div class="c">
+    <span class="eb">Partner protection</span>
+    <h2 style="max-width:880px">Proposed protections for the partner</h2>
+    <p style="max-width:720px;margin-bottom:46px">The structure below is what we propose to every partner. All points are written into the definitive agreements and reviewed by your own lawyer.</p>
+    <div class="g3">
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 10h6M9 14h6M9 18h4"></path></svg><h3>Notarised shareholding</h3><p>Participation is formalised by notarial deed and registered with the Indonesian Ministry of Law (AHU). The partner becomes a legal shareholder, not a lender.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20h16M6 20V10M10 20V10M14 20V10M18 20V10M3 10l9-6 9 6"></path></svg><h3>Capital in tranches</h3><p>Funds are released against agreed construction and launch milestones from a dedicated project account, not paid in one lump sum.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"></path></svg><h3>Monthly reporting</h3><p>Revenue, costs, bookings and payouts every month. Full access to the books and bank statements on request.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg><h3>Veto on key decisions</h3><p>Reserved matters such as new debt, sale of assets, change of lease or budget need the partner&#8217;s approval.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></svg><h3>Documents before you sign</h3><p>Lease agreement, permits, budget and construction schedule are shared in the data room for your due diligence.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h12M12 6l6 6-6 6"></path><path d="M20 4v16"></path></svg><h3>Clear exit options</h3><p>Right of first refusal, pre-agreed buy-back and tag-along terms, so you know in advance how you can exit.</p></div>
+    </div>
+    <p class="legal" style="margin-top:28px">Protection mechanisms are proposed terms and become binding only once included in the signed shareholder and partnership agreements. Any participation involves risk, including possible loss of capital.</p>
+  </div>
+</section>
+
+<section class="sec apply" id="tfw-apply">
+  <div class="c ap-g">
+    <div>
+      <span class="eb">Next step</span>
+      <h2>Request a partnership call</h2>
+      <p>Tell us who you are and what you are looking for. We review every request personally and send suitable partners a link to book a call with the founders.</p>
+      <ol class="ap-steps"><li>Fill in the form — about 1 minute</li><li>We review your request personally</li><li>Suitable partners book a call with the founders</li></ol>
+      <p class="ap-q">Designed for hotel groups, developers, property owners and private partners able to commit significant capital to a premium venue.</p>
+    </div>
+    <div class="ap-f">
+      <div class="fcard">
+        <h3>Partnership request · WATERFALL</h3>
+        <p class="small">About 1 minute. Confidential. Your details are never sold.</p>
+        <div id="tf1-form-slot"><p class="fload">Loading the form…</p></div>
+        <p class="fwait" id="tf1-form-wait" hidden><span>The form could not load. Write to us or book a call:</span> <a href="mailto:info@thefacespeace.com?subject=WATERFALL%20Bali%20partnership">info@thefacespeace.com</a> · <a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="missing">Book a private call</a></p>
+        <ul class="trust"><li>Encrypted</li><li>Never sold</li><li>No obligation</li></ul>
+        <div class="fdirect"><a data-tf="whatsapp" href="#tfw-contact">WhatsApp +62 823 2322 3433</a><a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="form">Prefer to book a call directly?</a></div>
+      </div>
+  </div>
+</section>
+
+<section class="sec fnd">
+  <div class="c g2">
+    <div class="fnd-v" role="img" aria-label="WATERFALL project interior"></div>
+    <div>
+      <span class="eb">The people behind it</span>
+      <h2>You deal directly with the founders</h2>
+      <div class="tf-n">Anna &amp; Evgenii Dubinin</div>
+      <p>THE FACES was founded by Anna and Evgenii Dubinin to create wellness spaces where design, hospitality and ritual work together. Their spa in Ubud has been operating for about three years.</p>
+      <ul class="ul">
+        <li>Anna: concept, brand, rituals and marketing</li>
+        <li>Evgenii: development, construction and operations</li>
+        <li>The same team that runs THE FACES spas runs WATERFALL</li>
+      </ul>
+      <a class="btn btn-l" href="#tfw-apply" data-go="founders">Meet the founders</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:#fff">
+  <div class="c">
+    <span class="eb">How it works</span>
+    <h2>From first call to partnership in 4 steps</h2>
+    <div class="g4" style="margin-top:56px">
+      <div class="step"><div class="n">01</div><em>30 minutes</em><h3>Intro call</h3><p>Video or phone call with the founders. Ask anything, no obligation.</p></div>
+      <div class="step"><div class="n">02</div><em>Same week</em><h3>Project pack</h3><p>Budget, financial model, lease, permits and construction schedule.</p></div>
+      <div class="step"><div class="n">03</div><em>With your advisers</em><h3>Due diligence</h3><p>Site visit in Bali or online walkthrough. Review with your lawyer.</p></div>
+      <div class="step"><div class="n">04</div><em>Notary</em><h3>Agreement</h3><p>Shareholder agreement signed, shares registered, capital released in tranches.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec faq">
+  <div class="c g2" style="align-items:start">
+    <div>
+      <span class="eb">Questions partners ask</span>
+      <h2>Straight answers</h2>
+      <p>Anything else? Call or write to us directly.</p>
+      <div class="acts" style="margin-top:22px">
+        <a class="btn" data-tf="phone" href="#tfw-contact">Call</a>
+        <a class="btn btn-wa" data-tf="whatsapp" href="#tfw-contact">WhatsApp</a>
+        <a class="btn btn-o" data-tf="email" href="#tfw-contact">Email</a>
+      </div>
+    </div>
+    <div>
+      
+      <details open=""><summary>How are participation terms shared?</summary><p>Individually, after an introductory call, and only where the law of your country allows. We do not publish amounts or returns.</p></details>
+      <details><summary>Do I need to be involved in running the spa?</summary><p>No. THE FACES manages construction, hiring, training, marketing, daily operations and accounting. You receive monthly reports and vote on key decisions.</p></details>
+      <details><summary>Can a foreigner own shares in a Bali business?</summary><p>Yes, through an Indonesian company with foreign shareholders (PT PMA). Our lawyers explain the structure during the intro call; you can verify it with your own counsel.</p></details>
+      <details><summary>When does the spa open?</summary><p>After construction is completed. The launch timeline is shared in the project pack after the introductory call.</p></details>
+      <details><summary>How is capital controlled?</summary><p>Capital is released in tranches against milestones from a dedicated project account, with monthly reporting and access to bank statements.</p></details>
+      <details><summary>What are the risks?</summary><p>Construction delays, slower ramp-up, lower demand, currency movements and regulatory changes. They are discussed openly in the project pack, together with how we manage them.</p></details>
+      <details><summary>Can I visit the site?</summary><p>Yes. We organise site visits in Bali and live video walkthroughs for partners abroad.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec cta" id="tfw-contact">
+  <div class="c">
+    <img class="cta-logo" src="https://thefacespeace.com/wp-content/uploads/2026/08/cropped-negro-logo-e1788874445128.png" alt="THE FACES" width="150" height="75" loading="lazy"><span class="eb">THE FACES PARTNERS · WATERFALL</span>
+    <h2>Talk to the founders this week</h2>
+    <p>Choose the way that suits you. We answer every enquiry personally.</p>
+    <div class="cg">
+      <a class="cc main" href="#tfw-apply" data-go="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="1"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><b>Request a partnership call</b><span>1-minute form</span></a>
+      <a class="cc" data-tf="phone" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg><b>Call</b><span data-tf-text="phone">—</span></a>
+      <a class="cc" data-tf="whatsapp" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"></path></svg><b>WhatsApp</b><span>Message us, quick reply</span></a>
+      <a class="cc" data-tf="email" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="m3 7 9 6 9-6"></path></svg><b>Email</b><span data-tf-text="email">—</span></a>
+    </div>
+    <p class="resp">Usual response time: within 24 hours · English · Русский · Español · Bahasa Indonesia</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <img class="foot-logo" src="https://thefacespeace.com/wp-content/uploads/2026/08/cropped-negro-logo-e1788874445128.png" alt="THE FACES" width="110" height="55" loading="lazy"><br>THE FACES PARTNERS · WATERFALL · BALI, INDONESIA
+  <p>© THE FACES. Information on this page is preliminary and for discussion only. It is not a public offer, financial advice or a guarantee of returns. Partnership terms are subject to due diligence and definitive legal documentation. Any participation involves risk, including possible loss of capital.</p>
+</footer>
+
+<nav class="mbar" aria-label="Contact">
+  <a data-tf="phone" href="#tfw-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>Call</a>
+  <a class="wa" data-tf="whatsapp" href="#tfw-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"></path></svg>WhatsApp</a>
+  <a data-tf="email" href="#tfw-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="m3 7 9 6 9-6"></path></svg>Email</a>
+  <a class="go" href="#tfw-apply" data-go="mobile">Request a call</a>
+</nav>
+
+<div class="fab" id="tfw-fab">
+  <a class="wa" data-tf="whatsapp" href="#tfw-contact" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"></path></svg></a>
+  <a data-tf="phone" href="#tfw-contact" aria-label="Call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg></a>
+  <a data-tf="email" href="#tfw-contact" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="m3 7 9 6 9-6"></path></svg></a>
+</div>
+
+</div>
+
+<script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-nowprocket data-noptimize="1">
+/* =========================================================
+   TF_CONFIG — EDIT THESE VALUES ONLY
+   ========================================================= */
+var TF_CONFIG = {
+  phone:      "+62 823 2322 3433",          // shown on page
+  whatsapp:   "6282323223433",                // digits only, country code first, no + or spaces
+  whatsappText: "Hello THE FACES, I would like to talk about the WATERFALL project in Bali.",
+  email:      "info@thefacespeace.com",     // contact email
+  emailSubject: "WATERFALL Bali - partnership enquiry",
+  bookingUrl: "https://thefacespeace.com/book-an-investor-meeting/",
+  /* Instagram of the spas that are already operating (cards in "Proof" section, same order) */
+  instagram: [
+    "https://www.instagram.com/thefacesubud/",    // THE FACES Ubud
+    "https://www.instagram.com/thefaces_sanur/",   // THE FACES Sanur
+    "https://www.instagram.com/thefacesinvest/"           // THE FACES INVEST
+  ],
+  /* Google Ads conversions: paste "AW-XXXXXXXXX/xxxxxxxxxxxx" for each, or leave "" */
+  adsConversion: { book: "", phone: "", whatsapp: "", email: "" }
+};
+
+/* Translations (auto-selected from the phone language). Key = English text. */
+var TF_I18N = {"Call us":{"fr":"Appelez-nous","ru":"Позвонить","vi":"Gọi cho chúng tôi","ja":"お電話","zh":"致电我们","id":"Hubungi kami","th":"โทรหาเรา"},"Email":{"fr":"E-mail","ru":"Email","vi":"Email","ja":"メール","zh":"邮件","id":"Email","th":"อีเมล"},"Fully managed by THE FACES":{"fr":"Entièrement géré par THE FACES","ru":"Полное управление THE FACES","vi":"THE FACES quản lý toàn bộ","ja":"THE FACESが完全運営","zh":"由THE FACES全面管理","id":"Dikelola penuh oleh THE FACES","th":"THE FACES บริหารทั้งหมด"},"Monthly reporting":{"fr":"Reporting mensuel","ru":"Ежемесячная отчётность","vi":"Báo cáo hàng tháng","ja":"毎月のレポート","zh":"每月报告","id":"Laporan bulanan","th":"รายงานรายเดือน"},"One partner sought for this project. Not a public offer.":{"fr":"Un seul partenaire recherché pour ce projet. Ceci n'est pas une offre au public.","ru":"Для проекта ищем одного партнёра. Не является публичной офертой.","vi":"Dự án chỉ tìm một đối tác. Đây không phải là chào bán công khai.","ja":"本プロジェクトのパートナーは1名のみ募集。公募ではありません。","zh":"本项目仅寻找一位合作伙伴。非公开发售。","id":"Hanya satu mitra yang dicari untuk proyek ini. Bukan penawaran umum.","th":"โครงการนี้ต้องการพันธมิตรเพียงรายเดียว ไม่ใช่การเสนอขายต่อสาธารณะ"},"Operator":{"fr":"Opérateur","ru":"Управляющий","vi":"Đơn vị vận hành","ja":"運営者","zh":"运营方","id":"Operator","th":"ผู้บริหาร"},"~3 years running a spa in Ubud":{"fr":"~3 ans de gestion d'un spa à Ubud","ru":"~3 года управляет салоном в Убуде","vi":"~3 năm vận hành spa tại Ubud","ja":"ウブドでスパ運営 約3年","zh":"在乌布运营水疗约3年","id":"~3 tahun mengelola spa di Ubud","th":"บริหารสปาในอูบุด ~3 ปี"},"Status":{"fr":"Statut","ru":"Статус","vi":"Tình trạng","ja":"ステータス","zh":"状态","id":"Status","th":"สถานะ"},"Development":{"fr":"Développement","ru":"Строительство","vi":"Đang phát triển","ja":"開発中","zh":"开发中","id":"Pengembangan","th":"อยู่ระหว่างพัฒนา"},"construction under way":{"fr":"travaux en cours","ru":"работы идут","vi":"đang thi công","ja":"工事進行中","zh":"施工进行中","id":"konstruksi berjalan","th":"กำลังก่อสร้าง"},"The project":{"fr":"Le projet","ru":"Проект","vi":"Dự án","ja":"プロジェクト","zh":"项目","id":"Proyek","th":"โครงการ"},"A new expression of wellness in Bali":{"fr":"Une nouvelle expression du bien-être à Bali","ru":"Новое воплощение wellness на Бали","vi":"Một cách thể hiện mới của wellness tại Bali","ja":"バリにおけるウェルネスの新しいかたち","zh":"巴厘岛康养的新表达","id":"Wajah baru wellness di Bali","th":"มิติใหม่ของเวลเนสในบาหลี"},"WATERFALL is a spa and wellness destination in THE FACES portfolio, built around architecture, nature and restorative rituals.":{"fr":"WATERFALL est une destination spa et bien-être du portefeuille THE FACES, pensée autour de l'architecture, de la nature et des rituels régénérants.","ru":"WATERFALL — SPA и wellness-пространство в портфеле THE FACES, построенное вокруг архитектуры, природы и восстанавливающих ритуалов.","vi":"WATERFALL là điểm đến spa và wellness trong danh mục của THE FACES, được xây dựng quanh kiến trúc, thiên nhiên và các nghi thức phục hồi.","ja":"WATERFALLは、建築・自然・再生の儀式を軸にした、THE FACESポートフォリオのスパ＆ウェルネス施設です。","zh":"WATERFALL是THE FACES旗下的水疗与康养目的地，围绕建筑、自然与修复仪式打造。","id":"WATERFALL adalah destinasi spa dan wellness dalam portofolio THE FACES, dirancang di sekitar arsitektur, alam, dan ritual pemulihan.","th":"WATERFALL คือจุดหมายสปาและเวลเนสในพอร์ตของ THE FACES ออกแบบโดยมีสถาปัตยกรรม ธรรมชาติ และพิธีกรรมฟื้นฟูเป็นหัวใจ"},"Sculpted stone treatment rooms, arched windows onto the jungle, a stone bath suite and a tropical lounge terrace. The kind of place guests photograph, return to and recommend.":{"fr":"Salles de soin en pierre sculptée, fenêtres en arc ouvertes sur la jungle, une suite avec bain en pierre et une terrasse lounge tropicale. Le genre d'endroit que les clients photographient, où ils reviennent et qu'ils recommandent.","ru":"Кабинеты из скульптурного камня, арочные окна в джунгли, люкс с каменной ванной и тропическая лаунж-терраса. Место, которое гости фотографируют, куда возвращаются и которое советуют.","vi":"Phòng trị liệu bằng đá điêu khắc, cửa sổ vòm nhìn ra rừng, phòng tắm bồn đá và sân hiên lounge nhiệt đới. Nơi khách chụp ảnh, quay lại và giới thiệu cho người khác.","ja":"彫刻的な石のトリートメントルーム、ジャングルに開くアーチ窓、石の浴槽のスイート、トロピカルなラウンジテラス。ゲストが写真を撮り、再訪し、人に勧める場所です。","zh":"雕塑感石材理疗室、面向丛林的拱形窗、石浴缸套房和热带休闲露台。宾客会拍照、再次光临并推荐给他人的地方。","id":"Ruang perawatan dari batu berpahat, jendela lengkung menghadap hutan, suite dengan bak mandi batu, dan teras lounge tropis. Tempat yang difoto tamu, dikunjungi lagi, dan direkomendasikan.","th":"ห้องทรีตเมนต์หินแกะสลัก หน้าต่างโค้งมองเห็นป่า ห้องสวีทอ่างอาบน้ำหิน และเทอร์เรซเลานจ์แบบทรอปิคอล สถานที่ที่แขกถ่ายรูป กลับมาอีก และบอกต่อ"},"Why wellness · Why Bali":{"fr":"Pourquoi le bien-être · Pourquoi Bali","ru":"Почему wellness · Почему Бали","vi":"Vì sao wellness · Vì sao Bali","ja":"なぜウェルネス · なぜバリ","zh":"为什么是康养 · 为什么是巴厘岛","id":"Mengapa wellness · Mengapa Bali","th":"ทำไมต้องเวลเนส · ทำไมต้องบาหลี"},"A growing market with guests arriving every day":{"fr":"Un marché en croissance, avec des clients qui arrivent chaque jour","ru":"Растущий рынок, гости прилетают каждый день","vi":"Thị trường tăng trưởng, khách đến mỗi ngày","ja":"毎日ゲストが訪れる成長市場","zh":"持续增长的市场，每天都有客人到来","id":"Pasar yang tumbuh, dengan tamu yang datang setiap hari","th":"ตลาดที่เติบโต มีแขกเดินทางมาทุกวัน"},"international visitors to Bali in 2025, +9.7% year on year.":{"fr":"visiteurs internationaux à Bali en 2025, +9,7 % sur un an.","ru":"иностранных туристов на Бали в 2025 году, +9,7% за год.","vi":"lượt khách quốc tế đến Bali năm 2025, tăng 9,7% so với năm trước.","ja":"2025年にバリを訪れた外国人旅行者（前年比+9.7%）","zh":"2025年巴厘岛国际游客人次，同比增长9.7%。","id":"wisatawan mancanegara ke Bali pada 2025, naik 9,7% dibanding tahun sebelumnya.","th":"นักท่องเที่ยวต่างชาติมาบาหลีในปี 2025 เพิ่มขึ้น 9.7% จากปีก่อน"},"Source: BPS Bali":{"fr":"Source : BPS Bali","ru":"Источник: BPS Bali","vi":"Nguồn: BPS Bali","ja":"出典：BPS Bali","zh":"来源：BPS Bali","id":"Sumber: BPS Bali","th":"ที่มา: BPS Bali"},"global wellness economy in 2024, forecast near $9.8T by 2029 (≈ 7.6% a year).":{"fr":"économie mondiale du bien-être en 2024, prévue à près de 9,8 T$ en 2029 (≈ 7,6 % par an).","ru":"мировая wellness-экономика в 2024 году, прогноз около $9,8 трлн к 2029 (≈ 7,6% в год).","vi":"kinh tế wellness toàn cầu năm 2024, dự báo gần 9,8 nghìn tỷ USD vào 2029 (≈ 7,6%/năm).","ja":"2024年の世界ウェルネス経済。2029年には約9.8兆ドルの見込み（年率約7.6%）","zh":"2024年全球康养经济规模，预计2029年接近9.8万亿美元（年增约7.6%）。","id":"ekonomi wellness global pada 2024, diperkirakan mendekati $9,8T pada 2029 (≈ 7,6% per tahun).","th":"เศรษฐกิจเวลเนสโลกปี 2024 คาดว่าจะใกล้ 9.8 ล้านล้านดอลลาร์ในปี 2029 (≈ 7.6% ต่อปี)"},"Source: Global Wellness Institute":{"fr":"Source : Global Wellness Institute","ru":"Источник: Global Wellness Institute","vi":"Nguồn: Global Wellness Institute","ja":"出典：Global Wellness Institute","zh":"来源：Global Wellness Institute","id":"Sumber: Global Wellness Institute","th":"ที่มา: Global Wellness Institute"},"Proof, not promises":{"fr":"Des preuves, pas des promesses","ru":"Факты, а не обещания","vi":"Bằng chứng, không phải lời hứa","ja":"約束ではなく実績","zh":"用事实说话，而非承诺","id":"Bukti, bukan janji","th":"หลักฐาน ไม่ใช่คำสัญญา"},"WATERFALL is run by the same team and the same model as THE FACES spas operating in Bali today. See them live on Instagram.":{"fr":"WATERFALL est géré par la même équipe et selon le même modèle que les spas THE FACES en activité aujourd'hui à Bali. Découvrez-les en direct sur Instagram.","ru":"WATERFALL ведёт та же команда по той же модели, что и работающие сегодня салоны THE FACES на Бали. Смотрите их вживую в Instagram.","vi":"WATERFALL được vận hành bởi cùng đội ngũ và cùng mô hình với các spa THE FACES đang hoạt động tại Bali. Xem trực tiếp trên Instagram.","ja":"WATERFALLは、現在バリで営業中のTHE FACESのスパと同じチーム・同じモデルで運営されます。Instagramでご覧ください。","zh":"WATERFALL由与巴厘岛现营THE FACES水疗中心相同的团队、相同的模式运营。在Instagram上实时查看。","id":"WATERFALL dijalankan oleh tim dan model yang sama dengan spa THE FACES yang beroperasi di Bali saat ini. Lihat langsung di Instagram.","th":"WATERFALL บริหารโดยทีมเดียวกันและโมเดลเดียวกับสปา THE FACES ที่เปิดอยู่ในบาหลีวันนี้ ดูได้สดๆ บน Instagram"},"See it on Instagram →":{"fr":"Voir sur Instagram →","ru":"Смотреть в Instagram →","vi":"Xem trên Instagram →","ja":"Instagramで見る →","zh":"在Instagram查看 →","id":"Lihat di Instagram →","th":"ดูบน Instagram →"},"Operating":{"fr":"En activité","ru":"Работает","vi":"Đang hoạt động","ja":"営業中","zh":"营业中","id":"Beroperasi","th":"เปิดให้บริการ"},"existing spa whose results are the base model for our new projects":{"fr":"spa existant dont les résultats servent de modèle de base à nos nouveaux projets","ru":"действующий салон, результаты которого — базовая модель для новых проектов","vi":"spa hiện có, kết quả là mô hình cơ sở cho các dự án mới","ja":"既存スパ。その実績が新規プロジェクトの基本モデルです","zh":"现有水疗中心，其业绩是新项目的基础模型","id":"spa yang sudah berjalan, hasilnya menjadi model dasar proyek baru kami","th":"สปาที่เปิดอยู่ ผลประกอบการเป็นโมเดลพื้นฐานของโครงการใหม่"},"Project updates":{"fr":"Actualités du projet","ru":"Новости проекта","vi":"Cập nhật dự án","ja":"プロジェクト最新情報","zh":"项目动态","id":"Kabar proyek","th":"อัปเดตโครงการ"},"construction progress, founders and partner news":{"fr":"avancement des travaux, fondateurs et nouvelles pour les investisseurs","ru":"ход стройки, основатели и новости для партнёров","vi":"tiến độ thi công, nhà sáng lập và tin tức cho nhà đầu tư","ja":"工事の進捗、創業者、投資家向けニュース","zh":"施工进展、创始人与投资者资讯","id":"progres konstruksi, pendiri, dan berita investor","th":"ความคืบหน้าการก่อสร้าง ผู้ก่อตั้ง และข่าวสำหรับนักลงทุน"},"Past results of operating spas do not guarantee results of a new project. Financial statements of operating spas are available during due diligence.":{"fr":"Les résultats passés des spas en activité ne garantissent pas ceux d'un nouveau projet. Les états financiers des spas en activité sont communiqués lors de la due diligence.","ru":"Прошлые результаты действующих салонов не гарантируют результатов нового проекта. Финансовая отчётность действующих салонов предоставляется при проверке (due diligence).","vi":"Kết quả quá khứ của các spa đang hoạt động không đảm bảo kết quả của dự án mới. Báo cáo tài chính của các spa này được cung cấp trong quá trình thẩm định.","ja":"営業中スパの過去の実績は新規プロジェクトの結果を保証するものではありません。財務諸表はデューデリジェンス時に開示します。","zh":"现营水疗中心的过往业绩不代表新项目的结果。现营水疗中心的财务报表在尽职调查期间提供。","id":"Hasil masa lalu spa yang beroperasi tidak menjamin hasil proyek baru. Laporan keuangan spa yang beroperasi tersedia saat uji tuntas.","th":"ผลประกอบการในอดีตของสปาที่เปิดอยู่ไม่ได้รับประกันผลของโครงการใหม่ งบการเงินของสปาที่เปิดอยู่จะเปิดเผยในช่วงการตรวจสอบสถานะ"},"Designed around nature":{"fr":"Conçu autour de la nature","ru":"Создано вокруг природы","vi":"Thiết kế quanh thiên nhiên","ja":"自然を中心にデザイン","zh":"围绕自然而设计","id":"Dirancang di sekitar alam","th":"ออกแบบโดยมีธรรมชาติเป็นศูนย์กลาง"},"Real progress on site and the design direction for the finished spaces.":{"fr":"L'avancement réel sur le chantier et la direction design des espaces finis.","ru":"Реальный прогресс на объекте и дизайн-концепция готовых пространств.","vi":"Tiến độ thực tế tại công trình và định hướng thiết kế cho không gian hoàn thiện.","ja":"現場の実際の進捗と、完成後の空間デザイン。","zh":"工地的真实进展与完工空间的设计方向。","id":"Progres nyata di lokasi dan arah desain untuk ruang yang sudah jadi.","th":"ความคืบหน้าจริงที่หน้างาน และแนวทางการออกแบบพื้นที่เมื่อแล้วเสร็จ"},"Terrace · visualisation":{"fr":"Terrasse · visualisation","ru":"Терраса · визуализация","vi":"Sân hiên · phối cảnh","ja":"テラス · イメージ","zh":"露台 · 效果图","id":"Teras · visualisasi","th":"เทอร์เรซ · ภาพจำลอง"},"Treatment room":{"fr":"Salle de soin","ru":"Кабинет","vi":"Phòng trị liệu","ja":"トリートメントルーム","zh":"理疗室","id":"Ruang perawatan","th":"ห้องทรีตเมนต์"},"On site":{"fr":"Sur le chantier","ru":"На объекте","vi":"Tại công trình","ja":"現場","zh":"施工现场","id":"Di lokasi","th":"หน้างาน"},"Construction":{"fr":"Construction","ru":"Стройка","vi":"Thi công","ja":"工事","zh":"施工","id":"Konstruksi","th":"การก่อสร้าง"},"Bath suite":{"fr":"Suite avec bain","ru":"Люкс с ванной","vi":"Phòng tắm bồn","ja":"バススイート","zh":"浴缸套房","id":"Suite bak mandi","th":"ห้องสวีทอ่างอาบน้ำ"},"Project photography and architectural visualisations. Final finishes and layouts may vary.":{"fr":"Photos du projet et visualisations architecturales. Les finitions et agencements définitifs peuvent varier.","ru":"Фото проекта и архитектурные визуализации. Финальная отделка и планировка могут отличаться.","vi":"Ảnh dự án và phối cảnh kiến trúc. Hoàn thiện và bố trí cuối cùng có thể thay đổi.","ja":"プロジェクト写真および建築イメージ。最終的な仕上げやレイアウトは変更になる場合があります。","zh":"项目照片与建筑效果图。最终装修与布局可能有所不同。","id":"Foto proyek dan visualisasi arsitektur. Hasil akhir dan tata letak dapat berbeda.","th":"ภาพถ่ายโครงการและภาพจำลองสถาปัตยกรรม งานตกแต่งและผังสุดท้ายอาจเปลี่ยนแปลงได้"},"The structure below is what we propose to every partner. All points are written into the definitive agreements and reviewed by your own lawyer.":{"fr":"La structure ci-dessous est celle que nous proposons à chaque partenaire. Tous les points sont inscrits dans les contrats définitifs et vérifiés par votre propre avocat.","ru":"Ниже — структура, которую мы предлагаем каждому партнёру. Все пункты закрепляются в окончательных договорах и проверяются вашим юристом.","vi":"Dưới đây là cấu trúc chúng tôi đề xuất cho mọi đối tác. Tất cả được ghi vào hợp đồng chính thức và do luật sư của bạn xem xét.","ja":"以下はすべてのパートナーに提案する仕組みです。すべて最終契約に明記され、あなたの弁護士が確認します。","zh":"以下是我们向每位合作伙伴提出的结构。所有条款都写入正式协议，并由您自己的律师审核。","id":"Struktur di bawah ini kami tawarkan kepada setiap mitra. Semua poin dituangkan dalam perjanjian final dan ditinjau oleh pengacara Anda sendiri.","th":"โครงสร้างด้านล่างคือสิ่งที่เราเสนอให้พันธมิตรทุกราย ทุกข้อจะเขียนไว้ในสัญญาฉบับสมบูรณ์และตรวจโดยทนายของคุณเอง"},"Notarised shareholding":{"fr":"Participation notariée","ru":"Нотариальное оформление доли","vi":"Cổ phần được công chứng","ja":"公証による持分","zh":"经公证的股权","id":"Kepemilikan saham dengan akta notaris","th":"การถือหุ้นผ่านโนตารี"},"Capital in tranches":{"fr":"Capital par tranches","ru":"Капитал траншами","vi":"Vốn giải ngân theo đợt","ja":"資金は分割拠出","zh":"资金分期拨付","id":"Modal bertahap","th":"เงินทุนเป็นงวด"},"Funds are released against agreed construction and launch milestones from a dedicated project account, not paid in one lump sum.":{"fr":"Les fonds sont débloqués selon des étapes de construction et de lancement convenues, depuis un compte dédié au projet, et non versés en une seule fois.","ru":"Средства выделяются по согласованным этапам стройки и запуска со специального счёта проекта, а не одной суммой.","vi":"Tiền được giải ngân theo các mốc thi công và ra mắt đã thỏa thuận, từ tài khoản riêng của dự án, không chuyển một lần.","ja":"資金はプロジェクト専用口座から、合意した工事・開業のマイルストーンごとに拠出。一括払いではありません。","zh":"资金从项目专用账户按约定的施工与开业节点拨付，而非一次性支付。","id":"Dana dicairkan sesuai tahapan konstruksi dan peluncuran yang disepakati dari rekening khusus proyek, bukan sekaligus.","th":"เงินจะเบิกจ่ายตามหมุดหมายการก่อสร้างและการเปิดตัวที่ตกลงกัน จากบัญชีเฉพาะของโครงการ ไม่ใช่จ่ายก้อนเดียว"},"Revenue, costs, bookings and payouts every month. Full access to the books and bank statements on request.":{"fr":"Chiffre d'affaires, coûts, réservations et versements chaque mois. Accès complet aux comptes et relevés bancaires sur demande.","ru":"Выручка, расходы, бронирования и выплаты — каждый месяц. Полный доступ к бухгалтерии и банковским выпискам по запросу.","vi":"Doanh thu, chi phí, đặt chỗ và chi trả mỗi tháng. Truy cập đầy đủ sổ sách và sao kê ngân hàng khi yêu cầu.","ja":"売上、費用、予約、分配を毎月報告。帳簿と銀行明細はご要望に応じてすべて閲覧可能。","zh":"每月提供收入、成本、预订和分红数据。可随时查阅账簿和银行流水。","id":"Pendapatan, biaya, pemesanan, dan pembagian setiap bulan. Akses penuh ke pembukuan dan rekening koran atas permintaan.","th":"รายได้ ต้นทุน การจอง และการจ่ายผลตอบแทนทุกเดือน ขอดูบัญชีและรายการเดินบัญชีธนาคารได้เต็มที่"},"Veto on key decisions":{"fr":"Droit de veto sur les décisions clés","ru":"Право вето по ключевым решениям","vi":"Quyền phủ quyết các quyết định quan trọng","ja":"重要事項の拒否権","zh":"关键决策否决权","id":"Hak veto atas keputusan penting","th":"สิทธิวีโต้ในการตัดสินใจสำคัญ"},"Documents before you sign":{"fr":"Les documents avant de signer","ru":"Документы до подписания","vi":"Tài liệu trước khi ký","ja":"署名前に書類を開示","zh":"签约前提供文件","id":"Dokumen sebelum Anda tanda tangan","th":"เอกสารก่อนลงนาม"},"Lease agreement, permits, budget and construction schedule are shared in the data room for your due diligence.":{"fr":"Bail, permis, budget et calendrier des travaux sont partagés dans la data room pour votre due diligence.","ru":"Договор аренды, разрешения, бюджет и график стройки — в data room для вашей проверки.","vi":"Hợp đồng thuê, giấy phép, ngân sách và tiến độ thi công được chia sẻ trong data room để bạn thẩm định.","ja":"賃貸借契約、許認可、予算、工事スケジュールをデータルームで共有し、デューデリジェンスに活用いただけます。","zh":"租赁合同、许可证、预算和施工计划在数据室中共享，供您尽职调查。","id":"Perjanjian sewa, izin, anggaran, dan jadwal konstruksi dibagikan di data room untuk uji tuntas Anda.","th":"สัญญาเช่า ใบอนุญาต งบประมาณ และแผนการก่อสร้าง แชร์ใน data room เพื่อการตรวจสอบของคุณ"},"Clear exit options":{"fr":"Des options de sortie claires","ru":"Понятный выход","vi":"Phương án thoái vốn rõ ràng","ja":"明確なイグジット","zh":"清晰的退出方式","id":"Opsi keluar yang jelas","th":"ทางออกที่ชัดเจน"},"Right of first refusal, pre-agreed buy-back and tag-along terms, so you know in advance how you can exit.":{"fr":"Droit de préemption, rachat pré-convenu et clause de sortie conjointe : vous savez à l'avance comment sortir.","ru":"Преимущественное право выкупа, заранее согласованный обратный выкуп и право совместной продажи — вы заранее знаете, как выйти.","vi":"Quyền ưu tiên mua, mua lại theo điều khoản thỏa thuận trước và quyền bán kèm, để bạn biết trước cách thoái vốn.","ja":"優先買取権、事前合意の買戻し条件、タグアロング権。退出方法を事前に把握できます。","zh":"优先购买权、预先约定的回购条款和随售权，让您提前知道如何退出。","id":"Hak penolakan pertama, ketentuan pembelian kembali yang disepakati, dan hak ikut jual, sehingga Anda tahu sejak awal cara keluar.","th":"สิทธิซื้อก่อน เงื่อนไขซื้อคืนที่ตกลงไว้ล่วงหน้า และสิทธิขายตาม คุณรู้ล่วงหน้าว่าจะออกจากการลงทุนอย่างไร"},"Protection mechanisms are proposed terms and become binding only once included in the signed shareholder and investment agreements. Investing involves risk, including possible loss of capital.":{"fr":"Les mécanismes de protection sont des conditions proposées et ne deviennent contraignants qu'une fois inclus dans le pacte d'associés et le contrat d'investissement signés. Tout investissement comporte des risques, y compris la perte du capital.","ru":"Механизмы защиты — это предлагаемые условия; обязательными они становятся после включения в подписанные акционерное и инвестиционное соглашения. Инвестиции связаны с риском, включая возможную потерю капитала.","vi":"Các cơ chế bảo vệ là điều khoản đề xuất và chỉ có hiệu lực khi được đưa vào thỏa thuận cổ đông và hợp đồng đầu tư đã ký. Đầu tư có rủi ro, bao gồm khả năng mất vốn.","ja":"保護の仕組みは提案条件であり、署名済みの株主間契約・投資契約に盛り込まれた時点で拘束力を持ちます。投資には元本割れを含むリスクがあります。","zh":"保护机制为拟议条款，只有写入已签署的股东协议和投资协议后才具约束力。投资有风险，包括可能损失本金。","id":"Mekanisme perlindungan adalah ketentuan yang diusulkan dan baru mengikat setelah dimasukkan ke perjanjian pemegang saham dan perjanjian investasi yang ditandatangani. Investasi mengandung risiko, termasuk kemungkinan kehilangan modal.","th":"กลไกคุ้มครองเป็นเงื่อนไขที่เสนอ และมีผลผูกพันเมื่อรวมอยู่ในสัญญาผู้ถือหุ้นและสัญญาการลงทุนที่ลงนามแล้วเท่านั้น การลงทุนมีความเสี่ยง รวมถึงอาจสูญเสียเงินทุน"},"Project":{"fr":"Projet","ru":"Проект","vi":"Dự án","ja":"プロジェクト","zh":"项目","id":"Proyek","th":"โครงการ"},"Location":{"fr":"Localisation","ru":"Локация","vi":"Địa điểm","ja":"所在地","zh":"地点","id":"Lokasi","th":"ที่ตั้ง"},"Bali, Indonesia":{"fr":"Bali, Indonésie","ru":"Бали, Индонезия","vi":"Bali, Indonesia","ja":"インドネシア・バリ","zh":"印度尼西亚巴厘岛","id":"Bali, Indonesia","th":"บาหลี อินโดนีเซีย"},"Monthly":{"fr":"Mensuel","ru":"Ежемесячно","vi":"Hàng tháng","ja":"毎月","zh":"每月","id":"Bulanan","th":"รายเดือน"},"Call":{"fr":"Appeler","ru":"Позвонить","vi":"Gọi","ja":"電話する","zh":"致电","id":"Telepon","th":"โทร"},"yrs":{"fr":"ans","ru":"лет","vi":"năm","ja":"年","zh":"年","id":"thn","th":"ปี"},"Wellness project · Bali":{"fr":"Projet bien-être · Bali","ru":"Wellness-проект · Бали","vi":"Dự án wellness · Bali","ja":"ウェルネスプロジェクト · バリ","zh":"康养项目 · 巴厘岛","id":"Proyek wellness · Bali","th":"โครงการเวลเนส · บาหลี"},"WATERFALL: a new wellness destination in Bali, open to one partner":{"fr":"WATERFALL : une nouvelle destination bien-être à Bali, ouverte à un partenaire","ru":"WATERFALL: новое wellness-пространство на Бали, открытое для одного партнёра","vi":"WATERFALL: điểm đến wellness mới tại Bali, dành cho một đối tác","ja":"WATERFALL：パートナー1社に開かれた、バリの新しいウェルネス施設","zh":"WATERFALL：巴厘岛全新康养目的地，面向一位合作伙伴开放","id":"WATERFALL: destinasi wellness baru di Bali, terbuka untuk satu mitra","th":"WATERFALL: จุดหมายเวลเนสแห่งใหม่ในบาหลี เปิดรับพันธมิตรหนึ่งราย"},"WATERFALL is a new spa and wellness project by THE FACES, the team behind an operating spa in Ubud. THE FACES builds, staffs and runs the destination, with regular reporting to its partner.":{"fr":"WATERFALL est un nouveau projet de spa et de bien-être de THE FACES, l’équipe d’un spa déjà en activité à Ubud. THE FACES construit, recrute et gère la destination, avec un reporting régulier à son partenaire.","ru":"WATERFALL — новый SPA и wellness-проект THE FACES, команды, у которой уже работает салон в Убуде. THE FACES строит, набирает команду и управляет пространством, регулярно отчитываясь перед партнёром.","vi":"WATERFALL là dự án spa và wellness mới của THE FACES, đội ngũ đang vận hành một spa tại Ubud. THE FACES xây dựng, tuyển nhân sự và vận hành, đồng thời báo cáo định kỳ cho đối tác.","ja":"WATERFALLは、ウブドでスパを運営するTHE FACESによる新しいスパ＆ウェルネスプロジェクトです。建設、採用、運営はTHE FACESが担い、パートナーに定期的に報告します。","zh":"WATERFALL是THE FACES的全新水疗与康养项目，团队已在乌布运营一家水疗中心。THE FACES负责建设、招聘和运营，并定期向合作伙伴报告。","id":"WATERFALL adalah proyek spa dan wellness baru dari THE FACES, tim yang sudah mengoperasikan spa di Ubud. THE FACES membangun, merekrut tim, dan mengelola destinasi ini, dengan laporan berkala kepada mitranya.","th":"WATERFALL คือโครงการสปาและเวลเนสใหม่ของ THE FACES ทีมที่บริหารสปาในอูบุดอยู่แล้ว THE FACES เป็นผู้ก่อสร้าง สรรหาทีม และบริหาร พร้อมรายงานให้พันธมิตรอย่างสม่ำเสมอ"},"Under construction":{"fr":"En construction","ru":"Строится","vi":"Đang xây dựng","ja":"建設中","zh":"在建","id":"Sedang dibangun","th":"กำลังก่อสร้าง"},"One partner sought":{"fr":"Un partenaire recherché","ru":"Ищем одного партнёра","vi":"Tìm một đối tác","ja":"パートナー1社を募集","zh":"寻找一位合作伙伴","id":"Mencari satu mitra","th":"มองหาพันธมิตรหนึ่งราย"},"Request a partnership call":{"fr":"Demander un appel","ru":"Запросить звонок","vi":"Yêu cầu cuộc gọi hợp tác","ja":"パートナーシップの通話を依頼","zh":"申请合作通话","id":"Minta panggilan kemitraan","th":"ขอนัดโทรคุยเรื่องความร่วมมือ"},"See the project":{"fr":"Voir le projet","ru":"Смотреть проект","vi":"Xem dự án","ja":"プロジェクトを見る","zh":"查看项目","id":"Lihat proyek","th":"ดูโครงการ"},"Partners sought":{"fr":"Partenaires recherchés","ru":"Партнёров","vi":"Số đối tác","ja":"募集パートナー","zh":"合作伙伴名额","id":"Mitra dicari","th":"จำนวนพันธมิตร"},"terms agreed individually":{"fr":"conditions convenues individuellement","ru":"условия индивидуально","vi":"điều kiện thỏa thuận riêng","ja":"条件は個別に合意","zh":"条件单独协商","id":"ketentuan disepakati individual","th":"เงื่อนไขตกลงเป็นรายบุคคล"},"Our spas are already open":{"fr":"Nos spas sont déjà ouverts","ru":"Наши SPA уже работают","vi":"Các spa của chúng tôi đã hoạt động","ja":"私たちのスパはすでに営業しています","zh":"我们的水疗中心已在运营","id":"Spa kami sudah beroperasi","th":"สปาของเราเปิดดำเนินการแล้ว"},"for about 3 years, with real clients and an experienced team":{"fr":"depuis environ 3 ans, avec de vrais clients et une équipe expérimentée","ru":"около 3 лет, с реальными клиентами и опытной командой","vi":"khoảng 3 năm, với khách hàng thực và đội ngũ giàu kinh nghiệm","ja":"約3年、実際のお客様と経験豊富なチームとともに","zh":"约3年，拥有真实客户和经验丰富的团队","id":"sekitar 3 tahun, dengan klien nyata dan tim berpengalaman","th":"ประมาณ 3 ปี มีลูกค้าจริงและทีมงานมีประสบการณ์"},"Partner protection":{"fr":"Protection du partenaire","ru":"Защита партнёра","vi":"Bảo vệ đối tác","ja":"パートナーの保護","zh":"合作伙伴保障","id":"Perlindungan mitra","th":"การคุ้มครองพันธมิตร"},"Proposed protections for the partner":{"fr":"Protections proposées au partenaire","ru":"Предлагаемые гарантии для партнёра","vi":"Các cơ chế bảo vệ đề xuất cho đối tác","ja":"パートナー向けの保護策（案）","zh":"为合作伙伴提议的保障措施","id":"Perlindungan yang diusulkan untuk mitra","th":"มาตรการคุ้มครองที่เสนอแก่พันธมิตร"},"Participation is formalised by notarial deed and registered with the Indonesian Ministry of Law (AHU). The partner becomes a legal shareholder, not a lender.":{"fr":"La participation est formalisée par acte notarié et enregistrée auprès du ministère indonésien du Droit (AHU). Le partenaire devient actionnaire, et non prêteur.","ru":"Участие оформляется нотариальным актом и регистрируется в Министерстве юстиции Индонезии (AHU). Партнёр становится акционером, а не кредитором.","vi":"Việc tham gia được lập bằng văn bản công chứng và đăng ký với Bộ Luật pháp Indonesia (AHU). Đối tác trở thành cổ đông, không phải người cho vay.","ja":"参画は公証証書で正式に定め、インドネシア法務省（AHU）に登録されます。パートナーは貸し手ではなく株主となります。","zh":"参与通过公证文书确立，并在印度尼西亚法律部（AHU）登记。合作伙伴成为法定股东，而非贷款人。","id":"Partisipasi diformalkan dengan akta notaris dan didaftarkan di Kementerian Hukum Indonesia (AHU). Mitra menjadi pemegang saham, bukan pemberi pinjaman.","th":"การเข้าร่วมทำเป็นเอกสารรับรองโดยโนตารีและจดทะเบียนกับกระทรวงกฎหมายอินโดนีเซีย (AHU) พันธมิตรเป็นผู้ถือหุ้นตามกฎหมาย ไม่ใช่ผู้ให้กู้"},"Reserved matters such as new debt, sale of assets, change of lease or budget need the partner's approval.":{"fr":"Les décisions réservées, comme une nouvelle dette, la vente d’actifs, un changement de bail ou de budget, nécessitent l’accord du partenaire.","ru":"Ключевые решения — новый долг, продажа активов, изменение аренды или бюджета — требуют согласия партнёра.","vi":"Các vấn đề quan trọng như khoản nợ mới, bán tài sản, thay đổi hợp đồng thuê hoặc ngân sách cần được đối tác chấp thuận.","ja":"新たな借入、資産売却、賃貸契約や予算の変更などの重要事項には、パートナーの承認が必要です。","zh":"新增债务、出售资产、变更租约或预算等保留事项需经合作伙伴同意。","id":"Hal-hal penting seperti utang baru, penjualan aset, perubahan sewa atau anggaran memerlukan persetujuan mitra.","th":"เรื่องสำคัญ เช่น หนี้ใหม่ การขายทรัพย์สิน การเปลี่ยนสัญญาเช่าหรืองบประมาณ ต้องได้รับความเห็นชอบจากพันธมิตร"},"Next step":{"fr":"Prochaine étape","ru":"Следующий шаг","vi":"Bước tiếp theo","ja":"次のステップ","zh":"下一步","id":"Langkah berikutnya","th":"ขั้นตอนถัดไป"},"Tell us who you are and what you are looking for. We review every request personally and send suitable partners a link to book a call with the founders.":{"fr":"Dites-nous qui vous êtes et ce que vous recherchez. Nous étudions chaque demande personnellement et envoyons aux partenaires retenus un lien pour réserver un appel avec les fondateurs.","ru":"Расскажите, кто вы и что ищете. Мы лично рассматриваем каждый запрос и отправляем подходящим партнёрам ссылку для записи на звонок с основателями.","vi":"Hãy cho chúng tôi biết bạn là ai và bạn đang tìm gì. Chúng tôi xem xét từng yêu cầu và gửi cho đối tác phù hợp đường dẫn đặt lịch gọi với nhà sáng lập.","ja":"あなたのことと、お探しのものをお聞かせください。すべてのお問い合わせを個別に確認し、適したパートナーに創業者との通話予約リンクをお送りします。","zh":"告诉我们您是谁以及您在寻找什么。我们会亲自审阅每一份申请，并向合适的合作伙伴发送与创始人预约通话的链接。","id":"Ceritakan siapa Anda dan apa yang Anda cari. Kami meninjau setiap permintaan secara pribadi dan mengirimkan tautan untuk menjadwalkan panggilan dengan pendiri kepada mitra yang sesuai.","th":"บอกเราว่าคุณเป็นใครและกำลังมองหาอะไร เราพิจารณาทุกคำขอเป็นการส่วนตัว และส่งลิงก์นัดโทรกับผู้ก่อตั้งให้พันธมิตรที่เหมาะสม"},"Fill in the form — about 1 minute":{"fr":"Remplissez le formulaire — environ 1 minute","ru":"Заполните форму — около минуты","vi":"Điền biểu mẫu — khoảng 1 phút","ja":"フォームに入力（約1分）","zh":"填写表格——约 1 分钟","id":"Isi formulir — sekitar 1 menit","th":"กรอกแบบฟอร์ม — ประมาณ 1 นาที"},"We review your request personally":{"fr":"Nous étudions votre demande personnellement","ru":"Мы лично рассматриваем запрос","vi":"Chúng tôi xem xét yêu cầu của bạn","ja":"お問い合わせを個別に確認","zh":"我们亲自审阅您的申请","id":"Kami meninjau permintaan Anda secara pribadi","th":"เราพิจารณาคำขอเป็นการส่วนตัว"},"Suitable partners book a call with the founders":{"fr":"Les partenaires retenus réservent un appel avec les fondateurs","ru":"Подходящие партнёры записываются на звонок с основателями","vi":"Đối tác phù hợp đặt lịch gọi với nhà sáng lập","ja":"適したパートナーが創業者との通話を予約","zh":"合适的合作伙伴预约与创始人通话","id":"Mitra yang sesuai menjadwalkan panggilan dengan pendiri","th":"พันธมิตรที่เหมาะสมนัดโทรกับผู้ก่อตั้ง"},"Designed for hotel groups, developers, property owners and private partners able to commit significant capital to a premium venue.":{"fr":"Conçu pour les groupes hôteliers, promoteurs, propriétaires et partenaires privés en mesure d’engager un capital significatif dans un lieu premium.","ru":"Для гостиничных групп, девелоперов, владельцев недвижимости и частных партнёров, готовых вложить значительный капитал в премиальный объект.","vi":"Dành cho tập đoàn khách sạn, nhà phát triển, chủ bất động sản và đối tác tư nhân có khả năng đầu tư vốn đáng kể vào một địa điểm cao cấp.","ja":"プレミアム施設にまとまった資本を投じることのできるホテルグループ、デベロッパー、不動産オーナー、個人パートナー向けです。","zh":"面向能够向高端场所投入大额资本的酒店集团、开发商、业主和私人合作伙伴。","id":"Dirancang untuk grup hotel, pengembang, pemilik properti, dan mitra pribadi yang mampu menanamkan modal signifikan pada tempat premium.","th":"ออกแบบมาสำหรับกลุ่มโรงแรม ผู้พัฒนาโครงการ เจ้าของอสังหาริมทรัพย์ และพันธมิตรส่วนบุคคลที่สามารถลงทุนเงินทุนจำนวนมากในสถานที่ระดับพรีเมียม"},"Project pack":{"fr":"Dossier du projet","ru":"Пакет проекта","vi":"Hồ sơ dự án","ja":"プロジェクト資料","zh":"项目资料","id":"Paket proyek","th":"ชุดเอกสารโครงการ"},"Questions partners ask":{"fr":"Questions des partenaires","ru":"Вопросы партнёров","vi":"Câu hỏi của đối tác","ja":"パートナーからの質問","zh":"合作伙伴常见问题","id":"Pertanyaan mitra","th":"คำถามจากพันธมิตร"},"When does the spa open?":{"fr":"Quand le spa ouvrira-t-il ?","ru":"Когда откроется SPA?","vi":"Khi nào spa khai trương?","ja":"スパはいつ開業しますか？","zh":"水疗中心何时开业？","id":"Kapan spa dibuka?","th":"สปาจะเปิดเมื่อไร?"},"After construction is completed. The launch timeline is shared in the project pack after the introductory call.":{"fr":"Après la fin des travaux. Le calendrier de lancement figure dans le dossier du projet, remis après le premier appel.","ru":"После завершения строительства. График запуска — в пакете проекта, который передаётся после знакомственного звонка.","vi":"Sau khi hoàn thành xây dựng. Lộ trình khai trương có trong hồ sơ dự án, gửi sau cuộc gọi giới thiệu.","ja":"建設完了後です。開業スケジュールは、初回の通話後にお渡しするプロジェクト資料に記載しています。","zh":"施工完成后开业。开业时间表包含在项目资料中，初次通话后提供。","id":"Setelah konstruksi selesai. Jadwal peluncuran ada dalam paket proyek yang dibagikan setelah panggilan perkenalan.","th":"หลังการก่อสร้างเสร็จ กำหนดการเปิดอยู่ในชุดเอกสารโครงการที่ส่งให้หลังการโทรแนะนำตัว"},"How is capital controlled?":{"fr":"Comment le capital est-il contrôlé ?","ru":"Как контролируется капитал?","vi":"Vốn được kiểm soát như thế nào?","ja":"資本はどのように管理されますか？","zh":"资金如何管控？","id":"Bagaimana modal dikendalikan?","th":"เงินทุนถูกควบคุมอย่างไร?"},"How are participation terms shared?":{"fr":"Comment les conditions de participation sont-elles communiquées ?","ru":"Как предоставляются условия участия?","vi":"Điều kiện tham gia được cung cấp như thế nào?","ja":"参画条件はどのように案内されますか？","zh":"参与条件如何提供？","id":"Bagaimana ketentuan partisipasi disampaikan?","th":"เงื่อนไขการเข้าร่วมแจ้งอย่างไร?"},"Individually, after an introductory call, and only where the law of your country allows. We do not publish amounts or returns.":{"fr":"Individuellement, après un premier appel, et uniquement là où la loi de votre pays le permet. Nous ne publions ni montants d’investissement ni rendements.","ru":"Индивидуально, после знакомственного звонка и только если это допускает законодательство вашей страны. Мы не публикуем суммы инвестиций и доходность.","vi":"Được cung cấp riêng sau cuộc gọi giới thiệu và chỉ khi luật nước bạn cho phép. Chúng tôi không công bố số tiền đầu tư hay lợi nhuận.","ja":"初回の通話後、お住まいの国の法令で認められる場合に限り、個別にご案内します。投資額やリターンは公表していません。","zh":"在初次通话后单独提供，且仅在您所在国家法律允许的情况下。我们不公开投资金额或回报。","id":"Secara individual, setelah panggilan perkenalan, dan hanya jika diizinkan hukum negara Anda. Kami tidak memublikasikan jumlah investasi atau imbal hasil.","th":"แจ้งเป็นรายบุคคลหลังการโทรแนะนำตัว และเฉพาะที่กฎหมายของประเทศคุณอนุญาต เราไม่เผยแพร่จำนวนเงินลงทุนหรือผลตอบแทน"},"1-minute form":{"fr":"Formulaire d’1 minute","ru":"Форма на 1 минуту","vi":"Biểu mẫu 1 phút","ja":"1分のフォーム","zh":"1 分钟表格","id":"Formulir 1 menit","th":"แบบฟอร์ม 1 นาที"},"Choose the way that suits you. We answer every enquiry personally.":{"fr":"Choisissez le moyen qui vous convient. Nous répondons personnellement à chaque demande.","ru":"Выберите удобный способ. Мы лично отвечаем на каждый запрос.","vi":"Chọn cách phù hợp với bạn. Chúng tôi trả lời từng yêu cầu.","ja":"ご都合のよい方法をお選びください。すべてのお問い合わせに個別にお答えします。","zh":"选择适合您的方式。我们会亲自回复每一个咨询。","id":"Pilih cara yang Anda suka. Kami menjawab setiap permintaan secara pribadi.","th":"เลือกช่องทางที่สะดวก เราตอบทุกคำถามเป็นการส่วนตัว"},"Request a call":{"fr":"Demander un appel","ru":"Запросить звонок","vi":"Yêu cầu cuộc gọi","ja":"通話を依頼","zh":"申请通话","id":"Minta panggilan","th":"ขอนัดโทร"},"Usual response time: within 24 hours · English · Русский · Español · Bahasa Indonesia":{"fr":"Délai de réponse habituel : sous 24 heures · English · Русский · Español · Bahasa Indonesia","ru":"Обычно отвечаем в течение 24 часов · English · Русский · Español · Bahasa Indonesia","vi":"Thời gian phản hồi thường: trong 24 giờ · English · Русский · Español · Bahasa Indonesia","ja":"通常24時間以内に返信 · English · Русский · Español · Bahasa Indonesia","zh":"通常 24 小时内回复 · English · Русский · Español · Bahasa Indonesia","id":"Biasanya dibalas dalam 24 jam · English · Русский · Español · Bahasa Indonesia","th":"ปกติตอบกลับภายใน 24 ชั่วโมง · English · Русский · Español · Bahasa Indonesia"}};
+
+(function(){
+  var C = TF_CONFIG, root = document.getElementById('tfw');
+  if(!root) return;
+
+  /* ---------- contact links ---------- */
+  var links = {
+    book: C.bookingUrl,
+    phone: 'tel:' + C.phone.replace(/[^\d+]/g,''),
+    whatsapp: 'https://wa.me/' + C.whatsapp + '?text=' + encodeURIComponent(C.whatsappText),
+    email: 'mailto:' + C.email + '?subject=' + encodeURIComponent(C.emailSubject)
+  };
+  root.querySelectorAll('[data-tf]').forEach(function(a){
+    var k = a.getAttribute('data-tf');
+    if(!links[k]) return;
+    a.setAttribute('href', links[k]);
+    if(k === 'whatsapp' || k === 'book'){ a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); }
+    a.addEventListener('click', function(){ track(k); });
+  });
+  root.querySelectorAll('[data-tf-text]').forEach(function(el){
+    var k = el.getAttribute('data-tf-text');
+    if(C[k]) el.textContent = C[k];
+  });
+
+  /* ---------- language: auto from phone/browser + manual switch ---------- */
+  var LANGS = ['en','fr','ru','vi','ja','zh','id','th'];
+  var orig = [];
+  (function collect(){
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode:function(n){
+      var p = n.parentNode && n.parentNode.nodeName;
+      if(p === 'SCRIPT' || p === 'STYLE' || p === 'OPTION') return NodeFilter.FILTER_REJECT;
+      if(n.parentNode.closest){ if(n.parentNode.closest('#tf1-form-slot')) return NodeFilter.FILTER_REJECT; }
+      return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }});
+    var n; while((n = w.nextNode())) orig.push([n, n.nodeValue]);
+  })();
+  var curLang = 'en';
+  function tr(s){ var k = s.replace(/\s+/g,' ').trim(); var e = TF_I18N[k]; return (curLang !== 'en' && e && e[curLang]) ? e[curLang] : k; }
+  function applyLang(l){
+    curLang = LANGS.indexOf(l) > -1 ? l : 'en';
+    orig.forEach(function(p){
+      var src = p[1], key = src.replace(/\s+/g,' ').trim(), e = TF_I18N[key];
+      var out = (curLang !== 'en' && e && e[curLang]) ? e[curLang] : key;
+      p[0].nodeValue = (/^\s/.test(src) ? ' ' : '') + out + (/\s$/.test(src) ? ' ' : '');
+    });
+    root.setAttribute('data-lang', curLang);
+    root.setAttribute('lang', curLang === 'zh' ? 'zh-Hans' : curLang);
+    var sel = document.getElementById('tfw-lang'); if(sel) sel.value = curLang;
+  }
+  function detectLang(){
+    try{ var s = localStorage.getItem('tfw-lang'); if(LANGS.indexOf(s) > -1) return s; }catch(e){}
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+    for(var i=0;i<list.length;i++){ var c = String(list[i]).toLowerCase().slice(0,2); if(c === 'in') c = 'id'; if(LANGS.indexOf(c) > -1) return c; }
+    return 'en';
+  }
+  var langSel = document.getElementById('tfw-lang');
+  if(langSel) langSel.addEventListener('change', function(){
+    try{ localStorage.setItem('tfw-lang', langSel.value); }catch(e){}
+    applyLang(langSel.value); track('lang_' + langSel.value);
+  });
+
+  /* ---------- instagram proof cards ---------- */
+  root.querySelectorAll('[data-ig]').forEach(function(a){
+    var u = (C.instagram || [])[+a.getAttribute('data-ig')];
+    if(!u){ a.style.display='none'; return; }
+    a.setAttribute('href', u);
+    var h = a.querySelector('[data-ig-handle]');
+    var m = u.match(/instagram\.com\/([^\/?#]+)/);
+    if(h && m) h.textContent = '@' + m[1];
+    a.addEventListener('click', function(){ track('instagram'); });
+  });
+
+  /* ---------- conversion tracking (Google Ads / GTM) ---------- */
+  function track(kind){
+    try{
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({event:'tf_lead_click', lead_type:kind, project:'waterfall'});
+      if(typeof window.gtag === 'function'){
+        window.gtag('event','tf_lead_click',{lead_type:kind, project:'waterfall'});
+        if(C.adsConversion[kind]) window.gtag('event','conversion',{send_to:C.adsConversion[kind]});
+      }
+    }catch(e){}
+  }
+
+  /* ---------- CTA tracking (all buttons lead to the request form) ---------- */
+  root.querySelectorAll('[data-go]').forEach(function(a){ a.addEventListener('click', function(){ track('cta_' + a.getAttribute('data-go')); }); });
+  var $ = function(id){ return document.getElementById(id); };
+  applyLang(detectLang());
+
+  /* ---------- floating buttons after hero ---------- */
+  var fab = $('tfw-fab'), hero = $('tfw-hero');
+  function onScroll(){ if(fab) if(hero) fab.classList.toggle('on', hero.getBoundingClientRect().bottom < 0); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+
+/* ---------- Forminator 703: move the site-wide copy of the form here and track the real conversion ---------- */
+(function(){
+  var root=document.getElementById('tfw');if(!root||root.dataset.formReady)return;root.dataset.formReady='1';
+  var CFG={
+    forminatorId:703,
+    fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'textarea-1',budget:'radio-1'},
+    hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},
+    sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',
+    calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
+    adsSendTo:'AW-18530799499/0rmsCJj8wLkdEIufloRF'   /* e.g. 'AW-18528850470/AbC123xyz' (Google Ads → Goals → Conversions → Investor enquiry → Tag setup) */,
+    interest:'project_waterfall'
+  };
+  var TX={
+    en:{thanks:'Thank you! Your request has been received. You can already choose a time for your call:',book:'Book your call'},
+    ru:{thanks:'Спасибо! Запрос получен. Уже сейчас можно выбрать время звонка:',book:'Записаться на звонок'},
+    fr:{thanks:'Merci ! Votre demande a bien été reçue. Vous pouvez déjà choisir l’horaire de votre appel :',book:'Réserver mon appel'},
+    id:{thanks:'Terima kasih! Permintaan Anda sudah kami terima. Anda sudah bisa memilih waktu panggilan:',book:'Jadwalkan panggilan'}
+  };
+  function lang(){return root.getAttribute('data-lang')||'en'}
+  function tx(k){var l=TX[lang()]||TX.en;return l[k]||TX.en[k]}
+  function q(s){return root.querySelector(s)}
+  window.dataLayer=window.dataLayer||[];
+  function track(ev,o){var d={event:ev,page:location.pathname,project:'waterfall'};for(var k in o)d[k]=o[k];window.dataLayer.push(d)}
+  var attr={};
+  try{var u=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid'].forEach(function(k){var v=u.get(k);if(v)attr[k]=String(v).slice(0,150)});
+    if(Object.keys(attr).length)sessionStorage.setItem('tf_attr',JSON.stringify(attr));else attr=JSON.parse(sessionStorage.getItem('tf_attr')||'{}')}catch(e){}
+  var lastGo='';
+  root.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a'):null;if(!a)return;
+    if(a.hasAttribute('data-go'))lastGo=a.getAttribute('data-go');
+    if(a.hasAttribute('data-cal'))track('thefaces_booking_click',{placement:a.getAttribute('data-cal'),link_url:CFG.calendar})},true);
+
+  function findForm(){return document.querySelector('#tf-form-703-src form.forminator-custom-form')||document.querySelector('form.forminator-custom-form[data-form-id="'+CFG.forminatorId+'"]')||document.querySelector('#forminator-module-'+CFG.forminatorId)}
+  function fEl(f,key){var n=CFG.fields[key]||CFG.hidden[key];if(!n||!f)return null;return f.querySelector('[name="'+n+'"]')||f.querySelector('[name^="'+n+'-"]')||(key==='country'?f.querySelector('[name="text-1"]'):null)}
+  function fVal(f,key){var el=fEl(f,key);if(!el)return '';
+    if(el.type==='radio'||el.type==='checkbox'){var c=f.querySelector('[name="'+el.name+'"]:checked');return c?c.value:''}
+    if(key==='name'){if(el.name!==CFG.fields.name)return [].map.call(f.querySelectorAll('[name^="'+CFG.fields.name+'-"]'),function(x){return x.value}).join(' ').trim()}
+    return String(el.value||'').trim()}
+  var pending=null,tries=0;
+  var iv=setInterval(function(){var f=findForm();
+    if(f){clearInterval(iv);var slot=q('#tf1-form-slot');slot.innerHTML='';slot.appendChild(f);wire(f)}
+    else{tries++;if(tries>40){clearInterval(iv);var s=q('#tf1-form-slot');if(s)s.innerHTML='';var w=q('#tf1-form-wait');if(w)w.hidden=false;track('thefaces_form_missing',{form_id:CFG.forminatorId})}}},250);
+  function wire(f){
+    if(f.dataset.wfWired)return;f.dataset.wfWired='1';
+    f.addEventListener('focusin',function(){if(!f.dataset.wfStart){f.dataset.wfStart='1';track('thefaces_form_start',{form_id:CFG.forminatorId,placement:'waterfall'})}});
+    f.addEventListener('submit',function(){
+      var em=fVal(f,'email'),nm=fVal(f,'name');
+      if(!/^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(em)||nm.replace(/\s/g,'').length<2){track('thefaces_form_error',{field:em?'name':'email'});return}
+      var id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
+      var hv={lead_id:id,language:lang(),placement:'waterfall_'+(lastGo||'form'),page:location.href.split('#')[0].slice(0,250)};for(var k in attr)hv[k]=attr[k];
+      Object.keys(CFG.hidden).forEach(function(k){var el=fEl(f,k);if(el){if(hv[k]!==undefined)el.value=hv[k]}});
+      pending={lead_id:id,name:nm,email:em,phone:fVal(f,'phone'),country:fVal(f,'country'),budget:fVal(f,'budget'),hv:hv};
+    },true);
+    function done(){if(!pending)return;var d=pending;pending=null;
+      /* the conversion: GTM trigger generate_lead -> Google Ads "Investor enquiry - Forminator 703" */
+      track('generate_lead',{lead_id:d.lead_id,form_id:'forminator_'+CFG.forminatorId,lead_method:'forminator',interest:CFG.interest,budget:d.budget||'not_given',country:d.country||'',
+        form_language:lang(),placement:d.hv.placement,page_path:location.pathname,value:0,currency:'USD'});
+
+      /* direct Google Ads conversion with gtag (works even if the Tag Manager tag is missing).
+         The label comes from CFG.adsSendTo or from window.TF_ADS_SEND_TO (set once, site-wide, in WPCode). */
+      try{var st=CFG.adsSendTo||window.TF_ADS_SEND_TO||'';
+        if(st){if(typeof window.gtag==='function'){
+          var ud={email:String(d.email||'').toLowerCase()};var ph=String(d.phone||'').replace(/[^\d+]/g,'');if(ph.length>7)ud.phone_number=(ph.charAt(0)==='+'?ph:'+'+ph);
+          var aw=st.split('/')[0];if(!window['__tfAwCfg_'+aw]){window['__tfAwCfg_'+aw]=1;window.gtag('config',aw)}
+          window.gtag('set','user_data',ud);
+          window.gtag('event','conversion',{send_to:st,value:1,currency:'USD',transaction_id:d.lead_id});
+          track('thefaces_ads_conversion_sent',{send_to:st,lead_id:d.lead_id})}}}catch(x){}
+      /* the Google Sheet row */
+      var F=CFG.fields,H=CFG.hidden,row={};
+      row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row['text-1']=d.country;if(d.budget)row[F.budget]=d.budget;
+      row['Interest']=CFG.interest;
+      Object.keys(H).forEach(function(k){if(d.hv[k]!==undefined)row[H[k]]=d.hv[k]});
+      try{fetch(CFG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams(row)})}catch(x){}
+      var slot=q('#tf1-form-slot');if(slot){if(!slot.querySelector('.thanks')){var th=document.createElement('div');th.className='thanks';
+        th.innerHTML='<p></p><a class="btn" target="_blank" rel="noopener" data-cal="after_lead"></a>';th.querySelector('p').textContent=tx('thanks');
+        var a=th.querySelector('a');a.href=CFG.calendar;a.textContent=tx('book');slot.appendChild(th)}}
+    }
+    if(window.jQuery){var J=window.jQuery;
+      J(document).on('forminator:form:submit:success',function(e){if(e.target===f||J(e.target).closest(f).length)done()});
+      J(document).on('forminator:form:submit:failed',function(e){if(e.target===f||J(e.target).closest(f).length){if(pending)track('thefaces_form_fail',{form_id:CFG.forminatorId});pending=null}})}
+    try{new MutationObserver(function(){if(pending){if(f.querySelector('.forminator-response-message.forminator-success,.forminator-success'))done()}}).observe(f,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
+  }
+})();
+</script>
