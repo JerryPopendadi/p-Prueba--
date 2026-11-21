@@ -21,3 +21,11 @@ out = re.sub(r'\{\{(\w+)\}\}', rep, out)
 if missing: sys.exit('missing keys: %s' % missing)
 open(os.path.join(here,'..','index.html'),'w',encoding='utf-8').write(out)
 print('index.html', len(out))
+# Versión para WordPress: python3 build_site.py https://tusitio.com/wp-content/uploads/2026/11/
+if len(sys.argv) > 1:
+    base = sys.argv[1].rstrip('/') + '/'
+    wp = re.sub(r'(src|poster)="(img|video)/', lambda m: f'{m.group(1)}="{base}', out)
+    wp = re.sub(r"url\((img)/", f"url({base}", wp)
+    wp = wp.replace("'img/", "'" + base)
+    open(os.path.join(here,'..','index-wordpress.html'),'w',encoding='utf-8').write(wp)
+    print('index-wordpress.html', base)
