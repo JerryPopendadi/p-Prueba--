@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ALTA — Residencias privadas</title>
-<meta name="description" content="Una torre residencial moderna y minimalista. Entra en ella haciendo scroll.">
+<title>MALBO Innovation — Webs inmersivas</title>
+<meta name="description" content="MALBO Innovation crea webs inmersivas para proyectos inmobiliarios: entra en el edificio haciendo scroll.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
   --muted:rgba(244,239,232,.66);
   --line:rgba(244,239,232,.3);
   --gold:#f2c27b;
+  --blue:#8ea2ff;
   --bg:#0c0c0e;
   --sans:"Archivo",system-ui,sans-serif;
   --serif:"Instrument Serif",Georgia,serif;
@@ -39,15 +40,15 @@ a{color:inherit;text-decoration:none}
 @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
 
 /* ---------- CABECERA ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:24px;padding:18px var(--pad)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;background:linear-gradient(rgba(12,12,14,.75),rgba(12,12,14,0));display:flex;align-items:center;gap:24px;padding:18px var(--pad)}
 .logo{font-weight:900;font-stretch:125%;letter-spacing:.06em;font-size:18px;display:flex;align-items:baseline;gap:14px}
 .logo span{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.2em;color:var(--muted)}
 .links{margin-left:auto;display:flex;gap:6px}
 .links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border:1px solid transparent;color:var(--muted);transition:.3s}
 .links a b{font-weight:500;color:var(--ink);margin-right:6px}
 .links a:hover,.links a.on{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.06);backdrop-filter:blur(8px)}
-.cta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;border-radius:999px;background:var(--gold);color:#1a140c;font-weight:500;transition:.3s}
-.cta:hover{background:#fff}
+.cta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;border-radius:999px;background:var(--ink);color:#0c0c0e;font-weight:500;transition:.3s}
+.cta:hover{background:var(--blue)}
 
 /* ---------- HUD ---------- */
 .hud{position:fixed;inset:0;z-index:10;pointer-events:none;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:opacity .4s}
@@ -92,7 +93,7 @@ a{color:inherit;text-decoration:none}
 .after{position:relative;z-index:12;background:var(--bg)}
 .stats{padding:clamp(80px,14vw,180px) var(--pad) 60px;border-top:1px solid var(--line)}
 .lead{font-family:var(--serif);font-style:italic;font-size:clamp(34px,5.4vw,84px);line-height:1;letter-spacing:-.01em;max-width:1100px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:28px;border-top:1px solid var(--line)}
 .grid div{padding:22px 20px 0 0;border-right:1px solid var(--line);margin-right:20px}
 .grid div:last-child{border-right:0}
 .grid span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
@@ -109,7 +110,23 @@ a{color:inherit;text-decoration:none}
 .visit form{display:grid;gap:12px}
 .visit input{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;font-size:16px;padding:14px 0;outline:none}
 .visit input:focus{border-color:var(--ink)}
-.visit button{justify-self:start;margin-top:14px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:15px 26px;border-radius:999px;border:0;background:var(--gold);color:#1a140c}
+.visit button{justify-self:start;margin-top:14px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:15px 26px;border-radius:999px;border:0;background:var(--ink);color:#0c0c0e;transition:.3s}
+.visit button:hover{background:var(--blue)}
+.malbo{display:block;color:var(--ink);height:auto}
+.malbo.sm{width:118px}
+.intro{padding:clamp(80px,14vw,180px) var(--pad) clamp(60px,8vw,100px);border-top:1px solid var(--line)}
+.intro .lead em,.visit h3 em{color:var(--blue)}
+.lead em{font-style:italic}
+.intro-body{max-width:520px;margin-top:28px;font-size:16px;line-height:1.55;color:var(--muted)}
+.svc,.process ol{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(50px,7vw,90px);border-top:1px solid var(--line);list-style:none}
+.svc article,.process li{padding:24px 22px 0 0;margin-right:22px;border-right:1px solid var(--line)}
+.svc article:last-child,.process li:last-child{border-right:0}
+.svc b,.process b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--blue)}
+.svc h4,.process h4{font-weight:700;font-stretch:112%;font-size:22px;letter-spacing:-.02em;margin:14px 0 10px}
+.svc p,.process p{font-size:14px;line-height:1.5;color:var(--muted)}
+.process{padding:clamp(70px,10vw,140px) var(--pad) 0}
+.foot-logo .malbo{width:110px;color:var(--muted)}
+footer{align-items:center;gap:20px;flex-wrap:wrap}
 footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
 @media (max-width:860px){
@@ -118,6 +135,9 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
   .grid{grid-template-columns:1fr 1fr}
   .grid div:nth-child(2){border-right:0}
   .visit{grid-template-columns:1fr}
+  .svc,.process ol{grid-template-columns:1fr 1fr;row-gap:30px}
+  .svc article:nth-child(2),.process li:nth-child(2){border-right:0}
+  .malbo.sm{width:96px}
   .chap .body{font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){.grain,.track{animation:none}}
@@ -128,25 +148,36 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
 </head>
 <body>
 
-<div id="loader"><div><div id="loadTxt">Cargando experiencia</div><div class="bar"><i id="loadBar"></i></div></div></div>
+<div id="loader"><div><div id="loadTxt">MALBO Innovation</div><div class="bar"><i id="loadBar"></i></div></div></div>
 
 <div id="stage"><canvas id="c"></canvas></div>
 <div class="grain"></div>
 
 <header class="nav">
-  <a class="logo" href="#top">ALTA<span>Residencias</span></a>
+  <a class="logo" href="#" data-go="0"><svg class="malbo sm" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
+  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".55" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
+  <g fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter">
+    <path d="M8 120V14l50 50" stroke="url(#mg)"/><path d="M58 64l50-50v106"/>
+    <path d="M138 120l52-106 52 106"/>
+    <path d="M275 10v104h66"/>
+    <path d="M372 120V14h44a25 25 0 0 1 0 50h-44m44 0h4a28 28 0 0 1 0 56h-48"/>
+    <circle cx="530" cy="67" r="52"/>
+  </g>
+  <path d="M500 67l70-3 26 3-26 3z" fill="currentColor"/>
+  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
+</svg></a>
   <nav class="links">
-    <a href="#" data-go="0.20"><b>01</b>Proyecto</a>
-    <a href="#" data-go="0.45"><b>02</b>Arquitectura</a>
-    <a href="#" data-go="0.84"><b>03</b>Residencias</a>
-    <a href="#stats"><b>04</b>Ubicación</a>
+    <a href="#" data-go="0.20"><b>01</b>Experiencia</a>
+    <a href="#servicios"><b>02</b>Servicios</a>
+    <a href="#proceso"><b>03</b>Proceso</a>
+    <a href="#contacto"><b>04</b>Contacto</a>
   </nav>
-  <a class="cta" href="#visita">Agendar visita</a>
+  <a class="cta" href="#contacto">Quiero mi web</a>
 </header>
 
 <div class="hud" id="hud">
   <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div>
-  <div class="hud-loc">ALTA / Madrid</div>
+  <div class="hud-loc">Malbo × ALTA / Demo</div>
   <div class="hud-tc">TC <span id="tc">00:00:00:00</span></div>
   <ol class="chap-index" id="chapIndex">
     <li>01 — La parcela</li>
@@ -186,10 +217,11 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
     <p class="body">Madera, piedra y luz cálida. El tráfico fuera; dentro, solo el ritmo de casa.</p>
   </article>
   <article class="chap final" data-in="0.955" data-out="2" data-idx="4">
-    <h2>Véalo <em>en persona.</em></h2>
+    <p class="kicker">— Una experiencia de MALBO Innovation</p>
+    <h2>¿Y si tu proyecto <em>se viviera así?</em></h2>
     <div class="btns">
-      <a class="btn solid" href="#visita">Agendar visita</a>
-      <a class="btn" href="#stats">Explorar residencias</a>
+      <a class="btn solid" href="#contacto">Quiero mi web</a>
+      <a class="btn" href="#servicios">Ver servicios</a>
     </div>
   </article>
 </div>
@@ -198,8 +230,20 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
 <section id="scrolly" aria-hidden="true"></section>
 
 <div class="after">
+  <section class="intro" id="servicios">
+    <p class="kicker">— MALBO Innovation</p>
+    <p class="lead">Esto no es un vídeo. <em>Es una web.</em><br>Tus clientes entran en el edificio antes de que exista.</p>
+    <p class="intro-body">En MALBO creamos webs inmersivas para promotoras, inmobiliarias y estudios de arquitectura: imágenes realistas, vídeo cinematográfico y una experiencia que se controla con el scroll.</p>
+    <div class="svc">
+      <article><b>01</b><h4>Webs inmersivas</h4><p>El scroll mueve la cámara: del solar vacío al salón, en un solo gesto.</p></article>
+      <article><b>02</b><h4>Imágenes y vídeo con IA</h4><p>Exteriores e interiores realistas a partir de planos, renders o una idea.</p></article>
+      <article><b>03</b><h4>Recorridos 3D</h4><p>Escenas en tiempo real que funcionan en cualquier navegador, también en móvil.</p></article>
+      <article><b>04</b><h4>Captación</h4><p>Formularios, agenda de visitas y analítica para convertir visitas en clientes.</p></article>
+    </div>
+  </section>
+
   <section class="stats" id="stats">
-    <p class="lead">Cada vivienda tiene su propia sala al aire libre, profunda y protegida, mirando a la ciudad.</p>
+    <p class="kicker">— Proyecto demo · ALTA Residencias</p>
     <div class="grid">
       <div><span>Residencias</span><strong data-count="48">0</strong></div>
       <div><span>Plantas</span><strong data-count="32">0</strong></div>
@@ -207,22 +251,48 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
       <div><span>Altura</span><strong data-count="115" data-suffix="m">0</strong></div>
     </div>
     <div class="marquee"><div class="track">
-      Residencias<i>✦</i><span class="o">Arquitectura</span><i>✦</i>Interiores<i>✦</i><span class="o">Ubicación</span><i>✦</i>
-      Residencias<i>✦</i><span class="o">Arquitectura</span><i>✦</i>Interiores<i>✦</i><span class="o">Ubicación</span><i>✦</i>
+      Malbo<i>✦</i><span class="o">Innovation</span><i>✦</i>Webs inmersivas<i>✦</i><span class="o">Arquitectura</span><i>✦</i>
+      Malbo<i>✦</i><span class="o">Innovation</span><i>✦</i>Webs inmersivas<i>✦</i><span class="o">Arquitectura</span><i>✦</i>
     </div></div>
   </section>
 
-  <section class="visit" id="visita">
-    <h3>Reserve <em>su visita</em> privada.</h3>
-    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Gracias — le contactaremos';">
+  <section class="process" id="proceso">
+    <p class="kicker">— Cómo trabajamos</p>
+    <ol>
+      <li><b>01</b><h4>Guion</h4><p>Definimos el recorrido: de dónde parte la cámara y dónde termina.</p></li>
+      <li><b>02</b><h4>Imágenes</h4><p>Fotogramas clave realistas del edificio, la terraza y el interior.</p></li>
+      <li><b>03</b><h4>Vídeo</h4><p>Unimos los planos en una sola toma cinematográfica.</p></li>
+      <li><b>04</b><h4>Web</h4><p>Programamos la experiencia, la optimizamos y la publicamos.</p></li>
+    </ol>
+  </section>
+
+  <section class="visit" id="contacto">
+    <h3>¿Y si tu proyecto <em>se viviera así?</em></h3>
+    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Gracias — te contactaremos';">
       <input required placeholder="Nombre">
+      <input placeholder="Empresa">
       <input required type="email" placeholder="Email">
-      <input placeholder="Teléfono">
-      <button type="submit">Enviar solicitud</button>
+      <input placeholder="Proyecto (ciudad, nº de viviendas…)">
+      <button type="submit">Quiero mi web inmersiva</button>
     </form>
   </section>
 
-  <footer><span>© ALTA Residencias</span><span>Madrid · 2028</span></footer>
+  <footer>
+    <a href="https://malboinnovation.com" class="foot-logo"><svg class="malbo" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
+  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".55" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
+  <g fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter">
+    <path d="M8 120V14l50 50" stroke="url(#mg)"/><path d="M58 64l50-50v106"/>
+    <path d="M138 120l52-106 52 106"/>
+    <path d="M275 10v104h66"/>
+    <path d="M372 120V14h44a25 25 0 0 1 0 50h-44m44 0h4a28 28 0 0 1 0 56h-48"/>
+    <circle cx="530" cy="67" r="52"/>
+  </g>
+  <path d="M500 67l70-3 26 3-26 3z" fill="currentColor"/>
+  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
+</svg></a>
+    <span>malboinnovation.com</span>
+    <span>Demo: ALTA Residencias es un proyecto ficticio</span>
+  </footer>
 </div>
 
 <script type="module">

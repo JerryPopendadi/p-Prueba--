@@ -6,6 +6,8 @@ La web del reel no es un vídeo que se reproduce solo: es **un vídeo que avanza
 2. **El vídeo troceado en imágenes** (unas 150–300 WebP) que se pintan en un `<canvas>` según el scroll.
 3. **Una capa de diseño**: títulos grandes en mayúsculas con una palabra en serif cursiva, HUD en tipografía mono, grano y viñeta.
 
+> **¿Tienes Gemini Pro o ChatGPT Pro?** Sigue `PROMPTS-GEMINI-CHATGPT.md`: prompts listos para imágenes realistas y vídeo (marca MALBO Innovation).
+
 En esta carpeta tienes todo hecho:
 
 | Archivo | Qué es |
