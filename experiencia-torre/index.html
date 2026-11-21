@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MALBO Innovation</title>
+<meta name="description" content="MALBO Innovation — webs inmersivas para proyectos inmobiliarios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..900&family=Instrument+Serif:ital@1&family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#0b0b0c;
+  --blue:#3a4fd8;
+  --blue-soft:#8ea2ff;
+  --muted:#6e6e73;
+  --line:#e7e7ea;
+  --sans:"Inter Tight",system-ui,sans-serif;
+  --serif:"Instrument Serif","Cormorant Garamond",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --pad:clamp(16px,2.6vw,36px);
+  --hh:68px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue);letter-spacing:-.01em;text-transform:none}
+
+/* ---------- Cabecera ---------- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--hh);z-index:30;display:flex;align-items:center;gap:20px;padding:0 var(--pad);background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-color:var(--line)}
+.malbo{display:block;color:var(--ink)}
+.nav .malbo{width:104px}
+.links{margin-left:auto;display:flex;gap:4px}
+.links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:999px;color:var(--muted);transition:.25s}
+.links a b{font-weight:500;color:var(--blue);margin-right:6px}
+.links a:hover{color:var(--ink);background:#f3f3f5}
+.lang{display:flex;gap:2px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em}
+.lang button{border:0;background:none;cursor:pointer;font:inherit;color:var(--muted);padding:7px 8px;border-radius:999px}
+.lang button.on{color:#fff;background:var(--ink)}
+.cta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;border-radius:999px;background:var(--blue);color:#fff;font-weight:500;transition:.25s;white-space:nowrap}
+.cta:hover{background:var(--ink)}
+
+/* ---------- Escenario fijo: texto + vídeo ---------- */
+.stage{position:fixed;top:var(--hh);left:0;right:0;bottom:0;z-index:1;display:grid;grid-template-columns:minmax(330px,.85fr) 1.65fr;gap:clamp(20px,3vw,48px);padding:6px var(--pad) var(--pad);--cy:-50%}
+.copy{position:relative}
+.card{position:relative;border-radius:22px;overflow:hidden;background:#f1f0ee}
+.card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(to top,rgba(0,0,0,.28),transparent);pointer-events:none}
+.tag{position:absolute;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.tag.tl{top:18px;left:20px}
+.tag.br{bottom:18px;right:20px}
+.tag.bl{bottom:18px;left:20px;display:flex;align-items:center;gap:8px}
+.tag.bl i{width:6px;height:6px;border-radius:50%;background:#ff4d3d;box-shadow:0 0 0 3px rgba(255,77,61,.25)}
+.bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue-soft);z-index:3}
+
+.chap{position:absolute;left:0;right:0;top:50%;opacity:0;will-change:transform,opacity,filter}
+.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.chap h2{font-weight:800;font-size:clamp(38px,4.4vw,80px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+.chap h2 em{display:inline;font-size:1.04em}
+.chap p.body{margin-top:20px;max-width:360px;font-size:15px;line-height:1.55;color:var(--muted)}
+.btns{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:999px;border:1px solid var(--ink);transition:.25s}
+.btn.solid{background:var(--ink);color:#fff}
+.btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.index{position:absolute;left:0;bottom:4px;list-style:none;display:flex;gap:6px;flex-wrap:wrap}
+.index li{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#b4b4ba;display:flex;align-items:center;gap:6px;transition:.3s}
+.index li::before{content:"";width:14px;height:1px;background:currentColor;transition:.3s}
+.index li.on{color:var(--ink)}
+.index li.on::before{width:28px;background:var(--blue)}
+.hint{position:absolute;right:0;bottom:2px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;transition:opacity .4s}
+.hint span{display:block;width:1px;height:22px;background:var(--line);position:relative;overflow:hidden}
+.hint span::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--blue);animation:drip 1.6s ease-in-out infinite}
+@keyframes drip{to{top:100%}}
+
+#scrolly{position:relative;height:1000vh;z-index:0}
+
+/* ---------- Loader ---------- */
+#loader{position:fixed;inset:0;z-index:60;background:#fff;display:grid;place-items:center;transition:opacity .8s,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .malbo{width:180px}
+#loader .bar2{width:180px;height:2px;background:var(--line);margin-top:22px;overflow:hidden;border-radius:2px}
+#loader .bar2 i{display:block;height:100%;width:0;background:var(--blue);transition:width .3s}
+
+/* ---------- Secciones ---------- */
+.after{position:relative;z-index:10;background:#fff}
+section.block{padding:clamp(80px,12vw,160px) var(--pad) 0}
+.sk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.lead{font-weight:800;font-size:clamp(34px,5.4vw,88px);line-height:.95;letter-spacing:-.045em;text-transform:uppercase;max-width:1200px}
+.lead small{display:block;margin-top:22px;font-weight:500;font-size:clamp(18px,1.9vw,28px);line-height:1.25;letter-spacing:-.02em;text-transform:none;color:var(--muted);max-width:760px}
+.cols{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(50px,7vw,90px);border-top:1px solid var(--ink);list-style:none}
+.cols>*{padding:24px 22px 0 0;margin-right:22px;border-right:1px solid var(--line)}
+.cols>*:last-child{border-right:0}
+.cols b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--blue)}
+.cols h4{font-weight:800;font-size:22px;letter-spacing:-.03em;margin:14px 0 10px;text-transform:uppercase}
+.cols p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+.stats .cols strong{display:block;font-weight:800;font-size:clamp(44px,6vw,96px);letter-spacing:-.05em;line-height:1;margin-top:12px;color:var(--ink)}
+.stats .cols strong small{font-size:.4em;margin-left:6px;letter-spacing:0;color:var(--blue)}
+.stats .cols span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:clamp(80px,10vw,140px);padding:20px 0;white-space:nowrap}
+.track{display:inline-block;animation:mq 30s linear infinite;font-weight:900;font-size:clamp(48px,8vw,124px);letter-spacing:-.05em;text-transform:uppercase}
+.track i{font-style:normal;color:var(--blue);font-size:.45em;vertical-align:middle;margin:0 .55em}
+.track .o{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.visit{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end;padding-bottom:clamp(80px,10vw,140px)}
+.visit h3{font-weight:800;font-size:clamp(40px,6vw,96px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.visit form{display:grid;gap:10px}
+.visit input{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;font-size:16px;padding:14px 0;outline:none;transition:border-color .2s}
+.visit input:focus{border-color:var(--blue)}
+.visit button{justify-self:start;margin-top:16px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:16px 26px;border-radius:999px;border:0;background:var(--ink);color:#fff;transition:.25s}
+.visit button:hover{background:var(--blue)}
+footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+footer .malbo{width:96px}
+
+/* ---------- Móvil ---------- */
+@media (max-width:860px){
+  :root{--hh:60px}
+  .links{display:none}
+  .lang{margin-left:auto}
+  .cta{padding:10px 14px;font-size:9.5px}
+  .nav .malbo{width:84px}
+  .stage{grid-template-columns:1fr;grid-template-rows:54svh 1fr;gap:18px;--cy:0px}
+  .card{order:-1;border-radius:18px}
+  .chap{top:4px}
+  .chap h2{font-size:clamp(32px,9.6vw,58px)}
+  .chap p.body{font-size:14px;margin-top:14px}
+  .kicker{margin-bottom:10px}
+  .index{display:none}
+  .cols{grid-template-columns:1fr 1fr;row-gap:30px}
+  .cols h4{font-size:17px;hyphens:auto;overflow-wrap:anywhere}
+  .cols>*{padding-right:12px;margin-right:12px}
+  .cols>*:nth-child(2){border-right:0}
+  .visit{grid-template-columns:1fr}
+}
+@media (max-width:420px){.cta{display:none}}
+@media (prefers-reduced-motion:reduce){.track,.hint span::after{animation:none}}
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+</head>
+<body>
+
+<template id="logoTpl">
+<svg class="malbo" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
+  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".5" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
+  <g fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter">
+    <path d="M8 120V14l50 50" stroke="url(#mg)"/><path d="M58 64l50-50v106"/>
+    <path d="M138 120l52-106 52 106"/>
+    <path d="M275 10v104h66"/>
+    <path d="M372 120V14h44a25 25 0 0 1 0 50h-44m44 0h4a28 28 0 0 1 0 56h-48"/>
+    <circle cx="530" cy="67" r="52"/>
+  </g>
+  <path d="M500 67l70-3 26 3-26 3z" fill="currentColor"/>
+  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Inter Tight,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
+</svg>
+</template>
+
+<div id="loader"><div><div data-logo></div><div class="bar2"><i id="loadBar"></i></div></div></div>
+
+<header class="nav" id="nav">
+  <a href="#" data-go="0" data-logo></a>
+  <nav class="links">
+    <a href="#" data-go="0.1"><b>01</b><span data-t="nav1"></span></a>
+    <a href="#servicios"><b>02</b><span data-t="nav2"></span></a>
+    <a href="#proceso"><b>03</b><span data-t="nav3"></span></a>
+    <a href="#contacto"><b>04</b><span data-t="nav4"></span></a>
+  </nav>
+  <div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="ru">RU</button></div>
+  <a class="cta" href="#contacto" data-t="cta"></a>
+</header>
+
+<div class="stage" id="stage">
+  <div class="copy" id="copy">
+    <ol class="index" id="index"></ol>
+    <div class="hint" id="hint"><span></span><b data-t="hint" style="font-weight:400"></b></div>
+  </div>
+  <div class="card" id="card">
+    <canvas id="c"></canvas>
+    <div class="tag tl">MALBO × ALTA</div>
+    <div class="tag bl"><i></i><span id="tc">00:00:00</span></div>
+    <div class="tag br" id="chapNum">01 / 06</div>
+    <div class="bar" id="bar"></div>
+  </div>
+</div>
+
+<section id="scrolly" aria-hidden="true"></section>
+
+<div class="after">
+  <section class="block" id="servicios">
+    <p class="sk">MALBO Innovation</p>
+    <h2 class="lead"><span data-t="leadA"></span> <em data-t="leadB"></em><small data-t="leadC"></small></h2>
+    <p style="max-width:540px;margin-top:28px;font-size:16px;line-height:1.6;color:var(--muted)" data-t="introBody"></p>
+    <div class="cols">
+      <article><b>01</b><h4 data-t="s1h"></h4><p data-t="s1p"></p></article>
+      <article><b>02</b><h4 data-t="s2h"></h4><p data-t="s2p"></p></article>
+      <article><b>03</b><h4 data-t="s3h"></h4><p data-t="s3p"></p></article>
+      <article><b>04</b><h4 data-t="s4h"></h4><p data-t="s4p"></p></article>
+    </div>
+  </section>
+
+  <section class="block stats">
+    <p class="sk" data-t="statsK"></p>
+    <div class="cols">
+      <div><span data-t="st1"></span><strong data-count="48">0</strong></div>
+      <div><span data-t="st2"></span><strong data-count="32">0</strong></div>
+      <div><span data-t="st3"></span><strong data-count="2028" data-from="2000">2000</strong></div>
+      <div><span data-t="st4"></span><strong data-count="115" data-suffix="m">0</strong></div>
+    </div>
+    <div class="marquee"><div class="track" id="track"></div></div>
+  </section>
+
+  <section class="block" id="proceso">
+    <p class="sk" data-t="procK"></p>
+    <ol class="cols">
+      <li><b>01</b><h4 data-t="p1h"></h4><p data-t="p1p"></p></li>
+      <li><b>02</b><h4 data-t="p2h"></h4><p data-t="p2p"></p></li>
+      <li><b>03</b><h4 data-t="p3h"></h4><p data-t="p3p"></p></li>
+      <li><b>04</b><h4 data-t="p4h"></h4><p data-t="p4p"></p></li>
+    </ol>
+  </section>
+
+  <section class="block visit" id="contacto">
+    <h3 data-t="finH"></h3>
+    <form id="form">
+      <input required data-tp="fName">
+      <input data-tp="fCompany">
+      <input required type="email" data-tp="fEmail">
+      <input data-tp="fProject">
+      <button type="submit" data-t="fBtn"></button>
+    </form>
+  </section>
+
+  <footer>
+    <a href="https://malboinnovation.com" data-logo></a>
+    <span>malboinnovation.com</span>
+    <span data-t="foot"></span>
+  </footer>
+</div>
+
+<script type="module">
+/* =====================================================================
+   TEXTOS · ES / EN / RU   (en <em> va la parte azul en cursiva)
+   ===================================================================== */
+const I18N = {
+  es: {
+    nav1: 'Experiencia', nav2: 'Servicios', nav3: 'Proceso', nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Desliza',
+    ch1k: '01 / La parcela', ch1h: 'Nada, <em>todavía.</em>', ch1b: 'Un solar vacío al atardecer, en el corazón de la ciudad. Aquí empieza todo.',
+    ch2k: '02 / La torre', ch2h: 'De la nada, <em>una forma.</em>', ch2b: 'Vidrio oscuro por fuera, piedra clara por dentro. La torre se eleva en un solo gesto.',
+    ch3k: '03 / La costura', ch3h: 'Una costura <em>de luz.</em>', ch3b: 'Una espina pálida recorre toda la altura de la fachada y abre cada hogar al cielo.',
+    ch4k: '04 / La terraza', ch4h: 'Una sala <em>al aire libre.</em>', ch4b: 'Cada vivienda tiene su propia terraza: profunda, protegida y mirando a la ciudad.',
+    ch5k: '05 / El salón', ch5h: 'La ciudad, <em>en silencio.</em>', ch5b: 'Madera, piedra y luz cálida. El tráfico fuera; dentro, solo el ritmo de casa.',
+    ch6k: '06 / El dormitorio', ch6h: 'Dormir <em>sobre la ciudad.</em>', ch6b: 'Lino, roble y la ciudad apagándose al otro lado del cristal.',
+    ch7k: '07 / El baño', ch7h: 'Piedra, <em>agua y luz.</em>', ch7b: 'Travertino de suelo a techo y una bañera frente al atardecer.',
+    finK: 'Una experiencia de MALBO Innovation', finH: '¿Y si tu proyecto <em>se viviera así?</em>', finB1: 'Quiero mi web', finB2: 'Ver servicios',
+    leadA: 'Esto no es un vídeo.', leadB: 'Es una web.', leadC: 'Tus clientes entran en el edificio antes de que exista.',
+    introBody: 'En MALBO creamos webs inmersivas para promotoras, inmobiliarias y estudios de arquitectura: imágenes realistas, vídeo cinematográfico y una experiencia que se controla con el scroll.',
+    s1h: 'Webs inmersivas', s1p: 'El scroll mueve la cámara: del solar vacío al salón, en un solo gesto.',
+    s2h: 'Imagen y vídeo IA', s2p: 'Exteriores e interiores realistas a partir de planos, renders o una idea.',
+    s3h: 'Recorridos 3D', s3p: 'Escenas en tiempo real que funcionan en cualquier navegador, también en móvil.',
+    s4h: 'Captación', s4p: 'Formularios, agenda de visitas y analítica para convertir visitas en clientes.',
+    statsK: 'Proyecto demo · ALTA Residencias', st1: 'Residencias', st2: 'Plantas', st3: 'Entrega', st4: 'Altura',
+    mq: ['Malbo', 'Innovation', 'Webs inmersivas', 'Arquitectura'],
+    procK: 'Cómo trabajamos',
+    p1h: 'Guion', p1p: 'Definimos el recorrido: de dónde parte la cámara y dónde termina.',
+    p2h: 'Imágenes', p2p: 'Fotogramas clave realistas del edificio, la terraza y el interior.',
+    p3h: 'Vídeo', p3p: 'Unimos los planos en una sola toma cinematográfica.',
+    p4h: 'Web', p4p: 'Programamos la experiencia, la optimizamos y la publicamos.',
+    fName: 'Nombre', fCompany: 'Empresa', fEmail: 'Email', fProject: 'Proyecto (ciudad, nº de viviendas…)', fBtn: 'Quiero mi web inmersiva', fThanks: 'Gracias — te contactaremos',
+    foot: 'Demo: ALTA Residencias es un proyecto ficticio',
+  },
+  en: {
+    nav1: 'Experience', nav2: 'Services', nav3: 'Process', nav4: 'Contact', cta: 'Get my website', hint: 'Scroll',
+    ch1k: '01 / The site', ch1h: 'Nothing, <em>yet.</em>', ch1b: 'An empty lot at sunset, in the heart of the city. This is where it all begins.',
+    ch2k: '02 / The tower', ch2h: 'From nothing, <em>a form.</em>', ch2b: 'Dark glass outside, pale stone within. The tower rises in a single gesture.',
+    ch3k: '03 / The seam', ch3h: 'A seam <em>of light.</em>', ch3b: 'A pale spine runs the full height of the façade and opens every home to the sky.',
+    ch4k: '04 / The terrace', ch4h: 'A room <em>in the open air.</em>', ch4b: 'Every home has its own terrace: deep, sheltered and facing the city.',
+    ch5k: '05 / The living room', ch5h: 'The city, <em>in silence.</em>', ch5b: 'Wood, stone and warm light. Traffic outside; inside, only the rhythm of home.',
+    ch6k: '06 / The bedroom', ch6h: 'Sleep <em>above the city.</em>', ch6b: 'Linen, oak and the city dimming beyond the glass.',
+    ch7k: '07 / The bathroom', ch7h: 'Stone, <em>water and light.</em>', ch7b: 'Floor-to-ceiling travertine and a bathtub facing the sunset.',
+    finK: 'An experience by MALBO Innovation', finH: 'What if your project <em>felt like this?</em>', finB1: 'Get my website', finB2: 'See services',
+    leadA: 'This isn’t a video.', leadB: 'It’s a website.', leadC: 'Your clients step inside the building before it exists.',
+    introBody: 'At MALBO we build immersive websites for developers, real estate agencies and architecture studios: realistic imagery, cinematic video and an experience driven by scroll.',
+    s1h: 'Immersive websites', s1p: 'Scrolling moves the camera: from an empty lot to the living room, in one gesture.',
+    s2h: 'AI image & video', s2p: 'Realistic exteriors and interiors from plans, renders or just an idea.',
+    s3h: '3D walkthroughs', s3p: 'Real-time scenes that run in any browser, including mobile.',
+    s4h: 'Lead generation', s4p: 'Forms, viewing bookings and analytics to turn visitors into clients.',
+    statsK: 'Demo project · ALTA Residences', st1: 'Residences', st2: 'Floors', st3: 'Completion', st4: 'Height',
+    mq: ['Malbo', 'Innovation', 'Immersive websites', 'Architecture'],
+    procK: 'How we work',
+    p1h: 'Script', p1p: 'We define the journey: where the camera starts and where it ends.',
+    p2h: 'Images', p2p: 'Realistic key frames of the building, the terrace and the interiors.',
+    p3h: 'Video', p3p: 'We join the shots into one cinematic take.',
+    p4h: 'Website', p4p: 'We build the experience, optimise it and launch it.',
+    fName: 'Name', fCompany: 'Company', fEmail: 'Email', fProject: 'Project (city, number of homes…)', fBtn: 'I want my immersive website', fThanks: 'Thank you — we’ll be in touch',
+    foot: 'Demo: ALTA Residences is a fictional project',
+  },
+  ru: {
+    nav1: 'Демо', nav2: 'Услуги', nav3: 'Процесс', nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Листайте',
+    ch1k: '01 / Участок', ch1h: 'Пока — <em>ничего.</em>', ch1b: 'Пустой участок на закате в самом сердце города. Здесь всё начинается.',
+    ch2k: '02 / Башня', ch2h: 'Из ничего — <em>форма.</em>', ch2b: 'Тёмное стекло снаружи, светлый камень внутри. Башня поднимается одним жестом.',
+    ch3k: '03 / Шов', ch3h: 'Шов <em>из света.</em>', ch3b: 'Светлая вертикаль проходит по всей высоте фасада и открывает каждый дом небу.',
+    ch4k: '04 / Терраса', ch4h: 'Комната <em>под открытым небом.</em>', ch4b: 'У каждой квартиры своя терраса: глубокая, защищённая, с видом на город.',
+    ch5k: '05 / Гостиная', ch5h: 'Город — <em>в тишине.</em>', ch5b: 'Дерево, камень и тёплый свет. Шум остаётся снаружи, внутри — только ритм дома.',
+    ch6k: '06 / Спальня', ch6h: 'Сон <em>над городом.</em>', ch6b: 'Лён, дуб и город, затихающий за стеклом.',
+    ch7k: '07 / Ванная', ch7h: 'Камень, <em>вода и свет.</em>', ch7b: 'Травертин от пола до потолка и ванна с видом на закат.',
+    finK: 'Проект MALBO Innovation', finH: 'А если ваш проект <em>можно прожить так?</em>', finB1: 'Хочу такой сайт', finB2: 'Услуги',
+    leadA: 'Это не видео.', leadB: 'Это сайт.', leadC: 'Ваши клиенты входят в здание ещё до того, как оно построено.',
+    introBody: 'MALBO создаёт иммерсивные сайты для девелоперов, агентств недвижимости и архитектурных бюро: реалистичные изображения, кинематографичное видео и опыт, управляемый прокруткой.',
+    s1h: 'Иммерсивные сайты', s1p: 'Прокрутка управляет камерой: от пустого участка до гостиной одним движением.',
+    s2h: 'Изображения и видео с ИИ', s2p: 'Реалистичные экстерьеры и интерьеры по планам, рендерам или просто идее.',
+    s3h: '3D-прогулки', s3p: 'Сцены в реальном времени, которые работают в любом браузере, в том числе на телефоне.',
+    s4h: 'Привлечение клиентов', s4p: 'Формы, запись на просмотр и аналитика, чтобы превращать посетителей в клиентов.',
+    statsK: 'Демо-проект · ALTA Residences', st1: 'Квартир', st2: 'Этажей', st3: 'Сдача', st4: 'Высота',
+    mq: ['Malbo', 'Innovation', 'Иммерсивные сайты', 'Архитектура'],
+    procK: 'Как мы работаем',
+    p1h: 'Сценарий', p1p: 'Определяем маршрут: откуда стартует камера и где она останавливается.',
+    p2h: 'Изображения', p2p: 'Реалистичные ключевые кадры здания, террасы и интерьеров.',
+    p3h: 'Видео', p3p: 'Соединяем планы в один кинематографичный кадр.',
+    p4h: 'Сайт', p4p: 'Разрабатываем опыт, оптимизируем и запускаем.',
+    fName: 'Имя', fCompany: 'Компания', fEmail: 'Email', fProject: 'Проект (город, число квартир…)', fBtn: 'Хочу иммерсивный сайт', fThanks: 'Спасибо — мы свяжемся с вами',
+    foot: 'Демо: ALTA Residences — вымышленный проект',
+  },
+};
+
+/* =====================================================================
+   CONFIGURACIÓN
+   ===================================================================== */
+const Q = new URLSearchParams(location.search);
+const CONFIG = {
+  frames: {
+    // frames del recorrido real (vídeos Gemini/Veo). ?modo=3d fuerza la torre 3D.
+    count: Q.get('modo') === '3d' ? 0 : Number(Q.get('frames')) || 232,
+    path: i => `frames/frame_${String(i + 1).padStart(4, '0')}.webp`,
+  },
+  smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08,
+  seconds: 19.3, // duración del vídeo
+  // scroll (0–1) → segundo del vídeo
+  timeMap: [[0, 0], [0.08, 0.8], [0.25, 3.2], [0.45, 7.5], [0.62, 11.3], [0.82, 15], [1, 19.3]],
+  // capítulos: clave de texto + [entra, sale] en modo vídeo y en modo 3D.
+  // Dormitorio y baño: poner on:true y sus tiempos cuando lleguen los vídeos.
+  chapters: [
+    { k: 'ch1', v: [0, 0.07], d: [0, 0.13], on: true },
+    { k: 'ch2', v: [0.1, 0.24], d: [0.17, 0.38], on: true },
+    { k: 'ch3', v: [0.28, 0.44], d: [0.43, 0.6], on: true },
+    { k: 'ch4', v: [0.48, 0.61], d: [0.64, 0.78], on: true },
+    { k: 'ch5', v: [0.66, 0.8], d: [0.82, 0.93], on: true },
+    { k: 'ch6', v: [0, 0], d: [0, 0], on: false },
+    { k: 'ch7', v: [0, 0], d: [0, 0], on: false },
+    { k: 'fin', v: [0.86, 2], d: [0.955, 2], on: true, final: true },
+  ],
+};
+
+const $ = s => document.querySelector(s);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const smooth = t => t * t * (3 - 2 * t);
+const canvas = $('#c'), card = $('#card'), scrolly = $('#scrolly');
+const setLoad = v => { $('#loadBar').style.width = Math.round(v * 100) + '%'; };
+const VIDEO = CONFIG.frames.count > 0;
+
+document.querySelectorAll('[data-logo]').forEach(el => el.append($('#logoTpl').content.cloneNode(true)));
+
+/* ---------- Capítulos (DOM) ---------- */
+const chapters = CONFIG.chapters.filter(c => c.on).map(c => {
+  const el = document.createElement('article');
+  el.className = 'chap';
+  $('#copy').append(el);
+  const [a, b] = VIDEO ? c.v : c.d;
+  return { ...c, el, a, b };
+});
+const numbered = chapters.filter(c => !c.final);
+$('#index').innerHTML = numbered.map((_, i) => `<li>${String(i + 1).padStart(2, '0')}</li>`).join('');
+const idxItems = [...document.querySelectorAll('#index li')];
+
+/* ---------- Idioma ---------- */
+let lang = 'es';
+try { lang = localStorage.getItem('malbo-lang') || ''; } catch (e) {}
+if (!I18N[lang]) lang = (navigator.language || 'es').slice(0, 2);
+if (!I18N[lang]) lang = 'es';
+function applyLang(l) {
+  lang = l; const T = I18N[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = T[el.dataset.t]; });
+  document.querySelectorAll('[data-tp]').forEach(el => { el.placeholder = T[el.dataset.tp]; });
+  for (const c of chapters) {
+    c.el.innerHTML = c.final
+      ? `<p class="kicker">${T.finK}</p><h2>${T.finH}</h2><div class="btns"><a class="btn solid" href="#contacto">${T.finB1}</a><a class="btn" href="#servicios">${T.finB2}</a></div>`
+      : `<p class="kicker">${T[c.k + 'k']}</p><h2>${T[c.k + 'h']}</h2><p class="body">${T[c.k + 'b']}</p>`;
+  }
+  const m = T.mq.map((w, i) => (i % 2 ? `<span class="o">${w}</span>` : w) + '<i>✦</i>').join('');
+  $('#track').innerHTML = m + m;
+  document.querySelectorAll('#lang button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+  try { localStorage.setItem('malbo-lang', l); } catch (e) {}
+  lastP = -1;
+}
+document.querySelectorAll('#lang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
+$('#form').addEventListener('submit', e => { e.preventDefault(); e.target.querySelector('button').textContent = I18N[lang].fThanks; });
+
+/* ---------- Scroll con inercia ---------- */
+let target = 0, prog = 0, lastP = -1;
+const maxScroll = () => Math.max(1, scrolly.offsetHeight - innerHeight);
+const readScroll = () => {
+  target = clamp(scrollY / maxScroll());
+  $('#nav').classList.toggle('scrolled', scrollY > 10);
+};
+addEventListener('scroll', readScroll, { passive: true });
+readScroll(); prog = target;
+document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault(); scrollTo({ top: parseFloat(a.dataset.go) * maxScroll(), behavior: 'smooth' });
+}));
+
+const videoTime = p => {
+  const m = CONFIG.timeMap;
+  for (let k = 0; k < m.length - 1; k++) if (p <= m[k + 1][0])
+    return m[k][1] + (m[k + 1][1] - m[k][1]) * (p - m[k][0]) / (m[k + 1][0] - m[k][0]);
+  return m[m.length - 1][1];
+};
+
+/* ---------- UI por frame ---------- */
+const F = 0.025;
+const tcEl = $('#tc'), bar = $('#bar'), chapNum = $('#chapNum'), hint = $('#hint');
+function updateUI(p) {
+  let active = 0;
+  chapters.forEach(c => {
+    const vin = c.a <= 0 ? 1 : smooth(clamp((p - c.a) / F));
+    const vout = c.b >= 1 ? 1 : smooth(clamp((c.b - p) / F));
+    const v = Math.min(vin, vout);
+    c.el.style.opacity = v;
+    c.el.style.transform = `translateY(calc(var(--cy) + ${(1 - v) * 28}px))`;
+    c.el.style.filter = v > 0.99 ? 'none' : `blur(${(1 - v) * 10}px)`;
+    c.el.style.pointerEvents = v > 0.5 ? 'auto' : 'none';
+    if (!c.final && p >= c.a - F) active = numbered.indexOf(c);
+  });
+  idxItems.forEach((li, i) => li.classList.toggle('on', i === active));
+  chapNum.textContent = `${String(active + 1).padStart(2, '0')} / ${String(numbered.length).padStart(2, '0')}`;
+  const t = VIDEO ? videoTime(p) : p * 20, s = Math.floor(t), fr = Math.floor((t - s) * 24);
+  tcEl.textContent = `00:${String(s).padStart(2, '0')}:${String(fr).padStart(2, '0')}`;
+  bar.style.width = (p * 100) + '%';
+  hint.style.opacity = p > 0.03 ? 0 : 1;
+}
+const cw = () => card.clientWidth, ch = () => card.clientHeight;
+
+/* =====================================================================
+   RENDER 1 · secuencia de imágenes
+   ===================================================================== */
+async function frameRenderer(cfg) {
+  const ctx = canvas.getContext('2d');
+  const imgs = new Array(cfg.count);
+  let loaded = 0, last = -1;
+  const load = i => new Promise(res => {
+    const im = new Image(); im.decoding = 'async';
+    im.onload = () => { imgs[i] = im; loaded++; setLoad(loaded / cfg.count); res(); };
+    im.onerror = res; im.src = cfg.path(i);
+  });
+  await Promise.all(Array.from({ length: Math.min(12, cfg.count) }, (_, i) => load(i)));
+  (async () => { for (let i = 12; i < cfg.count; i += 10)
+    await Promise.all(Array.from({ length: Math.min(10, cfg.count - i) }, (_, k) => load(i + k))); })();
+  function resize() {
+    const dpr = Math.min(devicePixelRatio, 2);
+    canvas.width = cw() * dpr; canvas.height = ch() * dpr; last = -1;
+  }
+  function draw(i) {
+    let im = imgs[i];
+    for (let d = 1; !im && d < cfg.count; d++) im = imgs[i - d] || imgs[i + d];
+    if (!im) return;
+    const W = canvas.width, H = canvas.height, s = Math.max(W / im.width, H / im.height);
+    const w = im.width * s, h = im.height * s;
+    ctx.drawImage(im, (W - w) / 2, (H - h) / 2, w, h);
+  }
+  resize();
+  return {
+    resize,
+    update(p) {
+      const i = Math.min(cfg.count - 1, Math.round(videoTime(p) / CONFIG.seconds * (cfg.count - 1)));
+      if (i !== last) { draw(i); last = i; }
+    },
+  };
+}
+
+/* =====================================================================
+   RENDER 2 · torre 3D procedural (Three.js) — sin vídeo
+   ===================================================================== */
+async function threeRenderer() {
+  const THREE = await import('three');
+  setLoad(0.4);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0xd9a77c, 160, 1100);
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 4000);
+
+  // ----- Cielo de atardecer (shader) -----
+  const sunDir = new THREE.Vector3(-0.75, 0.16, 0.62).normalize();
+  const skyMat = r => new THREE.ShaderMaterial({
+    side: THREE.BackSide, depthWrite: false, fog: false,
+    uniforms: {
+      top: { value: new THREE.Color(0x5d7697) }, mid: { value: new THREE.Color(0xf1c08c) },
+      low: { value: new THREE.Color(0xe39a64) }, sun: { value: sunDir },
+    },
+    vertexShader: `varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+    fragmentShader: `uniform vec3 top,mid,low,sun; varying vec3 vP;
+      void main(){ float h=vP.y; vec3 c=mix(mid,top,smoothstep(.03,.5,h)); c=mix(low,c,smoothstep(-.08,.06,h));
+      float s=max(dot(vP,sun),0.); c+=vec3(1.,.78,.5)*pow(s,300.)*3.+vec3(1.,.62,.32)*pow(s,8.)*.35;
+      gl_FragColor=vec4(c,1.);
+      #include <colorspace_fragment>
+      }`,
+  });
+  const sky = new THREE.Mesh(new THREE.SphereGeometry(2000, 32, 16), skyMat());
+  scene.add(sky);
+  // reflejos del cielo en el vidrio (environment map)
+  const envScene = new THREE.Scene();
+  envScene.add(new THREE.Mesh(new THREE.SphereGeometry(50, 32, 16), skyMat()));
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(envScene, 0.02, 0.1, 200).texture;
+
+  // ----- Luces -----
+  scene.add(new THREE.HemisphereLight(0xffe2c0, 0x2f2c30, 0.7));
+  const sunL = new THREE.DirectionalLight(0xffb576, 3.2);
+  sunL.position.copy(sunDir).multiplyScalar(300).add(new THREE.Vector3(0, 40, 0));
+  sunL.target.position.set(0, 50, 0);
+  sunL.castShadow = true;
+  sunL.shadow.mapSize.set(2048, 2048);
+  Object.assign(sunL.shadow.camera, { left: -90, right: 90, top: 140, bottom: -60, near: 10, far: 700 });
+  sunL.shadow.bias = -0.0004;
+  scene.add(sunL, sunL.target);
+
+  // ----- Suelo, solar y calles -----
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(5000, 5000),
+    new THREE.MeshStandardMaterial({ color: 0x3a3936, roughness: 0.95 }));
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+  const pad = new THREE.Mesh(new THREE.PlaneGeometry(64, 56),
+    new THREE.MeshStandardMaterial({ color: 0x9b958c, roughness: 0.9 }));
+  pad.rotation.x = -Math.PI / 2; pad.position.y = 0.02; pad.receiveShadow = true; scene.add(pad);
+  const roadMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2b, roughness: 0.8 });
+  for (const [w, d, x, z] of [[5000, 14, 0, 45], [14, 5000, 45, 0], [14, 5000, -45, 0]]) {
+    const r = new THREE.Mesh(new THREE.PlaneGeometry(w, d), roadMat);
+    r.rotation.x = -Math.PI / 2; r.position.set(x, 0.03, z); r.receiveShadow = true; scene.add(r);
+  }
+
+  // ----- Ciudad alrededor (instanced) -----
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const cityCount = 520;
+  const boxGeo = new THREE.BoxGeometry(1, 1, 1); boxGeo.translate(0, 0.5, 0);
+  const city = new THREE.InstancedMesh(boxGeo,
+    new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.75, metalness: 0.15 }), cityCount);
+  const m4 = new THREE.Matrix4(), col = new THREE.Color();
+  for (let i = 0; i < cityCount; i++) {
+    let x, z;
+    do { x = (rnd() - 0.5) * 1400; z = (rnd() - 0.5) * 1400; }
+    while (Math.hypot(x, z) < 85 || Math.abs(z - 45) < 14 || Math.abs(x - 45) < 14 || Math.abs(x + 45) < 14);
+    // sin torres altas detrás del solar en el plano inicial
+    const behind = (-0.53 * x - 0.85 * z) > 0 && Math.abs(-0.85 * x + 0.53 * z) < 160;
+    const tall = !behind && rnd() < 0.08;
+    const h = tall ? 60 + rnd() * 70 : 6 + rnd() * rnd() * (behind ? 22 : 40);
+    const w = 12 + rnd() * 26, d = 12 + rnd() * 26;
+    m4.makeScale(w, h, d).setPosition(x, 0, z);
+    city.setMatrixAt(i, m4);
+    city.setColorAt(i, col.setHSL(0.07, 0.07, 0.2 + rnd() * 0.2));
+  }
+  city.receiveShadow = true; scene.add(city);
+
+  // ----- Texturas de fachada (montantes + ventanas iluminadas) -----
+  function canvasTex(draw, w = 1024, h = 128) {
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    draw(c.getContext('2d'), w, h);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+  }
+  const mullionTex = canvasTex((g, w, h) => {
+    g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#4a4a4a';
+    for (let x = 0; x < w; x += w / 16) g.fillRect(x, 0, 5, h);
+    g.fillRect(0, h * 0.86, w, 3);
+  });
+  const litTex = Array.from({ length: 4 }, () => canvasTex((g, w, h) => {
+    g.fillStyle = '#000'; g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += w / 16) if (rnd() < 0.45) {
+      const grd = g.createLinearGradient(0, 0, 0, h);
+      grd.addColorStop(0, '#fff'); grd.addColorStop(1, '#7a5a3a');
+      g.fillStyle = grd; g.fillRect(x + 5, 0, w / 16 - 5, h);
+    }
+  }));
+
+  // ----- La torre -----
+  const N = 32, H = 3.6, W = 22, D = 16, T = 27; // plantas, altura planta, ancho, fondo, planta del interior
+  const stone = new THREE.MeshStandardMaterial({ color: 0xebe5db, roughness: 0.55 });
+  const slabGeo = new THREE.BoxGeometry(W + 1, 0.4, D + 3); slabGeo.translate(0, 0.2, 1.5); // vuelo de 3 m = terraza
+  const glassGeo = new THREE.BoxGeometry(W, H - 0.4, D); glassGeo.translate(0, 0.4 + (H - 0.4) / 2, 0);
+  const railGeo = new THREE.BoxGeometry(W + 1, 0.05, 0.06); railGeo.translate(0, 1.5, D / 2 + 2.95);
+  const railGlassGeo = new THREE.BoxGeometry(W + 1, 1.1, 0.03); railGlassGeo.translate(0, 0.95, D / 2 + 2.95);
+  const railGlassMat = new THREE.MeshStandardMaterial({ color: 0x9fb0b8, transparent: true, opacity: 0.18, roughness: 0.05, metalness: 0.5 });
+  const tower = new THREE.Group(); scene.add(tower);
+  const floors = [], glassMats = [];
+
+  for (let i = 0; i <= N; i++) {
+    const g = new THREE.Group(); g.position.y = i * H;
+    const slab = new THREE.Mesh(slabGeo, stone); slab.castShadow = slab.receiveShadow = true; g.add(slab);
+    if (i < N && i !== T) {
+      const gm = new THREE.MeshStandardMaterial({
+        color: 0x222a36, metalness: 0.9, roughness: 0.12, map: mullionTex,
+        emissive: 0xffb46a, emissiveMap: litTex[i % 4], emissiveIntensity: 0,
+      });
+      gm.userData.lit = 0.25 + rnd() * 0.9;
+      glassMats.push(gm);
+      const glass = new THREE.Mesh(glassGeo, gm); glass.castShadow = true; glass.receiveShadow = true; g.add(glass);
+    }
+    if (i < N) { g.add(new THREE.Mesh(railGeo, stone)); g.add(new THREE.Mesh(railGlassGeo, railGlassMat)); }
+    if (i === N) { // remate
+      const crown = new THREE.Mesh(new THREE.BoxGeometry(W - 6, 3, D - 6), stone);
+      crown.position.y = 1.9; crown.castShadow = true; g.add(crown);
+    }
+    tower.add(g);
+    floors.push({ g, t0: 0.15 + (i / N) * 0.25 });
+  }
+
+  // "La costura": espina pálida que serpentea por la fachada
+  const seam = [];
+  const seamMat = new THREE.MeshStandardMaterial({ color: 0xf6efe4, roughness: 0.4, emissive: 0xffd9a8, emissiveIntensity: 0.15 });
+  for (let i = 0; i < N; i++) {
+    if (i === T) continue; // deja libre la logia por la que entra la cámara
+    const b = new THREE.Mesh(new THREE.BoxGeometry(1.6, H, 1.2), seamMat);
+    b.geometry.translate(0, H / 2, 0);
+    b.position.set(-4 + Math.sin(i * 0.3) * 5, i * H + 0.4, D / 2 + 3.6);
+    b.castShadow = true; tower.add(b);
+    seam.push({ b, t0: 0.43 + (i / N) * 0.14 });
+  }
+
+  // ----- Interior (planta T) -----
+  {
+    const room = floors[T].g; // el interior aparece con su planta
+    const y0 = 0.4, hh = H - 0.4;
+    const wood = new THREE.MeshStandardMaterial({ color: 0xa06d44, roughness: 0.5 });
+    const darkWood = new THREE.MeshStandardMaterial({ color: 0x5a3a26, roughness: 0.45 });
+    const white = new THREE.MeshStandardMaterial({ color: 0xf0ebe3, roughness: 0.85 });
+    const fabric = new THREE.MeshStandardMaterial({ color: 0xe9e2d6, roughness: 1 });
+    const glow = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffc58a, emissiveIntensity: 3 });
+    const add = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; room.add(m); return m; };
+    add(new THREE.BoxGeometry(W, hh, 0.3), wood, 0, y0 + hh / 2, -D / 2 + 0.15);               // pared de madera
+    for (let x = -W / 2 + 1; x < W / 2; x += 0.5) add(new THREE.BoxGeometry(0.18, hh, 0.12), darkWood, x, y0 + hh / 2, -D / 2 + 0.36); // listones
+    add(new THREE.BoxGeometry(0.3, hh, D), white, -W / 2 + 0.15, y0 + hh / 2, 0);
+    add(new THREE.BoxGeometry(0.3, hh, D), white, W / 2 - 0.15, y0 + hh / 2, 0);
+    add(new THREE.BoxGeometry(W - 1, 0.05, 0.25), glow, 0, H - 0.08, -D / 2 + 0.8);             // luz lineal en techo
+    add(new THREE.BoxGeometry(8, 0.02, 5.5), new THREE.MeshStandardMaterial({ color: 0xcfc5b4, roughness: 1 }), -3, y0 + 0.01, -2); // alfombra
+    add(new THREE.BoxGeometry(5.2, 0.45, 1.9), fabric, -3, y0 + 0.22, -3.4);                    // sofá
+    add(new THREE.BoxGeometry(5.2, 0.8, 0.45), fabric, -3, y0 + 0.65, -4.2);
+    add(new THREE.BoxGeometry(0.4, 0.65, 1.9), fabric, -5.6, y0 + 0.33, -3.4);
+    add(new THREE.BoxGeometry(0.4, 0.65, 1.9), fabric, -0.4, y0 + 0.33, -3.4);
+    add(new THREE.BoxGeometry(0.9, 0.55, 0.22), darkWood, -4.4, y0 + 0.75, -3.85);              // cojín
+    add(new THREE.BoxGeometry(2.4, 0.36, 1.2), darkWood, -3, y0 + 0.18, -1.2);                  // mesa
+    add(new THREE.BoxGeometry(0.7, 0.12, 0.5), white, -2.6, y0 + 0.42, -1.2);                   // libros
+    add(new THREE.BoxGeometry(1.2, 0.5, 1.2), darkWood, 2.2, y0 + 0.4, 0.2).rotation.y = -0.5;  // butaca
+    add(new THREE.BoxGeometry(4.5, 0.95, 1.3), wood, 6, y0 + 0.47, -2.2);                       // isla cocina
+    add(new THREE.BoxGeometry(4.7, 0.06, 1.4), white, 6, y0 + 0.97, -2.2);
+    for (let k = 0; k < 4; k++) add(new THREE.BoxGeometry(5, 0.06, 0.45), darkWood, 6, y0 + 0.8 + k * 0.6, -D / 2 + 0.6); // estantes
+    for (let k = 0; k < 14; k++) add(new THREE.BoxGeometry(0.12, 0.3 + rnd() * 0.15, 0.3), k % 3 ? white : wood, 3.8 + k * 0.3, y0 + 1.05 + (k % 3) * 0.6, -D / 2 + 0.6);
+    add(new THREE.CylinderGeometry(0.03, 0.03, 1.6), darkWood, -6.5, y0 + 0.8, -4);             // lámpara
+    add(new THREE.CylinderGeometry(0.28, 0.38, 0.45, 24, 1, true), glow, -6.5, y0 + 1.75, -4);
+    const l1 = new THREE.PointLight(0xffc28a, 18, 16, 2); l1.position.set(-6.5, y0 + 1.6, -3.8); room.add(l1);
+    const l2 = new THREE.PointLight(0xffc690, 12, 18, 2); l2.position.set(3, H - 1.1, -3); room.add(l2);
+    const l3 = new THREE.PointLight(0xffd1a0, 6, 14, 2); l3.position.set(-2, H - 1.2, 2); room.add(l3);
+  }
+
+  // ----- Recorrido de cámara: [progreso, posición, punto al que mira] -----
+  const yT = T * H;
+  const K = [
+    [0.00, [62, 2.2, 100], [0, 7, 0]],
+    [0.14, [50, 3.5, 84], [0, 9, 0]],
+    [0.30, [34, 30, 92], [0, 32, 0]],
+    [0.43, [-30, 66, 92], [0, 58, 0]],
+    [0.58, [-80, 112, 50], [0, 84, 0]],
+    [0.70, [-30, 104, 58], [0, yT + 2, 4]],
+    [0.80, [0, yT + 2.6, 30], [0, yT + 1.9, 0]],
+    [0.90, [0.6, yT + 1.9, 12], [-0.5, yT + 1.5, -4]],
+    [1.00, [1.2, yT + 1.75, 4.5], [-1.5, yT + 1.25, -7]],
+  ];
+  const V = a => new THREE.Vector3(...a);
+  const posC = new THREE.CatmullRomCurve3(K.map(k => V(k[1])), false, 'centripetal');
+  const lookC = new THREE.CatmullRomCurve3(K.map(k => V(k[2])), false, 'centripetal');
+  const keyU = p => {
+    for (let s = 0; s < K.length - 1; s++) if (p <= K[s + 1][0])
+      return (s + (p - K[s][0]) / (K[s + 1][0] - K[s][0])) / (K.length - 1);
+    return 1;
+  };
+
+  let mx = 0, my = 0, smx = 0, smy = 0;
+  addEventListener('pointermove', e => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
+
+  const camPos = new THREE.Vector3(), look = new THREE.Vector3();
+  function resize() {
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+    renderer.setSize(cw(), ch(), false);
+    camera.aspect = cw() / ch(); camera.updateProjectionMatrix();
+  }
+  resize();
+
+  function update(p) {
+    // plantas que se levantan una a una
+    for (const f of floors) {
+      const k = smooth(clamp((p - f.t0) / 0.03));
+      f.g.visible = k > 0.001; f.g.scale.y = Math.max(k, 0.001);
+    }
+    for (const s of seam) {
+      const k = smooth(clamp((p - s.t0) / 0.025));
+      s.b.visible = k > 0.001; s.b.scale.y = Math.max(k, 0.001);
+    }
+    // ventanas que se encienden al caer la tarde
+    const lit = 0.15 + smooth(clamp((p - 0.35) / 0.4)) * 1.6;
+    for (const m of glassMats) m.emissiveIntensity = m.userData.lit * lit;
+    seamMat.emissiveIntensity = 0.1 + smooth(clamp((p - 0.43) / 0.15)) * 0.5;
+
+    // cámara
+    const u = keyU(p);
+    posC.getPoint(u, camPos); lookC.getPoint(u, look);
+    smx += (mx - smx) * 0.05; smy += (my - smy) * 0.05;
+    const par = p > 0.85 ? 0.6 : 3;
+    camera.position.copy(camPos).add(new THREE.Vector3(smx * par, -smy * par * 0.5, 0));
+    camera.lookAt(look);
+    const baseFov = camera.aspect < 1 ? 58 : 38;
+    camera.fov = baseFov + smooth(clamp((p - 0.78) / 0.2)) * 16;
+    camera.updateProjectionMatrix();
+    renderer.toneMappingExposure = 1 + smooth(clamp((p - 0.82) / 0.18)) * 0.05;
+    sky.position.copy(camera.position);
+    renderer.render(scene, camera);
+  }
+  setLoad(1);
+  return { resize, update, continuous: true };
+}
+
+/* ---------- Arranque ---------- */
+applyLang(lang);
+const view = VIDEO ? await frameRenderer(CONFIG.frames) : await threeRenderer();
+addEventListener('resize', () => { view.resize(); readScroll(); lastP = -1; });
+(function loop() {
+  prog += (target - prog) * CONFIG.smooth;
+  if (Math.abs(target - prog) < 1e-5) prog = target;
+  if (view.continuous || prog !== lastP) { view.update(prog); updateUI(prog); lastP = prog; }
+  requestAnimationFrame(loop);
+})();
+requestAnimationFrame(() => setTimeout(() => $('#loader').classList.add('done'), 250));
+
+/* ---------- Contadores ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  io.unobserve(e.target);
+  const el = e.target, to = +el.dataset.count, from = +(el.dataset.from || 0), suf = el.dataset.suffix;
+  const t0 = performance.now();
+  (function tick(now) {
+    const k = clamp((now - t0) / 1600), v = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3)));
+    el.innerHTML = v + (suf ? `<small>${suf}</small>` : '');
+    if (k < 1) requestAnimationFrame(tick);
+  })(t0);
+}), { threshold: 0.6 });
+document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
