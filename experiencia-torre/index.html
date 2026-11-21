@@ -75,7 +75,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue);
 .hint span::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--blue);animation:drip 1.6s ease-in-out infinite}
 @keyframes drip{to{top:100%}}
 
-#scrolly{position:relative;height:1000vh;z-index:0}
+#scrolly{position:relative;height:1700vh;z-index:0}
 
 /* ---------- Loader ---------- */
 #loader{position:fixed;inset:0;z-index:60;background:#fff;display:grid;place-items:center;transition:opacity .8s,visibility .8s}
@@ -332,24 +332,24 @@ const Q = new URLSearchParams(location.search);
 const CONFIG = {
   frames: {
     // frames del recorrido real (vídeos Gemini/Veo). ?modo=3d fuerza la torre 3D.
-    count: Q.get('modo') === '3d' ? 0 : Number(Q.get('frames')) || 232,
+    count: Q.get('modo') === '3d' ? 0 : Number(Q.get('frames')) || 521,
     path: i => `frames/frame_${String(i + 1).padStart(4, '0')}.webp`,
   },
   smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08,
-  seconds: 19.3, // duración del vídeo
+  seconds: 43.375, // duración del vídeo
   // scroll (0–1) → segundo del vídeo
-  timeMap: [[0, 0], [0.08, 0.8], [0.25, 3.2], [0.45, 7.5], [0.62, 11.3], [0.82, 15], [1, 19.3]],
+  timeMap: [[0, 0], [0.05, 0.8], [0.15, 3.2], [0.27, 7.5], [0.37, 11.3], [0.47, 15], [0.53, 18.6], [0.62, 24.8], [0.77, 33.5], [1, 43.375]],
   // capítulos: clave de texto + [entra, sale] en modo vídeo y en modo 3D.
-  // Dormitorio y baño: poner on:true y sus tiempos cuando lleguen los vídeos.
+  // Dormitorio y baño (videoOnly): solo existen en el vídeo, no en la torre 3D.
   chapters: [
-    { k: 'ch1', v: [0, 0.07], d: [0, 0.13], on: true },
-    { k: 'ch2', v: [0.1, 0.24], d: [0.17, 0.38], on: true },
-    { k: 'ch3', v: [0.28, 0.44], d: [0.43, 0.6], on: true },
-    { k: 'ch4', v: [0.48, 0.61], d: [0.64, 0.78], on: true },
-    { k: 'ch5', v: [0.66, 0.8], d: [0.82, 0.93], on: true },
-    { k: 'ch6', v: [0, 0], d: [0, 0], on: false },
-    { k: 'ch7', v: [0, 0], d: [0, 0], on: false },
-    { k: 'fin', v: [0.86, 2], d: [0.955, 2], on: true, final: true },
+    { k: 'ch1', v: [0, 0.045], d: [0, 0.13], on: true },
+    { k: 'ch2', v: [0.065, 0.145], d: [0.17, 0.38], on: true },
+    { k: 'ch3', v: [0.17, 0.26], d: [0.43, 0.6], on: true },
+    { k: 'ch4', v: [0.285, 0.36], d: [0.64, 0.78], on: true },
+    { k: 'ch5', v: [0.39, 0.52], d: [0.82, 0.93], on: true },
+    { k: 'ch6', v: [0.63, 0.76], d: [0, 0], on: true, videoOnly: true },
+    { k: 'ch7', v: [0.8, 0.91], d: [0, 0], on: true, videoOnly: true },
+    { k: 'fin', v: [0.93, 2], d: [0.955, 2], on: true, final: true },
   ],
 };
 
@@ -363,7 +363,7 @@ const VIDEO = CONFIG.frames.count > 0;
 document.querySelectorAll('[data-logo]').forEach(el => el.append($('#logoTpl').content.cloneNode(true)));
 
 /* ---------- Capítulos (DOM) ---------- */
-const chapters = CONFIG.chapters.filter(c => c.on).map(c => {
+const chapters = CONFIG.chapters.filter(c => c.on && (VIDEO || !c.videoOnly)).map(c => {
   const el = document.createElement('article');
   el.className = 'chap';
   $('#copy').append(el);
