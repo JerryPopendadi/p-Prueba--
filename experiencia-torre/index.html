@@ -31,6 +31,13 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue);
 /* ---------- Cabecera ---------- */
 .nav{position:fixed;top:0;left:0;right:0;height:var(--hh);z-index:30;display:flex;align-items:center;gap:20px;padding:0 var(--pad);background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.scrolled{border-color:var(--line)}
+.nav.dark{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:transparent}
+.nav.dark .malbo{color:#fff}
+.nav.dark .links a{color:rgba(255,255,255,.75)}
+.nav.dark .links a b{color:#b9c4ff}
+.nav.dark .links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav.dark .lang button{color:rgba(255,255,255,.7)}
+.nav.dark .lang button.on{background:#fff;color:var(--ink)}
 .malbo{display:block;color:var(--ink)}
 .nav .malbo{width:104px}
 .links{margin-left:auto;display:flex;gap:4px}
@@ -44,25 +51,29 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue);
 .cta:hover{background:var(--ink)}
 
 /* ---------- Escenario fijo: texto + vídeo ---------- */
-.stage{position:fixed;top:var(--hh);left:0;right:0;bottom:0;z-index:1}
-.card{position:absolute;inset:0;background:#f1f0ee;overflow:hidden}
+.stage{position:fixed;inset:0;z-index:1}
+.card{position:absolute;inset:0;background:#1a1a1a;overflow:hidden}
 .card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 42%,transparent 60%),
+             linear-gradient(to bottom,rgba(0,0,0,.38),transparent 22%)}
 
-/* tarjetas de texto sobre la imagen */
-.chap{position:absolute;left:var(--pad);bottom:var(--pad);width:min(520px,calc(100% - 2 * var(--pad)));background:#fff;border-radius:20px;padding:30px 32px 32px;box-shadow:0 20px 60px rgba(0,0,0,.12);opacity:0;will-change:transform,opacity,filter}
-.chap.hero{width:min(760px,calc(100% - 2 * var(--pad)));padding:36px 40px 34px}
-.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
-.chap h2,.chap h1{font-weight:800;font-size:clamp(34px,3.6vw,60px);line-height:.93;letter-spacing:-.04em;text-transform:uppercase}
-.chap h1{font-size:clamp(40px,5.4vw,92px)}
-.chap h2 em,.chap h1 em{font-size:1.04em}
-.chap p.body{margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
-.scroll{display:flex;align-items:center;gap:12px;margin-top:26px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
-.scroll span{display:block;width:22px;height:34px;border:1.5px solid var(--ink);border-radius:12px;position:relative}
-.scroll span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--blue);animation:wheel 1.6s ease-in-out infinite}
+/* textos grandes sobre la imagen, como en el reel */
+.chap{position:absolute;left:var(--pad);bottom:calc(var(--pad) + 18px);width:min(900px,calc(100% - 2 * var(--pad)));color:#fff;opacity:0;will-change:transform,opacity,filter;text-shadow:0 8px 40px rgba(0,0,0,.25)}
+.chap .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.chap .kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.chap h2,.chap h1{font-weight:800;font-size:clamp(46px,6.6vw,116px);line-height:.88;letter-spacing:-.045em;text-transform:uppercase}
+.chap h1{font-size:clamp(50px,7.6vw,132px)}
+.chap em{color:#b9c4ff;font-size:1.04em}
+.chap p.body{margin-top:18px;max-width:420px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)}
+.scroll{display:flex;align-items:center;gap:12px;margin-top:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.scroll span{display:block;width:22px;height:34px;border:1.5px solid #fff;border-radius:12px;position:relative}
+.scroll span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#fff;animation:wheel 1.6s ease-in-out infinite}
 @keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+.ring{position:absolute;right:calc(var(--pad) + 8px);top:50%;width:70px;height:70px;margin-top:-35px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;z-index:2}
 .btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
-.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:999px;border:1px solid var(--ink);transition:.25s}
-.btn.solid{background:var(--ink);color:#fff}
+.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.7);color:#fff;backdrop-filter:blur(8px);background:rgba(255,255,255,.08);transition:.25s;text-shadow:none}
+.btn.solid{background:#fff;color:var(--ink);border-color:#fff}
 .btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 
 #scrolly{position:relative;height:1700vh;z-index:0}
@@ -111,11 +122,11 @@ footer .malbo{width:96px}
   .lang{margin-left:auto}
   .cta{padding:10px 14px;font-size:9.5px}
   .nav .malbo{width:84px}
-  .chap,.chap.hero{padding:22px 22px 24px;border-radius:16px}
-  .chap h2{font-size:clamp(28px,8.4vw,46px)}
-  .chap h1{font-size:clamp(34px,10.5vw,60px)}
-  .chap p.body{font-size:14px;margin-top:12px}
-  .kicker{margin-bottom:10px}
+  .chap{bottom:28px}
+  .chap h2{font-size:clamp(38px,11.5vw,66px)}
+  .chap h1{font-size:clamp(42px,12.5vw,72px)}
+  .chap p.body{font-size:14px;margin-top:14px}
+  .ring{display:none}
   .cols{grid-template-columns:1fr 1fr;row-gap:30px}
   .cols h4{font-size:17px;hyphens:auto;overflow-wrap:anywhere}
   .cols>*{padding-right:12px;margin-right:12px}
@@ -162,6 +173,7 @@ footer .malbo{width:96px}
 
 <div class="stage" id="stage">
   <div class="card" id="card"><canvas id="c"></canvas></div>
+  <div class="ring" data-t="hint"></div>
 </div>
 
 <section id="scrolly" aria-hidden="true"></section>
@@ -225,7 +237,7 @@ footer .malbo{width:96px}
 const I18N = {
   es: {
     heroK: 'MALBO Innovation · Webs inmersivas', heroH: 'Entra en el edificio <em>antes de que exista.</em>', heroS: 'Desliza para entrar',
-    nav1: 'Experiencia', nav2: 'Servicios', nav3: 'Proceso', nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Desliza',
+    nav1: 'Experiencia', nav2: 'Servicios', nav3: 'Proceso', nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Scroll',
     ch1k: '01 / La parcela', ch1h: 'Nada, <em>todavía.</em>', ch1b: 'Un solar vacío al atardecer, en el corazón de la ciudad. Aquí empieza todo.',
     ch2k: '02 / La torre', ch2h: 'De la nada, <em>una forma.</em>', ch2b: 'Vidrio oscuro por fuera, piedra clara por dentro. La torre se eleva en un solo gesto.',
     ch3k: '03 / La costura', ch3h: 'Una costura <em>de luz.</em>', ch3b: 'Una espina pálida recorre toda la altura de la fachada y abre cada hogar al cielo.',
@@ -279,7 +291,7 @@ const I18N = {
   },
   ru: {
     heroK: 'MALBO Innovation · Иммерсивные сайты', heroH: 'Войдите в здание <em>ещё до его постройки.</em>', heroS: 'Листайте, чтобы войти',
-    nav1: 'Демо', nav2: 'Услуги', nav3: 'Процесс', nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Листайте',
+    nav1: 'Демо', nav2: 'Услуги', nav3: 'Процесс', nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Scroll',
     ch1k: '01 / Участок', ch1h: 'Пока — <em>ничего.</em>', ch1b: 'Пустой участок на закате в самом сердце города. Здесь всё начинается.',
     ch2k: '02 / Башня', ch2h: 'Из ничего — <em>форма.</em>', ch2b: 'Тёмное стекло снаружи, светлый камень внутри. Башня поднимается одним жестом.',
     ch3k: '03 / Шов', ch3h: 'Шов <em>из света.</em>', ch3b: 'Светлая вертикаль проходит по всей высоте фасада и открывает каждый дом небу.',
@@ -385,7 +397,9 @@ let target = 0, prog = 0, lastP = -1;
 const maxScroll = () => Math.max(1, scrolly.offsetHeight - innerHeight);
 const readScroll = () => {
   target = clamp(scrollY / maxScroll());
-  $('#nav').classList.toggle('scrolled', scrollY > 10);
+  const inExp = scrollY < maxScroll() + innerHeight * 0.6;
+  $('#nav').classList.toggle('dark', inExp);
+  $('#nav').classList.toggle('scrolled', !inExp);
 };
 addEventListener('scroll', readScroll, { passive: true });
 readScroll(); prog = target;
