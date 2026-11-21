@@ -44,36 +44,26 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue);
 .cta:hover{background:var(--ink)}
 
 /* ---------- Escenario fijo: texto + vídeo ---------- */
-.stage{position:fixed;top:var(--hh);left:0;right:0;bottom:0;z-index:1;display:grid;grid-template-columns:minmax(330px,.85fr) 1.65fr;gap:clamp(20px,3vw,48px);padding:6px var(--pad) var(--pad);--cy:-50%}
-.copy{position:relative}
-.card{position:relative;border-radius:22px;overflow:hidden;background:#f1f0ee}
+.stage{position:fixed;top:var(--hh);left:0;right:0;bottom:0;z-index:1}
+.card{position:absolute;inset:0;background:#f1f0ee;overflow:hidden}
 .card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.card::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(to top,rgba(0,0,0,.28),transparent);pointer-events:none}
-.tag{position:absolute;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-.tag.tl{top:18px;left:20px}
-.tag.br{bottom:18px;right:20px}
-.tag.bl{bottom:18px;left:20px;display:flex;align-items:center;gap:8px}
-.tag.bl i{width:6px;height:6px;border-radius:50%;background:#ff4d3d;box-shadow:0 0 0 3px rgba(255,77,61,.25)}
-.bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue-soft);z-index:3}
 
-.chap{position:absolute;left:0;right:0;top:50%;opacity:0;will-change:transform,opacity,filter}
-.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
-.chap h2{font-weight:800;font-size:clamp(38px,4.4vw,80px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
-.chap h2 em{display:inline;font-size:1.04em}
-.chap p.body{margin-top:20px;max-width:360px;font-size:15px;line-height:1.55;color:var(--muted)}
-.btns{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+/* tarjetas de texto sobre la imagen */
+.chap{position:absolute;left:var(--pad);bottom:var(--pad);width:min(520px,calc(100% - 2 * var(--pad)));background:#fff;border-radius:20px;padding:30px 32px 32px;box-shadow:0 20px 60px rgba(0,0,0,.12);opacity:0;will-change:transform,opacity,filter}
+.chap.hero{width:min(760px,calc(100% - 2 * var(--pad)));padding:36px 40px 34px}
+.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.chap h2,.chap h1{font-weight:800;font-size:clamp(34px,3.6vw,60px);line-height:.93;letter-spacing:-.04em;text-transform:uppercase}
+.chap h1{font-size:clamp(40px,5.4vw,92px)}
+.chap h2 em,.chap h1 em{font-size:1.04em}
+.chap p.body{margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
+.scroll{display:flex;align-items:center;gap:12px;margin-top:26px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.scroll span{display:block;width:22px;height:34px;border:1.5px solid var(--ink);border-radius:12px;position:relative}
+.scroll span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--blue);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+.btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
 .btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:999px;border:1px solid var(--ink);transition:.25s}
 .btn.solid{background:var(--ink);color:#fff}
 .btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-.index{position:absolute;left:0;bottom:4px;list-style:none;display:flex;gap:6px;flex-wrap:wrap}
-.index li{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#b4b4ba;display:flex;align-items:center;gap:6px;transition:.3s}
-.index li::before{content:"";width:14px;height:1px;background:currentColor;transition:.3s}
-.index li.on{color:var(--ink)}
-.index li.on::before{width:28px;background:var(--blue)}
-.hint{position:absolute;right:0;bottom:2px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;transition:opacity .4s}
-.hint span{display:block;width:1px;height:22px;background:var(--line);position:relative;overflow:hidden}
-.hint span::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--blue);animation:drip 1.6s ease-in-out infinite}
-@keyframes drip{to{top:100%}}
 
 #scrolly{position:relative;height:1700vh;z-index:0}
 
@@ -121,13 +111,11 @@ footer .malbo{width:96px}
   .lang{margin-left:auto}
   .cta{padding:10px 14px;font-size:9.5px}
   .nav .malbo{width:84px}
-  .stage{grid-template-columns:1fr;grid-template-rows:54svh 1fr;gap:18px;--cy:0px}
-  .card{order:-1;border-radius:18px}
-  .chap{top:4px}
-  .chap h2{font-size:clamp(32px,9.6vw,58px)}
-  .chap p.body{font-size:14px;margin-top:14px}
+  .chap,.chap.hero{padding:22px 22px 24px;border-radius:16px}
+  .chap h2{font-size:clamp(28px,8.4vw,46px)}
+  .chap h1{font-size:clamp(34px,10.5vw,60px)}
+  .chap p.body{font-size:14px;margin-top:12px}
   .kicker{margin-bottom:10px}
-  .index{display:none}
   .cols{grid-template-columns:1fr 1fr;row-gap:30px}
   .cols h4{font-size:17px;hyphens:auto;overflow-wrap:anywhere}
   .cols>*{padding-right:12px;margin-right:12px}
@@ -135,7 +123,7 @@ footer .malbo{width:96px}
   .visit{grid-template-columns:1fr}
 }
 @media (max-width:420px){.cta{display:none}}
-@media (prefers-reduced-motion:reduce){.track,.hint span::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.track,.scroll span::after{animation:none}}
 </style>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
@@ -173,17 +161,7 @@ footer .malbo{width:96px}
 </header>
 
 <div class="stage" id="stage">
-  <div class="copy" id="copy">
-    <ol class="index" id="index"></ol>
-    <div class="hint" id="hint"><span></span><b data-t="hint" style="font-weight:400"></b></div>
-  </div>
-  <div class="card" id="card">
-    <canvas id="c"></canvas>
-    <div class="tag tl">MALBO × ALTA</div>
-    <div class="tag bl"><i></i><span id="tc">00:00:00</span></div>
-    <div class="tag br" id="chapNum">01 / 06</div>
-    <div class="bar" id="bar"></div>
-  </div>
+  <div class="card" id="card"><canvas id="c"></canvas></div>
 </div>
 
 <section id="scrolly" aria-hidden="true"></section>
@@ -246,6 +224,7 @@ footer .malbo{width:96px}
    ===================================================================== */
 const I18N = {
   es: {
+    heroK: 'MALBO Innovation · Webs inmersivas', heroH: 'Entra en el edificio <em>antes de que exista.</em>', heroS: 'Desliza para entrar',
     nav1: 'Experiencia', nav2: 'Servicios', nav3: 'Proceso', nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Desliza',
     ch1k: '01 / La parcela', ch1h: 'Nada, <em>todavía.</em>', ch1b: 'Un solar vacío al atardecer, en el corazón de la ciudad. Aquí empieza todo.',
     ch2k: '02 / La torre', ch2h: 'De la nada, <em>una forma.</em>', ch2b: 'Vidrio oscuro por fuera, piedra clara por dentro. La torre se eleva en un solo gesto.',
@@ -272,6 +251,7 @@ const I18N = {
     foot: 'Demo: ALTA Residencias es un proyecto ficticio',
   },
   en: {
+    heroK: 'MALBO Innovation · Immersive websites', heroH: 'Step inside the building <em>before it exists.</em>', heroS: 'Scroll to step inside',
     nav1: 'Experience', nav2: 'Services', nav3: 'Process', nav4: 'Contact', cta: 'Get my website', hint: 'Scroll',
     ch1k: '01 / The site', ch1h: 'Nothing, <em>yet.</em>', ch1b: 'An empty lot at sunset, in the heart of the city. This is where it all begins.',
     ch2k: '02 / The tower', ch2h: 'From nothing, <em>a form.</em>', ch2b: 'Dark glass outside, pale stone within. The tower rises in a single gesture.',
@@ -298,6 +278,7 @@ const I18N = {
     foot: 'Demo: ALTA Residences is a fictional project',
   },
   ru: {
+    heroK: 'MALBO Innovation · Иммерсивные сайты', heroH: 'Войдите в здание <em>ещё до его постройки.</em>', heroS: 'Листайте, чтобы войти',
     nav1: 'Демо', nav2: 'Услуги', nav3: 'Процесс', nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Листайте',
     ch1k: '01 / Участок', ch1h: 'Пока — <em>ничего.</em>', ch1b: 'Пустой участок на закате в самом сердце города. Здесь всё начинается.',
     ch2k: '02 / Башня', ch2h: 'Из ничего — <em>форма.</em>', ch2b: 'Тёмное стекло снаружи, светлый камень внутри. Башня поднимается одним жестом.',
@@ -338,16 +319,17 @@ const CONFIG = {
   smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08,
   seconds: 43.375, // duración del vídeo
   // scroll (0–1) → segundo del vídeo
-  timeMap: [[0, 0], [0.05, 0.8], [0.15, 3.2], [0.27, 7.5], [0.37, 11.3], [0.47, 15], [0.53, 18.6], [0.62, 24.8], [0.77, 33.5], [1, 43.375]],
+  timeMap: [[0, 0], [0.05, 0], [0.09, 0.8], [0.18, 3.2], [0.29, 7.5], [0.38, 11.3], [0.48, 15], [0.54, 18.6], [0.63, 24.8], [0.78, 33.5], [1, 43.375]],
   // capítulos: clave de texto + [entra, sale] en modo vídeo y en modo 3D.
   // Dormitorio y baño (videoOnly): solo existen en el vídeo, no en la torre 3D.
   chapters: [
-    { k: 'ch1', v: [0, 0.045], d: [0, 0.13], on: true },
-    { k: 'ch2', v: [0.065, 0.145], d: [0.17, 0.38], on: true },
-    { k: 'ch3', v: [0.17, 0.26], d: [0.43, 0.6], on: true },
-    { k: 'ch4', v: [0.285, 0.36], d: [0.64, 0.78], on: true },
-    { k: 'ch5', v: [0.39, 0.52], d: [0.82, 0.93], on: true },
-    { k: 'ch6', v: [0.63, 0.76], d: [0, 0], on: true, videoOnly: true },
+    { k: 'hero', v: [0, 0.045], d: [0, 0.05], on: true, hero: true },
+    { k: 'ch1', v: [0.06, 0.09], d: [0.07, 0.13], on: true },
+    { k: 'ch2', v: [0.105, 0.175], d: [0.17, 0.38], on: true },
+    { k: 'ch3', v: [0.2, 0.28], d: [0.43, 0.6], on: true },
+    { k: 'ch4', v: [0.3, 0.37], d: [0.64, 0.78], on: true },
+    { k: 'ch5', v: [0.4, 0.53], d: [0.82, 0.93], on: true },
+    { k: 'ch6', v: [0.64, 0.77], d: [0, 0], on: true, videoOnly: true },
     { k: 'ch7', v: [0.8, 0.91], d: [0, 0], on: true, videoOnly: true },
     { k: 'fin', v: [0.93, 2], d: [0.955, 2], on: true, final: true },
   ],
@@ -366,13 +348,10 @@ document.querySelectorAll('[data-logo]').forEach(el => el.append($('#logoTpl').c
 const chapters = CONFIG.chapters.filter(c => c.on && (VIDEO || !c.videoOnly)).map(c => {
   const el = document.createElement('article');
   el.className = 'chap';
-  $('#copy').append(el);
+  $('#stage').append(el);
   const [a, b] = VIDEO ? c.v : c.d;
   return { ...c, el, a, b };
 });
-const numbered = chapters.filter(c => !c.final);
-$('#index').innerHTML = numbered.map((_, i) => `<li>${String(i + 1).padStart(2, '0')}</li>`).join('');
-const idxItems = [...document.querySelectorAll('#index li')];
 
 /* ---------- Idioma ---------- */
 let lang = 'es';
@@ -385,7 +364,10 @@ function applyLang(l) {
   document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = T[el.dataset.t]; });
   document.querySelectorAll('[data-tp]').forEach(el => { el.placeholder = T[el.dataset.tp]; });
   for (const c of chapters) {
-    c.el.innerHTML = c.final
+    if (c.hero) c.el.classList.add('hero');
+    c.el.innerHTML = c.hero
+      ? `<p class="kicker">${T.heroK}</p><h1>${T.heroH}</h1><div class="scroll"><span></span>${T.heroS}</div>`
+      : c.final
       ? `<p class="kicker">${T.finK}</p><h2>${T.finH}</h2><div class="btns"><a class="btn solid" href="#contacto">${T.finB1}</a><a class="btn" href="#servicios">${T.finB2}</a></div>`
       : `<p class="kicker">${T[c.k + 'k']}</p><h2>${T[c.k + 'h']}</h2><p class="body">${T[c.k + 'b']}</p>`;
   }
@@ -420,25 +402,16 @@ const videoTime = p => {
 
 /* ---------- UI por frame ---------- */
 const F = 0.025;
-const tcEl = $('#tc'), bar = $('#bar'), chapNum = $('#chapNum'), hint = $('#hint');
 function updateUI(p) {
-  let active = 0;
   chapters.forEach(c => {
     const vin = c.a <= 0 ? 1 : smooth(clamp((p - c.a) / F));
     const vout = c.b >= 1 ? 1 : smooth(clamp((c.b - p) / F));
     const v = Math.min(vin, vout);
     c.el.style.opacity = v;
-    c.el.style.transform = `translateY(calc(var(--cy) + ${(1 - v) * 28}px))`;
-    c.el.style.filter = v > 0.99 ? 'none' : `blur(${(1 - v) * 10}px)`;
+    c.el.style.transform = `translateY(${(1 - v) * 24}px)`;
+    c.el.style.filter = v > 0.99 ? 'none' : `blur(${(1 - v) * 8}px)`;
     c.el.style.pointerEvents = v > 0.5 ? 'auto' : 'none';
-    if (!c.final && p >= c.a - F) active = numbered.indexOf(c);
   });
-  idxItems.forEach((li, i) => li.classList.toggle('on', i === active));
-  chapNum.textContent = `${String(active + 1).padStart(2, '0')} / ${String(numbered.length).padStart(2, '0')}`;
-  const t = VIDEO ? videoTime(p) : p * 20, s = Math.floor(t), fr = Math.floor((t - s) * 24);
-  tcEl.textContent = `00:${String(s).padStart(2, '0')}:${String(fr).padStart(2, '0')}`;
-  bar.style.width = (p * 100) + '%';
-  hint.style.opacity = p > 0.03 ? 0 : 1;
 }
 const cw = () => card.clientWidth, ch = () => card.clientHeight;
 
