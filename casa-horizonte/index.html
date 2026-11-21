@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Casa Horizonte</title>
+<meta name="description" content="Casa Horizonte — villa mediterránea contemporánea. Proyecto conceptual con recorrido inmersivo, plantas, zonificación y ficha técnica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..900&family=Instrument+Serif:ital@1&family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#0b0b0c; --muted:#6e6e73; --line:#e6e6e9; --soft:#f5f5f3;
+  --blue:#3a4fd8; --blue-soft:#b9c4ff;
+  --z-soc:#dfe5ff; --z-pri:#f1e6d6; --z-ser:#e9e9ec; --z-cir:#f4f4f1; --z-ext:#e4eedf; --z-agua:#d3e9f1; --z-vac:#ffffff;
+  --sans:"Inter Tight",system-ui,sans-serif;
+  --serif:"Instrument Serif","Cormorant Garamond",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --pad:clamp(16px,3.2vw,48px); --hh:68px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;text-transform:none}
+
+/* Cabecera */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--hh);z-index:30;display:flex;align-items:center;gap:20px;padding:0 var(--pad);background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:background .3s,border-color .3s}
+.nav .malbo{width:96px;color:var(--ink)}
+.brand{display:flex;align-items:center;gap:16px}
+.brand .pname{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding-left:16px;border-left:1px solid currentColor;opacity:.75}
+.links{margin-left:auto;display:flex;gap:2px}
+.links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 11px;border-radius:999px;color:var(--muted);transition:.25s}
+.links a:hover{color:var(--ink);background:#f1f1f3}
+.lang{display:flex;gap:2px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em}
+.lang button{border:0;background:none;cursor:pointer;font:inherit;color:var(--muted);padding:7px 8px;border-radius:999px}
+.lang button.on{color:#fff;background:var(--ink)}
+.cta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;border-radius:999px;background:var(--ink);color:#fff;white-space:nowrap;transition:.25s}
+.cta:hover{background:var(--blue)}
+.nav.dark{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:transparent;color:#fff}
+.nav.dark .malbo{color:#fff}
+.nav.dark .links a{color:rgba(255,255,255,.78)}
+.nav.dark .links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav.dark .lang button{color:rgba(255,255,255,.7)}
+.nav.dark .lang button.on{background:#fff;color:var(--ink)}
+.nav.dark .cta{background:#fff;color:var(--ink)}
+
+/* Recorrido */
+.stage{position:fixed;inset:0;z-index:1}
+.card{position:absolute;inset:0;background:#1a1a1a;overflow:hidden}
+.card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.16) 42%,transparent 60%),linear-gradient(to bottom,rgba(0,0,0,.36),transparent 22%)}
+.chap{position:absolute;left:var(--pad);bottom:calc(var(--pad) + 18px);width:min(900px,calc(100% - 2 * var(--pad)));color:#fff;opacity:0;will-change:transform,opacity,filter;text-shadow:0 8px 40px rgba(0,0,0,.25)}
+.chap .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.chap .kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.chap h2,.chap h1{font-weight:800;font-size:clamp(46px,6.4vw,112px);line-height:.88;letter-spacing:-.045em;text-transform:uppercase}
+.chap h1{font-size:clamp(44px,5.6vw,100px)}
+.chap em{color:var(--blue-soft);font-size:1.04em}
+.chap p.body{margin-top:18px;max-width:440px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.9)}
+.scroll{display:flex;align-items:center;gap:12px;margin-top:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+.scroll span{display:block;width:22px;height:34px;border:1.5px solid #fff;border-radius:12px;position:relative}
+.scroll span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#fff;animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+.ring{position:absolute;right:calc(var(--pad) + 8px);top:50%;width:70px;height:70px;margin-top:-35px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.7);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:.25s;text-shadow:none}
+.btn.solid{background:#fff;color:var(--ink);border-color:#fff}
+.btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+#scrolly{position:relative;height:2200vh;z-index:0}
+
+#loader{position:fixed;inset:0;z-index:60;background:#fff;display:grid;place-items:center;transition:opacity .8s,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .malbo{width:150px}
+#loader .bar2{width:150px;height:2px;background:var(--line);margin-top:22px;overflow:hidden;border-radius:2px}
+#loader .bar2 i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
+
+/* Secciones */
+.after{position:relative;z-index:10;background:#fff}
+.sec{padding:clamp(80px,11vw,150px) var(--pad) 0}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;border-top:1px solid var(--ink);padding-top:22px}
+.sk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.h2{font-weight:800;font-size:clamp(36px,5vw,80px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.h2 em{color:var(--blue)}
+.lede{font-size:16px;line-height:1.65;color:var(--muted);max-width:560px}
+.lede+.lede{margin-top:16px}
+.figs{display:grid;grid-template-columns:repeat(6,1fr);margin-top:clamp(50px,7vw,90px);border-top:1px solid var(--line)}
+.figs div{padding:22px 16px 0 0;border-right:1px solid var(--line);margin-right:16px}
+.figs div:last-child{border-right:0}
+.figs span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.figs b{display:block;margin-top:10px;font-weight:800;font-size:clamp(28px,3.4vw,52px);letter-spacing:-.045em;line-height:1}
+.figs b small{font-size:.42em;letter-spacing:0;margin-left:4px;color:var(--muted);font-weight:500}
+
+/* Galería */
+.gal{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:clamp(40px,6vw,70px)}
+.gal figure{position:relative;overflow:hidden;cursor:zoom-in;background:var(--soft)}
+.gal figure img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.gal figure:hover img{transform:scale(1.03)}
+.gal figcaption{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.g1{grid-column:span 4;aspect-ratio:16/9.6}.g2{grid-column:span 2}.g3{grid-column:span 6;aspect-ratio:21/9}
+.g4,.g5{grid-column:span 3;aspect-ratio:16/10}.g6{grid-column:span 4;aspect-ratio:16/10}.g7{grid-column:span 2}
+.g8,.g9{grid-column:span 3;aspect-ratio:16/10}
+#lb{position:fixed;inset:0;z-index:70;background:rgba(10,10,10,.94);display:none;place-items:center;padding:var(--pad);cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-height:88vh;max-width:100%;object-fit:contain}
+#lb p{position:absolute;left:var(--pad);bottom:var(--pad);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+
+/* Plantas */
+.plans{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,64px);margin-top:clamp(40px,6vw,70px);align-items:start}
+.plan-wrap{border:1px solid var(--line);background:#fff;position:relative}
+.plan-wrap svg{display:block;width:100%;height:auto}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tabs{display:flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden}
+.tabs button{border:0;background:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:11px 16px;cursor:pointer;color:var(--ink)}
+.tabs button.on{background:var(--ink);color:#fff}
+.switch{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;user-select:none;border:0;background:none;color:var(--ink);padding:8px 4px}
+.switch i{width:38px;height:22px;border-radius:999px;background:#d9d9de;position:relative;transition:.25s}
+.switch i::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.25s}
+.switch[aria-pressed="true"] i{background:var(--blue)}
+.switch[aria-pressed="true"] i::after{left:19px}
+.info{margin-top:22px;min-height:74px;border-top:1px solid var(--ink);padding-top:16px}
+.info b{display:block;font-weight:800;font-size:28px;letter-spacing:-.03em;text-transform:uppercase}
+.info span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--blue)}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:20px}
+.legend button{display:flex;align-items:center;gap:10px;border:0;background:none;cursor:pointer;font:inherit;font-size:13.5px;color:var(--ink);text-align:left;padding:6px 0}
+.legend i{width:14px;height:14px;border:1px solid rgba(0,0,0,.25);flex:none}
+.legend small{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.5px}
+.table th{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:400;padding:0 0 8px;border-bottom:1px solid var(--ink)}
+.table td{padding:8px 0;border-bottom:1px solid var(--line)}
+.table td:last-child,.table th:last-child{text-align:right;font-family:var(--mono);font-size:12px}
+.table tr{cursor:pointer}
+.table tr.hl td{color:var(--blue)}
+.table tr.tot td{font-weight:700;border-bottom:1px solid var(--ink)}
+.table .dot{display:inline-block;width:9px;height:9px;margin-right:9px;border:1px solid rgba(0,0,0,.25);vertical-align:middle}
+.rm rect{fill:#fff;stroke:var(--ink);stroke-width:1;transition:fill .25s,opacity .25s;cursor:pointer}
+.zoning .rm rect{fill:var(--zc)}
+.rm.ext rect{fill:url(#hx)}
+.rm.agua rect{fill:#eef6fa}
+.zoning .rm.ext rect{fill:var(--z-ext)}
+.zoning .rm.agua rect{fill:var(--z-agua)}
+.rm.vac rect{fill:url(#hv)}
+.rm text{font:600 10.5px var(--sans);fill:var(--ink);text-anchor:middle;pointer-events:none;text-transform:uppercase;letter-spacing:.03em}
+.rm text.m{font:400 9.5px var(--mono);fill:var(--muted);text-transform:none;letter-spacing:0}
+.rm:hover rect,.rm.on rect{fill:var(--blue) !important;opacity:.85}
+.rm:hover text,.rm.on text{fill:#fff}
+.dim .rm:not(.on) rect{opacity:.28}
+.wall{fill:none;stroke:var(--ink);stroke-width:4;pointer-events:none}
+.ghost{fill:none;stroke:#9a9aa2;stroke-width:1;stroke-dasharray:5 4;pointer-events:none}
+.ghost-t{font:500 9px var(--mono);fill:#9a9aa2;letter-spacing:.08em;text-transform:uppercase}
+.glz{stroke:var(--blue);stroke-width:4;pointer-events:none}
+.anno{font:500 9px var(--mono);fill:var(--ink);letter-spacing:.1em}
+
+/* Estrategia */
+.strat{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(40px,6vw,70px);border-top:1px solid var(--line)}
+.strat article{padding:26px 26px 30px 0;border-bottom:1px solid var(--line)}
+.strat article:not(:nth-child(3n)){border-right:1px solid var(--line);margin-right:26px}
+.strat b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--blue)}
+.strat h4{font-weight:800;font-size:21px;letter-spacing:-.03em;text-transform:uppercase;margin:12px 0 8px}
+.strat p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+
+/* Materiales */
+.mats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(40px,6vw,70px)}
+.mats img{aspect-ratio:1;object-fit:cover;width:100%}
+.mats h4{font-weight:800;font-size:18px;letter-spacing:-.02em;text-transform:uppercase;margin:16px 0 6px}
+.mats p{font-size:14px;line-height:1.5;color:var(--muted)}
+
+/* Proceso */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(40px,6vw,70px);counter-reset:f}
+.proc img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.proc .bar{height:3px;background:var(--line);margin-top:16px;position:relative}
+.proc .bar i{position:absolute;top:0;height:100%;background:var(--ink)}
+.proc b{display:block;font-family:var(--mono);font-weight:500;font-size:11px;color:var(--blue);margin-top:14px}
+.proc h4{font-weight:800;font-size:18px;letter-spacing:-.02em;text-transform:uppercase;margin:8px 0 4px}
+.proc p{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.note{margin-top:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted)}
+
+/* Ficha */
+.specs{margin-top:clamp(40px,6vw,70px);display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,5vw,80px)}
+.specs div{display:grid;grid-template-columns:180px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.specs dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.specs dd{font-size:15px;line-height:1.45}
+
+/* Profesionales + contacto */
+.pros{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(40px,6vw,70px)}
+.pros article{border:1px solid var(--line);padding:28px}
+.pros h4{font-weight:800;font-size:22px;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:10px}
+.pros p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+.dossier{margin-top:16px;background:var(--ink);color:#fff;padding:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.dossier span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-soft)}
+.dossier p{font-size:16px}
+.contact{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;padding-bottom:clamp(80px,10vw,140px)}
+.contact form{display:grid;gap:10px}
+.contact input,.contact select,.contact textarea{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;font-size:16px;padding:14px 0;outline:none;border-radius:0}
+.contact textarea{resize:vertical;min-height:70px}
+.contact input:focus,.contact select:focus,.contact textarea:focus{border-color:var(--ink)}
+.contact button{justify-self:start;margin-top:16px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:16px 26px;border-radius:999px;border:0;background:var(--ink);color:#fff;transition:.25s}
+.contact button:hover{background:var(--blue)}
+footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+footer .malbo{width:90px;color:var(--ink)}
+
+@media (max-width:980px){
+  .links{display:none}
+  .lang{margin-left:auto}
+  .plans{grid-template-columns:1fr}
+  .figs{grid-template-columns:repeat(3,1fr);row-gap:24px}
+  .figs div:nth-child(3){border-right:0}
+  .strat{grid-template-columns:1fr 1fr}
+  .strat article:not(:nth-child(3n)){border-right:0;margin-right:0}
+  .strat article:nth-child(odd){border-right:1px solid var(--line);margin-right:20px}
+  .mats,.proc{grid-template-columns:1fr 1fr}
+  .specs{grid-template-columns:1fr}
+  .pros{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  :root{--hh:60px}
+  .brand .pname{display:none}
+  .nav .malbo{width:80px}
+  .cta{padding:10px 14px;font-size:9.5px}
+  .head{grid-template-columns:1fr}
+  .chap{bottom:28px}
+  .chap h2{font-size:clamp(38px,11.5vw,66px)}
+  .chap h1{font-size:clamp(38px,11vw,64px)}
+  .chap p.body{font-size:14px;margin-top:14px}
+  .ring{display:none}
+  .gal{grid-template-columns:1fr 1fr}
+  .gal figure{grid-column:span 2 !important;aspect-ratio:16/10 !important}
+  .strat{grid-template-columns:1fr}
+  .strat article:nth-child(odd){border-right:0;margin-right:0}
+  .specs div{grid-template-columns:1fr;gap:4px}
+  .contact{grid-template-columns:1fr}
+  .rm text{font-size:15px}
+  .rm text.m{font-size:13px}
+  .legend{grid-template-columns:1fr}
+}
+@media (max-width:400px){.cta{display:none}}
+@media (prefers-reduced-motion:reduce){.scroll span::after{animation:none}}
+</style>
+</head>
+<body>
+
+<template id="logoTpl">
+<svg class="malbo" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
+  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".5" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
+  <g fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter">
+    <path d="M8 120V14l50 50" stroke="url(#mg)"/><path d="M58 64l50-50v106"/>
+    <path d="M138 120l52-106 52 106"/>
+    <path d="M275 10v104h66"/>
+    <path d="M372 120V14h44a25 25 0 0 1 0 50h-44m44 0h4a28 28 0 0 1 0 56h-48"/>
+    <circle cx="530" cy="67" r="52"/>
+  </g>
+  <path d="M500 67l70-3 26 3-26 3z" fill="currentColor"/>
+  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Inter Tight,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
+</svg>
+</template>
+
+<div id="loader"><div><div data-logo></div><div class="bar2"><i id="loadBar"></i></div></div></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#" data-go="0"><span data-logo></span><span class="pname">Casa Horizonte</span></a>
+  <nav class="links">
+    <a href="#proyecto" data-t="nProj"></a>
+    <a href="#galeria" data-t="nGal"></a>
+    <a href="#plantas" data-t="nPlans"></a>
+    <a href="#ficha" data-t="nSpecs"></a>
+    <a href="#proceso" data-t="nProc"></a>
+  </nav>
+  <div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="ru">RU</button></div>
+  <a class="cta" href="#contacto" data-t="cta"></a>
+</header>
+
+<div class="stage" id="stage">
+  <div class="card" id="card"><canvas id="c"></canvas></div>
+  <div class="ring">Scroll</div>
+</div>
+<section id="scrolly" aria-hidden="true"></section>
+
+<div class="after">
+
+  <section class="sec" id="proyecto">
+    <div class="head">
+      <div><p class="sk" data-t="pK"></p><h2 class="h2" data-t="pH"></h2></div>
+      <div><p class="lede" data-t="pB1"></p><p class="lede" data-t="pB2"></p></div>
+    </div>
+    <div class="figs" id="figs"></div>
+  </section>
+
+  <section class="sec" id="galeria">
+    <div class="head"><div><p class="sk" data-t="gK"></p><h2 class="h2" data-t="gH"></h2></div><div></div></div>
+    <div class="gal" id="gal"></div>
+  </section>
+
+  <section class="sec" id="plantas">
+    <div class="head">
+      <div><p class="sk" data-t="plK"></p><h2 class="h2" data-t="plH"></h2></div>
+      <div><p class="lede" data-t="plB"></p></div>
+    </div>
+    <div class="plans">
+      <div class="plan-wrap" id="planWrap"></div>
+      <div>
+        <div class="ctrl">
+          <div class="tabs"><button data-fl="pb" class="on" data-t="tPB"></button><button data-fl="pa" data-t="tPA"></button></div>
+          <button class="switch" id="zoneBtn" aria-pressed="true"><i></i><span data-t="tZone"></span></button>
+        </div>
+        <div class="info" id="info"></div>
+        <div class="legend" id="legend"></div>
+        <table class="table" id="table"></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="estrategia">
+    <div class="head"><div><p class="sk" data-t="bK"></p><h2 class="h2" data-t="bH"></h2></div><div></div></div>
+    <div class="strat" id="strat"></div>
+  </section>
+
+  <section class="sec" id="materiales">
+    <div class="head"><div><p class="sk" data-t="mK"></p><h2 class="h2" data-t="mH"></h2></div><div></div></div>
+    <div class="mats" id="mats"></div>
+  </section>
+
+  <section class="sec" id="proceso">
+    <div class="head"><div><p class="sk" data-t="prK"></p><h2 class="h2" data-t="prH"></h2></div><div></div></div>
+    <div class="proc" id="proc"></div>
+    <p class="note" data-t="prNote"></p>
+  </section>
+
+  <section class="sec" id="ficha">
+    <div class="head"><div><p class="sk" data-t="sK"></p><h2 class="h2" data-t="sH"></h2></div><div></div></div>
+    <dl class="specs" id="specs"></dl>
+    <p class="note" data-t="sNote"></p>
+  </section>
+
+  <section class="sec" id="profesionales">
+    <div class="head"><div><p class="sk" data-t="aK"></p><h2 class="h2" data-t="aH"></h2></div><div></div></div>
+    <div class="pros" id="pros"></div>
+    <div class="dossier"><span data-t="dK"></span><p data-t="dL"></p></div>
+  </section>
+
+  <section class="sec contact" id="contacto">
+    <h2 class="h2" data-t="cH"></h2>
+    <form id="form">
+      <input required data-tp="fName">
+      <input data-tp="fCompany">
+      <input required type="email" data-tp="fEmail">
+      <select id="fProfile" aria-label="Perfil"></select>
+      <textarea data-tp="fMsg"></textarea>
+      <button type="submit" data-t="fBtn"></button>
+    </form>
+  </section>
+
+  <footer>
+    <a href="https://malboinnovation.com" data-logo></a>
+    <span data-t="foot1"></span>
+    <span data-t="foot2"></span>
+  </footer>
+</div>
+
+<div id="lb"><img alt=""><p></p></div>
+
+<script type="module">
+/* =====================================================================
+   TEXTOS · ES / EN / RU
+   ===================================================================== */
+const I18N = {
+es: {
+  nProj:'Proyecto', nGal:'Galería', nPlans:'Plantas', nSpecs:'Ficha técnica', nProc:'Proceso', cta:'Solicitar dossier',
+  heroK:'Proyecto conceptual · Costa mediterránea', heroH:'Casa Horizonte. <em>Una villa que mira al mar.</em>', heroS:'Desliza para recorrerla',
+  c1k:'01 / El solar', c1h:'Nada, <em>todavía.</em>', c1b:'1.200 m² de ladera entre olivos, orientada al mar.',
+  c2k:'02 / La estructura', c2h:'De la tierra, <em>una forma.</em>', c2b:'Hormigón armado visto y un voladizo de 5 metros sobre el acceso.',
+  c3k:'03 / La casa', c3h:'Una casa <em>que mira al mar.</em>', c3b:'Una base de hormigón y travertino; encima, una caja de roble.',
+  c4k:'04 / El entorno', c4h:'Horizonte <em>en cada ángulo.</em>', c4b:'Cubiertas planas, jardín mediterráneo y vistas abiertas a la costa.',
+  c5k:'05 / La piscina', c5h:'El agua <em>se funde con el mar.</em>', c5b:'Piscina desbordante de 14 × 4 m sobre una terraza de travertino.',
+  c6k:'06 / El salón', c6h:'Doble altura, <em>doble luz.</em>', c6b:'Seis metros de vidrio que se abren por completo a la terraza.',
+  c7k:'07 / La cocina', c7h:'El corazón <em>de la casa.</em>', c7b:'Isla monolítica de travertino y mesa de roble para ocho.',
+  c8k:'08 / La escalera', c8h:'Piedra <em>que flota.</em>', c8b:'Peldaños volados de travertino sobre un muro de hormigón visto.',
+  c9k:'09 / La suite', c9h:'Despertar <em>frente al mar.</em>', c9b:'La suite ocupa el voladizo: una ventana panorámica sobre la costa.',
+  c10k:'10 / El baño', c10h:'Piedra, <em>agua y luz.</em>', c10b:'Travertino de suelo a techo y una bañera de piedra frente a la ventana.',
+  c11k:'11 / La terraza', c11h:'Cuando cae <em>la noche.</em>', c11b:'Terraza superior con fuego y vistas a la costa.',
+  finK:'Casa Horizonte', finH:'Explora <em>el proyecto.</em>', finB1:'Ver plantas', finB2:'Solicitar dossier',
+  pK:'01 — Proyecto', pH:'Arquitectura que <em>enmarca el horizonte.</em>',
+  pB1:'Casa Horizonte es una vivienda unifamiliar aislada en una ladera mediterránea. El programa se organiza en dos piezas: una base pesada de hormigón visto y travertino que se ancla al terreno y acoge la vida social, y una caja ligera de roble que vuela cinco metros sobre el acceso y protege la vida privada.',
+  pB2:'Toda la planta baja se abre al suroeste: el salón de doble altura, la cocina y la terraza se prolongan en una piscina desbordante que se funde con el mar. El voladizo actúa a la vez como pórtico de entrada y como protección solar.',
+  fPlot:'Parcela', fBuilt:'Construido', fFloors:'Plantas', fBeds:'Dormitorios', fBaths:'Baños', fCant:'Voladizo',
+  gK:'02 — Galería', gH:'El proyecto, <em>imagen a imagen.</em>',
+  gal:{solar:'Solar', estructura:'Estructura', fachada:'Fachada de acceso', aerea:'Vista aérea', piscina:'Piscina y terraza', salon:'Salón de doble altura', cocina:'Cocina y comedor', escalera:'Recibidor y escalera', dormitorio:'Suite principal'},
+  plK:'03 — Plantas y zonificación', plH:'Dos piezas, <em>una lógica clara.</em>',
+  plB:'Día abajo, noche arriba. La planta baja concentra la vida social abierta al jardín y la piscina; la caja superior reúne los dormitorios, con la suite principal asomada al mar.',
+  tPB:'Planta baja', tPA:'Planta alta', tZone:'Zonificación', hint:'Toca una estancia o una zona',
+  zones:{soc:'Social', pri:'Privada', ser:'Servicio', cir:'Circulación', ext:'Exterior', agua:'Piscina', vac:'Doble altura'},
+  thRoom:'Estancia', thArea:'Superficie', totInt:'Total interior', totExt:'Exterior',
+  ghostPB:'Voladizo planta alta', ghostPA:'Planta baja', north:'N',
+  rooms:{gar:'Garaje', lav:'Lavadero', aseo:'Aseo', desp:'Despensa', rec:'Recibidor', esc:'Escalera', com:'Comedor', sal:'Salón', coc:'Cocina', binv:'Baño invitados', dinv:'Dormitorio invitados', ter:'Terraza', pis:'Piscina', d2:'Dormitorio 2', b2:'Baño 2', d3:'Dormitorio 3', vest:'Vestidor', bpri:'Baño principal', est:'Estudio', vac:'Doble altura', suite:'Suite principal', tsup:'Terraza superior'},
+  bK:'04 — Estrategia', bH:'Diseñada para <em>el clima mediterráneo.</em>',
+  strat:[['Orientación','Fachada principal al suroeste: luz y vistas al mar todo el año.'],['Sombra','El voladizo y los aleros frenan el sol de verano y dejan entrar el de invierno.'],['Ventilación cruzada','Grandes correderas en fachadas opuestas para refrescar la casa sin máquinas.'],['Inercia térmica','El hormigón y la piedra acumulan el fresco de la noche.'],['Energía','Aerotermia con suelo radiante y refrescante, y fotovoltaica en cubierta.'],['Agua y paisaje','Recogida de pluviales para riego y jardín de especies autóctonas de bajo consumo.']],
+  mK:'05 — Materialidad', mH:'Cuatro materiales, <em>una paleta honesta.</em>',
+  mats:[['Hormigón visto','Encofrado de tablilla en muros y estructura.'],['Travertino','Suelos, terraza, escalera y baños.'],['Roble','Listón vertical en fachada y revestimientos interiores.'],['Vidrio y bronce','Correderas de suelo a techo con perfilería de bronce.']],
+  prK:'06 — Proceso constructivo', prH:'Del solar a la casa <em>en 14 meses.</em>',
+  proc:[['Movimiento de tierras y cimentación','2 meses'],['Estructura y voladizo','4 meses'],['Envolvente y cubiertas','3 meses'],['Instalaciones, acabados y paisajismo','5 meses']],
+  prNote:'Plazos orientativos.',
+  sK:'07 — Ficha técnica', sH:'Datos <em>del proyecto.</em>',
+  specs:[['Ubicación','Costa mediterránea'],['Uso','Vivienda unifamiliar aislada'],['Parcela','1.200 m²'],['Superficie construida','{built} m² (planta baja {pb} m² · planta alta {pa} m²)'],['Terrazas','{ter} m²'],['Piscina','Desbordante, 14 × 4 m'],['Altura','2 plantas · 7,2 m'],['Estructura','Hormigón armado visto; voladizo de 5 m sobre vigas de gran canto'],['Fachadas','Hormigón de tablilla, travertino y listón de roble termotratado'],['Carpintería','Aluminio bronce con rotura de puente térmico; vidrio bajo emisivo'],['Climatización','Aerotermia, suelo radiante y refrescante'],['Energía','Fotovoltaica en cubierta · objetivo calificación A']],
+  sNote:'Proyecto conceptual. Superficies y datos orientativos.',
+  aK:'08 — Para profesionales', aH:'Un proyecto listo <em>para desarrollar.</em>',
+  pros:[['Constructoras','Sistema constructivo claro, fases y plazos para presupuestar con rapidez.'],['Arquitectos','Plantas, zonificación y concepto para adaptarlo a tu parcela y a tu cliente.'],['Interioristas','Paleta de materiales y ambientes definidos estancia por estancia.']],
+  dK:'El dossier incluye', dL:'Plantas y zonificación · Imágenes en alta resolución · Vídeo del recorrido · Memoria de materiales y plazos',
+  cH:'Solicita el <em>dossier técnico.</em>',
+  fName:'Nombre', fCompany:'Empresa o estudio', fEmail:'Email', fMsg:'Mensaje (opcional)', fBtn:'Enviar solicitud', fThanks:'Gracias — te enviaremos el dossier',
+  profiles:['Perfil profesional','Constructora','Estudio de arquitectura','Interiorismo','Promotor o inversor','Particular'],
+  foot1:'Proyecto conceptual · Visualización y web: MALBO Innovation', foot2:'Imágenes y vídeo generados con IA',
+},
+en: {
+  nProj:'Project', nGal:'Gallery', nPlans:'Plans', nSpecs:'Specifications', nProc:'Process', cta:'Request dossier',
+  heroK:'Concept project · Mediterranean coast', heroH:'Casa Horizonte. <em>A villa facing the sea.</em>', heroS:'Scroll to explore',
+  c1k:'01 / The site', c1h:'Nothing, <em>yet.</em>', c1b:'1,200 m² of hillside among olive trees, facing the sea.',
+  c2k:'02 / The structure', c2h:'From the earth, <em>a form.</em>', c2b:'Exposed reinforced concrete and a 5-metre cantilever over the entrance.',
+  c3k:'03 / The house', c3h:'A house <em>that faces the sea.</em>', c3b:'A base of concrete and travertine; above it, an oak box.',
+  c4k:'04 / The setting', c4h:'Horizon <em>from every angle.</em>', c4b:'Flat roofs, a Mediterranean garden and open views of the coast.',
+  c5k:'05 / The pool', c5h:'Water <em>meets the sea.</em>', c5b:'A 14 × 4 m infinity pool on a travertine terrace.',
+  c6k:'06 / The living room', c6h:'Double height, <em>double light.</em>', c6b:'Six metres of glass that open fully onto the terrace.',
+  c7k:'07 / The kitchen', c7h:'The heart <em>of the home.</em>', c7b:'A monolithic travertine island and an oak table for eight.',
+  c8k:'08 / The staircase', c8h:'Stone <em>that floats.</em>', c8b:'Cantilevered travertine treads on an exposed concrete wall.',
+  c9k:'09 / The suite', c9h:'Wake up <em>facing the sea.</em>', c9b:'The suite fills the cantilever: a panoramic window over the coast.',
+  c10k:'10 / The bathroom', c10h:'Stone, <em>water and light.</em>', c10b:'Floor-to-ceiling travertine and a stone bathtub facing the window.',
+  c11k:'11 / The terrace', c11h:'When night <em>falls.</em>', c11b:'A roof terrace with a fire bowl and coastal views.',
+  finK:'Casa Horizonte', finH:'Explore <em>the project.</em>', finB1:'View plans', finB2:'Request dossier',
+  pK:'01 — Project', pH:'Architecture that <em>frames the horizon.</em>',
+  pB1:'Casa Horizonte is a detached single-family home on a Mediterranean hillside. The programme is organised in two pieces: a heavy base of exposed concrete and travertine anchored to the ground, holding the social life, and a light oak box that cantilevers five metres over the entrance, sheltering the private life.',
+  pB2:'The whole ground floor opens to the south-west: the double-height living room, the kitchen and the terrace extend into an infinity pool that merges with the sea. The cantilever works both as an entrance portico and as solar protection.',
+  fPlot:'Plot', fBuilt:'Built area', fFloors:'Floors', fBeds:'Bedrooms', fBaths:'Bathrooms', fCant:'Cantilever',
+  gK:'02 — Gallery', gH:'The project, <em>image by image.</em>',
+  gal:{solar:'Site', estructura:'Structure', fachada:'Entrance façade', aerea:'Aerial view', piscina:'Pool and terrace', salon:'Double-height living', cocina:'Kitchen and dining', escalera:'Entrance and staircase', dormitorio:'Master suite'},
+  plK:'03 — Plans and zoning', plH:'Two pieces, <em>one clear logic.</em>',
+  plB:'Day below, night above. The ground floor gathers the social life, open to the garden and pool; the upper box holds the bedrooms, with the master suite looking out to sea.',
+  tPB:'Ground floor', tPA:'Upper floor', tZone:'Zoning', hint:'Tap a room or a zone',
+  zones:{soc:'Social', pri:'Private', ser:'Service', cir:'Circulation', ext:'Outdoor', agua:'Pool', vac:'Double height'},
+  thRoom:'Room', thArea:'Area', totInt:'Interior total', totExt:'Outdoor',
+  ghostPB:'Upper-floor cantilever', ghostPA:'Ground floor', north:'N',
+  rooms:{gar:'Garage', lav:'Laundry', aseo:'Guest WC', desp:'Pantry', rec:'Entrance hall', esc:'Staircase', com:'Dining', sal:'Living room', coc:'Kitchen', binv:'Guest bath', dinv:'Guest bedroom', ter:'Terrace', pis:'Pool', d2:'Bedroom 2', b2:'Bath 2', d3:'Bedroom 3', vest:'Dressing room', bpri:'Master bath', est:'Study', vac:'Double height', suite:'Master suite', tsup:'Roof terrace'},
+  bK:'04 — Strategy', bH:'Designed for <em>the Mediterranean climate.</em>',
+  strat:[['Orientation','Main façade facing south-west: light and sea views all year round.'],['Shade','The cantilever and eaves block the summer sun and let the winter sun in.'],['Cross ventilation','Large sliding doors on opposite façades cool the house without machines.'],['Thermal mass','Concrete and stone store the cool of the night.'],['Energy','Air-source heat pump with underfloor heating and cooling, plus rooftop solar PV.'],['Water and landscape','Rainwater harvesting for irrigation and a low-water native garden.']],
+  mK:'05 — Materials', mH:'Four materials, <em>an honest palette.</em>',
+  mats:[['Exposed concrete','Board-formed, in walls and structure.'],['Travertine','Floors, terrace, staircase and bathrooms.'],['Oak','Vertical slats on the façade and interior linings.'],['Glass and bronze','Floor-to-ceiling sliding doors with bronze frames.']],
+  prK:'06 — Construction process', prH:'From site to home <em>in 14 months.</em>',
+  proc:[['Earthworks and foundations','2 months'],['Structure and cantilever','4 months'],['Envelope and roofs','3 months'],['Services, finishes and landscaping','5 months']],
+  prNote:'Indicative timings.',
+  sK:'07 — Specifications', sH:'Project <em>data.</em>',
+  specs:[['Location','Mediterranean coast'],['Use','Detached single-family home'],['Plot','1,200 m²'],['Built area','{built} m² (ground floor {pb} m² · upper floor {pa} m²)'],['Terraces','{ter} m²'],['Pool','Infinity, 14 × 4 m'],['Height','2 floors · 7.2 m'],['Structure','Exposed reinforced concrete; 5 m cantilever on deep beams'],['Façades','Board-formed concrete, travertine and thermo-treated oak slats'],['Glazing','Bronze aluminium with thermal break; low-e glass'],['HVAC','Heat pump, underfloor heating and cooling'],['Energy','Rooftop solar PV · target rating A']],
+  sNote:'Concept project. Areas and data are indicative.',
+  aK:'08 — For professionals', aH:'A project ready <em>to develop.</em>',
+  pros:[['Builders','A clear construction system, phases and timings to price quickly.'],['Architects','Plans, zoning and concept to adapt to your plot and your client.'],['Interior designers','A material palette and moods defined room by room.']],
+  dK:'The dossier includes', dL:'Plans and zoning · High-resolution images · Walkthrough video · Materials and timeline report',
+  cH:'Request the <em>technical dossier.</em>',
+  fName:'Name', fCompany:'Company or studio', fEmail:'Email', fMsg:'Message (optional)', fBtn:'Send request', fThanks:'Thank you — we’ll send you the dossier',
+  profiles:['Professional profile','Builder','Architecture studio','Interior design','Developer or investor','Private client'],
+  foot1:'Concept project · Visualisation and web: MALBO Innovation', foot2:'Images and video generated with AI',
+},
+ru: {
+  nProj:'Проект', nGal:'Галерея', nPlans:'Планы', nSpecs:'Характеристики', nProc:'Этапы', cta:'Запросить досье',
+  heroK:'Концептуальный проект · Средиземноморское побережье', heroH:'Casa Horizonte. <em>Вилла с видом на море.</em>', heroS:'Листайте, чтобы пройти',
+  c1k:'01 / Участок', c1h:'Пока — <em>ничего.</em>', c1b:'1 200 м² склона среди олив с видом на море.',
+  c2k:'02 / Каркас', c2h:'Из земли — <em>форма.</em>', c2b:'Открытый железобетон и консоль 5 метров над входом.',
+  c3k:'03 / Дом', c3h:'Дом, <em>обращённый к морю.</em>', c3b:'Основание из бетона и травертина, над ним — дубовый объём.',
+  c4k:'04 / Окружение', c4h:'Горизонт <em>с каждой стороны.</em>', c4b:'Плоские кровли, средиземноморский сад и открытый вид на побережье.',
+  c5k:'05 / Бассейн', c5h:'Вода <em>сливается с морем.</em>', c5b:'Бассейн-инфинити 14 × 4 м на травертиновой террасе.',
+  c6k:'06 / Гостиная', c6h:'Двойная высота, <em>двойной свет.</em>', c6b:'Шесть метров стекла полностью открываются на террасу.',
+  c7k:'07 / Кухня', c7h:'Сердце <em>дома.</em>', c7b:'Монолитный остров из травертина и дубовый стол на восемь персон.',
+  c8k:'08 / Лестница', c8h:'Камень, <em>который парит.</em>', c8b:'Консольные ступени из травертина на стене из открытого бетона.',
+  c9k:'09 / Спальня', c9h:'Просыпаться <em>с видом на море.</em>', c9b:'Спальня занимает консоль: панорамное окно над побережьем.',
+  c10k:'10 / Ванная', c10h:'Камень, <em>вода и свет.</em>', c10b:'Травертин от пола до потолка и каменная ванна у окна.',
+  c11k:'11 / Терраса', c11h:'Когда наступает <em>ночь.</em>', c11b:'Терраса на крыше с очагом и видом на побережье.',
+  finK:'Casa Horizonte', finH:'Изучите <em>проект.</em>', finB1:'Планы', finB2:'Запросить досье',
+  pK:'01 — Проект', pH:'Архитектура, <em>обрамляющая горизонт.</em>',
+  pB1:'Casa Horizonte — отдельно стоящий дом на средиземноморском склоне. Программа разделена на два объёма: тяжёлое основание из открытого бетона и травертина, закреплённое в рельефе и вмещающее общественную зону, и лёгкий дубовый объём с консолью пять метров над входом, где расположена приватная зона.',
+  pB2:'Первый этаж полностью открыт на юго-запад: гостиная двойной высоты, кухня и терраса продолжаются бассейном-инфинити, сливающимся с морем. Консоль служит одновременно входным портиком и солнцезащитой.',
+  fPlot:'Участок', fBuilt:'Площадь', fFloors:'Этажи', fBeds:'Спальни', fBaths:'Санузлы', fCant:'Консоль',
+  gK:'02 — Галерея', gH:'Проект <em>кадр за кадром.</em>',
+  gal:{solar:'Участок', estructura:'Каркас', fachada:'Входной фасад', aerea:'Вид сверху', piscina:'Бассейн и терраса', salon:'Гостиная двойной высоты', cocina:'Кухня и столовая', escalera:'Холл и лестница', dormitorio:'Главная спальня'},
+  plK:'03 — Планы и зонирование', plH:'Два объёма — <em>одна ясная логика.</em>',
+  plB:'День — внизу, ночь — наверху. На первом этаже — общественная зона с выходом в сад и к бассейну, в верхнем объёме — спальни, главная из которых смотрит на море.',
+  tPB:'Первый этаж', tPA:'Второй этаж', tZone:'Зонирование', hint:'Нажмите на помещение или зону',
+  zones:{soc:'Общественная', pri:'Приватная', ser:'Служебная', cir:'Коммуникации', ext:'Открытые', agua:'Бассейн', vac:'Второй свет'},
+  thRoom:'Помещение', thArea:'Площадь', totInt:'Итого внутри', totExt:'Открытые',
+  ghostPB:'Консоль второго этажа', ghostPA:'Первый этаж', north:'С',
+  rooms:{gar:'Гараж', lav:'Постирочная', aseo:'Санузел', desp:'Кладовая', rec:'Холл', esc:'Лестница', com:'Столовая', sal:'Гостиная', coc:'Кухня', binv:'Гостевая ванная', dinv:'Гостевая спальня', ter:'Терраса', pis:'Бассейн', d2:'Спальня 2', b2:'Ванная 2', d3:'Спальня 3', vest:'Гардеробная', bpri:'Главная ванная', est:'Кабинет', vac:'Второй свет', suite:'Главная спальня', tsup:'Терраса на крыше'},
+  bK:'04 — Стратегия', bH:'Спроектирован <em>для средиземноморского климата.</em>',
+  strat:[['Ориентация','Главный фасад на юго-запад: свет и вид на море круглый год.'],['Тень','Консоль и свесы защищают от летнего солнца и пропускают зимнее.'],['Сквозное проветривание','Большие раздвижные двери на противоположных фасадах охлаждают дом без техники.'],['Тепловая инерция','Бетон и камень накапливают ночную прохладу.'],['Энергия','Тепловой насос с тёплым и охлаждающим полом и солнечные панели на крыше.'],['Вода и ландшафт','Сбор дождевой воды для полива и сад из местных засухоустойчивых растений.']],
+  mK:'05 — Материалы', mH:'Четыре материала — <em>честная палитра.</em>',
+  mats:[['Открытый бетон','Опалубка из досок, стены и каркас.'],['Травертин','Полы, терраса, лестница и ванные.'],['Дуб','Вертикальные рейки на фасаде и внутренняя отделка.'],['Стекло и бронза','Раздвижные двери от пола до потолка в бронзовых профилях.']],
+  prK:'06 — Этапы строительства', prH:'От участка до дома <em>за 14 месяцев.</em>',
+  proc:[['Земляные работы и фундамент','2 месяца'],['Каркас и консоль','4 месяца'],['Оболочка и кровля','3 месяца'],['Инженерия, отделка и ландшафт','5 месяцев']],
+  prNote:'Сроки ориентировочные.',
+  sK:'07 — Технические характеристики', sH:'Данные <em>проекта.</em>',
+  specs:[['Расположение','Средиземноморское побережье'],['Назначение','Отдельно стоящий жилой дом'],['Участок','1 200 м²'],['Общая площадь','{built} м² (первый этаж {pb} м² · второй этаж {pa} м²)'],['Террасы','{ter} м²'],['Бассейн','Инфинити, 14 × 4 м'],['Высота','2 этажа · 7,2 м'],['Конструкция','Открытый железобетон; консоль 5 м на балках большой высоты'],['Фасады','Бетон с текстурой доски, травертин и термообработанные дубовые рейки'],['Остекление','Бронзовый алюминий с терморазрывом; низкоэмиссионное стекло'],['Климат','Тепловой насос, тёплый и охлаждающий пол'],['Энергия','Солнечные панели на крыше · цель — класс A']],
+  sNote:'Концептуальный проект. Площади и данные ориентировочные.',
+  aK:'08 — Для профессионалов', aH:'Проект, готовый <em>к реализации.</em>',
+  pros:[['Строителям','Понятная конструктивная система, этапы и сроки для быстрой сметы.'],['Архитекторам','Планы, зонирование и концепция для адаптации к вашему участку и клиенту.'],['Дизайнерам интерьера','Палитра материалов и атмосфера каждого помещения.']],
+  dK:'Досье включает', dL:'Планы и зонирование · Изображения высокого разрешения · Видео-прогулка · Описание материалов и сроков',
+  cH:'Запросите <em>техническое досье.</em>',
+  fName:'Имя', fCompany:'Компания или бюро', fEmail:'Email', fMsg:'Сообщение (необязательно)', fBtn:'Отправить запрос', fThanks:'Спасибо — мы отправим вам досье',
+  profiles:['Профиль','Строительная компания','Архитектурное бюро','Дизайн интерьера','Девелопер или инвестор','Частный клиент'],
+  foot1:'Концептуальный проект · Визуализация и сайт: MALBO Innovation', foot2:'Изображения и видео созданы с помощью ИИ',
+},
+};
+
+/* =====================================================================
+   CONFIGURACIÓN DEL RECORRIDO
+   ===================================================================== */
+const CONFIG = {
+  frames: { count: 681, path: i => `frames/frame_${String(i + 1).padStart(4, '0')}.webp` },
+  smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08,
+  seconds: 56.7,
+  // scroll (0–1) → segundo del vídeo. Más scroll para la construcción y los interiores; menos para la vista aérea.
+  timeMap: [[0, 0], [0.04, 0], [0.08, 1.2], [0.2, 6], [0.28, 12], [0.38, 26], [0.44, 29], [0.55, 37], [0.66, 44], [0.73, 47.5], [0.8, 50.5], [0.87, 53], [0.97, 56.7], [1, 56.7]],
+  // capítulos en segundos del vídeo [entra, sale]
+  chapters: [['c1', 0.1, 1.1], ['c2', 1.6, 5.5], ['c3', 6.5, 11.5], ['c4', 14, 25.5], ['c5', 26.5, 30], ['c6', 32, 38], ['c7', 39.5, 41.5], ['c8', 42.3, 46.3], ['c9', 47.8, 49.8], ['c10', 50.3, 52.3], ['c11', 52.8, 55.6]],
+};
+
+const $ = s => document.querySelector(s);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const smooth = t => t * t * (3 - 2 * t);
+const canvas = $('#c'), card = $('#card'), scrolly = $('#scrolly');
+const setLoad = v => { $('#loadBar').style.width = Math.round(v * 100) + '%'; };
+document.querySelectorAll('[data-logo]').forEach(el => el.append($('#logoTpl').content.cloneNode(true)));
+
+const videoTime = p => {
+  const m = CONFIG.timeMap;
+  for (let k = 0; k < m.length - 1; k++) if (p <= m[k + 1][0])
+    return m[k][1] + (m[k + 1][1] - m[k][1]) * (p - m[k][0]) / (m[k + 1][0] - m[k][0]);
+  return m[m.length - 1][1];
+};
+const timeToP = t => { // inversa (después de la portada)
+  const m = CONFIG.timeMap;
+  for (let k = 1; k < m.length - 1; k++) if (t <= m[k + 1][1] && m[k + 1][1] > m[k][1])
+    return m[k][0] + (m[k + 1][0] - m[k][0]) * (t - m[k][1]) / (m[k + 1][1] - m[k][1]);
+  return 1;
+};
+
+/* ---------- Capítulos ---------- */
+const chapters = [{ k: 'hero', a: 0, b: 0.032, hero: true }]
+  .concat(CONFIG.chapters.map(([k, t0, t1]) => ({ k, a: timeToP(t0), b: timeToP(t1) })))
+  .concat([{ k: 'fin', a: 0.975, b: 2, fin: true }]);
+chapters.forEach(c => { c.el = document.createElement('article'); c.el.className = 'chap'; $('#stage').append(c.el); });
+
+/* ---------- Plantas: [clave, zona, x, y, ancho, fondo] en metros ---------- */
+const FLOORS = {
+  pb: { wall: [0, 0, 24, 9.5], glz: [[6.3, 9.5, 23.7, 9.5]], ghost: [6, -5, 16, 10], rooms: [
+    ['ter', 'ext', 6, 9.5, 18, 3.5], ['pis', 'agua', 8, 13, 14, 4],
+    ['gar', 'ser', 0, 0, 6, 6], ['lav', 'ser', 0, 6, 3, 3.5], ['aseo', 'ser', 3, 6, 3, 1.8], ['desp', 'ser', 3, 7.8, 3, 1.7],
+    ['rec', 'cir', 6, 0, 4, 4.5], ['esc', 'cir', 10, 0, 2.5, 4.5], ['com', 'soc', 6, 4.5, 6.5, 5],
+    ['sal', 'soc', 12.5, 0, 5.5, 9.5], ['coc', 'soc', 18, 0, 3.5, 9.5],
+    ['binv', 'pri', 21.5, 0, 2.5, 3.5], ['dinv', 'pri', 21.5, 3.5, 2.5, 6]] },
+  pa: { wall: [6, -5, 16, 10], glz: [[6.3, 5, 21.7, 5], [6.3, -5, 16.2, -5]], ghost: [0, 0, 24, 9.5], rooms: [
+    ['tsup', 'ext', 0, 0, 6, 9.5],
+    ['d2', 'pri', 6, -5, 4.5, 4.5], ['b2', 'pri', 10.5, -5, 2, 4.5], ['d3', 'pri', 12.5, -5, 4, 4.5], ['vest', 'pri', 16.5, -5, 2.5, 4.5], ['bpri', 'pri', 19, -5, 3, 4.5],
+    ['est', 'soc', 6, -0.5, 4, 5.5], ['esc', 'cir', 10, -0.5, 2.5, 5.5], ['vac', 'vac', 12.5, -0.5, 3.5, 5.5], ['suite', 'pri', 16, -0.5, 6, 5.5]] },
+};
+const area = r => r[4] * r[5];
+const sumBy = (fl, f) => FLOORS[fl].rooms.filter(f).reduce((a, r) => a + area(r), 0);
+const INT = r => r[1] !== 'ext' && r[1] !== 'agua' && r[1] !== 'vac';
+const A = { pb: Math.round(sumBy('pb', INT)), pa: Math.round(sumBy('pa', INT)) };
+A.built = A.pb + A.pa;
+A.ter = Math.round(sumBy('pb', r => r[1] === 'ext') + sumBy('pa', r => r[1] === 'ext'));
+const BEDS = 4, BATHS = '3 + 1';
+
+const GAL = ['solar', 'estructura', 'fachada', 'aerea', 'piscina', 'salon', 'cocina', 'escalera', 'dormitorio'];
+const IMG = n => `img/${n}.webp`;
+
+/* ---------- Idioma ---------- */
+let lang = 'es';
+try { lang = localStorage.getItem('horizonte-lang') || ''; } catch (e) {}
+if (!I18N[lang]) lang = (navigator.language || 'es').slice(0, 2);
+if (!I18N[lang]) lang = 'es';
+const fmt = n => n.toLocaleString(lang === 'en' ? 'en-GB' : lang === 'ru' ? 'ru-RU' : 'es-ES', { maximumFractionDigits: 1 });
+
+function applyLang(l) {
+  lang = l; const T = I18N[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = T[el.dataset.t]; });
+  document.querySelectorAll('[data-tp]').forEach(el => { el.placeholder = T[el.dataset.tp]; });
+  chapters.forEach(c => {
+    c.el.innerHTML = c.hero
+      ? `<p class="kicker">${T.heroK}</p><h1>${T.heroH}</h1><div class="scroll"><span></span>${T.heroS}</div>`
+      : c.fin
+        ? `<p class="kicker">${T.finK}</p><h2>${T.finH}</h2><div class="btns"><a class="btn solid" href="#plantas">${T.finB1}</a><a class="btn" href="#contacto">${T.finB2}</a></div>`
+        : `<p class="kicker">${T[c.k + 'k']}</p><h2>${T[c.k + 'h']}</h2><p class="body">${T[c.k + 'b']}</p>`;
+  });
+  $('#figs').innerHTML = [[T.fPlot, '1.200', 'm²'], [T.fBuilt, fmt(A.built), 'm²'], [T.fFloors, '2', ''], [T.fBeds, BEDS, ''], [T.fBaths, BATHS, ''], [T.fCant, '5', 'm']]
+    .map(([a, b, u]) => `<div><span>${a}</span><b>${l === 'en' ? String(b).replace('.', ',') : b}${u ? `<small>${u}</small>` : ''}</b></div>`).join('');
+  $('#gal').innerHTML = GAL.map((n, i) => `<figure class="g${i + 1}" data-i="${i}"><img src="${IMG(n)}" alt="${T.gal[n]}" loading="lazy"><figcaption>${T.gal[n]}</figcaption></figure>`).join('');
+  $('#strat').innerHTML = T.strat.map(([h, p], i) => `<article><b>${String(i + 1).padStart(2, '0')}</b><h4>${h}</h4><p>${p}</p></article>`).join('');
+  const MI = ['mat-hormigon', 'mat-travertino', 'mat-roble', 'mat-bronce'];
+  $('#mats').innerHTML = T.mats.map(([h, p], i) => `<article><img src="${IMG(MI[i])}" alt="${h}" loading="lazy"><h4>${h}</h4><p>${p}</p></article>`).join('');
+  const PI = ['solar', 'estructura', 'fachada', 'aerea'], months = [2, 4, 3, 5]; let acc = 0;
+  $('#proc').innerHTML = T.proc.map(([h, d], i) => { const left = acc / 14 * 100, w = months[i] / 14 * 100; acc += months[i];
+    return `<article><img src="${IMG(PI[i])}" alt="${h}" loading="lazy"><div class="bar"><i style="left:${left}%;width:${w}%"></i></div><b>F${i + 1}</b><h4>${h}</h4><p>${d}</p></article>`; }).join('');
+  $('#specs').innerHTML = T.specs.map(([a, b]) => `<div><dt>${a}</dt><dd>${b.replace('{built}', fmt(A.built)).replace('{pb}', fmt(A.pb)).replace('{pa}', fmt(A.pa)).replace('{ter}', fmt(A.ter))}</dd></div>`).join('');
+  $('#pros').innerHTML = T.pros.map(([h, p]) => `<article><h4>${h}</h4><p>${p}</p></article>`).join('');
+  $('#fProfile').innerHTML = T.profiles.map((p, i) => `<option${i ? '' : ' value="" disabled selected'}>${p}</option>`).join('');
+  document.querySelectorAll('#lang button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+  try { localStorage.setItem('horizonte-lang', l); } catch (e) {}
+  renderPlan();
+  lastP = -1;
+}
+document.querySelectorAll('#lang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
+$('#form').addEventListener('submit', e => { e.preventDefault(); e.target.querySelector('button').textContent = I18N[lang].fThanks; });
+
+/* ---------- Galería: visor ---------- */
+$('#gal').addEventListener('click', e => {
+  const f = e.target.closest('figure'); if (!f) return;
+  const n = GAL[+f.dataset.i]; $('#lb img').src = IMG(n); $('#lb p').textContent = I18N[lang].gal[n]; $('#lb').classList.add('on');
+});
+$('#lb').addEventListener('click', () => $('#lb').classList.remove('on'));
+addEventListener('keydown', e => { if (e.key === 'Escape') $('#lb').classList.remove('on'); });
+
+/* ---------- Plantas interactivas ---------- */
+let floor = 'pb', zoning = true, selZone = null;
+const S = 24, X0 = -1.5, Y0 = -6.8, VW = 27 * S, VH = 25 * S;
+const px = x => (x - X0) * S, py = y => (y - Y0) * S;
+const mobileQ = matchMedia('(max-width:700px)');
+function label(name, a, cx, cy, w, h) {
+  const cw = mobileQ.matches ? 9.6 : 6.6, lh = mobileQ.matches ? 17 : 12.5;
+  const lines = []; let cur = '';
+  for (const word of name.split(' ')) { const t = cur ? cur + ' ' + word : word; if (t.length * cw > w - 8 && cur) { lines.push(cur); cur = word; } else cur = t; }
+  lines.push(cur);
+  const fits = Math.max(...lines.map(s => s.length)) * cw <= w - 6 && (lines.length + 1) * lh < h - 4;
+  const m = `${fmt(a)} m²`;
+  if (!fits) return w > 36 && h > 18 ? `<text class="m" x="${cx}" y="${cy + 4}">${m}</text>` : '';
+  const y0 = cy - ((lines.length + 1) * lh) / 2 + lh * 0.8;
+  return `<text x="${cx}" y="${y0}">${lines.map((s, i) => `<tspan x="${cx}" dy="${i ? lh : 0}">${s}</tspan>`).join('')}</text><text class="m" x="${cx}" y="${y0 + lines.length * lh}">${m}</text>`;
+}
+function renderPlan() {
+  const T = I18N[lang], F = FLOORS[floor];
+  let s = `<svg viewBox="0 0 ${VW} ${VH}" class="${zoning ? 'zoning' : ''}${selZone ? ' dim' : ''}" role="img" aria-label="${floor === 'pb' ? T.tPB : T.tPA}"><defs>`
+    + `<pattern id="hx" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#c9c9cf" stroke-width="1"/></pattern>`
+    + `<pattern id="hv" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8L8 0" stroke="#c9c9cf" stroke-width="1"/></pattern></defs>`;
+  const g = F.ghost;
+  s += `<rect class="ghost" x="${px(g[0])}" y="${py(g[1])}" width="${g[2] * S}" height="${g[3] * S}"/>`;
+  s += `<text class="ghost-t" x="${px(g[0]) + 6}" y="${py(g[1]) - 6}">${floor === 'pb' ? T.ghostPB : T.ghostPA}</text>`;
+  if (floor === 'pa') s += `<rect class="ghost" x="${px(8)}" y="${py(13)}" width="${14 * S}" height="${4 * S}"/>`;
+  for (const r of F.rooms) {
+    const [k, z, x, y, w, h] = r, on = selZone === z;
+    s += `<g class="rm ${z}${on ? ' on' : ''}" data-k="${k}" data-z="${z}" data-a="${area(r)}" style="--zc:var(--z-${z})"><rect x="${px(x)}" y="${py(y)}" width="${w * S}" height="${h * S}"/>${label(T.rooms[k], area(r), px(x + w / 2), py(y + h / 2), w * S, h * S)}</g>`;
+  }
+  const W = F.wall; s += `<rect class="wall" x="${px(W[0])}" y="${py(W[1])}" width="${W[2] * S}" height="${W[3] * S}"/>`;
+  for (const [x1, y1, x2, y2] of F.glz) s += `<line class="glz" x1="${px(x1)}" y1="${py(y1)}" x2="${px(x2)}" y2="${py(y2)}"/>`;
+  // norte y escala
+  const nx = VW - 40, ny = 46;
+  s += `<g><circle cx="${nx}" cy="${ny}" r="16" fill="none" stroke="#0b0b0c"/><path d="M${nx} ${ny - 13}L${nx + 6} ${ny + 6}L${nx} ${ny + 2}L${nx - 6} ${ny + 6}Z" fill="#0b0b0c"/><text class="anno" x="${nx}" y="${ny - 22}" text-anchor="middle">${T.north}</text></g>`;
+  const sx = 24, sy = VH - 22;
+  s += `<g>${[0, 1, 2, 3, 4].map(i => `<rect x="${sx + i * S}" y="${sy}" width="${S}" height="5" fill="${i % 2 ? '#fff' : '#0b0b0c'}" stroke="#0b0b0c" stroke-width=".8"/>`).join('')}<text class="anno" x="${sx}" y="${sy - 6}">0</text><text class="anno" x="${sx + 5 * S}" y="${sy - 6}" text-anchor="end">5 m</text></g></svg>`;
+  $('#planWrap').innerHTML = s;
+  // leyenda (zonas de esta planta)
+  const zs = [...new Set(F.rooms.map(r => r[1]))];
+  $('#legend').innerHTML = zs.map(z => `<button data-z="${z}" style="${selZone === z ? 'color:var(--blue)' : ''}"><i style="background:var(--z-${z})"></i>${T.zones[z]}<small>${fmt(Math.round(sumBy(floor, r => r[1] === z) * 10) / 10)} m²</small></button>`).join('');
+  // tabla
+  const rows = F.rooms.filter(INT).map(r => `<tr data-k="${r[0]}"${selZone === r[1] ? ' class="hl"' : ''}><td><span class="dot" style="background:var(--z-${r[1]})"></span>${T.rooms[r[0]]}</td><td>${fmt(area(r))} m²</td></tr>`).join('');
+  const ext = F.rooms.filter(r => !INT(r) && r[1] !== 'vac').map(r => `<tr data-k="${r[0]}"><td><span class="dot" style="background:var(--z-${r[1]})"></span>${T.rooms[r[0]]}</td><td>${fmt(area(r))} m²</td></tr>`).join('');
+  $('#table').innerHTML = `<tr><th>${T.thRoom}</th><th>${T.thArea}</th></tr>${rows}<tr class="tot"><td>${T.totInt}</td><td>${fmt(A[floor])} m²</td></tr>${ext}`;
+  showInfo(null);
+}
+function showInfo(k) {
+  const T = I18N[lang];
+  document.querySelectorAll('.rm.on').forEach(g => { if (!selZone || g.dataset.z !== selZone) g.classList.remove('on'); });
+  if (!k) { $('#info').innerHTML = `<b>${floor === 'pb' ? T.tPB : T.tPA}</b><span>${T.hint}</span>`; return; }
+  const r = FLOORS[floor].rooms.find(x => x[0] === k); if (!r) return;
+  document.querySelectorAll(`.rm[data-k="${k}"]`).forEach(g => g.classList.add('on'));
+  $('#info').innerHTML = `<b>${T.rooms[k]}</b><span>${fmt(area(r))} m² · ${T.zones[r[1]]}</span>`;
+}
+$('#planWrap').addEventListener('pointerover', e => { const g = e.target.closest('.rm'); if (g) showInfo(g.dataset.k); });
+$('#planWrap').addEventListener('click', e => { const g = e.target.closest('.rm'); if (g) showInfo(g.dataset.k); });
+$('#planWrap').addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') showInfo(null); });
+$('#table').addEventListener('click', e => { const tr = e.target.closest('tr[data-k]'); if (tr) showInfo(tr.dataset.k); });
+$('#legend').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; selZone = selZone === b.dataset.z ? null : b.dataset.z; zoning = true; $('#zoneBtn').setAttribute('aria-pressed', 'true'); renderPlan(); });
+document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+  floor = b.dataset.fl; selZone = null;
+  document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b)); renderPlan();
+}));
+$('#zoneBtn').addEventListener('click', () => { zoning = !zoning; if (!zoning) selZone = null; $('#zoneBtn').setAttribute('aria-pressed', String(zoning)); renderPlan(); });
+mobileQ.addEventListener('change', renderPlan);
+
+/* ---------- Scroll con inercia ---------- */
+let target = 0, prog = 0, lastP = -1;
+const maxScroll = () => Math.max(1, scrolly.offsetHeight - innerHeight);
+const readScroll = () => {
+  target = clamp(scrollY / maxScroll());
+  $('#nav').classList.toggle('dark', scrollY < maxScroll() + innerHeight * 0.6);
+};
+addEventListener('scroll', readScroll, { passive: true });
+readScroll(); prog = target;
+document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: parseFloat(a.dataset.go) * maxScroll(), behavior: 'smooth' }); }));
+
+const FD = 0.012;
+function updateUI(p) {
+  for (const c of chapters) {
+    const vin = c.a <= 0 ? 1 : smooth(clamp((p - c.a) / FD));
+    const vout = c.b >= 1 ? 1 : smooth(clamp((c.b - p) / FD));
+    const v = Math.min(vin, vout);
+    c.el.style.opacity = v;
+    c.el.style.transform = `translateY(${(1 - v) * 24}px)`;
+    c.el.style.filter = v > 0.99 ? 'none' : `blur(${(1 - v) * 8}px)`;
+    c.el.style.pointerEvents = v > 0.5 ? 'auto' : 'none';
+  }
+}
+const cw = () => card.clientWidth, ch = () => card.clientHeight;
+
+async function frameRenderer(cfg) {
+  const ctx = canvas.getContext('2d');
+  const imgs = new Array(cfg.count);
+  let loaded = 0, last = -1;
+  const load = i => new Promise(res => {
+    const im = new Image(); im.decoding = 'async';
+    im.onload = () => { imgs[i] = im; loaded++; setLoad(loaded / cfg.count); res(); };
+    im.onerror = res; im.src = cfg.path(i);
+  });
+  await Promise.all(Array.from({ length: Math.min(12, cfg.count) }, (_, i) => load(i)));
+  (async () => { for (let i = 12; i < cfg.count; i += 10)
+    await Promise.all(Array.from({ length: Math.min(10, cfg.count - i) }, (_, k) => load(i + k))); })();
+  function resize() {
+    const dpr = Math.min(devicePixelRatio, 2);
+    canvas.width = cw() * dpr; canvas.height = ch() * dpr; last = -1;
+  }
+  function draw(i) {
+    let im = imgs[i];
+    for (let d = 1; !im && d < cfg.count; d++) im = imgs[i - d] || imgs[i + d];
+    if (!im) return;
+    const W = canvas.width, H = canvas.height, s = Math.max(W / im.width, H / im.height);
+    const w = im.width * s, h = im.height * s;
+    ctx.drawImage(im, (W - w) / 2, (H - h) / 2, w, h);
+  }
+  resize();
+  return {
+    resize,
+    update(p) {
+      const i = Math.min(cfg.count - 1, Math.round(videoTime(p) / CONFIG.seconds * (cfg.count - 1)));
+      if (i !== last) { draw(i); last = i; }
+    },
+  };
+}
+
+/* ---------- Arranque ---------- */
+applyLang(lang);
+const view = await frameRenderer(CONFIG.frames);
+addEventListener('resize', () => { view.resize(); readScroll(); lastP = -1; });
+(function loop() {
+  prog += (target - prog) * CONFIG.smooth;
+  if (Math.abs(target - prog) < 1e-5) prog = target;
+  if (prog !== lastP) { view.update(prog); updateUI(prog); lastP = prog; }
+  requestAnimationFrame(loop);
+})();
+requestAnimationFrame(() => setTimeout(() => $('#loader').classList.add('done'), 250));
+</script>
+</body>
+</html>
