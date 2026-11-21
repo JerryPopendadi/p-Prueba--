@@ -304,11 +304,17 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
    ===================================================================== */
 const CONFIG = {
   frames: {
-    count: Number(new URLSearchParams(location.search).get('frames')) || 0,
+    // 232 frames del recorrido real (vídeos de Gemini/Veo). ?modo=3d fuerza la torre 3D.
+    count: new URLSearchParams(location.search).get('modo') === '3d' ? 0
+         : Number(new URLSearchParams(location.search).get('frames')) || 232,
     path: i => `frames/frame_${String(i + 1).padStart(4, '0')}.webp`,
   },
   smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08, // inercia del scroll
-  seconds: 20, // duración "ficticia" para el timecode del HUD
+  seconds: 19.3, // duración del vídeo (timecode del HUD)
+  // scroll (0–1) → segundo del vídeo: da más recorrido de scroll a la construcción
+  timeMap: [[0, 0], [0.08, 0.8], [0.25, 3.2], [0.45, 7.5], [0.62, 11.3], [0.82, 15], [1, 19.3]],
+  // capítulos sincronizados con el vídeo [entra, sale]
+  chaptersVideo: [[0, 0.07], [0.1, 0.24], [0.28, 0.44], [0.48, 0.61], [0.66, 0.8], [0.86, 2]],
 };
 
 const $ = s => document.querySelector(s);
@@ -331,9 +337,16 @@ document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', 
 }));
 
 /* ---------- UI: capítulos, HUD, timecode ---------- */
-const chaps = [...document.querySelectorAll('.chap')].map(el => ({
-  el, a: parseFloat(el.dataset.in), b: parseFloat(el.dataset.out), idx: +el.dataset.idx,
-}));
+const chaps = [...document.querySelectorAll('.chap')].map((el, k) => {
+  const v = CONFIG.frames.count > 0 && CONFIG.chaptersVideo[k];
+  return { el, a: v ? v[0] : parseFloat(el.dataset.in), b: v ? v[1] : parseFloat(el.dataset.out), idx: +el.dataset.idx };
+});
+const videoTime = p => {
+  const m = CONFIG.timeMap;
+  for (let k = 0; k < m.length - 1; k++) if (p <= m[k + 1][0])
+    return m[k][1] + (m[k + 1][1] - m[k][1]) * (p - m[k][0]) / (m[k + 1][0] - m[k][0]);
+  return m[m.length - 1][1];
+};
 const idxItems = [...document.querySelectorAll('#chapIndex li')];
 const tcEl = $('#tc'), ring = $('#ringFg'), hud = $('#hud');
 const F = 0.03; // ancho del fundido
@@ -350,7 +363,7 @@ function updateUI(p) {
     if (p >= c.a - F) active = c.idx;
   }
   idxItems.forEach((li, i) => li.classList.toggle('on', i === active));
-  const t = p * CONFIG.seconds, s = Math.floor(t), fr = Math.floor((t - s) * 24);
+  const t = CONFIG.frames.count > 0 ? videoTime(p) : p * CONFIG.seconds, s = Math.floor(t), fr = Math.floor((t - s) * 24);
   tcEl.textContent = `00:00:${String(s).padStart(2, '0')}:${String(fr).padStart(2, '0')}`;
   ring.style.strokeDashoffset = 188.5 * (1 - p);
   hud.style.opacity = scrollY > maxScroll() + innerHeight * 0.3 ? 0 : 1;
@@ -391,7 +404,7 @@ async function frameRenderer(cfg) {
   resize();
   return {
     resize,
-    update(p) { const i = Math.round(p * (cfg.count - 1)); if (i !== last) { draw(i); last = i; } },
+    update(p) { const i = Math.min(cfg.count - 1, Math.round(videoTime(p) / CONFIG.seconds * (cfg.count - 1))); if (i !== last) { draw(i); last = i; } },
   };
 }
 
