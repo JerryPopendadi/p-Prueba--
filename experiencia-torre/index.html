@@ -3,144 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MALBO Innovation — Webs inmersivas</title>
-<meta name="description" content="MALBO Innovation crea webs inmersivas para proyectos inmobiliarios: entra en el edificio haciendo scroll.">
+<title>MALBO Innovation</title>
+<meta name="description" content="MALBO Innovation — webs inmersivas para proyectos inmobiliarios.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..900&family=Instrument+Serif:ital@1&family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#f4efe8;
-  --muted:rgba(244,239,232,.66);
-  --line:rgba(244,239,232,.3);
-  --gold:#f2c27b;
-  --blue:#8ea2ff;
-  --bg:#0c0c0e;
-  --sans:"Archivo",system-ui,sans-serif;
-  --serif:"Instrument Serif",Georgia,serif;
+  --bg:#ffffff;
+  --ink:#0b0b0c;
+  --blue:#3a4fd8;
+  --blue-soft:#8ea2ff;
+  --muted:#6e6e73;
+  --line:#e7e7ea;
+  --sans:"Inter Tight",system-ui,sans-serif;
+  --serif:"Instrument Serif","Cormorant Garamond",Georgia,serif;
   --mono:"JetBrains Mono",ui-monospace,monospace;
-  --pad:clamp(16px,3vw,40px);
+  --pad:clamp(16px,2.6vw,36px);
+  --hh:68px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue);letter-spacing:-.01em;text-transform:none}
 
-/* ---------- ESCENARIO FIJO (canvas) ---------- */
-#stage{position:fixed;inset:0;z-index:0;overflow:hidden}
-#stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#stage::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 45%,transparent 50%,rgba(0,0,0,.55) 100%),
-    linear-gradient(to top,rgba(0,0,0,.6),transparent 40%),
-    linear-gradient(to bottom,rgba(0,0,0,.35),transparent 18%)}
-.grain{position:fixed;inset:-50%;z-index:6;pointer-events:none;opacity:.08;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  animation:grain .9s steps(4) infinite}
-@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+/* ---------- Cabecera ---------- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--hh);z-index:30;display:flex;align-items:center;gap:20px;padding:0 var(--pad);background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-color:var(--line)}
+.malbo{display:block;color:var(--ink)}
+.nav .malbo{width:104px}
+.links{margin-left:auto;display:flex;gap:4px}
+.links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:999px;color:var(--muted);transition:.25s}
+.links a b{font-weight:500;color:var(--blue);margin-right:6px}
+.links a:hover{color:var(--ink);background:#f3f3f5}
+.lang{display:flex;gap:2px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em}
+.lang button{border:0;background:none;cursor:pointer;font:inherit;color:var(--muted);padding:7px 8px;border-radius:999px}
+.lang button.on{color:#fff;background:var(--ink)}
+.cta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;border-radius:999px;background:var(--blue);color:#fff;font-weight:500;transition:.25s;white-space:nowrap}
+.cta:hover{background:var(--ink)}
 
-/* ---------- CABECERA ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:20;background:linear-gradient(rgba(12,12,14,.75),rgba(12,12,14,0));display:flex;align-items:center;gap:24px;padding:18px var(--pad)}
-.logo{font-weight:900;font-stretch:125%;letter-spacing:.06em;font-size:18px;display:flex;align-items:baseline;gap:14px}
-.logo span{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.2em;color:var(--muted)}
-.links{margin-left:auto;display:flex;gap:6px}
-.links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border:1px solid transparent;color:var(--muted);transition:.3s}
-.links a b{font-weight:500;color:var(--ink);margin-right:6px}
-.links a:hover,.links a.on{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.06);backdrop-filter:blur(8px)}
-.cta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;border-radius:999px;background:var(--ink);color:#0c0c0e;font-weight:500;transition:.3s}
-.cta:hover{background:var(--blue)}
+/* ---------- Escenario fijo: texto + vídeo ---------- */
+.stage{position:fixed;top:var(--hh);left:0;right:0;bottom:0;z-index:1;display:grid;grid-template-columns:minmax(330px,.85fr) 1.65fr;gap:clamp(20px,3vw,48px);padding:6px var(--pad) var(--pad);--cy:-50%}
+.copy{position:relative}
+.card{position:relative;border-radius:22px;overflow:hidden;background:#f1f0ee}
+.card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(to top,rgba(0,0,0,.28),transparent);pointer-events:none}
+.tag{position:absolute;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.tag.tl{top:18px;left:20px}
+.tag.br{bottom:18px;right:20px}
+.tag.bl{bottom:18px;left:20px;display:flex;align-items:center;gap:8px}
+.tag.bl i{width:6px;height:6px;border-radius:50%;background:#ff4d3d;box-shadow:0 0 0 3px rgba(255,77,61,.25)}
+.bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue-soft);z-index:3}
 
-/* ---------- HUD ---------- */
-.hud{position:fixed;inset:0;z-index:10;pointer-events:none;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:opacity .4s}
-.corner{position:absolute;width:22px;height:22px;border:1px solid var(--line)}
-.corner.tl{top:74px;left:var(--pad);border-right:0;border-bottom:0}
-.corner.tr{top:74px;right:var(--pad);border-left:0;border-bottom:0}
-.corner.bl{bottom:var(--pad);left:var(--pad);border-right:0;border-top:0}
-.hud-loc{position:absolute;top:80px;left:calc(var(--pad) + 34px)}
-.hud-tc{position:absolute;bottom:calc(var(--pad) + 4px);left:calc(var(--pad) + 34px);color:var(--ink)}
-.chap-index{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);list-style:none;text-align:right;display:grid;gap:12px}
-.chap-index li{opacity:.45;transition:.4s;display:flex;align-items:center;justify-content:flex-end;gap:10px}
-.chap-index li::after{content:"";width:12px;height:1px;background:currentColor;transition:.4s}
-.chap-index li.on{opacity:1;color:var(--ink)}
-.chap-index li.on::after{width:40px}
-.ring{position:absolute;left:73%;top:50%;width:64px;height:64px;transform:translate(-50%,-50%);display:grid;place-items:center;color:var(--ink)}
-.ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:1}
-.ring .bg{stroke:var(--line)}
-.ring .fg{stroke:var(--ink);stroke-dasharray:188.5;stroke-dashoffset:188.5}
-.ring span{font-size:7.5px}
+.chap{position:absolute;left:0;right:0;top:50%;opacity:0;will-change:transform,opacity,filter}
+.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.chap h2{font-weight:800;font-size:clamp(38px,4.4vw,80px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+.chap h2 em{display:inline;font-size:1.04em}
+.chap p.body{margin-top:20px;max-width:360px;font-size:15px;line-height:1.55;color:var(--muted)}
+.btns{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:14px 20px;border-radius:999px;border:1px solid var(--ink);transition:.25s}
+.btn.solid{background:var(--ink);color:#fff}
+.btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.index{position:absolute;left:0;bottom:4px;list-style:none;display:flex;gap:6px;flex-wrap:wrap}
+.index li{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#b4b4ba;display:flex;align-items:center;gap:6px;transition:.3s}
+.index li::before{content:"";width:14px;height:1px;background:currentColor;transition:.3s}
+.index li.on{color:var(--ink)}
+.index li.on::before{width:28px;background:var(--blue)}
+.hint{position:absolute;right:0;bottom:2px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;transition:opacity .4s}
+.hint span{display:block;width:1px;height:22px;background:var(--line);position:relative;overflow:hidden}
+.hint span::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--blue);animation:drip 1.6s ease-in-out infinite}
+@keyframes drip{to{top:100%}}
 
-/* ---------- CAPÍTULOS (texto sobre el canvas) ---------- */
-#scrolly{position:relative;height:900vh;z-index:1}
-.chapters{position:fixed;inset:0;z-index:9;pointer-events:none}
-.chap{position:absolute;left:var(--pad);bottom:calc(var(--pad) + 56px);max-width:min(760px,90vw);opacity:0;will-change:transform,opacity,filter}
-.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-.chap h2{font-weight:800;font-stretch:112%;font-size:clamp(44px,8vw,124px);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;text-shadow:0 10px 40px rgba(0,0,0,.35)}
-.chap h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:var(--gold);font-stretch:normal}
-.chap .body{margin-top:20px;max-width:380px;font-size:14px;line-height:1.5;color:rgba(244,239,232,.85)}
-.chap .btns{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
-.btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:14px 22px;border-radius:999px;border:1px solid var(--line);backdrop-filter:blur(10px);background:rgba(255,255,255,.06);transition:.3s}
-.btn.solid{background:var(--ink);color:#111;border-color:var(--ink)}
-.btn:hover{background:var(--gold);color:#1a140c;border-color:var(--gold)}
+#scrolly{position:relative;height:1000vh;z-index:0}
 
-/* ---------- LOADER ---------- */
-#loader{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;transition:opacity .9s,visibility .9s}
+/* ---------- Loader ---------- */
+#loader{position:fixed;inset:0;z-index:60;background:#fff;display:grid;place-items:center;transition:opacity .8s,visibility .8s}
 #loader.done{opacity:0;visibility:hidden}
-#loader .bar{width:180px;height:1px;background:var(--line);margin-top:14px;overflow:hidden}
-#loader .bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
+#loader .malbo{width:180px}
+#loader .bar2{width:180px;height:2px;background:var(--line);margin-top:22px;overflow:hidden;border-radius:2px}
+#loader .bar2 i{display:block;height:100%;width:0;background:var(--blue);transition:width .3s}
 
-/* ---------- SECCIONES NORMALES ---------- */
-.after{position:relative;z-index:12;background:var(--bg)}
-.stats{padding:clamp(80px,14vw,180px) var(--pad) 60px;border-top:1px solid var(--line)}
-.lead{font-family:var(--serif);font-style:italic;font-size:clamp(34px,5.4vw,84px);line-height:1;letter-spacing:-.01em;max-width:1100px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:28px;border-top:1px solid var(--line)}
-.grid div{padding:22px 20px 0 0;border-right:1px solid var(--line);margin-right:20px}
-.grid div:last-child{border-right:0}
-.grid span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.grid strong{display:block;font-weight:800;font-stretch:112%;font-size:clamp(40px,6vw,92px);letter-spacing:-.04em;margin-top:10px}
-.grid strong small{font-size:.45em;letter-spacing:0;margin-left:6px}
-.marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:clamp(80px,10vw,140px);padding:22px 0;white-space:nowrap}
-.track{display:inline-block;animation:mq 28s linear infinite;font-weight:900;font-stretch:125%;font-size:clamp(48px,8vw,120px);letter-spacing:-.03em;text-transform:uppercase}
-.track i{font-style:normal;color:var(--gold);font-size:.5em;vertical-align:middle;margin:0 .5em}
-.track .o{color:transparent;-webkit-text-stroke:1px var(--ink)}
+/* ---------- Secciones ---------- */
+.after{position:relative;z-index:10;background:#fff}
+section.block{padding:clamp(80px,12vw,160px) var(--pad) 0}
+.sk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.lead{font-weight:800;font-size:clamp(34px,5.4vw,88px);line-height:.95;letter-spacing:-.045em;text-transform:uppercase;max-width:1200px}
+.lead small{display:block;margin-top:22px;font-weight:500;font-size:clamp(18px,1.9vw,28px);line-height:1.25;letter-spacing:-.02em;text-transform:none;color:var(--muted);max-width:760px}
+.cols{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(50px,7vw,90px);border-top:1px solid var(--ink);list-style:none}
+.cols>*{padding:24px 22px 0 0;margin-right:22px;border-right:1px solid var(--line)}
+.cols>*:last-child{border-right:0}
+.cols b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--blue)}
+.cols h4{font-weight:800;font-size:22px;letter-spacing:-.03em;margin:14px 0 10px;text-transform:uppercase}
+.cols p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+.stats .cols strong{display:block;font-weight:800;font-size:clamp(44px,6vw,96px);letter-spacing:-.05em;line-height:1;margin-top:12px;color:var(--ink)}
+.stats .cols strong small{font-size:.4em;margin-left:6px;letter-spacing:0;color:var(--blue)}
+.stats .cols span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.marquee{overflow:hidden;border-block:1px solid var(--line);margin-top:clamp(80px,10vw,140px);padding:20px 0;white-space:nowrap}
+.track{display:inline-block;animation:mq 30s linear infinite;font-weight:900;font-size:clamp(48px,8vw,124px);letter-spacing:-.05em;text-transform:uppercase}
+.track i{font-style:normal;color:var(--blue);font-size:.45em;vertical-align:middle;margin:0 .55em}
+.track .o{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
 @keyframes mq{to{transform:translateX(-50%)}}
-.visit{padding:clamp(80px,12vw,160px) var(--pad);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
-.visit h3{font-weight:800;font-stretch:112%;font-size:clamp(40px,6vw,96px);line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
-.visit h3 em{font-family:var(--serif);font-weight:400;text-transform:none;color:var(--gold)}
-.visit form{display:grid;gap:12px}
-.visit input{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;font-size:16px;padding:14px 0;outline:none}
-.visit input:focus{border-color:var(--ink)}
-.visit button{justify-self:start;margin-top:14px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:15px 26px;border-radius:999px;border:0;background:var(--ink);color:#0c0c0e;transition:.3s}
+.visit{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end;padding-bottom:clamp(80px,10vw,140px)}
+.visit h3{font-weight:800;font-size:clamp(40px,6vw,96px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.visit form{display:grid;gap:10px}
+.visit input{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;font-size:16px;padding:14px 0;outline:none;transition:border-color .2s}
+.visit input:focus{border-color:var(--blue)}
+.visit button{justify-self:start;margin-top:16px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:16px 26px;border-radius:999px;border:0;background:var(--ink);color:#fff;transition:.25s}
 .visit button:hover{background:var(--blue)}
-.malbo{display:block;color:var(--ink);height:auto}
-.malbo.sm{width:118px}
-.intro{padding:clamp(80px,14vw,180px) var(--pad) clamp(60px,8vw,100px);border-top:1px solid var(--line)}
-.intro .lead em,.visit h3 em{color:var(--blue)}
-.lead em{font-style:italic}
-.intro-body{max-width:520px;margin-top:28px;font-size:16px;line-height:1.55;color:var(--muted)}
-.svc,.process ol{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(50px,7vw,90px);border-top:1px solid var(--line);list-style:none}
-.svc article,.process li{padding:24px 22px 0 0;margin-right:22px;border-right:1px solid var(--line)}
-.svc article:last-child,.process li:last-child{border-right:0}
-.svc b,.process b{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--blue)}
-.svc h4,.process h4{font-weight:700;font-stretch:112%;font-size:22px;letter-spacing:-.02em;margin:14px 0 10px}
-.svc p,.process p{font-size:14px;line-height:1.5;color:var(--muted)}
-.process{padding:clamp(70px,10vw,140px) var(--pad) 0}
-.foot-logo .malbo{width:110px;color:var(--muted)}
-footer{align-items:center;gap:20px;flex-wrap:wrap}
-footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+footer .malbo{width:96px}
 
+/* ---------- Móvil ---------- */
 @media (max-width:860px){
-  .links,.chap-index{display:none}
-  .ring{left:auto;right:var(--pad);top:auto;bottom:var(--pad);transform:none;width:54px;height:54px}
-  .grid{grid-template-columns:1fr 1fr}
-  .grid div:nth-child(2){border-right:0}
+  :root{--hh:60px}
+  .links{display:none}
+  .lang{margin-left:auto}
+  .cta{padding:10px 14px;font-size:9.5px}
+  .nav .malbo{width:84px}
+  .stage{grid-template-columns:1fr;grid-template-rows:54svh 1fr;gap:18px;--cy:0px}
+  .card{order:-1;border-radius:18px}
+  .chap{top:4px}
+  .chap h2{font-size:clamp(32px,9.6vw,58px)}
+  .chap p.body{font-size:14px;margin-top:14px}
+  .kicker{margin-bottom:10px}
+  .index{display:none}
+  .cols{grid-template-columns:1fr 1fr;row-gap:30px}
+  .cols h4{font-size:17px;hyphens:auto;overflow-wrap:anywhere}
+  .cols>*{padding-right:12px;margin-right:12px}
+  .cols>*:nth-child(2){border-right:0}
   .visit{grid-template-columns:1fr}
-  .svc,.process ol{grid-template-columns:1fr 1fr;row-gap:30px}
-  .svc article:nth-child(2),.process li:nth-child(2){border-right:0}
-  .malbo.sm{width:96px}
-  .chap .body{font-size:13px}
 }
-@media (prefers-reduced-motion:reduce){.grain,.track{animation:none}}
+@media (max-width:420px){.cta{display:none}}
+@media (prefers-reduced-motion:reduce){.track,.hint span::after{animation:none}}
 </style>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
@@ -148,14 +143,9 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
 </head>
 <body>
 
-<div id="loader"><div><div id="loadTxt">MALBO Innovation</div><div class="bar"><i id="loadBar"></i></div></div></div>
-
-<div id="stage"><canvas id="c"></canvas></div>
-<div class="grain"></div>
-
-<header class="nav">
-  <a class="logo" href="#" data-go="0"><svg class="malbo sm" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
-  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".55" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
+<template id="logoTpl">
+<svg class="malbo" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
+  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".5" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
   <g fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter">
     <path d="M8 120V14l50 50" stroke="url(#mg)"/><path d="M58 64l50-50v106"/>
     <path d="M138 120l52-106 52 106"/>
@@ -164,252 +154,333 @@ footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;jus
     <circle cx="530" cy="67" r="52"/>
   </g>
   <path d="M500 67l70-3 26 3-26 3z" fill="currentColor"/>
-  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
-</svg></a>
+  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Inter Tight,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
+</svg>
+</template>
+
+<div id="loader"><div><div data-logo></div><div class="bar2"><i id="loadBar"></i></div></div></div>
+
+<header class="nav" id="nav">
+  <a href="#" data-go="0" data-logo></a>
   <nav class="links">
-    <a href="#" data-go="0.20"><b>01</b>Experiencia</a>
-    <a href="#servicios"><b>02</b>Servicios</a>
-    <a href="#proceso"><b>03</b>Proceso</a>
-    <a href="#contacto"><b>04</b>Contacto</a>
+    <a href="#" data-go="0.1"><b>01</b><span data-t="nav1"></span></a>
+    <a href="#servicios"><b>02</b><span data-t="nav2"></span></a>
+    <a href="#proceso"><b>03</b><span data-t="nav3"></span></a>
+    <a href="#contacto"><b>04</b><span data-t="nav4"></span></a>
   </nav>
-  <a class="cta" href="#contacto">Quiero mi web</a>
+  <div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="ru">RU</button></div>
+  <a class="cta" href="#contacto" data-t="cta"></a>
 </header>
 
-<div class="hud" id="hud">
-  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div>
-  <div class="hud-loc">Malbo × ALTA / Demo</div>
-  <div class="hud-tc">TC <span id="tc">00:00:00:00</span></div>
-  <ol class="chap-index" id="chapIndex">
-    <li>01 — La parcela</li>
-    <li>02 — La torre</li>
-    <li>03 — La costura</li>
-    <li>04 — La logia</li>
-    <li>05 — El interior</li>
-  </ol>
-  <div class="ring"><svg viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="30"/><circle class="fg" id="ringFg" cx="32" cy="32" r="30"/></svg><span>Scroll</span></div>
+<div class="stage" id="stage">
+  <div class="copy" id="copy">
+    <ol class="index" id="index"></ol>
+    <div class="hint" id="hint"><span></span><b data-t="hint" style="font-weight:400"></b></div>
+  </div>
+  <div class="card" id="card">
+    <canvas id="c"></canvas>
+    <div class="tag tl">MALBO × ALTA</div>
+    <div class="tag bl"><i></i><span id="tc">00:00:00</span></div>
+    <div class="tag br" id="chapNum">01 / 06</div>
+    <div class="bar" id="bar"></div>
+  </div>
 </div>
 
-<!-- Cada capítulo aparece entre data-in y data-out (progreso de scroll 0 → 1) -->
-<div class="chapters">
-  <article class="chap" data-in="0" data-out="0.13" data-idx="0">
-    <p class="kicker">— 01 / La parcela</p>
-    <h2>Nada, <em>todavía.</em></h2>
-    <p class="body">Un solar vacío al atardecer, en el corazón de la ciudad. Aquí empieza todo.</p>
-  </article>
-  <article class="chap" data-in="0.17" data-out="0.38" data-idx="1">
-    <p class="kicker">— 02 / La torre</p>
-    <h2>De la nada, <em>una forma.</em></h2>
-    <p class="body">Vidrio oscuro por fuera, piedra clara por dentro. La torre se eleva en un solo gesto.</p>
-  </article>
-  <article class="chap" data-in="0.43" data-out="0.6" data-idx="2">
-    <p class="kicker">— 03 / La costura</p>
-    <h2>Una costura <em>de luz.</em></h2>
-    <p class="body">Una espina pálida recorre toda la altura de la fachada y abre cada hogar al cielo.</p>
-  </article>
-  <article class="chap" data-in="0.64" data-out="0.78" data-idx="3">
-    <p class="kicker">— 04 / La logia</p>
-    <h2>Una sala <em>al aire libre.</em></h2>
-    <p class="body">Cada vivienda tiene su propia terraza: profunda, protegida y mirando a la ciudad.</p>
-  </article>
-  <article class="chap" data-in="0.82" data-out="0.93" data-idx="4">
-    <p class="kicker">— 05 / El interior</p>
-    <h2>La ciudad, <em>en silencio.</em></h2>
-    <p class="body">Madera, piedra y luz cálida. El tráfico fuera; dentro, solo el ritmo de casa.</p>
-  </article>
-  <article class="chap final" data-in="0.955" data-out="2" data-idx="4">
-    <p class="kicker">— Una experiencia de MALBO Innovation</p>
-    <h2>¿Y si tu proyecto <em>se viviera así?</em></h2>
-    <div class="btns">
-      <a class="btn solid" href="#contacto">Quiero mi web</a>
-      <a class="btn" href="#servicios">Ver servicios</a>
-    </div>
-  </article>
-</div>
-
-<!-- Espaciador alto: su altura = duración de la experiencia -->
 <section id="scrolly" aria-hidden="true"></section>
 
 <div class="after">
-  <section class="intro" id="servicios">
-    <p class="kicker">— MALBO Innovation</p>
-    <p class="lead">Esto no es un vídeo. <em>Es una web.</em><br>Tus clientes entran en el edificio antes de que exista.</p>
-    <p class="intro-body">En MALBO creamos webs inmersivas para promotoras, inmobiliarias y estudios de arquitectura: imágenes realistas, vídeo cinematográfico y una experiencia que se controla con el scroll.</p>
-    <div class="svc">
-      <article><b>01</b><h4>Webs inmersivas</h4><p>El scroll mueve la cámara: del solar vacío al salón, en un solo gesto.</p></article>
-      <article><b>02</b><h4>Imágenes y vídeo con IA</h4><p>Exteriores e interiores realistas a partir de planos, renders o una idea.</p></article>
-      <article><b>03</b><h4>Recorridos 3D</h4><p>Escenas en tiempo real que funcionan en cualquier navegador, también en móvil.</p></article>
-      <article><b>04</b><h4>Captación</h4><p>Formularios, agenda de visitas y analítica para convertir visitas en clientes.</p></article>
+  <section class="block" id="servicios">
+    <p class="sk">MALBO Innovation</p>
+    <h2 class="lead"><span data-t="leadA"></span> <em data-t="leadB"></em><small data-t="leadC"></small></h2>
+    <p style="max-width:540px;margin-top:28px;font-size:16px;line-height:1.6;color:var(--muted)" data-t="introBody"></p>
+    <div class="cols">
+      <article><b>01</b><h4 data-t="s1h"></h4><p data-t="s1p"></p></article>
+      <article><b>02</b><h4 data-t="s2h"></h4><p data-t="s2p"></p></article>
+      <article><b>03</b><h4 data-t="s3h"></h4><p data-t="s3p"></p></article>
+      <article><b>04</b><h4 data-t="s4h"></h4><p data-t="s4p"></p></article>
     </div>
   </section>
 
-  <section class="stats" id="stats">
-    <p class="kicker">— Proyecto demo · ALTA Residencias</p>
-    <div class="grid">
-      <div><span>Residencias</span><strong data-count="48">0</strong></div>
-      <div><span>Plantas</span><strong data-count="32">0</strong></div>
-      <div><span>Entrega</span><strong data-count="2028" data-from="2000">2000</strong></div>
-      <div><span>Altura</span><strong data-count="115" data-suffix="m">0</strong></div>
+  <section class="block stats">
+    <p class="sk" data-t="statsK"></p>
+    <div class="cols">
+      <div><span data-t="st1"></span><strong data-count="48">0</strong></div>
+      <div><span data-t="st2"></span><strong data-count="32">0</strong></div>
+      <div><span data-t="st3"></span><strong data-count="2028" data-from="2000">2000</strong></div>
+      <div><span data-t="st4"></span><strong data-count="115" data-suffix="m">0</strong></div>
     </div>
-    <div class="marquee"><div class="track">
-      Malbo<i>✦</i><span class="o">Innovation</span><i>✦</i>Webs inmersivas<i>✦</i><span class="o">Arquitectura</span><i>✦</i>
-      Malbo<i>✦</i><span class="o">Innovation</span><i>✦</i>Webs inmersivas<i>✦</i><span class="o">Arquitectura</span><i>✦</i>
-    </div></div>
+    <div class="marquee"><div class="track" id="track"></div></div>
   </section>
 
-  <section class="process" id="proceso">
-    <p class="kicker">— Cómo trabajamos</p>
-    <ol>
-      <li><b>01</b><h4>Guion</h4><p>Definimos el recorrido: de dónde parte la cámara y dónde termina.</p></li>
-      <li><b>02</b><h4>Imágenes</h4><p>Fotogramas clave realistas del edificio, la terraza y el interior.</p></li>
-      <li><b>03</b><h4>Vídeo</h4><p>Unimos los planos en una sola toma cinematográfica.</p></li>
-      <li><b>04</b><h4>Web</h4><p>Programamos la experiencia, la optimizamos y la publicamos.</p></li>
+  <section class="block" id="proceso">
+    <p class="sk" data-t="procK"></p>
+    <ol class="cols">
+      <li><b>01</b><h4 data-t="p1h"></h4><p data-t="p1p"></p></li>
+      <li><b>02</b><h4 data-t="p2h"></h4><p data-t="p2p"></p></li>
+      <li><b>03</b><h4 data-t="p3h"></h4><p data-t="p3p"></p></li>
+      <li><b>04</b><h4 data-t="p4h"></h4><p data-t="p4p"></p></li>
     </ol>
   </section>
 
-  <section class="visit" id="contacto">
-    <h3>¿Y si tu proyecto <em>se viviera así?</em></h3>
-    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Gracias — te contactaremos';">
-      <input required placeholder="Nombre">
-      <input placeholder="Empresa">
-      <input required type="email" placeholder="Email">
-      <input placeholder="Proyecto (ciudad, nº de viviendas…)">
-      <button type="submit">Quiero mi web inmersiva</button>
+  <section class="block visit" id="contacto">
+    <h3 data-t="finH"></h3>
+    <form id="form">
+      <input required data-tp="fName">
+      <input data-tp="fCompany">
+      <input required type="email" data-tp="fEmail">
+      <input data-tp="fProject">
+      <button type="submit" data-t="fBtn"></button>
     </form>
   </section>
 
   <footer>
-    <a href="https://malboinnovation.com" class="foot-logo"><svg class="malbo" viewBox="0 0 600 168" role="img" aria-label="MALBO Innovation">
-  <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset=".55" stop-color="currentColor"/><stop offset="1" stop-color="#8ea2ff"/></linearGradient></defs>
-  <g fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter">
-    <path d="M8 120V14l50 50" stroke="url(#mg)"/><path d="M58 64l50-50v106"/>
-    <path d="M138 120l52-106 52 106"/>
-    <path d="M275 10v104h66"/>
-    <path d="M372 120V14h44a25 25 0 0 1 0 50h-44m44 0h4a28 28 0 0 1 0 56h-48"/>
-    <circle cx="530" cy="67" r="52"/>
-  </g>
-  <path d="M500 67l70-3 26 3-26 3z" fill="currentColor"/>
-  <text x="300" y="162" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="24" letter-spacing="26">INNOVATION</text>
-</svg></a>
+    <a href="https://malboinnovation.com" data-logo></a>
     <span>malboinnovation.com</span>
-    <span>Demo: ALTA Residencias es un proyecto ficticio</span>
+    <span data-t="foot"></span>
   </footer>
 </div>
 
 <script type="module">
 /* =====================================================================
-   CONFIGURACIÓN
-   - Modo VÍDEO (como el reel): exporta tu vídeo a imágenes en /frames
-     (ver GUIA.md) y pon aquí cuántas hay. También: index.html?frames=240
-   - Si frames.count = 0 se usa una torre 3D generada con Three.js.
+   TEXTOS · ES / EN / RU   (en <em> va la parte azul en cursiva)
    ===================================================================== */
+const I18N = {
+  es: {
+    nav1: 'Experiencia', nav2: 'Servicios', nav3: 'Proceso', nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Desliza',
+    ch1k: '01 / La parcela', ch1h: 'Nada, <em>todavía.</em>', ch1b: 'Un solar vacío al atardecer, en el corazón de la ciudad. Aquí empieza todo.',
+    ch2k: '02 / La torre', ch2h: 'De la nada, <em>una forma.</em>', ch2b: 'Vidrio oscuro por fuera, piedra clara por dentro. La torre se eleva en un solo gesto.',
+    ch3k: '03 / La costura', ch3h: 'Una costura <em>de luz.</em>', ch3b: 'Una espina pálida recorre toda la altura de la fachada y abre cada hogar al cielo.',
+    ch4k: '04 / La terraza', ch4h: 'Una sala <em>al aire libre.</em>', ch4b: 'Cada vivienda tiene su propia terraza: profunda, protegida y mirando a la ciudad.',
+    ch5k: '05 / El salón', ch5h: 'La ciudad, <em>en silencio.</em>', ch5b: 'Madera, piedra y luz cálida. El tráfico fuera; dentro, solo el ritmo de casa.',
+    ch6k: '06 / El dormitorio', ch6h: 'Dormir <em>sobre la ciudad.</em>', ch6b: 'Lino, roble y la ciudad apagándose al otro lado del cristal.',
+    ch7k: '07 / El baño', ch7h: 'Piedra, <em>agua y luz.</em>', ch7b: 'Travertino de suelo a techo y una bañera frente al atardecer.',
+    finK: 'Una experiencia de MALBO Innovation', finH: '¿Y si tu proyecto <em>se viviera así?</em>', finB1: 'Quiero mi web', finB2: 'Ver servicios',
+    leadA: 'Esto no es un vídeo.', leadB: 'Es una web.', leadC: 'Tus clientes entran en el edificio antes de que exista.',
+    introBody: 'En MALBO creamos webs inmersivas para promotoras, inmobiliarias y estudios de arquitectura: imágenes realistas, vídeo cinematográfico y una experiencia que se controla con el scroll.',
+    s1h: 'Webs inmersivas', s1p: 'El scroll mueve la cámara: del solar vacío al salón, en un solo gesto.',
+    s2h: 'Imagen y vídeo IA', s2p: 'Exteriores e interiores realistas a partir de planos, renders o una idea.',
+    s3h: 'Recorridos 3D', s3p: 'Escenas en tiempo real que funcionan en cualquier navegador, también en móvil.',
+    s4h: 'Captación', s4p: 'Formularios, agenda de visitas y analítica para convertir visitas en clientes.',
+    statsK: 'Proyecto demo · ALTA Residencias', st1: 'Residencias', st2: 'Plantas', st3: 'Entrega', st4: 'Altura',
+    mq: ['Malbo', 'Innovation', 'Webs inmersivas', 'Arquitectura'],
+    procK: 'Cómo trabajamos',
+    p1h: 'Guion', p1p: 'Definimos el recorrido: de dónde parte la cámara y dónde termina.',
+    p2h: 'Imágenes', p2p: 'Fotogramas clave realistas del edificio, la terraza y el interior.',
+    p3h: 'Vídeo', p3p: 'Unimos los planos en una sola toma cinematográfica.',
+    p4h: 'Web', p4p: 'Programamos la experiencia, la optimizamos y la publicamos.',
+    fName: 'Nombre', fCompany: 'Empresa', fEmail: 'Email', fProject: 'Proyecto (ciudad, nº de viviendas…)', fBtn: 'Quiero mi web inmersiva', fThanks: 'Gracias — te contactaremos',
+    foot: 'Demo: ALTA Residencias es un proyecto ficticio',
+  },
+  en: {
+    nav1: 'Experience', nav2: 'Services', nav3: 'Process', nav4: 'Contact', cta: 'Get my website', hint: 'Scroll',
+    ch1k: '01 / The site', ch1h: 'Nothing, <em>yet.</em>', ch1b: 'An empty lot at sunset, in the heart of the city. This is where it all begins.',
+    ch2k: '02 / The tower', ch2h: 'From nothing, <em>a form.</em>', ch2b: 'Dark glass outside, pale stone within. The tower rises in a single gesture.',
+    ch3k: '03 / The seam', ch3h: 'A seam <em>of light.</em>', ch3b: 'A pale spine runs the full height of the façade and opens every home to the sky.',
+    ch4k: '04 / The terrace', ch4h: 'A room <em>in the open air.</em>', ch4b: 'Every home has its own terrace: deep, sheltered and facing the city.',
+    ch5k: '05 / The living room', ch5h: 'The city, <em>in silence.</em>', ch5b: 'Wood, stone and warm light. Traffic outside; inside, only the rhythm of home.',
+    ch6k: '06 / The bedroom', ch6h: 'Sleep <em>above the city.</em>', ch6b: 'Linen, oak and the city dimming beyond the glass.',
+    ch7k: '07 / The bathroom', ch7h: 'Stone, <em>water and light.</em>', ch7b: 'Floor-to-ceiling travertine and a bathtub facing the sunset.',
+    finK: 'An experience by MALBO Innovation', finH: 'What if your project <em>felt like this?</em>', finB1: 'Get my website', finB2: 'See services',
+    leadA: 'This isn’t a video.', leadB: 'It’s a website.', leadC: 'Your clients step inside the building before it exists.',
+    introBody: 'At MALBO we build immersive websites for developers, real estate agencies and architecture studios: realistic imagery, cinematic video and an experience driven by scroll.',
+    s1h: 'Immersive websites', s1p: 'Scrolling moves the camera: from an empty lot to the living room, in one gesture.',
+    s2h: 'AI image & video', s2p: 'Realistic exteriors and interiors from plans, renders or just an idea.',
+    s3h: '3D walkthroughs', s3p: 'Real-time scenes that run in any browser, including mobile.',
+    s4h: 'Lead generation', s4p: 'Forms, viewing bookings and analytics to turn visitors into clients.',
+    statsK: 'Demo project · ALTA Residences', st1: 'Residences', st2: 'Floors', st3: 'Completion', st4: 'Height',
+    mq: ['Malbo', 'Innovation', 'Immersive websites', 'Architecture'],
+    procK: 'How we work',
+    p1h: 'Script', p1p: 'We define the journey: where the camera starts and where it ends.',
+    p2h: 'Images', p2p: 'Realistic key frames of the building, the terrace and the interiors.',
+    p3h: 'Video', p3p: 'We join the shots into one cinematic take.',
+    p4h: 'Website', p4p: 'We build the experience, optimise it and launch it.',
+    fName: 'Name', fCompany: 'Company', fEmail: 'Email', fProject: 'Project (city, number of homes…)', fBtn: 'I want my immersive website', fThanks: 'Thank you — we’ll be in touch',
+    foot: 'Demo: ALTA Residences is a fictional project',
+  },
+  ru: {
+    nav1: 'Демо', nav2: 'Услуги', nav3: 'Процесс', nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Листайте',
+    ch1k: '01 / Участок', ch1h: 'Пока — <em>ничего.</em>', ch1b: 'Пустой участок на закате в самом сердце города. Здесь всё начинается.',
+    ch2k: '02 / Башня', ch2h: 'Из ничего — <em>форма.</em>', ch2b: 'Тёмное стекло снаружи, светлый камень внутри. Башня поднимается одним жестом.',
+    ch3k: '03 / Шов', ch3h: 'Шов <em>из света.</em>', ch3b: 'Светлая вертикаль проходит по всей высоте фасада и открывает каждый дом небу.',
+    ch4k: '04 / Терраса', ch4h: 'Комната <em>под открытым небом.</em>', ch4b: 'У каждой квартиры своя терраса: глубокая, защищённая, с видом на город.',
+    ch5k: '05 / Гостиная', ch5h: 'Город — <em>в тишине.</em>', ch5b: 'Дерево, камень и тёплый свет. Шум остаётся снаружи, внутри — только ритм дома.',
+    ch6k: '06 / Спальня', ch6h: 'Сон <em>над городом.</em>', ch6b: 'Лён, дуб и город, затихающий за стеклом.',
+    ch7k: '07 / Ванная', ch7h: 'Камень, <em>вода и свет.</em>', ch7b: 'Травертин от пола до потолка и ванна с видом на закат.',
+    finK: 'Проект MALBO Innovation', finH: 'А если ваш проект <em>можно прожить так?</em>', finB1: 'Хочу такой сайт', finB2: 'Услуги',
+    leadA: 'Это не видео.', leadB: 'Это сайт.', leadC: 'Ваши клиенты входят в здание ещё до того, как оно построено.',
+    introBody: 'MALBO создаёт иммерсивные сайты для девелоперов, агентств недвижимости и архитектурных бюро: реалистичные изображения, кинематографичное видео и опыт, управляемый прокруткой.',
+    s1h: 'Иммерсивные сайты', s1p: 'Прокрутка управляет камерой: от пустого участка до гостиной одним движением.',
+    s2h: 'Изображения и видео с ИИ', s2p: 'Реалистичные экстерьеры и интерьеры по планам, рендерам или просто идее.',
+    s3h: '3D-прогулки', s3p: 'Сцены в реальном времени, которые работают в любом браузере, в том числе на телефоне.',
+    s4h: 'Привлечение клиентов', s4p: 'Формы, запись на просмотр и аналитика, чтобы превращать посетителей в клиентов.',
+    statsK: 'Демо-проект · ALTA Residences', st1: 'Квартир', st2: 'Этажей', st3: 'Сдача', st4: 'Высота',
+    mq: ['Malbo', 'Innovation', 'Иммерсивные сайты', 'Архитектура'],
+    procK: 'Как мы работаем',
+    p1h: 'Сценарий', p1p: 'Определяем маршрут: откуда стартует камера и где она останавливается.',
+    p2h: 'Изображения', p2p: 'Реалистичные ключевые кадры здания, террасы и интерьеров.',
+    p3h: 'Видео', p3p: 'Соединяем планы в один кинематографичный кадр.',
+    p4h: 'Сайт', p4p: 'Разрабатываем опыт, оптимизируем и запускаем.',
+    fName: 'Имя', fCompany: 'Компания', fEmail: 'Email', fProject: 'Проект (город, число квартир…)', fBtn: 'Хочу иммерсивный сайт', fThanks: 'Спасибо — мы свяжемся с вами',
+    foot: 'Демо: ALTA Residences — вымышленный проект',
+  },
+};
+
+/* =====================================================================
+   CONFIGURACIÓN
+   ===================================================================== */
+const Q = new URLSearchParams(location.search);
 const CONFIG = {
   frames: {
-    // 232 frames del recorrido real (vídeos de Gemini/Veo). ?modo=3d fuerza la torre 3D.
-    count: new URLSearchParams(location.search).get('modo') === '3d' ? 0
-         : Number(new URLSearchParams(location.search).get('frames')) || 232,
+    // frames del recorrido real (vídeos Gemini/Veo). ?modo=3d fuerza la torre 3D.
+    count: Q.get('modo') === '3d' ? 0 : Number(Q.get('frames')) || 232,
     path: i => `frames/frame_${String(i + 1).padStart(4, '0')}.webp`,
   },
-  smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08, // inercia del scroll
-  seconds: 19.3, // duración del vídeo (timecode del HUD)
-  // scroll (0–1) → segundo del vídeo: da más recorrido de scroll a la construcción
+  smooth: matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0.08,
+  seconds: 19.3, // duración del vídeo
+  // scroll (0–1) → segundo del vídeo
   timeMap: [[0, 0], [0.08, 0.8], [0.25, 3.2], [0.45, 7.5], [0.62, 11.3], [0.82, 15], [1, 19.3]],
-  // capítulos sincronizados con el vídeo [entra, sale]
-  chaptersVideo: [[0, 0.07], [0.1, 0.24], [0.28, 0.44], [0.48, 0.61], [0.66, 0.8], [0.86, 2]],
+  // capítulos: clave de texto + [entra, sale] en modo vídeo y en modo 3D.
+  // Dormitorio y baño: poner on:true y sus tiempos cuando lleguen los vídeos.
+  chapters: [
+    { k: 'ch1', v: [0, 0.07], d: [0, 0.13], on: true },
+    { k: 'ch2', v: [0.1, 0.24], d: [0.17, 0.38], on: true },
+    { k: 'ch3', v: [0.28, 0.44], d: [0.43, 0.6], on: true },
+    { k: 'ch4', v: [0.48, 0.61], d: [0.64, 0.78], on: true },
+    { k: 'ch5', v: [0.66, 0.8], d: [0.82, 0.93], on: true },
+    { k: 'ch6', v: [0, 0], d: [0, 0], on: false },
+    { k: 'ch7', v: [0, 0], d: [0, 0], on: false },
+    { k: 'fin', v: [0.86, 2], d: [0.955, 2], on: true, final: true },
+  ],
 };
 
 const $ = s => document.querySelector(s);
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const smooth = t => t * t * (3 - 2 * t);
-const canvas = $('#c');
-const scrolly = $('#scrolly');
+const canvas = $('#c'), card = $('#card'), scrolly = $('#scrolly');
 const setLoad = v => { $('#loadBar').style.width = Math.round(v * 100) + '%'; };
-const hideLoader = () => $('#loader').classList.add('done');
+const VIDEO = CONFIG.frames.count > 0;
 
-/* ---------- Progreso de scroll con inercia ---------- */
-let target = 0, prog = 0;
+document.querySelectorAll('[data-logo]').forEach(el => el.append($('#logoTpl').content.cloneNode(true)));
+
+/* ---------- Capítulos (DOM) ---------- */
+const chapters = CONFIG.chapters.filter(c => c.on).map(c => {
+  const el = document.createElement('article');
+  el.className = 'chap';
+  $('#copy').append(el);
+  const [a, b] = VIDEO ? c.v : c.d;
+  return { ...c, el, a, b };
+});
+const numbered = chapters.filter(c => !c.final);
+$('#index').innerHTML = numbered.map((_, i) => `<li>${String(i + 1).padStart(2, '0')}</li>`).join('');
+const idxItems = [...document.querySelectorAll('#index li')];
+
+/* ---------- Idioma ---------- */
+let lang = 'es';
+try { lang = localStorage.getItem('malbo-lang') || ''; } catch (e) {}
+if (!I18N[lang]) lang = (navigator.language || 'es').slice(0, 2);
+if (!I18N[lang]) lang = 'es';
+function applyLang(l) {
+  lang = l; const T = I18N[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = T[el.dataset.t]; });
+  document.querySelectorAll('[data-tp]').forEach(el => { el.placeholder = T[el.dataset.tp]; });
+  for (const c of chapters) {
+    c.el.innerHTML = c.final
+      ? `<p class="kicker">${T.finK}</p><h2>${T.finH}</h2><div class="btns"><a class="btn solid" href="#contacto">${T.finB1}</a><a class="btn" href="#servicios">${T.finB2}</a></div>`
+      : `<p class="kicker">${T[c.k + 'k']}</p><h2>${T[c.k + 'h']}</h2><p class="body">${T[c.k + 'b']}</p>`;
+  }
+  const m = T.mq.map((w, i) => (i % 2 ? `<span class="o">${w}</span>` : w) + '<i>✦</i>').join('');
+  $('#track').innerHTML = m + m;
+  document.querySelectorAll('#lang button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+  try { localStorage.setItem('malbo-lang', l); } catch (e) {}
+  lastP = -1;
+}
+document.querySelectorAll('#lang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
+$('#form').addEventListener('submit', e => { e.preventDefault(); e.target.querySelector('button').textContent = I18N[lang].fThanks; });
+
+/* ---------- Scroll con inercia ---------- */
+let target = 0, prog = 0, lastP = -1;
 const maxScroll = () => Math.max(1, scrolly.offsetHeight - innerHeight);
-const readScroll = () => { target = clamp(scrollY / maxScroll()); };
+const readScroll = () => {
+  target = clamp(scrollY / maxScroll());
+  $('#nav').classList.toggle('scrolled', scrollY > 10);
+};
 addEventListener('scroll', readScroll, { passive: true });
 readScroll(); prog = target;
-
 document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault(); scrollTo({ top: parseFloat(a.dataset.go) * maxScroll(), behavior: 'smooth' });
 }));
 
-/* ---------- UI: capítulos, HUD, timecode ---------- */
-const chaps = [...document.querySelectorAll('.chap')].map((el, k) => {
-  const v = CONFIG.frames.count > 0 && CONFIG.chaptersVideo[k];
-  return { el, a: v ? v[0] : parseFloat(el.dataset.in), b: v ? v[1] : parseFloat(el.dataset.out), idx: +el.dataset.idx };
-});
 const videoTime = p => {
   const m = CONFIG.timeMap;
   for (let k = 0; k < m.length - 1; k++) if (p <= m[k + 1][0])
     return m[k][1] + (m[k + 1][1] - m[k][1]) * (p - m[k][0]) / (m[k + 1][0] - m[k][0]);
   return m[m.length - 1][1];
 };
-const idxItems = [...document.querySelectorAll('#chapIndex li')];
-const tcEl = $('#tc'), ring = $('#ringFg'), hud = $('#hud');
-const F = 0.03; // ancho del fundido
+
+/* ---------- UI por frame ---------- */
+const F = 0.025;
+const tcEl = $('#tc'), bar = $('#bar'), chapNum = $('#chapNum'), hint = $('#hint');
 function updateUI(p) {
   let active = 0;
-  for (const c of chaps) {
+  chapters.forEach(c => {
     const vin = c.a <= 0 ? 1 : smooth(clamp((p - c.a) / F));
     const vout = c.b >= 1 ? 1 : smooth(clamp((c.b - p) / F));
     const v = Math.min(vin, vout);
     c.el.style.opacity = v;
-    c.el.style.transform = `translateY(${(1 - v) * 40}px)`;
-    c.el.style.filter = v > 0.99 ? 'none' : `blur(${(1 - v) * 14}px)`;
+    c.el.style.transform = `translateY(calc(var(--cy) + ${(1 - v) * 28}px))`;
+    c.el.style.filter = v > 0.99 ? 'none' : `blur(${(1 - v) * 10}px)`;
     c.el.style.pointerEvents = v > 0.5 ? 'auto' : 'none';
-    if (p >= c.a - F) active = c.idx;
-  }
+    if (!c.final && p >= c.a - F) active = numbered.indexOf(c);
+  });
   idxItems.forEach((li, i) => li.classList.toggle('on', i === active));
-  const t = CONFIG.frames.count > 0 ? videoTime(p) : p * CONFIG.seconds, s = Math.floor(t), fr = Math.floor((t - s) * 24);
-  tcEl.textContent = `00:00:${String(s).padStart(2, '0')}:${String(fr).padStart(2, '0')}`;
-  ring.style.strokeDashoffset = 188.5 * (1 - p);
-  hud.style.opacity = scrollY > maxScroll() + innerHeight * 0.3 ? 0 : 1;
+  chapNum.textContent = `${String(active + 1).padStart(2, '0')} / ${String(numbered.length).padStart(2, '0')}`;
+  const t = VIDEO ? videoTime(p) : p * 20, s = Math.floor(t), fr = Math.floor((t - s) * 24);
+  tcEl.textContent = `00:${String(s).padStart(2, '0')}:${String(fr).padStart(2, '0')}`;
+  bar.style.width = (p * 100) + '%';
+  hint.style.opacity = p > 0.03 ? 0 : 1;
 }
+const cw = () => card.clientWidth, ch = () => card.clientHeight;
 
 /* =====================================================================
-   RENDER MODO 1: secuencia de imágenes (vídeo generado con IA)
+   RENDER 1 · secuencia de imágenes
    ===================================================================== */
 async function frameRenderer(cfg) {
   const ctx = canvas.getContext('2d');
   const imgs = new Array(cfg.count);
   let loaded = 0, last = -1;
   const load = i => new Promise(res => {
-    const im = new Image();
-    im.decoding = 'async';
+    const im = new Image(); im.decoding = 'async';
     im.onload = () => { imgs[i] = im; loaded++; setLoad(loaded / cfg.count); res(); };
-    im.onerror = res;
-    im.src = cfg.path(i);
+    im.onerror = res; im.src = cfg.path(i);
   });
-  // primero las 12 primeras, después el resto en lotes
   await Promise.all(Array.from({ length: Math.min(12, cfg.count) }, (_, i) => load(i)));
   (async () => { for (let i = 12; i < cfg.count; i += 10)
     await Promise.all(Array.from({ length: Math.min(10, cfg.count - i) }, (_, k) => load(i + k))); })();
-
   function resize() {
     const dpr = Math.min(devicePixelRatio, 2);
-    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr; last = -1;
+    canvas.width = cw() * dpr; canvas.height = ch() * dpr; last = -1;
   }
   function draw(i) {
     let im = imgs[i];
-    for (let d = 1; !im && d < cfg.count; d++) im = imgs[i - d] || imgs[i + d]; // la más cercana ya cargada
+    for (let d = 1; !im && d < cfg.count; d++) im = imgs[i - d] || imgs[i + d];
     if (!im) return;
-    const cw = canvas.width, ch = canvas.height;
-    const s = Math.max(cw / im.width, ch / im.height); // object-fit: cover
+    const W = canvas.width, H = canvas.height, s = Math.max(W / im.width, H / im.height);
     const w = im.width * s, h = im.height * s;
-    ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+    ctx.drawImage(im, (W - w) / 2, (H - h) / 2, w, h);
   }
   resize();
   return {
     resize,
-    update(p) { const i = Math.min(cfg.count - 1, Math.round(videoTime(p) / CONFIG.seconds * (cfg.count - 1))); if (i !== last) { draw(i); last = i; } },
+    update(p) {
+      const i = Math.min(cfg.count - 1, Math.round(videoTime(p) / CONFIG.seconds * (cfg.count - 1)));
+      if (i !== last) { draw(i); last = i; }
+    },
   };
 }
 
 /* =====================================================================
-   RENDER MODO 2: torre 3D procedural (Three.js) — funciona sin assets
+   RENDER 2 · torre 3D procedural (Three.js) — sin vídeo
    ===================================================================== */
 async function threeRenderer() {
   const THREE = await import('three');
@@ -623,8 +694,8 @@ async function threeRenderer() {
   const camPos = new THREE.Vector3(), look = new THREE.Vector3();
   function resize() {
     renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
-    renderer.setSize(innerWidth, innerHeight, false);
-    camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+    renderer.setSize(cw(), ch(), false);
+    camera.aspect = cw() / ch(); camera.updateProjectionMatrix();
   }
   resize();
 
@@ -662,18 +733,18 @@ async function threeRenderer() {
 }
 
 /* ---------- Arranque ---------- */
-const view = CONFIG.frames.count > 0 ? await frameRenderer(CONFIG.frames) : await threeRenderer();
-addEventListener('resize', () => { view.resize(); readScroll(); });
-let lastP = -1;
+applyLang(lang);
+const view = VIDEO ? await frameRenderer(CONFIG.frames) : await threeRenderer();
+addEventListener('resize', () => { view.resize(); readScroll(); lastP = -1; });
 (function loop() {
   prog += (target - prog) * CONFIG.smooth;
   if (Math.abs(target - prog) < 1e-5) prog = target;
   if (view.continuous || prog !== lastP) { view.update(prog); updateUI(prog); lastP = prog; }
   requestAnimationFrame(loop);
 })();
-requestAnimationFrame(() => setTimeout(hideLoader, 250));
+requestAnimationFrame(() => setTimeout(() => $('#loader').classList.add('done'), 250));
 
-/* ---------- Contadores de cifras ---------- */
+/* ---------- Contadores ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;
   io.unobserve(e.target);
