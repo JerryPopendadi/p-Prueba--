@@ -50,16 +50,15 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 .stage{position:fixed;inset:0;z-index:1}
 .card{position:absolute;inset:0;background:#1a1a1a;overflow:hidden}
 .card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.card::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.16) 42%,transparent 60%),linear-gradient(to bottom,rgba(0,0,0,.36),transparent 22%)}
-.chap{position:absolute;left:var(--pad);bottom:calc(var(--pad) + 18px);width:min(900px,calc(100% - 2 * var(--pad)));color:#fff;opacity:0;will-change:transform,opacity,filter;text-shadow:0 8px 40px rgba(0,0,0,.25)}
-.chap .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;align-items:center;gap:12px}
-.chap .kicker::before{content:"";width:28px;height:1px;background:currentColor}
-.chap h2,.chap h1{font-weight:800;font-size:clamp(46px,6.4vw,112px);line-height:.88;letter-spacing:-.045em;text-transform:uppercase}
-.chap h1{font-size:clamp(44px,5.6vw,100px)}
-.chap em{color:var(--blue-soft);font-size:1.04em}
-.chap p.body{margin-top:18px;max-width:440px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.9)}
-.scroll{display:flex;align-items:center;gap:12px;margin-top:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
-.scroll span{display:block;width:22px;height:34px;border:1.5px solid #fff;border-radius:12px;position:relative}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.42) 0%,transparent 34%),linear-gradient(to bottom,rgba(0,0,0,.3),transparent 18%)}
+.chap{position:absolute;left:var(--pad);bottom:calc(var(--pad) + 10px);width:min(560px,calc(100% - 2 * var(--pad)));color:#fff;opacity:0;will-change:transform,opacity,filter;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.chap .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:12px}
+.chap h2,.chap h1{font-weight:500;font-size:clamp(22px,2.1vw,32px);line-height:1.15;letter-spacing:-.02em}
+.chap h1{font-size:clamp(28px,3vw,46px);font-weight:500}
+.chap em{color:#fff;opacity:.85}
+.chap p.body{margin-top:10px;max-width:360px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82)}
+.scroll{display:flex;align-items:center;gap:12px;margin-top:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+.scroll span{display:block;width:18px;height:28px;border:1px solid #fff;border-radius:10px;position:relative}
 .scroll span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#fff;animation:wheel 1.6s ease-in-out infinite}
 @keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 .ring{position:absolute;right:calc(var(--pad) + 8px);top:50%;width:70px;height:70px;margin-top:-35px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff}
@@ -149,7 +148,9 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.0
 .ghost{fill:none;stroke:#9a9aa2;stroke-width:1;stroke-dasharray:5 4;pointer-events:none}
 .ghost-t{font:500 9px var(--mono);fill:#9a9aa2;letter-spacing:.08em;text-transform:uppercase}
 .glz{stroke:var(--blue);stroke-width:4;pointer-events:none}
-.anno{font:500 9px var(--mono);fill:var(--ink);letter-spacing:.1em}
+.anno{font:500 9px var(--mono);fill:var(--ink);letter-spacing:.1em;text-transform:uppercase}
+.door{stroke:#fff;stroke-width:6;pointer-events:none}
+.swing{stroke:var(--ink);stroke-width:1.2;pointer-events:none}
 
 /* Estrategia */
 .strat{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(40px,6vw,70px);border-top:1px solid var(--line)}
@@ -219,9 +220,9 @@ footer .malbo{width:90px;color:var(--ink)}
   .cta{padding:10px 14px;font-size:9.5px}
   .head{grid-template-columns:1fr}
   .chap{bottom:28px}
-  .chap h2{font-size:clamp(38px,11.5vw,66px)}
-  .chap h1{font-size:clamp(38px,11vw,64px)}
-  .chap p.body{font-size:14px;margin-top:14px}
+  .chap h2{font-size:21px}
+  .chap h1{font-size:27px}
+  .chap p.body{font-size:13px;margin-top:8px}
   .ring{display:none}
   .gal{grid-template-columns:1fr 1fr}
   .gal figure{grid-column:span 2 !important;aspect-ratio:16/10 !important}
@@ -271,7 +272,6 @@ footer .malbo{width:90px;color:var(--ink)}
 
 <div class="stage" id="stage">
   <div class="card" id="card"><canvas id="c"></canvas></div>
-  <div class="ring">Scroll</div>
 </div>
 <section id="scrolly" aria-hidden="true"></section>
 
@@ -385,12 +385,12 @@ es: {
   gK:'02 — Galería', gH:'El proyecto, <em>imagen a imagen.</em>',
   gal:{solar:'Solar', estructura:'Estructura', fachada:'Fachada de acceso', aerea:'Vista aérea', piscina:'Piscina y terraza', salon:'Salón de doble altura', cocina:'Cocina y comedor', escalera:'Recibidor y escalera', dormitorio:'Suite principal'},
   plK:'03 — Plantas y zonificación', plH:'Dos piezas, <em>una lógica clara.</em>',
-  plB:'Día abajo, noche arriba. La planta baja concentra la vida social abierta al jardín y la piscina; la caja superior reúne los dormitorios, con la suite principal asomada al mar.',
+  plB:'Día abajo, noche arriba. La planta baja es un volumen largo: el salón acristalado se abre a la terraza y a una piscina que sobresale de la casa. Encima, la caja de roble reúne los dormitorios y vuela 5 metros sobre el acceso, donde la suite principal se asoma al mar.',
   tPB:'Planta baja', tPA:'Planta alta', tZone:'Zonificación', hint:'Toca una estancia o una zona',
   zones:{soc:'Social', pri:'Privada', ser:'Servicio', cir:'Circulación', ext:'Exterior', agua:'Piscina', vac:'Doble altura'},
   thRoom:'Estancia', thArea:'Superficie', totInt:'Total interior', totExt:'Exterior',
-  ghostPB:'Voladizo planta alta', ghostPA:'Planta baja', north:'N',
-  rooms:{gar:'Garaje', lav:'Lavadero', aseo:'Aseo', desp:'Despensa', rec:'Recibidor', esc:'Escalera', com:'Comedor', sal:'Salón', coc:'Cocina', binv:'Baño invitados', dinv:'Dormitorio invitados', ter:'Terraza', pis:'Piscina', d2:'Dormitorio 2', b2:'Baño 2', d3:'Dormitorio 3', vest:'Vestidor', bpri:'Baño principal', est:'Estudio', vac:'Doble altura', suite:'Suite principal', tsup:'Terraza superior'},
+  ghostPB:'Planta alta · voladizo 5 m', ghostPA:'Planta baja', north:'N',
+  entry:'Acceso', rooms:{por:'Porche cubierto', b3:'Baño 3', dist:'Distribuidor', gar:'Garaje', lav:'Lavadero', aseo:'Aseo', desp:'Despensa', rec:'Recibidor', esc:'Escalera', com:'Comedor', sal:'Salón', coc:'Cocina', binv:'Baño invitados', dinv:'Dormitorio invitados', ter:'Terraza', pis:'Piscina', d2:'Dormitorio 2', b2:'Baño 2', d3:'Dormitorio 3', vest:'Vestidor', bpri:'Baño principal', est:'Estudio', vac:'Doble altura', suite:'Suite principal', tsup:'Terraza superior'},
   bK:'04 — Estrategia', bH:'Diseñada para <em>el clima mediterráneo.</em>',
   strat:[['Orientación','Fachada principal al suroeste: luz y vistas al mar todo el año.'],['Sombra','El voladizo y los aleros frenan el sol de verano y dejan entrar el de invierno.'],['Ventilación cruzada','Grandes correderas en fachadas opuestas para refrescar la casa sin máquinas.'],['Inercia térmica','El hormigón y la piedra acumulan el fresco de la noche.'],['Energía','Aerotermia con suelo radiante y refrescante, y fotovoltaica en cubierta.'],['Agua y paisaje','Recogida de pluviales para riego y jardín de especies autóctonas de bajo consumo.']],
   mK:'05 — Materialidad', mH:'Cuatro materiales, <em>una paleta honesta.</em>',
@@ -431,12 +431,12 @@ en: {
   gK:'02 — Gallery', gH:'The project, <em>image by image.</em>',
   gal:{solar:'Site', estructura:'Structure', fachada:'Entrance façade', aerea:'Aerial view', piscina:'Pool and terrace', salon:'Double-height living', cocina:'Kitchen and dining', escalera:'Entrance and staircase', dormitorio:'Master suite'},
   plK:'03 — Plans and zoning', plH:'Two pieces, <em>one clear logic.</em>',
-  plB:'Day below, night above. The ground floor gathers the social life, open to the garden and pool; the upper box holds the bedrooms, with the master suite looking out to sea.',
+  plB:'Day below, night above. The ground floor is a long volume: the glazed living room opens onto the terrace and a pool that extends beyond the house. Above, the oak box holds the bedrooms and cantilevers 5 metres over the entrance, where the master suite looks out to sea.',
   tPB:'Ground floor', tPA:'Upper floor', tZone:'Zoning', hint:'Tap a room or a zone',
   zones:{soc:'Social', pri:'Private', ser:'Service', cir:'Circulation', ext:'Outdoor', agua:'Pool', vac:'Double height'},
   thRoom:'Room', thArea:'Area', totInt:'Interior total', totExt:'Outdoor',
-  ghostPB:'Upper-floor cantilever', ghostPA:'Ground floor', north:'N',
-  rooms:{gar:'Garage', lav:'Laundry', aseo:'Guest WC', desp:'Pantry', rec:'Entrance hall', esc:'Staircase', com:'Dining', sal:'Living room', coc:'Kitchen', binv:'Guest bath', dinv:'Guest bedroom', ter:'Terrace', pis:'Pool', d2:'Bedroom 2', b2:'Bath 2', d3:'Bedroom 3', vest:'Dressing room', bpri:'Master bath', est:'Study', vac:'Double height', suite:'Master suite', tsup:'Roof terrace'},
+  ghostPB:'Upper floor · 5 m cantilever', ghostPA:'Ground floor', north:'N',
+  entry:'Entrance', rooms:{por:'Covered porch', b3:'Bath 3', dist:'Landing', gar:'Garage', lav:'Laundry', aseo:'Guest WC', desp:'Pantry', rec:'Entrance hall', esc:'Staircase', com:'Dining', sal:'Living room', coc:'Kitchen', binv:'Guest bath', dinv:'Guest bedroom', ter:'Terrace', pis:'Pool', d2:'Bedroom 2', b2:'Bath 2', d3:'Bedroom 3', vest:'Dressing room', bpri:'Master bath', est:'Study', vac:'Double height', suite:'Master suite', tsup:'Roof terrace'},
   bK:'04 — Strategy', bH:'Designed for <em>the Mediterranean climate.</em>',
   strat:[['Orientation','Main façade facing south-west: light and sea views all year round.'],['Shade','The cantilever and eaves block the summer sun and let the winter sun in.'],['Cross ventilation','Large sliding doors on opposite façades cool the house without machines.'],['Thermal mass','Concrete and stone store the cool of the night.'],['Energy','Air-source heat pump with underfloor heating and cooling, plus rooftop solar PV.'],['Water and landscape','Rainwater harvesting for irrigation and a low-water native garden.']],
   mK:'05 — Materials', mH:'Four materials, <em>an honest palette.</em>',
@@ -477,12 +477,12 @@ ru: {
   gK:'02 — Галерея', gH:'Проект <em>кадр за кадром.</em>',
   gal:{solar:'Участок', estructura:'Каркас', fachada:'Входной фасад', aerea:'Вид сверху', piscina:'Бассейн и терраса', salon:'Гостиная двойной высоты', cocina:'Кухня и столовая', escalera:'Холл и лестница', dormitorio:'Главная спальня'},
   plK:'03 — Планы и зонирование', plH:'Два объёма — <em>одна ясная логика.</em>',
-  plB:'День — внизу, ночь — наверху. На первом этаже — общественная зона с выходом в сад и к бассейну, в верхнем объёме — спальни, главная из которых смотрит на море.',
+  plB:'День — внизу, ночь — наверху. Первый этаж — вытянутый объём: остеклённая гостиная выходит на террасу и бассейн, выступающий за пределы дома. Сверху дубовый объём со спальнями нависает консолью 5 метров над входом, где главная спальня смотрит на море.',
   tPB:'Первый этаж', tPA:'Второй этаж', tZone:'Зонирование', hint:'Нажмите на помещение или зону',
   zones:{soc:'Общественная', pri:'Приватная', ser:'Служебная', cir:'Коммуникации', ext:'Открытые', agua:'Бассейн', vac:'Второй свет'},
   thRoom:'Помещение', thArea:'Площадь', totInt:'Итого внутри', totExt:'Открытые',
-  ghostPB:'Консоль второго этажа', ghostPA:'Первый этаж', north:'С',
-  rooms:{gar:'Гараж', lav:'Постирочная', aseo:'Санузел', desp:'Кладовая', rec:'Холл', esc:'Лестница', com:'Столовая', sal:'Гостиная', coc:'Кухня', binv:'Гостевая ванная', dinv:'Гостевая спальня', ter:'Терраса', pis:'Бассейн', d2:'Спальня 2', b2:'Ванная 2', d3:'Спальня 3', vest:'Гардеробная', bpri:'Главная ванная', est:'Кабинет', vac:'Второй свет', suite:'Главная спальня', tsup:'Терраса на крыше'},
+  ghostPB:'Второй этаж · консоль 5 м', ghostPA:'Первый этаж', north:'С',
+  entry:'Вход', rooms:{por:'Крытый навес', b3:'Ванная 3', dist:'Коридор', gar:'Гараж', lav:'Постирочная', aseo:'Санузел', desp:'Кладовая', rec:'Холл', esc:'Лестница', com:'Столовая', sal:'Гостиная', coc:'Кухня', binv:'Гостевая ванная', dinv:'Гостевая спальня', ter:'Терраса', pis:'Бассейн', d2:'Спальня 2', b2:'Ванная 2', d3:'Спальня 3', vest:'Гардеробная', bpri:'Главная ванная', est:'Кабинет', vac:'Второй свет', suite:'Главная спальня', tsup:'Терраса на крыше'},
   bK:'04 — Стратегия', bH:'Спроектирован <em>для средиземноморского климата.</em>',
   strat:[['Ориентация','Главный фасад на юго-запад: свет и вид на море круглый год.'],['Тень','Консоль и свесы защищают от летнего солнца и пропускают зимнее.'],['Сквозное проветривание','Большие раздвижные двери на противоположных фасадах охлаждают дом без техники.'],['Тепловая инерция','Бетон и камень накапливают ночную прохладу.'],['Энергия','Тепловой насос с тёплым и охлаждающим полом и солнечные панели на крыше.'],['Вода и ландшафт','Сбор дождевой воды для полива и сад из местных засухоустойчивых растений.']],
   mK:'05 — Материалы', mH:'Четыре материала — <em>честная палитра.</em>',
@@ -544,16 +544,18 @@ chapters.forEach(c => { c.el = document.createElement('article'); c.el.className
 
 /* ---------- Plantas: [clave, zona, x, y, ancho, fondo] en metros ---------- */
 const FLOORS = {
-  pb: { wall: [0, 0, 24, 9.5], glz: [[6.3, 9.5, 23.7, 9.5]], ghost: [6, -5, 16, 10], rooms: [
-    ['ter', 'ext', 6, 9.5, 18, 3.5], ['pis', 'agua', 8, 13, 14, 4],
-    ['gar', 'ser', 0, 0, 6, 6], ['lav', 'ser', 0, 6, 3, 3.5], ['aseo', 'ser', 3, 6, 3, 1.8], ['desp', 'ser', 3, 7.8, 3, 1.7],
-    ['rec', 'cir', 6, 0, 4, 4.5], ['esc', 'cir', 10, 0, 2.5, 4.5], ['com', 'soc', 6, 4.5, 6.5, 5],
-    ['sal', 'soc', 12.5, 0, 5.5, 9.5], ['coc', 'soc', 18, 0, 3.5, 9.5],
-    ['binv', 'pri', 21.5, 0, 2.5, 3.5], ['dinv', 'pri', 21.5, 3.5, 2.5, 6]] },
-  pa: { wall: [6, -5, 16, 10], glz: [[6.3, 5, 21.7, 5], [6.3, -5, 16.2, -5]], ghost: [0, 0, 24, 9.5], rooms: [
-    ['tsup', 'ext', 0, 0, 6, 9.5],
-    ['d2', 'pri', 6, -5, 4.5, 4.5], ['b2', 'pri', 10.5, -5, 2, 4.5], ['d3', 'pri', 12.5, -5, 4, 4.5], ['vest', 'pri', 16.5, -5, 2.5, 4.5], ['bpri', 'pri', 19, -5, 3, 4.5],
-    ['est', 'soc', 6, -0.5, 4, 5.5], ['esc', 'cir', 10, -0.5, 2.5, 5.5], ['vac', 'vac', 12.5, -0.5, 3.5, 5.5], ['suite', 'pri', 16, -0.5, 6, 5.5]] },
+  // Planta baja: volumen largo (26 × 9,5 m). Salón acristalado en el extremo oeste, piscina paralela a la cristalera
+  // que sobresale de la casa; la caja de roble (planta alta) vuela 5 m por el extremo este sobre el acceso.
+  pb: { wall: [0, 0, 26, 9.5], glz: [[0.3, 9.5, 14.7, 9.5], [0, 0.3, 0, 9.2]], ghost: [15, -1, 16, 9], door: [22.5, 9.5], rooms: [
+    ['ter', 'ext', -1, 9.5, 16, 3], ['pis', 'agua', -5, 12.5, 17, 3.5], ['por', 'ext', 26, -1, 5, 9],
+    ['sal', 'soc', 0, 0, 9, 9.5], ['coc', 'soc', 9, 0, 6, 4.5], ['com', 'soc', 9, 4.5, 6, 5],
+    ['aseo', 'ser', 15, 0, 2, 4.5], ['lav', 'ser', 17, 0, 3, 4.5], ['binv', 'pri', 20, 0, 2.5, 4.5], ['dinv', 'pri', 22.5, 0, 3.5, 9.5],
+    ['esc', 'cir', 15, 4.5, 3, 5], ['rec', 'cir', 18, 4.5, 4.5, 5]] },
+  // Planta alta: caja de roble 16 × 9 m; la suite ocupa el voladizo con ventana panorámica. Terraza en la cubierta junto a la caja.
+  pa: { wall: [15, -1, 16, 9], glz: [[18.3, 8, 30.7, 8], [31, 2.8, 31, 7.7]], ghost: [0, 0, 26, 9.5], rooms: [
+    ['tsup', 'ext', 9, 0, 6, 9.5],
+    ['b2', 'pri', 15, -1, 3, 3.5], ['est', 'soc', 18, -1, 4, 3.5], ['b3', 'pri', 22, -1, 3, 3.5], ['vest', 'pri', 25, -1, 2.5, 3.5], ['bpri', 'pri', 27.5, -1, 3.5, 3.5],
+    ['esc', 'cir', 15, 2.5, 3, 5.5], ['dist', 'cir', 18, 2.5, 7, 1.5], ['d2', 'pri', 18, 4, 3.5, 4], ['d3', 'pri', 21.5, 4, 3.5, 4], ['suite', 'pri', 25, 2.5, 6, 5.5]] },
 };
 const area = r => r[4] * r[5];
 const sumBy = (fl, f) => FLOORS[fl].rooms.filter(f).reduce((a, r) => a + area(r), 0);
@@ -561,7 +563,7 @@ const INT = r => r[1] !== 'ext' && r[1] !== 'agua' && r[1] !== 'vac';
 const A = { pb: Math.round(sumBy('pb', INT)), pa: Math.round(sumBy('pa', INT)) };
 A.built = A.pb + A.pa;
 A.ter = Math.round(sumBy('pb', r => r[1] === 'ext') + sumBy('pa', r => r[1] === 'ext'));
-const BEDS = 4, BATHS = '3 + 1';
+const BEDS = 4, BATHS = '4 + 1';
 
 const GAL = ['solar', 'estructura', 'fachada', 'aerea', 'piscina', 'salon', 'cocina', 'escalera', 'dormitorio'];
 const IMG = n => `img/${n}.webp`;
@@ -615,7 +617,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape') $('#lb').classList.re
 
 /* ---------- Plantas interactivas ---------- */
 let floor = 'pb', zoning = true, selZone = null;
-const S = 24, X0 = -1.5, Y0 = -6.8, VW = 27 * S, VH = 25 * S;
+const S = 18, X0 = -6.5, Y0 = -3.6, VW = 39.5 * S, VH = 21.6 * S;
 const px = x => (x - X0) * S, py = y => (y - Y0) * S;
 const mobileQ = matchMedia('(max-width:700px)');
 function label(name, a, cx, cy, w, h) {
@@ -637,15 +639,16 @@ function renderPlan() {
   const g = F.ghost;
   s += `<rect class="ghost" x="${px(g[0])}" y="${py(g[1])}" width="${g[2] * S}" height="${g[3] * S}"/>`;
   s += `<text class="ghost-t" x="${px(g[0]) + 6}" y="${py(g[1]) - 6}">${floor === 'pb' ? T.ghostPB : T.ghostPA}</text>`;
-  if (floor === 'pa') s += `<rect class="ghost" x="${px(8)}" y="${py(13)}" width="${14 * S}" height="${4 * S}"/>`;
+  if (floor === 'pa') s += `<rect class="ghost" x="${px(-5)}" y="${py(12.5)}" width="${17 * S}" height="${3.5 * S}"/>`;
   for (const r of F.rooms) {
     const [k, z, x, y, w, h] = r, on = selZone === z;
     s += `<g class="rm ${z}${on ? ' on' : ''}" data-k="${k}" data-z="${z}" data-a="${area(r)}" style="--zc:var(--z-${z})"><rect x="${px(x)}" y="${py(y)}" width="${w * S}" height="${h * S}"/>${label(T.rooms[k], area(r), px(x + w / 2), py(y + h / 2), w * S, h * S)}</g>`;
   }
   const W = F.wall; s += `<rect class="wall" x="${px(W[0])}" y="${py(W[1])}" width="${W[2] * S}" height="${W[3] * S}"/>`;
   for (const [x1, y1, x2, y2] of F.glz) s += `<line class="glz" x1="${px(x1)}" y1="${py(y1)}" x2="${px(x2)}" y2="${py(y2)}"/>`;
+  if (F.door) s += `<path class="door" d="M${px(F.door[0])} ${py(F.door[1])}h${1.6 * S}"/><path class="swing" d="M${px(F.door[0])} ${py(F.door[1])}l0 ${1.4 * S}"/><text class="anno" x="${px(F.door[0] + 0.8)}" y="${py(F.door[1]) + 2.4 * S}" text-anchor="middle">${T.entry}</text>`;
   // norte y escala
-  const nx = VW - 40, ny = 46;
+  const nx = VW - 34, ny = 40;
   s += `<g><circle cx="${nx}" cy="${ny}" r="16" fill="none" stroke="#0b0b0c"/><path d="M${nx} ${ny - 13}L${nx + 6} ${ny + 6}L${nx} ${ny + 2}L${nx - 6} ${ny + 6}Z" fill="#0b0b0c"/><text class="anno" x="${nx}" y="${ny - 22}" text-anchor="middle">${T.north}</text></g>`;
   const sx = 24, sy = VH - 22;
   s += `<g>${[0, 1, 2, 3, 4].map(i => `<rect x="${sx + i * S}" y="${sy}" width="${S}" height="5" fill="${i % 2 ? '#fff' : '#0b0b0c'}" stroke="#0b0b0c" stroke-width=".8"/>`).join('')}<text class="anno" x="${sx}" y="${sy - 6}">0</text><text class="anno" x="${sx + 5 * S}" y="${sy - 6}" text-anchor="end">5 m</text></g></svg>`;
