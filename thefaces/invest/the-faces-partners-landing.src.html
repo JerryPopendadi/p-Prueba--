@@ -474,7 +474,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
     hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},
     sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',
     calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
-    adsSendTo:''   /* e.g. 'AW-18528850470/AbC123xyz' (Google Ads → Goals → Conversions → Investor enquiry → Tag setup) */
+    adsSendTo:'AW-18530799499/0rmsCJj8wLkdEIufloRF'   /* e.g. 'AW-18528850470/AbC123xyz' (Google Ads → Goals → Conversions → Investor enquiry → Tag setup) */
   };
   var PROJ={proj_ub:'project_ubud',proj_wt:'project_white_temple',proj_wf:'project_waterfall',proj_fe:'project_sanur_five_elements'};
   function q(s){return root.querySelector(s)}
@@ -580,6 +580,7 @@ font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--paper)
       try{var st=CFG.adsSendTo||window.TF_ADS_SEND_TO||'';
         if(st){if(typeof window.gtag==='function'){
           var ud={email:String(d.email||'').toLowerCase()};var ph=String(d.phone||'').replace(/[^\d+]/g,'');if(ph.length>7)ud.phone_number=(ph.charAt(0)==='+'?ph:'+'+ph);
+          var aw=st.split('/')[0];if(!window['__tfAwCfg_'+aw]){window['__tfAwCfg_'+aw]=1;window.gtag('config',aw)}
           window.gtag('set','user_data',ud);
           window.gtag('event','conversion',{send_to:st,value:1,currency:'USD',transaction_id:d.lead_id});
           track('thefaces_ads_conversion_sent',{send_to:st,lead_id:d.lead_id})}}}catch(x){}
