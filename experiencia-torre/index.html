@@ -115,6 +115,61 @@ section.block{padding:clamp(80px,12vw,160px) var(--pad) 0}
 footer{padding:28px var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 footer .malbo{width:96px}
 
+/* ---------- Residencias: torre + planos ---------- */
+.res{display:grid;grid-template-columns:200px 1fr;grid-template-rows:auto 1fr;column-gap:clamp(28px,5vw,80px);margin-top:clamp(40px,6vw,70px);align-items:start}
+.tower{grid-row:1 / span 2;position:sticky;top:calc(var(--hh) + 24px)}
+.tower svg{width:100%;height:auto;display:block}
+.floor{cursor:pointer;outline:none}
+.floor rect{fill:#f0f0f3;transition:fill .2s}
+.floor.av rect{fill:#e1e6ff}
+.floor.sold rect{fill:#f3f3f5}
+.floor.amen rect{fill:#fafafa;stroke:#dcdce2;stroke-dasharray:3 2}
+.floor:hover rect,.floor:focus-visible rect{fill:#c3ccff}
+.floor.on rect{fill:var(--blue)}
+.floor text{font:500 8px var(--mono);fill:#9a9aa0}
+.floor.on text{fill:var(--blue)}
+.dot{fill:#c3c3c8}.dot.av{fill:var(--blue)}.dot.re{fill:#e3a33a}
+.floor.on .dot{fill:#fff}
+.seam{fill:none;stroke:#fff;stroke-width:2.5;pointer-events:none}
+.res-floor{display:flex;align-items:baseline;gap:14px}
+.res-floor span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.res-floor strong{font-weight:800;font-size:clamp(56px,7vw,110px);letter-spacing:-.05em;line-height:.9}
+.res-amen{margin-top:14px;font-size:18px;line-height:1.4;color:var(--muted);max-width:420px}
+.units{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.unit{display:grid;gap:4px;text-align:left;font:inherit;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:210px;cursor:pointer;transition:.2s}
+.unit:hover{border-color:#b9b9c0}
+.unit b{font-weight:800;font-size:22px;letter-spacing:-.03em}
+.unit span{font-size:13.5px;color:var(--muted)}
+.unit .m{font-family:var(--mono);font-size:11px;color:var(--ink)}
+.unit.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.pill{justify-self:start;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:999px;margin-top:6px}
+.pill.av{background:#eef0ff;color:var(--blue)}.pill.re{background:#fff3e0;color:#9a5b00}.pill.so{background:#f1f1f3;color:var(--muted)}
+.res-plan{grid-column:2}
+.plan{margin-top:28px;border:1px solid var(--line);border-radius:20px;padding:clamp(14px,3vw,36px);background:#fff}
+.plan:empty{display:none}
+.plan svg{width:100%;height:auto;display:block;max-height:64vh}
+.room rect{fill:#fff;stroke:var(--ink);stroke-width:1.4;transition:fill .2s;cursor:pointer}
+.room.ter rect{fill:url(#hatch);stroke:#8ea2ff}
+.room:hover rect,.room.on rect{fill:#e1e6ff}
+.room text{font:600 11px var(--sans);fill:var(--ink);text-anchor:middle;pointer-events:none;text-transform:uppercase;letter-spacing:.02em}
+.room text.m{font:400 10px var(--mono);fill:var(--muted);text-transform:none;letter-spacing:0}
+.room:hover text,.room.on text{fill:var(--blue)}
+.outer{fill:none;stroke:var(--ink);stroke-width:5;pointer-events:none}
+.win{stroke:var(--blue);stroke-width:5;pointer-events:none}
+.rail{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:4 3}
+.plan-info{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--blue);min-height:16px}
+.specs{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--ink);margin-top:20px}
+.specs:empty{display:none}
+.specs div{padding:16px 12px 0 0}
+.specs span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.specs b{display:block;margin-top:6px;font-weight:800;font-size:clamp(18px,2vw,28px);letter-spacing:-.03em}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:8px;height:8px;border-radius:50%;display:block}
+.legend .av{background:var(--blue)}.legend .re{background:#e3a33a}.legend .so{background:#c3c3c8}
+.res-cta{display:inline-block;margin-top:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:16px 24px;border-radius:999px;background:var(--ink);color:#fff;transition:.25s}
+.res-cta:hover{background:var(--blue)}
+
 /* ---------- Móvil ---------- */
 @media (max-width:860px){
   :root{--hh:60px}
@@ -132,6 +187,17 @@ footer .malbo{width:96px}
   .cols>*{padding-right:12px;margin-right:12px}
   .cols>*:nth-child(2){border-right:0}
   .visit{grid-template-columns:1fr}
+  .res{grid-template-columns:92px 1fr;column-gap:18px}
+  .tower{grid-row:1;position:static}
+  .res-plan{grid-column:1 / -1}
+  .res-floor strong{font-size:54px}
+  .units{flex-direction:column}
+  .unit{min-width:0;padding:11px 13px}
+  .unit b{font-size:18px}
+  .specs{grid-template-columns:repeat(3,1fr);row-gap:10px}
+  .plan{padding:10px;border-radius:14px}
+  .room text{font-size:19px}
+  .room text.m{font-size:16px}
 }
 @media (max-width:420px){.cta{display:none}}
 @media (prefers-reduced-motion:reduce){.track,.scroll span::after{animation:none}}
@@ -163,8 +229,8 @@ footer .malbo{width:96px}
   <a href="#" data-go="0" data-logo></a>
   <nav class="links">
     <a href="#" data-go="0.1"><b>01</b><span data-t="nav1"></span></a>
-    <a href="#servicios"><b>02</b><span data-t="nav2"></span></a>
-    <a href="#proceso"><b>03</b><span data-t="nav3"></span></a>
+    <a href="#residencias"><b>02</b><span data-t="nav2"></span></a>
+    <a href="#servicios"><b>03</b><span data-t="nav3"></span></a>
     <a href="#contacto"><b>04</b><span data-t="nav4"></span></a>
   </nav>
   <div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="ru">RU</button></div>
@@ -179,6 +245,22 @@ footer .malbo{width:96px}
 <section id="scrolly" aria-hidden="true"></section>
 
 <div class="after">
+  <section class="block" id="residencias">
+    <p class="sk" data-t="resK"></p>
+    <h2 class="lead" data-t="resH"></h2>
+    <div class="res">
+      <div class="tower" id="tower"></div>
+      <div id="resPanel"></div>
+      <div class="res-plan">
+        <div class="plan" id="plan"></div>
+        <p class="plan-info" id="planInfo"></p>
+        <div class="specs" id="planSpecs"></div>
+        <div class="legend"><span><i class="av"></i><b style="font-weight:400" data-t="st_av"></b></span><span><i class="re"></i><b style="font-weight:400" data-t="st_re"></b></span><span><i class="so"></i><b style="font-weight:400" data-t="st_so"></b></span></div>
+        <a class="res-cta" href="#contacto" data-t="resCta"></a>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="servicios">
     <p class="sk">MALBO Innovation</p>
     <h2 class="lead"><span data-t="leadA"></span> <em data-t="leadB"></em><small data-t="leadC"></small></h2>
@@ -237,7 +319,14 @@ footer .malbo{width:96px}
 const I18N = {
   es: {
     heroK: 'MALBO Innovation · Webs inmersivas', heroH: 'Entra en el edificio <em>antes de que exista.</em>', heroS: 'Desliza para entrar',
-    nav1: 'Experiencia', nav2: 'Servicios', nav3: 'Proceso', nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Scroll',
+    nav1: 'Experiencia', nav2: 'Residencias', nav3: 'Servicios',
+    resK: 'Residencias · ALTA', resH: 'Elige tu planta. <em>Encuentra tu casa.</em><small>Toca una planta de la torre y explora el plano de cada vivienda.</small>',
+    floor: 'Planta', lobby: 'Vestíbulo y conserjería 24 h.', amen: 'Spa, gimnasio y sala de residentes.',
+    st_av: 'Disponible', st_re: 'Reservada', st_so: 'Vendida',
+    tA: 'Tipo A · 2 dormitorios', tB: 'Tipo B · 3 dormitorios', tP: 'Ático dúplex · 3 dormitorios + estudio',
+    interior: 'Interior', terrace: 'Terraza', beds: 'Dormitorios', baths: 'Baños', orient: 'Orientación', orientV: 'Suroeste',
+    roomHint: 'Toca una habitación para ver su superficie', duplexNote: 'Planta principal del dúplex', resCta: 'Solicitar información',
+    rooms: { master: 'Dormitorio principal', bath1: 'Baño principal', dress: 'Vestidor', entry: 'Entrada', bath2: 'Baño 2', laundry: 'Lavadero', bed2: 'Dormitorio 2', bed3: 'Dormitorio 3', living: 'Salón comedor', kitchen: 'Cocina', dining: 'Comedor', stairs: 'Entrada y escalera', wc: 'Aseo', study: 'Estudio', lounge: 'Salón', terrace: 'Terraza' }, nav4: 'Contacto', cta: 'Quiero mi web', hint: 'Scroll',
     ch1k: '01 / La parcela', ch1h: 'Nada, <em>todavía.</em>', ch1b: 'Un solar vacío al atardecer, en el corazón de la ciudad. Aquí empieza todo.',
     ch2k: '02 / La torre', ch2h: 'De la nada, <em>una forma.</em>', ch2b: 'Vidrio oscuro por fuera, piedra clara por dentro. La torre se eleva en un solo gesto.',
     ch3k: '03 / La costura', ch3h: 'Una costura <em>de luz.</em>', ch3b: 'Una espina pálida recorre toda la altura de la fachada y abre cada hogar al cielo.',
@@ -264,7 +353,14 @@ const I18N = {
   },
   en: {
     heroK: 'MALBO Innovation · Immersive websites', heroH: 'Step inside the building <em>before it exists.</em>', heroS: 'Scroll to step inside',
-    nav1: 'Experience', nav2: 'Services', nav3: 'Process', nav4: 'Contact', cta: 'Get my website', hint: 'Scroll',
+    nav1: 'Experience', nav2: 'Residences', nav3: 'Services',
+    resK: 'Residences · ALTA', resH: 'Choose your floor. <em>Find your home.</em><small>Tap a floor on the tower and explore the plan of each home.</small>',
+    floor: 'Floor', lobby: 'Lobby and 24/7 concierge.', amen: 'Spa, gym and residents’ lounge.',
+    st_av: 'Available', st_re: 'Reserved', st_so: 'Sold',
+    tA: 'Type A · 2 bedrooms', tB: 'Type B · 3 bedrooms', tP: 'Duplex penthouse · 3 bedrooms + study',
+    interior: 'Interior', terrace: 'Terrace', beds: 'Bedrooms', baths: 'Bathrooms', orient: 'Orientation', orientV: 'South-west',
+    roomHint: 'Tap a room to see its size', duplexNote: 'Main level of the duplex', resCta: 'Request information',
+    rooms: { master: 'Master bedroom', bath1: 'Master bath', dress: 'Dressing room', entry: 'Entrance', bath2: 'Bathroom 2', laundry: 'Laundry', bed2: 'Bedroom 2', bed3: 'Bedroom 3', living: 'Living dining', kitchen: 'Kitchen', dining: 'Dining room', stairs: 'Entrance and stairs', wc: 'Guest WC', study: 'Study', lounge: 'Living room', terrace: 'Terrace' }, nav4: 'Contact', cta: 'Get my website', hint: 'Scroll',
     ch1k: '01 / The site', ch1h: 'Nothing, <em>yet.</em>', ch1b: 'An empty lot at sunset, in the heart of the city. This is where it all begins.',
     ch2k: '02 / The tower', ch2h: 'From nothing, <em>a form.</em>', ch2b: 'Dark glass outside, pale stone within. The tower rises in a single gesture.',
     ch3k: '03 / The seam', ch3h: 'A seam <em>of light.</em>', ch3b: 'A pale spine runs the full height of the façade and opens every home to the sky.',
@@ -291,7 +387,14 @@ const I18N = {
   },
   ru: {
     heroK: 'MALBO Innovation · Иммерсивные сайты', heroH: 'Войдите в здание <em>ещё до его постройки.</em>', heroS: 'Листайте, чтобы войти',
-    nav1: 'Демо', nav2: 'Услуги', nav3: 'Процесс', nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Scroll',
+    nav1: 'Демо', nav2: 'Резиденции', nav3: 'Услуги',
+    resK: 'Резиденции · ALTA', resH: 'Выберите этаж. <em>Найдите свой дом.</em><small>Нажмите на этаж башни и изучите планировку каждой квартиры.</small>',
+    floor: 'Этаж', lobby: 'Лобби и консьерж 24/7.', amen: 'Спа, фитнес и лаунж для жителей.',
+    st_av: 'Свободна', st_re: 'Забронирована', st_so: 'Продана',
+    tA: 'Тип A · 2 спальни', tB: 'Тип B · 3 спальни', tP: 'Пентхаус-дуплекс · 3 спальни + кабинет',
+    interior: 'Квартира', terrace: 'Терраса', beds: 'Спальни', baths: 'Санузлы', orient: 'Ориентация', orientV: 'Юго-запад',
+    roomHint: 'Нажмите на комнату, чтобы увидеть площадь', duplexNote: 'Основной уровень дуплекса', resCta: 'Запросить информацию',
+    rooms: { master: 'Главная спальня', bath1: 'Главная ванная', dress: 'Гардеробная', entry: 'Прихожая', bath2: 'Ванная 2', laundry: 'Постирочная', bed2: 'Спальня 2', bed3: 'Спальня 3', living: 'Гостиная столовая', kitchen: 'Кухня', dining: 'Столовая', stairs: 'Прихожая и лестница', wc: 'Санузел', study: 'Кабинет', lounge: 'Гостиная', terrace: 'Терраса' }, nav4: 'Контакты', cta: 'Хочу сайт', hint: 'Scroll',
     ch1k: '01 / Участок', ch1h: 'Пока — <em>ничего.</em>', ch1b: 'Пустой участок на закате в самом сердце города. Здесь всё начинается.',
     ch2k: '02 / Башня', ch2h: 'Из ничего — <em>форма.</em>', ch2b: 'Тёмное стекло снаружи, светлый камень внутри. Башня поднимается одним жестом.',
     ch3k: '03 / Шов', ch3h: 'Шов <em>из света.</em>', ch3b: 'Светлая вертикаль проходит по всей высоте фасада и открывает каждый дом небу.',
@@ -387,6 +490,7 @@ function applyLang(l) {
   $('#track').innerHTML = m + m;
   document.querySelectorAll('#lang button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
   try { localStorage.setItem('malbo-lang', l); } catch (e) {}
+  if (typeof UNITS !== 'undefined') renderRes();
   lastP = -1;
 }
 document.querySelectorAll('#lang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
@@ -718,6 +822,116 @@ async function threeRenderer() {
   setLoad(1);
   return { resize, update, continuous: true };
 }
+
+/* =====================================================================
+   RESIDENCIAS · selector de plantas + planos interactivos
+   Habitaciones: [clave, x, y, ancho, fondo] en metros. La terraza (t) va en la fachada.
+   ===================================================================== */
+const PLANS = {
+  A: { w: 12, h: 8.5, t: 3, beds: 2, baths: 2, rooms: [
+    ['master', 0, 0, 4.2, 4.2], ['bath1', 4.2, 0, 2.2, 2.4], ['dress', 4.2, 2.4, 2.2, 1.8], ['entry', 6.4, 0, 1.4, 4.2],
+    ['bath2', 7.8, 0, 1.8, 2.2], ['laundry', 7.8, 2.2, 1.8, 2], ['bed2', 9.6, 0, 2.4, 4.2],
+    ['living', 0, 4.2, 7.6, 4.3], ['kitchen', 7.6, 4.2, 4.4, 4.3]] },
+  B: { w: 15, h: 9.5, t: 3, beds: 3, baths: 2, rooms: [
+    ['master', 0, 0, 4.5, 4.5], ['bath1', 4.5, 0, 2.3, 2.5], ['dress', 4.5, 2.5, 2.3, 2], ['entry', 6.8, 0, 1.6, 4.5],
+    ['bath2', 8.4, 0, 2, 2.3], ['laundry', 8.4, 2.3, 2, 2.2], ['bed2', 10.4, 0, 4.6, 4.5],
+    ['bed3', 0, 4.5, 3.6, 5], ['living', 3.6, 4.5, 7.4, 5], ['kitchen', 11, 4.5, 4, 5]] },
+  P: { w: 22, h: 14, t: 4, beds: 3, baths: 3, rooms: [
+    ['master', 0, 0, 6, 5], ['bath1', 6, 0, 3.5, 3], ['dress', 6, 3, 3.5, 2], ['stairs', 9.5, 0, 3, 5],
+    ['bath2', 12.5, 0, 2, 2.5], ['wc', 12.5, 2.5, 2, 2.5], ['bed2', 14.5, 0, 3.75, 5], ['bed3', 18.25, 0, 3.75, 5],
+    ['lounge', 0, 5, 8, 9], ['dining', 8, 5, 6, 9], ['kitchen', 14, 5, 8, 5], ['study', 14, 10, 8, 4]] },
+};
+// 32 plantas: 1 vestíbulo · 2 spa · 3–24 dos viviendas (A y B) · 25–32 cuatro áticos dúplex = 48 viviendas
+const UNITS = [];
+const stOf = n => { const r = ((n * 9301 + 49297) % 233280) / 233280; return r < 0.55 ? 'av' : r < 0.78 ? 're' : 'so'; };
+for (let f = 3; f <= 24; f++) for (const t of ['A', 'B']) UNITS.push({ id: f + t, floors: [f], type: t, st: stOf(f * 2 + (t === 'B' ? 1 : 0)) });
+[['PH1', [25, 26], 'so'], ['PH2', [27, 28], 'av'], ['PH3', [29, 30], 're'], ['PH4', [31, 32], 'av']]
+  .forEach(([id, floors, st]) => UNITS.push({ id, floors, type: 'P', st }));
+const unitsOn = f => UNITS.filter(u => u.floors.includes(f));
+const totals = t => { const P = PLANS[t]; return { int: Math.round(P.rooms.reduce((a, r) => a + r[3] * r[4], 0)), ter: Math.round(P.w * P.t) }; };
+const fmtA = a => (Math.round(a * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ',');
+let selFloor = 14, selUnit = '14A';
+const mobile = matchMedia('(max-width:860px)');
+
+function renderTower() {
+  const N = 32, H = 14, G = 2, top = 6;
+  let svg = `<svg viewBox="0 0 170 ${top + N * (H + G) + 8}">`;
+  for (let f = N; f >= 1; f--) {
+    const y = top + (N - f) * (H + G), us = unitsOn(f);
+    const cls = f <= 2 ? 'amen' : us.some(u => u.st !== 'so') ? 'av' : 'sold';
+    svg += `<g class="floor ${cls}${f === selFloor ? ' on' : ''}" data-f="${f}" tabindex="0" role="button" aria-label="${I18N[lang].floor} ${f}">`
+      + `<rect x="34" y="${y}" width="100" height="${H}" rx="2"/>`
+      + (f % 4 === 0 || f === 1 || f === selFloor ? `<text x="26" y="${y + H - 3.5}" text-anchor="end">${String(f).padStart(2, '0')}</text>` : '');
+    if (!us.some(u => u.floors.length > 1) || f === us[0].floors[0])
+      us.forEach((u, i) => { svg += `<circle class="dot ${u.st}" cx="${us.length > 1 ? (i ? 116 : 52) : 84}" cy="${y + H / 2}" r="2.6"/>`; });
+    svg += '</g>';
+  }
+  const pts = []; for (let f = 1; f <= N; f++) pts.push(`${84 + Math.sin(f * 0.55) * 16},${top + (N - f) * (H + G) + H / 2}`);
+  svg += `<polyline class="seam" points="${pts.join(' ')}"/><rect x="18" y="${top + N * (H + G) + 2}" width="132" height="3" fill="#0b0b0c"/></svg>`;
+  $('#tower').innerHTML = svg;
+}
+
+function roomLabel(name, a, cx, cy, wpx, hpx) {
+  const cw = mobile.matches ? 12.5 : 7.2, lh = mobile.matches ? 20 : 13;
+  const lines = []; let cur = '';
+  for (const w of name.split(' ')) { const t = cur ? cur + ' ' + w : w; if (t.length * cw > wpx - 8 && cur) { lines.push(cur); cur = w; } else cur = t; }
+  lines.push(cur);
+  const fits = Math.max(...lines.map(l => l.length)) * cw <= wpx - 6 && (lines.length + 1) * lh < hpx - 4;
+  const m = `${fmtA(a)} m²`;
+  if (!fits) return wpx > 34 ? `<text class="m" x="${cx}" y="${cy + 4}">${m}</text>` : '';
+  const y0 = cy - ((lines.length + 1) * lh) / 2 + lh * 0.8;
+  return `<text x="${cx}" y="${y0}">${lines.map((l, i) => `<tspan x="${cx}" dy="${i ? lh : 0}">${l}</tspan>`).join('')}</text>`
+    + `<text class="m" x="${cx}" y="${y0 + lines.length * lh}">${m}</text>`;
+}
+
+function renderPlan() {
+  const T = I18N[lang], u = UNITS.find(x => x.id === selUnit);
+  if (!u) { $('#plan').innerHTML = ''; $('#planSpecs').innerHTML = ''; $('#planInfo').textContent = ''; return; }
+  const P = PLANS[u.type], W = 600, s = W / P.w, Hh = (P.h + P.t) * s, pad = 6;
+  let svg = `<svg viewBox="${-pad} ${-pad} ${W + pad * 2} ${Hh + pad * 2}"><defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#b9c4ff" stroke-width="1.2"/></pattern></defs>`;
+  svg += `<g class="room ter" data-n="${T.rooms.terrace}" data-a="${P.w * P.t}"><rect x="0" y="${P.h * s}" width="${W}" height="${P.t * s}"/>${roomLabel(T.rooms.terrace, P.w * P.t, W / 2, (P.h + P.t / 2) * s, W, P.t * s)}</g>`;
+  for (const [k, x, y, w, h] of P.rooms)
+    svg += `<g class="room" data-n="${T.rooms[k]}" data-a="${w * h}"><rect x="${x * s}" y="${y * s}" width="${w * s}" height="${h * s}"/>${roomLabel(T.rooms[k], w * h, (x + w / 2) * s, (y + h / 2) * s, w * s, h * s)}</g>`;
+  svg += `<rect class="outer" x="0" y="0" width="${W}" height="${P.h * s}"/>`;
+  for (let x = 0.4; x < P.w - 0.6; x += 2.2) svg += `<line class="win" x1="${x * s}" y1="${P.h * s}" x2="${Math.min(x + 1.8, P.w - 0.4) * s}" y2="${P.h * s}"/>`;
+  svg += `<line class="rail" x1="0" y1="${Hh}" x2="${W}" y2="${Hh}"/></svg>`;
+  $('#plan').innerHTML = svg;
+  const tt = totals(u.type);
+  $('#planSpecs').innerHTML = [[T.interior, tt.int + ' m²'], [T.terrace, tt.ter + ' m²'], [T.beds, P.beds], [T.baths, P.baths], [T.orient, T.orientV]]
+    .map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join('');
+  $('#planInfo').textContent = (u.type === 'P' ? T.duplexNote + ' · ' : '') + T.roomHint;
+}
+
+function renderPanel() {
+  const T = I18N[lang], us = unitsOn(selFloor);
+  let h = `<div class="res-floor"><span>${T.floor}</span><strong>${String(selFloor).padStart(2, '0')}</strong></div>`;
+  if (!us.length) h += `<p class="res-amen">${selFloor === 1 ? T.lobby : T.amen}</p>`;
+  else h += '<div class="units">' + us.map(u => {
+    const tt = totals(u.type);
+    return `<button class="unit${u.id === selUnit ? ' on' : ''}" data-u="${u.id}"><b>${u.id}</b><span>${T['t' + u.type]}</span><span class="m">${tt.int} m² + ${tt.ter} m²</span><i class="pill ${u.st}">${T['st_' + u.st]}</i></button>`;
+  }).join('') + '</div>';
+  $('#resPanel').innerHTML = h;
+  renderPlan();
+}
+function renderRes() { renderTower(); renderPanel(); }
+function pickFloor(f) {
+  selFloor = f;
+  const us = unitsOn(f);
+  selUnit = us.length ? (us.find(u => u.st === 'av') || us[0]).id : null;
+  renderRes();
+}
+$('#tower').addEventListener('click', e => { const g = e.target.closest('.floor'); if (g) pickFloor(+g.dataset.f); });
+$('#tower').addEventListener('keydown', e => { const g = e.target.closest('.floor'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickFloor(+g.dataset.f); $(`.floor[data-f="${g.dataset.f}"]`)?.focus(); } });
+$('#resPanel').addEventListener('click', e => { const b = e.target.closest('.unit'); if (b) { selUnit = b.dataset.u; renderPanel(); } });
+const showRoom = g => {
+  document.querySelectorAll('.room.on').forEach(r => r.classList.remove('on'));
+  if (!g) { const u = UNITS.find(x => x.id === selUnit); $('#planInfo').textContent = (u && u.type === 'P' ? I18N[lang].duplexNote + ' · ' : '') + I18N[lang].roomHint; return; }
+  g.classList.add('on'); $('#planInfo').textContent = `${g.dataset.n} · ${fmtA(+g.dataset.a)} m²`;
+};
+$('#plan').addEventListener('pointerover', e => showRoom(e.target.closest('.room')));
+$('#plan').addEventListener('click', e => showRoom(e.target.closest('.room')));
+$('#plan').addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') showRoom(null); });
+mobile.addEventListener('change', renderPlan);
 
 /* ---------- Arranque ---------- */
 applyLang(lang);
