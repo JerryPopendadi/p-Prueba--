@@ -22,6 +22,8 @@ window.CONFIG = {
   prices: { recipes: 20, belly: 20, bundle: 34 },
   // USDT (pago manual): dirección TRC20 de Lera
   crypto: { network: 'USDT · TRC20 (Tron)', address: 'TGj83GW2wcNR4JUwXmBhsCNbsQkGvvyFQX' },
+  // Tribute (Telegram) para pagos con tarjetas rusas: pegar el enlace de cada producto (vacío = botón oculto)
+  tribute: { recipes: '', belly: '', bundle: '' },
   // Contacto de Lera: WhatsApp en formato internacional sin + (ej. 6281234567890) y/o Telegram sin @
   whatsapp: '6287723434348', telegram: '',
   supportEmail: 'hello@example.com',
@@ -442,7 +444,7 @@ textarea{min-height:80px;resize:vertical}
         <div class="price">$20<small><span data-ru>PDF · разовая оплата</span><span data-en>PDF · one-time payment</span><span data-uk>PDF · разова оплата</span><span data-fr>PDF · paiement unique</span><span data-de>PDF · Einmalzahlung</span></small></div>
         <div class="btns">
           <a class="btn payhip-buy-button" data-k="recipes" href="#" data-theme="none"><span data-ru>Купить за $20</span><span data-en>Buy for $20</span><span data-uk>Купити за $20</span><span data-fr>Acheter pour 20 $</span><span data-de>Für 20 $ kaufen</span></a>
-          <button class="usdt" data-usdt="recipes"><i>₮</i><span data-ru>Оплатить USDT</span><span data-en>Pay with USDT</span><span data-uk>Оплатити USDT</span><span data-fr>Payer en USDT</span><span data-de>Mit USDT zahlen</span></button>
+          <a class="usdt tgpay" data-tg="recipes" href="#" target="_blank" rel="noopener" hidden><i style="background:#229ED9">✈</i><span data-ru>Оплатить в Telegram (карты РФ)</span><span data-en>Pay in Telegram (Russian cards)</span><span data-uk>Оплатити в Telegram (картки РФ)</span><span data-fr>Payer via Telegram (cartes russes)</span><span data-de>In Telegram zahlen (russische Karten)</span></a><button class="usdt" data-usdt="recipes"><i>₮</i><span data-ru>Оплатить USDT</span><span data-en>Pay with USDT</span><span data-uk>Оплатити USDT</span><span data-fr>Payer en USDT</span><span data-de>Mit USDT zahlen</span></button>
         </div>
       </div>
       <div class="ppnote"><span class="pp">Pay<b>Pal</b></span> <span data-ru>Оплата через PayPal: аккаунтом или просто картой. Без доплат с нашей стороны.</span><span data-en>Checkout via PayPal: with an account or just a card. No extra fees from us.</span><span data-uk>Оплата через PayPal: акаунтом або просто карткою. Без доплат з нашого боку.</span><span data-fr>Paiement via PayPal : avec un compte ou simplement par carte. Aucun frais supplémentaire de notre part.</span><span data-de>Bezahlung über PayPal: mit Konto oder einfach per Karte. Keine Zusatzgebühren von uns.</span></div>
@@ -470,7 +472,7 @@ textarea{min-height:80px;resize:vertical}
         <div class="price">$20<small><span data-ru>PDF · разовая оплата</span><span data-en>PDF · one-time payment</span><span data-uk>PDF · разова оплата</span><span data-fr>PDF · paiement unique</span><span data-de>PDF · Einmalzahlung</span></small></div>
         <div class="btns">
           <a class="btn payhip-buy-button" data-k="belly" href="#" data-theme="none"><span data-ru>Купить за $20</span><span data-en>Buy for $20</span><span data-uk>Купити за $20</span><span data-fr>Acheter pour 20 $</span><span data-de>Für 20 $ kaufen</span></a>
-          <button class="usdt" data-usdt="belly"><i>₮</i><span data-ru>Оплатить USDT</span><span data-en>Pay with USDT</span><span data-uk>Оплатити USDT</span><span data-fr>Payer en USDT</span><span data-de>Mit USDT zahlen</span></button>
+          <a class="usdt tgpay" data-tg="belly" href="#" target="_blank" rel="noopener" hidden><i style="background:#229ED9">✈</i><span data-ru>Оплатить в Telegram (карты РФ)</span><span data-en>Pay in Telegram (Russian cards)</span><span data-uk>Оплатити в Telegram (картки РФ)</span><span data-fr>Payer via Telegram (cartes russes)</span><span data-de>In Telegram zahlen (russische Karten)</span></a><button class="usdt" data-usdt="belly"><i>₮</i><span data-ru>Оплатить USDT</span><span data-en>Pay with USDT</span><span data-uk>Оплатити USDT</span><span data-fr>Payer en USDT</span><span data-de>Mit USDT zahlen</span></button>
         </div>
       </div>
       <div class="ppnote"><span class="pp">Pay<b>Pal</b></span> <span data-ru>Оплата через PayPal: аккаунтом или просто картой. Без доплат с нашей стороны.</span><span data-en>Checkout via PayPal: with an account or just a card. No extra fees from us.</span><span data-uk>Оплата через PayPal: акаунтом або просто карткою. Без доплат з нашого боку.</span><span data-fr>Paiement via PayPal : avec un compte ou simplement par carte. Aucun frais supplémentaire de notre part.</span><span data-de>Bezahlung über PayPal: mit Konto oder einfach per Karte. Keine Zusatzgebühren von uns.</span></div>
@@ -485,7 +487,7 @@ textarea{min-height:80px;resize:vertical}
       <span class="save"><span data-ru>экономия $6</span><span data-en>save $6</span><span data-uk>економія $6</span><span data-fr>6 $ d’économie</span><span data-de>6 $ gespart</span></span>
       <div class="btns">
         <a class="btn lime payhip-buy-button" data-k="bundle" href="#" data-theme="none"><span data-ru>Купить оба за $34</span><span data-en>Buy both for $34</span><span data-uk>Купити обидва за $34</span><span data-fr>Acheter les deux pour 34 $</span><span data-de>Beide für 34 $ kaufen</span></a>
-        <button class="usdt" data-usdt="bundle"><i>₮</i><span data-ru>Оплатить USDT</span><span data-en>Pay with USDT</span><span data-uk>Оплатити USDT</span><span data-fr>Payer en USDT</span><span data-de>Mit USDT zahlen</span></button>
+        <a class="usdt tgpay" data-tg="bundle" href="#" target="_blank" rel="noopener" hidden><i style="background:#229ED9">✈</i><span data-ru>Оплатить в Telegram (карты РФ)</span><span data-en>Pay in Telegram (Russian cards)</span><span data-uk>Оплатити в Telegram (картки РФ)</span><span data-fr>Payer via Telegram (cartes russes)</span><span data-de>In Telegram zahlen (russische Karten)</span></a><button class="usdt" data-usdt="bundle"><i>₮</i><span data-ru>Оплатить USDT</span><span data-en>Pay with USDT</span><span data-uk>Оплатити USDT</span><span data-fr>Payer en USDT</span><span data-de>Mit USDT zahlen</span></button>
       </div>
     </div>
   </div>
@@ -686,6 +688,8 @@ textarea{min-height:80px;resize:vertical}
   $('cCopy').onclick=function(){ var v=C.crypto.address; if(!v) return; (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){ $('cCopy').textContent='✓'; setTimeout(function(){ $('cCopy').innerHTML={"ru": "Копировать", "en": "Copy", "uk": "Копіювати", "fr": "Copier", "de": "Kopieren"}[lang]; },1500); }).catch(function(){}); };
   document.querySelectorAll('[data-usdt]').forEach(function(b){ if(!C.crypto.address){ b.hidden=true; return; } b.onclick=function(){ cur=b.dataset.usdt; drawCrypto(); open('mCrypto'); }; });
 
+  /* Tribute: solo si hay enlace */
+  document.querySelectorAll('[data-tg]').forEach(function(a){ var u=(C.tribute||{})[a.dataset.tg]; if(u && /^https:\/\/(t\.me|tribute\.tg)\//.test(u)){ a.href=u; a.hidden=false; } });
   /* lead */
   var what='single';
   document.querySelectorAll('#lWhat button').forEach(function(b){ b.onclick=function(){ what=b.dataset.v; document.querySelectorAll('#lWhat button').forEach(function(x){ x.classList.toggle('on',x===b); }); }; });

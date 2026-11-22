@@ -22,6 +22,8 @@ window.CONFIG = {
   prices: { recipes: 20, belly: 20, bundle: 34 },
   // USDT (pago manual): dirección TRC20 de Lera
   crypto: { network: 'USDT · TRC20 (Tron)', address: 'TGj83GW2wcNR4JUwXmBhsCNbsQkGvvyFQX' },
+  // Tribute (Telegram) para pagos con tarjetas rusas: pegar el enlace de cada producto (vacío = botón oculto)
+  tribute: { recipes: '', belly: '', bundle: '' },
   // Contacto de Lera: WhatsApp en formato internacional sin + (ej. 6281234567890) y/o Telegram sin @
   whatsapp: '6287723434348', telegram: '',
   supportEmail: 'hello@example.com',
@@ -442,7 +444,7 @@ textarea{min-height:80px;resize:vertical}
         <div class="price">$20<small>{{pdf_once}}</small></div>
         <div class="btns">
           <a class="btn payhip-buy-button" data-k="recipes" href="#" data-theme="none">{{buy20}}</a>
-          <button class="usdt" data-usdt="recipes"><i>₮</i>{{pay_usdt}}</button>
+          <a class="usdt tgpay" data-tg="recipes" href="#" target="_blank" rel="noopener" hidden><i style="background:#229ED9">✈</i>{{tg_pay}}</a><button class="usdt" data-usdt="recipes"><i>₮</i>{{pay_usdt}}</button>
         </div>
       </div>
       <div class="ppnote"><span class="pp">Pay<b>Pal</b></span> {{paypal_note}}</div>
@@ -470,7 +472,7 @@ textarea{min-height:80px;resize:vertical}
         <div class="price">$20<small>{{pdf_once}}</small></div>
         <div class="btns">
           <a class="btn payhip-buy-button" data-k="belly" href="#" data-theme="none">{{buy20}}</a>
-          <button class="usdt" data-usdt="belly"><i>₮</i>{{pay_usdt}}</button>
+          <a class="usdt tgpay" data-tg="belly" href="#" target="_blank" rel="noopener" hidden><i style="background:#229ED9">✈</i>{{tg_pay}}</a><button class="usdt" data-usdt="belly"><i>₮</i>{{pay_usdt}}</button>
         </div>
       </div>
       <div class="ppnote"><span class="pp">Pay<b>Pal</b></span> {{paypal_note}}</div>
@@ -485,7 +487,7 @@ textarea{min-height:80px;resize:vertical}
       <span class="save">{{bu_save}}</span>
       <div class="btns">
         <a class="btn lime payhip-buy-button" data-k="bundle" href="#" data-theme="none">{{bu_buy}}</a>
-        <button class="usdt" data-usdt="bundle"><i>₮</i>{{pay_usdt}}</button>
+        <a class="usdt tgpay" data-tg="bundle" href="#" target="_blank" rel="noopener" hidden><i style="background:#229ED9">✈</i>{{tg_pay}}</a><button class="usdt" data-usdt="bundle"><i>₮</i>{{pay_usdt}}</button>
       </div>
     </div>
   </div>
@@ -686,6 +688,8 @@ textarea{min-height:80px;resize:vertical}
   $('cCopy').onclick=function(){ var v=C.crypto.address; if(!v) return; (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){ $('cCopy').textContent='✓'; setTimeout(function(){ $('cCopy').innerHTML=__COPY__[lang]; },1500); }).catch(function(){}); };
   document.querySelectorAll('[data-usdt]').forEach(function(b){ if(!C.crypto.address){ b.hidden=true; return; } b.onclick=function(){ cur=b.dataset.usdt; drawCrypto(); open('mCrypto'); }; });
 
+  /* Tribute: solo si hay enlace */
+  document.querySelectorAll('[data-tg]').forEach(function(a){ var u=(C.tribute||{})[a.dataset.tg]; if(u && /^https:\/\/(t\.me|tribute\.tg)\//.test(u)){ a.href=u; a.hidden=false; } });
   /* lead */
   var what='single';
   document.querySelectorAll('#lWhat button').forEach(function(b){ b.onclick=function(){ what=b.dataset.v; document.querySelectorAll('#lWhat button').forEach(function(x){ x.classList.toggle('on',x===b); }); }; });

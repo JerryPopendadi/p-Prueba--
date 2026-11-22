@@ -61,6 +61,7 @@ T = {
 'b_b2': ('Круг на кор, силовые, кардио и чек-лист техники','Core circuit, strength, cardio and a technique checklist','Коло на кор, силові, кардіо й чек-лист техніки','Circuit gainage, force, cardio et check-list technique','Core-Zirkel, Kraft, Cardio und Technik-Checkliste'),
 'b_b3': ('Питание, вода, сон и вздутие — просто и без мифов','Nutrition, water, sleep and bloating — simply, without myths','Харчування, вода, сон і здуття — просто й без міфів','Nutrition, eau, sommeil et ballonnements — simplement, sans mythes','Ernährung, Wasser, Schlaf und Blähungen — einfach, ohne Mythen'),
 'b_b4': ('Трекер привычек на 30 дней и таблица замеров','30-day habit tracker and a measurements table','Трекер звичок на 30 днів і таблиця замірів','Suivi d’habitudes sur 30 jours et tableau des mesures','30-Tage-Gewohnheitstracker und Maßtabelle'),
+'tg_pay': ('Оплатить в Telegram (карты РФ)','Pay in Telegram (Russian cards)','Оплатити в Telegram (картки РФ)','Payer via Telegram (cartes russes)','In Telegram zahlen (russische Karten)'),
 # bundle
 'bu_tag': ('Выгоднее всего','Best value','Найвигідніше','Meilleure offre','Bestes Angebot'),
 'bu_title': ('Оба гайда — питание и тело','Both guides — food and body','Обидва гайди — харчування й тіло','Les deux guides — alimentation et corps','Beide Guides — Ernährung und Körper'),
