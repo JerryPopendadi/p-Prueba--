@@ -21,7 +21,7 @@ window.CONFIG = {
   payhip: { recipes: 'UNkRa', belly: 'nBRzc', bundle: 'PcnpY' },
   prices: { recipes: 20, belly: 20, bundle: 34 },
   // USDT (pago manual): dirección TRC20 de Lera
-  crypto: { network: 'USDT · TRC20 (Tron)', address: '' },
+  crypto: { network: 'USDT · TRC20 (Tron)', address: 'TGj83GW2wcNR4JUwXmBhsCNbsQkGvvyFQX' },
   // Contacto de Lera: WhatsApp en formato internacional sin + (ej. 6281234567890) y/o Telegram sin @
   whatsapp: '6287723434348', telegram: '',
   supportEmail: 'hello@example.com',
@@ -582,6 +582,7 @@ textarea{min-height:80px;resize:vertical}
     <div class="addr"><code id="cAddr"></code><button type="button" id="cCopy">{{cm_copy}}</button></div>
     <div class="qr" id="cQr"></div>
     <div class="warn">{{cm_net}}</div>
+    <div class="warn" style="background:var(--sky);color:var(--ink2)">{{cm_fee}}</div>
     <div><label>{{cm_email}}</label><input id="cEmail" type="email" autocomplete="email" placeholder="you@email.com"></div>
     <a class="btn" id="cDone" target="_blank" rel="noopener">{{cm_done}}</a>
     <p class="note">{{cm_note}}</p>

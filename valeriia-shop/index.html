@@ -21,7 +21,7 @@ window.CONFIG = {
   payhip: { recipes: 'UNkRa', belly: 'nBRzc', bundle: 'PcnpY' },
   prices: { recipes: 20, belly: 20, bundle: 34 },
   // USDT (pago manual): dirección TRC20 de Lera
-  crypto: { network: 'USDT · TRC20 (Tron)', address: '' },
+  crypto: { network: 'USDT · TRC20 (Tron)', address: 'TGj83GW2wcNR4JUwXmBhsCNbsQkGvvyFQX' },
   // Contacto de Lera: WhatsApp en formato internacional sin + (ej. 6281234567890) y/o Telegram sin @
   whatsapp: '6287723434348', telegram: '',
   supportEmail: 'hello@example.com',
@@ -582,6 +582,7 @@ textarea{min-height:80px;resize:vertical}
     <div class="addr"><code id="cAddr"></code><button type="button" id="cCopy"><span data-ru>Копировать</span><span data-en>Copy</span><span data-uk>Копіювати</span><span data-fr>Copier</span><span data-de>Kopieren</span></button></div>
     <div class="qr" id="cQr"></div>
     <div class="warn"><span data-ru>Только сеть TRC20 (Tron). Другая сеть — деньги могут потеряться.</span><span data-en>TRC20 (Tron) network only. Another network may lose the funds.</span><span data-uk>Лише мережа TRC20 (Tron). Інша мережа — гроші можуть загубитися.</span><span data-fr>Réseau TRC20 (Tron) uniquement. Un autre réseau peut faire perdre les fonds.</span><span data-de>Nur TRC20-Netzwerk (Tron). Ein anderes Netzwerk kann das Geld verlieren.</span></div>
+    <div class="warn" style="background:var(--sky);color:var(--ink2)"><span data-ru>Комиссию сети оплачивает отправитель. Если переводишь с биржи (Binance, Bybit…), добавь комиссию, чтобы пришла ровно указанная сумма.</span><span data-en>The network fee is paid by the sender. If you send from an exchange (Binance, Bybit…), add the fee so the exact amount arrives.</span><span data-uk>Комісію мережі сплачує відправник. Якщо переказуєш з біржі (Binance, Bybit…), додай комісію, щоб надійшла рівно вказана сума.</span><span data-fr>Les frais de réseau sont à la charge de l’expéditeur. Depuis un exchange (Binance, Bybit…), ajoute les frais pour que le montant exact arrive.</span><span data-de>Die Netzwerkgebühr zahlt der Absender. Sendest du von einer Börse (Binance, Bybit…), rechne die Gebühr dazu, damit genau der Betrag ankommt.</span></div>
     <div><label><span data-ru>Твой email — сюда пришлём PDF</span><span data-en>Your email — we’ll send the PDF here</span><span data-uk>Твій email — сюди надішлемо PDF</span><span data-fr>Ton e-mail — on y enverra le PDF</span><span data-de>Deine E-Mail — dorthin schicken wir das PDF</span></label><input id="cEmail" type="email" autocomplete="email" placeholder="you@email.com"></div>
     <a class="btn" id="cDone" target="_blank" rel="noopener"><span data-ru>Я оплатила — написать Лере</span><span data-en>I’ve paid — message Lera</span><span data-uk>Я оплатила — написати Лері</span><span data-fr>J’ai payé — écrire à Lera</span><span data-de>Bezahlt — Lera schreiben</span></a>
     <p class="note"><span data-ru>Приложи скрин перевода. PDF придёт на почту в течение нескольких часов.</span><span data-en>Attach a screenshot of the transfer. The PDF arrives by email within a few hours.</span><span data-uk>Додай скрин переказу. PDF прийде на пошту протягом кількох годин.</span><span data-fr>Joins une capture du virement. Le PDF arrive par e-mail sous quelques heures.</span><span data-de>Hänge einen Screenshot an. Das PDF kommt innerhalb weniger Stunden per E-Mail.</span></p>
