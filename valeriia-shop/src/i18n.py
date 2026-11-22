@@ -148,6 +148,14 @@ T = {
             'Сайт належить Лері (Балі, Індонезія): вона продавець і оператор даних. Магазин і оплата — Payhip і PayPal.',
             'Ce site appartient à Lera (Bali, Indonésie), vendeuse et responsable des données. Boutique et paiements : Payhip et PayPal.',
             'Diese Seite gehört Lera (Bali, Indonesien), Verkäuferin und Verantwortliche für die Daten. Shop und Zahlungen: Payhip und PayPal.'),
+'ck_text': ('Мы не используем рекламные и аналитические cookies. Сохраняем только выбранный язык и то, что ты закрыла это уведомление.',
+            'We don’t use advertising or analytics cookies. We only remember your language choice and that you closed this notice.',
+            'Ми не використовуємо рекламні й аналітичні cookies. Зберігаємо лише обрану мову і те, що ти закрила це повідомлення.',
+            'Nous n’utilisons pas de cookies publicitaires ni analytiques. Nous retenons seulement ta langue et le fait que tu as fermé cet avis.',
+            'Wir verwenden keine Werbe- oder Analyse-Cookies. Wir merken uns nur deine Sprache und dass du diesen Hinweis geschlossen hast.'),
+'ck_ok': ('Понятно','Got it','Зрозуміло','Compris','Verstanden'),
+'ck_more': ('Подробнее','Learn more','Детальніше','En savoir plus','Mehr erfahren'),
+'f_cookies': ('Cookies','Cookies','Cookies','Cookies','Cookies'),
 # sticky
 'sticky': ('Гайды Леры · от $20','Lera’s guides · from $20','Гайди Лери · від $20','Guides de Lera · dès 20 $','Leras Guides · ab 20 $'),
 # crypto modal
