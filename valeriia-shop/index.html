@@ -18,7 +18,7 @@
    ============================================================ */
 window.CONFIG = {
   // Payhip: el código del enlace de cada producto (https://payhip.com/b/XXXX → XXXX)
-  payhip: { recipes: 'PAYHIP_RECIPES', belly: 'PAYHIP_BELLY', bundle: 'PAYHIP_BUNDLE' },
+  payhip: { recipes: 'UNkRa', belly: 'nBRzc', bundle: 'PcnpY' },
   prices: { recipes: 20, belly: 20, bundle: 34 },
   // USDT (pago manual): dirección TRC20 de Lera
   crypto: { network: 'USDT · TRC20 (Tron)', address: '' },
@@ -565,7 +565,7 @@ textarea{min-height:80px;resize:vertical}
   <div><a class="logo" href="#top">lera<i></i></a><div class="pays"><span>PayPal</span><span>Visa</span><span>Mastercard</span><span>USDT</span></div></div>
   <div>
     <a href="legal.html"><span data-ru>Правовая информация и конфиденциальность</span><span data-en>Legal & privacy</span><span data-uk>Правова інформація та конфіденційність</span><span data-fr>Mentions légales et confidentialité</span><span data-de>Impressum & Datenschutz</span></a><a id="mail" href="#" target="_blank" rel="noopener"><span data-ru>Контакты</span><span data-en>Contact</span><span data-uk>Контакти</span><span data-fr>Contact</span><span data-de>Kontakt</span></a><a class="waLink" href="#" target="_blank" rel="noopener" hidden>WhatsApp</a><a href="https://www.instagram.com/whynotleraa/" target="_blank" rel="noopener">Instagram</a>
-    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span><span data-uk>Освітній контент, не медична рекомендація.</span><span data-fr>Contenu éducatif, pas un avis médical.</span><span data-de>Bildungsinhalte, keine medizinische Beratung.</span></p><p style="margin-top:6px;font-size:12px"><span data-ru>Сайт принадлежит Лере (Бали, Индонезия): она продавец и оператор данных. domdiseno.com — только бесплатное техническое размещение.</span><span data-en>This site belongs to Lera (Bali, Indonesia), the seller and data controller. domdiseno.com only provides free technical hosting.</span><span data-uk>Сайт належить Лері (Балі, Індонезія): вона продавець і оператор даних. domdiseno.com — лише безкоштовне технічне розміщення.</span><span data-fr>Ce site appartient à Lera (Bali, Indonésie), vendeuse et responsable des données. domdiseno.com fournit uniquement un hébergement technique gratuit.</span><span data-de>Diese Seite gehört Lera (Bali, Indonesien), Verkäuferin und Verantwortliche für die Daten. domdiseno.com stellt nur kostenloses technisches Hosting bereit.</span></p>
+    <p style="margin-top:14px;font-size:12.5px">© 2026 Lera · @whynotleraa. <span data-ru>Образовательный контент, не медицинская рекомендация.</span><span data-en>Educational content, not medical advice.</span><span data-uk>Освітній контент, не медична рекомендація.</span><span data-fr>Contenu éducatif, pas un avis médical.</span><span data-de>Bildungsinhalte, keine medizinische Beratung.</span></p><p style="margin-top:6px;font-size:12px"><span data-ru>Сайт принадлежит Лере (Бали, Индонезия): она продавец и оператор данных. Магазин и оплата — Payhip и PayPal.</span><span data-en>This site belongs to Lera (Bali, Indonesia), the seller and data controller. Store and payments: Payhip and PayPal.</span><span data-uk>Сайт належить Лері (Балі, Індонезія): вона продавець і оператор даних. Магазин і оплата — Payhip і PayPal.</span><span data-fr>Ce site appartient à Lera (Bali, Indonésie), vendeuse et responsable des données. Boutique et paiements : Payhip et PayPal.</span><span data-de>Diese Seite gehört Lera (Bali, Indonesien), Verkäuferin und Verantwortliche für die Daten. Shop und Zahlungen: Payhip und PayPal.</span></p>
   </div>
 </div></footer>
 
@@ -673,7 +673,7 @@ textarea{min-height:80px;resize:vertical}
   }
   $('cEmail').addEventListener('input',updDone);
   $('cCopy').onclick=function(){ var v=C.crypto.address; if(!v) return; (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){ $('cCopy').textContent='✓'; setTimeout(function(){ $('cCopy').innerHTML={"ru": "Копировать", "en": "Copy", "uk": "Копіювати", "fr": "Copier", "de": "Kopieren"}[lang]; },1500); }).catch(function(){}); };
-  document.querySelectorAll('[data-usdt]').forEach(function(b){ b.onclick=function(){ cur=b.dataset.usdt; drawCrypto(); open('mCrypto'); }; });
+  document.querySelectorAll('[data-usdt]').forEach(function(b){ if(!C.crypto.address){ b.hidden=true; return; } b.onclick=function(){ cur=b.dataset.usdt; drawCrypto(); open('mCrypto'); }; });
 
   /* lead */
   var what='single';

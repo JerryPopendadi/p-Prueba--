@@ -18,7 +18,7 @@
    ============================================================ */
 window.CONFIG = {
   // Payhip: el código del enlace de cada producto (https://payhip.com/b/XXXX → XXXX)
-  payhip: { recipes: 'PAYHIP_RECIPES', belly: 'PAYHIP_BELLY', bundle: 'PAYHIP_BUNDLE' },
+  payhip: { recipes: 'UNkRa', belly: 'nBRzc', bundle: 'PcnpY' },
   prices: { recipes: 20, belly: 20, bundle: 34 },
   // USDT (pago manual): dirección TRC20 de Lera
   crypto: { network: 'USDT · TRC20 (Tron)', address: '' },
@@ -673,7 +673,7 @@ textarea{min-height:80px;resize:vertical}
   }
   $('cEmail').addEventListener('input',updDone);
   $('cCopy').onclick=function(){ var v=C.crypto.address; if(!v) return; (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){ $('cCopy').textContent='✓'; setTimeout(function(){ $('cCopy').innerHTML=__COPY__[lang]; },1500); }).catch(function(){}); };
-  document.querySelectorAll('[data-usdt]').forEach(function(b){ b.onclick=function(){ cur=b.dataset.usdt; drawCrypto(); open('mCrypto'); }; });
+  document.querySelectorAll('[data-usdt]').forEach(function(b){ if(!C.crypto.address){ b.hidden=true; return; } b.onclick=function(){ cur=b.dataset.usdt; drawCrypto(); open('mCrypto'); }; });
 
   /* lead */
   var what='single';
