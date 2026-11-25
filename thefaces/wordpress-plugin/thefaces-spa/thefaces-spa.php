@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       THE FACES Spa
  * Description:       Web de THE FACES Spa (Ubud y Sanur, Bali) en 9 idiomas, con idioma automático y blog: portada con vídeo, cinco sentidos, cinco elementos, menú con precios de Altegio, salones, fundadores, certificados, partners, Waterfall Spa, blog y preguntas. Usa [thefaces page="home"] o [thefaces block="senses"].
- * Version:           1.7.0
+ * Version:           1.7.1
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            DomDiseño
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SPA_VERSION', '1.7.0' );
+define( 'TF_SPA_VERSION', '1.7.1' );
 define( 'TF_SPA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TF_SPA_URL', plugin_dir_url( __FILE__ ) );
 
@@ -27,7 +27,8 @@ function tf_spa_langs() {
 function tf_spa_opt( $key ) {
 	$defaults = array(
 		'gtm'            => '',
-		'meta_pixel'     => '1557758462849935',
+		'meta_pixel'     => '1412057363697561, 1557758462849935',
+		'pixel_consent'  => 1,
 		'default_lang'   => 'en',
 		'seo'            => 1,
 		'load_always'    => 0,
@@ -974,7 +975,8 @@ function tf_spa_sanitize( $in ) {
 	$in = is_array( $in ) ? $in : array();
 	return array(
 		'gtm'          => isset( $in['gtm'] ) ? preg_replace( '/[^A-Z0-9-]/', '', strtoupper( $in['gtm'] ) ) : '',
-		'meta_pixel'   => isset( $in['meta_pixel'] ) ? preg_replace( '/[^0-9]/', '', $in['meta_pixel'] ) : '',
+		'meta_pixel'   => isset( $in['meta_pixel'] ) ? implode( ', ', array_filter( preg_split( '/[^0-9]+/', $in['meta_pixel'] ) ) ) : '',
+		'pixel_consent' => empty( $in['pixel_consent'] ) ? 0 : 1,
 		'default_lang' => ( isset( $in['default_lang'] ) && in_array( $in['default_lang'], tf_spa_langs(), true ) ) ? $in['default_lang'] : 'en',
 		'seo'          => empty( $in['seo'] ) ? 0 : 1,
 		'load_always'  => empty( $in['load_always'] ) ? 0 : 1,
@@ -1001,8 +1003,9 @@ function tf_spa_settings_page() {
 					<td><input id="tf-gtm" name="thefaces_spa[gtm]" value="<?php echo esc_attr( tf_spa_opt( 'gtm' ) ); ?>" placeholder="GTM-XXXXXXX" class="regular-text">
 					<p class="description">Se carga con Google Consent Mode v2: nada se activa hasta que el visitante acepta las cookies.</p></td></tr>
 				<tr><th scope="row"><label for="tf-pixel">Meta Pixel ID</label></th>
-					<td><input id="tf-pixel" name="thefaces_spa[meta_pixel]" value="<?php echo esc_attr( tf_spa_opt( 'meta_pixel' ) ); ?>" placeholder="1557758462849935" class="regular-text" inputmode="numeric">
-					<p class="description">Facebook / Instagram. El código está en todas las páginas; envía datos solo después de que el visitante acepta las cookies. Déjalo vacío para quitarlo.</p></td></tr>
+					<td><input id="tf-pixel" name="thefaces_spa[meta_pixel]" value="<?php echo esc_attr( tf_spa_opt( 'meta_pixel' ) ); ?>" placeholder="1412057363697561" class="regular-text">
+					<p class="description">Facebook / Instagram. Uno o varios ID separados por comas. Eventos automáticos: PageView, ViewContent (páginas de servicios y salones), Schedule (clic en reservar), Contact (WhatsApp, teléfono, email). Déjalo vacío para quitarlo.</p>
+					<p><label><input type="checkbox" name="thefaces_spa[pixel_consent]" value="1" <?php checked( tf_spa_opt( 'pixel_consent' ) ); ?>> Enviar datos a Meta solo después de que el visitante acepta las cookies (recomendado)</label></p></td></tr>
 				<tr><th scope="row"><label for="tf-lang">Idioma por defecto</label></th>
 					<td><select id="tf-lang" name="thefaces_spa[default_lang]">
 					<?php foreach ( $langs as $code => $name ) : ?>
