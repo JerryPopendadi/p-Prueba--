@@ -1,0 +1,28 @@
+# Overlay text for the THE FACES PARTNERS video carousel (Meta ads, 1080x1350).
+# Each slide: video file, start second, speed factor, crop y (in the 1080x1974 scaled frame), texts per language.
+SLIDES = [
+ dict(key='01-hook', video='29d1cbad', start=0, speed=1.45, y=230,
+  en=dict(eye='THE FACES · BALI SINCE 2013', title='Co-own 49% of a<br>luxury spa in Bali', body='Our team runs it every day.<br>You receive a monthly report.', btn='SWIPE TO SEE THE 4 SPAS'),
+  ru=dict(eye='THE FACES · НА БАЛИ С 2013 ГОДА', title='Доля 49% в люксовом<br>спа на Бали', body='Наша команда управляет спа каждый день.<br>Вы получаете ежемесячный отчёт.', btn='ЛИСТАЙТЕ: 4 СПА')),
+ dict(key='02-ubud', video='76f6e149', start=6, speed=1.0, y=330,
+  en=dict(eye='01 · OPERATING · UBUD', title='THE FACES Ubud', body='A working spa with real guests.<br>Visit it as a guest before you decide.', btn='ASK ABOUT THIS SPA'),
+  ru=dict(eye='01 · РАБОТАЕТ · УБУД', title='THE FACES Ubud', body='Действующий спа с реальными гостями.<br>Приходите как гость, прежде чем решать.', btn='УЗНАТЬ ОБ ЭТОМ СПА')),
+ dict(key='03-white-temple', video='dc5df73d', start=2, speed=1.0, y=300,
+  en=dict(eye='02 · RENOVATION · SANUR', title='The White Temple', body='Five ritual rooms of breath, steam,<br>foam, light and silence.', btn='ASK ABOUT THIS SPA'),
+  ru=dict(eye='02 · РЕМОНТ · САНУР', title='The White Temple', body='Пять ритуальных комнат: дыхание, пар,<br>пена, свет и тишина.', btn='УЗНАТЬ ОБ ЭТОМ СПА')),
+ dict(key='04-waterfall', video='54573c64', start=0, speed=1.35, y=300,
+  en=dict(eye='03 · UNDER CONSTRUCTION · UBUD', title='WATERFALL', body='Sculpted stone rooms and arched<br>windows onto the jungle.', btn='ASK ABOUT THIS SPA'),
+  ru=dict(eye='03 · СТРОИТСЯ · УБУД', title='WATERFALL', body='Залы из резного камня и арочные<br>окна с видом на джунгли.', btn='УЗНАТЬ ОБ ЭТОМ СПА')),
+ dict(key='05-sanur', video='270d6a31', start=4, speed=1.0, y=380,
+  en=dict(eye='04 · PLANS READY · SANUR', title='THE FACES Sanur', body='A 250 m² Five Elements flagship<br>opposite the Hyatt.', btn='ASK ABOUT THIS SPA'),
+  ru=dict(eye='04 · ПРОЕКТ ГОТОВ · САНУР', title='THE FACES Sanur', body='Флагманский спа Five Elements<br>на 250 м² напротив Hyatt.', btn='УЗНАТЬ ОБ ЭТОМ СПА')),
+ dict(key='06-how', video='baf1356a', start=9, speed=1.0, y=200,
+  en=dict(eye='HOW IT WORKS', title='Not a fund.<br>A real spa you can visit.',
+          steps=['Private call with the founders','Visit the spa in Bali or online','Review the documents','Sign at the notary'],
+          body='Registered shares · Monthly reports', btn='BOOK A CALL WITH THE FOUNDERS',
+          legal='Information only. Not a public offer. Capital at risk.'),
+  ru=dict(eye='КАК ЭТО РАБОТАЕТ', title='Не фонд.<br>Настоящий спа, который можно посетить.',
+          steps=['Личный звонок с основателями','Визит в спа на Бали или онлайн','Проверка документов','Подписание у нотариуса'],
+          body='Зарегистрированные доли · Ежемесячные отчёты', btn='ЗАПИСАТЬСЯ НА ЗВОНОК',
+          legal='Только информация. Не публичная оферта. Капитал под риском.')),
+]
