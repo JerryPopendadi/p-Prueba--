@@ -70,3 +70,12 @@ else if(/^mailto:/i.test(h)){fbq('track','Contact',{content_name:'email'})}
 	<?php
 }
 add_action( 'wp_head', 'tf_spa_meta_pixel_head', 2 );
+
+/** Meta Business domain verification tag. */
+function tf_spa_fb_domain_verification() {
+	$code = preg_replace( '/[^a-z0-9]/', '', strtolower( (string) tf_spa_opt( 'fb_domain' ) ) );
+	if ( $code ) {
+		echo '<meta name="facebook-domain-verification" content="' . esc_attr( $code ) . '" />' . "\n";
+	}
+}
+add_action( 'wp_head', 'tf_spa_fb_domain_verification', 1 );
