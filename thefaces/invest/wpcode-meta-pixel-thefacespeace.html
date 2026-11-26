@@ -1,0 +1,35 @@
+<!-- THE FACES PARTNERS · Meta Pixel for thefacespeace.com
+     WPCode → Add snippet → HTML snippet → Insertion: Auto Insert, Location: Site Wide Header.
+     Events: PageView (all pages), Lead (Forminator form sent), Schedule (calendar link), Contact (WhatsApp, phone, email).
+     If the visitor rejects cookies in the banner (tf_consent = denied), nothing is sent to Meta. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+(function(){
+  var denied=false;try{denied=localStorage.getItem('tf_consent')==='denied'}catch(e){}
+  if(denied){fbq('consent','revoke')}
+  fbq('init','1412057363697561');
+  fbq('init','1557758462849935');
+  fbq('track','PageView');
+
+  /* Lead: one per Forminator submission (form 703 and any other Forminator form) */
+  var lastLead=0;
+  function lead(){var now=Date.now();if(now-lastLead<5000)return;lastLead=now;
+    fbq('track','Lead',{content_name:'partnership_request',content_category:'partners'},{eventID:'lead-'+now});}
+  function hook(){if(window.jQuery){window.jQuery(document).on('forminator:form:submit:success',lead);return true}return false}
+  if(!hook()){document.addEventListener('DOMContentLoaded',function(){if(!hook()){window.addEventListener('load',hook)}})}
+
+  /* Clicks */
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest?ev.target.closest('a[href]'):null;if(!a)return;var h=a.getAttribute('href')||'';
+    if(/calendar\.app\.google|calendly\.com/i.test(h)){fbq('track','Schedule',{content_name:'founders_call'})}
+    else if(/wa\.me|whatsapp\.com/i.test(h)){fbq('track','Contact',{content_name:'whatsapp'})}
+    else if(/^tel:/i.test(h)){fbq('track','Contact',{content_name:'phone'})}
+    else if(/^mailto:/i.test(h)){fbq('track','Contact',{content_name:'email'})}
+  },true);
+
+  /* Cookie banner: "Reject" stops sending, "Accept" allows it again */
+  var _set=null;try{_set=Storage.prototype.setItem}catch(e){}
+  if(_set){Storage.prototype.setItem=function(k,v){_set.apply(this,arguments);if(k==='tf_consent'){fbq('consent',v==='denied'?'revoke':'grant')}}}
+})();
+</script>
+<!-- End Meta Pixel -->
