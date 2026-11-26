@@ -1,0 +1,6 @@
+file '/home/user/p-Prueba--/thefaces/invest/contenido-4/reels/_ov/scene-1-ru.mp4'
+file '/home/user/p-Prueba--/thefaces/invest/contenido-4/reels/_ov/scene-2-ru.mp4'
+file '/home/user/p-Prueba--/thefaces/invest/contenido-4/reels/_ov/scene-3-ru.mp4'
+file '/home/user/p-Prueba--/thefaces/invest/contenido-4/reels/_ov/scene-4-ru.mp4'
+file '/home/user/p-Prueba--/thefaces/invest/contenido-4/reels/_ov/scene-5-ru.mp4'
+file '/home/user/p-Prueba--/thefaces/invest/contenido-4/reels/_ov/scene-6-ru.mp4'
