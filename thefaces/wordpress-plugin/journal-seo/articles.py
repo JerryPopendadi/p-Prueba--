@@ -148,7 +148,7 @@ dict(
 <li><strong>Stress, insomnia, jet lag:</strong> Shirodhara Hair Spa.</li>
 <li><strong>Short on time:</strong> Ayurvedic head massage.</li>
 <li><strong>You want to look rested for an event or photos:</strong> a head spa + face massage combination.</li>
-<li><strong>Before a long flight:</strong> our Before Flight Ritual (IDR 2,200,000), which includes care for the head, face and legs.</li>
+<li><strong>Before a long flight:</strong> our Before Flight Ritual (IDR 2,200,000), with head spa, body and face care.</li>
 </ul>
 
 <h2>Tips before and after your head spa</h2>
@@ -298,7 +298,7 @@ dict(
 </ol>
 
 <h2>The Before Flight Ritual</h2>
-<p>Flying home tonight? Our Before Flight Ritual (IDR 2,200,000, about three hours in Sanur) prepares the body for a long flight: care for the head, face and legs, so that you board relaxed and land less swollen. Book it for the afternoon of your departure day, and keep your luggage in the car.</p>
+<p>Flying home tonight? Our Before Flight Ritual (IDR 2,200,000, about three hours in Sanur) prepares the body for a long flight: head spa, body and face care, so that you board relaxed and land less swollen. Book it for the afternoon of your departure day, and keep your luggage in the car.</p>
 
 <h2>Prices at a glance</h2>
 <table>

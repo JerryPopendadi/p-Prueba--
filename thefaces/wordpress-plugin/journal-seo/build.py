@@ -42,7 +42,7 @@ php = r"""<?php
 /**
  * Plugin Name: THE FACES · Journal SEO articles
  * Description: Adds 13 long SEO articles (English) to the THE FACES Journal (spa Ubud, massage Ubud, Balinese massage, head spa, Shirodhara, face massage, facial, lymphatic drainage, reflexology, men's spa, spa Sanur, things to do in Sanur, couples spa). Activate once: the articles are created as normal posts (they stay if you deactivate the plugin). Also prints FAQ structured data for them.
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -104,9 +104,9 @@ register_activation_hook( __FILE__, 'tf_jseo_install' );
 
 /** After replacing the plugin with a newer zip, add the new articles too. */
 function tf_jseo_maybe_upgrade() {
-	if ( '1.1.0' !== get_option( 'tf_jseo_ver' ) && current_user_can( 'manage_options' ) ) {
+	if ( '1.1.1' !== get_option( 'tf_jseo_ver' ) && current_user_can( 'manage_options' ) ) {
 		tf_jseo_install();
-		update_option( 'tf_jseo_ver', '1.1.0', false );
+		update_option( 'tf_jseo_ver', '1.1.1', false );
 	}
 }
 add_action( 'admin_init', 'tf_jseo_maybe_upgrade' );

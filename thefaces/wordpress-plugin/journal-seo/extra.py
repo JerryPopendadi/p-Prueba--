@@ -14,7 +14,7 @@ EXTRA = {
 <li><strong>Arrival day, jet lag:</strong> a head spa or a Shirodhara Hair Spa to reset sleep.</li>
 <li><strong>After a volcano hike or a long scooter day:</strong> a 90-minute full body massage or the Fire Massage.</li>
 <li><strong>Before a wedding, a party or a photo shoot:</strong> a myofascial facial massage the day before.</li>
-<li><strong>Last day before flying:</strong> the Before Flight Ritual, which prepares the legs, head and face for the flight.</li>
+<li><strong>Last day before flying:</strong> the Before Flight Ritual, with head spa, body and face care before the flight.</li>
 </ul>
 """,
 "head-spa-bali-guide": """

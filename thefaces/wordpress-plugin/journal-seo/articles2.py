@@ -307,7 +307,7 @@ dict(
 <p>The traditional stone tool also drains the face beautifully.</p>
 
 <h3>Before Flight Ritual · IDR 2,200,000</h3>
-<p>Our ritual for the last day of your trip includes care for the legs, the head and the face, so that you fly relaxed and land less swollen.</p>
+<p>Our ritual for the first or last day of your trip combines head spa, body and face care, so that you fly relaxed.</p>
 
 <h2>When to book lymphatic drainage in Bali</h2>
 <ul>
@@ -485,7 +485,7 @@ dict(
 <p>Read our complete <a href="/spa-in-sanur-guide/">guide to the spa in Sanur</a>.</p>
 
 <h2>9. Use Sanur as your last stop before the airport</h2>
-<p>Sanur is close to the airport, so it is the perfect place for the last night of your trip. On departure day, book our Before Flight Ritual (IDR 2,200,000): care for the legs, head and face so that you board relaxed.</p>
+<p>Sanur is close to the airport, so it is the perfect place for the last night of your trip. On departure day, book our Before Flight Ritual (IDR 2,200,000): head spa, body and face care so that you board relaxed.</p>
 
 <h2>A perfect day in Sanur</h2>
 <ol>
