@@ -2,7 +2,7 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: A clear page to find and prepay THE FACES treatments: search, category filter, Ubud / Sanur filter and one "Buy" button per salon. Shortcode [thefaces_shop]. On activation it creates the page "Prepay a treatment" (/prepay-treatments/).
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -239,3 +239,13 @@ function tf_shop_activate() {
 	);
 }
 register_activation_hook( __FILE__, 'tf_shop_activate' );
+
+/** Also create the page if the plugin was activated another way (replace upload, bulk activation). */
+function tf_shop_ensure_page() {
+	if ( current_user_can( 'manage_options' ) && ! get_option( 'tf_shop_page_ok' ) ) {
+		tf_shop_activate();
+		update_option( 'tf_shop_page_ok', 1, false );
+		flush_rewrite_rules( false );
+	}
+}
+add_action( 'admin_init', 'tf_shop_ensure_page' );
