@@ -68,10 +68,17 @@ def lead(mid, fallback):
         return build.DESC[mid][0]
     return fallback
 
+def dur_m(m):
+    cat, mid, name, mins, price, only, diff = m
+    if diff and any(v[0] and v[0] != mins for v in diff.values()):
+        parts = ['Ubud %s' % dur(mins)] + ['%s %s' % (k.capitalize(), dur(v[0])) for k, v in diff.items()]
+        return ' · '.join(parts)
+    return dur(mins)
+
 def describe(m, prices, fallback):
     cat, mid, name, mins, price, only, diff = m
     text = lead(mid, fallback).strip()
-    d = dur(mins)
+    d = dur_m(m)
     p = ' · '.join('%s: %s IDR' % (s.capitalize(), fmt(v)) for s, v in prices)
     html = '<p>%s</p>' % text
     if d:
@@ -123,7 +130,7 @@ for m in MENU:
                   'Short description': short, 'Description': html, 'Tax status': 'none', 'In stock?': '1',
                   'Categories': 'Prepaid treatments > ' + CATNAME[cat], 'Attribute 1 name': 'Salon',
                   'Attribute 1 value(s)': ', '.join(x.capitalize() for x, _ in pr), 'Attribute 1 visible': '1', 'Attribute 1 global': '1',
-                  'Attribute 2 name': 'Duration', 'Attribute 2 value(s)': dur(mins), 'Attribute 2 visible': '1' if mins else '0',
+                  'Attribute 2 name': 'Duration', 'Attribute 2 value(s)': dur(mins) if dur_m(m) == dur(mins) else '', 'Attribute 2 visible': '1' if dur_m(m) == dur(mins) and mins else '0',
                   'Attribute 2 global': '0', 'Virtual': '1', 'Sold individually?': '0',
                   'Images': MEDIA + IMG_ID.get(mid, IMG[cat]), 'Meta: _yoast_wpseo_metadesc': meta})
     out.append(parent)
