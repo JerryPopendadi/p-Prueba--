@@ -111,6 +111,8 @@ for r in rows:
             r['Images'] = MEDIA + IMG_ID.get(m[1], IMG[m[0]])
             r['Meta: _yoast_wpseo_metadesc'] = meta
             r['Categories'] = 'Prepaid treatments > ' + CATNAME[m[0]]
+    if r['Type'] == 'variation':
+        r['Visibility in catalog'] = 'visible'
     out.append(r)
 
 def sku(name):
@@ -136,7 +138,7 @@ for m in MENU:
     out.append(parent)
     for salon, p in pr:
         out.append(dict(base, **{'Type': 'variation', 'SKU': s + '-' + salon[:3].upper(), 'Name': '%s — %s' % (name, salon.capitalize()),
-                       'Published': '1', 'Tax status': 'none', 'In stock?': '1', 'Regular price': str(p), 'Parent': s,
+                       'Published': '1', 'Visibility in catalog': 'visible', 'Tax status': 'none', 'In stock?': '1', 'Regular price': str(p), 'Parent': s,
                        'Attribute 1 name': 'Salon', 'Attribute 1 value(s)': salon.capitalize(), 'Attribute 1 global': '1', 'Virtual': '1'}))
     added.append(name)
 
