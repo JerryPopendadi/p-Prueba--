@@ -2,14 +2,14 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: Luxury spa-menu page to find and prepay THE FACES treatments, with the THE FACES header and footer, descriptions in 9 languages, search, category and salon filters, motion and optional video per treatment. Page /prepay-treatments/ (shortcode [thefaces_shop]). /tienda/ redirects here.
- * Version:     1.2.3
+ * Version:     1.2.4
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SHOP_VER', '1.2.3' );
+define( 'TF_SHOP_VER', '1.2.4' );
 define( 'TF_SHOP_URL', plugin_dir_url( __FILE__ ) );
 define( 'TF_SHOP_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -205,6 +205,8 @@ body.admin-bar #tfshop .bar{top:32px}body.admin-bar #tfshop.with-hero .bar{top:9
 #tfshop .help b{display:block;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;color:#fff;margin-bottom:6px}
 #tfshop .help a{color:var(--g2);font-weight:500;border-bottom:1px solid rgba(231,198,122,.4)}
 #tfshop [hidden]{display:none!important}
+#tfshop .hero-langs{display:none;justify-content:center;margin-top:26px;position:relative;z-index:1}#tfshop .hero-langs button{color:rgba(255,255,255,.7)}#tfshop .hero-langs button.on{color:var(--g2)}@media(max-width:760px){#tfshop .bar-langs{display:none}#tfshop .hero-langs{display:flex}#tfshop .row1{padding:12px 0 6px}#tfshop input[type=search]{height:42px}#tfshop .seg button{padding:8px 13px}}
+
 @media(prefers-reduced-motion:reduce){#tfshop .item{opacity:1;transform:none;transition:none}#tfshop .hero .reveal,#tfshop .scroll{animation:none}}
 @media(max-width:760px){
 #tfshop .hero{padding:130px 18px 70px;min-height:70vh}
@@ -228,6 +230,11 @@ body.admin-bar #tfshop .bar{top:32px}body.admin-bar #tfshop.with-hero .bar{top:9
 <h1 class="reveal" data-t="h1">Prepay your <em>ritual</em></h1>
 <p class="lead reveal" data-t="lead">Choose your treatment and your salon, pay online, then pick the date that suits you. Valid for 6 months.</p>
 <ol class="steps reveal"><li><b>1</b><span data-t="s1">Choose a treatment</span></li><li><b>2</b><span data-t="s2">Choose Ubud or Sanur</span></li><li><b>3</b><span data-t="s3">Pay online</span></li><li><b>4</b><span data-t="s4">Pick your date</span></li></ol>
+<div class="langs hero-langs" role="group" aria-label="Language">
+	<?php foreach ( array( 'en', 'ru', 'es', 'de', 'fr', 'uk', 'id', 'th', 'ja' ) as $l ) : ?>
+<button type="button" data-lang="<?php echo esc_attr( $l ); ?>"><?php echo esc_html( strtoupper( $l ) ); ?></button>
+	<?php endforeach; ?>
+</div>
 <span class="scroll" aria-hidden="true"></span>
 </div>
 	<?php endif; ?>
@@ -235,7 +242,7 @@ body.admin-bar #tfshop .bar{top:32px}body.admin-bar #tfshop.with-hero .bar{top:9
 <div class="row1">
 <input type="search" id="tfs-q" placeholder="Search a treatment…" data-tp="ph" aria-label="Search">
 <div class="seg" role="group" aria-label="Salon"><button type="button" class="on" data-salon="" data-t="all_s">All salons</button><button type="button" data-salon="ubud">Ubud</button><button type="button" data-salon="sanur">Sanur</button></div>
-<div class="langs" role="group" aria-label="Language">
+<div class="langs bar-langs" role="group" aria-label="Language">
 	<?php foreach ( array( 'en', 'ru', 'es', 'de', 'fr', 'uk', 'id', 'th', 'ja' ) as $l ) : ?>
 <button type="button" data-lang="<?php echo esc_attr( $l ); ?>"><?php echo esc_html( strtoupper( $l ) ); ?></button>
 	<?php endforeach; ?>
@@ -658,3 +665,37 @@ function tf_shop_woo_assets() {
 	wp_enqueue_script( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.js', array(), $ver, true );
 }
 add_action( 'wp_enqueue_scripts', 'tf_shop_woo_assets', 20 );
+
+
+/* ---------- Shop pages: English texts and THE FACES price format ---------- */
+
+/** Cart, checkout and product texts in English (the site admin can stay in Spanish). */
+function tf_shop_switch_locale() {
+	if ( ! is_admin() && tf_shop_is_shop_request() && function_exists( 'switch_to_locale' ) && 'en_US' !== determine_locale() ) {
+		switch_to_locale( 'en_US' );
+	}
+}
+add_action( 'wp', 'tf_shop_switch_locale', 1 );
+
+/** Prices: "200 000 IDR" as on the treatments page. */
+function tf_shop_currency_symbol( $symbol, $currency ) {
+	return 'IDR' === $currency ? 'IDR' : $symbol;
+}
+add_filter( 'woocommerce_currency_symbol', 'tf_shop_currency_symbol', 20, 2 );
+add_filter( 'woocommerce_price_format', function ( $format, $pos ) {
+	return 'IDR' === get_woocommerce_currency() ? '%2$s&nbsp;%1$s' : $format;
+}, 20, 2 );
+add_filter( 'wc_get_price_thousand_separator', function ( $sep ) {
+	return 'IDR' === get_woocommerce_currency() ? ' ' : $sep;
+}, 20 );
+add_filter( 'wc_get_price_decimals', function ( $d ) {
+	return 'IDR' === get_woocommerce_currency() ? 0 : $d;
+}, 20 );
+
+/** On shop pages hide the site's quick "Book" buttons (they open the salon calendar without payment). */
+function tf_shop_hide_quickbook() {
+	if ( tf_shop_is_shop_request() ) {
+		echo '<style>.tf .mnav,.tf .side-book{display:none!important}</style>' . "\n";
+	}
+}
+add_action( 'wp_head', 'tf_shop_hide_quickbook', 50 );
