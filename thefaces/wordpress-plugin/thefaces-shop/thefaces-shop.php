@@ -2,14 +2,14 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: Luxury spa-menu page to find and prepay THE FACES treatments, with the THE FACES header and footer, descriptions in 9 languages, search, category and salon filters, motion and optional video per treatment. Page /prepay-treatments/ (shortcode [thefaces_shop]). /tienda/ redirects here.
- * Version:     1.2.4
+ * Version:     1.2.5
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SHOP_VER', '1.2.4' );
+define( 'TF_SHOP_VER', '1.2.5' );
 define( 'TF_SHOP_URL', plugin_dir_url( __FILE__ ) );
 define( 'TF_SHOP_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -699,3 +699,35 @@ function tf_shop_hide_quickbook() {
 	}
 }
 add_action( 'wp_head', 'tf_shop_hide_quickbook', 50 );
+
+
+/* ---------- Language: never send the treatments page to a language home page ---------- */
+
+/**
+ * The page includes the THE FACES header, so THE FACES Spa treats it as one of its pages and adds its
+ * automatic-language script and its hreflang links (to the language home pages). For a visitor whose
+ * phone is not in English, that script sent the shop to /es/, /ru/… home. Remove both here.
+ */
+function tf_shop_no_autolang() {
+	if ( is_page( 'prepay-treatments' ) ) {
+		remove_action( 'wp_head', 'tf_spa_head_autolang', 99 );
+		remove_action( 'wp_head', 'tf_spa_head_seo', 2 );
+	}
+}
+add_action( 'wp', 'tf_shop_no_autolang', 20 );
+
+/** Language links of the THE FACES header / footer on the shop page switch the shop language instead of leaving. */
+function tf_shop_lang_links( $html ) {
+	$page = get_page_by_path( 'prepay-treatments' );
+	if ( ! $page ) {
+		return $html;
+	}
+	$base = get_permalink( $page );
+	return preg_replace_callback(
+		'#href="[^"]*"(\s+hreflang="([a-z]{2})")#',
+		function ( $m ) use ( $base ) {
+			return 'href="' . esc_url( add_query_arg( 'lang', $m[2], $base ) ) . '"' . $m[1];
+		},
+		$html
+	);
+}

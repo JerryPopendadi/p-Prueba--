@@ -20,11 +20,11 @@ wp_head();
 wp_body_open();
 $tf_has_spa = shortcode_exists( 'thefaces' );
 if ( $tf_has_spa ) {
-	echo do_shortcode( '[thefaces block="header" lang="en"]' ); // phpcs:ignore WordPress.Security.EscapeOutput -- plugin markup.
+	echo tf_shop_lang_links( do_shortcode( '[thefaces block="header" lang="en"]' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- plugin markup.
 }
 echo do_shortcode( '[thefaces_shop hero="' . ( $tf_has_spa ? '1' : '0' ) . '"]' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
 if ( $tf_has_spa ) {
-	echo do_shortcode( '[thefaces block="footer" lang="en"]' ); // phpcs:ignore WordPress.Security.EscapeOutput -- plugin markup.
+	echo tf_shop_lang_links( do_shortcode( '[thefaces block="footer" lang="en"]' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- plugin markup.
 }
 wp_footer();
 ?>
