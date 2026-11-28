@@ -2,14 +2,14 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: Luxury spa-menu page to find and prepay THE FACES treatments, with the THE FACES header and footer, descriptions in 9 languages, search, category and salon filters, motion and optional video per treatment. Page /prepay-treatments/ (shortcode [thefaces_shop]). /tienda/ redirects here.
- * Version:     1.2.5
+ * Version:     1.2.6
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SHOP_VER', '1.2.5' );
+define( 'TF_SHOP_VER', '1.2.6' );
 define( 'TF_SHOP_URL', plugin_dir_url( __FILE__ ) );
 define( 'TF_SHOP_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -47,12 +47,15 @@ function tf_shop_data() {
 	foreach ( wc_get_products( array( 'status' => 'publish', 'limit' => -1 ) ) as $p ) {
 		$cat   = '';
 		$terms = get_the_terms( $p->get_id(), 'product_cat' );
+		if ( ! is_array( $terms ) ) {
+			$terms = array();
+		}
 		foreach ( (array) $terms as $t ) {
 			if ( is_object( $t ) && $t->parent ) {
 				$cat = $t->name;
 			}
 		}
-		if ( ! $cat && $terms && is_object( $terms[0] ) ) {
+		if ( ! $cat && ! empty( $terms[0] ) && is_object( $terms[0] ) ) {
 			$cat = $terms[0]->name;
 		}
 		$buy = array();
@@ -731,3 +734,19 @@ function tf_shop_lang_links( $html ) {
 		$html
 	);
 }
+
+
+/* ---------- Checkout: allow card wallets (Apple Pay / Google Pay) ---------- */
+
+/**
+ * THE FACES Spa sends "Permissions-Policy: payment=()", which blocks the Payment Request API used by
+ * card gateways for Apple Pay / Google Pay. On the cart and checkout pages, allow it for this site and
+ * the usual gateway frames; everything else in the policy stays the same.
+ */
+function tf_shop_payment_policy() {
+	if ( headers_sent() || ! function_exists( 'is_checkout' ) || ! ( is_checkout() || is_cart() ) ) {
+		return;
+	}
+	header( 'Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self "https://js.stripe.com" "https://pay.google.com"), usb=(), interest-cohort=()', true );
+}
+add_action( 'template_redirect', 'tf_shop_payment_policy', 1 );
