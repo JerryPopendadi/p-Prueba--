@@ -2,7 +2,7 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: A clear page to find and prepay THE FACES treatments: search, category filter, Ubud / Sanur filter and one "Buy" button per salon. Shortcode [thefaces_shop]. On activation it creates the page "Prepay a treatment" (/prepay-treatments/).
- * Version:     1.0.1
+ * Version:     1.1.0
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -151,7 +151,6 @@ function tf_shop_shortcode() {
 #tfshop [hidden]{display:none!important}
 </style>
 <div class="hd">
-<h1>Prepay your treatment</h1>
 <p>Choose a treatment and a salon, pay online, then pick your date and time. Prepaid treatments are valid for 6 months.</p>
 <ul class="steps"><li><b>1</b> Choose a treatment</li><li><b>2</b> Choose Ubud or Sanur</li><li><b>3</b> Pay online</li><li><b>4</b> Pick your date</li></ul>
 </div>
@@ -249,3 +248,26 @@ function tf_shop_ensure_page() {
 	}
 }
 add_action( 'admin_init', 'tf_shop_ensure_page' );
+
+/** The default WooCommerce shop (/tienda/) and category archives go to the treatments page. */
+function tf_shop_redirect_shop() {
+	if ( is_admin() || ! function_exists( 'is_shop' ) ) {
+		return;
+	}
+	if ( is_shop() || is_product_category() ) {
+		$page = get_page_by_path( 'prepay-treatments' );
+		if ( $page ) {
+			wp_safe_redirect( get_permalink( $page ), 301 );
+			exit;
+		}
+	}
+}
+add_action( 'template_redirect', 'tf_shop_redirect_shop' );
+
+/** "Back to shop" links (cart, product pages) point to the treatments page too. */
+function tf_shop_return_url( $url ) {
+	$page = get_page_by_path( 'prepay-treatments' );
+	return $page ? get_permalink( $page ) : $url;
+}
+add_filter( 'woocommerce_return_to_shop_redirect', 'tf_shop_return_url' );
+add_filter( 'woocommerce_continue_shopping_redirect', 'tf_shop_return_url' );

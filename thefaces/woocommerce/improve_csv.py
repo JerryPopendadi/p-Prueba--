@@ -6,11 +6,36 @@ with contextlib.redirect_stdout(io.StringIO()):
 from menu import MENU
 
 SRC = '/root/.claude/uploads/da6eeaca-3a38-54c2-b2cc-cd456339a57d/76067666-thefaces-woocommerce-productos.csv'
-OUT = '/home/user/p-Prueba--/thefaces/woocommerce/thefaces-woocommerce-productos-v2.csv'
+OUT = '/home/user/p-Prueba--/thefaces/woocommerce/thefaces-woocommerce-productos-v4.csv'
 MEDIA = 'https://thefacesbali.com/wp-content/plugins/thefaces-spa/assets/media/'
 IMG = {'face': 'g01-face.webp', 'air': 'g12-proc-s.webp', 'head': 'g10-proc-s.webp', 'skin': 'g02-face-s.webp',
        'prog': 'g09-proc-s.webp', 'pack': 'g11-proc-s.webp', 'men': 'g05-interior-s.webp', 'two': 'g08-interior.webp',
        'body': 'g04-interior.webp'}
+SHOP = 'https://thefacesbali.com/wp-content/plugins/thefaces-shop/assets/img/'
+PIMG = {
+ 'myo': 'g01-face.webp', 'sculpt': 'g03-face-s.webp', 'buccal': 'g02-face-s.webp', 'guasha': 'g12-proc-s.webp',
+ 'love-sig': 'sense-smell.webp', 'faces-sig': 'og-1200x630.jpg', 'author': 'g11-proc-s.webp', 'hydrolift': 'sense-touch.webp',
+ 'hydro-face': 'waterfall.webp', 'four-hands': 'S:oil-hands.jpg', 'candle': 'sense-sight.webp',
+ 'airkiss': 'S:foam-bowl.jpg', 'airkiss-sculpt': 'S:foam-face.jpg', 'foamy-back': 'S:foam-back.jpg', 'foamy-dream': 'S:foam-cloud.jpg',
+ 'water-spa': 'S:headspa-pool-2.jpg', 'ayur': 'sense-taste.webp', 'shiro': 'g10-proc-s.webp', 'shine': 'waterfall-3.webp',
+ 'hair-face': 'S:headspa-pool-1.jpg', 'detox-myo': 'g09-proc-s.webp', 'detox-sculpt': 'S:headspa-pool-3.jpg', 'kids': 'g06-interior.webp',
+ 'atraumatic': 'g12-proc-s.webp', 'vacuum': 'g11-proc-s.webp', 'ultra': 'g01-face.webp', 'combo': 'g02-face-s.webp',
+ 'hydra': 'sense-touch.webp', 'oxy': 'S:foam-face.jpg', 'cryo': 'g03-face-s.webp', 'lymph-glow': 'sense-intuition.webp',
+ 'el-air': 'S:rice-walk.jpg', 'el-fire': 'sense-sight.webp', 'el-water': 'sense-touch.webp', 'el-earth': 'sense-hearing.webp', 'el-love': 'sense-smell.webp',
+ 'before-flight': 'salon-sanur.jpg', 'water-airkiss': 'S:foam-bowl.jpg', '3in1': 'g09-proc-s.webp', 'beauty-detox': 'g10-proc-s.webp',
+ 'power': 'S:massage-men.jpg', 'stressfree': 'S:men-tea.jpg',
+ 'love-two': 'sense-intuition.webp', 'eternal': 'waterfall.webp', 'honeymoon': 'g07-interior-s.webp',
+ 'body60': 'S:oil-hands.jpg', 'body90': 'S:massage-hands.jpg', 'body120': 'g05-interior-s.webp', 'fire': 'sense-sight.webp', 'aqua': 'sense-touch.webp',
+ 'refl30': 'S:foam-legs.jpg', 'refl60': 'S:massage-hands.jpg', 'refl90': 'S:oil-hands.jpg',
+ 'leg30': 'S:foam-back.jpg', 'leg60': 'S:foam-legs.jpg', 'leg90': 'S:foam-cloud.jpg',
+}
+
+def img_url(mid, cat):
+    f = PIMG.get(mid)
+    if not f:
+        return MEDIA + IMG_ID.get(mid, IMG[cat])
+    return SHOP + f[2:] if f.startswith('S:') else MEDIA + f
+
 IMG_ID = {'sculpt': 'g03-face-s.webp', 'airkiss-sculpt': 'g11-proc-s.webp', 'shiro': 'g10-proc-s.webp',
           'beauty-detox': 'g09-proc-s.webp', 'myo': 'g01-face.webp'}
 CATNAME = {'face': 'Face massage', 'air': 'Air kiss & foam', 'head': 'Head spa & hair', 'skin': 'Cleansing & care',
@@ -108,7 +133,7 @@ for r in rows:
             seen.add(m[1])
             html, short, meta = describe(m, prices_for(m), r['Short description'].split(' Duration')[0])
             r['Description'], r['Short description'] = html, short
-            r['Images'] = MEDIA + IMG_ID.get(m[1], IMG[m[0]])
+            r['Images'] = img_url(m[1], m[0])
             r['Meta: _yoast_wpseo_metadesc'] = meta
             r['Categories'] = 'Prepaid treatments > ' + CATNAME[m[0]]
     if r['Type'] == 'variation':
@@ -134,7 +159,7 @@ for m in MENU:
                   'Attribute 1 value(s)': ', '.join(x.capitalize() for x, _ in pr), 'Attribute 1 visible': '1', 'Attribute 1 global': '1',
                   'Attribute 2 name': 'Duration', 'Attribute 2 value(s)': dur(mins) if dur_m(m) == dur(mins) else '', 'Attribute 2 visible': '1' if dur_m(m) == dur(mins) and mins else '0',
                   'Attribute 2 global': '0', 'Virtual': '1', 'Sold individually?': '0',
-                  'Images': MEDIA + IMG_ID.get(mid, IMG[cat]), 'Meta: _yoast_wpseo_metadesc': meta})
+                  'Images': img_url(mid, cat), 'Meta: _yoast_wpseo_metadesc': meta})
     out.append(parent)
     for salon, p in pr:
         out.append(dict(base, **{'Type': 'variation', 'SKU': s + '-' + salon[:3].upper(), 'Name': '%s — %s' % (name, salon.capitalize()),
