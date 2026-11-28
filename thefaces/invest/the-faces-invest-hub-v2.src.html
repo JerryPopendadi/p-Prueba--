@@ -1,0 +1,705 @@
+<!-- THE FACES INVEST · main page (4 projects) · v2
+     Paste ALL of this into the Elementor HTML widget of the main INVEST page (replace everything that was there before).
+     Enquiry form: Forminator 703, printed on every page by the WPCode snippet "Form 703 site-wide" and moved here by this page.
+     On success: dataLayer event "generate_lead" (Google Tag Manager → Google Ads conversion) + one row in the Google Sheet.
+     The old built-in mailto form is gone: it counted a lead before anyone sent anything.
+     Edit the-faces-invest-hub-v2.src.html, then run build_pages.py. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+#faces-hub{--ink:#16201a;--muted:#5c665e;--line:#e3ddd2;--sand:#f6f1e8;--sand2:#efe7d9;--forest:#14231a;--forest2:#1f3527;--gold:#b8955a;--gold2:#9c7a42;--blue:#1a73e8;--ok:#1e7a46;--warn:#b7791f;--err:#b3261e;
+ display:block;width:100%;overflow-x:clip;margin:0;background:#fff;color:var(--ink);font:400 16px/1.6 Montserrat,Arial,sans-serif;text-align:left;-webkit-text-size-adjust:100%}
+#faces-hub *,#faces-hub *:before,#faces-hub *:after{box-sizing:border-box}
+#faces-hub [hidden]{display:none!important}
+#faces-hub a{color:inherit;text-decoration:none;box-shadow:none;border-bottom:0}
+#faces-hub img{display:block;max-width:100%;height:auto;border:0;border-radius:0;box-shadow:none;margin:0}
+#faces-hub p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.8;font-family:inherit}
+#faces-hub h1,#faces-hub h2,#faces-hub h3,#faces-hub h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;color:inherit;letter-spacing:-.01em;margin:0 0 14px;text-transform:none;padding:0;line-height:1.1}
+#faces-hub h1{font-size:clamp(40px,6.2vw,84px);line-height:1.02}
+#faces-hub h1 em,#faces-hub h2 em{font-style:italic;color:var(--gold)}
+#faces-hub h2{font-size:clamp(32px,4.4vw,58px)}
+#faces-hub h3{font-size:clamp(22px,2.2vw,28px)}
+#faces-hub ul,#faces-hub ol{margin:0;padding:0;list-style:none}
+#faces-hub .wrap{width:min(1220px,calc(100% - 40px));margin:0 auto}
+#faces-hub section{padding:clamp(70px,9vw,128px) 0;scroll-margin-top:72px}
+#faces-hub .eye{display:inline-flex;align-items:center;gap:10px;font:700 11px/1 Montserrat,Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);margin-bottom:18px}
+#faces-hub .eye:before{content:"";width:28px;height:1px;background:currentColor}
+#faces-hub .lead{font-size:clamp(16px,1.4vw,18px);max-width:720px}
+#faces-hub .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;border:1px solid transparent;font:600 12px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:transform .25s,background .25s,color .25s,border-color .25s,box-shadow .25s;text-align:center}
+#faces-hub .btn:hover{transform:translateY(-2px)}
+#faces-hub .btn.gold{background:var(--gold);color:#fff;box-shadow:0 14px 30px rgba(184,149,90,.35)}
+#faces-hub .btn.gold:hover{background:var(--gold2);color:#fff}
+#faces-hub .btn.dark{background:var(--forest);color:#fff}
+#faces-hub .btn.dark:hover{background:var(--forest2);color:#fff}
+#faces-hub .btn.line{border-color:#cfc6b6;color:var(--ink);background:transparent}
+#faces-hub .btn.line:hover{border-color:var(--ink)}
+#faces-hub .btn.glass{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+#faces-hub .btn.glass:hover{background:rgba(255,255,255,.18);color:#fff}
+#faces-hub .btn.sm{min-height:42px;padding:10px 18px;font-size:11px}
+#faces-hub .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+#faces-hub .small{font-size:12px!important;line-height:1.7}
+#faces-hub a:focus-visible,#faces-hub button:focus-visible,#faces-hub select:focus-visible,#faces-hub summary:focus-visible{outline:3px solid #8ab4f8;outline-offset:3px}
+
+/* nav */
+#faces-hub .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+#faces-hub .nav .wrap{display:flex;align-items:center;gap:22px;min-height:70px}
+#faces-hub .logo{display:flex;align-items:center;gap:10px}
+#faces-hub .logo img{height:34px;width:auto}
+#faces-hub .logo small{font:600 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.24em;color:var(--gold2)}
+#faces-hub .links{display:flex;gap:22px;margin-left:auto}
+#faces-hub .links a{font:600 11px/1 Montserrat,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);opacity:.8}
+#faces-hub .links a:hover{opacity:1;color:var(--gold2)}
+#faces-hub #h_lang{appearance:auto;-webkit-appearance:auto;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font:600 11px Montserrat,Arial,sans-serif;background:#fff;color:var(--ink);cursor:pointer;width:auto;min-height:36px;margin:0;box-shadow:none}
+
+/* hero */
+#faces-hub .hero{position:relative;min-height:min(92vh,880px);display:flex;align-items:flex-end;color:#fff;padding:0;overflow:hidden;background:var(--forest)}
+#faces-hub .hero-bg{position:absolute;inset:0}
+#faces-hub .hero-bg img{width:100%;height:100%;object-fit:cover;animation:ubKen 22s ease-in-out infinite alternate}
+#faces-hub .hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,13,.25) 0%,rgba(10,18,13,.35) 40%,rgba(10,18,13,.88) 100%),linear-gradient(90deg,rgba(10,18,13,.6),transparent 70%)}
+@keyframes ubKen{from{transform:scale(1.04)}to{transform:scale(1.16) translate(-2%,-1%)}}
+#faces-hub .hero .wrap{position:relative;z-index:2;padding:140px 0 70px;display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:end}
+#faces-hub .hero .eye{color:#e2c891}
+#faces-hub .hero h1{color:#fff;max-width:820px}
+#faces-hub .hero .lead{color:rgba(255,255,255,.86)}
+#faces-hub .chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 30px}
+#faces-hub .chips li{font-size:12px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff}
+#faces-hub .chips li:before{content:"✓ ";color:#9fd7ae}
+#faces-hub .live{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(14px);border-radius:20px;padding:24px}
+#faces-hub .live .st{display:inline-flex;align-items:center;gap:8px;font:700 11px/1 Montserrat,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#bff0cd}
+#faces-hub .dot{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.7);animation:ubPulse 2s infinite}
+@keyframes ubPulse{70%{box-shadow:0 0 0 10px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+#faces-hub .live strong{display:block;font:500 40px/1.1 "Cormorant Garamond",Georgia,serif;color:#fff;margin:16px 0 2px}
+#faces-hub .live span{font-size:12px;color:rgba(255,255,255,.75)}
+#faces-hub .live hr{border:0;border-top:1px solid rgba(255,255,255,.2);margin:16px 0}
+#faces-hub .scroll{position:absolute;left:50%;bottom:18px;z-index:2;width:22px;height:36px;border:1px solid rgba(255,255,255,.55);border-radius:12px}
+#faces-hub .scroll:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#fff;animation:ubScroll 1.8s infinite}
+@keyframes ubScroll{to{transform:translateY(12px);opacity:0}}
+
+/* stats */
+#faces-hub .stats{background:var(--forest);color:#fff;padding:0}
+#faces-hub .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+#faces-hub .stats div{padding:34px 22px;border-left:1px solid rgba(255,255,255,.12)}
+#faces-hub .stats div:first-child{border-left:0}
+#faces-hub .stats strong{display:block;font:500 clamp(34px,3.4vw,48px)/1 "Cormorant Garamond",Georgia,serif;color:#e2c891}
+#faces-hub .stats span{display:block;margin-top:10px;font-size:12px;color:rgba(255,255,255,.72);line-height:1.5}
+
+/* business */
+#faces-hub .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+#faces-hub .mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:240px 240px;gap:12px}
+#faces-hub .mosaic figure{margin:0;overflow:hidden;border-radius:16px;cursor:zoom-in;position:relative;background:var(--sand2)}
+#faces-hub .mosaic figure:first-child{grid-row:1/3}
+#faces-hub .mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+#faces-hub .mosaic figure:hover img{transform:scale(1.06)}
+#faces-hub .treat{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px}
+#faces-hub .treat li{padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13px;background:var(--sand)}
+#faces-hub .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(40px,6vw,70px)}
+#faces-hub .fact{background:var(--sand);border-radius:18px;padding:26px}
+#faces-hub .fact i{display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border-radius:50%;background:#fff;font-style:normal;font-size:19px;margin-bottom:14px}
+#faces-hub .fact h4{font-size:22px;margin-bottom:8px}
+#faces-hub .fact p{font-size:13.5px;margin:0}
+
+/* portfolio */
+#faces-hub .port{background:var(--sand)}
+#faces-hub .stages{display:grid;grid-template-columns:repeat(4,1fr);margin:34px 0 40px;position:relative}
+#faces-hub .stages:before{content:"";position:absolute;left:12%;right:12%;top:19px;height:2px;background:linear-gradient(90deg,#d9cdb7,var(--ok))}
+#faces-hub .stages li{position:relative;text-align:center;padding:0 8px}
+#faces-hub .stages b{display:flex;margin:0 auto 12px;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;background:#fff;border:2px solid #d9cdb7;font:600 13px Montserrat,Arial,sans-serif;color:var(--muted)}
+#faces-hub .stages li.on b{background:var(--ok);border-color:var(--ok);color:#fff}
+#faces-hub .stages span{font:600 11px/1.4 Montserrat,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+#faces-hub .stages small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+#faces-hub .pjs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+#faces-hub .pj{display:flex;flex-direction:column;background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);transition:transform .35s,box-shadow .35s}
+#faces-hub .pj:hover{transform:translateY(-6px);box-shadow:0 26px 50px rgba(20,35,26,.12)}
+#faces-hub .pj.here{border:2px solid var(--gold)}
+#faces-hub .pj-media{position:relative;display:block;height:210px;overflow:hidden;background:var(--sand2)}
+#faces-hub .pj-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+#faces-hub .pj:hover .pj-media img{transform:scale(1.07)}
+#faces-hub .badge{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;font:700 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink)}
+#faces-hub .badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,#999)}
+#faces-hub .s-op{--c:#2fbf6b}#faces-hub .s-con{--c:#e08a1e}#faces-hub .s-ren{--c:#d9a62b}#faces-hub .s-plan{--c:#4a7fd4}
+#faces-hub .here-tag{position:absolute;right:14px;top:14px;padding:7px 11px;border-radius:999px;background:var(--gold);color:#fff;font:700 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+#faces-hub .pj-body{display:flex;flex-direction:column;flex:1;padding:22px}
+#faces-hub .pj-body small{font:600 10.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2)}
+#faces-hub .pj-body h3{margin:10px 0 8px;font-size:26px}
+#faces-hub .pj-body p{font-size:13.5px;margin-bottom:16px}
+#faces-hub .pj-facts{display:grid;gap:8px;margin:0 0 18px;padding:14px 0 0;border-top:1px solid var(--line)}
+#faces-hub .pj-facts div{display:flex;justify-content:space-between;gap:10px;font-size:12px}
+#faces-hub .pj-facts dt{color:var(--muted)}#faces-hub .pj-facts dd{margin:0;font-weight:600;text-align:right}
+#faces-hub .pj-ctas{margin-top:auto;display:grid;gap:8px}
+#faces-hub .pj-ctas .btn{width:100%}
+#faces-hub .own{margin-top:18px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;background:var(--forest);color:#fff;border-radius:20px;padding:26px 30px}
+#faces-hub .own h3{color:#fff;margin:0 0 4px}#faces-hub .own p{color:rgba(255,255,255,.75);margin:0}
+
+/* steps */
+#faces-hub .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:38px;counter-reset:s}
+#faces-hub .steps li{counter-increment:s;padding:26px 20px;border-radius:18px;background:var(--sand);position:relative}
+#faces-hub .steps li:before{content:"0" counter(s);font:500 36px/1 "Cormorant Garamond",Georgia,serif;color:var(--gold)}
+#faces-hub .steps h4{font-size:21px;margin:12px 0 6px}
+#faces-hub .steps p{font-size:13px;margin:0}
+#faces-hub .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+#faces-hub .card{border:1px solid var(--line);border-radius:18px;padding:28px;background:#fff}
+#faces-hub .card h4{font-size:24px}
+#faces-hub .tick li,#faces-hub .cross li{position:relative;padding:7px 0 7px 28px;font-size:14px;color:#3b453d;line-height:1.6}
+#faces-hub .tick li:before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+#faces-hub .cross li:before{content:"✕";position:absolute;left:0;color:var(--err);font-weight:700}
+#faces-hub .card.yes{border-top:4px solid var(--ok)}#faces-hub .card.no{border-top:4px solid var(--err)}
+
+/* diligence */
+#faces-hub .dark{background:var(--forest);color:#fff}
+#faces-hub .dark h2{color:#fff}#faces-hub .dark p{color:rgba(255,255,255,.72)}#faces-hub .dark .eye{color:#e2c891}
+#faces-hub .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px;margin-top:30px}
+#faces-hub .docs li{padding:15px 0 15px 34px;border-bottom:1px solid rgba(255,255,255,.12);position:relative;font-size:14.5px;color:rgba(255,255,255,.9)}
+#faces-hub .docs li:before{content:"";position:absolute;left:0;top:19px;width:16px;height:16px;border-radius:50%;border:1px solid #e2c891;background:radial-gradient(#e2c891 35%,transparent 40%)}
+
+/* founders */
+#faces-hub .founder{border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--sand2)}
+#faces-hub .founder img{width:100%;height:100%;object-fit:cover}
+#faces-hub blockquote{margin:22px 0 26px;padding:0 0 0 22px;border-left:3px solid var(--gold);font:italic 500 clamp(22px,2.2vw,28px)/1.35 "Cormorant Garamond",Georgia,serif;color:var(--ink);background:none}
+
+#faces-hub .fvideo{margin-top:clamp(50px,7vw,90px)}
+#faces-hub .fv-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+#faces-hub .fv-head .eye{margin:0}
+#faces-hub .fv-tabs{display:flex;gap:6px}
+#faces-hub .fv-tabs button{min-height:40px;padding:8px 16px;border:1px solid #cfc6b6;background:#fff;color:var(--ink);border-radius:999px;font:600 11px Montserrat,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+#faces-hub .fv-tabs button[aria-pressed=true]{background:var(--forest);border-color:var(--forest);color:#fff}
+#faces-hub .fv-player{position:relative;aspect-ratio:16/9;background:#111 center/cover no-repeat;border-radius:24px;overflow:hidden;cursor:pointer;box-shadow:0 30px 70px rgba(20,35,26,.18)}
+#faces-hub .fv-player:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,18,13,.6))}
+#faces-hub .fv-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#faces-hub .fv-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;min-height:60px;padding:10px 24px 10px 12px;border:0;border-radius:999px;background:#fff;color:var(--ink);font:600 11px Montserrat,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 34px rgba(0,0,0,.3);white-space:nowrap;transition:transform .25s}
+#faces-hub .fv-player:hover .fv-play{transform:translate(-50%,-50%) scale(1.05)}
+#faces-hub .fv-play i{width:40px;height:40px;border-radius:50%;background:var(--gold);position:relative;flex:none;animation:ubPulseG 2.2s infinite}
+#faces-hub .fv-play i:after{content:"";position:absolute;left:16px;top:12px;border-left:12px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
+@keyframes ubPulseG{0%{box-shadow:0 0 0 0 rgba(184,149,90,.6)}70%{box-shadow:0 0 0 12px rgba(184,149,90,0)}100%{box-shadow:0 0 0 0 rgba(184,149,90,0)}}
+
+/* apply + Forminator 703 */
+#faces-hub .apply{background:linear-gradient(180deg,var(--sand) 0%,#fff 100%)}
+#faces-hub .agrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,70px);align-items:start}
+#faces-hub .alist{display:grid;gap:12px;margin:26px 0}
+#faces-hub .alist li{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:14px}
+#faces-hub .alist b{flex:none;display:flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;background:var(--forest);color:#fff;font-size:13px}
+#faces-hub .direct{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;margin-top:12px}
+#faces-hub .direct a{border-bottom:1px solid var(--line)}
+#faces-hub .fcard{background:#fff;border-radius:24px;padding:clamp(22px,3.4vw,40px);box-shadow:0 30px 70px rgba(20,35,26,.12);border:1px solid var(--line)}
+#faces-hub .fcard h3{margin-bottom:6px}
+#faces-hub .trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:12px;color:var(--muted)}
+#faces-hub .trust li:before{content:"🔒 "}
+#faces-hub #tf1-form-slot{min-height:120px}
+#faces-hub #tf1-form-slot .forminator-ui.forminator-custom-form{margin:0!important;font-family:Montserrat,Arial,sans-serif!important}
+#faces-hub #tf1-form-slot .forminator-row{margin-bottom:14px!important}
+#faces-hub #tf1-form-slot .forminator-label{font-size:12px!important;font-weight:600!important;color:var(--ink)!important;margin-bottom:6px!important}
+#faces-hub #tf1-form-slot .forminator-input,#faces-hub #tf1-form-slot .forminator-textarea,#faces-hub #tf1-form-slot select,#faces-hub #tf1-form-slot .select2-selection{width:100%!important;min-height:50px!important;padding:12px 14px!important;border:1px solid #d6ccbb!important;border-radius:12px!important;background:#fff!important;color:var(--ink)!important;font-size:16px!important;box-shadow:none!important}
+#faces-hub #tf1-form-slot .forminator-input:focus,#faces-hub #tf1-form-slot .forminator-textarea:focus{border-color:var(--gold)!important;outline:3px solid rgba(184,149,90,.25)!important}
+#faces-hub #tf1-form-slot .forminator-radio,#faces-hub #tf1-form-slot .forminator-checkbox{font-size:14px!important;color:var(--ink)!important}
+#faces-hub #tf1-form-slot .forminator-button-submit{width:100%!important;min-height:56px!important;background:var(--gold)!important;border:0!important;color:#fff!important;border-radius:999px!important;font:600 12px Montserrat,Arial,sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase!important;box-shadow:0 14px 30px rgba(184,149,90,.35)!important;cursor:pointer}
+#faces-hub #tf1-form-slot .forminator-button-submit:hover{background:var(--gold2)!important}
+#faces-hub #tf1-form-slot .forminator-error-message{font-size:12px!important;color:var(--err)!important}
+#faces-hub #tf1-form-slot .forminator-response-message{border-radius:12px!important;font-size:14px!important}
+#faces-hub .thanks{margin-top:16px;padding:20px;border-radius:16px;background:#eaf5ee;text-align:center}
+#faces-hub .thanks p{color:var(--ink);margin-bottom:12px}
+#faces-hub .fwait{font-size:14px;color:var(--ink)}
+#faces-hub .fwait a{text-decoration:underline}
+#faces-hub .fload{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+#faces-hub .fload:before{content:"";width:18px;height:18px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--gold);animation:ubSpin 1s linear infinite}
+@keyframes ubSpin{to{transform:rotate(360deg)}}
+
+/* faq + legal */
+#faces-hub .faq details{border-bottom:1px solid var(--line);padding:20px 0}
+#faces-hub .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:500 22px/1.3 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+#faces-hub .faq summary::-webkit-details-marker{display:none}
+#faces-hub .faq summary:after{content:"+";font:300 26px/1 Montserrat,Arial,sans-serif;color:var(--gold);transition:transform .3s}
+#faces-hub .faq details[open] summary:after{transform:rotate(45deg)}
+#faces-hub .faq details p{margin:12px 0 0}
+#faces-hub .final{position:relative;overflow:hidden;text-align:center;color:#fff}
+#faces-hub .final .bg{position:absolute;inset:0}
+#faces-hub .final .bg img{width:100%;height:100%;object-fit:cover}
+#faces-hub .final .bg:after{content:"";position:absolute;inset:0;background:rgba(14,26,18,.78)}
+#faces-hub .final .wrap{position:relative}
+#faces-hub .final h2{color:#fff;max-width:900px;margin:0 auto 16px}
+#faces-hub .final p{color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 28px}
+#faces-hub .final .row{justify-content:center}
+#faces-hub .legal{background:var(--sand);padding:56px 0}
+#faces-hub .legal h4{font-size:26px}
+#faces-hub .legal details{border-bottom:1px solid var(--line);padding:14px 0}
+#faces-hub .legal summary{cursor:pointer;font-weight:600;font-size:14px}
+#faces-hub .legal p{font-size:12px;margin:10px 0 0}
+#faces-hub footer{background:var(--forest);color:rgba(255,255,255,.7);padding:30px 0 34px;font-size:12px}
+#faces-hub footer a{text-decoration:underline}
+#faces-hub footer img{height:30px;width:auto;filter:brightness(0) invert(1);margin-bottom:12px}
+#faces-hub .mcta{display:none}
+
+/* reveal (only when JS runs, so content is always visible without it) */
+#faces-hub.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+#faces-hub.js .rv.on{opacity:1;transform:none}
+#faces-hub.js .rv.d1{transition-delay:.1s}#faces-hub.js .rv.d2{transition-delay:.2s}#faces-hub.js .rv.d3{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){#faces-hub *{animation:none!important;transition:none!important}#faces-hub.js .rv{opacity:1;transform:none}}
+
+@media(max-width:1080px){#faces-hub .links{display:none}#faces-hub #h_lang{margin-left:auto}#faces-hub .pjs{grid-template-columns:1fr 1fr}#faces-hub .steps{grid-template-columns:1fr 1fr}#faces-hub .hero .wrap{grid-template-columns:1fr}#faces-hub .live{max-width:460px}}
+@media(max-width:820px){#faces-hub .split,#faces-hub .agrid,#faces-hub .two,#faces-hub .docs{grid-template-columns:1fr}#faces-hub .facts{grid-template-columns:1fr}#faces-hub .stats .wrap{grid-template-columns:1fr 1fr}#faces-hub .stats div:nth-child(3){border-left:0}#faces-hub .stats div{border-top:1px solid rgba(255,255,255,.12)}
+ #faces-hub .stages{grid-template-columns:1fr 1fr;gap:22px 0}#faces-hub .stages:before{display:none}}
+@media(max-width:600px){#faces-hub .wrap{width:calc(100% - 32px)}#faces-hub .nav .wrap{min-height:60px;gap:10px}#faces-hub .logo img{height:26px}#faces-hub .nav .btn{display:none}
+ #faces-hub .hero{min-height:auto}#faces-hub .hero .wrap{padding:110px 0 60px}#faces-hub .hero .row .btn{width:100%}
+ #faces-hub .pjs,#faces-hub .steps{grid-template-columns:1fr}#faces-hub .mosaic{grid-template-rows:170px 170px}
+ #faces-hub .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+ #faces-hub .mcta .btn{flex:1}#faces-hub footer{padding-bottom:96px}#faces-hub .scroll{display:none}}
+
+/* ---- hub additions ---- */
+#faces-hub .hero-bg img{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+#faces-hub .hero-bg img.on{opacity:1}
+#faces-hub .plist{display:grid;gap:4px;margin:14px 0 6px}
+#faces-hub .plist a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;color:#fff;transition:background .25s}
+#faces-hub .plist a:hover{background:rgba(255,255,255,.12)}
+#faces-hub .plist b{font:500 20px/1.1 "Cormorant Garamond",Georgia,serif;color:#fff}
+#faces-hub .plist .badge{position:static;background:rgba(255,255,255,.92);flex:none}
+#faces-hub .live h3{color:#fff;font-size:24px;margin:10px 0 0}
+#faces-hub .warm{background:linear-gradient(180deg,#fff 0%,var(--sand) 100%)}
+#faces-hub .ctable-w{overflow-x:auto;margin-top:34px;-webkit-overflow-scrolling:touch}
+#faces-hub .ctable{width:100%;min-width:880px;border-collapse:collapse;font-size:14px;color:rgba(255,255,255,.9)}
+#faces-hub .ctable th,#faces-hub .ctable td{padding:16px 14px;border-bottom:1px solid rgba(255,255,255,.12);text-align:left;vertical-align:top;background:none}
+#faces-hub .ctable thead th{font:500 24px/1.15 "Cormorant Garamond",Georgia,serif;color:#e2c891}
+#faces-hub .ctable thead th a:hover{text-decoration:underline}
+#faces-hub .ctable tbody th{font:700 10.5px/1.4 Montserrat,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);width:170px}
+#faces-hub .ctable td .btn{margin-top:2px}
+#faces-hub .roles{margin-top:24px}
+#faces-hub .roles div{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+#faces-hub .roles div:last-child{border-bottom:1px solid var(--line)}
+#faces-hub .roles b{font:500 22px/1.2 "Cormorant Garamond",Georgia,serif}
+#faces-hub .roles span{font-size:14px;color:var(--muted)}
+#faces-hub .see{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px}
+#faces-hub .see a{display:flex;flex-direction:column;padding:26px 22px;border-radius:18px;background:#fff;border:1px solid var(--line);transition:transform .3s,box-shadow .3s,border-color .3s}
+#faces-hub .see a:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 22px 44px rgba(20,35,26,.1)}
+#faces-hub .see i{font-style:normal;font-size:24px;margin-bottom:14px}
+#faces-hub .see small{font-size:11px;letter-spacing:.08em;color:var(--gold2);margin-bottom:6px}
+#faces-hub .see h4{font-size:23px;margin-bottom:6px}
+#faces-hub .see p{font-size:13.5px;margin:0 0 14px;flex:1}
+#faces-hub .see span{font:600 11px/1 Montserrat,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+#faces-hub .pick{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:8px 14px;border-radius:999px;background:var(--sand);font-size:13px;color:var(--ink)}
+#faces-hub .pick button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:0 2px}
+@media(max-width:1080px){#faces-hub .see{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){#faces-hub .hero .row .btn:nth-child(3){display:none}#faces-hub .see{grid-template-columns:1fr}#faces-hub .roles div{grid-template-columns:1fr;gap:4px}#faces-hub .live{display:none}}
+</style>
+
+<div id="faces-hub" lang="en" data-tf-lang-root>
+<i id="tf1" hidden></i><!-- marker: tells the site-wide contact bar that this page has its own form and its own conversion tracking -->
+
+<header class="nav"><div class="wrap">
+ <a class="logo" href="#top" aria-label="THE FACES INVEST"><img src="https://thefacespeace.com/wp-content/uploads/2026/08/cropped-negro-logo-e1788874445128.png" alt="THE FACES"><small>INVEST</small></a>
+ <nav class="links"><a href="#projects" data-i="n1">Projects</a><a href="#founders" data-i="n2">Founders</a><a href="#process" data-i="n3">How it works</a><a href="#faq" data-i="n4">FAQ</a></nav>
+ <select id="h_lang" aria-label="Language"><option value="en">EN</option><option value="ru">RU</option><option value="uk">UA</option><option value="es">ES</option><option value="id">ID</option></select>
+ <a class="btn gold sm" href="#tf1-contact" data-go="nav" data-i="cta">Request a call</a>
+</div></header>
+
+<main>
+<section class="hero" id="top">
+ <div class="hero-bg" id="h_slides">
+  <img class="on" src="https://thefacespeace.com/wp-content/uploads/2026/11/DSC03305-scaled.jpg" alt="THE FACES Ubud" fetchpriority="high">
+  <img src="https://thefacespeace.com/wp-content/uploads/2026/11/thefaces-invest-15.jpg" alt="The White Temple, Sanur" loading="lazy">
+  <img src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-2.jpg" alt="WATERFALL, Bali" loading="lazy">
+  <img src="https://thefacespeace.com/wp-content/uploads/2026/11/Screenshot-2026-11-10-at-09.35.15.png" alt="THE FACES SANUR, Five Elements" loading="lazy">
+ </div>
+ <div class="wrap">
+  <div>
+   <div class="eye rv" data-i="hEye">THE FACES INVEST · Bali, Indonesia</div>
+   <h1 class="rv d1"><span data-i="h1a">Four spas in Bali.</span> <em data-i="h1b">One team you can meet.</em></h1>
+   <p class="lead rv d2" data-i="hLead">Partner with the founders of THE FACES in an operating spa in Ubud, two new ritual spas in Sanur or a nature destination under construction. Every project is one you can visit, question and check before you decide.</p>
+   <ul class="chips rv d2"><li data-i="c1">Founder-led since 2013*</li><li data-i="c2">Fully managed by our team</li><li data-i="c3">Documents before decisions</li></ul>
+   <div class="row rv d3"><a class="btn gold" href="#tf1-contact" data-go="hero" data-i="cta2">Request a partnership call</a><a class="btn glass" href="#projects" data-i="hSee">See the 4 projects</a><a class="btn glass" href="#h_video" data-i="hVid">Meet the founders ▶</a></div>
+  </div>
+  <aside class="live rv d3" aria-label="Projects">
+   <div class="st"><span class="dot"></span><span data-i="lSt">Our projects today</span></div>
+   <div class="plist">
+    <a href="#p-ub"><b>THE FACES Ubud</b><span class="badge s-op" data-i="st_op">Operating</span></a>
+    <a href="#p-wt"><b>The White Temple</b><span class="badge s-ren" data-i="st_ren">Renovation under way</span></a>
+    <a href="#p-wf"><b>WATERFALL</b><span class="badge s-con" data-i="st_con">Under construction</span></a>
+    <a href="#p-fe"><b>THE FACES SANUR</b><span class="badge s-plan" data-i="st_plan">Plans ready</span></a>
+   </div>
+   <hr><span data-i="lC">30-minute private call with the founders · no obligation</span>
+  </aside>
+ </div>
+ <span class="scroll" aria-hidden="true"></span>
+</section>
+
+<section class="stats"><div class="wrap">
+ <div><strong data-count="20" data-suf="+">20+</strong><span data-i="s1">years of the founders' experience in beauty &amp; wellness*</span></div>
+ <div><strong>2013</strong><span data-i="s2">first THE FACES salon*</span></div>
+ <div><strong data-count="4">4</strong><span data-i="s3">spa projects in Ubud &amp; Sanur</span></div>
+ <div><strong>≈520–560</strong><span data-i="s4">guests a month per operating salon*</span></div>
+</div></section>
+
+<section class="warm" id="why"><div class="wrap">
+ <div class="split">
+  <div class="rv">
+   <div class="eye" data-i="wEye">01 · Why THE FACES</div>
+   <h2><span data-i="wH1">A family business,</span> <em data-i="wH2">not a fund.</em></h2>
+   <p class="lead" data-i="wLead">THE FACES was built by Anna and Evgenii Dubinin, salon by salon. When you join a project you deal with them directly, you can visit the spa as a guest, and you see the documents before anything is signed.</p>
+   <div class="row"><a class="btn dark" href="#projects" data-i="wCta">Choose a project</a><a class="btn line" href="#h_video" data-i="hVid">Meet the founders ▶</a></div>
+  </div>
+  <div class="mosaic rv d2">
+   <figure><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/DSC03400-scaled.jpg" alt="THE FACES Ubud interior"></figure>
+   <figure><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/thefaces-invest-13.jpg" alt="The White Temple, Sanur"></figure>
+   <figure><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-3.jpg" alt="WATERFALL, Bali"></figure>
+  </div>
+ </div>
+ <div class="facts">
+  <div class="fact rv"><i>🤝</i><h4 data-i="f1h">Founder-led</h4><p data-i="f1p">You talk to the founders, not to intermediaries or sales agents.</p></div>
+  <div class="fact rv d1"><i>🌿</i><h4 data-i="f2h">Fully managed</h4><p data-i="f2p">Our team runs staff, rituals, marketing, bookings and reporting. You do not have to operate the spa.</p></div>
+  <div class="fact rv d2"><i>📑</i><h4 data-i="f3h">Facts before decisions</h4><p data-i="f3p">Accounts, lease and permits are reviewed with your own advisers before anything is signed.</p></div>
+ </div>
+</div></section>
+
+<section class="port" id="projects"><div class="wrap">
+ <div class="eye rv" data-i="pEye">02 · The projects</div>
+ <h2 class="rv"><span data-i="pH1">Four spas.</span> <em data-i="pH2">Four stages.</em></h2>
+ <p class="lead rv" data-i="pLead">Each project is a separate opportunity with its own structure and its own page. Choose the stage that suits you, or ask about all four on the same call.</p>
+ <ol class="stages rv">
+  <li><b>1</b><span data-i="sg1">Plans ready</span><small>THE FACES SANUR</small></li>
+  <li><b>2</b><span data-i="sg2">Renovation</span><small>The White Temple</small></li>
+  <li><b>3</b><span data-i="sg3">Construction</span><small>WATERFALL</small></li>
+  <li class="on"><b>✓</b><span data-i="sg4">Operating</span><small>THE FACES Ubud</small></li>
+ </ol>
+ <div class="pjs">
+  <article class="pj rv" id="p-ub">
+   <a class="pj-media" href="https://thefacespeace.com/invest-in-an-operating-spa-in-ubud-bali/"><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/DSC03305-scaled.jpg" alt="THE FACES Ubud"><span class="badge s-op" data-i="st_op">Operating</span></a>
+   <div class="pj-body"><small>Ubud · Bali</small><h3>THE FACES Ubud</h3><p data-i="pd1">A working spa run by an experienced team on site. Visit it, book a treatment and review verified accounts individually.</p>
+    <dl class="pj-facts"><div><dt data-i="fmt">Format</dt><dd data-i="pf1">Wellness spa</dd></div><div><dt data-i="key">Key fact</dt><dd data-i="pk1">Verified accounts on request</dd></div></dl>
+    <div class="pj-ctas"><a class="btn line sm" href="https://thefacespeace.com/invest-in-an-operating-spa-in-ubud-bali/" data-i="read">See the project</a><a class="btn gold sm" href="#tf1-contact" data-go="proj_ub" data-i="ask">Ask about this project</a></div></div>
+  </article>
+  <article class="pj rv d1" id="p-wt">
+   <a class="pj-media" href="https://thefacespeace.com/partnership-offer-sanur-bali-2026/"><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/thefaces-invest-15.jpg" alt="The White Temple, Sanur"><span class="badge s-ren" data-i="st_ren">Renovation under way</span></a>
+   <div class="pj-body"><small>Sanur · Bali</small><h3>The White Temple</h3><p data-i="pd2">A new ritual spa already under renovation: five signature rooms built around breath, steam, foam, light and silence.</p>
+    <dl class="pj-facts"><div><dt data-i="fmt">Format</dt><dd data-i="pf2">Ritual spa</dd></div><div><dt data-i="key">Key fact</dt><dd data-i="pk2">10-year lease signed</dd></div></dl>
+    <div class="pj-ctas"><a class="btn line sm" href="https://thefacespeace.com/partnership-offer-sanur-bali-2026/" data-i="read">See the project</a><a class="btn dark sm" href="#tf1-contact" data-go="proj_wt" data-i="ask">Ask about this project</a></div></div>
+  </article>
+  <article class="pj rv d2" id="p-wf">
+   <a class="pj-media" href="https://thefacespeace.com/the-faces-invest-waterfall-bali/"><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/the-faces-watefall-1.jpg" alt="WATERFALL, Bali"><span class="badge s-con" data-i="st_con">Under construction</span></a>
+   <div class="pj-body"><small>Ubud · Bali</small><h3>WATERFALL</h3><p data-i="pd3">A new destination designed around nature: sculpted stone rooms, arched windows onto the jungle, a stone bath suite and a lounge terrace.</p>
+    <dl class="pj-facts"><div><dt data-i="fmt">Format</dt><dd data-i="pf3">Wellness destination</dd></div><div><dt data-i="key">Key fact</dt><dd data-i="pk3">Monthly reporting</dd></div></dl>
+    <div class="pj-ctas"><a class="btn line sm" href="https://thefacespeace.com/the-faces-invest-waterfall-bali/" data-i="read">See the project</a><a class="btn dark sm" href="#tf1-contact" data-go="proj_wf" data-i="ask">Ask about this project</a></div></div>
+  </article>
+  <article class="pj rv d3" id="p-fe">
+   <a class="pj-media" href="https://thefacespeace.com/invest-in-a-spa-in-sanur-bali-the-faces-450k-50-50/"><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/Screenshot-2026-11-10-at-09.35.15.png" alt="THE FACES SANUR, Five Elements"><span class="badge s-plan" data-i="st_plan">Plans ready</span></a>
+   <div class="pj-body"><small>Sanur · Bali</small><h3>THE FACES SANUR</h3><p data-i="pd4">A 250 m² standalone flagship opposite the Hyatt: a foot-and-face ritual done at the same time, five full-body rooms and a Kozyrev mirror room.</p>
+    <dl class="pj-facts"><div><dt data-i="fmt">Format</dt><dd data-i="pf4">Five Elements ritual spa</dd></div><div><dt data-i="key">Key fact</dt><dd data-i="pk4">250 m² · 10-year lease</dd></div></dl>
+    <div class="pj-ctas"><a class="btn line sm" href="https://thefacespeace.com/invest-in-a-spa-in-sanur-bali-the-faces-450k-50-50/" data-i="read">See the project</a><a class="btn dark sm" href="#tf1-contact" data-go="proj_fe" data-i="ask">Ask about this project</a></div></div>
+  </article>
+ </div>
+ <div class="own rv"><div><h3 data-i="oH">Have a hotel or property?</h3><p data-i="oP">We also design and run THE FACES spas inside hotels, resorts and residences, in Bali and abroad.</p></div><a class="btn gold" href="#tf1-contact" data-go="route_3" data-i="oCta">Talk about your property</a></div>
+ <p class="small" style="margin-top:16px" data-i="pNote">Status as reported by the project team, October 2026. Project information only: participation terms are shared individually, in writing, and only where local law allows.</p>
+</div></section>
+
+<section class="dark" id="compare"><div class="wrap">
+ <div class="eye rv" data-i="cEye">03 · At a glance</div>
+ <h2 class="rv"><span data-i="cH1">Four projects,</span> <em data-i="cH2">side by side.</em></h2>
+ <p class="lead rv" data-i="cLead">A quick overview. Terms are shared individually after an introductory call.</p>
+ <div class="ctable-w rv"><table class="ctable">
+  <thead><tr><td></td><th><a href="https://thefacespeace.com/invest-in-an-operating-spa-in-ubud-bali/">THE FACES Ubud</a></th><th><a href="https://thefacespeace.com/partnership-offer-sanur-bali-2026/">The White Temple</a></th><th><a href="https://thefacespeace.com/the-faces-invest-waterfall-bali/">WATERFALL</a></th><th><a href="https://thefacespeace.com/invest-in-a-spa-in-sanur-bali-the-faces-450k-50-50/">THE FACES SANUR</a></th></tr></thead>
+  <tbody>
+   <tr><th data-i="r1">Location</th><td>Ubud</td><td>Sanur</td><td>Ubud</td><td>Sanur</td></tr>
+   <tr><th data-i="r2">Stage</th><td data-i="st_op">Operating</td><td data-i="st_ren">Renovation under way</td><td data-i="st_con">Under construction</td><td data-i="st_plan">Plans ready</td></tr>
+   <tr><th data-i="r3">Partners sought</th><td data-i="pInd">Individually</td><td data-i="pOne">One partner</td><td data-i="pOne">One partner</td><td data-i="pOne">One partner</td></tr>
+   <tr><th data-i="r4">Management</th><td>THE FACES</td><td>THE FACES</td><td>THE FACES</td><td>THE FACES</td></tr>
+   <tr><th data-i="r5">Best for</th><td data-i="b1">Backing a business you can visit today</td><td data-i="b2">Entering a nearly ready project with a signed lease</td><td data-i="b3">Entering a new destination before launch</td><td data-i="b4">A flagship in Sanur's busiest tourist area</td></tr>
+   <tr><th></th><td><a class="btn gold sm" href="#tf1-contact" data-go="proj_ub" data-i="ask">Ask about this project</a></td><td><a class="btn glass sm" href="#tf1-contact" data-go="proj_wt" data-i="ask">Ask about this project</a></td><td><a class="btn glass sm" href="#tf1-contact" data-go="proj_wf" data-i="ask">Ask about this project</a></td><td><a class="btn glass sm" href="#tf1-contact" data-go="proj_fe" data-i="ask">Ask about this project</a></td></tr>
+  </tbody></table></div>
+</div></section>
+
+<section id="founders"><div class="wrap split">
+ <div class="founder rv"><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/08/4A70F595-A7F1-4573-B40D-DB2BE9ED5ADE.png" alt="Anna and Evgenii Dubinin, founders of THE FACES"></div>
+ <div class="rv d1"><div class="eye" data-i="fEye">04 · The founders</div><h2>Anna &amp; Evgenii Dubinin</h2>
+  <p class="lead" data-i="fLead">More than twenty years in beauty and wellness, including work in Slovenia and Indonesia*. Every conversation is private and without obligation.</p>
+  <blockquote data-i="fQ">“We create wellness spaces where design, hospitality and ritual work together.”</blockquote>
+  <div class="roles"><div><b>Anna</b><span data-i="rA">Concept, brand, rituals and marketing</span></div><div><b>Evgenii</b><span data-i="rE">Development, construction and operations</span></div></div>
+  <div class="row" style="margin-top:24px"><a class="btn dark" href="#tf1-contact" data-go="founders" data-i="fCta">Talk to the founders</a><a class="btn line" href="#h_video" data-i="fvGo">Watch their story ▶</a></div></div>
+</div>
+<div class="wrap fvideo rv" id="h_video">
+ <div class="fv-head"><div class="eye" data-i="fvT">Watch: the founders' story</div>
+  <div class="fv-tabs" role="group" aria-label="Video language"><button type="button" data-fvl="en" aria-pressed="true">English</button><button type="button" data-fvl="ru" aria-pressed="false">Русский</button></div></div>
+ <div class="fv-player" id="h_fv"><button type="button" class="fv-play"><i aria-hidden="true"></i><span data-i="fvPlay">Play the video</span></button></div>
+</div></section>
+
+<section class="port" id="process"><div class="wrap">
+ <div class="eye rv" data-i="prEye">05 · How it works</div>
+ <h2 class="rv"><span data-i="prH1">From a first call</span> <em data-i="prH2">to signed terms.</em></h2>
+ <ol class="steps" style="grid-template-columns:repeat(4,1fr)">
+  <li class="rv"><h4 data-i="s1h">Request and call</h4><p data-i="s1p">A 1-minute form, then a private 30-minute call with the founders.</p></li>
+  <li class="rv d1"><h4 data-i="s2h">Visit the spa</h4><p data-i="s2p">Come as a guest, or join an online walk-through of the project.</p></li>
+  <li class="rv d2"><h4 data-i="s3h">Documents</h4><p data-i="s3p">Financial model, lease, permits and schedule, reviewed with your own advisers.</p></li>
+  <li class="rv d3"><h4 data-i="s4h">Written agreement</h4><p data-i="s4p">Terms signed individually, only where local law allows, then regular reports.</p></li>
+ </ol>
+ <div class="two">
+  <div class="card yes rv"><h4 data-i="yH">Your role</h4><ul class="tick"><li data-i="y1">Join one selected project</li><li data-i="y2">Receive regular reports</li><li data-i="y3">Review the accounts and ask questions at any time</li><li data-i="y4">Visit the spa whenever you are in Bali</li></ul></div>
+  <div class="card yes rv d1"><h4 data-i="tH">THE FACES' role</h4><ul class="tick"><li data-i="t1">Brand, concept and signature rituals</li><li data-i="t2">Hiring, training and managing the team</li><li data-i="t3">Marketing, social media and bookings</li><li data-i="t4">Accounting, taxes and monthly reporting</li></ul></div>
+ </div>
+</div></section>
+
+<section id="see"><div class="wrap">
+ <div class="eye rv" data-i="eEye">06 · See it for yourself</div>
+ <h2 class="rv"><span data-i="eH1">A real brand</span> <em data-i="eH2">you can check today.</em></h2>
+ <p class="lead rv" data-i="eLead">Before you talk to us, look at the business: our salons, treatments, prices and what our guests share.</p>
+ <div class="see">
+  <a class="rv" href="https://www.instagram.com/thefacesbali" target="_blank" rel="noopener" data-out="instagram"><i>📸</i><small>@thefacesbali</small><h4>Instagram</h4><p data-i="e1">Daily life at THE FACES Bali: rituals, interiors and guests.</p><span data-i="open">Open ↗</span></a>
+  <a class="rv d1" href="https://thefacesspa.com/en" target="_blank" rel="noopener" data-out="spa_site"><i>🌸</i><small>thefacesspa.com</small><h4 data-i="e2h">Spa website</h4><p data-i="e2">Our treatments, rituals and the five-elements concept.</p><span data-i="open">Open ↗</span></a>
+  <a class="rv d2" href="https://thefacesspa.com/en/salons/the-faces-ubud/catalogue" target="_blank" rel="noopener" data-out="menu"><i>📋</i><small>Ubud</small><h4 data-i="e3h">Menu &amp; prices</h4><p data-i="e3">The full treatment menu of the Ubud salon with current prices.</p><span data-i="open">Open ↗</span></a>
+  <a class="rv d3" href="https://wa.me/6282266999965" target="_blank" rel="noopener" data-out="book_treatment"><i>💆</i><small>WhatsApp +62 822 6699 9965</small><h4 data-i="e4h">Book a treatment</h4><p data-i="e4">Try a ritual yourself during your visit.</p><span data-i="open">Open ↗</span></a>
+ </div>
+</div></section>
+
+<section class="apply" id="tf1-contact"><div class="wrap agrid">
+ <div class="rv">
+  <div class="eye" data-i="aEye">07 · Next step</div>
+  <h2><span data-i="aH1">Request a</span> <em data-i="aH2">partnership call.</em></h2>
+  <p class="lead" data-i="aLead">Tell us which project interests you. We review every request personally and send suitable partners a link to book a call with the founders.</p>
+  <ol class="alist"><li><b>1</b><span data-i="a1">Fill in the form — about 1 minute</span></li><li><b>2</b><span data-i="a2">We review it personally, within 2 working days</span></li><li><b>3</b><span data-i="a3">You book a private call with the founders</span></li></ol>
+  <p class="small" data-i="qual">Our projects are designed for hotel groups, developers, property owners and private partners able to commit significant capital to a premium venue.</p>
+  <div class="direct"><a href="mailto:info@thefacespeace.com?subject=THE%20FACES%20INVEST%20partnership">info@thefacespeace.com</a><a href="https://wa.me/6282323223433" target="_blank" rel="noopener" data-wa>WhatsApp +62 823 2322 3433</a></div>
+ </div>
+ <div class="fcard rv d1">
+  <h3 data-i="fcH">Partnership request</h3>
+  <p class="pick" id="h_pick" hidden><span data-i="pickL">Project:</span> <strong id="h_pickN"></strong><button type="button" aria-label="Clear" id="h_pickX">×</button></p>
+  <p class="small" data-i="fcS">About 1 minute. Confidential. Your details are never sold.</p>
+  <div id="tf1-form-slot"><p class="fload" data-i="fLoad">Loading the form…</p></div>
+  <p class="fwait" id="tf1-form-wait" hidden><span data-i="fMiss">The form could not load. Write to us or book a call:</span> <a href="mailto:info@thefacespeace.com?subject=THE%20FACES%20INVEST%20partnership">info@thefacespeace.com</a> · <a href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="missing" data-i="book">Book a private call</a></p>
+  <ul class="trust"><li data-i="tr1">Encrypted</li><li data-i="tr2">Never sold</li><li data-i="tr3">No obligation</li></ul>
+ </div>
+</div></section>
+
+<section class="faq" id="faq"><div class="wrap" style="max-width:900px">
+ <div class="eye" data-i="qEye">08 · FAQ</div><h2 data-i="qH">Before you decide.</h2>
+ <details><summary data-i="q1">How are the terms shared?</summary><p data-i="a1q">Individually, after an introductory call, in writing, and only where the law of your country allows. We do not publish investment amounts or returns.</p></details>
+ <details><summary data-i="q2">Who are the projects for?</summary><p data-i="a2q">Hotel groups, developers, property owners and private partners able to commit significant capital to a premium wellness venue.</p></details>
+ <details><summary data-i="q3">Do I have to run the spa?</summary><p data-i="a3q">No. THE FACES keeps the brand and the management and runs the spa under a written agreement that sets responsibilities, fees and reporting.</p></details>
+ <details><summary data-i="q4">Are returns guaranteed?</summary><p data-i="a4q">No. Profit changes from month to month, is not guaranteed and can be zero, and you could lose part or all of your capital. Review every document with your own advisers.</p></details>
+ <details><summary data-i="q5">Can a foreigner take part in an Indonesian business?</summary><p data-i="a5q">It depends on Indonesian law, sector rules and the structure — often a foreign-investment company (PT PMA) or contractual arrangements. Get independent legal advice.</p></details>
+ <details><summary data-i="q6">Can I visit first?</summary><p data-i="a6q">Yes, please do. Book a treatment in Ubud as a guest, or ask us for a site visit or an online walk-through of the other projects.</p></details>
+</div></section>
+
+<section class="final"><div class="bg"><img loading="lazy" src="https://thefacespeace.com/wp-content/uploads/2026/11/DSC03214-scaled.jpg" alt=""></div><div class="wrap">
+ <h2 class="rv"><span data-i="zH1">Visit the spa. Meet the founders.</span> <em data-i="zH2">Decide with facts.</em></h2>
+ <p class="rv" data-i="zP">A short request, a personal reply. Confidential and without obligation.</p>
+ <div class="row rv"><a class="btn gold" href="#tf1-contact" data-go="final" data-i="cta2">Request a partnership call</a><a class="btn glass" href="https://calendar.app.google/b7nddp1H5fBoGYT98" target="_blank" rel="noopener" data-cal="final" data-i="book">Book a private call</a></div>
+</div></section>
+
+<div class="legal" id="legal"><div class="wrap" style="max-width:960px">
+ <h4 data-i="lH">Important information</h4>
+ <details open><summary data-i="l1s">Investment risks</summary><p data-i="l1p">Investments in private businesses carry significant risk, including total loss of the capital invested. Interests in private companies are illiquid and may be hard to sell. Distributions are not guaranteed and may be zero. The founders' experience and the results of existing locations are not a reliable indicator of future results. Get independent financial, legal and tax advice before any decision.</p></details>
+ <details><summary data-i="l2s">Not an offer</summary><p data-i="l2p">This page gives general information about THE FACES and its projects. It is not an offer to sell, a solicitation of an offer to buy, or a recommendation regarding any security, financial instrument or investment, and it is not financial, legal or tax advice. Any participation is documented only through individually negotiated agreements under the law that applies to the partner and the project.</p></details>
+ <details><summary data-i="l3s">Country notices (in English)</summary>
+  <p>Indonesia: this information has not been registered with or approved by the Financial Services Authority (OJK) and is not a public offering under Indonesian capital markets law.</p>
+  <p>EU / EEA: no competent authority has approved a prospectus or information document. This information is not directed at retail investors where an offer would require a prospectus or authorisation.</p>
+  <p>United Kingdom: this communication has not been approved by an FCA-authorised person and is directed only at persons to whom it may lawfully be communicated, such as investment professionals and high net worth or sophisticated investors under the Financial Services and Markets Act 2000 (Financial Promotion) Order 2005.</p>
+  <p>United States: no interest has been registered under the Securities Act of 1933 or any state securities law, and none may be offered or sold to US persons except under an applicable exemption, for example to accredited investors.</p>
+  <p>Russia: this information is not a public offer and is not advertising or an offer of securities or financial services to an unlimited group of persons.</p>
+  <p>Other countries: this information is not directed at persons in jurisdictions where its distribution or use would be contrary to local law.</p></details>
+ <details><summary data-i="l4s">Privacy</summary><p data-i="l4p">The request form is processed by THE FACES only to answer you and take pre-contractual steps. Analytics and advertising cookies run only with your consent (cookie banner of this site).</p><p><a href="https://thefacespeace.com/privacy-policy/" target="_blank" rel="noopener" style="text-decoration:underline" data-i="pol">Privacy policy</a></p></details>
+ <details><summary data-i="l5s">Accuracy of information</summary><p data-i="l5p">*Company data (experience, first salon, project status, guests per month) is reported by the project team as of October 2026 and has not been independently audited; supporting records are available during due diligence. The legal name, registration number and address of the contracting entity are provided on request and in all project documentation.</p></details>
+</div></div>
+</main>
+<footer><div class="wrap"><img src="https://thefacespeace.com/wp-content/uploads/2026/08/cropped-negro-logo-e1788874445128.png" alt="THE FACES"><br>© 2026 THE FACES INVEST · Bali, Indonesia · <a href="https://thefacespeace.com/">thefacespeace.com</a> · <a href="https://www.instagram.com/thefacesbali" target="_blank" rel="noopener">Instagram</a> · <a href="https://thefacespeace.com/privacy-policy/" target="_blank" rel="noopener" data-i="pol">Privacy policy</a></div></footer>
+<div class="mcta"><a class="btn gold" href="#tf1-contact" data-go="mobile" data-i="cta2">Request a partnership call</a></div>
+</div>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thefacespeace.com/#org","name":"THE FACES","alternateName":"THE FACES INVEST","url":"https://thefacespeace.com/","logo":"https://thefacespeace.com/wp-content/uploads/2026/08/cropped-negro-logo-e1788874445128.png","email":"info@thefacespeace.com","telephone":"+62 823 2322 3433","founder":[{"@type":"Person","name":"Anna Dubinina"},{"@type":"Person","name":"Evgenii Dubinin"}],"areaServed":"Bali, Indonesia"},{"@type":"CollectionPage","name":"THE FACES INVEST — Wellness projects in Bali","description":"Four spa and wellness projects in Bali by THE FACES: THE FACES Ubud, The White Temple and THE FACES SANUR Five Elements in Sanur, and WATERFALL.","publisher":{"@id":"https://thefacespeace.com/#org"},"inLanguage":["en","ru","uk","es","id"],"video":{"@type":"VideoObject","name":"THE FACES — the founders' story","description":"Anna and Evgenii Dubinin, founders of THE FACES, on how the spas are built and run.","thumbnailUrl":"https://i.ytimg.com/vi/M43ffm_eK9o/hqdefault.jpg","embedUrl":"https://www.youtube-nocookie.com/embed/M43ffm_eK9o","uploadDate":"2026-11-01"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"THE FACES Ubud — operating spa in Ubud, Bali","url":"https://thefacespeace.com/invest-in-an-operating-spa-in-ubud-bali/"},{"@type":"ListItem","position":2,"name":"The White Temple — Sanur, Bali","url":"https://thefacespeace.com/partnership-offer-sanur-bali-2026/"},{"@type":"ListItem","position":3,"name":"WATERFALL — new wellness destination in Bali","url":"https://thefacespeace.com/the-faces-invest-waterfall-bali/"},{"@type":"ListItem","position":4,"name":"THE FACES SANUR — Five Elements Ritual Spa opposite the Hyatt, Sanur","url":"https://thefacespeace.com/invest-in-a-spa-in-sanur-bali-the-faces-450k-50-50/"}]}}]}</script>
+<script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-nowprocket data-noptimize="1">
+(function(){
+'use strict';
+/* ============ CONFIG ============ */
+var CONFIG={
+ forminatorId:703,
+ /* Forminator 703 field ids */
+ fields:{name:'name-1',email:'email-1',phone:'phone-1',country:'text-1',budget:'radio-1'},
+ hidden:{lead_id:'hidden-1',language:'hidden-2',placement:'hidden-3',utm_source:'hidden-4',utm_medium:'hidden-5',utm_campaign:'hidden-6',gclid:'hidden-7',page:'hidden-8'},
+ /* Google Apps Script web app: every confirmed request is also saved as a row in the Google Sheet */
+ sheetUrl:'https://script.google.com/macros/s/AKfycbyPEJXBnZmt9cVSWmZcpf2ZONai3JsfcLjdKkD9bcdV3jdJDJnAtJ4Wg8id8qcQxXEBWQ/exec',
+ calendar:'https://calendar.app.google/b7nddp1H5fBoGYT98',
+ videos:{en:'M43ffm_eK9o',ru:'uaOdDmGgYvE'},   /* founders' video on YouTube: English and Russian */
+ leadValue:0,          /* optional conversion value in USD */
+ page:'hub',
+ languages:['en','ru','uk','es','id']
+};
+var T={
+ru:{n1:"Проекты",n2:"Основатели",n3:"Как это работает",n4:"Вопросы",cta:"Запросить звонок",hEye:"THE FACES INVEST · Бали, Индонезия",h1a:"Четыре SPA на Бали.",h1b:"Одна команда, с которой можно познакомиться.",hLead:"Станьте партнёром основателей THE FACES: действующее SPA в Убуде, два новых ритуальных SPA в Сануре или природное пространство в стадии строительства. Каждый проект можно посетить, обсудить и проверить до принятия решения.",c1:"Под руководством основателей с 2013*",c2:"Полностью управляется нашей командой",c3:"Сначала документы, потом решения",cta2:"Запросить звонок о партнёрстве",hSee:"Смотреть 4 проекта",hVid:"Познакомиться с основателями ▶",lSt:"Наши проекты сегодня",st_op:"Работает",st_ren:"Идёт ремонт",st_con:"Строится",st_plan:"Проект готов",lC:"Личный 30-минутный звонок с основателями · без обязательств",
+s1:"лет опыта основателей в бьюти и wellness*",s2:"первый салон THE FACES*",s3:"SPA-проекта в Убуде и Сануре",s4:"гостей в месяц в каждом действующем салоне*",
+wEye:"01 · Почему THE FACES",wH1:"Семейный бизнес,",wH2:"а не фонд.",wLead:"THE FACES построили Анна и Евгений Дубинины — салон за салоном. Участвуя в проекте, вы общаетесь с ними напрямую, можете прийти в SPA как гость и видите документы до того, как что-либо подписано.",wCta:"Выбрать проект",f1h:"Основатели рядом",f1p:"Вы говорите с основателями, а не с посредниками или агентами.",f2h:"Полное управление",f2p:"Наша команда ведёт персонал, ритуалы, маркетинг, записи и отчётность. Вам не нужно управлять SPA.",f3h:"Сначала факты",f3p:"Отчётность, аренда и разрешения проверяются вашими консультантами до подписания.",
+pEye:"02 · Проекты",pH1:"Четыре SPA.",pH2:"Четыре стадии.",pLead:"Каждый проект — отдельная возможность со своей структурой и своей страницей. Выберите подходящую стадию или спросите обо всех четырёх на одном звонке.",sg1:"Проект готов",sg2:"Ремонт",sg3:"Строительство",sg4:"Работает",
+pd1:"Работающее SPA с опытной командой на месте. Посетите его, запишитесь на процедуру и изучите подтверждённую отчётность индивидуально.",pd2:"Новое ритуальное SPA, ремонт уже идёт: пять авторских кабинетов вокруг дыхания, пара, пены, света и тишины.",pd3:"Новое пространство, созданное вокруг природы: кабинеты из резного камня, арочные окна в джунгли, каменная банная зона и лаунж-терраса.",pd4:"Отдельное здание-флагман 250 м² напротив Hyatt: одновременный ритуал для стоп и лица, пять кабинетов full body и зеркальная комната Козырева.",
+fmt:"Формат",key:"Главное",pf1:"Wellness-SPA",pf2:"Ритуальное SPA",pf3:"Wellness-пространство",pf4:"Ритуальное SPA пяти стихий",pk1:"Подтверждённая отчётность по запросу",pk2:"Аренда на 10 лет подписана",pk3:"Ежемесячная отчётность",pk4:"250 м² · аренда на 10 лет",read:"Смотреть проект",ask:"Спросить об этом проекте",
+oH:"У вас отель или недвижимость?",oP:"Мы также создаём и ведём SPA THE FACES в отелях, курортах и резиденциях — на Бали и за его пределами.",oCta:"Обсудить ваш объект",pNote:"Статус по данным команды проекта, октябрь 2026. Только информация о проекте: условия участия сообщаются индивидуально, письменно и только там, где это разрешает местное законодательство.",
+cEye:"03 · Коротко",cH1:"Четыре проекта",cH2:"рядом.",cLead:"Краткий обзор. Условия сообщаются индивидуально после знакомственного звонка.",r1:"Локация",r2:"Стадия",r3:"Ищем партнёров",r4:"Управление",r5:"Подходит, если",pInd:"Индивидуально",pOne:"Один партнёр",b1:"хотите поддержать бизнес, который можно посетить уже сегодня",b2:"хотите войти в почти готовый проект с подписанной арендой",b3:"хотите войти в новое пространство до запуска",b4:"хотите флагман в самом туристическом районе Санура",
+fEye:"04 · Основатели",fLead:"Более двадцати лет в бьюти и wellness, в том числе в Словении и Индонезии*. Каждый разговор конфиденциален и ни к чему не обязывает.",fQ:"«Мы создаём wellness-пространства, где дизайн, гостеприимство и ритуал работают вместе.»",rA:"Концепция, бренд, ритуалы и маркетинг",rE:"Девелопмент, строительство и операционное управление",fCta:"Поговорить с основателями",fvGo:"Смотреть их историю ▶",fvT:"Смотрите: история основателей",fvPlay:"Смотреть видео",
+prEye:"05 · Как это работает",prH1:"От первого звонка",prH2:"до подписанных условий.",s1h:"Заявка и звонок",s1p:"Форма на 1 минуту, затем личный 30-минутный звонок с основателями.",s2h:"Визит в SPA",s2p:"Приходите как гость или присоединяйтесь к онлайн-обзору проекта.",s3h:"Документы",s3p:"Финансовая модель, аренда, разрешения и график — проверка с вашими консультантами.",s4h:"Письменный договор",s4p:"Условия подписываются индивидуально, только где это разрешает закон, затем — регулярные отчёты.",
+yH:"Ваша роль",y1:"Участвуете в одном выбранном проекте",y2:"Получаете регулярные отчёты",y3:"Проверяете отчётность и задаёте вопросы в любое время",y4:"Посещаете SPA, когда бываете на Бали",tH:"Роль THE FACES",t1:"Бренд, концепция и авторские ритуалы",t2:"Подбор, обучение и управление командой",t3:"Маркетинг, соцсети и записи",t4:"Бухгалтерия, налоги и ежемесячная отчётность",
+eEye:"06 · Убедитесь сами",eH1:"Настоящий бренд,",eH2:"который можно проверить сегодня.",eLead:"Прежде чем говорить с нами, посмотрите на бизнес: наши салоны, процедуры, цены и то, чем делятся гости.",e1:"Жизнь THE FACES Bali каждый день: ритуалы, интерьеры и гости.",e2h:"Сайт SPA",e2:"Наши процедуры, ритуалы и концепция пяти стихий.",e3h:"Меню и цены",e3:"Полное меню процедур салона в Убуде с актуальными ценами.",e4h:"Записаться на процедуру",e4:"Попробуйте ритуал сами во время визита.",open:"Открыть ↗",
+aEye:"07 · Следующий шаг",aH1:"Запросите",aH2:"звонок о партнёрстве.",aLead:"Расскажите, какой проект вам интересен. Мы лично рассматриваем каждую заявку и отправляем подходящим партнёрам ссылку для записи на звонок с основателями.",a1:"Заполните форму — около 1 минуты",a2:"Мы лично рассмотрим её в течение 2 рабочих дней",a3:"Вы записываетесь на личный звонок с основателями",qual:"Наши проекты рассчитаны на гостиничные группы, девелоперов, владельцев недвижимости и частных партнёров, готовых вложить значительный капитал в премиальный объект.",
+fcH:"Заявка на партнёрство",pickL:"Проект:",fcS:"Около 1 минуты. Конфиденциально. Ваши данные никогда не продаются.",fLoad:"Загружаем форму…",fMiss:"Форма не загрузилась. Напишите нам или запишитесь на звонок:",book:"Записаться на звонок",tr1:"Шифрование",tr2:"Данные не продаются",tr3:"Без обязательств",
+qEye:"08 · Вопросы",qH:"Прежде чем решить.",q1:"Как сообщаются условия?",a1q:"Индивидуально, после знакомственного звонка, письменно и только там, где это разрешает закон вашей страны. Мы не публикуем суммы инвестиций и доходность.",q2:"Для кого эти проекты?",a2q:"Для гостиничных групп, девелоперов, владельцев недвижимости и частных партнёров, готовых вложить значительный капитал в премиальный wellness-объект.",q3:"Нужно ли мне управлять SPA?",a3q:"Нет. THE FACES сохраняет бренд и управление и ведёт SPA по письменному договору, где закреплены обязанности, вознаграждение и отчётность.",q4:"Гарантирована ли доходность?",a4q:"Нет. Прибыль меняется от месяца к месяцу, не гарантирована и может быть нулевой; вы можете потерять часть или весь капитал. Проверяйте все документы со своими консультантами.",q5:"Может ли иностранец участвовать в индонезийском бизнесе?",a5q:"Это зависит от законодательства Индонезии, отраслевых правил и структуры — часто это компания с иностранным капиталом (PT PMA) или договорные схемы. Получите независимую юридическую консультацию.",q6:"Можно сначала приехать?",a6q:"Да, обязательно. Запишитесь на процедуру в Убуде как гость или попросите визит на объект либо онлайн-обзор других проектов.",
+zH1:"Посетите SPA. Познакомьтесь с основателями.",zH2:"Решайте на основе фактов.",zP:"Короткая заявка, личный ответ. Конфиденциально и без обязательств.",
+lH:"Важная информация",l1s:"Инвестиционные риски",l1p:"Инвестиции в частный бизнес связаны со значительным риском, включая полную потерю вложенного капитала. Доли в частных компаниях неликвидны, и их может быть сложно продать. Выплаты не гарантированы и могут быть нулевыми. Опыт основателей и результаты действующих локаций не являются надёжным показателем будущих результатов. Получите независимую финансовую, юридическую и налоговую консультацию до принятия решения.",l2s:"Не является офертой",l2p:"На этой странице приведена общая информация о THE FACES и её проектах. Это не предложение о продаже, не приглашение делать предложения о покупке и не рекомендация в отношении каких-либо ценных бумаг, финансовых инструментов или инвестиций, а также не финансовая, юридическая или налоговая консультация. Любое участие оформляется только индивидуально согласованными договорами по праву, применимому к партнёру и проекту.",l3s:"Уведомления по странам (на английском)",l4s:"Конфиденциальность",l4p:"Данные формы обрабатываются THE FACES только для ответа вам и преддоговорных действий. Аналитические и рекламные cookie работают только с вашего согласия (баннер cookie на этом сайте).",pol:"Политика конфиденциальности",l5s:"Точность информации",l5p:"*Данные компании (опыт, первый салон, статус проектов, гости в месяц) предоставлены командой проекта по состоянию на октябрь 2026 года и не проходили независимый аудит; подтверждающие документы доступны в ходе проверки. Юридическое название, регистрационный номер и адрес юрлица-контрагента предоставляются по запросу и во всей документации проекта.",
+thanks:"Спасибо! Заявка получена. Вы уже можете выбрать время звонка:"},
+
+uk:{n1:"Проєкти",n2:"Засновники",n3:"Як це працює",n4:"Питання",cta:"Запросити дзвінок",hEye:"THE FACES INVEST · Балі, Індонезія",h1a:"Чотири SPA на Балі.",h1b:"Одна команда, з якою можна познайомитися.",hLead:"Станьте партнером засновників THE FACES: діюче SPA в Убуді, два нові ритуальні SPA в Сануре або природний простір, що будується. Кожен проєкт можна відвідати, обговорити й перевірити до ухвалення рішення.",c1:"Під керівництвом засновників з 2013*",c2:"Повністю керується нашою командою",c3:"Спершу документи, потім рішення",cta2:"Запросити дзвінок про партнерство",hSee:"Переглянути 4 проєкти",hVid:"Познайомитися із засновниками ▶",lSt:"Наші проєкти сьогодні",st_op:"Працює",st_ren:"Триває ремонт",st_con:"Будується",st_plan:"Проєкт готовий",lC:"Особистий 30-хвилинний дзвінок із засновниками · без зобов’язань",
+s1:"років досвіду засновників у б’юті та wellness*",s2:"перший салон THE FACES*",s3:"SPA-проєкти в Убуді та Сануре",s4:"гостей на місяць у кожному діючому салоні*",
+wEye:"01 · Чому THE FACES",wH1:"Сімейний бізнес,",wH2:"а не фонд.",wLead:"THE FACES збудували Анна та Євгеній Дубініни — салон за салоном. Беручи участь у проєкті, ви спілкуєтеся з ними напряму, можете прийти в SPA як гість і бачите документи до того, як щось підписано.",wCta:"Обрати проєкт",f1h:"Засновники поруч",f1p:"Ви говорите із засновниками, а не з посередниками чи агентами.",f2h:"Повне управління",f2p:"Наша команда веде персонал, ритуали, маркетинг, записи та звітність. Вам не потрібно керувати SPA.",f3h:"Спершу факти",f3p:"Звітність, оренду й дозволи перевіряють ваші консультанти до підписання.",
+pEye:"02 · Проєкти",pH1:"Чотири SPA.",pH2:"Чотири стадії.",pLead:"Кожен проєкт — окрема можливість зі своєю структурою та своєю сторінкою. Оберіть відповідну стадію або запитайте про всі чотири на одному дзвінку.",sg1:"Проєкт готовий",sg2:"Ремонт",sg3:"Будівництво",sg4:"Працює",
+pd1:"Діюче SPA з досвідченою командою на місці. Відвідайте його, запишіться на процедуру й ознайомтеся з підтвердженою звітністю індивідуально.",pd2:"Нове ритуальне SPA, ремонт уже триває: п’ять авторських кабінетів навколо дихання, пари, піни, світла й тиші.",pd3:"Новий простір, створений навколо природи: кабінети з різьбленого каменю, аркові вікна в джунглі, кам’яна банна зона та лаунж-тераса.",pd4:"Окрема будівля-флагман 250 м² навпроти Hyatt: одночасний ритуал для стоп і обличчя, п’ять кабінетів full body та дзеркальна кімната Козирєва.",
+fmt:"Формат",key:"Головне",pf1:"Wellness-SPA",pf2:"Ритуальне SPA",pf3:"Wellness-простір",pf4:"Ритуальне SPA п’яти стихій",pk1:"Підтверджена звітність на запит",pk2:"Оренду на 10 років підписано",pk3:"Щомісячна звітність",pk4:"250 м² · оренда на 10 років",read:"Переглянути проєкт",ask:"Запитати про цей проєкт",
+oH:"У вас готель чи нерухомість?",oP:"Ми також створюємо й ведемо SPA THE FACES у готелях, курортах і резиденціях — на Балі та за кордоном.",oCta:"Обговорити ваш об’єкт",pNote:"Статус за даними команди проєкту, жовтень 2026. Лише інформація про проєкт: умови участі повідомляються індивідуально, письмово й лише там, де це дозволяє місцеве законодавство.",
+cEye:"03 · Коротко",cH1:"Чотири проєкти",cH2:"поруч.",cLead:"Короткий огляд. Умови повідомляються індивідуально після знайомчого дзвінка.",r1:"Локація",r2:"Стадія",r3:"Шукаємо партнерів",r4:"Управління",r5:"Підходить, якщо",pInd:"Індивідуально",pOne:"Один партнер",b1:"хочете підтримати бізнес, який можна відвідати вже сьогодні",b2:"хочете увійти в майже готовий проєкт із підписаною орендою",b3:"хочете увійти в новий простір до запуску",b4:"хочете флагман у найтуристичнішому районі Сануру",
+fEye:"04 · Засновники",fLead:"Понад двадцять років у б’юті та wellness, зокрема у Словенії та Індонезії*. Кожна розмова конфіденційна й ні до чого не зобов’язує.",fQ:"«Ми створюємо wellness-простори, де дизайн, гостинність і ритуал працюють разом.»",rA:"Концепція, бренд, ритуали та маркетинг",rE:"Девелопмент, будівництво та операційне управління",fCta:"Поговорити із засновниками",fvGo:"Дивитися їхню історію ▶",fvT:"Дивіться: історія засновників",fvPlay:"Дивитися відео",
+prEye:"05 · Як це працює",prH1:"Від першого дзвінка",prH2:"до підписаних умов.",s1h:"Заявка й дзвінок",s1p:"Форма на 1 хвилину, потім особистий 30-хвилинний дзвінок із засновниками.",s2h:"Візит у SPA",s2p:"Приходьте як гість або долучайтеся до онлайн-огляду проєкту.",s3h:"Документи",s3p:"Фінансова модель, оренда, дозволи й графік — перевірка з вашими консультантами.",s4h:"Письмовий договір",s4p:"Умови підписуються індивідуально, лише де це дозволяє закон, далі — регулярні звіти.",
+yH:"Ваша роль",y1:"Берете участь в одному обраному проєкті",y2:"Отримуєте регулярні звіти",y3:"Перевіряєте звітність і ставите запитання будь-коли",y4:"Відвідуєте SPA, коли буваєте на Балі",tH:"Роль THE FACES",t1:"Бренд, концепція та авторські ритуали",t2:"Добір, навчання й управління командою",t3:"Маркетинг, соцмережі та записи",t4:"Бухгалтерія, податки та щомісячна звітність",
+eEye:"06 · Переконайтеся самі",eH1:"Справжній бренд,",eH2:"який можна перевірити сьогодні.",eLead:"Перш ніж говорити з нами, подивіться на бізнес: наші салони, процедури, ціни та те, чим діляться гості.",e1:"Життя THE FACES Bali щодня: ритуали, інтер’єри та гості.",e2h:"Сайт SPA",e2:"Наші процедури, ритуали та концепція п’яти стихій.",e3h:"Меню та ціни",e3:"Повне меню процедур салону в Убуді з актуальними цінами.",e4h:"Записатися на процедуру",e4:"Спробуйте ритуал самі під час візиту.",open:"Відкрити ↗",
+aEye:"07 · Наступний крок",aH1:"Запросіть",aH2:"дзвінок про партнерство.",aLead:"Розкажіть, який проєкт вас цікавить. Ми особисто розглядаємо кожну заявку й надсилаємо відповідним партнерам посилання для запису на дзвінок із засновниками.",a1:"Заповніть форму — близько 1 хвилини",a2:"Ми особисто розглянемо її протягом 2 робочих днів",a3:"Ви записуєтеся на особистий дзвінок із засновниками",qual:"Наші проєкти розраховані на готельні групи, девелоперів, власників нерухомості та приватних партнерів, готових вкласти значний капітал у преміальний об’єкт.",
+fcH:"Заявка на партнерство",pickL:"Проєкт:",fcS:"Близько 1 хвилини. Конфіденційно. Ваші дані ніколи не продаються.",fLoad:"Завантажуємо форму…",fMiss:"Форма не завантажилася. Напишіть нам або запишіться на дзвінок:",book:"Записатися на дзвінок",tr1:"Шифрування",tr2:"Дані не продаються",tr3:"Без зобов’язань",
+qEye:"08 · Питання",qH:"Перш ніж вирішити.",q1:"Як повідомляються умови?",a1q:"Індивідуально, після знайомчого дзвінка, письмово й лише там, де це дозволяє закон вашої країни. Ми не публікуємо суми інвестицій і дохідність.",q2:"Для кого ці проєкти?",a2q:"Для готельних груп, девелоперів, власників нерухомості та приватних партнерів, готових вкласти значний капітал у преміальний wellness-об’єкт.",q3:"Чи потрібно мені керувати SPA?",a3q:"Ні. THE FACES зберігає бренд і управління та веде SPA за письмовим договором, де закріплено обов’язки, винагороду й звітність.",q4:"Чи гарантована дохідність?",a4q:"Ні. Прибуток змінюється щомісяця, не гарантований і може бути нульовим; ви можете втратити частину або весь капітал. Перевіряйте всі документи зі своїми консультантами.",q5:"Чи може іноземець брати участь в індонезійському бізнесі?",a5q:"Це залежить від законодавства Індонезії, галузевих правил і структури — часто це компанія з іноземним капіталом (PT PMA) або договірні схеми. Отримайте незалежну юридичну консультацію.",q6:"Чи можна спершу приїхати?",a6q:"Так, обов’язково. Запишіться на процедуру в Убуді як гість або попросіть візит на об’єкт чи онлайн-огляд інших проєктів.",
+zH1:"Відвідайте SPA. Познайомтеся із засновниками.",zH2:"Вирішуйте на основі фактів.",zP:"Коротка заявка, особиста відповідь. Конфіденційно й без зобов’язань.",
+lH:"Важлива інформація",l1s:"Інвестиційні ризики",l1p:"Інвестиції в приватний бізнес пов’язані зі значним ризиком, зокрема з повною втратою вкладеного капіталу. Частки в приватних компаніях неліквідні, і їх може бути складно продати. Виплати не гарантовані й можуть бути нульовими. Досвід засновників і результати діючих локацій не є надійним показником майбутніх результатів. Отримайте незалежну фінансову, юридичну та податкову консультацію до ухвалення рішення.",l2s:"Не є офертою",l2p:"На цій сторінці наведено загальну інформацію про THE FACES та її проєкти. Це не пропозиція продажу, не запрошення робити пропозиції щодо купівлі й не рекомендація щодо будь-яких цінних паперів, фінансових інструментів чи інвестицій, а також не фінансова, юридична чи податкова консультація. Будь-яка участь оформлюється лише індивідуально погодженими договорами за правом, що застосовується до партнера та проєкту.",l3s:"Повідомлення для країн (англійською)",l4s:"Конфіденційність",l4p:"Дані форми обробляє THE FACES лише для відповіді вам і переддоговірних дій. Аналітичні й рекламні cookie працюють лише з вашої згоди (банер cookie на цьому сайті).",pol:"Політика конфіденційності",l5s:"Точність інформації",l5p:"*Дані компанії (досвід, перший салон, статус проєктів, гості на місяць) надані командою проєкту станом на жовтень 2026 року й не проходили незалежного аудиту; підтвердні документи доступні під час перевірки. Юридичну назву, реєстраційний номер і адресу юрособи-контрагента надаємо на запит і в усій документації проєкту.",
+thanks:"Дякуємо! Заявку отримано. Ви вже можете обрати час дзвінка:"},
+
+es:{n1:"Proyectos",n2:"Fundadores",n3:"Cómo funciona",n4:"Preguntas",cta:"Solicitar llamada",hEye:"THE FACES INVEST · Bali, Indonesia",h1a:"Cuatro spas en Bali.",h1b:"Un equipo que puede conocer.",hLead:"Asóciese con los fundadores de THE FACES en un spa en funcionamiento en Ubud, dos nuevos spas rituales en Sanur o un destino en plena naturaleza en construcción. Cada proyecto se puede visitar, preguntar y comprobar antes de decidir.",c1:"Dirigido por sus fundadores desde 2013*",c2:"Gestión completa de nuestro equipo",c3:"Primero los documentos, luego las decisiones",cta2:"Solicitar una llamada",hSee:"Ver los 4 proyectos",hVid:"Conocer a los fundadores ▶",lSt:"Nuestros proyectos hoy",st_op:"En funcionamiento",st_ren:"Reforma en curso",st_con:"En construcción",st_plan:"Planos listos",lC:"Llamada privada de 30 minutos con los fundadores · sin compromiso",
+s1:"años de experiencia de los fundadores en belleza y bienestar*",s2:"primer salón THE FACES*",s3:"proyectos de spa en Ubud y Sanur",s4:"clientes al mes por salón en funcionamiento*",
+wEye:"01 · Por qué THE FACES",wH1:"Una empresa familiar,",wH2:"no un fondo.",wLead:"THE FACES lo han construido Anna y Evgenii Dubinin, salón a salón. Si entra en un proyecto, trata directamente con ellos, puede visitar el spa como cliente y ve los documentos antes de firmar nada.",wCta:"Elegir un proyecto",f1h:"Trato con los fundadores",f1p:"Habla con los fundadores, no con intermediarios ni comerciales.",f2h:"Gestión completa",f2p:"Nuestro equipo se ocupa del personal, los rituales, el marketing, las reservas y los informes. Usted no tiene que gestionar el spa.",f3h:"Primero, los hechos",f3p:"Las cuentas, el alquiler y los permisos se revisan con sus propios asesores antes de firmar.",
+pEye:"02 · Los proyectos",pH1:"Cuatro spas.",pH2:"Cuatro etapas.",pLead:"Cada proyecto es una oportunidad independiente, con su propia estructura y su propia página. Elija la etapa que le encaje o pregunte por los cuatro en la misma llamada.",sg1:"Planos listos",sg2:"Reforma",sg3:"Construcción",sg4:"En funcionamiento",
+pd1:"Un spa en funcionamiento con un equipo experimentado en el lugar. Visítelo, reserve un tratamiento y revise las cuentas verificadas de forma individual.",pd2:"Un nuevo spa ritual ya en reforma: cinco salas de autor en torno a la respiración, el vapor, la espuma, la luz y el silencio.",pd3:"Un nuevo destino pensado en torno a la naturaleza: salas de piedra esculpida, ventanales en arco hacia la jungla, una suite de baño de piedra y una terraza lounge.",pd4:"Un edificio insignia independiente de 250 m² frente al Hyatt: ritual simultáneo de pies y rostro, cinco cabinas de cuerpo completo y una sala de espejos de Kózyrev.",
+fmt:"Formato",key:"Dato clave",pf1:"Spa de bienestar",pf2:"Spa ritual",pf3:"Destino de bienestar",pf4:"Spa ritual de los cinco elementos",pk1:"Cuentas verificadas bajo petición",pk2:"Alquiler de 10 años firmado",pk3:"Informes mensuales",pk4:"250 m² · alquiler a 10 años",read:"Ver el proyecto",ask:"Preguntar por este proyecto",
+oH:"¿Tiene un hotel o una propiedad?",oP:"También diseñamos y gestionamos spas THE FACES dentro de hoteles, resorts y residencias, en Bali y en el extranjero.",oCta:"Hablar de su propiedad",pNote:"Estado según el equipo del proyecto, octubre de 2026. Solo información del proyecto: las condiciones de participación se facilitan de forma individual, por escrito y solo donde la ley local lo permita.",
+cEye:"03 · De un vistazo",cH1:"Cuatro proyectos,",cH2:"lado a lado.",cLead:"Un resumen rápido. Las condiciones se facilitan de forma individual tras una llamada de presentación.",r1:"Ubicación",r2:"Etapa",r3:"Socios buscados",r4:"Gestión",r5:"Ideal para",pInd:"Individual",pOne:"Un socio",b1:"Apoyar un negocio que puede visitar hoy",b2:"Entrar en un proyecto casi listo con alquiler firmado",b3:"Entrar en un nuevo destino antes de su apertura",b4:"Un buque insignia en la zona más turística de Sanur",
+fEye:"04 · Los fundadores",fLead:"Más de veinte años en belleza y bienestar, incluida experiencia en Eslovenia e Indonesia*. Cada conversación es privada y sin compromiso.",fQ:"«Creamos espacios de bienestar donde el diseño, la hospitalidad y el ritual trabajan juntos.»",rA:"Concepto, marca, rituales y marketing",rE:"Desarrollo, construcción y operaciones",fCta:"Hablar con los fundadores",fvGo:"Ver su historia ▶",fvT:"Mira: la historia de los fundadores",fvPlay:"Ver el vídeo",
+prEye:"05 · Cómo funciona",prH1:"De la primera llamada",prH2:"a las condiciones firmadas.",s1h:"Solicitud y llamada",s1p:"Un formulario de 1 minuto y después una llamada privada de 30 minutos con los fundadores.",s2h:"Visite el spa",s2p:"Venga como cliente o únase a un recorrido online del proyecto.",s3h:"Documentación",s3p:"Modelo financiero, alquiler, permisos y calendario, revisados con sus propios asesores.",s4h:"Acuerdo por escrito",s4p:"Condiciones firmadas de forma individual, solo donde la ley local lo permita, y después informes periódicos.",
+yH:"Su papel",y1:"Participar en un proyecto seleccionado",y2:"Recibir informes periódicos",y3:"Revisar las cuentas y preguntar cuando quiera",y4:"Visitar el spa siempre que esté en Bali",tH:"El papel de THE FACES",t1:"Marca, concepto y rituales propios",t2:"Selección, formación y gestión del equipo",t3:"Marketing, redes sociales y reservas",t4:"Contabilidad, impuestos e informes mensuales",
+eEye:"06 · Compruébelo usted",eH1:"Una marca real",eH2:"que puede comprobar hoy.",eLead:"Antes de hablar con nosotros, mire el negocio: nuestros salones, tratamientos, precios y lo que comparten nuestros clientes.",e1:"El día a día de THE FACES Bali: rituales, interiores y clientes.",e2h:"Web del spa",e2:"Nuestros tratamientos, rituales y el concepto de los cinco elementos.",e3h:"Carta y precios",e3:"La carta completa del salón de Ubud con los precios actuales.",e4h:"Reservar un tratamiento",e4:"Pruebe un ritual usted mismo durante su visita.",open:"Abrir ↗",
+aEye:"07 · Siguiente paso",aH1:"Solicite una",aH2:"llamada.",aLead:"Cuéntenos qué proyecto le interesa. Revisamos cada solicitud personalmente y enviamos a los socios adecuados un enlace para reservar una llamada con los fundadores.",a1:"Rellene el formulario: 1 minuto",a2:"Lo revisamos personalmente en 2 días hábiles",a3:"Reserva una llamada privada con los fundadores",qual:"Nuestros proyectos están pensados para grupos hoteleros, promotores, propietarios y socios privados con capacidad para invertir un capital significativo en un espacio premium.",
+fcH:"Solicitud de colaboración",pickL:"Proyecto:",fcS:"Alrededor de 1 minuto. Confidencial. Nunca vendemos sus datos.",fLoad:"Cargando el formulario…",fMiss:"El formulario no se ha cargado. Escríbanos o reserve una llamada:",book:"Reservar una llamada",tr1:"Cifrado",tr2:"Nunca vendemos datos",tr3:"Sin compromiso",
+qEye:"08 · Preguntas",qH:"Antes de decidir.",q1:"¿Cómo se facilitan las condiciones?",a1q:"De forma individual, tras una llamada de presentación, por escrito y solo donde la ley de su país lo permita. No publicamos importes de inversión ni rentabilidades.",q2:"¿Para quién son los proyectos?",a2q:"Para grupos hoteleros, promotores, propietarios y socios privados con capacidad para invertir un capital significativo en un espacio de bienestar premium.",q3:"¿Tengo que gestionar el spa?",a3q:"No. THE FACES mantiene la marca y la gestión y dirige el spa con un acuerdo por escrito que fija responsabilidades, honorarios e informes.",q4:"¿La rentabilidad está garantizada?",a4q:"No. El beneficio cambia de un mes a otro, no está garantizado y puede ser cero; podría perder parte o todo su capital. Revise cada documento con sus propios asesores.",q5:"¿Puede un extranjero participar en un negocio en Indonesia?",a5q:"Depende de la ley indonesia, de las normas del sector y de la estructura: a menudo una sociedad de inversión extranjera (PT PMA) o acuerdos contractuales. Busque asesoramiento legal independiente.",q6:"¿Puedo visitarlo antes?",a6q:"Sí, se lo recomendamos. Reserve un tratamiento en Ubud como cliente o pídanos una visita a la obra o un recorrido online de los otros proyectos.",
+zH1:"Visite el spa. Conozca a los fundadores.",zH2:"Decida con hechos.",zP:"Una solicitud breve, una respuesta personal. Confidencial y sin compromiso.",
+lH:"Información importante",l1s:"Riesgos de inversión",l1p:"Invertir en empresas privadas conlleva un riesgo significativo, incluida la pérdida total del capital invertido. Las participaciones en sociedades privadas son ilíquidas y pueden ser difíciles de vender. Los repartos no están garantizados y pueden ser cero. La experiencia de los fundadores y los resultados de los locales existentes no son un indicador fiable de resultados futuros. Busque asesoramiento financiero, legal y fiscal independiente antes de decidir.",l2s:"No es una oferta",l2p:"Esta página ofrece información general sobre THE FACES y sus proyectos. No es una oferta de venta, una solicitud de oferta de compra ni una recomendación sobre ningún valor, instrumento financiero o inversión, ni constituye asesoramiento financiero, legal o fiscal. Cualquier participación se documenta solo mediante acuerdos negociados individualmente conforme a la ley aplicable al socio y al proyecto.",l3s:"Avisos por país (en inglés)",l4s:"Privacidad",l4p:"THE FACES trata los datos del formulario solo para responderle y aplicar medidas precontractuales. Las cookies de analítica y publicidad solo se activan con su consentimiento (banner de cookies de este sitio).",pol:"Política de privacidad",l5s:"Exactitud de la información",l5p:"*Los datos de la empresa (experiencia, primer salón, estado de los proyectos, clientes al mes) los facilita el equipo del proyecto a octubre de 2026 y no han sido auditados de forma independiente; la documentación de respaldo está disponible durante la due diligence. La denominación, el número de registro y la dirección de la entidad contratante se facilitan bajo petición y en toda la documentación del proyecto.",
+thanks:"¡Gracias! Hemos recibido su solicitud. Ya puede elegir la hora de su llamada:"},
+
+id:{n1:"Proyek",n2:"Pendiri",n3:"Cara kerja",n4:"FAQ",cta:"Minta panggilan",hEye:"THE FACES INVEST · Bali, Indonesia",h1a:"Empat spa di Bali.",h1b:"Satu tim yang bisa Anda temui.",hLead:"Bermitra dengan pendiri THE FACES di spa yang sudah beroperasi di Ubud, dua spa ritual baru di Sanur, atau destinasi alam yang sedang dibangun. Setiap proyek bisa Anda kunjungi, tanyakan, dan periksa sebelum memutuskan.",c1:"Dipimpin pendiri sejak 2013*",c2:"Dikelola penuh oleh tim kami",c3:"Dokumen dulu, baru keputusan",cta2:"Minta panggilan kemitraan",hSee:"Lihat 4 proyek",hVid:"Kenali para pendiri ▶",lSt:"Proyek kami saat ini",st_op:"Beroperasi",st_ren:"Sedang direnovasi",st_con:"Sedang dibangun",st_plan:"Denah siap",lC:"Panggilan pribadi 30 menit dengan pendiri · tanpa kewajiban",
+s1:"tahun pengalaman pendiri di bidang kecantikan & wellness*",s2:"salon THE FACES pertama*",s3:"proyek spa di Ubud & Sanur",s4:"tamu per bulan per salon yang beroperasi*",
+wEye:"01 · Mengapa THE FACES",wH1:"Bisnis keluarga,",wH2:"bukan dana investasi.",wLead:"THE FACES dibangun oleh Anna dan Evgenii Dubinin, salon demi salon. Saat bergabung dalam proyek, Anda berhubungan langsung dengan mereka, bisa datang ke spa sebagai tamu, dan melihat dokumen sebelum ada yang ditandatangani.",wCta:"Pilih proyek",f1h:"Langsung dengan pendiri",f1p:"Anda berbicara dengan pendiri, bukan perantara atau agen penjualan.",f2h:"Dikelola penuh",f2p:"Tim kami mengelola staf, ritual, pemasaran, reservasi, dan laporan. Anda tidak perlu menjalankan spa.",f3h:"Fakta sebelum keputusan",f3p:"Laporan keuangan, sewa, dan izin ditinjau bersama penasihat Anda sebelum penandatanganan.",
+pEye:"02 · Proyek",pH1:"Empat spa.",pH2:"Empat tahap.",pLead:"Setiap proyek adalah peluang terpisah dengan struktur dan halamannya sendiri. Pilih tahap yang cocok, atau tanyakan keempatnya dalam satu panggilan.",sg1:"Denah siap",sg2:"Renovasi",sg3:"Konstruksi",sg4:"Beroperasi",
+pd1:"Spa yang sudah berjalan dengan tim berpengalaman di lokasi. Kunjungi, pesan perawatan, dan tinjau laporan keuangan terverifikasi secara pribadi.",pd2:"Spa ritual baru yang sedang direnovasi: lima ruang khas yang dibangun di sekitar napas, uap, busa, cahaya, dan keheningan.",pd3:"Destinasi baru yang dirancang menyatu dengan alam: ruang batu pahat, jendela melengkung menghadap hutan, suite mandi batu, dan teras lounge.",pd4:"Gedung flagship mandiri 250 m² di seberang Hyatt: ritual kaki dan wajah bersamaan, lima ruang perawatan seluruh tubuh, dan ruang cermin Kozyrev.",
+fmt:"Format",key:"Fakta utama",pf1:"Spa wellness",pf2:"Spa ritual",pf3:"Destinasi wellness",pf4:"Spa ritual lima elemen",pk1:"Laporan terverifikasi atas permintaan",pk2:"Sewa 10 tahun sudah ditandatangani",pk3:"Laporan bulanan",pk4:"250 m² · sewa 10 tahun",read:"Lihat proyek",ask:"Tanyakan proyek ini",
+oH:"Punya hotel atau properti?",oP:"Kami juga merancang dan mengelola spa THE FACES di hotel, resor, dan hunian, di Bali maupun di luar negeri.",oCta:"Diskusikan properti Anda",pNote:"Status menurut tim proyek, Oktober 2026. Hanya informasi proyek: ketentuan partisipasi disampaikan secara individual, tertulis, dan hanya jika diizinkan hukum setempat.",
+cEye:"03 · Sekilas",cH1:"Empat proyek,",cH2:"berdampingan.",cLead:"Ringkasan singkat. Ketentuan disampaikan secara individual setelah panggilan perkenalan.",r1:"Lokasi",r2:"Tahap",r3:"Mitra yang dicari",r4:"Pengelolaan",r5:"Cocok untuk",pInd:"Individual",pOne:"Satu mitra",b1:"Mendukung bisnis yang bisa Anda kunjungi hari ini",b2:"Masuk ke proyek yang hampir siap dengan sewa yang sudah ditandatangani",b3:"Masuk ke destinasi baru sebelum peluncuran",b4:"Flagship di kawasan wisata tersibuk Sanur",
+fEye:"04 · Para pendiri",fLead:"Lebih dari dua puluh tahun di bidang kecantikan dan wellness, termasuk di Slovenia dan Indonesia*. Setiap percakapan bersifat pribadi dan tanpa kewajiban.",fQ:"“Kami menciptakan ruang wellness tempat desain, keramahtamahan, dan ritual bekerja bersama.”",rA:"Konsep, merek, ritual, dan pemasaran",rE:"Pengembangan, konstruksi, dan operasional",fCta:"Bicara dengan pendiri",fvGo:"Tonton kisah mereka ▶",fvT:"Tonton: kisah para pendiri",fvPlay:"Putar video",
+prEye:"05 · Cara kerja",prH1:"Dari panggilan pertama",prH2:"hingga ketentuan ditandatangani.",s1h:"Permintaan & panggilan",s1p:"Formulir 1 menit, lalu panggilan pribadi 30 menit dengan pendiri.",s2h:"Kunjungi spa",s2p:"Datang sebagai tamu, atau ikuti tur online proyek.",s3h:"Dokumen",s3p:"Model keuangan, sewa, izin, dan jadwal, ditinjau bersama penasihat Anda.",s4h:"Perjanjian tertulis",s4p:"Ketentuan ditandatangani secara individual, hanya jika diizinkan hukum setempat, lalu laporan berkala.",
+yH:"Peran Anda",y1:"Bergabung dalam satu proyek pilihan",y2:"Menerima laporan berkala",y3:"Memeriksa laporan dan bertanya kapan saja",y4:"Mengunjungi spa saat berada di Bali",tH:"Peran THE FACES",t1:"Merek, konsep, dan ritual khas",t2:"Rekrutmen, pelatihan, dan pengelolaan tim",t3:"Pemasaran, media sosial, dan reservasi",t4:"Akuntansi, pajak, dan laporan bulanan",
+eEye:"06 · Lihat sendiri",eH1:"Merek nyata",eH2:"yang bisa Anda periksa hari ini.",eLead:"Sebelum berbicara dengan kami, lihat bisnisnya: salon, perawatan, harga, dan apa yang dibagikan tamu kami.",e1:"Keseharian THE FACES Bali: ritual, interior, dan tamu.",e2h:"Situs spa",e2:"Perawatan, ritual, dan konsep lima elemen kami.",e3h:"Menu & harga",e3:"Menu perawatan lengkap salon Ubud dengan harga terkini.",e4h:"Pesan perawatan",e4:"Coba ritualnya sendiri saat kunjungan Anda.",open:"Buka ↗",
+aEye:"07 · Langkah berikutnya",aH1:"Minta",aH2:"panggilan kemitraan.",aLead:"Ceritakan proyek yang Anda minati. Kami meninjau setiap permintaan secara pribadi dan mengirimkan tautan untuk menjadwalkan panggilan dengan pendiri kepada mitra yang sesuai.",a1:"Isi formulir — sekitar 1 menit",a2:"Kami tinjau secara pribadi dalam 2 hari kerja",a3:"Anda menjadwalkan panggilan pribadi dengan pendiri",qual:"Proyek kami dirancang untuk grup hotel, pengembang, pemilik properti, dan mitra pribadi yang mampu menanamkan modal signifikan pada tempat premium.",
+fcH:"Permintaan kemitraan",pickL:"Proyek:",fcS:"Sekitar 1 menit. Rahasia. Data Anda tidak pernah dijual.",fLoad:"Memuat formulir…",fMiss:"Formulir tidak dapat dimuat. Tulis kepada kami atau jadwalkan panggilan:",book:"Jadwalkan panggilan",tr1:"Terenkripsi",tr2:"Tidak pernah dijual",tr3:"Tanpa kewajiban",
+qEye:"08 · FAQ",qH:"Sebelum Anda memutuskan.",q1:"Bagaimana ketentuan disampaikan?",a1q:"Secara individual, setelah panggilan perkenalan, tertulis, dan hanya jika diizinkan hukum negara Anda. Kami tidak memublikasikan jumlah investasi atau imbal hasil.",q2:"Untuk siapa proyek ini?",a2q:"Grup hotel, pengembang, pemilik properti, dan mitra pribadi yang mampu menanamkan modal signifikan pada tempat wellness premium.",q3:"Apakah saya harus menjalankan spa?",a3q:"Tidak. THE FACES memegang merek dan manajemen serta menjalankan spa berdasarkan perjanjian tertulis yang mengatur tanggung jawab, biaya, dan laporan.",q4:"Apakah imbal hasil dijamin?",a4q:"Tidak. Laba berubah dari bulan ke bulan, tidak dijamin, dan bisa nol; Anda bisa kehilangan sebagian atau seluruh modal. Tinjau setiap dokumen bersama penasihat Anda.",q5:"Bisakah orang asing ikut dalam bisnis di Indonesia?",a5q:"Tergantung hukum Indonesia, aturan sektor, dan strukturnya — sering kali berupa perusahaan penanaman modal asing (PT PMA) atau pengaturan kontraktual. Dapatkan nasihat hukum independen.",q6:"Bisakah saya berkunjung dulu?",a6q:"Ya, silakan. Pesan perawatan di Ubud sebagai tamu, atau minta kunjungan lokasi atau tur online proyek lainnya.",
+zH1:"Kunjungi spa. Temui para pendiri.",zH2:"Putuskan berdasarkan fakta.",zP:"Permintaan singkat, balasan pribadi. Rahasia dan tanpa kewajiban.",
+lH:"Informasi penting",l1s:"Risiko investasi",l1p:"Investasi pada bisnis swasta mengandung risiko signifikan, termasuk kehilangan seluruh modal. Kepemilikan di perusahaan swasta tidak likuid dan mungkin sulit dijual. Pembagian hasil tidak dijamin dan bisa nol. Pengalaman pendiri dan hasil lokasi yang ada bukan indikator andal untuk hasil di masa depan. Dapatkan nasihat keuangan, hukum, dan pajak independen sebelum memutuskan.",l2s:"Bukan penawaran",l2p:"Halaman ini memberikan informasi umum tentang THE FACES dan proyek-proyeknya. Ini bukan penawaran untuk menjual, ajakan untuk menawar beli, atau rekomendasi atas efek, instrumen keuangan, atau investasi apa pun, dan bukan nasihat keuangan, hukum, atau pajak. Setiap partisipasi hanya didokumentasikan melalui perjanjian yang dinegosiasikan secara individual berdasarkan hukum yang berlaku bagi mitra dan proyek.",l3s:"Pemberitahuan per negara (bahasa Inggris)",l4s:"Privasi",l4p:"Data formulir diproses oleh THE FACES hanya untuk menjawab Anda dan langkah pra-kontrak. Cookie analitik dan iklan hanya aktif dengan persetujuan Anda (banner cookie situs ini).",pol:"Kebijakan privasi",l5s:"Akurasi informasi",l5p:"*Data perusahaan (pengalaman, salon pertama, status proyek, tamu per bulan) dilaporkan oleh tim proyek per Oktober 2026 dan belum diaudit secara independen; dokumen pendukung tersedia selama due diligence. Nama resmi, nomor registrasi, dan alamat badan hukum yang berkontrak diberikan atas permintaan dan dalam seluruh dokumentasi proyek.",
+thanks:"Terima kasih! Permintaan Anda telah diterima. Anda sudah bisa memilih waktu panggilan:"}
+};
+var root=document.getElementById('faces-hub');if(!root||root.dataset.ready)return;root.dataset.ready='1';root.classList.add('js');
+function $(s){return root.querySelector(s)}function $$(s){return Array.prototype.slice.call(root.querySelectorAll(s))}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+window.dataLayer=window.dataLayer||[];
+var attr={};try{var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid'].forEach(function(k){var v=q.get(k);if(v)attr[k]=String(v).slice(0,150)});
+ if(Object.keys(attr).length)sessionStorage.setItem('tf_attr',JSON.stringify(attr));else attr=JSON.parse(sessionStorage.getItem('tf_attr')||'{}')}catch(e){}
+var lang='en';
+function track(ev,o){var d={event:ev,page_type:'invest_'+CONFIG.page,page_language:lang};for(var k in o)if(o[k]!==undefined)d[k]=o[k];for(var a in attr)if(d[a]===undefined)d[a]=attr[a];window.dataLayer.push(d)}
+
+/* ---------- language ---------- */
+var EN={thanks:"Thank you! Your request has been received. You can already choose a time for your call:"};
+$$('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(EN[k]===undefined)EN[k]=el.innerHTML});
+function t(k){return (T[lang]&&T[lang][k])||EN[k]||''}
+function detect(){
+ var c=[];try{c.push((new URLSearchParams(location.search).get('lang')||''))}catch(e){}
+ try{c.push(location.hash.slice(1))}catch(e){}
+ c.push(store('tf_lang')||'');c.push(document.documentElement.lang||'');
+ try{c=c.concat(navigator.languages||[navigator.language||''])}catch(e){}
+ for(var i=0;i<c.length;i++){var x=String(c[i]).toLowerCase().slice(0,2);if(x==='in'||x==='ms')x='id';if(x==='ua')x='uk';if(x==='be')x='ru';if(CONFIG.languages.indexOf(x)>-1)return x}
+ return 'en'}
+function apply(l){lang=CONFIG.languages.indexOf(l)>-1?l:'en';root.setAttribute('lang',lang);var s=$('#h_lang');if(s)s.value=lang;
+ $$('[data-i]').forEach(function(el){var v=t(el.getAttribute('data-i'));if(v&&el.innerHTML!==v)el.innerHTML=v});
+ var th=$('.thanks p');if(th)th.textContent=t('thanks')}
+var sel=$('#h_lang');if(sel)sel.addEventListener('change',function(){store('tf_lang',sel.value);apply(sel.value);track('thefaces_language',{to:sel.value})});
+apply(detect());
+
+/* ---------- hero slideshow ---------- */
+(function(){var imgs=$$('#h_slides img'),i=0;if(imgs.length<2)return;
+ setInterval(function(){if(document.hidden)return;imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].classList.add('on')},6000)})();
+
+/* ---------- founders' video: YouTube loads only when played (no cookies before) ---------- */
+(function(){var box=$('#h_fv');if(!box)return;var cur='en',tabs=$$('[data-fvl]');
+ function id(l){return CONFIG.videos[l]||''}
+ function poster(){box.style.backgroundImage="url('https://i.ytimg.com/vi/"+id(cur)+"/hqdefault.jpg')"}
+ function play(){var v=id(cur);box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v+'?autoplay=1&rel=0&modestbranding=1" title="THE FACES · founders" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';track('thefaces_video_play',{video_language:cur,video_id:v,placement:'hub_founders'})}
+ function set(l,go){cur=(l==='ru'||l==='uk')?'ru':'en';tabs.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-fvl')===cur?'true':'false')});if(go&&box.querySelector('iframe'))play();else poster()}
+ box.addEventListener('click',function(){if(!box.querySelector('iframe'))play()});
+ tabs.forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();set(b.getAttribute('data-fvl'),true)})});
+ set(lang,false);
+ if(sel)sel.addEventListener('change',function(){if(!box.querySelector('iframe'))set(sel.value,false)});
+})();
+
+/* ---------- reveal + counters ---------- */
+var items=$$('.rv');
+function count(el){var n=+el.getAttribute('data-count'),suf=el.getAttribute('data-suf')||'',st=null;function f(ts){if(!st)st=ts;var p=Math.min(1,(ts-st)/1200);el.textContent=Math.round(n*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});items.forEach(function(el){io.observe(el)});
+ var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){count(e.target);co.unobserve(e.target)}})},{threshold:.6});$$('[data-count]').forEach(function(el){co.observe(el)})}
+else items.forEach(function(el){el.classList.add('on')});
+
+/* ---------- chosen project: shown on the form and sent with the lead ---------- */
+var PROJ={proj_ub:['project_ubud','THE FACES Ubud'],proj_wt:['project_white_temple','The White Temple'],proj_wf:['project_waterfall','WATERFALL'],proj_fe:['project_sanur_five_elements','THE FACES SANUR'],route_3:['hotel_property','oH']};
+var project='';
+function showPick(){var p=$('#h_pick');if(!p)return;if(!project){p.hidden=true;return}
+ var n=PROJ[project][1];$('#h_pickN').textContent=n==='oH'?t('oH').replace(/[?¿]/g,''):n;p.hidden=false}
+var px=$('#h_pickX');if(px)px.addEventListener('click',function(){project='';showPick()});
+if(sel)sel.addEventListener('change',showPick);
+
+/* ---------- clicks ---------- */
+var lastGo='';
+root.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a'):null;if(!a)return;
+ if(a.hasAttribute('data-go')){lastGo=a.getAttribute('data-go');if(PROJ[lastGo]){project=lastGo;showPick()}track('thefaces_cta',{placement:lastGo})}
+ if(a.hasAttribute('data-cal'))track('thefaces_booking_click',{placement:a.getAttribute('data-cal'),link_url:CONFIG.calendar});
+ if(a.hasAttribute('data-wa'))track('thefaces_whatsapp_click',{placement:'hub_contact'});
+ if(a.hasAttribute('data-out'))track('thefaces_outbound_click',{placement:'hub_see',target:a.getAttribute('data-out')});
+ if(/\/(partnership-offer|the-faces-invest-waterfall|invest-in-a-spa-in-sanur|invest-in-an-operating-spa)/.test(a.href))track('thefaces_project_click',{link_url:a.href})},true);
+
+/* ---------- Forminator 703: move the site-wide copy of the form here, then track the real conversion ---------- */
+function findForm(){return document.querySelector('#tf-form-703-src form.forminator-custom-form')||document.querySelector('form.forminator-custom-form[data-form-id="'+CONFIG.forminatorId+'"]')||document.querySelector('#forminator-module-'+CONFIG.forminatorId)}
+function fEl(f,key){var n=CONFIG.fields[key]||CONFIG.hidden[key];if(!n||!f)return null;return f.querySelector('[name="'+n+'"]')||f.querySelector('[name^="'+n+'-"]')}
+function fVal(f,key){var el=fEl(f,key);if(!el)return '';
+ if(el.type==='radio'||el.type==='checkbox'){var c=f.querySelector('[name="'+el.name+'"]:checked');return c?c.value:''}
+ if(key==='name'){if(el.name!==CONFIG.fields.name)return [].map.call(f.querySelectorAll('[name^="'+CONFIG.fields.name+'-"]'),function(x){return x.value}).join(' ').trim()}
+ return String(el.value||'').trim()}
+var pending=null,tries=0;
+var iv=setInterval(function(){var f=findForm();
+ if(f){clearInterval(iv);var slot=$('#tf1-form-slot');slot.innerHTML='';slot.appendChild(f);wire(f)}
+ else if(++tries>40){clearInterval(iv);var s=$('#tf1-form-slot');if(s)s.innerHTML='';var w=$('#tf1-form-wait');if(w)w.hidden=false;track('thefaces_form_missing',{form_id:CONFIG.forminatorId})}},250);
+function wire(f){
+ if(f.dataset.hubWired)return;f.dataset.hubWired='1';
+ f.addEventListener('focusin',function(){if(!f.dataset.hubStart){f.dataset.hubStart='1';track('thefaces_form_start',{form_id:CONFIG.forminatorId,placement:'hub',interest:project?PROJ[project][0]:'invest_hub'})}});
+ /* before Forminator sends: ignore empty attempts, fill the hidden fields, remember the values */
+ f.addEventListener('submit',function(){
+  var em=fVal(f,'email'),nm=fVal(f,'name');
+  if(!/^[^\s@<>"'()]+@[^\s@<>"'()]+\.[a-z]{2,}$/i.test(em)||nm.replace(/\s/g,'').length<2){track('thefaces_form_error',{field:!em?'email':'name'});return}
+  var id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
+  var interest=project?PROJ[project][0]:'invest_hub';
+  var hv={lead_id:id,language:lang,placement:'hub_'+(project||lastGo||'form'),page:location.href.split('#')[0].slice(0,250)};for(var k in attr)hv[k]=attr[k];
+  Object.keys(CONFIG.hidden).forEach(function(k){var el=fEl(f,k);if(el&&hv[k]!==undefined)el.value=hv[k]});
+  pending={lead_id:id,name:nm,email:em,phone:fVal(f,'phone'),country:fVal(f,'country'),budget:fVal(f,'budget'),interest:interest,hv:hv};
+ },true);
+ function done(){if(!pending)return;var d=pending;pending=null;
+  /* the conversion: Google Tag Manager trigger "generate_lead" → Google Ads conversion (transaction id = lead_id) */
+  track('generate_lead',{lead_id:d.lead_id,form_id:'forminator_'+CONFIG.forminatorId,lead_method:'forminator',interest:d.interest,budget:d.budget||'not_given',country:d.country||'',
+   form_language:lang,placement:d.hv.placement,page_path:location.pathname,value:CONFIG.leadValue,currency:'USD'});
+  /* the Google Sheet row */
+  if(/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(CONFIG.sheetUrl)){var F=CONFIG.fields,H=CONFIG.hidden,row={};
+   row[F.name]=d.name;row[F.email]=d.email;if(d.phone)row[F.phone]=d.phone;if(d.country)row[F.country]=d.country;if(d.budget)row[F.budget]=d.budget;
+   row['Interest']=d.interest;
+   Object.keys(H).forEach(function(k){if(d.hv[k]!==undefined)row[H[k]]=d.hv[k]});
+   try{fetch(CONFIG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams(row)})}catch(x){}}
+  var slot=$('#tf1-form-slot');if(slot&&!slot.querySelector('.thanks')){var th=document.createElement('div');th.className='thanks';
+   th.innerHTML='<p></p><a class="btn gold" target="_blank" rel="noopener" data-cal="after_lead"></a>';th.querySelector('p').textContent=t('thanks');
+   var a=th.querySelector('a');a.href=CONFIG.calendar;a.innerHTML=t('book');slot.appendChild(th)}
+ }
+ if(window.jQuery){var $j=window.jQuery;$j(document).on('forminator:form:submit:success',function(e){if(e.target===f||$j(f).is(e.target)||$j(e.target).closest(f).length)done()});
+  $j(document).on('forminator:form:submit:failed',function(e){if(e.target===f||$j(f).is(e.target)){if(pending)track('thefaces_form_fail',{form_id:CONFIG.forminatorId});pending=null}})}
+ /* fallback: Forminator shows its success message inside the form */
+ try{new MutationObserver(function(){if(pending&&f.querySelector('.forminator-response-message.forminator-success,.forminator-success'))done()}).observe(f,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
+}
+})();
+</script>

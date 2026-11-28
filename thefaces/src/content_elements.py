@@ -1,0 +1,61 @@
+# The five element programs as the founders describe them (stories of @5 ELEMENTS, 20 February).
+# Each lasts 3 hours, IDR 1,800,000; Element of Love for two IDR 3,200,000.
+# Order: en, ru, es, de, th, id, ja, fr, uk. "inc" items are separated by " · ".
+
+ELEMENTS_FIX = {
+ "el-air": {
+  "t": ["Relax & reset", "Расслабление и перезагрузка", "Relajación y reinicio", "Entspannen & Neustart", "ผ่อนคลายและรีเซ็ต", "Relaksasi & reset", "リラックス＆リセット", "Détente et remise à zéro", "Розслаблення і перезавантаження"],
+  "inc": ["Myofascial face massage + oxygen infusion · Head spa (head, shoulders, neck & décolleté) · Sound therapy with singing bowls · Leg scrub + massage with herbal compresses",
+          "Миофасциальный массаж лица + кислородная инфузия · Хэд-спа (голова, плечи, шея и декольте) · Звукотерапия с поющими чашами · Скраб для ног + массаж травяными мешочками",
+          "Masaje facial miofascial + infusión de oxígeno · Head spa (cabeza, hombros, cuello y escote) · Terapia de sonido con cuencos tibetanos · Exfoliación de piernas + masaje con saquitos de hierbas",
+          "Myofasziale Gesichtsmassage + Sauerstoff-Infusion · Head Spa (Kopf, Schultern, Nacken & Dekolleté) · Klangtherapie mit Klangschalen · Beinpeeling + Massage mit Kräuterstempeln",
+          "นวดหน้าแบบไมโอฟาสเชียล + ออกซิเจนอินฟิวชัน · เฮดสปา (ศีรษะ ไหล่ คอ และเนินอก) · ซาวด์เธอราพีด้วยขันร้องเพลง · สครับขา + นวดด้วยลูกประคบสมุนไพร",
+          "Pijat wajah miofasial + infus oksigen · Head spa (kepala, bahu, leher & dekolete) · Terapi suara dengan singing bowl · Lulur kaki + pijat dengan kompres herbal",
+          "筋膜フェイスマッサージ＋酸素インフュージョン · ヘッドスパ（頭・肩・首・デコルテ） · シンギングボウルのサウンドセラピー · 脚のスクラブ＋ハーブボールマッサージ",
+          "Massage myofascial du visage + infusion d'oxygène · Head spa (tête, épaules, nuque et décolleté) · Sonothérapie aux bols chantants · Gommage des jambes + massage aux pochons d'herbes",
+          "Міофасціальний масаж обличчя + киснева інфузія · Хед-спа (голова, плечі, шия та декольте) · Звукотерапія зі співочими чашами · Скраб для ніг + масаж трав'яними мішечками"]},
+ "el-fire": {
+  "t": ["Energy & restoration", "Энергия и восстановление", "Energía y restauración", "Energie & Regeneration", "พลังงานและการฟื้นฟู", "Energi & pemulihan", "エナジー＆リストレーション", "Énergie et régénération", "Енергія і відновлення"],
+  "inc": ["Ayurvedic head massage with ear candles · Fire massage to release tension and restore energy flow · Sculptural face, neck & décolleté massage · Radiant “fiery” mask + relaxing hand massage",
+          "Аюрведический массаж головы с ушными свечами · Огненный массаж, снимающий напряжение и восстанавливающий поток энергии · Скульптурный массаж лица, шеи и декольте · Сияющая «огненная» маска + расслабляющий массаж рук",
+          "Masaje ayurvédico de cabeza con velas de oído · Masaje de fuego para liberar tensión y restaurar el flujo de energía · Masaje escultural de rostro, cuello y escote · Mascarilla «de fuego» iluminadora + masaje relajante de manos",
+          "Ayurvedische Kopfmassage mit Ohrkerzen · Feuermassage, die Spannungen löst und den Energiefluss wiederherstellt · Skulpturale Massage von Gesicht, Hals & Dekolleté · Strahlende „Feuer“-Maske + entspannende Handmassage",
+          "นวดศีรษะแบบอายุรเวทพร้อมเทียนหู · นวดไฟเพื่อคลายความตึงและฟื้นการไหลของพลังงาน · นวดปั้นรูปหน้า คอ และเนินอก · มาสก์ “ไฟ” เพื่อผิวเปล่งปลั่ง + นวดมือผ่อนคลาย",
+          "Pijat kepala Ayurveda dengan lilin telinga · Pijat api untuk melepas ketegangan dan memulihkan aliran energi · Pijat sculptural wajah, leher & dekolete · Masker “api” yang mencerahkan + pijat tangan yang menenangkan",
+          "イヤーキャンドルを使ったアーユルヴェーダ式ヘッドマッサージ · 緊張をほどきエネルギーの流れを整えるファイヤーマッサージ · 顔・首・デコルテの造形マッサージ · 輝きを与える「ファイヤー」マスク＋リラックスハンドマッサージ",
+          "Massage ayurvédique de la tête avec bougies d'oreille · Massage du feu pour libérer les tensions et rétablir le flux d'énergie · Massage sculptant du visage, du cou et du décolleté · Masque « de feu » éclat + massage relaxant des mains",
+          "Аюрведичний масаж голови з вушними свічками · Вогняний масаж, що знімає напругу та відновлює потік енергії · Скульптурний масаж обличчя, шиї та декольте · Сяйна «вогняна» маска + розслаблювальний масаж рук"]},
+ "el-water": {
+  "t": ["Purification & renewal", "Очищение и обновление", "Purificación y renovación", "Reinigung & Erneuerung", "การชำระล้างและการฟื้นฟู", "Pemurnian & pembaruan", "ピュリフィケーション＆リニューアル", "Purification et renouveau", "Очищення і оновлення"],
+  "inc": ["Buccal face massage + hydrating mask · Head spa (head, shoulders, neck & décolleté) · Leg massage with seaweed wrap to reduce fatigue and improve circulation",
+          "Буккальный массаж лица + увлажняющая маска · Хэд-спа (голова, плечи, шея и декольте) · Массаж ног с обёртыванием водорослями — снимает усталость и улучшает кровообращение",
+          "Masaje facial bucal + mascarilla hidratante · Head spa (cabeza, hombros, cuello y escote) · Masaje de piernas con envoltura de algas para reducir el cansancio y mejorar la circulación",
+          "Bukkale Gesichtsmassage + feuchtigkeitsspendende Maske · Head Spa (Kopf, Schultern, Nacken & Dekolleté) · Beinmassage mit Algenwickel gegen Müdigkeit und für bessere Durchblutung",
+          "นวดหน้าแบบบัคคัล + มาสก์เติมความชุ่มชื้น · เฮดสปา (ศีรษะ ไหล่ คอ และเนินอก) · นวดขาพร้อมห่อสาหร่าย ลดความเมื่อยล้าและช่วยการไหลเวียน",
+          "Pijat wajah bukal + masker pelembap · Head spa (kepala, bahu, leher & dekolete) · Pijat kaki dengan bungkus rumput laut untuk mengurangi lelah dan melancarkan sirkulasi",
+          "バッカルフェイスマッサージ＋保湿マスク · ヘッドスパ（頭・肩・首・デコルテ） · 海藻ラップ付きのレッグマッサージ（疲れを和らげ、巡りを良くします）",
+          "Massage buccal du visage + masque hydratant · Head spa (tête, épaules, nuque et décolleté) · Massage des jambes avec enveloppement d'algues contre la fatigue et pour la circulation",
+          "Букальний масаж обличчя + зволожувальна маска · Хед-спа (голова, плечі, шия та декольте) · Масаж ніг з обгортанням водоростями — знімає втому й покращує кровообіг"]},
+ "el-earth": {
+  "t": ["Inner balance & restoration", "Внутренний баланс и восстановление", "Equilibrio interior y restauración", "Inneres Gleichgewicht & Regeneration", "สมดุลภายในและการฟื้นฟู", "Keseimbangan batin & pemulihan", "インナーバランス＆リストレーション", "Équilibre intérieur et régénération", "Внутрішній баланс і відновлення"],
+  "inc": ["Myofascial face massage for tone and contour · Collagen facial with deep cleansing + hand care · Leg massage with warm herbal compresses & Balinese boreh wrap · Head, neck & décolleté massage for complete relaxation",
+          "Миофасциальный массаж лица для тонуса и овала · Коллагеновый уход с глубоким очищением + уход за руками · Массаж ног тёплыми травяными мешочками и балийское обёртывание борех · Массаж головы, шеи и декольте для полного расслабления",
+          "Masaje facial miofascial para tono y contorno · Facial de colágeno con limpieza profunda + cuidado de manos · Masaje de piernas con saquitos de hierbas calientes y envoltura balinesa boreh · Masaje de cabeza, cuello y escote para una relajación completa",
+          "Myofasziale Gesichtsmassage für Tonus und Kontur · Kollagen-Gesichtspflege mit Tiefenreinigung + Handpflege · Beinmassage mit warmen Kräuterstempeln & balinesischem Boreh-Wickel · Massage von Kopf, Nacken & Dekolleté für vollständige Entspannung",
+          "นวดหน้าแบบไมโอฟาสเชียลเพื่อความกระชับและรูปหน้า · ทรีตเมนต์คอลลาเจนพร้อมทำความสะอาดล้ำลึก + ดูแลมือ · นวดขาด้วยลูกประคบสมุนไพรอุ่นและพอกโบเรห์แบบบาหลี · นวดศีรษะ คอ และเนินอก เพื่อการผ่อนคลายเต็มที่",
+          "Pijat wajah miofasial untuk tonus dan kontur · Perawatan kolagen dengan pembersihan mendalam + perawatan tangan · Pijat kaki dengan kompres herbal hangat & balutan boreh Bali · Pijat kepala, leher & dekolete untuk relaksasi penuh",
+          "ハリとフェイスラインのための筋膜フェイスマッサージ · ディープクレンジング付きコラーゲンフェイシャル＋ハンドケア · 温かいハーブボールのレッグマッサージ＆バリ伝統のボレラップ · 頭・首・デコルテのマッサージで深いリラックスへ",
+          "Massage myofascial du visage pour le tonus et l'ovale · Soin collagène avec nettoyage en profondeur + soin des mains · Massage des jambes aux pochons d'herbes chauds et enveloppement balinais boreh · Massage de la tête, du cou et du décolleté pour une détente complète",
+          "Міофасціальний масаж обличчя для тонусу та овалу · Колагеновий догляд із глибоким очищенням + догляд за руками · Масаж ніг теплими трав'яними мішечками та балійське обгортання борех · Масаж голови, шиї та декольте для повного розслаблення"]},
+ "el-love": {
+  "t": ["Romance & self-care", "Романтика и забота о себе", "Romance y autocuidado", "Romantik & Selbstfürsorge", "โรแมนซ์และการดูแลตัวเอง", "Romansa & merawat diri", "ロマンス＆セルフケア", "Romance et soin de soi", "Романтика і турбота про себе"],
+  "inc": ["Sound therapy with singing bowls · Signature facial massage (5 rejuvenating techniques) · Collagen facial for glow & elasticity · Head spa with neck & décolleté massage and herbal care",
+          "Звукотерапия с поющими чашами · Авторский массаж лица (5 омолаживающих техник) · Коллагеновый уход для сияния и упругости · Хэд-спа с массажем шеи и декольте и травяным уходом",
+          "Terapia de sonido con cuencos tibetanos · Masaje facial de autor (5 técnicas rejuvenecedoras) · Facial de colágeno para luminosidad y elasticidad · Head spa con masaje de cuello y escote y cuidado con hierbas",
+          "Klangtherapie mit Klangschalen · Signature-Gesichtsmassage (5 verjüngende Techniken) · Kollagen-Gesichtspflege für Glow & Elastizität · Head Spa mit Nacken- & Dekolletémassage und Kräuterpflege",
+          "ซาวด์เธอราพีด้วยขันร้องเพลง · นวดหน้าซิกเนเจอร์ (5 เทคนิคฟื้นฟูความอ่อนเยาว์) · ทรีตเมนต์คอลลาเจนเพื่อผิวเปล่งปลั่งและยืดหยุ่น · เฮดสปาพร้อมนวดคอและเนินอก และการดูแลด้วยสมุนไพร",
+          "Terapi suara dengan singing bowl · Pijat wajah signature (5 teknik peremajaan) · Perawatan kolagen untuk kilau & elastisitas · Head spa dengan pijat leher & dekolete serta perawatan herbal",
+          "シンギングボウルのサウンドセラピー · シグネチャーフェイスマッサージ（5つの若返りテクニック） · 輝きと弾力のためのコラーゲンフェイシャル · 首・デコルテマッサージとハーブケア付きのヘッドスパ",
+          "Sonothérapie aux bols chantants · Massage signature du visage (5 techniques rajeunissantes) · Soin collagène pour l'éclat et l'élasticité · Head spa avec massage du cou et du décolleté et soin aux plantes",
+          "Звукотерапія зі співочими чашами · Авторський масаж обличчя (5 омолоджувальних технік) · Колагеновий догляд для сяйва та пружності · Хед-спа з масажем шиї та декольте і трав'яним доглядом"]},
+}

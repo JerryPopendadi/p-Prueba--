@@ -1,0 +1,632 @@
+{
+ "en": {
+  "home": {
+   "title": "The Faces Spa Bali · Five-element day spa in Ubud & Sanur",
+   "desc": "A day spa in Ubud and Sanur built around five elements and love: signature rituals, face and head treatments, gift certificates. Open prices and online booking."
+  },
+  "menu": {
+   "title": "Spa menu & prices · The Faces Ubud and Sanur, Bali",
+   "desc": "56 treatments with duration and price in IDR: face massage, head spa, cleansing, body, packages and rituals for couples. Book online."
+  },
+  "couples-spa": {
+   "title": "Couples spa in Bali · Rituals for two & honeymoon in Ubud, Sanur",
+   "desc": "Spa rituals for couples in Bali: Element of Love for a couple, Sacred Eternal Love and Sacred Honeymoon in Sanur. Three-hour rituals for two."
+  },
+  "body-massage": {
+   "title": "Body massage in Ubud and Sanur · Reflexology & fire massage | The Faces",
+   "desc": "Full body massage, fire massage, reflexology and lymphatic leg massage in Bali from IDR 300,000. Book online in Ubud or Sanur."
+  },
+  "skin-care": {
+   "title": "Facial cleansing & skin care in Bali · The Faces Ubud, Sanur",
+   "desc": "Professional facial cleansing in Bali: atraumatic, ultrasonic, vacuum and combination cleansing, oxygen pen and cryomassage from IDR 900,000."
+  },
+  "head-spa": {
+   "title": "Head spa in Bali · Shirodhara & vegan hair spa in Ubud, Sanur",
+   "desc": "Vegan head spa, Shirodhara and Ayurvedic head massage in Ubud and Sanur from IDR 750,000. Deep relaxation, better sleep and healthy, shiny hair."
+  },
+  "face-massage": {
+   "title": "Face massage in Bali · Myofascial, sculptural & gua sha | The Faces",
+   "desc": "Hands-on face massage in Ubud and Sanur: myofascial, sculptural, buccal, gua sha and signature techniques from IDR 750,000. Natural lifting without surgery."
+  },
+  "five-elements": {
+   "title": "Five-element spa rituals in Bali: air, fire, water, earth, love",
+   "desc": "Three-hour signature programs for stress, fatigue, detox, grounding and love. Choose by how you feel. IDR 1,800,000 in Ubud and Sanur."
+  },
+  "ubud": {
+   "title": "Spa in Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Our Ubud salon on Jl. Raya Lungsiakan, Kedewatan, open daily 10:00–22:00. Rituals, kids hair spa and men's programs. WhatsApp +62 822 6699 9965 or book online."
+  },
+  "sanur": {
+   "title": "Spa in Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Our Sanur salon on Jl. Danau Buyan 34a, open daily 10:00–20:00. Hydrolift, Sacred Honeymoon and four-hands treatments. WhatsApp +62 813 3770 9190 or book online."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Founders of The Faces Spa",
+   "desc": "20+ years in beauty and spa, salons in Europe and Bali, and the five-elements concept. The story of The Faces and the people behind it."
+  },
+  "gift-certificates": {
+   "title": "Spa gift certificates in Bali with bonus · The Faces",
+   "desc": "Give a ritual and receive more: certificates from IDR 1,200,000 with up to 25% bonus. Valid in Ubud and Sanur."
+  },
+  "partners": {
+   "title": "Partner with The Faces · Spa franchise & projects in Bali",
+   "desc": "Four spa projects in Bali open to partners, franchise and spa-in-hotel formats, and careers at The Faces."
+  },
+  "journal": {
+   "title": "Journal · Spa guides, rituals and slow beauty in Bali | The Faces",
+   "desc": "Guides to our treatments, skin care and slow beauty in Bali, from the team of The Faces Spa."
+  },
+  "certificates": {
+   "title": "Registered trademark & copyright · THE FACES Five Elements Concept",
+   "desc": "THE FACES trademark (IDM001282706) and the Five Elements Concept copyright (000638738), registered in the Republic of Indonesia."
+  },
+  "privacy": {
+   "title": "Privacy policy · THE FACES Spa Bali",
+   "desc": "How THE FACES Spa in Ubud and Sanur handles your personal data, cookies and bookings, and how to exercise your rights."
+  },
+  "terms": {
+   "title": "Booking terms, cancellation & gift certificates · THE FACES Spa",
+   "desc": "Cancellation, rescheduling, terms of use and gift certificate terms of THE FACES Spa in Ubud and Sanur, Bali."
+  }
+ },
+ "ru": {
+  "home": {
+   "title": "The Faces Spa Бали · спа пяти стихий в Убуде и Сануре",
+   "desc": "Спа в Убуде и Сануре, построенное на пяти стихиях и любви: авторские ритуалы, уход за лицом и головой, подарочные сертификаты. Открытые цены и онлайн-запись."
+  },
+  "menu": {
+   "title": "Меню и цены спа · The Faces Убуд и Санур, Бали",
+   "desc": "56 процедур с длительностью и ценой в IDR: массаж лица, хэд-спа, чистки, тело, пакеты и ритуалы для пар. Онлайн-запись."
+  },
+  "couples-spa": {
+   "title": "Спа для пар на Бали · ритуалы для двоих и медовый месяц в Убуде, Сануре",
+   "desc": "Спа-ритуалы для пар на Бали: Element of Love for a couple, Sacred Eternal Love и Sacred Honeymoon в Сануре. Трёхчасовые ритуалы для двоих."
+  },
+  "body-massage": {
+   "title": "Массаж тела в Убуде и Сануре · рефлексотерапия и огненный массаж | The Faces",
+   "desc": "Массаж всего тела, огненный массаж, рефлексотерапия и лимфодренаж ног на Бали от 300 000 IDR. Онлайн-запись в Убуде и Сануре."
+  },
+  "skin-care": {
+   "title": "Чистка лица и уход за кожей на Бали · The Faces Убуд, Санур",
+   "desc": "Профессиональная чистка лица на Бали: атравматическая, ультразвуковая, вакуумная и комбинированная, кислородная ручка и криомассаж от 900 000 IDR."
+  },
+  "head-spa": {
+   "title": "Хэд-спа на Бали · Широдхара и веган хэд-спа в Убуде, Сануре",
+   "desc": "Веганский хэд-спа, Широдхара и аюрведический массаж головы в Убуде и Сануре от 750 000 IDR. Глубокое расслабление, лучший сон и здоровые блестящие волосы."
+  },
+  "face-massage": {
+   "title": "Массаж лица на Бали · миофасциальный, скульптурный, гуаша | The Faces",
+   "desc": "Ручной массаж лица в Убуде и Сануре: миофасциальный, скульптурный, буккальный, гуаша и авторские техники от 750 000 IDR. Естественный лифтинг без хирургии."
+  },
+  "five-elements": {
+   "title": "Ритуалы пяти стихий на Бали: воздух, огонь, вода, земля, любовь",
+   "desc": "Трёхчасовые авторские программы от стресса, усталости, для детокса, заземления и любви. Выбирайте по состоянию. 1 800 000 IDR в Убуде и Сануре."
+  },
+  "ubud": {
+   "title": "Спа в Убуде, Бали · The Faces Spa Ubud (Кедеватан)",
+   "desc": "Наш салон в Убуде на Jl. Raya Lungsiakan, Кедеватан, ежедневно 10:00–22:00. Ритуалы, детский хэд-спа и мужские программы. WhatsApp +62 822 6699 9965 или онлайн-запись."
+  },
+  "sanur": {
+   "title": "Спа в Сануре, Бали · The Faces Spa Sanur",
+   "desc": "Наш салон в Сануре на Jl. Danau Buyan 34a, ежедневно 10:00–20:00. Гидролифтинг, Sacred Honeymoon и массаж в четыре руки. WhatsApp +62 813 3770 9190 или онлайн-запись."
+  },
+  "founders": {
+   "title": "Анна и Евгений Дубинины · основатели The Faces",
+   "desc": "20+ лет в бьюти и спа, салоны в Европе и на Бали и концепция пяти стихий. История The Faces и людей, которые её создали."
+  },
+  "gift-certificates": {
+   "title": "Подарочные сертификаты в спа на Бали с бонусом · The Faces",
+   "desc": "Дарите ритуал и получайте больше: сертификаты от 1 200 000 IDR с бонусом до 25 %. Действуют в Убуде и Сануре."
+  },
+  "partners": {
+   "title": "Партнёрство с The Faces · франшиза и спа-проекты на Бали",
+   "desc": "Четыре спа-проекта на Бали для партнёров, франшиза и спа в отелях, а также вакансии в The Faces."
+  },
+  "journal": {
+   "title": "Журнал · гиды по спа, ритуалам и медленной красоте на Бали | The Faces",
+   "desc": "Гиды по процедурам, уходу за кожей и медленной красоте на Бали от команды The Faces."
+  },
+  "certificates": {
+   "title": "Товарный знак и авторское право · концепция THE FACES «Пять стихий»",
+   "desc": "Товарный знак THE FACES (IDM001282706) и авторское право на концепцию «Пять стихий» (000638738), зарегистрированные в Индонезии."
+  },
+  "privacy": {
+   "title": "Политика конфиденциальности · THE FACES Spa Бали",
+   "desc": "Как THE FACES Spa в Убуде и Сануре обрабатывает персональные данные, cookie и записи и как реализовать свои права."
+  },
+  "terms": {
+   "title": "Условия записи, отмена и сертификаты · THE FACES Spa",
+   "desc": "Отмена, перенос, условия использования и правила подарочных сертификатов THE FACES Spa в Убуде и Сануре."
+  }
+ },
+ "es": {
+  "home": {
+   "title": "The Faces Spa Bali · Day spa de los cinco elementos en Ubud y Sanur",
+   "desc": "Un day spa en Ubud y Sanur basado en los cinco elementos y el amor: rituales de autor, tratamientos de rostro y cabeza, certificados regalo. Precios a la vista y reserva online."
+  },
+  "menu": {
+   "title": "Menú y precios del spa · The Faces Ubud y Sanur, Bali",
+   "desc": "56 tratamientos con duración y precio en IDR: masaje facial, head spa, limpiezas, cuerpo, paquetes y rituales en pareja. Reserva online."
+  },
+  "couples-spa": {
+   "title": "Spa en pareja en Bali · Rituales para dos y luna de miel en Ubud, Sanur",
+   "desc": "Rituales de spa para parejas en Bali: Element of Love for a couple, Sacred Eternal Love y Sacred Honeymoon en Sanur. Rituales de tres horas para dos."
+  },
+  "body-massage": {
+   "title": "Masaje corporal en Ubud y Sanur · Reflexología y masaje de fuego | The Faces",
+   "desc": "Masaje de cuerpo completo, masaje de fuego, reflexología y drenaje linfático de piernas en Bali desde 300.000 IDR. Reserva online en Ubud o Sanur."
+  },
+  "skin-care": {
+   "title": "Limpieza facial y cuidado de la piel en Bali · The Faces Ubud, Sanur",
+   "desc": "Limpieza facial profesional en Bali: atraumática, ultrasónica, por vacío y combinada, oxygen pen y criomasaje desde 900.000 IDR."
+  },
+  "head-spa": {
+   "title": "Head spa en Bali · Shirodhara y head spa vegano en Ubud, Sanur",
+   "desc": "Head spa vegano, Shirodhara y masaje ayurvédico de cabeza en Ubud y Sanur desde 750.000 IDR. Relajación profunda, mejor descanso y cabello sano y brillante."
+  },
+  "face-massage": {
+   "title": "Masaje facial en Bali · Miofascial, escultural y gua sha | The Faces",
+   "desc": "Masaje facial manual en Ubud y Sanur: miofascial, escultural, bucal, gua sha y técnicas de autor desde 750.000 IDR. Lifting natural sin cirugía."
+  },
+  "five-elements": {
+   "title": "Rituales de los cinco elementos en Bali: aire, fuego, agua, tierra, amor",
+   "desc": "Programas de autor de tres horas para el estrés, el cansancio, la depuración, el arraigo y el amor. Elige según cómo te sientes. 1.800.000 IDR."
+  },
+  "ubud": {
+   "title": "Spa en Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Nuestro salón de Ubud en Jl. Raya Lungsiakan, Kedewatan, abierto todos los días de 10:00 a 22:00. Rituales, head spa infantil y programas para hombres. WhatsApp +62 822 6699 9965 o reserva online."
+  },
+  "sanur": {
+   "title": "Spa en Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Nuestro salón de Sanur en Jl. Danau Buyan 34a, abierto todos los días de 10:00 a 20:00. Hydrolift, Sacred Honeymoon y tratamientos a cuatro manos. WhatsApp +62 813 3770 9190 o reserva online."
+  },
+  "founders": {
+   "title": "Anna y Evgenii Dubinin · Fundadores de The Faces Spa",
+   "desc": "Más de 20 años en belleza y spa, salones en Europa y Bali y el concepto de los cinco elementos. La historia de The Faces y sus fundadores."
+  },
+  "gift-certificates": {
+   "title": "Certificados regalo de spa en Bali con bonus · The Faces",
+   "desc": "Regala un ritual y recibe más: certificados desde 1.200.000 IDR con hasta un 25 % de bonus. Válidos en Ubud y Sanur."
+  },
+  "partners": {
+   "title": "Partners de The Faces · Franquicia y proyectos de spa en Bali",
+   "desc": "Cuatro proyectos de spa en Bali abiertos a socios, franquicia y spa en hotel, y empleo en The Faces."
+  },
+  "journal": {
+   "title": "Blog · Guías de spa, rituales y belleza sin prisa en Bali | The Faces",
+   "desc": "Guías sobre tratamientos, cuidado de la piel y belleza sin prisa en Bali, del equipo de The Faces."
+  },
+  "certificates": {
+   "title": "Marca registrada y derechos de autor · Concepto Cinco Elementos THE FACES",
+   "desc": "Marca THE FACES (IDM001282706) y derechos de autor del concepto Cinco Elementos (000638738), registrados en la República de Indonesia."
+  },
+  "privacy": {
+   "title": "Política de privacidad · THE FACES Spa Bali",
+   "desc": "Cómo THE FACES Spa en Ubud y Sanur trata tus datos personales, las cookies y las reservas, y cómo ejercer tus derechos."
+  },
+  "terms": {
+   "title": "Condiciones de reserva, cancelación y certificados · THE FACES Spa",
+   "desc": "Cancelación, cambios de cita, condiciones de uso y de los certificados regalo de THE FACES Spa en Ubud y Sanur."
+  }
+ },
+ "de": {
+  "home": {
+   "title": "The Faces Spa Bali · Day Spa der fünf Elemente in Ubud & Sanur",
+   "desc": "Ein Day Spa in Ubud und Sanur rund um fünf Elemente und Liebe: Signature-Rituale, Gesichts- und Kopfbehandlungen, Gutscheine. Offene Preise, Online-Buchung."
+  },
+  "menu": {
+   "title": "Spa-Menü & Preise · The Faces Ubud und Sanur, Bali",
+   "desc": "56 Behandlungen mit Dauer und Preis in IDR: Gesichtsmassage, Head Spa, Reinigung, Körper, Pakete und Paarrituale. Online buchen."
+  },
+  "couples-spa": {
+   "title": "Spa für Paare auf Bali · Rituale zu zweit & Flitterwochen in Ubud, Sanur",
+   "desc": "Spa-Rituale für Paare auf Bali: Element of Love for a couple, Sacred Eternal Love und Sacred Honeymoon in Sanur. Dreistündige Rituale zu zweit."
+  },
+  "body-massage": {
+   "title": "Körpermassage in Ubud und Sanur · Reflexzonen & Feuermassage | The Faces",
+   "desc": "Ganzkörpermassage, Feuermassage, Reflexzonenmassage und lymphatische Beinmassage auf Bali ab 300.000 IDR. Online buchen in Ubud oder Sanur."
+  },
+  "skin-care": {
+   "title": "Gesichtsreinigung & Hautpflege auf Bali · The Faces Ubud, Sanur",
+   "desc": "Professionelle Gesichtsreinigung auf Bali: atraumatisch, Ultraschall, Vakuum und kombiniert, Oxygen Pen und Kryomassage ab 900.000 IDR."
+  },
+  "head-spa": {
+   "title": "Head Spa auf Bali · Shirodhara & veganes Hair Spa in Ubud, Sanur",
+   "desc": "Veganes Head Spa, Shirodhara und ayurvedische Kopfmassage in Ubud und Sanur ab 750.000 IDR. Tiefe Entspannung, besserer Schlaf, gesundes, glänzendes Haar."
+  },
+  "face-massage": {
+   "title": "Gesichtsmassage auf Bali · Myofaszial, skulpturierend & Gua Sha | The Faces",
+   "desc": "Manuelle Gesichtsmassage in Ubud und Sanur: myofaszial, skulpturierend, bukkal, Gua Sha und Signature-Techniken ab 750.000 IDR. Natürliches Lifting ohne OP."
+  },
+  "five-elements": {
+   "title": "Rituale der fünf Elemente auf Bali: Luft, Feuer, Wasser, Erde, Liebe",
+   "desc": "Dreistündige Signature-Programme gegen Stress und Müdigkeit, für Detox, Erdung und Liebe. Wählen Sie nach Befinden. 1.800.000 IDR."
+  },
+  "ubud": {
+   "title": "Spa in Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Unser Salon in Ubud, Jl. Raya Lungsiakan, Kedewatan, täglich 10:00–22:00. Rituale, Kinder-Head-Spa und Männerprogramme. WhatsApp +62 822 6699 9965 oder online buchen."
+  },
+  "sanur": {
+   "title": "Spa in Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Unser Salon in Sanur, Jl. Danau Buyan 34a, täglich 10:00–20:00. Hydrolift, Sacred Honeymoon und Vierhand-Behandlungen. WhatsApp +62 813 3770 9190 oder online buchen."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Gründer von The Faces Spa",
+   "desc": "Über 20 Jahre Beauty und Spa, Salons in Europa und auf Bali und das Fünf-Elemente-Konzept. Die Geschichte von The Faces und seinen Gründern."
+  },
+  "gift-certificates": {
+   "title": "Spa-Gutscheine auf Bali mit Bonus · The Faces",
+   "desc": "Ein Ritual schenken und mehr erhalten: Gutscheine ab 1.200.000 IDR mit bis zu 25 % Bonus. Gültig in Ubud und Sanur."
+  },
+  "partners": {
+   "title": "Partner von The Faces · Spa-Franchise & Projekte auf Bali",
+   "desc": "Vier Spa-Projekte auf Bali für Partner, Franchise- und Hotel-Spa-Formate sowie Jobs bei The Faces."
+  },
+  "journal": {
+   "title": "Journal · Spa-Ratgeber, Rituale und Slow Beauty auf Bali | The Faces",
+   "desc": "Ratgeber zu Behandlungen, Hautpflege und entschleunigter Schönheit auf Bali vom Team von The Faces."
+  },
+  "certificates": {
+   "title": "Eingetragene Marke & Urheberrecht · THE FACES Fünf-Elemente-Konzept",
+   "desc": "Marke THE FACES (IDM001282706) und Urheberrecht am Fünf-Elemente-Konzept (000638738), eingetragen in der Republik Indonesien."
+  },
+  "privacy": {
+   "title": "Datenschutzerklärung · THE FACES Spa Bali",
+   "desc": "Wie THE FACES Spa in Ubud und Sanur personenbezogene Daten, Cookies und Buchungen behandelt und wie Sie Ihre Rechte ausüben."
+  },
+  "terms": {
+   "title": "Buchungsbedingungen, Stornierung & Gutscheine · THE FACES Spa",
+   "desc": "Stornierung, Umbuchung, Nutzungsbedingungen und Gutscheinbedingungen von THE FACES Spa in Ubud und Sanur."
+  }
+ },
+ "th": {
+  "home": {
+   "title": "The Faces Spa บาหลี · เดย์สปาธาตุทั้งห้า อูบุดและซานูร์",
+   "desc": "เดย์สปาที่อูบุดและซานูร์ บนแนวคิดธาตุทั้งห้าและความรัก: พิธีกรรมซิกเนเจอร์ ทรีตเมนต์ใบหน้าและศีรษะ บัตรของขวัญ ราคาโปร่งใสและจองออนไลน์"
+  },
+  "menu": {
+   "title": "เมนูและราคาสปา · The Faces อูบุดและซานูร์ บาหลี",
+   "desc": "56 ทรีตเมนต์พร้อมเวลาและราคาเป็น IDR: นวดหน้า เฮดสปา ทำความสะอาดผิว ร่างกาย แพ็กเกจ และพิธีกรรมคู่รัก จองออนไลน์ได้เลย"
+  },
+  "couples-spa": {
+   "title": "สปาคู่รักในบาหลี · พิธีกรรมสำหรับสองคนและฮันนีมูน อูบุด ซานูร์",
+   "desc": "พิธีกรรมสปาสำหรับคู่รักในบาหลี: Element of Love for a couple, Sacred Eternal Love และ Sacred Honeymoon ที่ซานูร์ พิธีกรรมสามชั่วโมงสำหรับสองคน"
+  },
+  "body-massage": {
+   "title": "นวดตัวที่อูบุดและซานูร์ · กดจุดสะท้อนเท้าและนวดไฟ | The Faces",
+   "desc": "นวดทั้งตัว นวดไฟ กดจุดสะท้อนเท้า และนวดระบายน้ำเหลืองที่ขาในบาหลี เริ่มต้น 300,000 IDR จองออนไลน์ที่อูบุดหรือซานูร์"
+  },
+  "skin-care": {
+   "title": "ทำความสะอาดผิวหน้าและดูแลผิวในบาหลี · The Faces อูบุด ซานูร์",
+   "desc": "ทำความสะอาดผิวหน้าแบบมืออาชีพในบาหลี: แบบอ่อนโยน อัลตราโซนิก สุญญากาศ และแบบผสม ออกซิเจนเพน และไครโอมาสสาจ เริ่มต้น 900,000 IDR"
+  },
+  "head-spa": {
+   "title": "เฮดสปาในบาหลี · ชิโรธาราและแฮร์สปาวีแกน อูบุด ซานูร์",
+   "desc": "เฮดสปาวีแกน ชิโรธารา และนวดศีรษะอายุรเวท ที่อูบุดและซานูร์ เริ่มต้น 750,000 IDR ผ่อนคลายลึก นอนหลับดี ผมสุขภาพดีเงางาม"
+  },
+  "face-massage": {
+   "title": "นวดหน้าในบาหลี · ไมโอฟาสเชียล ปั้นหน้า และกัวซา | The Faces",
+   "desc": "นวดหน้าด้วยมือที่อูบุดและซานูร์: ไมโอฟาสเชียล ปั้นหน้า บัคคัล กัวซา และเทคนิคซิกเนเจอร์ เริ่มต้น 750,000 IDR ยกกระชับตามธรรมชาติโดยไม่ผ่าตัด"
+  },
+  "five-elements": {
+   "title": "พิธีกรรมธาตุทั้งห้าในบาหลี: ลม ไฟ น้ำ ดิน ความรัก",
+   "desc": "โปรแกรมซิกเนเจอร์สามชั่วโมง สำหรับความเครียด ความเหนื่อยล้า ดีท็อกซ์ การหยั่งราก และความรัก เลือกตามความรู้สึก 1,800,000 IDR"
+  },
+  "ubud": {
+   "title": "สปาในอูบุด บาหลี · The Faces Spa Ubud (เคเดวาตัน)",
+   "desc": "สาขาอูบุดที่ Jl. Raya Lungsiakan เคเดวาตัน เปิดทุกวัน 10:00–22:00 พิธีกรรม เฮดสปาเด็ก และโปรแกรมผู้ชาย WhatsApp +62 822 6699 9965 หรือจองออนไลน์"
+  },
+  "sanur": {
+   "title": "สปาในซานูร์ บาหลี · The Faces Spa Sanur",
+   "desc": "สาขาซานูร์ที่ Jl. Danau Buyan 34a เปิดทุกวัน 10:00–20:00 ไฮโดรลิฟต์ Sacred Honeymoon และทรีตเมนต์สี่มือ WhatsApp +62 813 3770 9190 หรือจองออนไลน์"
+  },
+  "founders": {
+   "title": "แอนนาและเยฟเกนี ดูบินิน · ผู้ก่อตั้ง The Faces",
+   "desc": "กว่า 20 ปีในวงการความงามและสปา สาขาในยุโรปและบาหลี และแนวคิดธาตุทั้งห้า เรื่องราวของ The Faces และผู้ก่อตั้ง"
+  },
+  "gift-certificates": {
+   "title": "บัตรของขวัญสปาในบาหลีพร้อมโบนัส · The Faces",
+   "desc": "มอบพิธีกรรมและรับมากกว่า: บัตรของขวัญเริ่มต้น 1,200,000 IDR พร้อมโบนัสสูงสุด 25% ใช้ได้ทั้งอูบุดและซานูร์"
+  },
+  "partners": {
+   "title": "ร่วมเป็นพันธมิตร The Faces · แฟรนไชส์และโครงการสปาในบาหลี",
+   "desc": "สี่โครงการสปาในบาหลีที่เปิดรับพันธมิตร แฟรนไชส์ สปาในโรงแรม และตำแหน่งงานที่ The Faces"
+  },
+  "journal": {
+   "title": "บทความ · คู่มือสปา พิธีกรรม และความงามแบบช้า ๆ ในบาหลี | The Faces",
+   "desc": "คู่มือทรีตเมนต์ การดูแลผิว และความงามแบบช้า ๆ ในบาหลี จากทีม The Faces"
+  },
+  "certificates": {
+   "title": "เครื่องหมายการค้าและลิขสิทธิ์ · แนวคิดธาตุทั้งห้า THE FACES",
+   "desc": "เครื่องหมายการค้า THE FACES (IDM001282706) และลิขสิทธิ์แนวคิดธาตุทั้งห้า (000638738) จดทะเบียนในสาธารณรัฐอินโดนีเซีย"
+  },
+  "privacy": {
+   "title": "นโยบายความเป็นส่วนตัว · THE FACES Spa บาหลี",
+   "desc": "THE FACES Spa ที่อูบุดและซานูร์จัดการข้อมูลส่วนบุคคล คุกกี้ และการจองอย่างไร และวิธีใช้สิทธิของคุณ"
+  },
+  "terms": {
+   "title": "เงื่อนไขการจอง การยกเลิก และบัตรของขวัญ · THE FACES Spa",
+   "desc": "การยกเลิก การเลื่อนนัด ข้อกำหนดการใช้งาน และเงื่อนไขบัตรของขวัญของ THE FACES Spa อูบุดและซานูร์"
+  }
+ },
+ "id": {
+  "home": {
+   "title": "The Faces Spa Bali · Day spa lima elemen di Ubud & Sanur",
+   "desc": "Day spa di Ubud dan Sanur berdasarkan lima elemen dan cinta: ritual signature, perawatan wajah dan kepala, voucher hadiah. Harga terbuka dan pemesanan online."
+  },
+  "menu": {
+   "title": "Menu & harga spa · The Faces Ubud dan Sanur, Bali",
+   "desc": "56 perawatan dengan durasi dan harga IDR: pijat wajah, head spa, pembersihan, tubuh, paket, dan ritual pasangan. Pesan online."
+  },
+  "couples-spa": {
+   "title": "Spa pasangan di Bali · Ritual berdua & bulan madu di Ubud, Sanur",
+   "desc": "Ritual spa untuk pasangan di Bali: Element of Love for a couple, Sacred Eternal Love, dan Sacred Honeymoon di Sanur. Ritual tiga jam untuk berdua."
+  },
+  "body-massage": {
+   "title": "Pijat tubuh di Ubud dan Sanur · Refleksi & pijat api | The Faces",
+   "desc": "Pijat seluruh tubuh, pijat api, refleksi, dan pijat limfatik kaki di Bali mulai IDR 300.000. Pesan online di Ubud atau Sanur."
+  },
+  "skin-care": {
+   "title": "Pembersihan wajah & perawatan kulit di Bali · The Faces Ubud, Sanur",
+   "desc": "Pembersihan wajah profesional di Bali: atraumatik, ultrasonik, vakum, dan kombinasi, oxygen pen, serta cryomassage mulai IDR 900.000."
+  },
+  "head-spa": {
+   "title": "Head spa di Bali · Shirodhara & hair spa vegan di Ubud, Sanur",
+   "desc": "Head spa vegan, Shirodhara, dan pijat kepala Ayurveda di Ubud dan Sanur mulai IDR 750.000. Relaksasi mendalam, tidur lebih nyenyak, rambut sehat berkilau."
+  },
+  "face-massage": {
+   "title": "Pijat wajah di Bali · Miofasial, sculptural & gua sha | The Faces",
+   "desc": "Pijat wajah manual di Ubud dan Sanur: miofasial, sculptural, bukal, gua sha, dan teknik signature mulai IDR 750.000. Lifting alami tanpa operasi."
+  },
+  "five-elements": {
+   "title": "Ritual lima elemen di Bali: udara, api, air, tanah, cinta",
+   "desc": "Program signature tiga jam untuk stres, lelah, detoks, membumi, dan cinta. Pilih sesuai perasaan Anda. IDR 1.800.000 di Ubud dan Sanur."
+  },
+  "ubud": {
+   "title": "Spa di Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Salon Ubud kami di Jl. Raya Lungsiakan, Kedewatan, buka setiap hari 10:00–22:00. Ritual, hair spa anak, dan program pria. WhatsApp +62 822 6699 9965 atau pesan online."
+  },
+  "sanur": {
+   "title": "Spa di Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Salon Sanur kami di Jl. Danau Buyan 34a, buka setiap hari 10:00–20:00. Hydrolift, Sacred Honeymoon, dan perawatan empat tangan. WhatsApp +62 813 3770 9190 atau pesan online."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Pendiri The Faces Spa",
+   "desc": "Lebih dari 20 tahun di kecantikan dan spa, salon di Eropa dan Bali, serta konsep lima elemen. Kisah The Faces dan para pendirinya."
+  },
+  "gift-certificates": {
+   "title": "Voucher hadiah spa di Bali dengan bonus · The Faces",
+   "desc": "Hadiahkan ritual dan dapatkan lebih: voucher mulai IDR 1.200.000 dengan bonus hingga 25%. Berlaku di Ubud dan Sanur."
+  },
+  "partners": {
+   "title": "Mitra The Faces · Waralaba & proyek spa di Bali",
+   "desc": "Empat proyek spa di Bali terbuka untuk mitra, waralaba, spa di hotel, serta karier di The Faces."
+  },
+  "journal": {
+   "title": "Jurnal · Panduan spa, ritual & slow beauty di Bali | The Faces",
+   "desc": "Panduan perawatan, perawatan kulit, dan kecantikan yang tenang di Bali dari tim The Faces."
+  },
+  "certificates": {
+   "title": "Merek terdaftar & hak cipta · Konsep Lima Elemen THE FACES",
+   "desc": "Merek THE FACES (IDM001282706) dan hak cipta Konsep Lima Elemen (000638738), terdaftar di Republik Indonesia."
+  },
+  "privacy": {
+   "title": "Kebijakan privasi · THE FACES Spa Bali",
+   "desc": "Cara THE FACES Spa di Ubud dan Sanur menangani data pribadi, cookie, dan pemesanan, serta cara menggunakan hak Anda."
+  },
+  "terms": {
+   "title": "Ketentuan pemesanan, pembatalan & voucher · THE FACES Spa",
+   "desc": "Pembatalan, penjadwalan ulang, ketentuan penggunaan, dan ketentuan voucher THE FACES Spa di Ubud dan Sanur."
+  }
+ },
+ "ja": {
+  "home": {
+   "title": "The Faces Spa バリ｜五元素のデイスパ（ウブド・サヌール）",
+   "desc": "五元素と愛をテーマにしたウブド・サヌールのデイスパ。シグネチャーリチュアル、フェイス・ヘッドの施術、ギフト券。料金公開・オンライン予約。"
+  },
+  "menu": {
+   "title": "スパメニューと料金｜The Faces ウブド・サヌール",
+   "desc": "全56メニューの所要時間と料金（IDR）：フェイシャル、ヘッドスパ、クレンジング、ボディ、パッケージ、カップル向けリチュアル。オンライン予約。"
+  },
+  "couples-spa": {
+   "title": "バリのカップルスパ｜ふたりのリチュアルとハネムーン（ウブド・サヌール）",
+   "desc": "バリのカップル向けスパリチュアル。Element of Love for a couple、Sacred Eternal Love、サヌール店のSacred Honeymoon。ふたりで過ごす3時間。"
+  },
+  "body-massage": {
+   "title": "ウブド・サヌールのボディマッサージ｜リフレクソロジーとファイアーマッサージ",
+   "desc": "全身マッサージ、ファイアーマッサージ、リフレクソロジー、脚のリンパドレナージュを300,000 IDRから。ウブド・サヌールでオンライン予約。"
+  },
+  "skin-care": {
+   "title": "バリのフェイシャルクレンジングとスキンケア｜The Faces",
+   "desc": "バリのプロのフェイシャルクレンジング。アトラウマティック、超音波、吸引、コンビネーション、オキシジェンペン、クライオマッサージを900,000 IDRから。"
+  },
+  "head-spa": {
+   "title": "バリのヘッドスパ｜シロダーラとヴィーガンヘアスパ（ウブド・サヌール）",
+   "desc": "ウブドとサヌールのヴィーガンヘッドスパ、シロダーラ、アーユルヴェーダヘッドマッサージを750,000 IDRから。深いリラックス、良い眠り、健やかな髪。"
+  },
+  "face-massage": {
+   "title": "バリのフェイシャルマッサージ｜筋膜・彫刻・かっさ | The Faces",
+   "desc": "ウブドとサヌールの手技フェイシャル。筋膜、彫刻、バッカル、かっさ、シグネチャー技術を750,000 IDRから。手術なしの自然なリフトアップ。"
+  },
+  "five-elements": {
+   "title": "バリの五元素リチュアル｜風・火・水・地・愛",
+   "desc": "ストレス、疲労、デトックス、グラウンディング、愛のための3時間のシグネチャープログラム。気分で選べます。1,800,000 IDR。"
+  },
+  "ubud": {
+   "title": "ウブドのスパ｜The Faces Spa ウブド店（クデワタン）",
+   "desc": "クデワタンのJl. Raya Lungsiakanにあるウブド店。毎日10:00–22:00。リチュアル、キッズヘッドスパ、メンズプログラム。WhatsApp +62 822 6699 9965またはオンライン予約。"
+  },
+  "sanur": {
+   "title": "サヌールのスパ｜The Faces Spa サヌール店",
+   "desc": "Jl. Danau Buyan 34aのサヌール店。毎日10:00–20:00。ハイドロリフト、Sacred Honeymoon、4ハンズ施術。WhatsApp +62 813 3770 9190またはオンライン予約。"
+  },
+  "founders": {
+   "title": "アンナ＆エフゲニー・ドゥビニン｜The Faces創業者",
+   "desc": "美容とスパで20年以上、ヨーロッパとバリでのサロン経営、そして五元素のコンセプト。The Facesと創業者の物語。"
+  },
+  "gift-certificates": {
+   "title": "バリのスパギフト券（ボーナス付き）｜The Faces",
+   "desc": "儀式を贈って、もっと受け取る。1,200,000 IDRから、最大25%のボーナス付き。ウブド・サヌール両店で利用可能。"
+  },
+  "partners": {
+   "title": "The Facesとの提携｜バリのスパ・フランチャイズとプロジェクト",
+   "desc": "パートナーを募集するバリの4つのスパプロジェクト、フランチャイズ、ホテル内スパ、そして採用情報。"
+  },
+  "journal": {
+   "title": "ジャーナル｜バリのスパガイド・リチュアル・スロービューティー",
+   "desc": "The Facesチームによる、施術ガイド、スキンケア、バリでのスロービューティー。"
+  },
+  "certificates": {
+   "title": "商標登録と著作権｜THE FACES 五元素コンセプト",
+   "desc": "インドネシア共和国で登録されたTHE FACES商標（IDM001282706）と五元素コンセプトの著作権（000638738）。"
+  },
+  "privacy": {
+   "title": "プライバシーポリシー｜THE FACES Spa バリ",
+   "desc": "ウブド・サヌールのTHE FACES Spaにおける個人情報、Cookie、予約の取り扱いと、お客様の権利について。"
+  },
+  "terms": {
+   "title": "予約条件・キャンセル・ギフト券｜THE FACES Spa",
+   "desc": "THE FACES Spa ウブド・サヌールのキャンセル、日時変更、利用規約、ギフト券規約。"
+  }
+ },
+ "fr": {
+  "home": {
+   "title": "The Faces Spa Bali · Day spa des cinq éléments à Ubud & Sanur",
+   "desc": "Un day spa à Ubud et Sanur fondé sur les cinq éléments et l'amour : rituels signature, soins du visage et de la tête, cartes cadeaux. Prix affichés, réservation en ligne."
+  },
+  "menu": {
+   "title": "Carte & tarifs du spa · The Faces Ubud et Sanur, Bali",
+   "desc": "56 soins avec durée et prix en IDR : massage du visage, head spa, nettoyages, corps, forfaits et rituels pour couples. Réservation en ligne."
+  },
+  "couples-spa": {
+   "title": "Spa en duo à Bali · Rituels à deux & lune de miel à Ubud, Sanur",
+   "desc": "Rituels spa pour couples à Bali : Element of Love for a couple, Sacred Eternal Love et Sacred Honeymoon à Sanur. Des rituels de trois heures à deux."
+  },
+  "body-massage": {
+   "title": "Massage du corps à Ubud et Sanur · Réflexologie & massage du feu | The Faces",
+   "desc": "Massage complet du corps, massage du feu, réflexologie et drainage lymphatique des jambes à Bali dès 300 000 IDR. Réservation en ligne à Ubud ou Sanur."
+  },
+  "skin-care": {
+   "title": "Nettoyage du visage & soins de la peau à Bali · The Faces Ubud, Sanur",
+   "desc": "Nettoyage du visage professionnel à Bali : atraumatique, ultrasons, aspiration et combiné, oxygen pen et cryomassage dès 900 000 IDR."
+  },
+  "head-spa": {
+   "title": "Head spa à Bali · Shirodhara & hair spa vegan à Ubud, Sanur",
+   "desc": "Head spa vegan, Shirodhara et massage ayurvédique de la tête à Ubud et Sanur dès 750 000 IDR. Détente profonde, meilleur sommeil, cheveux sains et brillants."
+  },
+  "face-massage": {
+   "title": "Massage du visage à Bali · Myofascial, sculptural & gua sha | The Faces",
+   "desc": "Massage du visage manuel à Ubud et Sanur : myofascial, sculptural, buccal, gua sha et techniques signature dès 750 000 IDR. Lifting naturel sans chirurgie."
+  },
+  "five-elements": {
+   "title": "Rituels des cinq éléments à Bali : air, feu, eau, terre, amour",
+   "desc": "Programmes signature de trois heures contre le stress et la fatigue, pour la détox, l'ancrage et l'amour. Choisissez selon votre humeur. 1 800 000 IDR."
+  },
+  "ubud": {
+   "title": "Spa à Ubud, Bali · The Faces Spa Ubud (Kedewatan)",
+   "desc": "Notre salon d'Ubud, Jl. Raya Lungsiakan, Kedewatan, ouvert tous les jours de 10 h à 22 h. Rituels, hair spa enfant et programmes pour hommes. WhatsApp +62 822 6699 9965 ou réservation en ligne."
+  },
+  "sanur": {
+   "title": "Spa à Sanur, Bali · The Faces Spa Sanur",
+   "desc": "Notre salon de Sanur, Jl. Danau Buyan 34a, ouvert tous les jours de 10 h à 20 h. Hydrolift, Sacred Honeymoon et soins à quatre mains. WhatsApp +62 813 3770 9190 ou réservation en ligne."
+  },
+  "founders": {
+   "title": "Anna & Evgenii Dubinin · Fondateurs de The Faces Spa",
+   "desc": "Plus de 20 ans de beauté et de spa, des salons en Europe et à Bali, et le concept des cinq éléments. L'histoire de The Faces et de ses fondateurs."
+  },
+  "gift-certificates": {
+   "title": "Cartes cadeaux spa à Bali avec bonus · The Faces",
+   "desc": "Offrez un rituel et recevez plus : cartes dès 1 200 000 IDR avec jusqu'à 25 % de bonus. Valables à Ubud et Sanur."
+  },
+  "partners": {
+   "title": "Partenariat The Faces · Franchise & projets spa à Bali",
+   "desc": "Quatre projets de spa à Bali ouverts aux partenaires, franchise et spa d'hôtel, et recrutement chez The Faces."
+  },
+  "journal": {
+   "title": "Journal · Guides spa, rituels et beauté lente à Bali | The Faces",
+   "desc": "Guides de nos soins, de la peau et de la beauté sans hâte à Bali, par l'équipe de The Faces Spa."
+  },
+  "certificates": {
+   "title": "Marque déposée & droit d'auteur · Concept des Cinq Éléments THE FACES",
+   "desc": "Marque THE FACES (IDM001282706) et droit d'auteur du concept des Cinq Éléments (000638738), enregistrés en République d'Indonésie."
+  },
+  "privacy": {
+   "title": "Politique de confidentialité · THE FACES Spa Bali",
+   "desc": "Comment THE FACES Spa à Ubud et Sanur traite vos données personnelles, les cookies et les réservations, et comment exercer vos droits."
+  },
+  "terms": {
+   "title": "Conditions de réservation, annulation & cartes cadeaux · THE FACES Spa",
+   "desc": "Annulation, report, conditions d'utilisation et conditions des cartes cadeaux de THE FACES Spa à Ubud et Sanur."
+  }
+ },
+ "uk": {
+  "home": {
+   "title": "The Faces Spa Балі · спа п'яти стихій в Убуді та Сануре",
+   "desc": "Спа в Убуді та Сануре, побудоване на п'яти стихіях і любові: авторські ритуали, догляд за обличчям і головою, подарункові сертифікати. Відкриті ціни та онлайн-запис."
+  },
+  "menu": {
+   "title": "Меню та ціни спа · The Faces Убуд і Санур, Балі",
+   "desc": "56 процедур з тривалістю та ціною в IDR: масаж обличчя, хед-спа, чищення, тіло, пакети та ритуали для пар. Онлайн-запис."
+  },
+  "couples-spa": {
+   "title": "Спа для пар на Балі · ритуали для двох і медовий місяць в Убуді, Сануре",
+   "desc": "Спа-ритуали для пар на Балі: Element of Love for a couple, Sacred Eternal Love і Sacred Honeymoon у Сануре. Тригодинні ритуали для двох."
+  },
+  "body-massage": {
+   "title": "Масаж тіла в Убуді та Сануре · рефлексотерапія та вогняний масаж | The Faces",
+   "desc": "Масаж усього тіла, вогняний масаж, рефлексотерапія та лімфодренаж ніг на Балі від 300 000 IDR. Онлайн-запис в Убуді та Сануре."
+  },
+  "skin-care": {
+   "title": "Чистка обличчя та догляд за шкірою на Балі · The Faces Убуд, Санур",
+   "desc": "Професійна чистка обличчя на Балі: атравматична, ультразвукова, вакуумна та комбінована, киснева ручка та кріомасаж від 900 000 IDR."
+  },
+  "head-spa": {
+   "title": "Хед-спа на Балі · Широдхара та веган хед-спа в Убуді, Сануре",
+   "desc": "Веганський хед-спа, Широдхара та аюрведичний масаж голови в Убуді та Сануре від 750 000 IDR. Глибоке розслаблення, кращий сон і здорове блискуче волосся."
+  },
+  "face-massage": {
+   "title": "Масаж обличчя на Балі · міофасціальний, скульптурний, гуаша | The Faces",
+   "desc": "Ручний масаж обличчя в Убуді та Сануре: міофасціальний, скульптурний, букальний, гуаша та авторські техніки від 750 000 IDR. Природний ліфтинг без хірургії."
+  },
+  "five-elements": {
+   "title": "Ритуали п'яти стихій на Балі: повітря, вогонь, вода, земля, любов",
+   "desc": "Тригодинні авторські програми від стресу, втоми, для детоксу, заземлення та любові. Обирайте за станом. 1 800 000 IDR в Убуді та Сануре."
+  },
+  "ubud": {
+   "title": "Спа в Убуді, Балі · The Faces Spa Ubud (Кедеватан)",
+   "desc": "Наш салон в Убуді на Jl. Raya Lungsiakan, Кедеватан, щодня 10:00–22:00. Ритуали, дитячий хед-спа та чоловічі програми. WhatsApp +62 822 6699 9965 або онлайн-запис."
+  },
+  "sanur": {
+   "title": "Спа в Сануре, Балі · The Faces Spa Sanur",
+   "desc": "Наш салон у Сануре на Jl. Danau Buyan 34a, щодня 10:00–20:00. Гідроліфтинг, Sacred Honeymoon і масаж у чотири руки. WhatsApp +62 813 3770 9190 або онлайн-запис."
+  },
+  "founders": {
+   "title": "Анна та Євгеній Дубініни · засновники The Faces",
+   "desc": "20+ років у б'юті та спа, салони в Європі та на Балі і концепція п'яти стихій. Історія The Faces і людей, які її створили."
+  },
+  "gift-certificates": {
+   "title": "Подарункові сертифікати в спа на Балі з бонусом · The Faces",
+   "desc": "Даруйте ритуал і отримуйте більше: сертифікати від 1 200 000 IDR з бонусом до 25 %. Діють в Убуді та Сануре."
+  },
+  "partners": {
+   "title": "Партнерство з The Faces · франшиза та спа-проєкти на Балі",
+   "desc": "Чотири спа-проєкти на Балі для партнерів, франшиза та спа в готелях, а також вакансії в The Faces."
+  },
+  "journal": {
+   "title": "Журнал · гіди спа, ритуали та повільна краса на Балі | The Faces",
+   "desc": "Гіди процедурами, доглядом за шкірою та повільною красою на Балі від команди The Faces."
+  },
+  "certificates": {
+   "title": "Торговельна марка та авторське право · концепція THE FACES «П'ять стихій»",
+   "desc": "Торговельна марка THE FACES (IDM001282706) і авторське право на концепцію «П'ять стихій» (000638738), зареєстровані в Індонезії."
+  },
+  "privacy": {
+   "title": "Політика конфіденційності · THE FACES Spa Балі",
+   "desc": "Як THE FACES Spa в Убуді та Сануре обробляє персональні дані, cookie та записи і як реалізувати свої права."
+  },
+  "terms": {
+   "title": "Умови запису, скасування та сертифікати · THE FACES Spa",
+   "desc": "Скасування, перенесення, умови використання та правила подарункових сертифікатів THE FACES Spa в Убуді та Сануре."
+  }
+ }
+}
