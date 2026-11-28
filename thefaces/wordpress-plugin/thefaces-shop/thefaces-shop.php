@@ -2,14 +2,14 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: Luxury spa-menu page to find and prepay THE FACES treatments, with the THE FACES header and footer, descriptions in 9 languages, search, category and salon filters, motion and optional video per treatment. Page /prepay-treatments/ (shortcode [thefaces_shop]). /tienda/ redirects here.
- * Version:     1.2.0
+ * Version:     1.2.1
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SHOP_VER', '1.2.0' );
+define( 'TF_SHOP_VER', '1.2.1' );
 define( 'TF_SHOP_URL', plugin_dir_url( __FILE__ ) );
 define( 'TF_SHOP_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -527,3 +527,81 @@ function tf_shop_email_booking( $order, $sent_to_admin, $plain_text, $email ) {
 	echo tf_shop_booking_html( $order, $plain_text ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
 }
 add_action( 'woocommerce_email_after_order_table', 'tf_shop_email_booking', 10, 4 );
+
+/* ---------- Hidden mode: the shop works by direct link (ads), but Google does not index it ---------- */
+
+function tf_shop_is_public() {
+	return (bool) get_option( 'tf_shop_public', 0 );
+}
+
+/** Is the current request part of the shop (treatments page, products, cart, checkout, account)? */
+function tf_shop_is_shop_request() {
+	if ( is_page( 'prepay-treatments' ) ) {
+		return true;
+	}
+	if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
+		return true;
+	}
+	return false;
+}
+
+function tf_shop_robots( $robots ) {
+	if ( ! tf_shop_is_public() && tf_shop_is_shop_request() ) {
+		$robots['noindex']  = true;
+		$robots['nofollow'] = true;
+		unset( $robots['index'], $robots['follow'], $robots['max-image-preview'] );
+	}
+	return $robots;
+}
+add_filter( 'wp_robots', 'tf_shop_robots', 99 );
+
+/** Yoast writes its own robots tag. */
+function tf_shop_yoast_robots( $robots ) {
+	if ( ! tf_shop_is_public() && tf_shop_is_shop_request() ) {
+		return 'noindex, nofollow';
+	}
+	return $robots;
+}
+add_filter( 'wpseo_robots', 'tf_shop_yoast_robots', 99 );
+
+/** Keep products and the shop page out of the Yoast sitemap while hidden. */
+function tf_shop_sitemap_exclude_type( $excluded, $post_type ) {
+	if ( ! tf_shop_is_public() && 'product' === $post_type ) {
+		return true;
+	}
+	return $excluded;
+}
+add_filter( 'wpseo_sitemap_exclude_post_type', 'tf_shop_sitemap_exclude_type', 10, 2 );
+add_filter( 'wpseo_sitemap_exclude_taxonomy', function ( $excluded, $tax ) {
+	if ( ! tf_shop_is_public() && in_array( $tax, array( 'product_cat', 'product_tag', 'product_brand' ), true ) ) {
+		return true;
+	}
+	return $excluded;
+}, 10, 2 );
+
+function tf_shop_sitemap_exclude_ids( $ids ) {
+	$ids = is_array( $ids ) ? $ids : array();
+	if ( ! tf_shop_is_public() ) {
+		$page = get_page_by_path( 'prepay-treatments' );
+		if ( $page ) {
+			$ids[] = (int) $page->ID;
+		}
+	}
+	return $ids;
+}
+add_filter( 'wpseo_exclude_from_sitemap_by_post_ids', 'tf_shop_sitemap_exclude_ids' );
+
+/** Setting: Ajustes → Lectura → "THE FACES · Tienda visible en Google". */
+function tf_shop_settings() {
+	register_setting( 'reading', 'tf_shop_public', array( 'type' => 'boolean', 'sanitize_callback' => function ( $v ) { return $v ? 1 : 0; } ) );
+	add_settings_field(
+		'tf_shop_public',
+		'THE FACES · Tienda',
+		function () {
+			echo '<label><input type="checkbox" name="tf_shop_public" value="1" ' . checked( 1, (int) get_option( 'tf_shop_public', 0 ), false ) . '> Mostrar la tienda en Google (indexar /prepay-treatments/ y los productos)</label>';
+			echo '<p class="description">Desmarcado: la tienda funciona con el enlace directo (para anuncios), pero Google no la indexa y no aparece en el sitemap. La web principal no cambia.</p>';
+		},
+		'reading'
+	);
+}
+add_action( 'admin_init', 'tf_shop_settings' );
