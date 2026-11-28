@@ -57,7 +57,7 @@ EXTRA = {
 <h2>Tips for your visit</h2>
 <ul>
 <li>Book one or two days ahead, especially for the afternoon and for the 4 hands treatment, which needs two therapists.</li>
-<li>Come straight from the beach if you like: we have showers, but give us ten extra minutes.</li>
+<li>If you come straight from the beach, rinse off the salt and sand first and leave ten extra minutes.</li>
 <li>After a Hydrolift or a face massage, protect your face from strong sun for the rest of the day.</li>
 </ul>
 """,

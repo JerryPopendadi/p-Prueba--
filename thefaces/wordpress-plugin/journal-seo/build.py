@@ -6,6 +6,23 @@ import shutil
 import subprocess
 
 from articles import ARTICLES
+from articles2 import ARTICLES2, related, R_MASS, R_FACIAL, R_LYMPH, R_UBUD, R_HEAD, R_FACE, R_SANUR, R_COUPLE
+
+LINKS1 = {
+    'best-spa-in-ubud-guide': (R_MASS, R_FACE, R_HEAD, R_COUPLE),
+    'head-spa-bali-guide': (('shirodhara-bali-ayurveda', 'Shirodhara in Bali: the Ayurvedic oil ritual'), R_MASS, R_UBUD, R_SANUR),
+    'face-massage-bali-guide': (R_FACIAL, R_LYMPH, R_HEAD, R_UBUD),
+    'spa-in-sanur-guide': (('things-to-do-in-sanur', 'Things to do in Sanur: a slow guide'), R_COUPLE, R_LYMPH, R_FACE),
+    'couples-spa-bali-honeymoon': (R_UBUD, R_SANUR, ('things-to-do-in-sanur', 'Things to do in Sanur'), R_MASS),
+}
+for _a in ARTICLES:
+    _a['html'] = _a['html'] + related(*LINKS1[_a['slug']])
+from extra2 import EXTRA2
+for _a in ARTICLES2:
+    if _a['slug'] in EXTRA2:
+        _i = _a['html'].find('<h2>Book')
+        _a['html'] = _a['html'][:_i] + EXTRA2[_a['slug']].strip() + '\n\n' + _a['html'][_i:]
+ARTICLES = ARTICLES + ARTICLES2
 
 H = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(H, '..', 'thefaces-journal-seo')
@@ -24,8 +41,8 @@ assert 'TFJSON' not in blob
 php = r"""<?php
 /**
  * Plugin Name: THE FACES · Journal SEO articles
- * Description: Adds 5 long SEO articles (English) to the THE FACES Journal: best spa in Ubud, head spa in Bali, face massage in Bali, spa in Sanur and couples spa. Activate once: the articles are created as normal posts (they stay if you deactivate the plugin). Also prints FAQ structured data for them.
- * Version:     1.0.0
+ * Description: Adds 13 long SEO articles (English) to the THE FACES Journal (spa Ubud, massage Ubud, Balinese massage, head spa, Shirodhara, face massage, facial, lymphatic drainage, reflexology, men's spa, spa Sanur, things to do in Sanur, couples spa). Activate once: the articles are created as normal posts (they stay if you deactivate the plugin). Also prints FAQ structured data for them.
+ * Version:     1.1.0
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -60,7 +77,7 @@ function tf_jseo_install() {
 				'post_name'    => $a['slug'],
 				'post_excerpt' => $a['excerpt'],
 				'post_content' => $a['html'],
-				'post_date'    => gmdate( 'Y-m-d H:i:s', time() - ( 6 - $i ) * HOUR_IN_SECONDS ),
+				'post_date'    => gmdate( 'Y-m-d H:i:s', time() - ( 20 - $i ) * HOUR_IN_SECONDS ),
 			)
 		);
 		if ( is_wp_error( $id ) || ! $id ) {
@@ -84,6 +101,15 @@ function tf_jseo_install() {
 	delete_transient( 'tf_seo_canonical_ids' );
 }
 register_activation_hook( __FILE__, 'tf_jseo_install' );
+
+/** After replacing the plugin with a newer zip, add the new articles too. */
+function tf_jseo_maybe_upgrade() {
+	if ( '1.1.0' !== get_option( 'tf_jseo_ver' ) && current_user_can( 'manage_options' ) ) {
+		tf_jseo_install();
+		update_option( 'tf_jseo_ver', '1.1.0', false );
+	}
+}
+add_action( 'admin_init', 'tf_jseo_maybe_upgrade' );
 
 /** FAQ structured data (FAQPage) on each article. */
 function tf_jseo_faq_schema() {
