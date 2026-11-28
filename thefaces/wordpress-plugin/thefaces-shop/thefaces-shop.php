@@ -2,14 +2,14 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: Luxury spa-menu page to find and prepay THE FACES treatments, with the THE FACES header and footer, descriptions in 9 languages, search, category and salon filters, motion and optional video per treatment. Page /prepay-treatments/ (shortcode [thefaces_shop]). /tienda/ redirects here.
- * Version:     1.2.2
+ * Version:     1.2.3
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SHOP_VER', '1.2.2' );
+define( 'TF_SHOP_VER', '1.2.3' );
 define( 'TF_SHOP_URL', plugin_dir_url( __FILE__ ) );
 define( 'TF_SHOP_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -614,3 +614,47 @@ function tf_shop_template( $template ) {
 	return $template;
 }
 add_filter( 'template_include', 'tf_shop_template', 99 );
+
+/* ---------- Cart, checkout, product and account pages: THE FACES header and footer instead of the theme ones ---------- */
+
+function tf_shop_is_woo_page() {
+	return tf_shop_is_shop_request() && ! is_page( 'prepay-treatments' );
+}
+
+/** Block themes: swap the header / footer template parts. */
+function tf_shop_template_part( $html, $block ) {
+	if ( ! tf_shop_is_woo_page() || ! shortcode_exists( 'thefaces' ) ) {
+		return $html;
+	}
+	$slug = isset( $block['attrs']['slug'] ) ? (string) $block['attrs']['slug'] : '';
+	$tag  = isset( $block['attrs']['tagName'] ) ? (string) $block['attrs']['tagName'] : '';
+	if ( false !== strpos( $slug, 'header' ) || 'header' === $tag ) {
+		return do_shortcode( '[thefaces block="header" lang="en"]' ) . '<div class="tf-woo-space" aria-hidden="true"></div>';
+	}
+	if ( false !== strpos( $slug, 'footer' ) || 'footer' === $tag ) {
+		return do_shortcode( '[thefaces block="footer" lang="en"]' );
+	}
+	return $html;
+}
+add_filter( 'render_block_core/template-part', 'tf_shop_template_part', 20, 2 );
+
+function tf_shop_body_class( $classes ) {
+	if ( tf_shop_is_woo_page() ) {
+		$classes[] = 'tf-woo';
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'tf_shop_body_class' );
+
+/** THE FACES styles on the WooCommerce pages too, with a solid header (these pages have a white background). */
+function tf_shop_woo_assets() {
+	if ( ! tf_shop_is_woo_page() || ! defined( 'TF_SPA_URL' ) ) {
+		return;
+	}
+	$ver = defined( 'TF_SPA_VERSION' ) ? TF_SPA_VERSION : TF_SHOP_VER;
+	wp_enqueue_style( 'thefaces-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap', array(), null );
+	wp_enqueue_style( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.css', array(), $ver );
+	wp_add_inline_style( 'thefaces-spa', 'body.tf-woo .tf .top{background:rgba(10,10,10,.94)!important;padding:12px 0}body.tf-woo .tf-woo-space{height:92px}body.admin-bar.tf-woo .tf .top{top:32px}@media (max-width:782px){body.admin-bar.tf-woo .tf .top{top:46px}body.tf-woo .tf-woo-space{height:76px}}body.tf-woo{font-family:Montserrat,system-ui,sans-serif}body.tf-woo h1,body.tf-woo .wp-block-post-title{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400}body.tf-woo .wc-block-components-button:not(.is-link),body.tf-woo .wp-element-button{background:#16130f;color:#fff;border-radius:30px;letter-spacing:.12em;text-transform:uppercase;font-size:13px}body.tf-woo .wc-block-components-button:not(.is-link):hover,body.tf-woo .wp-element-button:hover{background:#B08D45}' );
+	wp_enqueue_script( 'thefaces-spa', TF_SPA_URL . 'assets/thefaces.js', array(), $ver, true );
+}
+add_action( 'wp_enqueue_scripts', 'tf_shop_woo_assets', 20 );
