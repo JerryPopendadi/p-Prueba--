@@ -2,14 +2,14 @@
 /**
  * Plugin Name: THE FACES · Treatments shop page
  * Description: Luxury spa-menu page to find and prepay THE FACES treatments, with the THE FACES header and footer, descriptions in 9 languages, search, category and salon filters, motion and optional video per treatment. Page /prepay-treatments/ (shortcode [thefaces_shop]). /tienda/ redirects here.
- * Version:     1.2.1
+ * Version:     1.2.2
  * Author:      THE FACES
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TF_SHOP_VER', '1.2.1' );
+define( 'TF_SHOP_VER', '1.2.2' );
 define( 'TF_SHOP_URL', plugin_dir_url( __FILE__ ) );
 define( 'TF_SHOP_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -605,3 +605,12 @@ function tf_shop_settings() {
 	);
 }
 add_action( 'admin_init', 'tf_shop_settings' );
+
+/** The treatments page always uses the THE FACES layout (header and footer of the site), whatever the theme or page template. */
+function tf_shop_template( $template ) {
+	if ( is_page( 'prepay-treatments' ) ) {
+		return TF_SHOP_DIR . 'templates/shop.php';
+	}
+	return $template;
+}
+add_filter( 'template_include', 'tf_shop_template', 99 );
